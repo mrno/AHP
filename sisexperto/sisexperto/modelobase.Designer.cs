@@ -16,6 +16,23 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region Metadatos de relaciones en EDM
+
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_alternativacomparacion_alternativa", "alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.alternativa), "comparacion_alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_alternativa), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_alternativacomparacion_alternativa1", "alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.alternativa), "comparacion_alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_alternativa), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_proyectoalternativa", "proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.proyecto), "alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.alternativa), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_criteriocomparacion_alternativa", "criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.criterio), "comparacion_alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_alternativa), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_expertocomparacion_alternativa", "experto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.experto), "comparacion_alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_alternativa), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_proyectocomparacion_alternativa", "proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.proyecto), "comparacion_alternativa", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_alternativa), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_criteriocomparacion_criterio", "criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.criterio), "comparacion_criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_criterio), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_criteriocomparacion_criterio1", "criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.criterio), "comparacion_criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_criterio), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_expertocomparacion_criterio", "experto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.experto), "comparacion_criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_criterio), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_proyectocomparacion_criterio", "proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.proyecto), "comparacion_criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.comparacion_criterio), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_proyectocriterio", "proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.proyecto), "criterio", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.criterio), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_expertoexperto_proyecto", "experto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.experto), "experto_proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.experto_proyecto), true)]
+[assembly: EdmRelationshipAttribute("gisiabaseModel", "FK_proyectoexperto_proyecto", "proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(sisexperto.proyecto), "experto_proyecto", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(sisexperto.experto_proyecto), true)]
+
+#endregion
 
 namespace sisexperto
 {
@@ -373,6 +390,91 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_alternativacomparacion_alternativa", "comparacion_alternativa")]
+        public EntityCollection<comparacion_alternativa> comparacion_alternativa
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa", "comparacion_alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa", "comparacion_alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_alternativacomparacion_alternativa1", "comparacion_alternativa")]
+        public EntityCollection<comparacion_alternativa> comparacion_alternativa1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa1", "comparacion_alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa1", "comparacion_alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectoalternativa", "proyecto")]
+        public proyecto proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectoalternativa", "proyecto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectoalternativa", "proyecto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<proyecto> proyectoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectoalternativa", "proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<proyecto>("gisiabaseModel.FK_proyectoalternativa", "proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -568,6 +670,199 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_alternativacomparacion_alternativa", "alternativa")]
+        public alternativa alternativa
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa", "alternativa").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa", "alternativa").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<alternativa> alternativaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa", "alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa", "alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_alternativacomparacion_alternativa1", "alternativa")]
+        public alternativa alternativa1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa1", "alternativa").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa1", "alternativa").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<alternativa> alternativa1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa1", "alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<alternativa>("gisiabaseModel.FK_alternativacomparacion_alternativa1", "alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_criteriocomparacion_alternativa", "criterio")]
+        public criterio criterio
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_alternativa", "criterio").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_alternativa", "criterio").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<criterio> criterioReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_alternativa", "criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_alternativa", "criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_expertocomparacion_alternativa", "experto")]
+        public experto experto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_alternativa", "experto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_alternativa", "experto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<experto> expertoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_alternativa", "experto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_alternativa", "experto", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectocomparacion_alternativa", "proyecto")]
+        public proyecto proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_alternativa", "proyecto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_alternativa", "proyecto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<proyecto> proyectoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_alternativa", "proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_alternativa", "proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -734,6 +1029,161 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_criteriocomparacion_criterio", "criterio")]
+        public criterio criterio
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio", "criterio").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio", "criterio").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<criterio> criterioReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio", "criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio", "criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_criteriocomparacion_criterio1", "criterio")]
+        public criterio criterio1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio1", "criterio").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio1", "criterio").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<criterio> criterio1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio1", "criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<criterio>("gisiabaseModel.FK_criteriocomparacion_criterio1", "criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_expertocomparacion_criterio", "experto")]
+        public experto experto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_criterio", "experto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_criterio", "experto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<experto> expertoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_criterio", "experto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<experto>("gisiabaseModel.FK_expertocomparacion_criterio", "experto", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectocomparacion_criterio", "proyecto")]
+        public proyecto proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_criterio", "proyecto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_criterio", "proyecto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<proyecto> proyectoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_criterio", "proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<proyecto>("gisiabaseModel.FK_proyectocomparacion_criterio", "proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -865,6 +1315,113 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_criteriocomparacion_alternativa", "comparacion_alternativa")]
+        public EntityCollection<comparacion_alternativa> comparacion_alternativa
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_criteriocomparacion_alternativa", "comparacion_alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_criteriocomparacion_alternativa", "comparacion_alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_criteriocomparacion_criterio", "comparacion_criterio")]
+        public EntityCollection<comparacion_criterio> comparacion_criterio
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_criteriocomparacion_criterio", "comparacion_criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_criteriocomparacion_criterio", "comparacion_criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_criteriocomparacion_criterio1", "comparacion_criterio")]
+        public EntityCollection<comparacion_criterio> comparacion_criterio1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_criteriocomparacion_criterio1", "comparacion_criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_criteriocomparacion_criterio1", "comparacion_criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectocriterio", "proyecto")]
+        public proyecto proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocriterio", "proyecto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocriterio", "proyecto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<proyecto> proyectoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectocriterio", "proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<proyecto>("gisiabaseModel.FK_proyectocriterio", "proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -1024,6 +1581,75 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_expertocomparacion_alternativa", "comparacion_alternativa")]
+        public EntityCollection<comparacion_alternativa> comparacion_alternativa
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_expertocomparacion_alternativa", "comparacion_alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_expertocomparacion_alternativa", "comparacion_alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_expertocomparacion_criterio", "comparacion_criterio")]
+        public EntityCollection<comparacion_criterio> comparacion_criterio
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_expertocomparacion_criterio", "comparacion_criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_expertocomparacion_criterio", "comparacion_criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_expertoexperto_proyecto", "experto_proyecto")]
+        public EntityCollection<experto_proyecto> experto_proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<experto_proyecto>("gisiabaseModel.FK_expertoexperto_proyecto", "experto_proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<experto_proyecto>("gisiabaseModel.FK_expertoexperto_proyecto", "experto_proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -1132,6 +1758,85 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_expertoexperto_proyecto", "experto")]
+        public experto experto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertoexperto_proyecto", "experto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertoexperto_proyecto", "experto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<experto> expertoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<experto>("gisiabaseModel.FK_expertoexperto_proyecto", "experto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<experto>("gisiabaseModel.FK_expertoexperto_proyecto", "experto", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectoexperto_proyecto", "proyecto")]
+        public proyecto proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectoexperto_proyecto", "proyecto").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectoexperto_proyecto", "proyecto").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<proyecto> proyectoReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<proyecto>("gisiabaseModel.FK_proyectoexperto_proyecto", "proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<proyecto>("gisiabaseModel.FK_proyectoexperto_proyecto", "proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
     
     /// <summary>
@@ -1237,6 +1942,119 @@ namespace sisexperto
 
         #endregion
     
+        #region Propiedades de navegación
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectoalternativa", "alternativa")]
+        public EntityCollection<alternativa> alternativas
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<alternativa>("gisiabaseModel.FK_proyectoalternativa", "alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<alternativa>("gisiabaseModel.FK_proyectoalternativa", "alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectocomparacion_alternativa", "comparacion_alternativa")]
+        public EntityCollection<comparacion_alternativa> comparacion_alternativa
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_proyectocomparacion_alternativa", "comparacion_alternativa");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_alternativa>("gisiabaseModel.FK_proyectocomparacion_alternativa", "comparacion_alternativa", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectocomparacion_criterio", "comparacion_criterio")]
+        public EntityCollection<comparacion_criterio> comparacion_criterio
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_proyectocomparacion_criterio", "comparacion_criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comparacion_criterio>("gisiabaseModel.FK_proyectocomparacion_criterio", "comparacion_criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectocriterio", "criterio")]
+        public EntityCollection<criterio> criterios
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<criterio>("gisiabaseModel.FK_proyectocriterio", "criterio");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<criterio>("gisiabaseModel.FK_proyectocriterio", "criterio", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gisiabaseModel", "FK_proyectoexperto_proyecto", "experto_proyecto")]
+        public EntityCollection<experto_proyecto> experto_proyecto
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<experto_proyecto>("gisiabaseModel.FK_proyectoexperto_proyecto", "experto_proyecto");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<experto_proyecto>("gisiabaseModel.FK_proyectoexperto_proyecto", "experto_proyecto", value);
+                }
+            }
+        }
+
+        #endregion
     }
 
     #endregion

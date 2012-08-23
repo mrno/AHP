@@ -4,38 +4,67 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gisiabaseModelStoreContainer">
           <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_alternativa">
-            <DefiningQuery>SELECT 
-      [comparacion_alternativa].[id_proyecto] AS [id_proyecto], 
-      [comparacion_alternativa].[id_experto] AS [id_experto], 
-      [comparacion_alternativa].[id_criterio] AS [id_criterio], 
-      [comparacion_alternativa].[id_alternativa1] AS [id_alternativa1], 
-      [comparacion_alternativa].[id_alternativa2] AS [id_alternativa2], 
-      [comparacion_alternativa].[valor] AS [valor]
-      FROM [dbo].[comparacion_alternativa] AS [comparacion_alternativa]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_criterio">
-            <DefiningQuery>SELECT 
-      [comparacion_criterio].[id_proyecto] AS [id_proyecto], 
-      [comparacion_criterio].[id_experto] AS [id_experto], 
-      [comparacion_criterio].[id_criterio1] AS [id_criterio1], 
-      [comparacion_criterio].[id_criterio2] AS [id_criterio2], 
-      [comparacion_criterio].[valor] AS [valor]
-      FROM [dbo].[comparacion_criterio] AS [comparacion_criterio]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" store:Schema="dbo" store:Name="experto_proyecto">
-            <DefiningQuery>SELECT 
-      [experto_proyecto].[id_proyecto] AS [id_proyecto], 
-      [experto_proyecto].[id_experto] AS [id_experto], 
-      [experto_proyecto].[ponderacion] AS [ponderacion]
-      FROM [dbo].[experto_proyecto] AS [experto_proyecto]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_alternativacomparacion_alternativa" Association="gisiabaseModel.Store.FK_alternativacomparacion_alternativa">
+            <End Role="alternativa" EntitySet="alternativa" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alternativacomparacion_alternativa1" Association="gisiabaseModel.Store.FK_alternativacomparacion_alternativa1">
+            <End Role="alternativa" EntitySet="alternativa" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_criteriocomparacion_alternativa" Association="gisiabaseModel.Store.FK_criteriocomparacion_alternativa">
+            <End Role="criterio" EntitySet="criterio" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_criteriocomparacion_criterio" Association="gisiabaseModel.Store.FK_criteriocomparacion_criterio">
+            <End Role="criterio" EntitySet="criterio" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_criteriocomparacion_criterio1" Association="gisiabaseModel.Store.FK_criteriocomparacion_criterio1">
+            <End Role="criterio" EntitySet="criterio" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expertocomparacion_alternativa" Association="gisiabaseModel.Store.FK_expertocomparacion_alternativa">
+            <End Role="experto" EntitySet="experto" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expertocomparacion_criterio" Association="gisiabaseModel.Store.FK_expertocomparacion_criterio">
+            <End Role="experto" EntitySet="experto" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expertoexperto_proyecto" Association="gisiabaseModel.Store.FK_expertoexperto_proyecto">
+            <End Role="experto" EntitySet="experto" />
+            <End Role="experto_proyecto" EntitySet="experto_proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectoalternativa" Association="gisiabaseModel.Store.FK_proyectoalternativa">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="alternativa" EntitySet="alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectocomparacion_alternativa" Association="gisiabaseModel.Store.FK_proyectocomparacion_alternativa">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectocomparacion_criterio" Association="gisiabaseModel.Store.FK_proyectocomparacion_criterio">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectocriterio" Association="gisiabaseModel.Store.FK_proyectocriterio">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="criterio" EntitySet="criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectoexperto_proyecto" Association="gisiabaseModel.Store.FK_proyectoexperto_proyecto">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="experto_proyecto" EntitySet="experto_proyecto" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="alternativa">
           <Key>
@@ -46,9 +75,6 @@
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'gisiabase.dbo.comparacion_alternativa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
-      -->
         <EntityType Name="comparacion_alternativa">
           <Key>
             <PropertyRef Name="id_proyecto" />
@@ -64,9 +90,6 @@
           <Property Name="id_alternativa2" Type="int" Nullable="false" />
           <Property Name="valor" Type="float" />
         </EntityType>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'gisiabase.dbo.comparacion_criterio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
-      -->
         <EntityType Name="comparacion_criterio">
           <Key>
             <PropertyRef Name="id_proyecto" />
@@ -99,9 +122,6 @@
           <Property Name="nom_usuario" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="clave" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'gisiabase.dbo.experto_proyecto' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
-      -->
         <EntityType Name="experto_proyecto">
           <Key>
             <PropertyRef Name="id_proyecto" />
@@ -119,8 +139,163 @@
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="objetivo" Type="varchar" MaxLength="50" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <Association Name="FK_alternativacomparacion_alternativa">
+          <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="1" />
+          <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alternativa">
+              <PropertyRef Name="id_alternativa" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_alternativa1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alternativacomparacion_alternativa1">
+          <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="1" />
+          <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alternativa">
+              <PropertyRef Name="id_alternativa" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_alternativa2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_criteriocomparacion_alternativa">
+          <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
+          <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="criterio">
+              <PropertyRef Name="id_criterio" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_criterio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_criteriocomparacion_criterio">
+          <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
+          <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="criterio">
+              <PropertyRef Name="id_criterio" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_criterio1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_criteriocomparacion_criterio1">
+          <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
+          <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="criterio">
+              <PropertyRef Name="id_criterio" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_criterio2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expertocomparacion_alternativa">
+          <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
+          <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experto">
+              <PropertyRef Name="id_experto" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_experto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expertocomparacion_criterio">
+          <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
+          <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experto">
+              <PropertyRef Name="id_experto" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_experto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expertoexperto_proyecto">
+          <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
+          <End Role="experto_proyecto" Type="gisiabaseModel.Store.experto_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experto">
+              <PropertyRef Name="id_experto" />
+            </Principal>
+            <Dependent Role="experto_proyecto">
+              <PropertyRef Name="id_experto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectoalternativa">
+          <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+          <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="alternativa">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectocomparacion_alternativa">
+          <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+          <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectocomparacion_criterio">
+          <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+          <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectocriterio">
+          <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+          <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="criterio">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectoexperto_proyecto">
+          <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+          <End Role="experto_proyecto" Type="gisiabaseModel.Store.experto_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="experto_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gisiabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -132,6 +307,58 @@
           <EntitySet Name="experto" EntityType="gisiabaseModel.experto" />
           <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.experto_proyecto" />
           <EntitySet Name="proyecto" EntityType="gisiabaseModel.proyecto" />
+          <AssociationSet Name="FK_alternativacomparacion_alternativa" Association="gisiabaseModel.FK_alternativacomparacion_alternativa">
+            <End Role="alternativa" EntitySet="alternativa" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_alternativacomparacion_alternativa1" Association="gisiabaseModel.FK_alternativacomparacion_alternativa1">
+            <End Role="alternativa" EntitySet="alternativa" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectoalternativa" Association="gisiabaseModel.FK_proyectoalternativa">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="alternativa" EntitySet="alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_criteriocomparacion_alternativa" Association="gisiabaseModel.FK_criteriocomparacion_alternativa">
+            <End Role="criterio" EntitySet="criterio" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expertocomparacion_alternativa" Association="gisiabaseModel.FK_expertocomparacion_alternativa">
+            <End Role="experto" EntitySet="experto" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectocomparacion_alternativa" Association="gisiabaseModel.FK_proyectocomparacion_alternativa">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_criteriocomparacion_criterio" Association="gisiabaseModel.FK_criteriocomparacion_criterio">
+            <End Role="criterio" EntitySet="criterio" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_criteriocomparacion_criterio1" Association="gisiabaseModel.FK_criteriocomparacion_criterio1">
+            <End Role="criterio" EntitySet="criterio" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expertocomparacion_criterio" Association="gisiabaseModel.FK_expertocomparacion_criterio">
+            <End Role="experto" EntitySet="experto" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectocomparacion_criterio" Association="gisiabaseModel.FK_proyectocomparacion_criterio">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectocriterio" Association="gisiabaseModel.FK_proyectocriterio">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="criterio" EntitySet="criterio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_expertoexperto_proyecto" Association="gisiabaseModel.FK_expertoexperto_proyecto">
+            <End Role="experto" EntitySet="experto" />
+            <End Role="experto_proyecto" EntitySet="experto_proyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_proyectoexperto_proyecto" Association="gisiabaseModel.FK_proyectoexperto_proyecto">
+            <End Role="proyecto" EntitySet="proyecto" />
+            <End Role="experto_proyecto" EntitySet="experto_proyecto" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="alternativa">
           <Key>
@@ -141,6 +368,9 @@
           <Property Name="id_proyecto" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="comparacion_alternativa" Relationship="gisiabaseModel.FK_alternativacomparacion_alternativa" FromRole="alternativa" ToRole="comparacion_alternativa" />
+          <NavigationProperty Name="comparacion_alternativa1" Relationship="gisiabaseModel.FK_alternativacomparacion_alternativa1" FromRole="alternativa" ToRole="comparacion_alternativa" />
+          <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectoalternativa" FromRole="alternativa" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="comparacion_alternativa">
           <Key>
@@ -156,6 +386,11 @@
           <Property Name="id_alternativa1" Type="Int32" Nullable="false" />
           <Property Name="id_alternativa2" Type="Int32" Nullable="false" />
           <Property Name="valor" Type="Double" />
+          <NavigationProperty Name="alternativa" Relationship="gisiabaseModel.FK_alternativacomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="alternativa" />
+          <NavigationProperty Name="alternativa1" Relationship="gisiabaseModel.FK_alternativacomparacion_alternativa1" FromRole="comparacion_alternativa" ToRole="alternativa" />
+          <NavigationProperty Name="criterio" Relationship="gisiabaseModel.FK_criteriocomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="criterio" />
+          <NavigationProperty Name="experto" Relationship="gisiabaseModel.FK_expertocomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="experto" />
+          <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectocomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="comparacion_criterio">
           <Key>
@@ -169,6 +404,10 @@
           <Property Name="id_criterio1" Type="Int32" Nullable="false" />
           <Property Name="id_criterio2" Type="Int32" Nullable="false" />
           <Property Name="valor" Type="Double" />
+          <NavigationProperty Name="criterio" Relationship="gisiabaseModel.FK_criteriocomparacion_criterio" FromRole="comparacion_criterio" ToRole="criterio" />
+          <NavigationProperty Name="criterio1" Relationship="gisiabaseModel.FK_criteriocomparacion_criterio1" FromRole="comparacion_criterio" ToRole="criterio" />
+          <NavigationProperty Name="experto" Relationship="gisiabaseModel.FK_expertocomparacion_criterio" FromRole="comparacion_criterio" ToRole="experto" />
+          <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectocomparacion_criterio" FromRole="comparacion_criterio" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="criterio">
           <Key>
@@ -178,6 +417,10 @@
           <Property Name="id_proyecto" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="comparacion_alternativa" Relationship="gisiabaseModel.FK_criteriocomparacion_alternativa" FromRole="criterio" ToRole="comparacion_alternativa" />
+          <NavigationProperty Name="comparacion_criterio" Relationship="gisiabaseModel.FK_criteriocomparacion_criterio" FromRole="criterio" ToRole="comparacion_criterio" />
+          <NavigationProperty Name="comparacion_criterio1" Relationship="gisiabaseModel.FK_criteriocomparacion_criterio1" FromRole="criterio" ToRole="comparacion_criterio" />
+          <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectocriterio" FromRole="criterio" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="experto">
           <Key>
@@ -188,6 +431,9 @@
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="nom_usuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="clave" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="comparacion_alternativa" Relationship="gisiabaseModel.FK_expertocomparacion_alternativa" FromRole="experto" ToRole="comparacion_alternativa" />
+          <NavigationProperty Name="comparacion_criterio" Relationship="gisiabaseModel.FK_expertocomparacion_criterio" FromRole="experto" ToRole="comparacion_criterio" />
+          <NavigationProperty Name="experto_proyecto" Relationship="gisiabaseModel.FK_expertoexperto_proyecto" FromRole="experto" ToRole="experto_proyecto" />
         </EntityType>
         <EntityType Name="experto_proyecto">
           <Key>
@@ -197,6 +443,8 @@
           <Property Name="id_proyecto" Type="Int32" Nullable="false" />
           <Property Name="id_experto" Type="Int32" Nullable="false" />
           <Property Name="ponderacion" Type="Double" />
+          <NavigationProperty Name="experto" Relationship="gisiabaseModel.FK_expertoexperto_proyecto" FromRole="experto_proyecto" ToRole="experto" />
+          <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectoexperto_proyecto" FromRole="experto_proyecto" ToRole="proyecto" />
         </EntityType>
         <EntityType Name="proyecto">
           <Key>
@@ -205,7 +453,168 @@
           <Property Name="id_proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="objetivo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="alternativas" Relationship="gisiabaseModel.FK_proyectoalternativa" FromRole="proyecto" ToRole="alternativa" />
+          <NavigationProperty Name="comparacion_alternativa" Relationship="gisiabaseModel.FK_proyectocomparacion_alternativa" FromRole="proyecto" ToRole="comparacion_alternativa" />
+          <NavigationProperty Name="comparacion_criterio" Relationship="gisiabaseModel.FK_proyectocomparacion_criterio" FromRole="proyecto" ToRole="comparacion_criterio" />
+          <NavigationProperty Name="criterios" Relationship="gisiabaseModel.FK_proyectocriterio" FromRole="proyecto" ToRole="criterio" />
+          <NavigationProperty Name="experto_proyecto" Relationship="gisiabaseModel.FK_proyectoexperto_proyecto" FromRole="proyecto" ToRole="experto_proyecto" />
         </EntityType>
+        <Association Name="FK_alternativacomparacion_alternativa">
+          <End Type="gisiabaseModel.alternativa" Role="alternativa" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_alternativa" Role="comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alternativa">
+              <PropertyRef Name="id_alternativa" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_alternativa1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_alternativacomparacion_alternativa1">
+          <End Type="gisiabaseModel.alternativa" Role="alternativa" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_alternativa" Role="comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alternativa">
+              <PropertyRef Name="id_alternativa" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_alternativa2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectoalternativa">
+          <End Type="gisiabaseModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="gisiabaseModel.alternativa" Role="alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="alternativa">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_criteriocomparacion_alternativa">
+          <End Type="gisiabaseModel.criterio" Role="criterio" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_alternativa" Role="comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="criterio">
+              <PropertyRef Name="id_criterio" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_criterio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expertocomparacion_alternativa">
+          <End Type="gisiabaseModel.experto" Role="experto" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_alternativa" Role="comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experto">
+              <PropertyRef Name="id_experto" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_experto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectocomparacion_alternativa">
+          <End Type="gisiabaseModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_alternativa" Role="comparacion_alternativa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="comparacion_alternativa">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_criteriocomparacion_criterio">
+          <End Type="gisiabaseModel.criterio" Role="criterio" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_criterio" Role="comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="criterio">
+              <PropertyRef Name="id_criterio" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_criterio1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_criteriocomparacion_criterio1">
+          <End Type="gisiabaseModel.criterio" Role="criterio" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_criterio" Role="comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="criterio">
+              <PropertyRef Name="id_criterio" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_criterio2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expertocomparacion_criterio">
+          <End Type="gisiabaseModel.experto" Role="experto" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_criterio" Role="comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experto">
+              <PropertyRef Name="id_experto" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_experto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectocomparacion_criterio">
+          <End Type="gisiabaseModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="gisiabaseModel.comparacion_criterio" Role="comparacion_criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="comparacion_criterio">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectocriterio">
+          <End Type="gisiabaseModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="gisiabaseModel.criterio" Role="criterio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="criterio">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_expertoexperto_proyecto">
+          <End Type="gisiabaseModel.experto" Role="experto" Multiplicity="1" />
+          <End Type="gisiabaseModel.experto_proyecto" Role="experto_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experto">
+              <PropertyRef Name="id_experto" />
+            </Principal>
+            <Dependent Role="experto_proyecto">
+              <PropertyRef Name="id_experto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_proyectoexperto_proyecto">
+          <End Type="gisiabaseModel.proyecto" Role="proyecto" Multiplicity="1" />
+          <End Type="gisiabaseModel.experto_proyecto" Role="experto_proyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Principal>
+            <Dependent Role="experto_proyecto">
+              <PropertyRef Name="id_proyecto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -270,7 +679,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
@@ -284,6 +693,74 @@
         <EntityTypeShape EntityType="gisiabaseModel.experto" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.experto_proyecto" Width="1.5" PointX="4.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.proyecto" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa" >
+          <ConnectorPoint PointX="2.25" PointY="1.7926741536458335" />
+          <ConnectorPoint PointX="2.75" PointY="1.7926741536458335" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa1" >
+          <ConnectorPoint PointX="2.25" PointY="1.2088370768229169" />
+          <ConnectorPoint PointX="2.75" PointY="1.2088370768229169" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_proyectoalternativa" >
+          <ConnectorPoint PointX="6.8076913076923073" PointY="0.75" />
+          <ConnectorPoint PointX="6.2139413076923073" PointY="0.15625" />
+          <ConnectorPoint PointX="2.8449028461538459" PointY="0.15625" />
+          <ConnectorPoint PointX="2.25" PointY="0.75115284615384614" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_alternativa" >
+          <ConnectorPoint PointX="3.5" PointY="3.75" />
+          <ConnectorPoint PointX="3.5" PointY="3.4927376302083331" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_alternativa" >
+          <ConnectorPoint PointX="4.75" PointY="1.8748478190104165" />
+          <ConnectorPoint PointX="4.25" PointY="1.8748478190104165" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_alternativa" >
+          <ConnectorPoint PointX="6.75" PointY="0.77423076923076917" />
+          <ConnectorPoint PointX="6.3507692307692309" PointY="0.37500000000000022" />
+          <ConnectorPoint PointX="4.6261528461538468" PointY="0.37500000000000022" />
+          <ConnectorPoint PointX="4.25" PointY="0.75115284615384637" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio" >
+          <ConnectorPoint PointX="2.75" PointY="4.8748478190104167" />
+          <ConnectorPoint PointX="2.25" PointY="4.8748478190104167" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio1" >
+          <ConnectorPoint PointX="2.75" PointY="4.2499239095052079" />
+          <ConnectorPoint PointX="2.25" PointY="4.2499239095052079" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_criterio" >
+          <ConnectorPoint PointX="4.75" PointY="2.468523728515625" />
+          <ConnectorPoint PointX="4.5" PointY="2.468523728515625" />
+          <ConnectorPoint PointX="4.5" PointY="3.7427376302083335" />
+          <ConnectorPoint PointX="2.5" PointY="3.7427376302083335" />
+          <ConnectorPoint PointX="2.5" PointY="3.085348307291667" />
+          <ConnectorPoint PointX="1.5" PointY="3.085348307291667" />
+          <ConnectorPoint PointX="1.5" PointY="3.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_criterio" >
+          <ConnectorPoint PointX="7.5" PointY="2.9996956380208335" />
+          <ConnectorPoint PointX="7.5" PointY="6.1131193033854165" />
+          <ConnectorPoint PointX="2.25" PointY="6.1131193033854165" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_proyectocriterio" >
+          <ConnectorPoint PointX="7.0937475" PointY="2.9996956380208335" />
+          <ConnectorPoint PointX="7.0937475" PointY="5.7844246419270826" />
+          <ConnectorPoint PointX="4.25" PointY="5.7844246419270826" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_expertoexperto_proyecto" >
+          <ConnectorPoint PointX="5.5" PointY="2.9996956380208331" />
+          <ConnectorPoint PointX="5.5" PointY="3.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="gisiabaseModel.FK_proyectoexperto_proyecto" >
+          <ConnectorPoint PointX="7.9062525" PointY="2.9996956380208335" />
+          <ConnectorPoint PointX="7.9062525" PointY="4.6283268229166659" />
+          <ConnectorPoint PointX="7.583333333333333" PointY="4.628326822916665" />
+          <ConnectorPoint PointX="7.416666666666667" PointY="4.6283268229166659" />
+          <ConnectorPoint PointX="7.1770808333333331" PointY="4.628326822916665" />
+          <ConnectorPoint PointX="7.0104141666666671" PointY="4.6283268229166659" />
+          <ConnectorPoint PointX="6.25" PointY="4.6283268229166659" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>
