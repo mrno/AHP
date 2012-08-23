@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="gisiabaseModelStoreContainer">
+          <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_alternativa">
+            <DefiningQuery>SELECT 
+      [comparacion_alternativa].[id_proyecto] AS [id_proyecto], 
+      [comparacion_alternativa].[id_experto] AS [id_experto], 
+      [comparacion_alternativa].[id_criterio] AS [id_criterio], 
+      [comparacion_alternativa].[id_alternativa1] AS [id_alternativa1], 
+      [comparacion_alternativa].[id_alternativa2] AS [id_alternativa2], 
+      [comparacion_alternativa].[valor] AS [valor]
+      FROM [dbo].[comparacion_alternativa] AS [comparacion_alternativa]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_criterio">
+            <DefiningQuery>SELECT 
+      [comparacion_criterio].[id_proyecto] AS [id_proyecto], 
+      [comparacion_criterio].[id_experto] AS [id_experto], 
+      [comparacion_criterio].[id_criterio1] AS [id_criterio1], 
+      [comparacion_criterio].[id_criterio2] AS [id_criterio2], 
+      [comparacion_criterio].[valor] AS [valor]
+      FROM [dbo].[comparacion_criterio] AS [comparacion_criterio]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" store:Schema="dbo" store:Name="experto_proyecto">
+            <DefiningQuery>SELECT 
+      [experto_proyecto].[id_proyecto] AS [id_proyecto], 
+      [experto_proyecto].[id_experto] AS [id_experto], 
+      [experto_proyecto].[ponderacion] AS [ponderacion]
+      FROM [dbo].[experto_proyecto] AS [experto_proyecto]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="alternativa">
+          <Key>
+            <PropertyRef Name="id_alternativa" />
+          </Key>
+          <Property Name="id_alternativa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'gisiabase.dbo.comparacion_alternativa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="comparacion_alternativa">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+            <PropertyRef Name="id_experto" />
+            <PropertyRef Name="id_criterio" />
+            <PropertyRef Name="id_alternativa1" />
+            <PropertyRef Name="id_alternativa2" />
+          </Key>
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="id_criterio" Type="int" Nullable="false" />
+          <Property Name="id_alternativa1" Type="int" Nullable="false" />
+          <Property Name="id_alternativa2" Type="int" Nullable="false" />
+          <Property Name="valor" Type="float" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'gisiabase.dbo.comparacion_criterio' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="comparacion_criterio">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+            <PropertyRef Name="id_experto" />
+            <PropertyRef Name="id_criterio1" />
+            <PropertyRef Name="id_criterio2" />
+          </Key>
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="id_criterio1" Type="int" Nullable="false" />
+          <Property Name="id_criterio2" Type="int" Nullable="false" />
+          <Property Name="valor" Type="float" />
+        </EntityType>
+        <EntityType Name="criterio">
+          <Key>
+            <PropertyRef Name="id_criterio" />
+          </Key>
+          <Property Name="id_criterio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="experto">
+          <Key>
+            <PropertyRef Name="id_experto" />
+          </Key>
+          <Property Name="id_experto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom_usuario" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="clave" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'gisiabase.dbo.experto_proyecto' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="experto_proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+            <PropertyRef Name="id_experto" />
+          </Key>
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="ponderacion" Type="float" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="objetivo" Type="varchar" MaxLength="50" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gisiabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="gisiabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alternativa" EntityType="gisiabaseModel.alternativa" />
+          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.comparacion_alternativa" />
+          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.comparacion_criterio" />
+          <EntitySet Name="criterio" EntityType="gisiabaseModel.criterio" />
+          <EntitySet Name="experto" EntityType="gisiabaseModel.experto" />
+          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.experto_proyecto" />
+          <EntitySet Name="proyecto" EntityType="gisiabaseModel.proyecto" />
+        </EntityContainer>
+        <EntityType Name="alternativa">
+          <Key>
+            <PropertyRef Name="id_alternativa" />
+          </Key>
+          <Property Name="id_alternativa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="comparacion_alternativa">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+            <PropertyRef Name="id_experto" />
+            <PropertyRef Name="id_criterio" />
+            <PropertyRef Name="id_alternativa1" />
+            <PropertyRef Name="id_alternativa2" />
+          </Key>
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="id_experto" Type="Int32" Nullable="false" />
+          <Property Name="id_criterio" Type="Int32" Nullable="false" />
+          <Property Name="id_alternativa1" Type="Int32" Nullable="false" />
+          <Property Name="id_alternativa2" Type="Int32" Nullable="false" />
+          <Property Name="valor" Type="Double" />
+        </EntityType>
+        <EntityType Name="comparacion_criterio">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+            <PropertyRef Name="id_experto" />
+            <PropertyRef Name="id_criterio1" />
+            <PropertyRef Name="id_criterio2" />
+          </Key>
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="id_experto" Type="Int32" Nullable="false" />
+          <Property Name="id_criterio1" Type="Int32" Nullable="false" />
+          <Property Name="id_criterio2" Type="Int32" Nullable="false" />
+          <Property Name="valor" Type="Double" />
+        </EntityType>
+        <EntityType Name="criterio">
+          <Key>
+            <PropertyRef Name="id_criterio" />
+          </Key>
+          <Property Name="id_criterio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="experto">
+          <Key>
+            <PropertyRef Name="id_experto" />
+          </Key>
+          <Property Name="id_experto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="nom_usuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="clave" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="experto_proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+            <PropertyRef Name="id_experto" />
+          </Key>
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" />
+          <Property Name="id_experto" Type="Int32" Nullable="false" />
+          <Property Name="ponderacion" Type="Double" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="objetivo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gisiabaseModelStoreContainer" CdmEntityContainer="gisiabaseEntities">
+          <EntitySetMapping Name="alternativa"><EntityTypeMapping TypeName="gisiabaseModel.alternativa"><MappingFragment StoreEntitySet="alternativa">
+            <ScalarProperty Name="id_alternativa" ColumnName="id_alternativa" />
+            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+            <ScalarProperty Name="nombre" ColumnName="nombre" />
+            <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="comparacion_alternativa"><EntityTypeMapping TypeName="gisiabaseModel.comparacion_alternativa"><MappingFragment StoreEntitySet="comparacion_alternativa">
+            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+            <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+            <ScalarProperty Name="id_alternativa1" ColumnName="id_alternativa1" />
+            <ScalarProperty Name="id_alternativa2" ColumnName="id_alternativa2" />
+            <ScalarProperty Name="valor" ColumnName="valor" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="comparacion_criterio"><EntityTypeMapping TypeName="gisiabaseModel.comparacion_criterio"><MappingFragment StoreEntitySet="comparacion_criterio">
+            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+            <ScalarProperty Name="id_criterio1" ColumnName="id_criterio1" />
+            <ScalarProperty Name="id_criterio2" ColumnName="id_criterio2" />
+            <ScalarProperty Name="valor" ColumnName="valor" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="criterio"><EntityTypeMapping TypeName="gisiabaseModel.criterio"><MappingFragment StoreEntitySet="criterio">
+            <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+            <ScalarProperty Name="nombre" ColumnName="nombre" />
+            <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="experto"><EntityTypeMapping TypeName="gisiabaseModel.experto"><MappingFragment StoreEntitySet="experto">
+            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+            <ScalarProperty Name="nombre" ColumnName="nombre" />
+            <ScalarProperty Name="apellido" ColumnName="apellido" />
+            <ScalarProperty Name="nom_usuario" ColumnName="nom_usuario" />
+            <ScalarProperty Name="clave" ColumnName="clave" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="experto_proyecto"><EntityTypeMapping TypeName="gisiabaseModel.experto_proyecto"><MappingFragment StoreEntitySet="experto_proyecto">
+            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+            <ScalarProperty Name="ponderacion" ColumnName="ponderacion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="proyecto"><EntityTypeMapping TypeName="gisiabaseModel.proyecto"><MappingFragment StoreEntitySet="proyecto">
+            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+            <ScalarProperty Name="nombre" ColumnName="nombre" />
+            <ScalarProperty Name="objetivo" ColumnName="objetivo" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="modelobase">
+        <EntityTypeShape EntityType="gisiabaseModel.alternativa" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.comparacion_alternativa" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.comparacion_criterio" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.criterio" Width="1.5" PointX="2.75" PointY="3.75" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.experto" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.experto_proyecto" Width="1.5" PointX="4.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.proyecto" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
