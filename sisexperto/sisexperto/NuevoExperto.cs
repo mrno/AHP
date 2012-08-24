@@ -21,6 +21,7 @@ namespace sisexperto
 			//esto es nuevo desde la laptop
 
 			//nuevo desde la pc del gisia
+			//nuevo desde la pc del gisia2
         }
 
         private void button1_Click(object sender, EventArgs e)
