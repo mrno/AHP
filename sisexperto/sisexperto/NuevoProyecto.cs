@@ -25,5 +25,11 @@ namespace sisexperto
             CargarProyecto frmCargarProy = new CargarProyecto(dato.ultimoProyecto());
             frmCargarProy.ShowDialog();
         }
+
+     
+        private void NuevoProyecto_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

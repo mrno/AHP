@@ -111,6 +111,7 @@
             this.Controls.Add(this.label1);
             this.Name = "NuevoProyecto";
             this.Text = "Nuevo Proyecto";
+            this.Load += new System.EventHandler(this.NuevoProyecto_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
