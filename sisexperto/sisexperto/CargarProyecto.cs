@@ -19,7 +19,7 @@ namespace sisexperto
             InitializeComponent();
             id_proyecto = id;
 			//con este anda si o si
-			
+		
         }
 
         //public void frmAlternativa_FormClosed()
