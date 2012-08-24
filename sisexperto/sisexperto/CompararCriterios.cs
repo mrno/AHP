@@ -79,34 +79,34 @@ namespace sisexperto
                     Controls.Add(izquierdaTB);
 
                     TrackBar track = new TrackBar();
-                    track.SetBounds(130, y, 300, 40);
+                    track.SetBounds(130, y, 500, 40);
                     track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
                     track.SetRange(1, 17);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
                     
                     Label derechaTB = new Label();
-                    derechaTB.SetBounds(430, y, 100, 40);
+                    derechaTB.SetBounds(630, y, 100, 40);
                     derechaTB.Text = c.nombre.ToString();
                     Controls.Add(derechaTB);
 
 
 
                     Label izquierda = new Label();
-                    izquierda.SetBounds(530, y, 100, 40);
+                    izquierda.SetBounds(730, y, 100, 40);
                     izquierda.Text = c.nombre.ToString();
                     Controls.Add(izquierda);
 
 
                     Label miLabel = new Label();
-                    miLabel.SetBounds(630, y, 200, 40);
+                    miLabel.SetBounds(830, y, 200, 40);
                     miLabel.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
                     //miLabel.Text = miLabel.Name;
                     Controls.Add(miLabel);
 
                     
                     Label derecha = new Label();
-                    derecha.SetBounds(830, y, 100, 40);
+                    derecha.SetBounds(1030, y, 100, 40);
                     derecha.Text = c2.nombre.ToString();
                     Controls.Add(derecha);
 
@@ -114,6 +114,11 @@ namespace sisexperto
                     y += 70;
                 }
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -127,39 +127,39 @@ namespace sisexperto
 
         public string valorarPalabra(int valor)
         {
-            if (valor == 0)//corresponde a 1/9
+            if (valor == 1)//corresponde a 1/9
                 return "es Extremadamente menos importante que";
-            if (valor == 1)//corresponde a 1/8
+            if (valor == 2)//corresponde a 1/8
                 return "";
-            if (valor == 2)//corresponde a 1/7
+            if (valor == 3)//corresponde a 1/7
                 return "es bastante menos importante que";
-            if (valor == 3)//corresponde a 1/6
+            if (valor == 4)//corresponde a 1/6
                 return "";
-            if (valor == 4)//corresponde a 1/5
+            if (valor == 5)//corresponde a 1/5
                 return "es Meadianamente Importante comparado con";
-            if (valor == 5)//corresponde a 1/4
+            if (valor == 6)//corresponde a 1/4
                 return "";
-            if (valor == 6)//corresponde a 1/3
+            if (valor == 7)//corresponde a 1/3
                 return "es levemente menos importante que";
-            if (valor == 7)//corresponde a 1/2
+            if (valor == 8)//corresponde a 1/2
                 return "";
-            if (valor == 8)//corresponde a 1
+            if (valor == 9)//corresponde a 1
                 return "es Igual de importante que";
-            if (valor == 9)//corresponde a 2
+            if (valor == 10)//corresponde a 2
                 return "";
-            if (valor == 10)//corresponde a 3
+            if (valor == 11)//corresponde a 3
                 return "es levemente mas importante que";
-            if (valor == 11)//corresponde a 4
+            if (valor == 12)//corresponde a 4
                 return "";
-            if (valor == 12)//corresponde a 5
+            if (valor == 13)//corresponde a 5
                 return "es medianamente mas importante que";
-            if (valor == 13)//corresponde a 6
+            if (valor == 14)//corresponde a 6
                 return "";
-            if (valor == 14)//corresponde a 7
+            if (valor == 15)//corresponde a 7
                 return "es Extremadamente mas importante que";
-            if (valor == 15)//corresponde a 8
+            if (valor == 16)//corresponde a 8
                 return "";
-            if (valor == 16)//corresponde a 9
+            if (valor == 17)//corresponde a 9
                 return "es Extremadamente mas importante";
      
             return "";
