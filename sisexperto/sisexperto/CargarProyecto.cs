@@ -19,6 +19,7 @@ namespace sisexperto
             InitializeComponent();
             id_proyecto = id;
 			//con este anda si o si
+			//hola mundo
 		
         }
 
@@ -51,6 +52,7 @@ namespace sisexperto
             NuevoExperto frmExperto = new NuevoExperto(id_proyecto);
             frmExperto.ShowDialog();
             {
+			
                 gridExpertos.DataSource = dato.todosExpertos();
             }
         }
