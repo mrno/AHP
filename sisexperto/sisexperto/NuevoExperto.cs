@@ -19,6 +19,8 @@ namespace sisexperto
             id_proy = id;
 			//mundo
 			//esto es nuevo desde la laptop
+
+			//nuevo desde la pc del gisia
         }
 
         private void button1_Click(object sender, EventArgs e)
