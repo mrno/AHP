@@ -22,6 +22,8 @@ namespace sisexperto
 
 			//nuevo desde la pc del gisia
 			//nuevo desde la pc del gisia2
+			
+			//sincronizar antes de hacer el commit
         }
 
         private void button1_Click(object sender, EventArgs e)
