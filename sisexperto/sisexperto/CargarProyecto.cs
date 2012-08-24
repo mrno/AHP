@@ -20,6 +20,8 @@ namespace sisexperto
             id_proyecto = id;
 			//con este anda si o si
 			//hola mundo
+			//lococccccccccccccccccc
+			
 		
         }
 
