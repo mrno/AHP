@@ -17,6 +17,8 @@ namespace sisexperto
         {
             InitializeComponent();
             id_proy = id;
+			//mundo
+			//esto es nuevo desde la laptop
         }
 
         private void button1_Click(object sender, EventArgs e)
