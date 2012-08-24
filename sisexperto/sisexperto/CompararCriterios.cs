@@ -70,28 +70,47 @@ namespace sisexperto
                 
                 foreach (criterio c2 in lista2)
                 {
+
+
+
+                    Label izquierdaTB = new Label();
+                    izquierdaTB.SetBounds(30, y, 100, 40);
+                    izquierdaTB.Text = c.nombre.ToString();
+                    Controls.Add(izquierdaTB);
+
+                    TrackBar track = new TrackBar();
+                    track.SetBounds(130, y, 300, 40);
+                    track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
+                    track.SetRange(1, 17);
+                    track.Scroll += new System.EventHandler(this.mostrar);
+                    Controls.Add(track);
+                    
+                    Label derechaTB = new Label();
+                    derechaTB.SetBounds(430, y, 100, 40);
+                    derechaTB.Text = c.nombre.ToString();
+                    Controls.Add(derechaTB);
+
+
+
+                    Label izquierda = new Label();
+                    izquierda.SetBounds(530, y, 100, 40);
+                    izquierda.Text = c.nombre.ToString();
+                    Controls.Add(izquierda);
+
+
                     Label miLabel = new Label();
-                    miLabel.SetBounds(900, y, 200, 40);
+                    miLabel.SetBounds(630, y, 200, 40);
                     miLabel.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
                     //miLabel.Text = miLabel.Name;
                     Controls.Add(miLabel);
 
-                    Label izquierda = new Label();
-                    izquierda.SetBounds(700, y, 100, 40);
-                    izquierda.Text = c.nombre.ToString();
-                    Controls.Add(izquierda);
-
+                    
                     Label derecha = new Label();
-                    derecha.SetBounds(1100, y, 100, 40);
+                    derecha.SetBounds(830, y, 100, 40);
                     derecha.Text = c2.nombre.ToString();
                     Controls.Add(derecha);
 
-                    TrackBar track = new TrackBar();
-                    track.SetBounds(300, y, 300, 40);
-                    track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
-                    track.Scroll += new System.EventHandler(this.mostrar);
-                    Controls.Add(track);
-
+                    
                     y += 70;
                 }
             }

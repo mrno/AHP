@@ -28,7 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(113, 29);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(461, 33);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // CompararCriterios
             // 
@@ -36,6 +46,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1283, 492);
+            this.Controls.Add(this.groupBox1);
             this.Name = "CompararCriterios";
             this.Text = "CompararCriterios";
             this.Load += new System.EventHandler(this.CompararCriterios_Load);
@@ -44,6 +55,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.GroupBox groupBox1;
 
 
 
