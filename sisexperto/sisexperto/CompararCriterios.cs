@@ -74,39 +74,39 @@ namespace sisexperto
 
 
                     Label izquierdaTB = new Label();
-                    izquierdaTB.SetBounds(30, y, 100, 40);
+                    izquierdaTB.SetBounds(10, y, 60, 30);
                     izquierdaTB.Text = c.nombre.ToString();
                     Controls.Add(izquierdaTB);
 
                     TrackBar track = new TrackBar();
-                    track.SetBounds(130, y, 500, 40);
+                    track.SetBounds(70, y, 450, 40);
                     track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
                     track.SetRange(1, 17);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
                     
                     Label derechaTB = new Label();
-                    derechaTB.SetBounds(630, y, 100, 40);
+                    derechaTB.SetBounds(520, y, 100, 30);
                     derechaTB.Text = c.nombre.ToString();
                     Controls.Add(derechaTB);
 
 
 
                     Label izquierda = new Label();
-                    izquierda.SetBounds(730, y, 100, 40);
+                    izquierda.SetBounds(620, y, 100, 30);
                     izquierda.Text = c.nombre.ToString();
                     Controls.Add(izquierda);
 
 
                     Label miLabel = new Label();
-                    miLabel.SetBounds(830, y, 200, 40);
+                    miLabel.SetBounds(720, y, 200, 50);
                     miLabel.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
                     //miLabel.Text = miLabel.Name;
                     Controls.Add(miLabel);
 
                     
                     Label derecha = new Label();
-                    derecha.SetBounds(1030, y, 100, 40);
+                    derecha.SetBounds(920, y, 100, 30);
                     derecha.Text = c2.nombre.ToString();
                     Controls.Add(derecha);
 

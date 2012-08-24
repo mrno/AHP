@@ -136,7 +136,7 @@ namespace sisexperto
             if (valor == 4)//corresponde a 1/6
                 return "";
             if (valor == 5)//corresponde a 1/5
-                return "es Meadianamente Importante comparado con";
+                return "es Meadianamente menos importante que";
             if (valor == 6)//corresponde a 1/4
                 return "";
             if (valor == 7)//corresponde a 1/3
@@ -156,11 +156,11 @@ namespace sisexperto
             if (valor == 14)//corresponde a 6
                 return "";
             if (valor == 15)//corresponde a 7
-                return "es Extremadamente mas importante que";
+                return "es bastante mas importante que";
             if (valor == 16)//corresponde a 8
                 return "";
             if (valor == 17)//corresponde a 9
-                return "es Extremadamente mas importante";
+                return "es Extremadamente mas importante que";
      
             return "";
         }
