@@ -144,7 +144,7 @@ namespace sisexperto
             if (valor == 8)//corresponde a 1/2
                 return "";
             if (valor == 9)//corresponde a 1
-                return "es Igual de importante que";
+                return "es IGUAL de importante que";
             if (valor == 10)//corresponde a 2
                 return "";
             if (valor == 11)//corresponde a 3
