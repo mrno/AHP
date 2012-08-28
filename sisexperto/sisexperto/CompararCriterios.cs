@@ -12,9 +12,13 @@ namespace sisexperto
     public partial class CompararCriterios : Form
     {
         private DALDatos dato;
-        public CompararCriterios()
+        int id_proyecto;
+        int id_experto;
+        public CompararCriterios(int id_p, int id_e)
         {
             InitializeComponent();
+            id_proyecto = id_p;
+            id_experto = id_e;
         }
 
         private bool existe(string nombre)
@@ -23,7 +27,6 @@ namespace sisexperto
             resultado = false;
             foreach (Label miLabel in this.FindForm().Controls)
             {
-                
                 if (nombre == miLabel.Name)
                 {
                     miLabel.Text = nombre;
@@ -46,6 +49,8 @@ namespace sisexperto
                     {
                         Label l = (Label)miLabel;
                         l.Text = dato.valorarPalabra(track.Value);
+                        dato = new DALDatos();
+                        //dato.guardarComparacionCriterios(id_proyecto, id_experto, 
                     }
                 }
             }
@@ -56,23 +61,16 @@ namespace sisexperto
         {
             dato = new DALDatos();
             int y = 70;
-            
+
             List<criterio> lista = dato.todosCriterios();
-            //List<criterio> lista2 = dato.todosCriterios();
-            
-            Queue<criterio> lista2 = dato.colaCriterios();
+
+            Queue<criterio> lista2 = dato.colaCriterios(id_experto);//OJO ACÁ, ESTA DEMÁS EL ID_EXPERTO
             foreach (criterio c in lista)
             {
-                //pos = pos +1;
-
-                //lista2.Remove(c);
                 lista2.Dequeue();
-                
+
                 foreach (criterio c2 in lista2)
                 {
-
-
-
                     Label izquierdaTB = new Label();
                     izquierdaTB.SetBounds(10, y, 60, 30);
                     izquierdaTB.Text = c.nombre.ToString();
@@ -84,7 +82,7 @@ namespace sisexperto
                     track.SetRange(1, 17);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
-                    
+
                     Label derechaTB = new Label();
                     derechaTB.SetBounds(520, y, 100, 30);
                     derechaTB.Text = c.nombre.ToString();
@@ -104,13 +102,13 @@ namespace sisexperto
                     //miLabel.Text = miLabel.Name;
                     Controls.Add(miLabel);
 
-                    
+
                     Label derecha = new Label();
                     derecha.SetBounds(920, y, 100, 30);
                     derecha.Text = c2.nombre.ToString();
                     Controls.Add(derecha);
 
-                    
+
                     y += 70;
                 }
             }

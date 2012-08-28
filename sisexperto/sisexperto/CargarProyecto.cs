@@ -18,31 +18,18 @@ namespace sisexperto
         {
             InitializeComponent();
             id_proyecto = id;
-			//con este anda si o si
-			//hola mundo
-			//lococccccccccccccccccc
-			
-		
         }
-
-        //public void frmAlternativa_FormClosed()
-        //{
-        //    gridAlternativas.DataSource = dato.todasAlternativas();
-        //}
 
         private void CargarProyecto_Load(object sender, EventArgs e)
         {
             gridAlternativas.DataSource = dato.todasAlternativas();
-            gridExpertos.DataSource = dato.todosExpertos();
-            gridCriterios.DataSource = dato.todosCriterios();
-
+            gridExpertos.DataSource = dato.expertosPorProyecto(id_proyecto);
+            gridCriterios.DataSource = dato.criteriosPorProyecto(id_proyecto);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             NuevaAlternativa frmAlternativa = new NuevaAlternativa(id_proyecto);
-            //frmAlternativa.FormClosed += new FormClosedEventHandler(frmAlternativa_FormClosed);
-            //frmAlternativa.FormClosed += new System.Windows.Forms.FormClosedEventHandler(frmAlternativa_FormClosed);
             frmAlternativa.ShowDialog();
             {
                 gridAlternativas.DataSource = dato.todasAlternativas();
@@ -54,8 +41,7 @@ namespace sisexperto
             NuevoExperto frmExperto = new NuevoExperto(id_proyecto);
             frmExperto.ShowDialog();
             {
-			
-                gridExpertos.DataSource = dato.todosExpertos();
+                gridExpertos.DataSource = dato.expertosPorProyecto(id_proyecto);
             }
         }
 
@@ -64,13 +50,30 @@ namespace sisexperto
             NuevoCriterio frmCriterio = new NuevoCriterio(id_proyecto);
             frmCriterio.ShowDialog();
             {
-                gridCriterios.DataSource = dato.todosCriterios();
+                gridCriterios.DataSource = dato.criteriosPorProyecto(id_proyecto);
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-           
+            dato = new DALDatos();
+            List<experto> listaExp = dato.expertosPorProyecto(id_proyecto);
+            List<criterio> listaCri = dato.criteriosPorProyecto(id_proyecto);
+            //Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
+            Queue<criterio> colaCri;
+            foreach (experto exp in listaExp)
+            {
+                colaCri = dato.colaCriterios(id_proyecto);
+                foreach (criterio c in listaCri)
+                {
+                    colaCri.Dequeue();
+                    foreach (criterio c2 in colaCri)
+                    {
+                        //FALTA EL ID DEL EXPERTO
+                        dato.guardarComparacionCriterios(id_proyecto, exp.id_experto, c.id_criterio, c2.id_criterio, 0);
+                    }
+                }
+            }
         }
 
         

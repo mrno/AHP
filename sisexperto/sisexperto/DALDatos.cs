@@ -33,6 +33,16 @@ namespace sisexperto
             return lista;
         }
 
+        public List<criterio> criteriosPorProyecto(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            List<criterio> lista = (from c in gisiaContexto.criterio
+                                    where c.id_proyecto == id_proyecto
+                                    select c).ToList<criterio>();
+            gisiaContexto.Dispose();
+            return lista;
+        }
+
         public void altaAlternativa(int id_proyecto, string nombre, string descripcion)
         {
             gisiaContexto = new gisiabaseEntities();
@@ -89,6 +99,19 @@ namespace sisexperto
             gisiaContexto.Dispose();
         }
 
+        public List<experto> expertosPorProyecto(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            var lista = (from ep in gisiaContexto.experto_proyecto
+                                            where ep.id_proyecto == id_proyecto
+                                            select ep);
+            List<experto> listaExpertos = (from e in gisiaContexto.experto
+                                           join ep in lista on e.id_experto equals ep.id_experto
+                                           select e).ToList<experto>();
+            return listaExpertos;
+            
+        }
+
         public void altaCriterio(int id_proyecto, string nombre, string descripcion)
         {
             gisiaContexto = new gisiabaseEntities();
@@ -107,24 +130,39 @@ namespace sisexperto
             experto_proyecto asignacion = new experto_proyecto();
             asignacion.id_proyecto = id_proyecto;
             asignacion.id_experto = id_experto;
+            gisiaContexto.AddToexperto_proyecto(asignacion);
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
 
-        public Queue<criterio> colaCriterios()
+        public Queue<criterio> colaCriterios(int id_proyecto)
         {
             gisiaContexto = new gisiabaseEntities();
-            List<criterio> lista = (from c in gisiaContexto.criterio select c).ToList<criterio>();
+            List<criterio> lista = (from c in gisiaContexto.criterio 
+                                    where c.id_proyecto == id_proyecto
+                                    select c).ToList<criterio>();
             Queue<criterio> cola = new Queue<criterio>();
             foreach(criterio c in lista)
             {
                 cola.Enqueue(c);
-                
             }
             gisiaContexto.Dispose();
             return cola;
         }
 
+        public void guardarComparacionCriterios(int id_proyecto, int id_experto, int id_criterio1, int id_criterio2, float valor)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            comparacion_criterio comp = new comparacion_criterio();
+            comp.id_proyecto = id_proyecto;
+            comp.id_experto = id_experto;
+            comp.id_criterio1 = id_criterio1;
+            comp.id_criterio2 = id_criterio2;
+            gisiaContexto.AddTocomparacion_criterio(comp);
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+ 
+        }
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 1/9
@@ -163,6 +201,46 @@ namespace sisexperto
                 return "es Extremadamente mas importante que";
      
             return "";
+        }
+
+        public float valorarNumero(int valor)
+        {
+            if (valor == 1)//corresponde a 1/9
+                return 1 / 9;
+            if (valor == 2)//corresponde a 1/8
+                return 1 / 8;
+            if (valor == 3)//corresponde a 1/7
+                return 1 / 7;
+            if (valor == 4)//corresponde a 1/6
+                return 1 / 6;
+            if (valor == 5)//corresponde a 1/5
+                return 1 / 5;
+            if (valor == 6)//corresponde a 1/4
+                return 1 / 4;
+            if (valor == 7)//corresponde a 1/3
+                return 1 / 3;
+            if (valor == 8)//corresponde a 1/2
+                return 1 / 2;
+            if (valor == 9)//corresponde a 1
+                return 1;
+            if (valor == 10)//corresponde a 2
+                return 2;
+            if (valor == 11)//corresponde a 3
+                return 3;
+            if (valor == 12)//corresponde a 4
+                return 4;
+            if (valor == 13)//corresponde a 5
+                return 5;
+            if (valor == 14)//corresponde a 6
+                return 6;
+            if (valor == 15)//corresponde a 7
+                return 7;
+            if (valor == 16)//corresponde a 8
+                return 8;
+            if (valor == 17)//corresponde a 9
+                return 9;
+
+            return 0;
         }
     }
 }

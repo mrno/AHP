@@ -882,13 +882,15 @@ namespace sisexperto
         /// <param name="id_experto">Valor inicial de la propiedad id_experto.</param>
         /// <param name="id_criterio1">Valor inicial de la propiedad id_criterio1.</param>
         /// <param name="id_criterio2">Valor inicial de la propiedad id_criterio2.</param>
-        public static comparacion_criterio Createcomparacion_criterio(global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Int32 id_criterio1, global::System.Int32 id_criterio2)
+        /// <param name="id_comparacion">Valor inicial de la propiedad id_comparacion.</param>
+        public static comparacion_criterio Createcomparacion_criterio(global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Int32 id_criterio1, global::System.Int32 id_criterio2, global::System.Int32 id_comparacion)
         {
             comparacion_criterio comparacion_criterio = new comparacion_criterio();
             comparacion_criterio.id_proyecto = id_proyecto;
             comparacion_criterio.id_experto = id_experto;
             comparacion_criterio.id_criterio1 = id_criterio1;
             comparacion_criterio.id_criterio2 = id_criterio2;
+            comparacion_criterio.id_comparacion = id_comparacion;
             return comparacion_criterio;
         }
 
@@ -898,7 +900,7 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_proyecto
         {
@@ -908,14 +910,11 @@ namespace sisexperto
             }
             set
             {
-                if (_id_proyecto != value)
-                {
-                    Onid_proyectoChanging(value);
-                    ReportPropertyChanging("id_proyecto");
-                    _id_proyecto = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_proyecto");
-                    Onid_proyectoChanged();
-                }
+                Onid_proyectoChanging(value);
+                ReportPropertyChanging("id_proyecto");
+                _id_proyecto = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_proyecto");
+                Onid_proyectoChanged();
             }
         }
         private global::System.Int32 _id_proyecto;
@@ -925,7 +924,7 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_experto
         {
@@ -935,14 +934,11 @@ namespace sisexperto
             }
             set
             {
-                if (_id_experto != value)
-                {
-                    Onid_expertoChanging(value);
-                    ReportPropertyChanging("id_experto");
-                    _id_experto = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_experto");
-                    Onid_expertoChanged();
-                }
+                Onid_expertoChanging(value);
+                ReportPropertyChanging("id_experto");
+                _id_experto = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_experto");
+                Onid_expertoChanged();
             }
         }
         private global::System.Int32 _id_experto;
@@ -952,7 +948,7 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_criterio1
         {
@@ -962,14 +958,11 @@ namespace sisexperto
             }
             set
             {
-                if (_id_criterio1 != value)
-                {
-                    Onid_criterio1Changing(value);
-                    ReportPropertyChanging("id_criterio1");
-                    _id_criterio1 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_criterio1");
-                    Onid_criterio1Changed();
-                }
+                Onid_criterio1Changing(value);
+                ReportPropertyChanging("id_criterio1");
+                _id_criterio1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_criterio1");
+                Onid_criterio1Changed();
             }
         }
         private global::System.Int32 _id_criterio1;
@@ -979,7 +972,7 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_criterio2
         {
@@ -989,14 +982,11 @@ namespace sisexperto
             }
             set
             {
-                if (_id_criterio2 != value)
-                {
-                    Onid_criterio2Changing(value);
-                    ReportPropertyChanging("id_criterio2");
-                    _id_criterio2 = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_criterio2");
-                    Onid_criterio2Changed();
-                }
+                Onid_criterio2Changing(value);
+                ReportPropertyChanging("id_criterio2");
+                _id_criterio2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_criterio2");
+                Onid_criterio2Changed();
             }
         }
         private global::System.Int32 _id_criterio2;
@@ -1026,6 +1016,33 @@ namespace sisexperto
         private Nullable<global::System.Double> _valor;
         partial void OnvalorChanging(Nullable<global::System.Double> value);
         partial void OnvalorChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_comparacion
+        {
+            get
+            {
+                return _id_comparacion;
+            }
+            set
+            {
+                if (_id_comparacion != value)
+                {
+                    Onid_comparacionChanging(value);
+                    ReportPropertyChanging("id_comparacion");
+                    _id_comparacion = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_comparacion");
+                    Onid_comparacionChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_comparacion;
+        partial void Onid_comparacionChanging(global::System.Int32 value);
+        partial void Onid_comparacionChanged();
 
         #endregion
     
@@ -1667,11 +1684,13 @@ namespace sisexperto
         /// </summary>
         /// <param name="id_proyecto">Valor inicial de la propiedad id_proyecto.</param>
         /// <param name="id_experto">Valor inicial de la propiedad id_experto.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_proyecto, global::System.Int32 id_experto)
+        /// <param name="id_asignacion">Valor inicial de la propiedad id_asignacion.</param>
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Int32 id_asignacion)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_proyecto = id_proyecto;
             experto_proyecto.id_experto = id_experto;
+            experto_proyecto.id_asignacion = id_asignacion;
             return experto_proyecto;
         }
 
@@ -1681,7 +1700,7 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_proyecto
         {
@@ -1691,14 +1710,11 @@ namespace sisexperto
             }
             set
             {
-                if (_id_proyecto != value)
-                {
-                    Onid_proyectoChanging(value);
-                    ReportPropertyChanging("id_proyecto");
-                    _id_proyecto = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_proyecto");
-                    Onid_proyectoChanged();
-                }
+                Onid_proyectoChanging(value);
+                ReportPropertyChanging("id_proyecto");
+                _id_proyecto = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_proyecto");
+                Onid_proyectoChanged();
             }
         }
         private global::System.Int32 _id_proyecto;
@@ -1708,7 +1724,7 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 id_experto
         {
@@ -1718,14 +1734,11 @@ namespace sisexperto
             }
             set
             {
-                if (_id_experto != value)
-                {
-                    Onid_expertoChanging(value);
-                    ReportPropertyChanging("id_experto");
-                    _id_experto = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("id_experto");
-                    Onid_expertoChanged();
-                }
+                Onid_expertoChanging(value);
+                ReportPropertyChanging("id_experto");
+                _id_experto = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("id_experto");
+                Onid_expertoChanged();
             }
         }
         private global::System.Int32 _id_experto;
@@ -1755,6 +1768,33 @@ namespace sisexperto
         private Nullable<global::System.Double> _ponderacion;
         partial void OnponderacionChanging(Nullable<global::System.Double> value);
         partial void OnponderacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_asignacion
+        {
+            get
+            {
+                return _id_asignacion;
+            }
+            set
+            {
+                if (_id_asignacion != value)
+                {
+                    Onid_asignacionChanging(value);
+                    ReportPropertyChanging("id_asignacion");
+                    _id_asignacion = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_asignacion");
+                    Onid_asignacionChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_asignacion;
+        partial void Onid_asignacionChanging(global::System.Int32 value);
+        partial void Onid_asignacionChanged();
 
         #endregion
     

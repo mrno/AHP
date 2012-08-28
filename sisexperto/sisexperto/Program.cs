@@ -16,7 +16,7 @@ namespace sisexperto
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
            //Application.Run(new CargarProyecto(3));
-            Application.Run(new CompararCriterios()); 
+            Application.Run(new NuevoProyecto()); 
             
 
         }
