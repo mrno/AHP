@@ -19,7 +19,7 @@ namespace sisexperto
             InitializeComponent();
             id_proyecto = id;
         }
-
+        
         private void CargarProyecto_Load(object sender, EventArgs e)
         {
             gridAlternativas.DataSource = dato.todasAlternativas();
@@ -59,18 +59,22 @@ namespace sisexperto
             dato = new DALDatos();
             List<experto> listaExp = dato.expertosPorProyecto(id_proyecto);
             List<criterio> listaCri = dato.criteriosPorProyecto(id_proyecto);
-            //Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
             Queue<criterio> colaCri;
             foreach (experto exp in listaExp)
             {
+                int fila = 0;
+                int columna;
+
                 colaCri = dato.colaCriterios(id_proyecto);
                 foreach (criterio c in listaCri)
                 {
+                    fila++;
+                    columna = fila;
                     colaCri.Dequeue();
                     foreach (criterio c2 in colaCri)
                     {
-                        //FALTA EL ID DEL EXPERTO
-                        dato.guardarComparacionCriterios(id_proyecto, exp.id_experto, c.id_criterio, c2.id_criterio, 0);
+                        columna++;
+                        dato.guardarComparacionCriterios(id_proyecto, exp.id_experto, c.id_criterio, c2.id_criterio, fila, columna, 0);
                     }
                 }
             }

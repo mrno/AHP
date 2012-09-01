@@ -4,10 +4,10 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gisiabaseModelStoreContainer">
-          <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_alternativa">
+          <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_alternativa" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
       [comparacion_alternativa].[id_proyecto] AS [id_proyecto], 
       [comparacion_alternativa].[id_experto] AS [id_experto], 
@@ -17,11 +17,11 @@
       [comparacion_alternativa].[valor] AS [valor]
       FROM [dbo].[comparacion_alternativa] AS [comparacion_alternativa]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
         </EntityContainer>
         <EntityType Name="alternativa">
           <Key>
@@ -59,6 +59,8 @@
           <Property Name="id_experto" Type="int" Nullable="false" />
           <Property Name="id_criterio1" Type="int" Nullable="false" />
           <Property Name="id_criterio2" Type="int" Nullable="false" />
+          <Property Name="pos_fila" Type="int" Nullable="false" />
+          <Property Name="pos_columna" Type="int" Nullable="false" />
           <Property Name="valor" Type="float" />
         </EntityType>
         <EntityType Name="criterio">
@@ -100,8 +102,8 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="gisiabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="gisiabaseEntities" annotation:LazyLoadingEnabled="true">
+      <Schema Namespace="gisiabaseModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="gisiabaseEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="alternativa" EntityType="gisiabaseModel.alternativa" />
           <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.comparacion_alternativa" />
           <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.comparacion_criterio" />
@@ -166,7 +168,7 @@
           <Key>
             <PropertyRef Name="id_alternativa" />
           </Key>
-          <Property Name="id_alternativa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_alternativa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="id_proyecto" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -207,13 +209,15 @@
           <NavigationProperty Name="criterio1" Relationship="gisiabaseModel.FK_criteriocomparacion_criterio1" FromRole="comparacion_criterio" ToRole="criterio" />
           <NavigationProperty Name="experto" Relationship="gisiabaseModel.FK_expertocomparacion_criterio" FromRole="comparacion_criterio" ToRole="experto" />
           <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectocomparacion_criterio" FromRole="comparacion_criterio" ToRole="proyecto" />
-          <Property Type="Int32" Name="id_comparacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id_comparacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="pos_fila" Nullable="false" />
+          <Property Type="Int32" Name="pos_columna" Nullable="false" />
         </EntityType>
         <EntityType Name="criterio">
           <Key>
             <PropertyRef Name="id_criterio" />
           </Key>
-          <Property Name="id_criterio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_criterio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="id_proyecto" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="descripcion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -226,7 +230,7 @@
           <Key>
             <PropertyRef Name="id_experto" />
           </Key>
-          <Property Name="id_experto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_experto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="apellido" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="nom_usuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
@@ -244,13 +248,13 @@
           <Property Name="ponderacion" Type="Double" />
           <NavigationProperty Name="experto" Relationship="gisiabaseModel.FK_expertoexperto_proyecto" FromRole="experto_proyecto" ToRole="experto" />
           <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectoexperto_proyecto" FromRole="experto_proyecto" ToRole="proyecto" />
-          <Property Type="Int32" Name="id_asignacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id_asignacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
         </EntityType>
         <EntityType Name="proyecto">
           <Key>
             <PropertyRef Name="id_proyecto" />
           </Key>
-          <Property Name="id_proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="objetivo" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="alternativas" Relationship="gisiabaseModel.FK_proyectoalternativa" FromRole="proyecto" ToRole="alternativa" />
@@ -436,7 +440,9 @@
             <ScalarProperty Name="valor" ColumnName="valor" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="comparacion_criterio"><EntityTypeMapping TypeName="gisiabaseModel.comparacion_criterio"><MappingFragment StoreEntitySet="comparacion_criterio">
-            <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
+            <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
+                <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
+                <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
                 <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
             <ScalarProperty Name="id_experto" ColumnName="id_experto" />
             <ScalarProperty Name="id_criterio1" ColumnName="id_criterio1" />
@@ -495,43 +501,43 @@
         <EntityTypeShape EntityType="gisiabaseModel.experto" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.experto_proyecto" Width="1.5" PointX="4.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.proyecto" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
-        <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa" >
+        <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa">
           <ConnectorPoint PointX="2.25" PointY="1.7926741536458335" />
           <ConnectorPoint PointX="2.75" PointY="1.7926741536458335" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa1" >
+        <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa1">
           <ConnectorPoint PointX="2.25" PointY="1.2088370768229169" />
           <ConnectorPoint PointX="2.75" PointY="1.2088370768229169" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_proyectoalternativa" >
+        <AssociationConnector Association="gisiabaseModel.FK_proyectoalternativa">
           <ConnectorPoint PointX="6.8076913076923073" PointY="0.75" />
           <ConnectorPoint PointX="6.2139413076923073" PointY="0.15625" />
           <ConnectorPoint PointX="2.8449028461538459" PointY="0.15625" />
           <ConnectorPoint PointX="2.25" PointY="0.75115284615384614" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_alternativa" >
+        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_alternativa">
           <ConnectorPoint PointX="3.5" PointY="3.75" />
           <ConnectorPoint PointX="3.5" PointY="3.4927376302083331" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_alternativa" >
+        <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_alternativa">
           <ConnectorPoint PointX="4.75" PointY="1.8748478190104165" />
           <ConnectorPoint PointX="4.25" PointY="1.8748478190104165" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_alternativa" >
+        <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_alternativa">
           <ConnectorPoint PointX="6.75" PointY="0.77423076923076917" />
           <ConnectorPoint PointX="6.3507692307692309" PointY="0.37500000000000022" />
           <ConnectorPoint PointX="4.6261528461538468" PointY="0.37500000000000022" />
           <ConnectorPoint PointX="4.25" PointY="0.75115284615384637" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio" >
+        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio">
           <ConnectorPoint PointX="2.75" PointY="4.8748478190104167" />
           <ConnectorPoint PointX="2.25" PointY="4.8748478190104167" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio1" >
+        <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio1">
           <ConnectorPoint PointX="2.75" PointY="4.2499239095052079" />
           <ConnectorPoint PointX="2.25" PointY="4.2499239095052079" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_criterio" >
+        <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_criterio">
           <ConnectorPoint PointX="4.75" PointY="2.468523728515625" />
           <ConnectorPoint PointX="4.5" PointY="2.468523728515625" />
           <ConnectorPoint PointX="4.5" PointY="3.7427376302083335" />
@@ -540,21 +546,21 @@
           <ConnectorPoint PointX="1.5" PointY="3.085348307291667" />
           <ConnectorPoint PointX="1.5" PointY="3.75" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_criterio" >
+        <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_criterio">
           <ConnectorPoint PointX="7.5" PointY="2.9996956380208335" />
           <ConnectorPoint PointX="7.5" PointY="6.1131193033854165" />
           <ConnectorPoint PointX="2.25" PointY="6.1131193033854165" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_proyectocriterio" >
+        <AssociationConnector Association="gisiabaseModel.FK_proyectocriterio">
           <ConnectorPoint PointX="7.0937475" PointY="2.9996956380208335" />
           <ConnectorPoint PointX="7.0937475" PointY="5.7844246419270826" />
           <ConnectorPoint PointX="4.25" PointY="5.7844246419270826" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_expertoexperto_proyecto" >
+        <AssociationConnector Association="gisiabaseModel.FK_expertoexperto_proyecto">
           <ConnectorPoint PointX="5.5" PointY="2.9996956380208331" />
           <ConnectorPoint PointX="5.5" PointY="3.75" />
         </AssociationConnector>
-        <AssociationConnector Association="gisiabaseModel.FK_proyectoexperto_proyecto" >
+        <AssociationConnector Association="gisiabaseModel.FK_proyectoexperto_proyecto">
           <ConnectorPoint PointX="7.9062525" PointY="2.9996956380208335" />
           <ConnectorPoint PointX="7.9062525" PointY="4.6283268229166659" />
           <ConnectorPoint PointX="7.583333333333333" PointY="4.628326822916665" />

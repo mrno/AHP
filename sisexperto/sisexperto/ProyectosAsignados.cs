@@ -11,9 +11,17 @@ namespace sisexperto
 {
     public partial class ProyectosAsignados : Form
     {
-        public ProyectosAsignados()
+        private DALDatos dato = new DALDatos();
+        private int id_experto;
+        public ProyectosAsignados(int id_exp)
         {
             InitializeComponent();
+            id_experto = id_exp;
+        }
+
+        private void ProyectosAsignados_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = dato.proyectosExperto(id_experto);
         }
     }
 }

@@ -43,6 +43,65 @@ namespace sisexperto
             return lista;
         }
 
+        public string criterioNombre(int id_criterio)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            criterio cri = (from c in gisiaContexto.criterio
+                                    where c.id_criterio == id_criterio
+                                    select c).FirstOrDefault<criterio>();
+            gisiaContexto.Dispose();
+            return cri.nombre.ToString();
+        }
+
+        public bool logExperto(string usuario, string password)
+        {
+            bool respuesta = false;
+            gisiaContexto = new gisiabaseEntities();
+            foreach (experto exp in gisiaContexto.experto)
+            {
+                if(exp.nom_usuario == usuario && exp.clave == password)
+                    respuesta = true;
+            }
+            return respuesta;
+        }
+
+        public experto BuscarExperto(string usuario, string password)
+        {
+            experto respuesta = new experto();
+            gisiaContexto = new gisiabaseEntities();
+            foreach (experto exp in gisiaContexto.experto)
+            {
+                if (exp.nom_usuario == usuario && exp.clave == password)
+                    respuesta = exp;
+            }
+            return respuesta;
+        }
+
+        public List<proyecto> proyectosExperto(int id_experto)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            List<experto_proyecto> listaExpp = (from expp in gisiaContexto.experto_proyecto
+                                    where expp.id_experto == id_experto
+                                    select expp).ToList<experto_proyecto>();
+            List<proyecto> listaProyectos = new List<proyecto>();
+            foreach (experto_proyecto expp in listaExpp)
+            {
+               proyecto proy = (from p in gisiaContexto.proyecto where p.id_proyecto == expp.id_proyecto select p).FirstOrDefault<proyecto>();
+               listaProyectos.Add(proy);
+            }
+            return listaProyectos;
+        }
+
+        public List<comparacion_criterio> comparacionCriterioPorExperto(int id_proyecto, int id_experto)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            List<comparacion_criterio> lista = (from c in gisiaContexto.comparacion_criterio
+                                                where (c.id_proyecto == id_proyecto && c.id_experto == id_experto)
+                                                select c).ToList<comparacion_criterio>();
+            gisiaContexto.Dispose();
+            return lista;
+        }
+
         public void altaAlternativa(int id_proyecto, string nombre, string descripcion)
         {
             gisiaContexto = new gisiabaseEntities();
@@ -150,7 +209,7 @@ namespace sisexperto
             return cola;
         }
 
-        public void guardarComparacionCriterios(int id_proyecto, int id_experto, int id_criterio1, int id_criterio2, float valor)
+        public void guardarComparacionCriterios(int id_proyecto, int id_experto, int id_criterio1, int id_criterio2, int pos_fila, int pos_columna, float valor)
         {
             gisiaContexto = new gisiabaseEntities();
             comparacion_criterio comp = new comparacion_criterio();
@@ -158,11 +217,27 @@ namespace sisexperto
             comp.id_experto = id_experto;
             comp.id_criterio1 = id_criterio1;
             comp.id_criterio2 = id_criterio2;
+            comp.pos_fila = pos_fila;
+            comp.pos_columna = pos_columna;
+            comp.valor = valor;
             gisiaContexto.AddTocomparacion_criterio(comp);
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
  
         }
+
+        public void modificarComparacionCriterios(int id_proyecto, int id_experto, int pos_fila, int pos_columna, float valor)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            comparacion_criterio comp = (from c in gisiaContexto.comparacion_criterio
+                                         where (c.id_proyecto == id_proyecto && c.id_experto == id_experto && c.pos_fila == pos_fila && c.pos_columna == pos_columna)
+                                         select c).FirstOrDefault<comparacion_criterio>();
+            comp.valor = valor;
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 1/9
@@ -206,21 +281,21 @@ namespace sisexperto
         public float valorarNumero(int valor)
         {
             if (valor == 1)//corresponde a 1/9
-                return 1 / 9;
+                return (float)1 / (float)9;
             if (valor == 2)//corresponde a 1/8
-                return 1 / 8;
+                return (float)1 / (float)8;
             if (valor == 3)//corresponde a 1/7
-                return 1 / 7;
+                return (float)1 / (float)7;
             if (valor == 4)//corresponde a 1/6
-                return 1 / 6;
+                return (float)1 / (float)6;
             if (valor == 5)//corresponde a 1/5
-                return 1 / 5;
+                return (float)1 / (float)5;
             if (valor == 6)//corresponde a 1/4
-                return 1 / 4;
+                return (float)1 / (float)4;
             if (valor == 7)//corresponde a 1/3
-                return 1 / 3;
+                return (float)1 / (float)3;
             if (valor == 8)//corresponde a 1/2
-                return 1 / 2;
+                return (float)1 / (float)2;
             if (valor == 9)//corresponde a 1
                 return 1;
             if (valor == 10)//corresponde a 2
@@ -242,5 +317,6 @@ namespace sisexperto
 
             return 0;
         }
+
     }
 }

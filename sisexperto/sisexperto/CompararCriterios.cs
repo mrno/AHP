@@ -47,10 +47,11 @@ namespace sisexperto
                 {
                     if (miLabel.Name.ToString() == track.Name.ToString())
                     {
+                        string[] posicion = track.Name.ToString().Split('x');
                         Label l = (Label)miLabel;
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
-                        //dato.guardarComparacionCriterios(id_proyecto, id_experto, 
+                        dato.modificarComparacionCriterios(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
                     }
                 }
             }
@@ -62,56 +63,98 @@ namespace sisexperto
             dato = new DALDatos();
             int y = 70;
 
-            List<criterio> lista = dato.todosCriterios();
+            List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_experto);
 
-            Queue<criterio> lista2 = dato.colaCriterios(id_experto);//OJO ACÁ, ESTA DEMÁS EL ID_EXPERTO
-            foreach (criterio c in lista)
+            List<criterio> lista = dato.criteriosPorProyecto(id_proyecto);
+
+            foreach (comparacion_criterio comp in listaComparacion)
             {
-                lista2.Dequeue();
+                Label izquierdaTB = new Label();
+                izquierdaTB.SetBounds(10, y, 60, 30);
+                izquierdaTB.Text = dato.criterioNombre(comp.id_criterio1);
+                Controls.Add(izquierdaTB);
 
-                foreach (criterio c2 in lista2)
-                {
-                    Label izquierdaTB = new Label();
-                    izquierdaTB.SetBounds(10, y, 60, 30);
-                    izquierdaTB.Text = c.nombre.ToString();
-                    Controls.Add(izquierdaTB);
+                TrackBar track = new TrackBar();
+                track.SetBounds(70, y, 450, 40);
+                track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+                track.SetRange(1, 17);
+                track.Scroll += new System.EventHandler(this.mostrar);
+                Controls.Add(track);
 
-                    TrackBar track = new TrackBar();
-                    track.SetBounds(70, y, 450, 40);
-                    track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
-                    track.SetRange(1, 17);
-                    track.Scroll += new System.EventHandler(this.mostrar);
-                    Controls.Add(track);
+                Label derechaTB = new Label();
+                derechaTB.SetBounds(520, y, 100, 30);
+                derechaTB.Text = dato.criterioNombre(comp.id_criterio2);
+                Controls.Add(derechaTB);
 
-                    Label derechaTB = new Label();
-                    derechaTB.SetBounds(520, y, 100, 30);
-                    derechaTB.Text = c.nombre.ToString();
-                    Controls.Add(derechaTB);
-
-
-
-                    Label izquierda = new Label();
-                    izquierda.SetBounds(620, y, 100, 30);
-                    izquierda.Text = c.nombre.ToString();
-                    Controls.Add(izquierda);
+                Label izquierda = new Label();
+                izquierda.SetBounds(620, y, 100, 30);
+                izquierda.Text = dato.criterioNombre(comp.id_criterio1);
+                Controls.Add(izquierda);
 
 
-                    Label miLabel = new Label();
-                    miLabel.SetBounds(720, y, 200, 50);
-                    miLabel.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
-                    //miLabel.Text = miLabel.Name;
-                    Controls.Add(miLabel);
+                Label miLabel = new Label();
+                miLabel.SetBounds(720, y, 200, 50);
+                miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+                //miLabel.Text = miLabel.Name;
+                Controls.Add(miLabel);
 
 
-                    Label derecha = new Label();
-                    derecha.SetBounds(920, y, 100, 30);
-                    derecha.Text = c2.nombre.ToString();
-                    Controls.Add(derecha);
+                Label derecha = new Label();
+                derecha.SetBounds(920, y, 100, 30);
+                derecha.Text = dato.criterioNombre(comp.id_criterio2);
+                Controls.Add(derecha);
 
-
-                    y += 70;
-                }
+                y += 70;
             }
+
+            //Queue<criterio> lista2 = dato.colaCriterios(id_experto);//OJO ACÁ, ESTA DEMÁS EL ID_EXPERTO
+            //foreach (criterio c in lista)
+            //{
+            //    lista2.Dequeue();
+
+            //    foreach (criterio c2 in lista2)
+            //    {
+            //        Label izquierdaTB = new Label();
+            //        izquierdaTB.SetBounds(10, y, 60, 30);
+            //        izquierdaTB.Text = c.nombre.ToString();
+            //        Controls.Add(izquierdaTB);
+
+            //        TrackBar track = new TrackBar();
+            //        track.SetBounds(70, y, 450, 40);
+            //        track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
+            //        track.SetRange(1, 17);
+            //        track.Scroll += new System.EventHandler(this.mostrar);
+            //        Controls.Add(track);
+
+            //        Label derechaTB = new Label();
+            //        derechaTB.SetBounds(520, y, 100, 30);
+            //        derechaTB.Text = c.nombre.ToString();
+            //        Controls.Add(derechaTB);
+
+
+
+            //        Label izquierda = new Label();
+            //        izquierda.SetBounds(620, y, 100, 30);
+            //        izquierda.Text = c.nombre.ToString();
+            //        Controls.Add(izquierda);
+
+
+            //        Label miLabel = new Label();
+            //        miLabel.SetBounds(720, y, 200, 50);
+            //        miLabel.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
+            //        //miLabel.Text = miLabel.Name;
+            //        Controls.Add(miLabel);
+
+
+            //        Label derecha = new Label();
+            //        derecha.SetBounds(920, y, 100, 30);
+            //        derecha.Text = c2.nombre.ToString();
+            //        Controls.Add(derecha);
+
+
+            //        y += 70;
+            //    }
+            //}
 
         }
 

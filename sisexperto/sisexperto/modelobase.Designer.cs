@@ -883,7 +883,9 @@ namespace sisexperto
         /// <param name="id_criterio1">Valor inicial de la propiedad id_criterio1.</param>
         /// <param name="id_criterio2">Valor inicial de la propiedad id_criterio2.</param>
         /// <param name="id_comparacion">Valor inicial de la propiedad id_comparacion.</param>
-        public static comparacion_criterio Createcomparacion_criterio(global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Int32 id_criterio1, global::System.Int32 id_criterio2, global::System.Int32 id_comparacion)
+        /// <param name="pos_fila">Valor inicial de la propiedad pos_fila.</param>
+        /// <param name="pos_columna">Valor inicial de la propiedad pos_columna.</param>
+        public static comparacion_criterio Createcomparacion_criterio(global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Int32 id_criterio1, global::System.Int32 id_criterio2, global::System.Int32 id_comparacion, global::System.Int32 pos_fila, global::System.Int32 pos_columna)
         {
             comparacion_criterio comparacion_criterio = new comparacion_criterio();
             comparacion_criterio.id_proyecto = id_proyecto;
@@ -891,6 +893,8 @@ namespace sisexperto
             comparacion_criterio.id_criterio1 = id_criterio1;
             comparacion_criterio.id_criterio2 = id_criterio2;
             comparacion_criterio.id_comparacion = id_comparacion;
+            comparacion_criterio.pos_fila = pos_fila;
+            comparacion_criterio.pos_columna = pos_columna;
             return comparacion_criterio;
         }
 
@@ -1043,6 +1047,54 @@ namespace sisexperto
         private global::System.Int32 _id_comparacion;
         partial void Onid_comparacionChanging(global::System.Int32 value);
         partial void Onid_comparacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 pos_fila
+        {
+            get
+            {
+                return _pos_fila;
+            }
+            set
+            {
+                Onpos_filaChanging(value);
+                ReportPropertyChanging("pos_fila");
+                _pos_fila = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("pos_fila");
+                Onpos_filaChanged();
+            }
+        }
+        private global::System.Int32 _pos_fila;
+        partial void Onpos_filaChanging(global::System.Int32 value);
+        partial void Onpos_filaChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 pos_columna
+        {
+            get
+            {
+                return _pos_columna;
+            }
+            set
+            {
+                Onpos_columnaChanging(value);
+                ReportPropertyChanging("pos_columna");
+                _pos_columna = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("pos_columna");
+                Onpos_columnaChanged();
+            }
+        }
+        private global::System.Int32 _pos_columna;
+        partial void Onpos_columnaChanging(global::System.Int32 value);
+        partial void Onpos_columnaChanged();
 
         #endregion
     
