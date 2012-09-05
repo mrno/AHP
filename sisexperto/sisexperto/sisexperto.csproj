@@ -35,6 +35,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dll\Consistencia.dll</HintPath>
+    </Reference>
+    <Reference Include="ConsistenciaNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
+    </Reference>
+    <Reference Include="Mejora">
+      <HintPath>..\..\Dll\Mejora.dll</HintPath>
+    </Reference>
+    <Reference Include="MejoraNative">
+      <HintPath>..\..\Dll\MejoraNative.dll</HintPath>
+    </Reference>
     <Reference Include="MWArray, Version=2.12.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Archivos de programa\MATLAB\R2012a\toolbox\dotnetbuilder\bin\win32\v2.0\MWArray.dll</HintPath>
@@ -191,6 +205,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="modelobase.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
