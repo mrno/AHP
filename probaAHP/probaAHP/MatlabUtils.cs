@@ -14,5 +14,18 @@ namespace probaAHP
             MWNumericArray rdo = matriz;
             return rdo;
         }
+
+
+        public double[,] NetArrayFromMLArray(MWNumericArray matriz)
+        {
+
+            double[,] rdo = (double[,])matriz.ToArray(MWArrayComponent.Real);
+            return rdo;
+        }
+
+       
+
+
+
     }
 }

@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MathWorks.MATLAB.NET.Arrays;
-using Consistencia;
-using ConsistenciaNative;
+
 
 namespace probaAHP
 {
     public class ConsistenciaMatriz
     {
 
-       
+        MatlabUtils matlabUtils = new MatlabUtils();
         public Boolean calcularConsistencia(double[,] matriz)
         {
-            MatlabUtils matlabUtils = new MatlabUtils();
+            
 
             Consistencia.Class1 c = new Consistencia.Class1();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
@@ -29,5 +25,26 @@ namespace probaAHP
 
             return resultadoBoolean;
         }
+   
+    
+        public double[,] buscarMejoresConsistencia (double[,] matriz)
+        {
+
+
+            var mejorarConsistencia = new Mejora.Mejora();
+            MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
+
+
+            MWNumericArray resultado = (MWNumericArray)mejorarConsistencia.mejora(matlabNumericArray);
+
+            
+
+            double[,] doubleArray = (double[,])resultado.ToArray(MWArrayComponent.Real);
+
+
+
+            return doubleArray;
+        }
+    
     }
 }
