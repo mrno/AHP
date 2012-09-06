@@ -11,6 +11,8 @@ using ahpNative;
 using SUMA;
 using SUMANative;
 using MathWorks.MATLAB.NET.Arrays;
+using Consistencia;
+using ConsistenciaNative;
 
 
 namespace probaAHP
@@ -22,39 +24,21 @@ namespace probaAHP
             InitializeComponent();
         }
 
-        //private void Form1_Load(object sender, EventArgs e)
-        //{
-        //    //float[,] matriz = { { 1, 2, 3 }, { 4, 5, 6 } };
-        //    //Ahp miahp = new Ahp();
-        //    //MessageBox.Show(miahp.AHP().ToString());
-        //    //miahp.AHP();
-
-        //}
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
 
-            ahp.Ahp miahp = new ahp.Ahp();
-           //MessageBox.Show(miahp.AHP().ToString());
+                double[,] a = { { 1.2, 2.4, 3.0 }, { 4.7, 5.9, 6.1 }, { 7.2, 8.3, 9.2 } };
+                ConsistenciaMatriz consistenciaMatriz = new ConsistenciaMatriz();
+                Boolean resultado = consistenciaMatriz.calcularConsistencia(a);
+                System.Diagnostics.Debug.WriteLine(resultado);
 
-
-           // MWNumericArray Array = (MWNumericArray)miahp.AHP();
-            //MWNumericArray vble = (MWNumericArray)Array[0];
-            
-            
-           // System.Diagnostics.Debug.WriteLine(Array);
-
-            //System.Diagnostics.Debug.WriteLine(vble);
-
-
-
-
-        }
+            }
 
         private void button2_Click(object sender, EventArgs e)
         {
-        //    int[,] a = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }; 
-        //    int[,] b = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+      
         //    MWNumericArray arr1 = a;
         //    MWNumericArray arr2 = b;
         //    SUMA.SUMA obj = new SUMA.SUMA();
@@ -66,6 +50,11 @@ namespace probaAHP
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
         }
