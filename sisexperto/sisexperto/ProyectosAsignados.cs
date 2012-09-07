@@ -26,10 +26,10 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataGridViewRow fila = dataGridView1.selecte;
-            proyecto proy = dataGridView1
-            CompararCriterios frmComparar = new CompararCriterios(35, 18);
-            frmComparar.ShowDialog();
+            //DataGridViewRow fila = dataGridView1.selecte;
+            //proyecto proy = dataGridView1;
+            //CompararCriterios frmComparar = new CompararCriterios(35, 18);
+            //frmComparar.ShowDialog();
         }
     }
 }

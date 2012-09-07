@@ -35,6 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CalcularAHP">
+      <HintPath>..\..\Dll\CalcularAHP.dll</HintPath>
+    </Reference>
+    <Reference Include="CalcularAHPNative">
+      <HintPath>..\..\Dll\CalcularAHPNative.dll</HintPath>
+    </Reference>
     <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\Consistencia.dll</HintPath>
@@ -68,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculoAHP.cs" />
     <Compile Include="ComparacionAlternativas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +87,7 @@
     <Compile Include="CompararCriterios.Designer.cs">
       <DependentUpon>CompararCriterios.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsistenciaMatriz.cs" />
     <Compile Include="DALDatos.cs" />
     <Compile Include="CargarProyecto.cs">
       <SubType>Form</SubType>
@@ -106,6 +114,7 @@
     <Compile Include="LogExperto.Designer.cs">
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
+    <Compile Include="MatlabUtils.cs" />
     <Compile Include="modelobase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
