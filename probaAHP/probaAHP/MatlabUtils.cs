@@ -24,7 +24,19 @@ namespace probaAHP
         }
 
        
+        public MWCellArray NetListToMLCellArray(List<Double[,]> input )
+        {
+           MWCellArray cellArray = new MWCellArray();
+          //  MWNumericArray numericArray = new MWNumericArray();
+           
 
+            for (int i = 1; i < input.Count+1; i++)
+            {
+                cellArray[i] = ((MWNumericArray)input[i]);
+            }
+
+            return cellArray;
+        }
 
 
     }

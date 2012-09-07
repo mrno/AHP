@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 
@@ -35,6 +35,20 @@ namespace probaAHP
 
         private void button3_Click(object sender, EventArgs e)
         {
+
+            List<Double[,]> list = new List<double[,]>();
+              double[,] a = { { 1.2, 2.4, 3.0 }, { 4.7, 5.9, 6.1 }, { 7.2, 8.3, 9.2 } };
+                double[,] b = { { 1.2, 2.4, 3.0 }, { 4.7, 5.9, 6.1 }, { 7.2, 8.3, 9.2 } };
+            double[,] c = { { 1.2, 2.4, 3.0 }, { 4.7, 5.9, 6.1 }, { 7.2, 8.3, 9.2 } };
+            list.Add(a);
+            list.Add(b);
+            list.Add(c);
+
+            CalculoAHP calculoAhp = new CalculoAHP();
+            double[,] resultado = calculoAhp.calcularRanking(list);
+            System.Diagnostics.Debug.WriteLine(resultado);
+
+
 
         }
 
