@@ -4,102 +4,298 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="gisiabaseModelStoreContainer">
-          <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" store:Schema="dbo" store:Name="comparacion_alternativa" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
-            <DefiningQuery>SELECT 
-      [comparacion_alternativa].[id_proyecto] AS [id_proyecto], 
-      [comparacion_alternativa].[id_experto] AS [id_experto], 
-      [comparacion_alternativa].[id_criterio] AS [id_criterio], 
-      [comparacion_alternativa].[id_alternativa1] AS [id_alternativa1], 
-      [comparacion_alternativa].[id_alternativa2] AS [id_alternativa2], 
-      [comparacion_alternativa].[valor] AS [valor]
-      FROM [dbo].[comparacion_alternativa] AS [comparacion_alternativa]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-        </EntityContainer>
-        <EntityType Name="alternativa">
-          <Key>
-            <PropertyRef Name="id_alternativa" />
-          </Key>
-          <Property Name="id_alternativa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="id_proyecto" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="descripcion" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <!--Se encontraron errores durante la generación:
-      advertencia 6002: La tabla o vista 'gisiabase.dbo.comparacion_alternativa' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
-      -->
-        <EntityType Name="comparacion_alternativa">
-          <Key>
-            <PropertyRef Name="id_proyecto" />
-            <PropertyRef Name="id_experto" />
-            <PropertyRef Name="id_criterio" />
-            <PropertyRef Name="id_alternativa1" />
-            <PropertyRef Name="id_alternativa2" />
-          </Key>
-          <Property Name="id_proyecto" Type="int" Nullable="false" />
-          <Property Name="id_experto" Type="int" Nullable="false" />
-          <Property Name="id_criterio" Type="int" Nullable="false" />
-          <Property Name="id_alternativa1" Type="int" Nullable="false" />
-          <Property Name="id_alternativa2" Type="int" Nullable="false" />
-          <Property Name="valor" Type="float" />
-        </EntityType>
-        <EntityType Name="comparacion_criterio">
-          <Key>
-            <PropertyRef Name="id_comparacion" />
-          </Key>
-          <Property Name="id_comparacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="id_proyecto" Type="int" Nullable="false" />
-          <Property Name="id_experto" Type="int" Nullable="false" />
-          <Property Name="id_criterio1" Type="int" Nullable="false" />
-          <Property Name="id_criterio2" Type="int" Nullable="false" />
-          <Property Name="pos_fila" Type="int" Nullable="false" />
-          <Property Name="pos_columna" Type="int" Nullable="false" />
-          <Property Name="valor" Type="float" />
-        </EntityType>
-        <EntityType Name="criterio">
-          <Key>
-            <PropertyRef Name="id_criterio" />
-          </Key>
-          <Property Name="id_criterio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="id_proyecto" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="descripcion" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="experto">
-          <Key>
-            <PropertyRef Name="id_experto" />
-          </Key>
-          <Property Name="id_experto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="apellido" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="nom_usuario" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="clave" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="experto_proyecto">
-          <Key>
-            <PropertyRef Name="id_asignacion" />
-          </Key>
-          <Property Name="id_asignacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="id_proyecto" Type="int" Nullable="false" />
-          <Property Name="id_experto" Type="int" Nullable="false" />
-          <Property Name="ponderacion" Type="float" />
-        </EntityType>
-        <EntityType Name="proyecto">
-          <Key>
-            <PropertyRef Name="id_proyecto" />
-          </Key>
-          <Property Name="id_proyecto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="objetivo" Type="varchar" MaxLength="50" />
-        </EntityType>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="gisiabaseModelStoreContainer">
+    <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_alternativacomparacion_alternativa" Association="gisiabaseModel.Store.FK_alternativacomparacion_alternativa">
+      <End Role="alternativa" EntitySet="alternativa" />
+      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_alternativacomparacion_alternativa1" Association="gisiabaseModel.Store.FK_alternativacomparacion_alternativa1">
+      <End Role="alternativa" EntitySet="alternativa" />
+      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proyectoalternativa" Association="gisiabaseModel.Store.FK_proyectoalternativa">
+      <End Role="proyecto" EntitySet="proyecto" />
+      <End Role="alternativa" EntitySet="alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_criteriocomparacion_alternativa" Association="gisiabaseModel.Store.FK_criteriocomparacion_alternativa">
+      <End Role="criterio" EntitySet="criterio" />
+      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_expertocomparacion_alternativa" Association="gisiabaseModel.Store.FK_expertocomparacion_alternativa">
+      <End Role="experto" EntitySet="experto" />
+      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proyectocomparacion_alternativa" Association="gisiabaseModel.Store.FK_proyectocomparacion_alternativa">
+      <End Role="proyecto" EntitySet="proyecto" />
+      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_criteriocomparacion_criterio" Association="gisiabaseModel.Store.FK_criteriocomparacion_criterio">
+      <End Role="criterio" EntitySet="criterio" />
+      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_criteriocomparacion_criterio1" Association="gisiabaseModel.Store.FK_criteriocomparacion_criterio1">
+      <End Role="criterio" EntitySet="criterio" />
+      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_expertocomparacion_criterio" Association="gisiabaseModel.Store.FK_expertocomparacion_criterio">
+      <End Role="experto" EntitySet="experto" />
+      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proyectocomparacion_criterio" Association="gisiabaseModel.Store.FK_proyectocomparacion_criterio">
+      <End Role="proyecto" EntitySet="proyecto" />
+      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proyectocriterio" Association="gisiabaseModel.Store.FK_proyectocriterio">
+      <End Role="proyecto" EntitySet="proyecto" />
+      <End Role="criterio" EntitySet="criterio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_expertoexperto_proyecto" Association="gisiabaseModel.Store.FK_expertoexperto_proyecto">
+      <End Role="experto" EntitySet="experto" />
+      <End Role="experto_proyecto" EntitySet="experto_proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_proyectoexperto_proyecto" Association="gisiabaseModel.Store.FK_proyectoexperto_proyecto">
+      <End Role="proyecto" EntitySet="proyecto" />
+      <End Role="experto_proyecto" EntitySet="experto_proyecto" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="alternativa">
+    <Key>
+      <PropertyRef Name="id_alternativa" />
+    </Key>
+    <Property Name="id_alternativa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proyecto" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="comparacion_alternativa">
+    <Key>
+      <PropertyRef Name="id_proyecto" />
+      <PropertyRef Name="id_experto" />
+      <PropertyRef Name="id_criterio" />
+      <PropertyRef Name="id_alternativa1" />
+      <PropertyRef Name="id_alternativa2" />
+    </Key>
+    <Property Name="id_proyecto" Type="int" Nullable="false" />
+    <Property Name="id_experto" Type="int" Nullable="false" />
+    <Property Name="id_criterio" Type="int" Nullable="false" />
+    <Property Name="id_alternativa1" Type="int" Nullable="false" />
+    <Property Name="id_alternativa2" Type="int" Nullable="false" />
+    <Property Name="valor" Type="float" Nullable="true" />
+  </EntityType>
+  <EntityType Name="comparacion_criterio">
+    <Key>
+      <PropertyRef Name="id_comparacion" />
+    </Key>
+    <Property Name="id_proyecto" Type="int" Nullable="false" />
+    <Property Name="id_experto" Type="int" Nullable="false" />
+    <Property Name="id_criterio1" Type="int" Nullable="false" />
+    <Property Name="id_criterio2" Type="int" Nullable="false" />
+    <Property Name="valor" Type="float" Nullable="true" />
+    <Property Name="id_comparacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pos_fila" Type="int" Nullable="false" />
+    <Property Name="pos_columna" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="criterio">
+    <Key>
+      <PropertyRef Name="id_criterio" />
+    </Key>
+    <Property Name="id_criterio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_proyecto" Type="int" Nullable="false" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="experto">
+    <Key>
+      <PropertyRef Name="id_experto" />
+    </Key>
+    <Property Name="id_experto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="apellido" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="nom_usuario" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="clave" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="experto_proyecto">
+    <Key>
+      <PropertyRef Name="id_asignacion" />
+    </Key>
+    <Property Name="id_proyecto" Type="int" Nullable="false" />
+    <Property Name="id_experto" Type="int" Nullable="false" />
+    <Property Name="ponderacion" Type="float" Nullable="true" />
+    <Property Name="id_asignacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="proyecto">
+    <Key>
+      <PropertyRef Name="id_proyecto" />
+    </Key>
+    <Property Name="id_proyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="objetivo" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_alternativacomparacion_alternativa">
+    <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="1" />
+    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alternativa">
+        <PropertyRef Name="id_alternativa" />
+      </Principal>
+      <Dependent Role="comparacion_alternativa">
+        <PropertyRef Name="id_alternativa1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_alternativacomparacion_alternativa1">
+    <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="1" />
+    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alternativa">
+        <PropertyRef Name="id_alternativa" />
+      </Principal>
+      <Dependent Role="comparacion_alternativa">
+        <PropertyRef Name="id_alternativa2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proyectoalternativa">
+    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+    <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Principal>
+      <Dependent Role="alternativa">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_criteriocomparacion_alternativa">
+    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
+    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="criterio">
+        <PropertyRef Name="id_criterio" />
+      </Principal>
+      <Dependent Role="comparacion_alternativa">
+        <PropertyRef Name="id_criterio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_expertocomparacion_alternativa">
+    <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
+    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="experto">
+        <PropertyRef Name="id_experto" />
+      </Principal>
+      <Dependent Role="comparacion_alternativa">
+        <PropertyRef Name="id_experto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proyectocomparacion_alternativa">
+    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Principal>
+      <Dependent Role="comparacion_alternativa">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_criteriocomparacion_criterio">
+    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
+    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="criterio">
+        <PropertyRef Name="id_criterio" />
+      </Principal>
+      <Dependent Role="comparacion_criterio">
+        <PropertyRef Name="id_criterio1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_criteriocomparacion_criterio1">
+    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
+    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="criterio">
+        <PropertyRef Name="id_criterio" />
+      </Principal>
+      <Dependent Role="comparacion_criterio">
+        <PropertyRef Name="id_criterio2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_expertocomparacion_criterio">
+    <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
+    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="experto">
+        <PropertyRef Name="id_experto" />
+      </Principal>
+      <Dependent Role="comparacion_criterio">
+        <PropertyRef Name="id_experto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proyectocomparacion_criterio">
+    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Principal>
+      <Dependent Role="comparacion_criterio">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proyectocriterio">
+    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Principal>
+      <Dependent Role="criterio">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_expertoexperto_proyecto">
+    <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
+    <End Role="experto_proyecto" Type="gisiabaseModel.Store.experto_proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="experto">
+        <PropertyRef Name="id_experto" />
+      </Principal>
+      <Dependent Role="experto_proyecto">
+        <PropertyRef Name="id_experto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_proyectoexperto_proyecto">
+    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
+    <End Role="experto_proyecto" Type="gisiabaseModel.Store.experto_proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Principal>
+      <Dependent Role="experto_proyecto">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gisiabaseModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -423,59 +619,86 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="gisiabaseModelStoreContainer" CdmEntityContainer="gisiabaseEntities">
-          <EntitySetMapping Name="alternativa"><EntityTypeMapping TypeName="gisiabaseModel.alternativa"><MappingFragment StoreEntitySet="alternativa">
-            <ScalarProperty Name="id_alternativa" ColumnName="id_alternativa" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="comparacion_alternativa"><EntityTypeMapping TypeName="gisiabaseModel.comparacion_alternativa"><MappingFragment StoreEntitySet="comparacion_alternativa">
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
-            <ScalarProperty Name="id_alternativa1" ColumnName="id_alternativa1" />
-            <ScalarProperty Name="id_alternativa2" ColumnName="id_alternativa2" />
-            <ScalarProperty Name="valor" ColumnName="valor" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="comparacion_criterio"><EntityTypeMapping TypeName="gisiabaseModel.comparacion_criterio"><MappingFragment StoreEntitySet="comparacion_criterio">
-            <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
-                <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
-                <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
-                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="id_criterio1" ColumnName="id_criterio1" />
-            <ScalarProperty Name="id_criterio2" ColumnName="id_criterio2" />
-            <ScalarProperty Name="valor" ColumnName="valor" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="criterio"><EntityTypeMapping TypeName="gisiabaseModel.criterio"><MappingFragment StoreEntitySet="criterio">
-            <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="experto"><EntityTypeMapping TypeName="gisiabaseModel.experto"><MappingFragment StoreEntitySet="experto">
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="apellido" ColumnName="apellido" />
-            <ScalarProperty Name="nom_usuario" ColumnName="nom_usuario" />
-            <ScalarProperty Name="clave" ColumnName="clave" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="experto_proyecto"><EntityTypeMapping TypeName="gisiabaseModel.experto_proyecto"><MappingFragment StoreEntitySet="experto_proyecto">
-            <ScalarProperty Name="id_asignacion" ColumnName="id_asignacion" />
-                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="ponderacion" ColumnName="ponderacion" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="proyecto"><EntityTypeMapping TypeName="gisiabaseModel.proyecto"><MappingFragment StoreEntitySet="proyecto">
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="objetivo" ColumnName="objetivo" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gisiabaseModelStoreContainer" CdmEntityContainer="gisiabaseEntities">
+    <EntitySetMapping Name="alternativa">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.alternativa)">
+        <MappingFragment StoreEntitySet="alternativa">
+          <ScalarProperty Name="id_alternativa" ColumnName="id_alternativa" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comparacion_alternativa">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.comparacion_alternativa)">
+        <MappingFragment StoreEntitySet="comparacion_alternativa">
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+          <ScalarProperty Name="id_alternativa1" ColumnName="id_alternativa1" />
+          <ScalarProperty Name="id_alternativa2" ColumnName="id_alternativa2" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comparacion_criterio">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.comparacion_criterio)">
+        <MappingFragment StoreEntitySet="comparacion_criterio">
+          <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="id_criterio1" ColumnName="id_criterio1" />
+          <ScalarProperty Name="id_criterio2" ColumnName="id_criterio2" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
+          <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="criterio">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.criterio)">
+        <MappingFragment StoreEntitySet="criterio">
+          <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="experto">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.experto)">
+        <MappingFragment StoreEntitySet="experto">
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nom_usuario" ColumnName="nom_usuario" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="experto_proyecto">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.experto_proyecto)">
+        <MappingFragment StoreEntitySet="experto_proyecto">
+          <ScalarProperty Name="id_asignacion" ColumnName="id_asignacion" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="ponderacion" ColumnName="ponderacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proyecto">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.proyecto)">
+        <MappingFragment StoreEntitySet="proyecto">
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="objetivo" ColumnName="objetivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
