@@ -29,7 +29,11 @@ namespace probaAHP
             double[,] a = { { 1.2, 2.4, 3.0 }, { 4.7, 5.9, 6.1 }, { 7.2, 8.3, 9.2 } };
             ConsistenciaMatriz consistenciaMatriz = new ConsistenciaMatriz();
             double[,] resultado = consistenciaMatriz.buscarMejoresConsistencia(a);
-            System.Diagnostics.Debug.WriteLine(resultado);
+            foreach (var d in resultado)
+            {
+                System.Diagnostics.Debug.WriteLine(d);       
+            }
+         
 
         }
 
@@ -46,7 +50,11 @@ namespace probaAHP
 
             CalculoAHP calculoAhp = new CalculoAHP();
             double[,] resultado = calculoAhp.calcularRanking(list);
-            System.Diagnostics.Debug.WriteLine(resultado);
+            foreach (var d in resultado)
+            {
+                System.Diagnostics.Debug.WriteLine(d);    
+            }
+            
 
 
 
