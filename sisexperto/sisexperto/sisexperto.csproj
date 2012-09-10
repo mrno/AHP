@@ -95,7 +95,6 @@
     <Compile Include="CargarProyecto.Designer.cs">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </Compile>
-    <Compile Include="DllHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
