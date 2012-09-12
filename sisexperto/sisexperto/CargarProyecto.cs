@@ -57,9 +57,14 @@ namespace sisexperto
         private void button5_Click(object sender, EventArgs e)
         {
             dato = new DALDatos();
+
             List<experto> listaExp = dato.expertosPorProyecto(id_proyecto);
             List<criterio> listaCri = dato.criteriosPorProyecto(id_proyecto);
+            List<alternativa> listaAlt = dato.alternativasPorProyecto(id_proyecto);
+
             Queue<criterio> colaCri;
+            Queue<alternativa> colaAlt;
+
             foreach (experto exp in listaExp)
             {
                 int fila = 0;
@@ -75,6 +80,28 @@ namespace sisexperto
                     {
                         columna++;
                         dato.guardarComparacionCriterios(id_proyecto, exp.id_experto, c.id_criterio, c2.id_criterio, fila, columna, 0);
+                    }
+                }
+            }
+
+            foreach (experto exp in listaExp)
+            {
+                foreach (criterio cri in listaCri)
+                {
+                    int fila = 0;
+                    int columna;
+                    colaAlt = dato.colaAlternativas(id_proyecto);
+
+                    foreach (alternativa a in listaAlt)
+                    {
+                        fila++;
+                        columna = fila;
+                        colaAlt.Dequeue();
+                        foreach (alternativa a2 in colaAlt)
+                        {
+                            columna++;
+                            dato.guardarComparacionAlternativas(id_proyecto, exp.id_experto, cri.id_criterio, a.id_alternativa, a2.id_alternativa, fila, columna, 0);
+                        }
                     }
                 }
             }

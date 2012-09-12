@@ -21,14 +21,15 @@ namespace sisexperto
 
         private void ProyectosAsignados_Load(object sender, EventArgs e)
         {
+            label1.Text = "Nombre de experto: " + dato.buscarExperto(id_experto).nombre.ToString();
             dataGridView1.DataSource = dato.proyectosExperto(id_experto);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DataGridViewRow fila = dataGridView1.selecte;
-            proyecto proy = dataGridView1
-            CompararCriterios frmComparar = new CompararCriterios(35, 18);
+            
+            proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            CompararCriterios frmComparar = new CompararCriterios(proy.id_proyecto,id_experto);
             frmComparar.ShowDialog();
         }
     }

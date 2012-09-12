@@ -197,9 +197,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(751, 696);
+            this.button5.Location = new System.Drawing.Point(880, 283);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(198, 23);
+            this.button5.Size = new System.Drawing.Size(169, 42);
             this.button5.TabIndex = 7;
             this.button5.Text = "Realizar asignaciones";
             this.button5.UseVisualStyleBackColor = true;
@@ -209,7 +209,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(961, 750);
+            this.ClientSize = new System.Drawing.Size(1061, 750);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);

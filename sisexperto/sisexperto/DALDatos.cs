@@ -17,6 +17,16 @@ namespace sisexperto
             return lista;
         }
 
+        public List<alternativa> alternativasPorProyecto(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            List<alternativa> lista = (from a in gisiaContexto.alternativa
+                                       where a.id_proyecto == id_proyecto
+                                       select a).ToList<alternativa>();
+            gisiaContexto.Dispose();
+            return lista;
+        }
+
         public List<experto> todosExpertos()
         {
             gisiaContexto = new gisiabaseEntities();
@@ -65,13 +75,25 @@ namespace sisexperto
             return respuesta;
         }
 
-        public experto BuscarExperto(string usuario, string password)
+        public experto validarExperto(string usuario, string password)
         {
             experto respuesta = new experto();
             gisiaContexto = new gisiabaseEntities();
             foreach (experto exp in gisiaContexto.experto)
             {
                 if (exp.nom_usuario == usuario && exp.clave == password)
+                    respuesta = exp;
+            }
+            return respuesta;
+        }
+
+        public experto buscarExperto(int id_experto)
+        {
+            experto respuesta = new experto();
+            gisiaContexto = new gisiabaseEntities();
+            foreach (experto exp in gisiaContexto.experto)
+            {
+                if (exp.id_experto == id_experto)
                     respuesta = exp;
             }
             return respuesta;
@@ -209,6 +231,23 @@ namespace sisexperto
             return cola;
         }
 
+        public Queue<alternativa> colaAlternativas(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            List<alternativa> lista = (from a in gisiaContexto.alternativa
+                                       where a.id_proyecto == id_proyecto
+                                       select a).ToList<alternativa>();
+            Queue<alternativa> cola = new Queue<alternativa>();
+            foreach (alternativa a in lista)
+            {
+                cola.Enqueue(a);
+            }
+            gisiaContexto.Dispose();
+            return cola;
+            
+        }
+
+
         public void guardarComparacionCriterios(int id_proyecto, int id_experto, int id_criterio1, int id_criterio2, int pos_fila, int pos_columna, float valor)
         {
             gisiaContexto = new gisiabaseEntities();
@@ -226,6 +265,25 @@ namespace sisexperto
  
         }
 
+
+        public void guardarComparacionAlternativas(int id_proyecto, int id_experto, int id_criterio, int id_alternativa1, int id_alternativa2, int pos_fila, int pos_columna, float valor)
+        {
+            gisiaContexto = new gisiabaseEntities();
+            comparacion_alternativa comp = new comparacion_alternativa();
+            comp.id_proyecto = id_proyecto;
+            comp.id_experto = id_experto;
+            comp.id_criterio = id_criterio;
+            comp.id_alternativa1 = id_alternativa1;
+            comp.id_alternativa2 = id_alternativa2;
+            comp.pos_fila = pos_fila;
+            comp.pos_columna = pos_columna;
+            comp.valor = valor;
+            gisiaContexto.AddTocomparacion_alternativa(comp);
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+
         public void modificarComparacionCriterios(int id_proyecto, int id_experto, int pos_fila, int pos_columna, float valor)
         {
             gisiaContexto = new gisiabaseEntities();
@@ -241,39 +299,39 @@ namespace sisexperto
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 1/9
-                return "es Extremadamente menos importante que";
+                return "es extremadamente menos importante que";
             if (valor == 2)//corresponde a 1/8
                 return "";
             if (valor == 3)//corresponde a 1/7
-                return "es bastante menos importante que";
+                return "es muy fuertemente menos importante que";
             if (valor == 4)//corresponde a 1/6
                 return "";
             if (valor == 5)//corresponde a 1/5
-                return "es Meadianamente menos importante que";
+                return "es fuertemente menos importante que";
             if (valor == 6)//corresponde a 1/4
                 return "";
             if (valor == 7)//corresponde a 1/3
-                return "es levemente menos importante que";
+                return "es moderadamente menos importante que";
             if (valor == 8)//corresponde a 1/2
                 return "";
             if (valor == 9)//corresponde a 1
-                return "es IGUAL de importante que";
+                return "es igual de importante que";
             if (valor == 10)//corresponde a 2
                 return "";
             if (valor == 11)//corresponde a 3
-                return "es levemente mas importante que";
+                return "es moderadamente más importante que";
             if (valor == 12)//corresponde a 4
                 return "";
             if (valor == 13)//corresponde a 5
-                return "es medianamente mas importante que";
+                return "es fuertemente más importante que";
             if (valor == 14)//corresponde a 6
                 return "";
             if (valor == 15)//corresponde a 7
-                return "es bastante mas importante que";
+                return "es muy fuertemente más importante que";
             if (valor == 16)//corresponde a 8
                 return "";
             if (valor == 17)//corresponde a 9
-                return "es Extremadamente mas importante que";
+                return "es extremadamente más importante que";
      
             return "";
         }
