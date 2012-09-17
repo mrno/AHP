@@ -11,7 +11,7 @@ namespace probaAHP
 
         public MWNumericArray MLArrayFromNetArray(double[,] matriz)
         {
-            MWNumericArray rdo = matriz;
+            MWNumericArray rdo = (MWNumericArray) matriz;
             return rdo;
         }
 

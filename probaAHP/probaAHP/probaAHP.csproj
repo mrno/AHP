@@ -49,10 +49,12 @@
     <Reference Include="CalcularAHPNative">
       <HintPath>..\..\Dll\CalcularAHPNative.dll</HintPath>
     </Reference>
-    <Reference Include="Consistencia">
+    <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\Consistencia.dll</HintPath>
     </Reference>
-    <Reference Include="ConsistenciaNative">
+    <Reference Include="ConsistenciaNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
     <Reference Include="Mejora, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -10,12 +10,12 @@ namespace probaAHP
         MatlabUtils matlabUtils = new MatlabUtils();
         public Boolean calcularConsistencia(double[,] matriz)
         {
-            
 
-            Consistencia.Class1 c = new Consistencia.Class1();
+
+            Consistencia.Consistencia c = new Consistencia.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
 
-            MWNumericArray result = (MWNumericArray)c.consitencia(matlabNumericArray);
+            MWNumericArray result = (MWNumericArray)c.calcConsist(matlabNumericArray);
 
             Int32 resultadoEntero = (Int32)result;
 

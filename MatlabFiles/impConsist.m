@@ -30,7 +30,7 @@ idealesMatriz = idealesMatriz + eye(dimension);
 diferenciaMatriz = abs(Mat - idealesMatriz);
 
 for i = 1:dimension
-    idealesMatriz(i, i)= -Inf;
+    diferenciaMatriz(i, i)= -Inf;
 end
 
 filaMatSugeridos = 1;
@@ -54,8 +54,8 @@ for i = 1:dimension
 
             [minimo, posMinimo] = min(abs(VectorSaaty - (autovector(f(1))/autovector(c(1)))));
 
-            sugerido(filaMatSugeridos, 1) = f;
-            sugerido(filaMatSugeridos, 2) = c;
+            sugerido(filaMatSugeridos, 1) = f(1);
+            sugerido(filaMatSugeridos, 2) = c(1);
             sugerido(filaMatSugeridos, 3) = VectorSaaty(posMinimo);
             
             filaMatSugeridos = filaMatSugeridos + 1;

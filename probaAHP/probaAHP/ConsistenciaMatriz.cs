@@ -10,14 +10,14 @@ namespace probaAHP
         MatlabUtils matlabUtils = new MatlabUtils();
         public Boolean calcularConsistencia(double[,] matriz)
         {
-            
 
-            Consistencia.Class1 c = new Consistencia.Class1();
+
+            Consistencia.Consistencia c = new Consistencia.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
 
-            MWNumericArray result = (MWNumericArray)c.consitencia(matlabNumericArray);
-
-            Int32 resultadoEntero = (Int32)result;
+            MWLogicalArray result = (MWLogicalArray)c.calcConsist(matlabNumericArray);
+            
+            Boolean resultadoEntero = (Boolean)result;
 
             // LA CONVERSION ARROJA:
             // RESULTADO 1=VERDADERO, 0=FALSO.
@@ -31,11 +31,11 @@ namespace probaAHP
         {
 
 
-            var mejorarConsistencia = new Mejora.Mejora();
+            var mejorarConsistencia = new Mejora.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
 
 
-            MWNumericArray resultado = (MWNumericArray)mejorarConsistencia.mejora(matlabNumericArray);
+            MWNumericArray resultado = (MWNumericArray)mejorarConsistencia.impConsist(matlabNumericArray);
 
             
 
