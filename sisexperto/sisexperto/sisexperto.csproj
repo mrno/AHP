@@ -49,10 +49,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
-    <Reference Include="Mejora">
+    <Reference Include="Mejora, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\Mejora.dll</HintPath>
     </Reference>
-    <Reference Include="MejoraNative">
+    <Reference Include="MejoraNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\MejoraNative.dll</HintPath>
     </Reference>
     <Reference Include="MWArray, Version=2.12.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=x86">

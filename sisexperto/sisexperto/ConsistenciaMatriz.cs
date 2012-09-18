@@ -31,11 +31,11 @@ namespace probaAHP
         {
 
 
-            var mejorarConsistencia = new Mejora.Mejora();
+            var mejorarConsistencia = new Mejora.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
 
 
-            MWNumericArray resultado = (MWNumericArray)mejorarConsistencia.mejora(matlabNumericArray);
+            MWNumericArray resultado = (MWNumericArray)mejorarConsistencia.impConsist(matlabNumericArray);
 
             
 
