@@ -5,297 +5,88 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="gisiabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="gisiabaseModelStoreContainer">
-    <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_alternativacomparacion_alternativa" Association="gisiabaseModel.Store.FK_alternativacomparacion_alternativa">
-      <End Role="alternativa" EntitySet="alternativa" />
-      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_alternativacomparacion_alternativa1" Association="gisiabaseModel.Store.FK_alternativacomparacion_alternativa1">
-      <End Role="alternativa" EntitySet="alternativa" />
-      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_proyectoalternativa" Association="gisiabaseModel.Store.FK_proyectoalternativa">
-      <End Role="proyecto" EntitySet="proyecto" />
-      <End Role="alternativa" EntitySet="alternativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_criteriocomparacion_alternativa" Association="gisiabaseModel.Store.FK_criteriocomparacion_alternativa">
-      <End Role="criterio" EntitySet="criterio" />
-      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_expertocomparacion_alternativa" Association="gisiabaseModel.Store.FK_expertocomparacion_alternativa">
-      <End Role="experto" EntitySet="experto" />
-      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_proyectocomparacion_alternativa" Association="gisiabaseModel.Store.FK_proyectocomparacion_alternativa">
-      <End Role="proyecto" EntitySet="proyecto" />
-      <End Role="comparacion_alternativa" EntitySet="comparacion_alternativa" />
-    </AssociationSet>
-    <AssociationSet Name="FK_criteriocomparacion_criterio" Association="gisiabaseModel.Store.FK_criteriocomparacion_criterio">
-      <End Role="criterio" EntitySet="criterio" />
-      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_criteriocomparacion_criterio1" Association="gisiabaseModel.Store.FK_criteriocomparacion_criterio1">
-      <End Role="criterio" EntitySet="criterio" />
-      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_expertocomparacion_criterio" Association="gisiabaseModel.Store.FK_expertocomparacion_criterio">
-      <End Role="experto" EntitySet="experto" />
-      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_proyectocomparacion_criterio" Association="gisiabaseModel.Store.FK_proyectocomparacion_criterio">
-      <End Role="proyecto" EntitySet="proyecto" />
-      <End Role="comparacion_criterio" EntitySet="comparacion_criterio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_proyectocriterio" Association="gisiabaseModel.Store.FK_proyectocriterio">
-      <End Role="proyecto" EntitySet="proyecto" />
-      <End Role="criterio" EntitySet="criterio" />
-    </AssociationSet>
-    <AssociationSet Name="FK_expertoexperto_proyecto" Association="gisiabaseModel.Store.FK_expertoexperto_proyecto">
-      <End Role="experto" EntitySet="experto" />
-      <End Role="experto_proyecto" EntitySet="experto_proyecto" />
-    </AssociationSet>
-    <AssociationSet Name="FK_proyectoexperto_proyecto" Association="gisiabaseModel.Store.FK_proyectoexperto_proyecto">
-      <End Role="proyecto" EntitySet="proyecto" />
-      <End Role="experto_proyecto" EntitySet="experto_proyecto" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="alternativa">
-    <Key>
-      <PropertyRef Name="id_alternativa" />
-    </Key>
-    <Property Name="id_alternativa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_proyecto" Type="int" Nullable="false" />
-    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="comparacion_alternativa">
-    <Key>
-      <PropertyRef Name="id_proyecto" />
-      <PropertyRef Name="id_experto" />
-      <PropertyRef Name="id_criterio" />
-      <PropertyRef Name="id_alternativa1" />
-      <PropertyRef Name="id_alternativa2" />
-    </Key>
-    <Property Name="id_proyecto" Type="int" Nullable="false" />
-    <Property Name="id_experto" Type="int" Nullable="false" />
-    <Property Name="id_criterio" Type="int" Nullable="false" />
-    <Property Name="id_alternativa1" Type="int" Nullable="false" />
-    <Property Name="id_alternativa2" Type="int" Nullable="false" />
-    <Property Name="valor" Type="float" Nullable="true" />
-  </EntityType>
-  <EntityType Name="comparacion_criterio">
-    <Key>
-      <PropertyRef Name="id_comparacion" />
-    </Key>
-    <Property Name="id_proyecto" Type="int" Nullable="false" />
-    <Property Name="id_experto" Type="int" Nullable="false" />
-    <Property Name="id_criterio1" Type="int" Nullable="false" />
-    <Property Name="id_criterio2" Type="int" Nullable="false" />
-    <Property Name="valor" Type="float" Nullable="true" />
-    <Property Name="id_comparacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="pos_fila" Type="int" Nullable="false" />
-    <Property Name="pos_columna" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="criterio">
-    <Key>
-      <PropertyRef Name="id_criterio" />
-    </Key>
-    <Property Name="id_criterio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="id_proyecto" Type="int" Nullable="false" />
-    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="experto">
-    <Key>
-      <PropertyRef Name="id_experto" />
-    </Key>
-    <Property Name="id_experto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="apellido" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="nom_usuario" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="clave" Type="varchar" Nullable="false" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="experto_proyecto">
-    <Key>
-      <PropertyRef Name="id_asignacion" />
-    </Key>
-    <Property Name="id_proyecto" Type="int" Nullable="false" />
-    <Property Name="id_experto" Type="int" Nullable="false" />
-    <Property Name="ponderacion" Type="float" Nullable="true" />
-    <Property Name="id_asignacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-  </EntityType>
-  <EntityType Name="proyecto">
-    <Key>
-      <PropertyRef Name="id_proyecto" />
-    </Key>
-    <Property Name="id_proyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="objetivo" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <Association Name="FK_alternativacomparacion_alternativa">
-    <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="1" />
-    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="alternativa">
-        <PropertyRef Name="id_alternativa" />
-      </Principal>
-      <Dependent Role="comparacion_alternativa">
-        <PropertyRef Name="id_alternativa1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_alternativacomparacion_alternativa1">
-    <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="1" />
-    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="alternativa">
-        <PropertyRef Name="id_alternativa" />
-      </Principal>
-      <Dependent Role="comparacion_alternativa">
-        <PropertyRef Name="id_alternativa2" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_proyectoalternativa">
-    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
-    <End Role="alternativa" Type="gisiabaseModel.Store.alternativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="proyecto">
-        <PropertyRef Name="id_proyecto" />
-      </Principal>
-      <Dependent Role="alternativa">
-        <PropertyRef Name="id_proyecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_criteriocomparacion_alternativa">
-    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
-    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="criterio">
-        <PropertyRef Name="id_criterio" />
-      </Principal>
-      <Dependent Role="comparacion_alternativa">
-        <PropertyRef Name="id_criterio" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_expertocomparacion_alternativa">
-    <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
-    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="experto">
-        <PropertyRef Name="id_experto" />
-      </Principal>
-      <Dependent Role="comparacion_alternativa">
-        <PropertyRef Name="id_experto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_proyectocomparacion_alternativa">
-    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
-    <End Role="comparacion_alternativa" Type="gisiabaseModel.Store.comparacion_alternativa" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="proyecto">
-        <PropertyRef Name="id_proyecto" />
-      </Principal>
-      <Dependent Role="comparacion_alternativa">
-        <PropertyRef Name="id_proyecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_criteriocomparacion_criterio">
-    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
-    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="criterio">
-        <PropertyRef Name="id_criterio" />
-      </Principal>
-      <Dependent Role="comparacion_criterio">
-        <PropertyRef Name="id_criterio1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_criteriocomparacion_criterio1">
-    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="1" />
-    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="criterio">
-        <PropertyRef Name="id_criterio" />
-      </Principal>
-      <Dependent Role="comparacion_criterio">
-        <PropertyRef Name="id_criterio2" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_expertocomparacion_criterio">
-    <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
-    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="experto">
-        <PropertyRef Name="id_experto" />
-      </Principal>
-      <Dependent Role="comparacion_criterio">
-        <PropertyRef Name="id_experto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_proyectocomparacion_criterio">
-    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
-    <End Role="comparacion_criterio" Type="gisiabaseModel.Store.comparacion_criterio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="proyecto">
-        <PropertyRef Name="id_proyecto" />
-      </Principal>
-      <Dependent Role="comparacion_criterio">
-        <PropertyRef Name="id_proyecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_proyectocriterio">
-    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
-    <End Role="criterio" Type="gisiabaseModel.Store.criterio" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="proyecto">
-        <PropertyRef Name="id_proyecto" />
-      </Principal>
-      <Dependent Role="criterio">
-        <PropertyRef Name="id_proyecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_expertoexperto_proyecto">
-    <End Role="experto" Type="gisiabaseModel.Store.experto" Multiplicity="1" />
-    <End Role="experto_proyecto" Type="gisiabaseModel.Store.experto_proyecto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="experto">
-        <PropertyRef Name="id_experto" />
-      </Principal>
-      <Dependent Role="experto_proyecto">
-        <PropertyRef Name="id_experto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_proyectoexperto_proyecto">
-    <End Role="proyecto" Type="gisiabaseModel.Store.proyecto" Multiplicity="1" />
-    <End Role="experto_proyecto" Type="gisiabaseModel.Store.experto_proyecto" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="proyecto">
-        <PropertyRef Name="id_proyecto" />
-      </Principal>
-      <Dependent Role="experto_proyecto">
-        <PropertyRef Name="id_proyecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+        <EntityContainer Name="gisiabaseModelStoreContainer">
+          <EntitySet Name="alternativa" EntityType="gisiabaseModel.Store.alternativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel.Store.comparacion_alternativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="comparacion_criterio" EntityType="gisiabaseModel.Store.comparacion_criterio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="criterio" EntityType="gisiabaseModel.Store.criterio" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="experto" EntityType="gisiabaseModel.Store.experto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel.Store.experto_proyecto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="proyecto" EntityType="gisiabaseModel.Store.proyecto" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="alternativa">
+          <Key>
+            <PropertyRef Name="id_alternativa" />
+          </Key>
+          <Property Name="id_alternativa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="comparacion_alternativa">
+          <Key>
+            <PropertyRef Name="id_comparacion" />
+          </Key>
+          <Property Name="id_comparacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="id_criterio" Type="int" Nullable="false" />
+          <Property Name="id_alternativa1" Type="int" Nullable="false" />
+          <Property Name="id_alternativa2" Type="int" Nullable="false" />
+          <Property Name="pos_fila" Type="int" Nullable="false" />
+          <Property Name="pos_columna" Type="int" Nullable="false" />
+          <Property Name="valor" Type="float" />
+        </EntityType>
+        <EntityType Name="comparacion_criterio">
+          <Key>
+            <PropertyRef Name="id_comparacion" />
+          </Key>
+          <Property Name="id_comparacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="id_criterio1" Type="int" Nullable="false" />
+          <Property Name="id_criterio2" Type="int" Nullable="false" />
+          <Property Name="pos_fila" Type="int" Nullable="false" />
+          <Property Name="pos_columna" Type="int" Nullable="false" />
+          <Property Name="valor" Type="float" />
+        </EntityType>
+        <EntityType Name="criterio">
+          <Key>
+            <PropertyRef Name="id_criterio" />
+          </Key>
+          <Property Name="id_criterio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="experto">
+          <Key>
+            <PropertyRef Name="id_experto" />
+          </Key>
+          <Property Name="id_experto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom_usuario" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="clave" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="experto_proyecto">
+          <Key>
+            <PropertyRef Name="id_asignacion" />
+          </Key>
+          <Property Name="id_asignacion" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="ponderacion" Type="float" />
+        </EntityType>
+        <EntityType Name="proyecto">
+          <Key>
+            <PropertyRef Name="id_proyecto" />
+          </Key>
+          <Property Name="id_proyecto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="objetivo" Type="varchar" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gisiabaseModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -374,11 +165,7 @@
         </EntityType>
         <EntityType Name="comparacion_alternativa">
           <Key>
-            <PropertyRef Name="id_proyecto" />
-            <PropertyRef Name="id_experto" />
-            <PropertyRef Name="id_criterio" />
-            <PropertyRef Name="id_alternativa1" />
-            <PropertyRef Name="id_alternativa2" />
+            <PropertyRef Name="id_comparacion" />
           </Key>
           <Property Name="id_proyecto" Type="Int32" Nullable="false" />
           <Property Name="id_experto" Type="Int32" Nullable="false" />
@@ -391,6 +178,9 @@
           <NavigationProperty Name="criterio" Relationship="gisiabaseModel.FK_criteriocomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="criterio" />
           <NavigationProperty Name="experto" Relationship="gisiabaseModel.FK_expertocomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="experto" />
           <NavigationProperty Name="proyecto" Relationship="gisiabaseModel.FK_proyectocomparacion_alternativa" FromRole="comparacion_alternativa" ToRole="proyecto" />
+          <Property Type="Int32" Name="id_comparacion" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="pos_fila" Nullable="false" />
+          <Property Type="Int32" Name="pos_columna" Nullable="false" />
         </EntityType>
         <EntityType Name="comparacion_criterio">
           <Key>
@@ -634,8 +424,11 @@
     <EntitySetMapping Name="comparacion_alternativa">
       <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel.comparacion_alternativa)">
         <MappingFragment StoreEntitySet="comparacion_alternativa">
-          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
+                <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
+                <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
+                <ScalarProperty Name="id_experto" ColumnName="id_experto" />
           <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
           <ScalarProperty Name="id_alternativa1" ColumnName="id_alternativa1" />
           <ScalarProperty Name="id_alternativa2" ColumnName="id_alternativa2" />
@@ -718,33 +511,35 @@
     <Diagrams>
       <Diagram Name="modelobase">
         <EntityTypeShape EntityType="gisiabaseModel.alternativa" Width="1.5" PointX="0.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel.comparacion_alternativa" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel.comparacion_alternativa" Width="1.5" PointX="2.75" PointY="0.75" Height="3.7109993489583326" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.comparacion_criterio" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9802864583333322" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.criterio" Width="1.5" PointX="2.75" PointY="3.75" Height="1.7879850260416657" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.experto" Width="1.5" PointX="4.75" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.experto_proyecto" Width="1.5" PointX="4.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel.proyecto" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
         <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa">
-          <ConnectorPoint PointX="2.25" PointY="1.7926741536458335" />
-          <ConnectorPoint PointX="2.75" PointY="1.7926741536458335" />
+          <ConnectorPoint PointX="2.25" PointY="2.3322854614257817" />
+          <ConnectorPoint PointX="2.75" PointY="2.3322854614257817" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_alternativacomparacion_alternativa1">
-          <ConnectorPoint PointX="2.25" PointY="1.2088370768229169" />
-          <ConnectorPoint PointX="2.75" PointY="1.2088370768229169" />
+          <ConnectorPoint PointX="2.25" PointY="1.4786427307128909" />
+          <ConnectorPoint PointX="2.75" PointY="1.4786427307128909" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_proyectoalternativa">
-          <ConnectorPoint PointX="6.8076913076923073" PointY="0.75" />
-          <ConnectorPoint PointX="6.2139413076923073" PointY="0.15625" />
-          <ConnectorPoint PointX="2.8449028461538459" PointY="0.15625" />
+          <ConnectorPoint PointX="6.776537461538461" PointY="0.75" />
+          <ConnectorPoint PointX="6.214037461538461" PointY="0.1875" />
+          <ConnectorPoint PointX="2.8136528461538459" PointY="0.1875" />
           <ConnectorPoint PointX="2.25" PointY="0.75115284615384614" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_alternativa">
-          <ConnectorPoint PointX="3.5" PointY="3.75" />
-          <ConnectorPoint PointX="3.5" PointY="3.4927376302083331" />
+          <ConnectorPoint PointX="3.5" PointY="6.3071907552083326" />
+          <ConnectorPoint PointX="3.5" PointY="6.5571907552083326" />
+          <ConnectorPoint PointX="3.5" PointY="6.5571907552083326" />
+          <ConnectorPoint PointX="3.5" PointY="4.4609993489583326" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_alternativa">
-          <ConnectorPoint PointX="4.75" PointY="1.8748478190104165" />
-          <ConnectorPoint PointX="4.25" PointY="1.8748478190104165" />
+          <ConnectorPoint PointX="4.75" PointY="2.10847126048559" />
+          <ConnectorPoint PointX="4.25" PointY="2.10847126048559" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_alternativa">
           <ConnectorPoint PointX="6.75" PointY="0.77423076923076917" />
@@ -753,21 +548,23 @@
           <ConnectorPoint PointX="4.25" PointY="0.75115284615384637" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio">
-          <ConnectorPoint PointX="2.75" PointY="4.8748478190104167" />
-          <ConnectorPoint PointX="2.25" PointY="4.8748478190104167" />
+          <ConnectorPoint PointX="2.75" PointY="5.0285953776041659" />
+          <ConnectorPoint PointX="2.25" PointY="5.0285953776041659" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_criteriocomparacion_criterio1">
-          <ConnectorPoint PointX="2.75" PointY="4.2499239095052079" />
-          <ConnectorPoint PointX="2.25" PointY="4.2499239095052079" />
+          <ConnectorPoint PointX="2.75" PointY="4.3267976888020829" />
+          <ConnectorPoint PointX="2.25" PointY="4.3267976888020829" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_expertocomparacion_criterio">
-          <ConnectorPoint PointX="4.75" PointY="2.468523728515625" />
-          <ConnectorPoint PointX="4.5" PointY="2.468523728515625" />
-          <ConnectorPoint PointX="4.5" PointY="3.7427376302083335" />
-          <ConnectorPoint PointX="2.5" PointY="3.7427376302083335" />
-          <ConnectorPoint PointX="2.5" PointY="3.085348307291667" />
-          <ConnectorPoint PointX="1.5" PointY="3.085348307291667" />
-          <ConnectorPoint PointX="1.5" PointY="3.75" />
+          <ConnectorPoint PointX="5.210935" PointY="3.3071907552083331" />
+          <ConnectorPoint PointX="5.210935" PointY="3.6875" />
+          <ConnectorPoint PointX="4.3125" PointY="3.6875" />
+          <ConnectorPoint PointX="4.3125" PointY="6.3696907552083326" />
+          <ConnectorPoint PointX="3.5833333333333335" PointY="6.3696907552083317" />
+          <ConnectorPoint PointX="3.4166666666666665" PointY="6.3696907552083326" />
+          <ConnectorPoint PointX="2.34375" PointY="6.3696907552083326" />
+          <ConnectorPoint PointX="2.34375" PointY="5.8758194986979158" />
+          <ConnectorPoint PointX="2.25" PointY="5.8758194986979158" />
         </AssociationConnector>
         <AssociationConnector Association="gisiabaseModel.FK_proyectocomparacion_criterio">
           <ConnectorPoint PointX="7.5" PointY="2.9996956380208335" />

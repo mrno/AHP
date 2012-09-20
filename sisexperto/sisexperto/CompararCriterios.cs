@@ -70,37 +70,37 @@ namespace sisexperto
             foreach (comparacion_criterio comp in listaComparacion)
             {
                 Label izquierdaTB = new Label();
-                izquierdaTB.SetBounds(10, y, 60, 30);
+                izquierdaTB.SetBounds(16, y, 60, 50);
                 izquierdaTB.Text = dato.criterioNombre(comp.id_criterio1);
                 Controls.Add(izquierdaTB);
 
                 TrackBar track = new TrackBar();
-                track.SetBounds(70, y, 450, 40);
+                track.SetBounds(75, y, 659, 45);
                 track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
 
                 Label derechaTB = new Label();
-                derechaTB.SetBounds(520, y, 100, 30);
+                derechaTB.SetBounds(740, y, 100, 30);
                 derechaTB.Text = dato.criterioNombre(comp.id_criterio2);
                 Controls.Add(derechaTB);
 
                 Label izquierda = new Label();
-                izquierda.SetBounds(620, y, 100, 30);
+                izquierda.SetBounds(870, y, 100, 30);
                 izquierda.Text = dato.criterioNombre(comp.id_criterio1);
                 Controls.Add(izquierda);
 
 
                 Label miLabel = new Label();
-                miLabel.SetBounds(720, y, 200, 50);
+                miLabel.SetBounds(980, y, 200, 50);
                 miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 //miLabel.Text = miLabel.Name;
                 Controls.Add(miLabel);
 
-
+                
                 Label derecha = new Label();
-                derecha.SetBounds(920, y, 100, 30);
+                derecha.SetBounds(1180, y, 100, 30);
                 derecha.Text = dato.criterioNombre(comp.id_criterio2);
                 Controls.Add(derecha);
 

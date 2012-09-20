@@ -15,5 +15,10 @@ namespace sisexperto
         {
             InitializeComponent();
         }
+
+        private void ComparacionAlternativas_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
