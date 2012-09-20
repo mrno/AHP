@@ -17,7 +17,7 @@ namespace probaAHP
             MatlabUtils matlabUtils = new MatlabUtils();
             MWCellArray cellArray = matlabUtils.NetListToMLCellArray(listaCriterioAlternativas);
 
-            MWArray mwArray = calcularAhp.calcularAHP(cellArray);
+            MWArray mwArray = calcularAhp.rankCalc(cellArray);
             var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
             return resultado;
         }

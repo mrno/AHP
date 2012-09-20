@@ -43,10 +43,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\Escritorio\AHP\ahp\distrib\ahpNative.dll</HintPath>
     </Reference>
-    <Reference Include="CalcularAHP">
+    <Reference Include="CalcularAHP, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\CalcularAHP.dll</HintPath>
     </Reference>
-    <Reference Include="CalcularAHPNative">
+    <Reference Include="CalcularAHPNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\CalcularAHPNative.dll</HintPath>
     </Reference>
     <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
