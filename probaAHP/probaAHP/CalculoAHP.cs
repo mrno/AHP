@@ -16,8 +16,23 @@ namespace probaAHP
             CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
             MatlabUtils matlabUtils = new MatlabUtils();
             MWCellArray cellArray = matlabUtils.NetListToMLCellArray(listaCriterioAlternativas);
+            
+            
+            MWCellArray mwca = new MWCellArray(3);
+            
+            double[,] a = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            mwca[1] = matlabUtils.MLArrayFromNetArray(a);
 
-            MWArray mwArray = calcularAhp.rankCalc(cellArray);
+            double[,] b = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            mwca[2] = matlabUtils.MLArrayFromNetArray(b);
+
+            double[,] c = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            mwca[3] = matlabUtils.MLArrayFromNetArray(c);
+
+
+
+
+            MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(cellArray);
             var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
             return resultado;
         }

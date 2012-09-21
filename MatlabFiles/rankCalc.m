@@ -3,7 +3,9 @@ function [ranking] = rankCalc(cel)
 
 %   Determina el tamaño del cellarray
 [f, cant] = size(cel);
-
+[filaux, colaux] = size(cell2mat(cel(2)));
+matVectAlter = zeros (filaux, cant- 1);
+vectCriterios = zeros (cant - 1, 1);
 for iter = 1:cant
     
     Mat = cell2mat(cel(iter));
@@ -21,11 +23,12 @@ for iter = 1:cant
     if (iter == 1)
         vectCriterios = autovector;
     else    
-        matVectAlter = 1;
+        matVectAlter(:, iter-1) = autovector;
     end
     
 end
-%*  vectCriterios
-ranking =matVectAlter;
+% *  matVectAlter .. ranking = vectCriterios;
+
+ranking = cell2mat(cel(4));
 
 end
