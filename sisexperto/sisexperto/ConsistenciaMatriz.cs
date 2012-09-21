@@ -15,9 +15,9 @@ namespace probaAHP
             Consistencia.Consistencia c = new Consistencia.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
 
-            MWLogicalArray result = (MWLogicalArray)c.calcConsist(matlabNumericArray);
-            
-            Boolean resultadoEntero = (Boolean)result;
+            MWNumericArray result = (MWNumericArray)c.calcConsist(matlabNumericArray);
+
+            Int32 resultadoEntero = (Int32)result;
 
             // LA CONVERSION ARROJA:
             // RESULTADO 1=VERDADERO, 0=FALSO.
