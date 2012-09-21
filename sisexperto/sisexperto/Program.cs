@@ -18,10 +18,9 @@ namespace sisexperto
            //Application.Run(new CompararCriterios(44,35)); 
            //Application.Run(new ProyectosAsignados(35));
             //Application.Run(new CargarProyecto(3));
-            //Application.Run(new NuevoProyecto());
-            Application.Run(new Form1());
+            Application.Run(new NuevoProyecto());
            
-            
+           
 
         }
     }

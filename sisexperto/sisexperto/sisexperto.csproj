@@ -171,7 +171,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>modelobase.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\DataSources\alternativa.datasource" />
     <None Include="Properties\DataSources\criterio.datasource" />
     <None Include="Properties\DataSources\experto.datasource" />
@@ -192,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
