@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Consistencia;
+using ConsistenciaNative;
+
 
 namespace sisexperto
 {
@@ -78,6 +81,7 @@ namespace sisexperto
                 track.SetBounds(75, y, 659, 45);
                 track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
+                track.Value = 9;
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
 
@@ -158,9 +162,12 @@ namespace sisexperto
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            ConsistenciaMatriz consistencia = new ConsistenciaMatriz();
+            double[,] matriz = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            if (consistencia.calcularConsistencia(matriz))
+                MessageBox.Show("matriz consistente");
         }
     }
 }

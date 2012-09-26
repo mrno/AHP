@@ -1,8 +1,10 @@
 ﻿using System;
 using MathWorks.MATLAB.NET.Arrays;
+using Consistencia;
+using ConsistenciaNative;
 
 
-namespace probaAHP
+namespace sisexperto
 {
     public class ConsistenciaMatriz
     {
