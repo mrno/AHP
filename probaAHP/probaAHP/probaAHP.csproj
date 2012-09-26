@@ -89,6 +89,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VectCalc">
+      <HintPath>..\..\Dll\VectCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="VectCalcNative">
+      <HintPath>..\..\Dll\VectCalcNative.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculoAHP.cs" />

@@ -11,30 +11,19 @@ namespace probaAHP
     {
 
 
-        public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas )
+        public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas)
         {
             CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
             MatlabUtils matlabUtils = new MatlabUtils();
-            MWCellArray cellArray = matlabUtils.NetListToMLCellArray(listaCriterioAlternativas);
-            
-            
-            MWCellArray mwca = new MWCellArray(3);
-            
-            double[,] a = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-            mwca[1] = matlabUtils.MLArrayFromNetArray(a);
-
-            double[,] b = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-            mwca[2] = matlabUtils.MLArrayFromNetArray(b);
-
-            double[,] c = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
-            mwca[3] = matlabUtils.MLArrayFromNetArray(c);
+            MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
+            MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
 
 
 
-
-            MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(cellArray);
+            MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(vectCriterios, superMatriz);
             var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
-            return resultado;
+
+           return resultado;
         }
     }
 }
