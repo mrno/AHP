@@ -233,6 +233,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Modelo2.edmx.sql" />
     <Content Include="modelobase.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
