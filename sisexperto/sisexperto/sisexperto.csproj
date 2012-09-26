@@ -41,20 +41,16 @@
     <Reference Include="CalcularAHPNative">
       <HintPath>..\..\Dll\CalcularAHPNative.dll</HintPath>
     </Reference>
-    <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Consistencia">
       <HintPath>..\..\Dll\Consistencia.dll</HintPath>
     </Reference>
-    <Reference Include="ConsistenciaNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="ConsistenciaNative">
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
-    <Reference Include="Mejora, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Mejora">
       <HintPath>..\..\Dll\Mejora.dll</HintPath>
     </Reference>
-    <Reference Include="MejoraNative, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MejoraNative">
       <HintPath>..\..\Dll\MejoraNative.dll</HintPath>
     </Reference>
     <Reference Include="MWArray">
@@ -73,6 +69,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="VectCalc">
+      <HintPath>..\..\Dll\VectCalc.dll</HintPath>
+    </Reference>
+    <Reference Include="VectCalcNative">
+      <HintPath>..\..\Dll\VectCalcNative.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculoAHP.cs" />
@@ -217,6 +219,7 @@
     <None Include="Properties\DataSources\criterio1.datasource" />
     <None Include="Properties\DataSources\experto.datasource" />
     <None Include="Properties\DataSources\gisiabaseEntities1.datasource" />
+    <None Include="Properties\DataSources\gisiabaseEntities21.datasource" />
     <None Include="Properties\DataSources\proyecto.datasource" />
     <None Include="Properties\DataSources\proyecto1.datasource" />
     <None Include="Properties\Settings.settings">

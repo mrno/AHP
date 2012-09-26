@@ -5,21 +5,25 @@ using CalcularAHPNative;
 using MathWorks.MATLAB.NET.Arrays;
 
 
-namespace sisexperto
+namespace probaAHP
 {
     public class CalculoAHP
     {
 
 
-        public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas )
+        public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas)
         {
             CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
             MatlabUtils matlabUtils = new MatlabUtils();
-            MWCellArray cellArray = matlabUtils.NetListToMLCellArray(listaCriterioAlternativas);
+            MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
+            MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
 
-            MWArray mwArray = calcularAhp.calcularAHP(cellArray);
+
+
+            MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(vectCriterios, superMatriz);
             var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
-            return resultado;
+
+           return resultado;
         }
     }
 }

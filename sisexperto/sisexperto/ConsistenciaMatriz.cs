@@ -1,10 +1,8 @@
 ﻿using System;
 using MathWorks.MATLAB.NET.Arrays;
-using Consistencia;
-using ConsistenciaNative;
 
 
-namespace sisexperto
+namespace probaAHP
 {
     public class ConsistenciaMatriz
     {
@@ -17,9 +15,9 @@ namespace sisexperto
             Consistencia.Consistencia c = new Consistencia.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
 
-            MWNumericArray result = (MWNumericArray)c.calcConsist(matlabNumericArray);
-
-            Int32 resultadoEntero = (Int32)result;
+            MWLogicalArray result = (MWLogicalArray)c.calcConsist(matlabNumericArray);
+            
+            Boolean resultadoEntero = (Boolean)result;
 
             // LA CONVERSION ARROJA:
             // RESULTADO 1=VERDADERO, 0=FALSO.
