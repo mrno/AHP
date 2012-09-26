@@ -13,6 +13,8 @@ namespace sisexperto
     {
         private DALDatos dato = new DALDatos();
         private int id_proyecto;
+        private List<alternativa> listaAlternativas = new List<alternativa>();
+        private List<criterio> listaCriteiro = new List<criterio>();
 
         public CargarProyecto(int id)
         {
@@ -22,9 +24,8 @@ namespace sisexperto
         
         private void CargarProyecto_Load(object sender, EventArgs e)
         {
-            gridAlternativas.DataSource = dato.todasAlternativas();
-            gridExpertos.DataSource = dato.expertosPorProyecto(id_proyecto);
-            gridCriterios.DataSource = dato.criteriosPorProyecto(id_proyecto);
+            //gridAlternativas.DataSource = dato.todasAlternativas();
+            //gridCriterios.DataSource = dato.criteriosPorProyecto(id_proyecto);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -33,15 +34,6 @@ namespace sisexperto
             frmAlternativa.ShowDialog();
             {
                 gridAlternativas.DataSource = dato.todasAlternativas();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            NuevoExperto frmExperto = new NuevoExperto(id_proyecto);
-            frmExperto.ShowDialog();
-            {
-                gridExpertos.DataSource = dato.expertosPorProyecto(id_proyecto);
             }
         }
 
@@ -57,6 +49,16 @@ namespace sisexperto
         private void button5_Click(object sender, EventArgs e)
         {
             dato = new DALDatos();
+
+            foreach (criterio cri in listaCriteiro)
+            {
+                dato.altaCriterio(id_proyecto, cri.nombre, cri.descripcion);
+            }
+
+            foreach (alternativa alt in listaAlternativas)
+            {
+                dato.altaAlternativa(id_proyecto, alt.nombre, alt.descripcion);
+            }
 
             List<experto> listaExp = dato.expertosPorProyecto(id_proyecto);
             List<criterio> listaCri = dato.criteriosPorProyecto(id_proyecto);
@@ -105,6 +107,30 @@ namespace sisexperto
                     }
                 }
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            alternativa alt = new alternativa();
+            alt.nombre = txt1.Text;
+            alt.descripcion = txt2.Text;
+            listaAlternativas.Add(alt);
+            gridAlternativas.DataSource = null;
+            gridAlternativas.DataSource = listaAlternativas;
+            txt1.Text = "";
+            txt2.Text = "";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            criterio cri = new criterio();
+            cri.nombre = txt3.Text;
+            cri.descripcion = txt4.Text;
+            listaCriteiro.Add(cri);
+            gridCriterios.DataSource = null;
+            gridCriterios.DataSource = listaCriteiro;
+            txt3.Text = "";
+            txt4.Text = "";
         }
 
         

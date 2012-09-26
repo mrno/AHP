@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using MathWorks.MATLAB.NET.Arrays;
 
-namespace probaAHP
+namespace sisexperto
 {
     public class MatlabUtils
     {

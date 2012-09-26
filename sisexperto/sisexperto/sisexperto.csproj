@@ -57,9 +57,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\MejoraNative.dll</HintPath>
     </Reference>
-    <Reference Include="MWArray, Version=2.12.0.0, Culture=neutral, PublicKeyToken=e1d84a0da19db86f, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Archivos de programa\MATLAB\R2012a\toolbox\dotnetbuilder\bin\win32\v2.0\MWArray.dll</HintPath>
+    <Reference Include="MWArray">
+      <HintPath>..\..\Dll\MWArray.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -116,10 +115,10 @@
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="MatlabUtils.cs" />
-    <Compile Include="modelobase.Designer.cs">
+    <Compile Include="Modelo2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>modelobase.edmx</DependentUpon>
+      <DependentUpon>Modelo2.edmx</DependentUpon>
     </Compile>
     <Compile Include="NuevaAlternativa.cs">
       <SubType>Form</SubType>
@@ -152,6 +151,12 @@
     </Compile>
     <Compile Include="ProyectosAsignados.Designer.cs">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProyectosCreados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProyectosCreados.Designer.cs">
+      <DependentUpon>ProyectosCreados.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CargarProyecto.resx">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
@@ -196,18 +201,24 @@
     <EmbeddedResource Include="ProyectosAsignados.resx">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="modelobase.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>modelobase.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <EmbeddedResource Include="ProyectosCreados.resx">
+      <DependentUpon>ProyectosCreados.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="Modelo2.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Modelo2.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Properties\DataSources\alternativa.datasource" />
+    <None Include="Properties\DataSources\alternativa1.datasource" />
     <None Include="Properties\DataSources\criterio.datasource" />
+    <None Include="Properties\DataSources\criterio1.datasource" />
     <None Include="Properties\DataSources\experto.datasource" />
     <None Include="Properties\DataSources\gisiabaseEntities1.datasource" />
     <None Include="Properties\DataSources\proyecto.datasource" />
+    <None Include="Properties\DataSources\proyecto1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

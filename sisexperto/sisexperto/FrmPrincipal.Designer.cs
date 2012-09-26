@@ -33,6 +33,8 @@
             this.proyectosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.misProyectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.proyectosAsignadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,7 +47,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.proyectosToolStripMenuItem1});
+            this.proyectosToolStripMenuItem1,
+            this.misProyectosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(916, 24);
@@ -73,6 +76,22 @@
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
             this.abrirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            // 
+            // misProyectosToolStripMenuItem
+            // 
+            this.misProyectosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.proyectosAsignadosToolStripMenuItem});
+            this.misProyectosToolStripMenuItem.Name = "misProyectosToolStripMenuItem";
+            this.misProyectosToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.misProyectosToolStripMenuItem.Text = "Mis Proyectos";
+            // 
+            // proyectosAsignadosToolStripMenuItem
+            // 
+            this.proyectosAsignadosToolStripMenuItem.Name = "proyectosAsignadosToolStripMenuItem";
+            this.proyectosAsignadosToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.proyectosAsignadosToolStripMenuItem.Text = "Proyectos asignados";
+            this.proyectosAsignadosToolStripMenuItem.Click += new System.EventHandler(this.proyectosAsignadosToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -98,6 +117,8 @@
         private System.Windows.Forms.ToolStripMenuItem proyectosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem misProyectosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem proyectosAsignadosToolStripMenuItem;
 
 
 

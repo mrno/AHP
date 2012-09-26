@@ -12,7 +12,7 @@ namespace sisexperto
     public partial class NuevoProyecto : Form
     {
         private DALDatos dato = new DALDatos();
-        private gisiabaseEntities gisiaContexto = new gisiabaseEntities();
+        private gisiabaseEntities2 gisiaContexto = new gisiabaseEntities2();
         private List<experto> lista = new List<experto>();
 
         public NuevoProyecto()
@@ -23,11 +23,21 @@ namespace sisexperto
         private void button1_Click(object sender, EventArgs e)
         {
             dato = new DALDatos();
-            dato.altaProyecto(txt1.Text, txt2.Text);
+            dato.altaProyecto(57, txt1.Text, txt2.Text);
             foreach (experto exp in lista)
             {
-                if(exp.id_experto == 0)
-                    dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave);
+                if (exp.id_experto == 0)
+                {
+                    //dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave);
+                    //dato.ultimoExperto();
+                    //dato.asignarProyecto(dato.ultimoProyecto(), dato.ultimoExperto());
+                    dato.asignarProyecto(dato.ultimoProyecto(), dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave).id_experto);
+                }
+                else
+                {
+                    dato.asignarProyecto(dato.ultimoProyecto(), exp.id_experto);
+                }
+
             }
         }
 

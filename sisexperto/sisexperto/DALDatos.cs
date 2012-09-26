@@ -7,11 +7,12 @@ namespace sisexperto
 {
     class DALDatos
     {
-        private gisiabaseEntities gisiaContexto;
+        //private gisiabaseEntities gisiaContexto;
+        private gisiabaseEntities2 gisiaContexto;
 
         public List<alternativa> todasAlternativas()
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<alternativa> lista = (from a in gisiaContexto.alternativa select a).ToList<alternativa>();
             gisiaContexto.Dispose();
             return lista;
@@ -19,7 +20,7 @@ namespace sisexperto
 
         public List<alternativa> alternativasPorProyecto(int id_proyecto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<alternativa> lista = (from a in gisiaContexto.alternativa
                                        where a.id_proyecto == id_proyecto
                                        select a).ToList<alternativa>();
@@ -29,7 +30,7 @@ namespace sisexperto
 
         public List<experto> todosExpertos()
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<experto> lista = (from e in gisiaContexto.experto select e).ToList<experto>();
             gisiaContexto.Dispose();
             return lista;
@@ -37,7 +38,7 @@ namespace sisexperto
 
         public List<criterio> todosCriterios()
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<criterio> lista = (from c in gisiaContexto.criterio select c).ToList<criterio>();
             gisiaContexto.Dispose();
             return lista;
@@ -45,7 +46,7 @@ namespace sisexperto
 
         public List<criterio> criteriosPorProyecto(int id_proyecto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<criterio> lista = (from c in gisiaContexto.criterio
                                     where c.id_proyecto == id_proyecto
                                     select c).ToList<criterio>();
@@ -55,18 +56,28 @@ namespace sisexperto
 
         public string criterioNombre(int id_criterio)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             criterio cri = (from c in gisiaContexto.criterio
-                                    where c.id_criterio == id_criterio
-                                    select c).FirstOrDefault<criterio>();
+                            where c.id_criterio == id_criterio
+                            select c).FirstOrDefault<criterio>();
             gisiaContexto.Dispose();
             return cri.nombre.ToString();
+        }
+
+        public string alternativaNombre(int id_alternativa)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            alternativa alt = (from a in gisiaContexto.alternativa
+                            where a.id_alternativa == id_alternativa
+                            select a).FirstOrDefault<alternativa>();
+            gisiaContexto.Dispose();
+            return alt.nombre.ToString();
         }
 
         public bool logExperto(string usuario, string password)
         {
             bool respuesta = false;
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             foreach (experto exp in gisiaContexto.experto)
             {
                 if(exp.nom_usuario == usuario && exp.clave == password)
@@ -78,7 +89,7 @@ namespace sisexperto
         public experto validarExperto(string usuario, string password)
         {
             experto respuesta = new experto();
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             foreach (experto exp in gisiaContexto.experto)
             {
                 if (exp.nom_usuario == usuario && exp.clave == password)
@@ -90,7 +101,7 @@ namespace sisexperto
         public experto buscarExperto(int id_experto)
         {
             experto respuesta = new experto();
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             foreach (experto exp in gisiaContexto.experto)
             {
                 if (exp.id_experto == id_experto)
@@ -101,7 +112,7 @@ namespace sisexperto
 
         public List<proyecto> proyectosExperto(int id_experto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<experto_proyecto> listaExpp = (from expp in gisiaContexto.experto_proyecto
                                     where expp.id_experto == id_experto
                                     select expp).ToList<experto_proyecto>();
@@ -116,7 +127,7 @@ namespace sisexperto
 
         public List<comparacion_criterio> comparacionCriterioPorExperto(int id_proyecto, int id_experto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<comparacion_criterio> lista = (from c in gisiaContexto.comparacion_criterio
                                                 where (c.id_proyecto == id_proyecto && c.id_experto == id_experto)
                                                 select c).ToList<comparacion_criterio>();
@@ -124,9 +135,19 @@ namespace sisexperto
             return lista;
         }
 
+        public List<comparacion_alternativa> comparacionAlternativaPorExperto(int id_proyecto, int id_experto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            List<comparacion_alternativa> lista = (from c in gisiaContexto.comparacion_alternativa
+                                                where (c.id_proyecto == id_proyecto && c.id_experto == id_experto)
+                                                select c).ToList<comparacion_alternativa>();
+            gisiaContexto.Dispose();
+            return lista;
+        }
+
         public void altaAlternativa(int id_proyecto, string nombre, string descripcion)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             alternativa miAlternativa = new alternativa();
             miAlternativa.nombre = nombre;
             miAlternativa.descripcion = descripcion;
@@ -136,10 +157,11 @@ namespace sisexperto
             gisiaContexto.Dispose();
         }
 
-        public void altaProyecto(string nombre, string objetivo)
+        public void altaProyecto(int id_creador, string nombre, string objetivo)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             proyecto miProyecto = new proyecto();
+            miProyecto.id_creador = id_creador;
             miProyecto.nombre = nombre;
             miProyecto.objetivo = objetivo;
             gisiaContexto.AddToproyecto(miProyecto);
@@ -149,7 +171,7 @@ namespace sisexperto
 
         public int ultimoProyecto()
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<proyecto> lista = (from p in gisiaContexto.proyecto select p).ToList<proyecto>();
             gisiaContexto.Dispose();
             int id;
@@ -157,9 +179,19 @@ namespace sisexperto
             return id;
         }
 
+        public List<proyecto> proyectosPorCreador(int id_creador)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            List<proyecto> lista = (from p in gisiaContexto.proyecto
+                                    where p.id_creador == id_creador
+                                    select p).ToList<proyecto>();
+            gisiaContexto.Dispose();
+            return lista;
+        }
+
         public int ultimoExperto()
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<experto> lista = (from e in gisiaContexto.experto select e).ToList<experto>();
             gisiaContexto.Dispose();
             int id;
@@ -167,9 +199,9 @@ namespace sisexperto
             return id;
         }
 
-        public void altaExperto(string nombre, string apellido, string usuario, string clave)
+        public experto altaExperto(string nombre, string apellido, string usuario, string clave)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             experto miExperto = new experto();
             miExperto.nombre = nombre;
             miExperto.apellido = apellido;
@@ -178,11 +210,13 @@ namespace sisexperto
             gisiaContexto.AddToexperto(miExperto);
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
+            return miExperto;
+            
         }
 
         public List<experto> expertosPorProyecto(int id_proyecto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             var lista = (from ep in gisiaContexto.experto_proyecto
                                             where ep.id_proyecto == id_proyecto
                                             select ep);
@@ -195,7 +229,7 @@ namespace sisexperto
 
         public void altaCriterio(int id_proyecto, string nombre, string descripcion)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             criterio miCriterio = new criterio();
             miCriterio.id_proyecto = id_proyecto;
             miCriterio.nombre = nombre;
@@ -207,7 +241,7 @@ namespace sisexperto
 
         public void asignarProyecto(int id_proyecto, int id_experto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             experto_proyecto asignacion = new experto_proyecto();
             asignacion.id_proyecto = id_proyecto;
             asignacion.id_experto = id_experto;
@@ -218,7 +252,7 @@ namespace sisexperto
 
         public Queue<criterio> colaCriterios(int id_proyecto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<criterio> lista = (from c in gisiaContexto.criterio 
                                     where c.id_proyecto == id_proyecto
                                     select c).ToList<criterio>();
@@ -233,7 +267,7 @@ namespace sisexperto
 
         public Queue<alternativa> colaAlternativas(int id_proyecto)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             List<alternativa> lista = (from a in gisiaContexto.alternativa
                                        where a.id_proyecto == id_proyecto
                                        select a).ToList<alternativa>();
@@ -250,7 +284,7 @@ namespace sisexperto
 
         public void guardarComparacionCriterios(int id_proyecto, int id_experto, int id_criterio1, int id_criterio2, int pos_fila, int pos_columna, float valor)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             comparacion_criterio comp = new comparacion_criterio();
             comp.id_proyecto = id_proyecto;
             comp.id_experto = id_experto;
@@ -268,7 +302,7 @@ namespace sisexperto
 
         public void guardarComparacionAlternativas(int id_proyecto, int id_experto, int id_criterio, int id_alternativa1, int id_alternativa2, int pos_fila, int pos_columna, float valor)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             comparacion_alternativa comp = new comparacion_alternativa();
             comp.id_proyecto = id_proyecto;
             comp.id_experto = id_experto;
@@ -286,10 +320,25 @@ namespace sisexperto
 
         public void modificarComparacionCriterios(int id_proyecto, int id_experto, int pos_fila, int pos_columna, float valor)
         {
-            gisiaContexto = new gisiabaseEntities();
+            gisiaContexto = new gisiabaseEntities2();
             comparacion_criterio comp = (from c in gisiaContexto.comparacion_criterio
                                          where (c.id_proyecto == id_proyecto && c.id_experto == id_experto && c.pos_fila == pos_fila && c.pos_columna == pos_columna)
                                          select c).FirstOrDefault<comparacion_criterio>();
+            comp.valor = valor;
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+        public void modificarComparacionAlternativa(int id_proyecto, int id_experto, int id_criterio, int pos_fila, int pos_columna, float valor)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            comparacion_alternativa comp = (from c in gisiaContexto.comparacion_alternativa
+                                         where (c.id_proyecto == id_proyecto 
+                                                && c.id_experto == id_experto 
+                                                && c.id_criterio == id_criterio
+                                                && c.pos_fila == pos_fila 
+                                                && c.pos_columna == pos_columna)
+                                         select c).FirstOrDefault<comparacion_alternativa>();
             comp.valor = valor;
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
