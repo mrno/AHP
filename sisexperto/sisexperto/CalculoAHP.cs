@@ -17,9 +17,6 @@ namespace probaAHP
             MatlabUtils matlabUtils = new MatlabUtils();
             MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
             MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
-
-
-
             MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(vectCriterios, superMatriz);
             var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
 
