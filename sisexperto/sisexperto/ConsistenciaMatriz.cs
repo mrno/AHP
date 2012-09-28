@@ -29,7 +29,15 @@ namespace probaAHP
     
         public double[,] buscarMejoresConsistencia (double[,] matriz)
         {
-
+            //se le pasa una matriz consistente, hay que validar previamente con el metodo de arriba.
+            // el resultado es una matriz de nx3.
+            //  |i|j|valor-sugerido|
+            // por ejemplo, |2|3|6| siginifica que en la posicion i=2 y j=3 se sugiere que vaya el valor 6.
+            // con este cambio mejora la consistencia de la matriz.
+            // esta matriz, el resultado del metodo. sugiere un valor para todos los valores de la matriz.
+            // es decir, si es una matriz de 4x4, el metodo sugiere 16 valores.
+            // estos valores estan ordenados en funcion de "que tanto mejora la consistencia"
+            // el primer valor es el que mejor mejora la consistencia y asi sucesivamente.
 
             var mejorarConsistencia = new Mejora.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
