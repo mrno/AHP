@@ -77,6 +77,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgrAlternativas.cs" />
+    <Compile Include="AgrCriterio.cs" />
+    <Compile Include="AgregacionCriAltAHP.cs" />
     <Compile Include="CalculoAHP.cs" />
     <Compile Include="ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -122,6 +125,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo2.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NAlternativas.cs" />
     <Compile Include="NuevaAlternativa.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using sisexperto;
 
 
 namespace probaAHP
@@ -72,6 +73,32 @@ namespace probaAHP
             }
             
 
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AgrCriterio listaKCriterios = new AgrCriterio();
+            double[,] a = { { 2, 2, 2 }, { 2, 2, 2 }, { 2, 2, 2 } };
+            double[,] b = { { 4, 4, 4 }, { 4, 4, 4 }, { 4, 4, 4}};
+            double[,] c = { { 3, 3, 3 }, { 3, 3, 3 }, { 3, 3, 3 } };
+            listaKCriterios.listaCriterios.Add(b);
+            listaKCriterios.listaCriterios.Add(c);
+            listaKCriterios.listaCriterios.Add(a);
+
+
+
+            AgregacionCriAltAHP agrCriterio = new AgregacionCriAltAHP();
+
+
+
+
+            double[,] resultado = agrCriterio.AgregarCriterios(listaKCriterios);
+            foreach (var dd in resultado)
+            {
+                System.Diagnostics.Debug.WriteLine(dd);
+            }
 
 
         }
