@@ -7,7 +7,7 @@ namespace sisexperto
 {
    public class AgrAlternativas
     {
-       List<NAlternativas> listaKNAlternativas;
+       public List<NAlternativas> listaKNAlternativas;
        
        public AgrAlternativas()
        {

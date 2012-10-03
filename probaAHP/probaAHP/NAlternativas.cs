@@ -7,7 +7,12 @@ namespace sisexperto
 {
     public class NAlternativas
     {
-        public List<double[,]> nAlternativas;
+        public double[,] nAlternativas;
+
+        public NAlternativas(int i)//i es la cantidad de alternativas
+       {
+           nAlternativas = new double[i,i];
+       }
 
     }
 }
