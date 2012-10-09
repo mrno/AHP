@@ -79,7 +79,8 @@
   <ItemGroup>
     <Compile Include="AgrAlternativas.cs" />
     <Compile Include="AgrCriterio.cs" />
-    <Compile Include="AgregacionCriAltAHP.cs" />
+    <Compile Include="AgregacionNoPonderada.cs" />
+    <Compile Include="AgregacionPonderada.cs" />
     <Compile Include="CalculoAHP.cs" />
     <Compile Include="ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -113,6 +114,7 @@
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="KRankPonderado.cs" />
     <Compile Include="LogExperto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +166,7 @@
     <Compile Include="ProyectosCreados.Designer.cs">
       <DependentUpon>ProyectosCreados.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="CargarProyecto.resx">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </EmbeddedResource>
