@@ -63,10 +63,7 @@ local.properties
 *.Config
 .builds
 *.dotCover
-<<<<<<< HEAD
-=======
 *.Config
->>>>>>> af6877d83862da941d4933f549b35ed908e40384
 *.edmx
 *.edmx.sql
 
