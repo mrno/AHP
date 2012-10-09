@@ -15,16 +15,16 @@ namespace sisexperto
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-<<<<<<< HEAD
+
             
             Application.Run(new LogExperto());
-=======
+
            //Application.Run(new CompararCriterios(44,35)); 
            //Application.Run(new ProyectosAsignados(35));
             //Application.Run(new CargarProyecto(3));
-            Application.Run(new FrmPrincipal());
+            Application.Run(new LogExperto());
           //  Application.Run(new ComparacionAlternativas(4, 49));
->>>>>>> d391684372151a03e4006dbcfc305285925322da
+
            
            
 
