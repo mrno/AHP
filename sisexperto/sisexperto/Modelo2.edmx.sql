@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/09/2012 18:39:05
+-- Date Created: 10/09/2012 19:14:19
 -- Generated from EDMX file: C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
 -- --------------------------------------------------
 
