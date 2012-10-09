@@ -41,7 +41,8 @@
     <Reference Include="CalcularAHPNative">
       <HintPath>..\..\Dll\CalcularAHPNative.dll</HintPath>
     </Reference>
-    <Reference Include="Consistencia">
+    <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Dll\Consistencia.dll</HintPath>
     </Reference>
     <Reference Include="ConsistenciaNative">
@@ -77,6 +78,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalcularAhp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalcularAhp.Designer.cs">
+      <DependentUpon>CalcularAhp.cs</DependentUpon>
+    </Compile>
     <Compile Include="CalculoAHP.cs" />
     <Compile Include="ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -97,12 +104,6 @@
     </Compile>
     <Compile Include="CargarProyecto.Designer.cs">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -160,6 +161,9 @@
     <Compile Include="ProyectosCreados.Designer.cs">
       <DependentUpon>ProyectosCreados.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CalcularAhp.resx">
+      <DependentUpon>CalcularAhp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CargarProyecto.resx">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,9 +172,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompararCriterios.resx">
       <DependentUpon>CompararCriterios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

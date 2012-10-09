@@ -8,16 +8,18 @@ using System.Text;
 using System.Windows.Forms;
 using Consistencia;
 using ConsistenciaNative;
-using probaAHP;
-
 
 namespace sisexperto
 {
     public partial class CompararCriterios : Form
     {
         private DALDatos dato;
-        int id_proyecto;
-        int id_experto;
+        private int id_proyecto;
+        private int id_experto;
+
+        private double[,] mejorada;
+        private int pos = 0;
+
         public CompararCriterios(int id_p, int id_e)
         {
             InitializeComponent();
@@ -100,7 +102,6 @@ namespace sisexperto
                 Label miLabel = new Label();
                 miLabel.SetBounds(980, y, 200, 50);
                 miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-                //miLabel.Text = miLabel.Name;
                 Controls.Add(miLabel);
 
                 
@@ -112,63 +113,67 @@ namespace sisexperto
                 y += 70;
             }
 
-            //Queue<criterio> lista2 = dato.colaCriterios(id_experto);//OJO ACÁ, ESTA DEMÁS EL ID_EXPERTO
-            //foreach (criterio c in lista)
-            //{
-            //    lista2.Dequeue();
-
-            //    foreach (criterio c2 in lista2)
-            //    {
-            //        Label izquierdaTB = new Label();
-            //        izquierdaTB.SetBounds(10, y, 60, 30);
-            //        izquierdaTB.Text = c.nombre.ToString();
-            //        Controls.Add(izquierdaTB);
-
-            //        TrackBar track = new TrackBar();
-            //        track.SetBounds(70, y, 450, 40);
-            //        track.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
-            //        track.SetRange(1, 17);
-            //        track.Scroll += new System.EventHandler(this.mostrar);
-            //        Controls.Add(track);
-
-            //        Label derechaTB = new Label();
-            //        derechaTB.SetBounds(520, y, 100, 30);
-            //        derechaTB.Text = c.nombre.ToString();
-            //        Controls.Add(derechaTB);
-
-
-
-            //        Label izquierda = new Label();
-            //        izquierda.SetBounds(620, y, 100, 30);
-            //        izquierda.Text = c.nombre.ToString();
-            //        Controls.Add(izquierda);
-
-
-            //        Label miLabel = new Label();
-            //        miLabel.SetBounds(720, y, 200, 50);
-            //        miLabel.Name = c.id_criterio.ToString() + c2.id_criterio.ToString();
-            //        //miLabel.Text = miLabel.Name;
-            //        Controls.Add(miLabel);
-
-
-            //        Label derecha = new Label();
-            //        derecha.SetBounds(920, y, 100, 30);
-            //        derecha.Text = c2.nombre.ToString();
-            //        Controls.Add(derecha);
-
-
-            //        y += 70;
-            //    }
-            //}
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_experto);
+            int cantFilas = 1;
+
+            foreach (comparacion_criterio comp in listaComparacion)
+            {
+                if (comp.pos_fila == 0)
+                    cantFilas++;
+            }
+
+            double[,] matriz = new double[cantFilas,cantFilas];
+
+            foreach(comparacion_criterio comp in listaComparacion)
+            {
+                matriz[comp.pos_fila, comp.pos_columna] = (double)comp.valor;
+            }
+
+            int limite = cantFilas;
+            for (int i = 0; i < limite; i++)
+            {
+                for (int j = 0; j < limite; j++)
+                {
+                    if (i == j)
+                        matriz[i, j] = 1;
+                    else if (i > j)
+                        matriz[i, j] = (double)1 / (matriz[j, i]);
+                }
+                
+            }
+
             ConsistenciaMatriz consistencia = new ConsistenciaMatriz();
-            double[,] matriz = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+
             if (consistencia.calcularConsistencia(matriz))
                 MessageBox.Show("matriz consistente");
+            else
+            {
+                mejorada = consistencia.buscarMejoresConsistencia(matriz);
+                if( mejorada[0, 0] <  mejorada[0, 1])
+                    label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
+                else
+                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1/mejorada[pos, 2]);
+            }
+
+                
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            pos++;
+            label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ComparacionAlternativas frmCompAlternativas = new ComparacionAlternativas(id_proyecto,id_experto);
+            frmCompAlternativas.ShowDialog();
+            //pasarle una lista
+
         }
     }
 }

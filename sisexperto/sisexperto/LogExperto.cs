@@ -23,7 +23,7 @@ namespace sisexperto
             if (dato.logExperto(textBox1.Text, textBox2.Text))
             {
                 experto exp= dato.validarExperto(textBox1.Text, textBox2.Text);
-                ProyectosAsignados frmProyAsignados = new ProyectosAsignados(exp.id_experto);
+                FrmPrincipal frmProyAsignados = new FrmPrincipal(exp.id_experto);
                 frmProyAsignados.ShowDialog();
             }
             

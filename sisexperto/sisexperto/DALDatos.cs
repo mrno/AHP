@@ -7,7 +7,6 @@ namespace sisexperto
 {
     class DALDatos
     {
-        //private gisiabaseEntities gisiaContexto;
         private gisiabaseEntities2 gisiaContexto;
 
         public List<alternativa> todasAlternativas()
@@ -24,6 +23,16 @@ namespace sisexperto
             List<alternativa> lista = (from a in gisiaContexto.alternativa
                                        where a.id_proyecto == id_proyecto
                                        select a).ToList<alternativa>();
+            gisiaContexto.Dispose();
+            return lista;
+        }
+
+        public List<comparacion_alternativa> compAlternativaPorExpertoCriterio(int id_proyecto, int id_experto, int id_criterio)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            List<comparacion_alternativa> lista = (from c in gisiaContexto.comparacion_alternativa
+                                                   where (c.id_proyecto == id_proyecto && c.id_experto == id_experto && c.id_criterio == id_criterio)
+                                                   select c).ToList<comparacion_alternativa>();
             gisiaContexto.Dispose();
             return lista;
         }
@@ -157,7 +166,7 @@ namespace sisexperto
             gisiaContexto.Dispose();
         }
 
-        public void altaProyecto(int id_creador, string nombre, string objetivo)
+        public proyecto altaProyecto(int id_creador, string nombre, string objetivo)
         {
             gisiaContexto = new gisiabaseEntities2();
             proyecto miProyecto = new proyecto();
@@ -167,6 +176,7 @@ namespace sisexperto
             gisiaContexto.AddToproyecto(miProyecto);
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
+            return miProyecto;
         }
 
         public int ultimoProyecto()
@@ -388,41 +398,113 @@ namespace sisexperto
         public float valorarNumero(int valor)
         {
             if (valor == 1)//corresponde a 1/9
-                return (float)1 / (float)9;
+                //return (float)1 / (float)9;
+                return (float)9;
             if (valor == 2)//corresponde a 1/8
-                return (float)1 / (float)8;
+                //return (float)1 / (float)8;
+                return (float)8;
             if (valor == 3)//corresponde a 1/7
-                return (float)1 / (float)7;
+                //return (float)1 / (float)7;
+                return (float)7;
             if (valor == 4)//corresponde a 1/6
-                return (float)1 / (float)6;
+                //return (float)1 / (float)6;
+                return (float)6;
             if (valor == 5)//corresponde a 1/5
-                return (float)1 / (float)5;
+                //return (float)1 / (float)5;
+                return (float)5;
             if (valor == 6)//corresponde a 1/4
-                return (float)1 / (float)4;
+                //return (float)1 / (float)4;
+                return (float)4;
             if (valor == 7)//corresponde a 1/3
-                return (float)1 / (float)3;
+                //return (float)1 / (float)3;
+                return (float)3;
             if (valor == 8)//corresponde a 1/2
-                return (float)1 / (float)2;
+                //return (float)1 / (float)2;
+                return (float)2;
             if (valor == 9)//corresponde a 1
                 return 1;
             if (valor == 10)//corresponde a 2
-                return 2;
+                //return 2;
+                return (float)1 / (float)2;
             if (valor == 11)//corresponde a 3
-                return 3;
+                //return 3;
+                return (float)1 / (float)3;
             if (valor == 12)//corresponde a 4
-                return 4;
+                //return 4;
+                return (float)1 / (float)4;
             if (valor == 13)//corresponde a 5
-                return 5;
+                //return 5;
+                return (float)1 / (float)5;
             if (valor == 14)//corresponde a 6
-                return 6;
+                //return 6;
+                return (float)1 / (float)6;
             if (valor == 15)//corresponde a 7
-                return 7;
+                //return 7;
+                return (float)1 / (float)7;
             if (valor == 16)//corresponde a 8
-                return 8;
+                //return 8;
+                return (float)1 / (float)8;
             if (valor == 17)//corresponde a 9
-                return 9;
+                //return 9;
+                return (float)1 / (float)9;
 
             return 0;
+        }
+
+        public string obtenerDescripcion(double valor)
+        {
+            if (valor == (float)1)
+                return "es igual de importante que (1) ";
+
+            if (valor == (float)2)
+                return "es igual de importante que (2) ";
+
+            if (valor == (float)3)
+                return "es moderadamente más importante que (3) ";
+
+            if (valor == (float)4)
+                return "es moderadamente más importante que (4) ";
+
+            if (valor == (float)5)
+                return "es fuertemente más importante que (5) ";
+
+            if (valor == (float)6)
+                return "es fuertemente más importante que (6) ";
+
+            if (valor == (float)7)
+                return "es muy fuertemente más importante que (7) ";
+
+            if (valor == 8)
+                return "es muy fuertemente más importante que (8) ";
+
+            if (valor == (float)9)
+                return "es extremadamente más importante que (9) ";
+
+            if (valor == (float)1 / (float)2)
+                return "es igual de importante que (1/2) ";
+
+            if (valor == (float)1 / (float)3)
+                return "es moderadamente menos importante que (1/3) ";
+
+            if (valor == (float)1 / (float)4)
+                return "es moderadamente menos importante que (1/4) ";
+
+            if (valor == (float)1 / (float)5)
+                return "es fuertemente menos importante que (1/5) ";
+
+            if (valor == (float)1 / (float)6)
+                return "es fuertemente menos importante que (1/6) ";
+
+            if (valor == (float)1 / (float)7)
+                return "es muy fuertemente menos importante que (1/7) ";
+
+            if (valor == (float)1 / (float)8)
+                return "es muy fuertemente menos importante que (1/8) ";
+
+            if (valor == (float)1 / (float)9)
+                return "es extremadamente menos importante que (1/9) ";
+
+            return "";
         }
 
     }

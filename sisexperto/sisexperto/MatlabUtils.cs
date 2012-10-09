@@ -6,7 +6,7 @@ using MathWorks.MATLAB.NET.Arrays;
 using VectCalc;
 
 
-namespace probaAHP
+namespace sisexperto
 {
     public class MatlabUtils
     {
@@ -56,8 +56,6 @@ namespace probaAHP
 
 
 
-
-
         public MWNumericArray ObtenerSuperMatrizAlternativas(List<double[,]> lista)
         {
             VectCalc.VectCalc vectCalc = new VectCalc.VectCalc();
@@ -74,14 +72,11 @@ namespace probaAHP
 
                 preMatriz = NetArrayFromMLArray(preRdo);
 
-                for (int j = 0; j < cantidad+1; j++)
+                for (int j = 0; j < cantidad; j++)
                 {
                     matrizSalida[j, i] = preMatriz[j, 0];
                 }
                 
-
-
-
             }
 
             var rdoFinal = MLArrayFromNetArray(matrizSalida);

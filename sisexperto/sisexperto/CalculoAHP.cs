@@ -5,7 +5,7 @@ using CalcularAHPNative;
 using MathWorks.MATLAB.NET.Arrays;
 
 
-namespace probaAHP
+namespace sisexperto
 {
     public class CalculoAHP
     {

@@ -14,52 +14,49 @@ namespace sisexperto
         private DALDatos dato = new DALDatos();
         private gisiabaseEntities2 gisiaContexto = new gisiabaseEntities2();
         private List<experto> lista = new List<experto>();
+        private List<experto> listaTodosExpertos = new List<experto>();
+        private int id_experto;
 
-        public NuevoProyecto()
+        public NuevoProyecto(int id_exp)
         {
             InitializeComponent();
+            id_experto = id_exp;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
-            dato = new DALDatos();
-            dato.altaProyecto(57, txt1.Text, txt2.Text);
-            foreach (experto exp in lista)
+            if ((txt1.Text != "") && (txt2.Text != ""))
             {
-                if (exp.id_experto == 0)
+                if (lista.Count != 0)
                 {
-                    //dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave);
-                    //dato.ultimoExperto();
-                    //dato.asignarProyecto(dato.ultimoProyecto(), dato.ultimoExperto());
-                    dato.asignarProyecto(dato.ultimoProyecto(), dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave).id_experto);
+                    dato = new DALDatos();
+                    proyecto proy = dato.altaProyecto(id_experto, txt1.Text, txt2.Text);
+                    foreach (experto exp in lista)
+                    {
+                        if (exp.id_experto == 0)
+                        {
+                            dato.asignarProyecto(proy.id_proyecto, dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave).id_experto);
+                        }
+                        else
+                        {
+                            dato.asignarProyecto(proy.id_proyecto, exp.id_experto);
+                        }
+                    }
                 }
                 else
-                {
-                    dato.asignarProyecto(dato.ultimoProyecto(), exp.id_experto);
-                }
-
+                    MessageBox.Show("Debe asignar por lo menos un experto al proyecto.");
             }
+            else
+                MessageBox.Show("Debe completar los campos Nombre y Objetivo.");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnNuevo_Click(object sender, EventArgs e)
         {
             groupBox2.Visible = true;
             dataGridView2.Visible = false;
-
-            //DataGridViewRowCollection filas = dataGridView1.Rows;
-
-            //foreach (DataGridViewRow row in filas)
-            //{
-            //    experto exp = new experto();
-            //    exp = (experto)row.DataBoundItem;
-            //    MessageBox.Show(exp.nombre.ToString());
-            //}
-        
-
-           
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnExistente_Click(object sender, EventArgs e)
         {
             groupBox2.Visible = false;
             txt3.Text = "";
@@ -70,7 +67,7 @@ namespace sisexperto
             dataGridView2.Visible = true;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnAgregar_Click(object sender, EventArgs e)
         {
 
            // DataGridViewRow row = new DataGridViewRow();
@@ -94,6 +91,9 @@ namespace sisexperto
             {
                 experto exp = new experto();
                 exp = (experto)dataGridView2.CurrentRow.DataBoundItem;
+                listaTodosExpertos.Remove((experto)dataGridView2.CurrentRow.DataBoundItem);
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = listaTodosExpertos;
                 lista.Add(exp);
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = lista;
@@ -124,10 +124,13 @@ namespace sisexperto
             //dataGridView1.Refresh();
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void btnQuitar_Click(object sender, EventArgs e)
         {
             if (lista.Count != 0)
             {
+                listaTodosExpertos.Add((experto)dataGridView1.CurrentRow.DataBoundItem);
+                dataGridView2.DataSource = null;
+                dataGridView2.DataSource = listaTodosExpertos;
                 lista.Remove((experto)dataGridView1.CurrentRow.DataBoundItem);
                 dataGridView1.DataSource = null;
                 dataGridView1.DataSource = lista;
@@ -138,7 +141,8 @@ namespace sisexperto
         {
             groupBox2.Visible = false;
             dataGridView2.Visible = true;
-            dataGridView2.DataSource = dato.todosExpertos();
+            listaTodosExpertos = dato.todosExpertos();
+            dataGridView2.DataSource = listaTodosExpertos;
         }
     }
 }

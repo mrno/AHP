@@ -11,14 +11,21 @@ namespace sisexperto
 {
     public partial class ComparacionAlternativas : Form
     {
-        private DALDatos dato;
+        private DALDatos dato = new DALDatos();
         private int id_proyecto;
         private int id_experto;
+        private Queue<criterio> colaCriterio;
+
+        private double[,] mejorada;
+        private int pos = 0;
+        private int crit;
+        
         public ComparacionAlternativas(int id_proy, int id_exp)
         {
             InitializeComponent();
             id_proyecto = id_proy;
             id_experto = id_exp;
+            colaCriterio = dato.colaCriterios(id_proyecto);
         }
 
         private void mostrar(object sender, EventArgs e)
@@ -42,14 +49,12 @@ namespace sisexperto
 
         }
 
-        private void ComparacionAlternativas_Load(object sender, EventArgs e)
+        private void cargarTracks(int id_cri)
         {
             dato = new DALDatos();
             int y = 70;
 
-            List<comparacion_alternativa> listaComparacion = dato.comparacionAlternativaPorExperto(id_proyecto, id_experto);
-            //List<criterio> listaCriterio = dato.criteriosPorProyecto(id_proyecto);
-            //List<alternativa> listaAlternativa = dato.alternativasPorProyecto(id_proyecto);
+            List<comparacion_alternativa> listaComparacion = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, id_cri);
 
             foreach (comparacion_alternativa comp in listaComparacion)
             {
@@ -80,7 +85,6 @@ namespace sisexperto
                 Label miLabel = new Label();
                 miLabel.SetBounds(980, y, 200, 50);
                 miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-                //miLabel.Text = miLabel.Name;
                 Controls.Add(miLabel);
 
 
@@ -91,6 +95,95 @@ namespace sisexperto
 
                 y += 70;
             }
+ 
+        }
+
+        private void ComparacionAlternativas_Load(object sender, EventArgs e)
+        {
+            crit = colaCriterio.Dequeue().id_criterio;
+            cargarTracks(crit);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (colaCriterio != null)
+            {
+                foreach (Control track in this.Controls)
+                {
+                    if (track is TrackBar)
+                        this.Controls.Remove(track);
+                }
+
+                crit = colaCriterio.Dequeue().id_criterio;
+                cargarTracks(crit);
+
+            }
+            else
+                MessageBox.Show("Valoración finalizada. Matrices consistentes.");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            CalcularAhp frmCalcularAhp = new CalcularAhp(id_proyecto, id_experto);
+            frmCalcularAhp.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
+            List<comparacion_alternativa> listaAlt;
+           
+                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, crit);
+
+                int cantidadFilas = 1;
+
+                foreach (comparacion_alternativa comp in listaAlt)
+                {
+                    if (comp.pos_fila == 0)
+                        cantidadFilas++;
+                }
+
+                double[,] matrizAlt = new double[cantidadFilas, cantidadFilas];
+
+                foreach (comparacion_alternativa comp in listaAlt)
+                {
+                    matrizAlt[comp.pos_fila, comp.pos_columna] = (double)comp.valor;
+                }
+
+                int tope = cantidadFilas;
+                for (int i = 0; i < tope; i++)
+                {
+                    for (int j = 0; j < tope; j++)
+                    {
+                        if (i == j)
+                            matrizAlt[i, j] = 1;
+                        else if (i > j)
+                            matrizAlt[i, j] = (double)1 / (matrizAlt[j, i]);
+                    }
+
+                }
+
+            ConsistenciaMatriz consistencia = new ConsistenciaMatriz();
+
+            if (consistencia.calcularConsistencia(matrizAlt))
+                MessageBox.Show("matriz consistente");
+            else
+            {
+                mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
+                if( mejorada[0, 0] <  mejorada[0, 1])
+                    label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
+                else
+                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1/mejorada[pos, 2]);
+            }
+
+                
+        
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            pos++;
+            label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
         }
     }
 }

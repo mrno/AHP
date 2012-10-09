@@ -2,7 +2,7 @@
 using MathWorks.MATLAB.NET.Arrays;
 
 
-namespace probaAHP
+namespace sisexperto
 {
     public class ConsistenciaMatriz
     {
@@ -10,7 +10,7 @@ namespace probaAHP
         MatlabUtils matlabUtils = new MatlabUtils();
         public Boolean calcularConsistencia(double[,] matriz)
         {
-
+            
 
             Consistencia.Consistencia c = new Consistencia.Consistencia();
             MWNumericArray matlabNumericArray = (MWNumericArray)matlabUtils.MLArrayFromNetArray(matriz);
@@ -41,7 +41,19 @@ namespace probaAHP
 
             double[,] doubleArray = (double[,])resultado.ToArray(MWArrayComponent.Real);
 
+            int cant = 0;
+            foreach (double item in doubleArray)
+            {
+                cant++;
+            }
+            cant--;
+            cant = cant / 3;
 
+            for (int i = 0; i < cant; i++)
+            {
+                doubleArray[i, 0] = doubleArray[i, 0] - 1;
+                doubleArray[i, 1] = doubleArray[i, 1] - 1;
+            }
 
             return doubleArray;
         }
