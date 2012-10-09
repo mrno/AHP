@@ -84,6 +84,10 @@
     <Compile Include="CalcularAhp.Designer.cs">
       <DependentUpon>CalcularAhp.cs</DependentUpon>
     </Compile>
+    <Compile Include="AgrAlternativas.cs" />
+    <Compile Include="AgrCriterio.cs" />
+    <Compile Include="AgregacionNoPonderada.cs" />
+    <Compile Include="AgregacionPonderada.cs" />
     <Compile Include="CalculoAHP.cs" />
     <Compile Include="ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -111,6 +115,7 @@
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="KRankPonderado.cs" />
     <Compile Include="LogExperto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +128,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo2.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NAlternativas.cs" />
     <Compile Include="NuevaAlternativa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,7 @@
     <EmbeddedResource Include="CalcularAhp.resx">
       <DependentUpon>CalcularAhp.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="CargarProyecto.resx">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </EmbeddedResource>
@@ -234,6 +241,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Modelo2.edmx.sql" />
     <Content Include="modelobase.edmx.sql" />
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gisiabaseModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gisiabaseModel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gisiabaseModel1StoreContainer">
           <EntitySet Name="alternativa" EntityType="gisiabaseModel1.Store.alternativa" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="comparacion_alternativa" EntityType="gisiabaseModel1.Store.comparacion_alternativa" store:Type="Tables" Schema="dbo" />
@@ -85,10 +85,9 @@
           <Property Name="id_proyecto" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="id_creador" Type="int" Nullable="false" />
           <Property Name="nombre" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="objetivo" Type="text" Nullable="false" />
+          <Property Name="objetivo" Type="varchar(max)" Nullable="false" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gisiabaseModel1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -178,63 +177,90 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="gisiabaseModel1StoreContainer" CdmEntityContainer="gisiabaseEntities2">
-          <EntitySetMapping Name="alternativa"><EntityTypeMapping TypeName="gisiabaseModel1.alternativa"><MappingFragment StoreEntitySet="alternativa">
-            <ScalarProperty Name="id_alternativa" ColumnName="id_alternativa" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="comparacion_alternativa"><EntityTypeMapping TypeName="gisiabaseModel1.comparacion_alternativa"><MappingFragment StoreEntitySet="comparacion_alternativa">
-            <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
-            <ScalarProperty Name="id_alternativa1" ColumnName="id_alternativa1" />
-            <ScalarProperty Name="id_alternativa2" ColumnName="id_alternativa2" />
-            <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
-            <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
-            <ScalarProperty Name="valor" ColumnName="valor" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="comparacion_criterio"><EntityTypeMapping TypeName="gisiabaseModel1.comparacion_criterio"><MappingFragment StoreEntitySet="comparacion_criterio">
-            <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="id_criterio1" ColumnName="id_criterio1" />
-            <ScalarProperty Name="id_criterio2" ColumnName="id_criterio2" />
-            <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
-            <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
-            <ScalarProperty Name="valor" ColumnName="valor" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="criterio"><EntityTypeMapping TypeName="gisiabaseModel1.criterio"><MappingFragment StoreEntitySet="criterio">
-            <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="experto"><EntityTypeMapping TypeName="gisiabaseModel1.experto"><MappingFragment StoreEntitySet="experto">
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="apellido" ColumnName="apellido" />
-            <ScalarProperty Name="nom_usuario" ColumnName="nom_usuario" />
-            <ScalarProperty Name="clave" ColumnName="clave" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="experto_proyecto"><EntityTypeMapping TypeName="gisiabaseModel1.experto_proyecto"><MappingFragment StoreEntitySet="experto_proyecto">
-            <ScalarProperty Name="id_asignacion" ColumnName="id_asignacion" />
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_experto" ColumnName="id_experto" />
-            <ScalarProperty Name="ponderacion" ColumnName="ponderacion" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="proyecto"><EntityTypeMapping TypeName="gisiabaseModel1.proyecto"><MappingFragment StoreEntitySet="proyecto">
-            <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
-            <ScalarProperty Name="id_creador" ColumnName="id_creador" />
-            <ScalarProperty Name="nombre" ColumnName="nombre" />
-            <ScalarProperty Name="objetivo" ColumnName="objetivo" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gisiabaseModel1StoreContainer" CdmEntityContainer="gisiabaseEntities2">
+    <EntitySetMapping Name="alternativa">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.alternativa)">
+        <MappingFragment StoreEntitySet="alternativa">
+          <ScalarProperty Name="id_alternativa" ColumnName="id_alternativa" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comparacion_alternativa">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.comparacion_alternativa)">
+        <MappingFragment StoreEntitySet="comparacion_alternativa">
+          <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+          <ScalarProperty Name="id_alternativa1" ColumnName="id_alternativa1" />
+          <ScalarProperty Name="id_alternativa2" ColumnName="id_alternativa2" />
+          <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
+          <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comparacion_criterio">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.comparacion_criterio)">
+        <MappingFragment StoreEntitySet="comparacion_criterio">
+          <ScalarProperty Name="id_comparacion" ColumnName="id_comparacion" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="id_criterio1" ColumnName="id_criterio1" />
+          <ScalarProperty Name="id_criterio2" ColumnName="id_criterio2" />
+          <ScalarProperty Name="pos_fila" ColumnName="pos_fila" />
+          <ScalarProperty Name="pos_columna" ColumnName="pos_columna" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="criterio">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.criterio)">
+        <MappingFragment StoreEntitySet="criterio">
+          <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="experto">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.experto)">
+        <MappingFragment StoreEntitySet="experto">
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nom_usuario" ColumnName="nom_usuario" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="experto_proyecto">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.experto_proyecto)">
+        <MappingFragment StoreEntitySet="experto_proyecto">
+          <ScalarProperty Name="id_asignacion" ColumnName="id_asignacion" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+          <ScalarProperty Name="ponderacion" ColumnName="ponderacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proyecto">
+      <EntityTypeMapping TypeName="IsTypeOf(gisiabaseModel1.proyecto)">
+        <MappingFragment StoreEntitySet="proyecto">
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_creador" ColumnName="id_creador" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="objetivo" ColumnName="objetivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">

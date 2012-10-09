@@ -22,7 +22,7 @@ namespace probaAHP
 
             MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(vectCriterios, superMatriz);
             var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
-
+//
            return resultado;
         }
     }
