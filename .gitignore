@@ -60,8 +60,11 @@ local.properties
 *.tlh
 *.tmp
 *.vspscc
+*.Config
 .builds
 *.dotCover
+*.edmx
+*.edmx.sql
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
