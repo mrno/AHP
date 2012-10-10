@@ -35,6 +35,7 @@ namespace probaAHP
                 }
             }
         }
+        
         public void Cerar(double[,] salida, int cantidad)
         {
             for (int j = 0; j < cantidad; j++)
