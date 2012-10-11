@@ -45,6 +45,7 @@ namespace sisexperto
 
         private void mostrar(object sender, EventArgs e)
         {
+            button3.Visible = false;
             TrackBar track = (TrackBar)sender;
             
             foreach (Control miLabel in this.FindForm().Controls)
@@ -67,7 +68,7 @@ namespace sisexperto
         private void CompararCriterios_Load(object sender, EventArgs e)
         {
             dato = new DALDatos();
-            int y = 70;
+            int y = 140;
 
             List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_experto);
 
@@ -149,14 +150,17 @@ namespace sisexperto
             ConsistenciaMatriz consistencia = new ConsistenciaMatriz();
 
             if (consistencia.calcularConsistencia(matriz))
-                MessageBox.Show("matriz consistente");
+            {
+                button3.Visible = true;
+                MessageBox.Show("Matriz consistente.");
+            }
             else
             {
                 mejorada = consistencia.buscarMejoresConsistencia(matriz);
-                if( mejorada[0, 0] <  mejorada[0, 1])
+                if (mejorada[0, 0] < mejorada[0, 1])
                     label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
                 else
-                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1/mejorada[pos, 2]);
+                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1 / mejorada[pos, 2]);
             }
 
                 
@@ -170,8 +174,13 @@ namespace sisexperto
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ComparacionAlternativas frmCompAlternativas = new ComparacionAlternativas(id_proyecto,id_experto);
+            ComparacionAlternativas frmCompAlternativas = new ComparacionAlternativas(id_proyecto, id_experto);
             frmCompAlternativas.ShowDialog();
+            this.Close();
+            
+            //this.Close();
+            //Singleton.Instance.crearComparacionAlternativas(id_proyecto, id_experto);
+            
             //pasarle una lista
 
         }

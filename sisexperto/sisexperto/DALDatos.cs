@@ -193,8 +193,16 @@ namespace sisexperto
         {
             gisiaContexto = new gisiabaseEntities2();
             List<proyecto> lista = (from p in gisiaContexto.proyecto
-                                    where p.id_creador == id_creador
+                                    where p.id_creador == id_creador 
                                     select p).ToList<proyecto>();
+            //foreach(proyecto proy in lista)
+            //{
+            //    List<comparacion_alternativa> listaAlt = (from a in gisiaContexto.comparacion_alternativa
+            //                                              where a.id_proyecto == proy.id_proyecto
+            //                                              select a).ToList<comparacion_alternativa>();
+            //    if (listaAlt.Count != 0)
+            //        lista.Remove(proy);
+            //}
             gisiaContexto.Dispose();
             return lista;
         }

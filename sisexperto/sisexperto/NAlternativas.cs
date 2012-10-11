@@ -10,9 +10,14 @@ namespace sisexperto
         public double[,] nAlternativas;
 
         public NAlternativas(int i)//i es la cantidad de alternativas
-       {
-           nAlternativas = new double[i,i];
-       }
+        {
+            nAlternativas = new double[i, i];
+        }
+
+        //public NAlternativas(double[,] matrix)
+        //{
+        //    nAlternativas = matrix;
+        //}
 
     }
 }

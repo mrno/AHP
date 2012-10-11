@@ -165,6 +165,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Name = "ProyectosAsignados";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Proyectos asignados";
             this.Load += new System.EventHandler(this.ProyectosAsignados_Load);
             this.groupBox1.ResumeLayout(false);

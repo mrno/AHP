@@ -15,7 +15,9 @@ namespace sisexperto
         private DALDatos dato = new DALDatos();
         private Queue<criterio> colaCri;
         private List<comparacion_alternativa> listaAlt;
-       
+
+        private List<alternativa> listaA;
+        
         private int id_proyecto;
         private int id_experto;
 
@@ -100,7 +102,19 @@ namespace sisexperto
 
             CalculoAHP calculo = new CalculoAHP();
             ranking = calculo.calcularRanking(listaCompleta);
-            MessageBox.Show("OOOOp");
+            listaA = dato.alternativasPorProyecto(id_proyecto);
+            int y = 70;
+            int cont = 0;
+            foreach (alternativa alt in listaA)
+            {
+                Label izquierdaTB = new Label();
+                izquierdaTB.SetBounds(16, y, 200, 50);
+                izquierdaTB.Name = alt.nombre;
+                izquierdaTB.Text = alt.nombre.ToString() + " -> " + ranking[cont,0].ToString();
+                Controls.Add(izquierdaTB);
+                cont++;
+                y += 70;
+            }
         }
     }
 }

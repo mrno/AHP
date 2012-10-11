@@ -27,7 +27,6 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
             proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
             CompararCriterios frmComparar = new CompararCriterios(proy.id_proyecto,id_experto);
             frmComparar.ShowDialog();

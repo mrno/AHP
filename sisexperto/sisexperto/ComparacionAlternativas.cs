@@ -18,7 +18,7 @@ namespace sisexperto
 
         private double[,] mejorada;
         private int pos = 0;
-        private int crit;
+        private criterio crit;
         
         public ComparacionAlternativas(int id_proy, int id_exp)
         {
@@ -30,6 +30,7 @@ namespace sisexperto
 
         private void mostrar(object sender, EventArgs e)
         {
+            button1.Visible = false;
             TrackBar track = (TrackBar)sender;
 
             foreach (Control miLabel in this.FindForm().Controls)
@@ -52,7 +53,7 @@ namespace sisexperto
         private void cargarTracks(int id_cri)
         {
             dato = new DALDatos();
-            int y = 70;
+            int y = 140;
 
             List<comparacion_alternativa> listaComparacion = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, id_cri);
 
@@ -100,13 +101,15 @@ namespace sisexperto
 
         private void ComparacionAlternativas_Load(object sender, EventArgs e)
         {
-            crit = colaCriterio.Dequeue().id_criterio;
-            cargarTracks(crit);
+            button3.Visible = false;
+            crit = colaCriterio.Dequeue();
+            label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
+            cargarTracks(crit.id_criterio);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (colaCriterio != null)
+            if (colaCriterio.Count != 0)
             {
                 foreach (Control track in this.Controls)
                 {
@@ -114,18 +117,24 @@ namespace sisexperto
                         this.Controls.Remove(track);
                 }
 
-                crit = colaCriterio.Dequeue().id_criterio;
-                cargarTracks(crit);
+                button1.Visible = false;
+                crit = colaCriterio.Dequeue();
+                label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
+                cargarTracks(crit.id_criterio);
 
             }
             else
+            {
                 MessageBox.Show("Valoración finalizada. Matrices consistentes.");
+                button3.Visible = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             CalcularAhp frmCalcularAhp = new CalcularAhp(id_proyecto, id_experto);
             frmCalcularAhp.ShowDialog();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -133,7 +142,7 @@ namespace sisexperto
             Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
             List<comparacion_alternativa> listaAlt;
            
-                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, crit);
+                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto,crit.id_criterio);
 
                 int cantidadFilas = 1;
 
@@ -166,18 +175,18 @@ namespace sisexperto
             ConsistenciaMatriz consistencia = new ConsistenciaMatriz();
 
             if (consistencia.calcularConsistencia(matrizAlt))
-                MessageBox.Show("matriz consistente");
+            {
+                button1.Visible = true;
+                MessageBox.Show("Matriz consistente.");
+            }
             else
             {
                 mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
-                if( mejorada[0, 0] <  mejorada[0, 1])
+                if (mejorada[0, 0] < mejorada[0, 1])
                     label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
                 else
-                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1/mejorada[pos, 2]);
+                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1 / mejorada[pos, 2]);
             }
-
-                
-        
         }
 
         private void button4_Click(object sender, EventArgs e)

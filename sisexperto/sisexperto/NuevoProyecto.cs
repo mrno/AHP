@@ -42,6 +42,8 @@ namespace sisexperto
                             dato.asignarProyecto(proy.id_proyecto, exp.id_experto);
                         }
                     }
+                    MessageBox.Show("El proyecto se ha creado satisfactoriamente.");
+                    this.Close();
                 }
                 else
                     MessageBox.Show("Debe asignar por lo menos un experto al proyecto.");
