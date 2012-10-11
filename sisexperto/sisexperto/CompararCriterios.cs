@@ -82,32 +82,36 @@ namespace sisexperto
                 Controls.Add(izquierdaTB);
 
                 TrackBar track = new TrackBar();
-                track.SetBounds(75, y, 659, 45);
+                track.SetBounds(75, y, 400, 45);
                 track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
                 track.Value = 9;
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
 
+                Label miLabel = new Label();
+                miLabel.SetBounds(75, y+20, 200, 50);
+                miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+             //   miLabel.BackColor = Color.Red;
+                Controls.Add(miLabel);
+                
+
                 Label derechaTB = new Label();
-                derechaTB.SetBounds(740, y, 100, 30);
+                derechaTB.SetBounds(500, y, 100, 30);
                 derechaTB.Text = dato.criterioNombre(comp.id_criterio2);
                 Controls.Add(derechaTB);
 
                 Label izquierda = new Label();
-                izquierda.SetBounds(870, y, 100, 30);
+                izquierda.SetBounds(700, y, 100, 30);
                 izquierda.Text = dato.criterioNombre(comp.id_criterio1);
                 Controls.Add(izquierda);
 
 
-                Label miLabel = new Label();
-                miLabel.SetBounds(980, y, 200, 50);
-                miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-                Controls.Add(miLabel);
+               
 
                 
                 Label derecha = new Label();
-                derecha.SetBounds(1180, y, 100, 30);
+                derecha.SetBounds(1100, y, 100, 30);
                 derecha.Text = dato.criterioNombre(comp.id_criterio2);
                 Controls.Add(derecha);
 
