@@ -30,7 +30,7 @@ namespace sisexperto
 
         private void mostrar(object sender, EventArgs e)
         {
-            button1.Visible = false;
+            button1.Visible = true;
             TrackBar track = (TrackBar)sender;
 
             foreach (Control miLabel in this.FindForm().Controls)
@@ -59,55 +59,110 @@ namespace sisexperto
 
             foreach (comparacion_alternativa comp in listaComparacion)
             {
+    
                 Label izquierdaTB = new Label();
-                izquierdaTB.SetBounds(16, y, 60, 50);
+                izquierdaTB.SetBounds(5, y, 75, 50);
                 izquierdaTB.Text = dato.alternativaNombre(comp.id_alternativa1);
                 Controls.Add(izquierdaTB);
 
                 TrackBar track = new TrackBar();
-                track.SetBounds(75, y, 659, 45);
+                track.SetBounds(75, y, 400, 45);
                 track.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
                 track.Value = 9;
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
+                
+               
+                Label miLabel = new Label();
+                //miLabel.SetBounds(100, y, 200, 50);
+                miLabel.SetBounds(150, y + 45, 250, 50);
+              miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+
+                Controls.Add(miLabel);
 
                 Label derechaTB = new Label();
-                derechaTB.SetBounds(740, y, 100, 30);
+                derechaTB.SetBounds(500, y, 80, 30);
                 derechaTB.Text = dato.alternativaNombre(comp.id_alternativa2);
                 Controls.Add(derechaTB);
 
-                Label izquierda = new Label();
-                izquierda.SetBounds(870, y, 100, 30);
-                izquierda.Text = dato.alternativaNombre(comp.id_alternativa1);
-                Controls.Add(izquierda);
+               
 
-
-                Label miLabel = new Label();
-                miLabel.SetBounds(980, y, 200, 50);
-                miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-                Controls.Add(miLabel);
-
-
-                Label derecha = new Label();
-                derecha.SetBounds(1180, y, 100, 30);
-                derecha.Text = dato.alternativaNombre(comp.id_alternativa2);
-                Controls.Add(derecha);
-
-                y += 70;
+               
+                y += 90;
             }
- 
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, y);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 30);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Calcular consistencia";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Controls.Add(this.button1);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, y + 45);
+            this.label9.Name = "label9";
+            this.label9.BackColor = Color.Red;
+            this.label9.Size = new System.Drawing.Size(150, 30);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(110, y);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(100, 30);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "AHP";
+            this.button4.Visible = false;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.Controls.Add(this.button4);
+            
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(210, y );
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 30);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button2.Visible = true;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            //this.Controls.Add(this.button2);
+
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(310, y);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(100, 30);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Siguiente";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = true;
+            this.button3.Enabled = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.Controls.Add(this.button3);
+          
         }
 
         private void ComparacionAlternativas_Load(object sender, EventArgs e)
         {
-            button3.Visible = false;
+            button3.Visible = true;
             crit = colaCriterio.Dequeue();
             label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
             cargarTracks(crit.id_criterio);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             if (colaCriterio.Count != 0)
             {
@@ -117,7 +172,7 @@ namespace sisexperto
                         this.Controls.Remove(track);
                 }
 
-                button1.Visible = false;
+                button1.Visible = true;
                 crit = colaCriterio.Dequeue();
                 label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
                 cargarTracks(crit.id_criterio);
@@ -126,18 +181,18 @@ namespace sisexperto
             else
             {
                 MessageBox.Show("Valoración finalizada. Matrices consistentes.");
-                button3.Visible = true;
+                button4.Visible = true;
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
             CalcularAhp frmCalcularAhp = new CalcularAhp(id_proyecto, id_experto);
             frmCalcularAhp.ShowDialog();
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
             Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
             List<comparacion_alternativa> listaAlt;
@@ -177,10 +232,13 @@ namespace sisexperto
             if (consistencia.calcularConsistencia(matrizAlt))
             {
                 button1.Visible = true;
+                this.button3.Enabled = true;
                 MessageBox.Show("Matriz consistente.");
             }
             else
             {
+                button1.Visible = true;
+
                 mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
                 if (mejorada[0, 0] < mejorada[0, 1])
                     label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
@@ -189,10 +247,14 @@ namespace sisexperto
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             pos++;
             label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
         }
+
+       
+
+      
     }
 }

@@ -77,7 +77,7 @@ namespace sisexperto
             foreach (comparacion_criterio comp in listaComparacion)
             {
                 Label izquierdaTB = new Label();
-                izquierdaTB.SetBounds(16, y, 60, 50);
+                izquierdaTB.SetBounds(5, y, 75, 50);
                 izquierdaTB.Text = dato.criterioNombre(comp.id_criterio1);
                 Controls.Add(izquierdaTB);
 
@@ -90,38 +90,78 @@ namespace sisexperto
                 Controls.Add(track);
 
                 Label miLabel = new Label();
-                miLabel.SetBounds(75, y+20, 200, 50);
+                //miLabel.SetBounds(100, y, 200, 50);
+                miLabel.SetBounds(150, y+45, 250, 50);
                 miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-             //   miLabel.BackColor = Color.Red;
+             
+
                 Controls.Add(miLabel);
                 
 
                 Label derechaTB = new Label();
-                derechaTB.SetBounds(500, y, 100, 30);
+                derechaTB.SetBounds(500, y, 80, 30);
                 derechaTB.Text = dato.criterioNombre(comp.id_criterio2);
                 Controls.Add(derechaTB);
-
-                Label izquierda = new Label();
-                izquierda.SetBounds(700, y, 100, 30);
-                izquierda.Text = dato.criterioNombre(comp.id_criterio1);
-                Controls.Add(izquierda);
-
-
+                
                
 
-                
-                Label derecha = new Label();
-                derecha.SetBounds(1100, y, 100, 30);
-                derecha.Text = dato.criterioNombre(comp.id_criterio2);
-                Controls.Add(derecha);
 
-                y += 70;
+                y += 90;
             }
+
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(20, y);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 40);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Calcular consistencia";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(20, y+45);
+            this.label9.Name = "label9";
+            this.label9.BackColor = Color.Red;
+            this.label9.Size = new System.Drawing.Size(40, 20);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(200, y);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(150, 40);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "button2";
+            this.button3.Visible = false;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+          
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(400, y);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(150, 40);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Siguiente";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = true;
+            this.button3.Enabled = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+
+
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            label9.Text = "";
             List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_experto);
             int cantFilas = 1;
 
@@ -156,6 +196,7 @@ namespace sisexperto
             if (consistencia.calcularConsistencia(matriz))
             {
                 button3.Visible = true;
+                this.button3.Enabled = true;
                 MessageBox.Show("Matriz consistente.");
             }
             else
@@ -181,12 +222,14 @@ namespace sisexperto
             ComparacionAlternativas frmCompAlternativas = new ComparacionAlternativas(id_proyecto, id_experto);
             frmCompAlternativas.ShowDialog();
             this.Close();
-            
+
             //this.Close();
             //Singleton.Instance.crearComparacionAlternativas(id_proyecto, id_experto);
-            
+
             //pasarle una lista
 
         }
+
+      
     }
 }
