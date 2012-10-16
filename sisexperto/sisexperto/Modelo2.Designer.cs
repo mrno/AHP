@@ -176,6 +176,22 @@ namespace sisexperto
             }
         }
         private ObjectSet<proyecto> _proyecto;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ILSet> ILSetSet
+        {
+            get
+            {
+                if ((_ILSetSet == null))
+                {
+                    _ILSetSet = base.CreateObjectSet<ILSet>("ILSetSet");
+                }
+                return _ILSetSet;
+            }
+        }
+        private ObjectSet<ILSet> _ILSetSet;
 
         #endregion
         #region AddTo Methods
@@ -234,6 +250,14 @@ namespace sisexperto
         public void AddToproyecto(proyecto proyecto)
         {
             base.AddObject("proyecto", proyecto);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ILSetSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToILSetSet(ILSet iLSet)
+        {
+            base.AddObject("ILSetSet", iLSet);
         }
 
         #endregion
@@ -887,12 +911,14 @@ namespace sisexperto
         /// <param name="id_criterio">Initial value of the id_criterio property.</param>
         /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
         /// <param name="nombre">Initial value of the nombre property.</param>
-        public static criterio Createcriterio(global::System.Int32 id_criterio, global::System.Int32 id_proyecto, global::System.String nombre)
+        /// <param name="iLPonderacion">Initial value of the ILPonderacion property.</param>
+        public static criterio Createcriterio(global::System.Int32 id_criterio, global::System.Int32 id_proyecto, global::System.String nombre, global::System.String iLPonderacion)
         {
             criterio criterio = new criterio();
             criterio.id_criterio = id_criterio;
             criterio.id_proyecto = id_proyecto;
             criterio.nombre = nombre;
+            criterio.ILPonderacion = iLPonderacion;
             return criterio;
         }
 
@@ -997,6 +1023,30 @@ namespace sisexperto
         private global::System.String _descripcion;
         partial void OndescripcionChanging(global::System.String value);
         partial void OndescripcionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ILPonderacion
+        {
+            get
+            {
+                return _ILPonderacion;
+            }
+            set
+            {
+                OnILPonderacionChanging(value);
+                ReportPropertyChanging("ILPonderacion");
+                _ILPonderacion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ILPonderacion");
+                OnILPonderacionChanged();
+            }
+        }
+        private global::System.String _ILPonderacion;
+        partial void OnILPonderacionChanging(global::System.String value);
+        partial void OnILPonderacionChanged();
 
         #endregion
     
@@ -1177,12 +1227,14 @@ namespace sisexperto
         /// <param name="id_asignacion">Initial value of the id_asignacion property.</param>
         /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
         /// <param name="id_experto">Initial value of the id_experto property.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto)
+        /// <param name="iLPonderacion">Initial value of the ILPonderacion property.</param>
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.String iLPonderacion)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_asignacion = id_asignacion;
             experto_proyecto.id_proyecto = id_proyecto;
             experto_proyecto.id_experto = id_experto;
+            experto_proyecto.ILPonderacion = iLPonderacion;
             return experto_proyecto;
         }
 
@@ -1287,6 +1339,293 @@ namespace sisexperto
         private Nullable<global::System.Double> _ponderacion;
         partial void OnponderacionChanging(Nullable<global::System.Double> value);
         partial void OnponderacionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ILPonderacion
+        {
+            get
+            {
+                return _ILPonderacion;
+            }
+            set
+            {
+                OnILPonderacionChanging(value);
+                ReportPropertyChanging("ILPonderacion");
+                _ILPonderacion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ILPonderacion");
+                OnILPonderacionChanged();
+            }
+        }
+        private global::System.String _ILPonderacion;
+        partial void OnILPonderacionChanging(global::System.String value);
+        partial void OnILPonderacionChanged();
+
+        #endregion
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="gisiabaseModel1", Name="ILSet")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ILSet : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ILSet object.
+        /// </summary>
+        /// <param name="id_Model">Initial value of the id_Model property.</param>
+        /// <param name="id_Label">Initial value of the id_Label property.</param>
+        /// <param name="nombre">Initial value of the nombre property.</param>
+        /// <param name="a">Initial value of the a property.</param>
+        /// <param name="b">Initial value of the b property.</param>
+        /// <param name="c">Initial value of the c property.</param>
+        /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
+        /// <param name="id_asignacion">Initial value of the id_asignacion property.</param>
+        /// <param name="valor">Initial value of the valor property.</param>
+        public static ILSet CreateILSet(global::System.Int32 id_Model, global::System.String id_Label, global::System.String nombre, global::System.String a, global::System.String b, global::System.String c, global::System.String id_proyecto, global::System.String id_asignacion, global::System.String valor)
+        {
+            ILSet iLSet = new ILSet();
+            iLSet.id_Model = id_Model;
+            iLSet.id_Label = id_Label;
+            iLSet.nombre = nombre;
+            iLSet.a = a;
+            iLSet.b = b;
+            iLSet.c = c;
+            iLSet.id_proyecto = id_proyecto;
+            iLSet.id_asignacion = id_asignacion;
+            iLSet.valor = valor;
+            return iLSet;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id_Model
+        {
+            get
+            {
+                return _id_Model;
+            }
+            set
+            {
+                if (_id_Model != value)
+                {
+                    Onid_ModelChanging(value);
+                    ReportPropertyChanging("id_Model");
+                    _id_Model = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id_Model");
+                    Onid_ModelChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id_Model;
+        partial void Onid_ModelChanging(global::System.Int32 value);
+        partial void Onid_ModelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String id_Label
+        {
+            get
+            {
+                return _id_Label;
+            }
+            set
+            {
+                Onid_LabelChanging(value);
+                ReportPropertyChanging("id_Label");
+                _id_Label = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("id_Label");
+                Onid_LabelChanged();
+            }
+        }
+        private global::System.String _id_Label;
+        partial void Onid_LabelChanging(global::System.String value);
+        partial void Onid_LabelChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String nombre
+        {
+            get
+            {
+                return _nombre;
+            }
+            set
+            {
+                OnnombreChanging(value);
+                ReportPropertyChanging("nombre");
+                _nombre = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("nombre");
+                OnnombreChanged();
+            }
+        }
+        private global::System.String _nombre;
+        partial void OnnombreChanging(global::System.String value);
+        partial void OnnombreChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String a
+        {
+            get
+            {
+                return _a;
+            }
+            set
+            {
+                OnaChanging(value);
+                ReportPropertyChanging("a");
+                _a = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("a");
+                OnaChanged();
+            }
+        }
+        private global::System.String _a;
+        partial void OnaChanging(global::System.String value);
+        partial void OnaChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String b
+        {
+            get
+            {
+                return _b;
+            }
+            set
+            {
+                OnbChanging(value);
+                ReportPropertyChanging("b");
+                _b = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("b");
+                OnbChanged();
+            }
+        }
+        private global::System.String _b;
+        partial void OnbChanging(global::System.String value);
+        partial void OnbChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String c
+        {
+            get
+            {
+                return _c;
+            }
+            set
+            {
+                OncChanging(value);
+                ReportPropertyChanging("c");
+                _c = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("c");
+                OncChanged();
+            }
+        }
+        private global::System.String _c;
+        partial void OncChanging(global::System.String value);
+        partial void OncChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String id_proyecto
+        {
+            get
+            {
+                return _id_proyecto;
+            }
+            set
+            {
+                Onid_proyectoChanging(value);
+                ReportPropertyChanging("id_proyecto");
+                _id_proyecto = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("id_proyecto");
+                Onid_proyectoChanged();
+            }
+        }
+        private global::System.String _id_proyecto;
+        partial void Onid_proyectoChanging(global::System.String value);
+        partial void Onid_proyectoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String id_asignacion
+        {
+            get
+            {
+                return _id_asignacion;
+            }
+            set
+            {
+                Onid_asignacionChanging(value);
+                ReportPropertyChanging("id_asignacion");
+                _id_asignacion = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("id_asignacion");
+                Onid_asignacionChanged();
+            }
+        }
+        private global::System.String _id_asignacion;
+        partial void Onid_asignacionChanging(global::System.String value);
+        partial void Onid_asignacionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String valor
+        {
+            get
+            {
+                return _valor;
+            }
+            set
+            {
+                OnvalorChanging(value);
+                ReportPropertyChanging("valor");
+                _valor = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("valor");
+                OnvalorChanged();
+            }
+        }
+        private global::System.String _valor;
+        partial void OnvalorChanging(global::System.String value);
+        partial void OnvalorChanged();
 
         #endregion
     
