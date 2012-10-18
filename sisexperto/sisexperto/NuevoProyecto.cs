@@ -36,6 +36,7 @@ namespace sisexperto
                         if (exp.id_experto == 0)
                         {
                             dato.asignarProyecto(proy.id_proyecto, dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave).id_experto);
+                        
                         }
                         else
                         {

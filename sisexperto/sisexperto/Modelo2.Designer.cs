@@ -912,7 +912,7 @@ namespace sisexperto
         /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
         /// <param name="nombre">Initial value of the nombre property.</param>
         /// <param name="iLPonderacion">Initial value of the ILPonderacion property.</param>
-        public static criterio Createcriterio(global::System.Int32 id_criterio, global::System.Int32 id_proyecto, global::System.String nombre, global::System.String iLPonderacion)
+        public static criterio Createcriterio(global::System.Int32 id_criterio, global::System.Int32 id_proyecto, global::System.String nombre, global::System.Double iLPonderacion)
         {
             criterio criterio = new criterio();
             criterio.id_criterio = id_criterio;
@@ -1029,7 +1029,7 @@ namespace sisexperto
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ILPonderacion
+        public global::System.Double ILPonderacion
         {
             get
             {
@@ -1039,13 +1039,13 @@ namespace sisexperto
             {
                 OnILPonderacionChanging(value);
                 ReportPropertyChanging("ILPonderacion");
-                _ILPonderacion = StructuralObject.SetValidValue(value, false);
+                _ILPonderacion = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("ILPonderacion");
                 OnILPonderacionChanged();
             }
         }
-        private global::System.String _ILPonderacion;
-        partial void OnILPonderacionChanging(global::System.String value);
+        private global::System.Double _ILPonderacion;
+        partial void OnILPonderacionChanging(global::System.Double value);
         partial void OnILPonderacionChanged();
 
         #endregion
@@ -1228,7 +1228,7 @@ namespace sisexperto
         /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
         /// <param name="id_experto">Initial value of the id_experto property.</param>
         /// <param name="iLPonderacion">Initial value of the ILPonderacion property.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.String iLPonderacion)
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_asignacion = id_asignacion;
@@ -1345,7 +1345,7 @@ namespace sisexperto
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String ILPonderacion
+        public global::System.Double ILPonderacion
         {
             get
             {
@@ -1355,13 +1355,13 @@ namespace sisexperto
             {
                 OnILPonderacionChanging(value);
                 ReportPropertyChanging("ILPonderacion");
-                _ILPonderacion = StructuralObject.SetValidValue(value, false);
+                _ILPonderacion = StructuralObject.SetValidValue(value);
                 ReportPropertyChanged("ILPonderacion");
                 OnILPonderacionChanged();
             }
         }
-        private global::System.String _ILPonderacion;
-        partial void OnILPonderacionChanging(global::System.String value);
+        private global::System.Double _ILPonderacion;
+        partial void OnILPonderacionChanging(global::System.Double value);
         partial void OnILPonderacionChanged();
 
         #endregion

@@ -90,8 +90,7 @@ namespace sisexperto
                 Controls.Add(track);
 
                 Label miLabel = new Label();
-                //miLabel.SetBounds(100, y, 200, 50);
-                miLabel.SetBounds(150, y+45, 250, 50);
+                miLabel.SetBounds(150, y + 45, 250, 30);
                 miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
              
 
@@ -123,7 +122,7 @@ namespace sisexperto
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(20, y+45);
+            this.label9.Location = new System.Drawing.Point(20, y + 45);
             this.label9.Name = "label9";
             this.label9.BackColor = Color.Red;
             this.label9.Size = new System.Drawing.Size(40, 20);

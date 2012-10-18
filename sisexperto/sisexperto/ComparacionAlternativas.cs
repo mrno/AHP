@@ -72,12 +72,10 @@ namespace sisexperto
                 track.Value = 9;
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
-                
                
                 Label miLabel = new Label();
-                //miLabel.SetBounds(100, y, 200, 50);
-                miLabel.SetBounds(150, y + 45, 250, 50);
-              miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+                miLabel.SetBounds(150, y + 45, 250, 30);
+                miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
 
                 Controls.Add(miLabel);
 
@@ -96,7 +94,7 @@ namespace sisexperto
             // 
             this.button1.Location = new System.Drawing.Point(5, y);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 30);
+            this.button1.Size = new System.Drawing.Size(150, 40);
             this.button1.TabIndex = 6;
             this.button1.Text = "Calcular consistencia";
             this.button1.UseVisualStyleBackColor = true;
@@ -109,7 +107,7 @@ namespace sisexperto
             this.label9.Location = new System.Drawing.Point(5, y + 45);
             this.label9.Name = "label9";
             this.label9.BackColor = Color.Red;
-            this.label9.Size = new System.Drawing.Size(150, 30);
+            this.label9.Size = new System.Drawing.Size(150, 40);
             this.label9.TabIndex = 7;
             this.label9.Text = "";
             // 
@@ -117,7 +115,7 @@ namespace sisexperto
             // 
             this.button4.Location = new System.Drawing.Point(110, y);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(100, 30);
+            this.button4.Size = new System.Drawing.Size(150, 40);
             this.button4.TabIndex = 2;
             this.button4.Text = "AHP";
             this.button4.Visible = false;
@@ -143,7 +141,7 @@ namespace sisexperto
             // 
             this.button3.Location = new System.Drawing.Point(310, y);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 30);
+            this.button3.Size = new System.Drawing.Size(150, 40);
             this.button3.TabIndex = 9;
             this.button3.Text = "Siguiente";
             this.button3.UseVisualStyleBackColor = true;
@@ -237,7 +235,7 @@ namespace sisexperto
             }
             else
             {
-                button1.Visible = true;
+                
 
                 mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
                 if (mejorada[0, 0] < mejorada[0, 1])

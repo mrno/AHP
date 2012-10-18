@@ -252,6 +252,7 @@ namespace sisexperto
             miCriterio.id_proyecto = id_proyecto;
             miCriterio.nombre = nombre;
             miCriterio.descripcion = descripcion;
+            miCriterio.ILPonderacion = 0;
             gisiaContexto.AddTocriterio(miCriterio);
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
@@ -263,6 +264,7 @@ namespace sisexperto
             experto_proyecto asignacion = new experto_proyecto();
             asignacion.id_proyecto = id_proyecto;
             asignacion.id_experto = id_experto;
+            asignacion.ILPonderacion = 0;
             gisiaContexto.AddToexperto_proyecto(asignacion);
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
