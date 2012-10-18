@@ -64,8 +64,7 @@ local.properties
 .builds
 *.dotCover
 *.Config
-*.edmx
-*.edmx.sql
+
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
