@@ -24,8 +24,17 @@ namespace sisexperto
                foreach (criterio crit in listaCri)
                {
                    List<comparacion_alternativa> listaAlt;
+                   //List<String> listaExpertos = null;
+                   
 
                    listaAlt = dato.compAlternativaPorExpertoCriterio(id_proy, id_exp, crit.id_criterio);
+                   
+
+                   //foreach (comparacion_alternativa comp in listaAlt)
+                   //{
+                   //    if (comp.valor == 0 && !(listaExpertos.Contains(comp.id_experto.ToString())))
+                   //        listaExpertos.Add(comp.id_experto.ToString());
+                   //}
 
                    int cantidadFilas = 1;
 

@@ -16,6 +16,8 @@ namespace sisexperto
         private int id_experto;
         private Queue<criterio> colaCriterio;
 
+        private int y = 140;
+
         private double[,] mejorada;
         private int pos = 0;
         private criterio crit;
@@ -53,7 +55,7 @@ namespace sisexperto
         private void cargarTracks(int id_cri)
         {
             dato = new DALDatos();
-            int y = 140;
+            y = 140;
 
             List<comparacion_alternativa> listaComparacion = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, id_cri);
 
@@ -84,11 +86,20 @@ namespace sisexperto
                 derechaTB.Text = dato.alternativaNombre(comp.id_alternativa2);
                 Controls.Add(derechaTB);
 
-               
+                button3.Enabled = false;
 
-               
                 y += 90;
             }
+        }
+
+        private void ComparacionAlternativas_Load(object sender, EventArgs e)
+        {
+ 
+            crit = colaCriterio.Dequeue();
+            label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
+            cargarTracks(crit.id_criterio);
+
+            //int y = 140;
             // 
             // button1
             // 
@@ -122,11 +133,11 @@ namespace sisexperto
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             this.Controls.Add(this.button4);
-            
+
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(210, y );
+            this.button2.Location = new System.Drawing.Point(210, y);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 30);
             this.button2.TabIndex = 8;
@@ -149,15 +160,7 @@ namespace sisexperto
             this.button3.Enabled = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             this.Controls.Add(this.button3);
-          
-        }
-
-        private void ComparacionAlternativas_Load(object sender, EventArgs e)
-        {
             button3.Visible = true;
-            crit = colaCriterio.Dequeue();
-            label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
-            cargarTracks(crit.id_criterio);
         }
 
         private void button3_Click(object sender, EventArgs e)
