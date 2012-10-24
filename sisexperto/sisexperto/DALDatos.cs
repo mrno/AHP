@@ -368,19 +368,19 @@ namespace sisexperto
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 1/9
-                return "es extremadamente menos importante que";
+                return "es extremadamente más importante que";
             if (valor == 2)//corresponde a 1/8
                 return "";
             if (valor == 3)//corresponde a 1/7
-                return "es muy fuertemente menos importante que";
+                return "es muy fuertemente más importante que";
             if (valor == 4)//corresponde a 1/6
                 return "";
             if (valor == 5)//corresponde a 1/5
-                return "es fuertemente menos importante que";
+                return "es fuertemente más importante que";
             if (valor == 6)//corresponde a 1/4
                 return "";
             if (valor == 7)//corresponde a 1/3
-                return "es moderadamente menos importante que";
+                return "es moderadamente más importante que";
             if (valor == 8)//corresponde a 1/2
                 return "";
             if (valor == 9)//corresponde a 1
@@ -388,19 +388,19 @@ namespace sisexperto
             if (valor == 10)//corresponde a 2
                 return "";
             if (valor == 11)//corresponde a 3
-                return "es moderadamente más importante que";
+                return "es moderadamente menos importante que";
             if (valor == 12)//corresponde a 4
                 return "";
             if (valor == 13)//corresponde a 5
-                return "es fuertemente más importante que";
+                return "es fuertemente menos importante que";
             if (valor == 14)//corresponde a 6
                 return "";
             if (valor == 15)//corresponde a 7
-                return "es muy fuertemente más importante que";
+                return "es muy fuertemente menos importante que";
             if (valor == 16)//corresponde a 8
                 return "";
             if (valor == 17)//corresponde a 9
-                return "es extremadamente más importante que";
+                return "es extremadamente menos importante que";
      
             return "";
         }

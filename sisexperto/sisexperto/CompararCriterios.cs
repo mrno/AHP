@@ -207,18 +207,19 @@ namespace sisexperto
                 Int32 CodCriterioB = (Int32) posicionRecomendada[1];
                 Int32 M = (Int32)posicionRecomendada[2];
                 Int32 N = (Int32)posicionRecomendada[3];
-                if (mejorada[M,N] < 1)
-                {
+                double mejorValor = mejorada[M, 2];
+                //if (mejorValor < 1)
+                //{
+                //    label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
+                //               buscarCriterioFromTB(CodCriterioB) + " colocar " +
+                //               dato.obtenerDescripcion((double)1 / mejorValor);   
+                //}
+                //else 
+                //{
                     label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
                                buscarCriterioFromTB(CodCriterioB) + " colocar " +
-                               dato.obtenerDescripcion((double)1 / (mejorada[M, N]));   
-                }
-                else 
-                {
-                    label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
-                               buscarCriterioFromTB(CodCriterioB) + " colocar " +
-                               dato.obtenerDescripcion((mejorada[M, N]));   
-                }
+                               dato.obtenerDescripcion(mejorValor);   
+                //}
               
                
             }
@@ -258,7 +259,7 @@ namespace sisexperto
             rdo[0] = k;
             rdo[1] = l;
             rdo[2] = m;
-            rdo[n] = n;
+            rdo[3] = n;
             return rdo;
         }
 
