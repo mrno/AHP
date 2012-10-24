@@ -301,7 +301,6 @@ namespace sisexperto
             
         }
 
-
         public void guardarComparacionCriterios(int id_proyecto, int id_experto, int id_criterio1, int id_criterio2, int pos_fila, int pos_columna, float valor)
         {
             gisiaContexto = new gisiabaseEntities2();
@@ -319,7 +318,6 @@ namespace sisexperto
  
         }
 
-
         public void guardarComparacionAlternativas(int id_proyecto, int id_experto, int id_criterio, int id_alternativa1, int id_alternativa2, int pos_fila, int pos_columna, float valor)
         {
             gisiaContexto = new gisiabaseEntities2();
@@ -336,7 +334,6 @@ namespace sisexperto
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
-
 
         public void modificarComparacionCriterios(int id_proyecto, int id_experto, int pos_fila, int pos_columna, float valor)
         {
@@ -363,7 +360,6 @@ namespace sisexperto
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
-
 
         public string valorarPalabra(int valor)
         {
@@ -464,55 +460,55 @@ namespace sisexperto
         public string obtenerDescripcion(double valor)
         {
             if (valor == (float)1)
-                return "es igual de importante que (1) ";
+                return "es igual de importante que ";
 
             if (valor == (float)2)
-                return "es igual de importante que (2) ";
+                return "es igual de importante que ";
 
             if (valor == (float)3)
-                return "es moderadamente más importante que (3) ";
+                return "es moderadamente más importante que ";
 
             if (valor == (float)4)
-                return "es moderadamente más importante que (4) ";
+                return "es moderadamente más importante que ";
 
             if (valor == (float)5)
-                return "es fuertemente más importante que (5) ";
+                return "es fuertemente más importante que ";
 
             if (valor == (float)6)
-                return "es fuertemente más importante que (6) ";
+                return "es fuertemente más importante que ";
 
             if (valor == (float)7)
-                return "es muy fuertemente más importante que (7) ";
+                return "es muy fuertemente más importante que ";
 
             if (valor == 8)
-                return "es muy fuertemente más importante que (8) ";
+                return "es muy fuertemente más importante que ";
 
             if (valor == (float)9)
-                return "es extremadamente más importante que (9) ";
+                return "es extremadamente más importante que ";
 
             if (valor == (float)1 / (float)2)
-                return "es igual de importante que (1/2) ";
+                return "es igual de importante que ";
 
             if (valor == (float)1 / (float)3)
-                return "es moderadamente menos importante que (1/3) ";
+                return "es moderadamente menos importante que ";
 
             if (valor == (float)1 / (float)4)
-                return "es moderadamente menos importante que (1/4) ";
+                return "es moderadamente menos importante que ";
 
             if (valor == (float)1 / (float)5)
-                return "es fuertemente menos importante que (1/5) ";
+                return "es fuertemente menos importante que ";
 
             if (valor == (float)1 / (float)6)
-                return "es fuertemente menos importante que (1/6) ";
+                return "es fuertemente menos importante que ";
 
             if (valor == (float)1 / (float)7)
-                return "es muy fuertemente menos importante que (1/7) ";
+                return "es muy fuertemente menos importante que ";
 
             if (valor == (float)1 / (float)8)
-                return "es muy fuertemente menos importante que (1/8) ";
+                return "es muy fuertemente menos importante que ";
 
             if (valor == (float)1 / (float)9)
-                return "es extremadamente menos importante que (1/9) ";
+                return "es extremadamente menos importante que ";
 
             return "";
         }

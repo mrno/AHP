@@ -126,9 +126,10 @@ namespace sisexperto
             this.label9.Location = new System.Drawing.Point(20, y + 45);
             this.label9.Name = "label9";
             this.label9.BackColor = Color.Red;
-            this.label9.Size = new System.Drawing.Size(40, 20);
+            this.label9.Size = new System.Drawing.Size(40, 30);
             this.label9.TabIndex = 7;
             this.label9.Text = "";
+            
             // 
             // button2
             // 
@@ -201,25 +202,34 @@ namespace sisexperto
             }
             else
             {
+                Int32 CodCriterioA=0;
+                Int32 CodCriterioB=0;
                 mejorada = consistencia.buscarMejoresConsistencia(matriz);
                 double[] posicionRecomendada = MaxValueIJ(mejorada);
-                Int32 CodCriterioA = (Int32) posicionRecomendada[0];
-                Int32 CodCriterioB = (Int32) posicionRecomendada[1];
+                Int32 columna = (Int32)posicionRecomendada[1];
+                Int32 fila = (Int32)posicionRecomendada[0];
+
+                if (columna > fila)
+                {
+                    CodCriterioA = listaComparacion[((Int32)posicionRecomendada[columna - 1])].id_criterio1;
+                    CodCriterioB = listaComparacion[((Int32)posicionRecomendada[columna - 1])].id_criterio2;   
+                }
+                else
+                {
+                    CodCriterioA = listaComparacion[((Int32)posicionRecomendada[fila - 1])].id_criterio1;
+                    CodCriterioB = listaComparacion[((Int32)posicionRecomendada[fila - 1])].id_criterio2;   
+                }
+
+                
                 Int32 M = (Int32)posicionRecomendada[2];
                 Int32 N = (Int32)posicionRecomendada[3];
                 double mejorValor = mejorada[M, 2];
-                //if (mejorValor < 1)
-                //{
-                //    label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
-                //               buscarCriterioFromTB(CodCriterioB) + " colocar " +
-                //               dato.obtenerDescripcion((double)1 / mejorValor);   
-                //}
-                //else 
-                //{
-                    label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
-                               buscarCriterioFromTB(CodCriterioB) + " colocar " +
-                               dato.obtenerDescripcion(mejorValor);   
-                //}
+             
+                    label9.Text =   buscarCriterioFromTB(CodCriterioA) + " " + 
+                                    "deberia ser "  +
+                                    dato.obtenerDescripcion(mejorValor) + " " + 
+                                    buscarCriterioFromTB(CodCriterioB);   
+               
               
                
             }
