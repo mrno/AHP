@@ -192,7 +192,7 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
+           // Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
             List<comparacion_alternativa> listaAlt;
            
                 listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto,crit.id_criterio);

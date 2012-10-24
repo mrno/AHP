@@ -16,7 +16,7 @@ namespace sisexperto
         private DALDatos dato;
         private int id_proyecto;
         private int id_experto;
-
+        private TrackBar track;
         private double[,] mejorada;
         private int pos = 0;
 
@@ -45,8 +45,9 @@ namespace sisexperto
 
         private void mostrar(object sender, EventArgs e)
         {
+            label9.Text = "";
             button3.Visible = false;
-            TrackBar track = (TrackBar)sender;
+         track = (TrackBar)sender;
             
             foreach (Control miLabel in this.FindForm().Controls)
             {
@@ -201,13 +202,69 @@ namespace sisexperto
             else
             {
                 mejorada = consistencia.buscarMejoresConsistencia(matriz);
-                if (mejorada[0, 0] < mejorada[0, 1])
-                    label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
-                else
-                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1 / mejorada[pos, 2]);
+                double[] posicionRecomendada = MaxValueIJ(mejorada);
+                Int32 CodCriterioA = (Int32) posicionRecomendada[0];
+                Int32 CodCriterioB = (Int32) posicionRecomendada[1];
+                Int32 M = (Int32)posicionRecomendada[2];
+                Int32 N = (Int32)posicionRecomendada[3];
+                if (mejorada[M,N] < 1)
+                {
+                    label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
+                               buscarCriterioFromTB(CodCriterioB) + " colocar " +
+                               dato.obtenerDescripcion((double)1 / (mejorada[M, N]));   
+                }
+                else 
+                {
+                    label9.Text = "En la posición " + buscarCriterioFromTB(CodCriterioA) + "," +
+                               buscarCriterioFromTB(CodCriterioB) + " colocar " +
+                               dato.obtenerDescripcion((mejorada[M, N]));   
+                }
+              
+               
             }
 
                 
+        }
+
+        static double[] MaxValueIJ(double[,] intArray)
+        {
+            double maxVal = 0;
+            
+            int k = 0;
+            int l = 0;
+            int m = 0;
+            int n = 0;
+
+             for (int i = 0; i < intArray.GetLength(1) - 1; i++)
+            {
+
+
+                for (int j = 0; j < intArray.GetLength(1) - 1; j++)
+                {
+                    if (intArray[i, 2] > maxVal)
+                    {
+
+                        maxVal = intArray[i, 2];
+                        k = (Int32)intArray[i, 0];
+                        l = (Int32)intArray[i, 1];
+                        m = i;
+                        n = j;
+
+                    }
+                }
+            }
+
+          double[] rdo = new double[4];
+            rdo[0] = k;
+            rdo[1] = l;
+            rdo[2] = m;
+            rdo[n] = n;
+            return rdo;
+        }
+
+        private String buscarCriterioFromTB(Int32 i)
+        {
+            return dato.criterioNombre(i);
         }
 
         private void button2_Click(object sender, EventArgs e)
