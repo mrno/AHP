@@ -155,8 +155,6 @@ namespace sisexperto
             this.button3.Enabled = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
 
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)

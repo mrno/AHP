@@ -239,7 +239,6 @@ namespace sisexperto
             else
             {
                 
-
                 mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
                 if (mejorada[0, 0] < mejorada[0, 1])
                     label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
