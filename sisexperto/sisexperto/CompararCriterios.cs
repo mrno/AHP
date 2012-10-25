@@ -283,10 +283,7 @@ namespace sisexperto
             return rdo;
         }
 
-        private String buscarCriterioFromTB(Int32 i)
-        {
-            return dato.criterioNombre(i);
-        }
+      
 
         private void button2_Click(object sender, EventArgs e)
         {
