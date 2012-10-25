@@ -32,6 +32,8 @@ namespace sisexperto
 
         private void mostrar(object sender, EventArgs e)
         {
+            label9.Text = "";
+
             button1.Visible = true;
             TrackBar track = (TrackBar)sender;
 
@@ -78,7 +80,7 @@ namespace sisexperto
                 Label miLabel = new Label();
                 miLabel.SetBounds(150, y + 45, 250, 30);
                 miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-
+                miLabel.Text = "";
                 Controls.Add(miLabel);
 
                 Label derechaTB = new Label();
@@ -121,6 +123,7 @@ namespace sisexperto
             this.label9.Size = new System.Drawing.Size(150, 40);
             this.label9.TabIndex = 7;
             this.label9.Text = "";
+            this.Controls.Add(this.label9);
             // 
             // button4
             // 
@@ -173,6 +176,12 @@ namespace sisexperto
                         this.Controls.Remove(track);
                 }
 
+                foreach (Control unLabel in this.Controls)
+                {
+                    if(unLabel is Label)
+                        this.Controls.Remove(unLabel);
+                }
+
                 button1.Visible = true;
                 crit = colaCriterio.Dequeue();
                 label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
@@ -195,6 +204,7 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
+            label9.Text = "";
            // Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
             List<comparacion_alternativa> listaAlt;
            
@@ -239,12 +249,88 @@ namespace sisexperto
             else
             {
                 
+                //mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
+                //if (mejorada[0, 0] < mejorada[0, 1])
+                //    label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
+                //else
+                //    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1 / mejorada[pos, 2]);
+                string NombreAlternativaA;
+                string NombreAlternativaB;
                 mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
+                double[] posicionRecomendada = MaxValueIJ(mejorada);
+
+
+
+                Int32 fila = (Int32)posicionRecomendada[0];
+                Int32 columna = (Int32)posicionRecomendada[1];
+
+                List<alternativa> listaAlternativas = dato.alternativasPorProyecto(id_proyecto);
+
+                NombreAlternativaA = listaAlternativas[fila].nombre;
+                NombreAlternativaB = listaAlternativas[columna].nombre;
+
+
+
+                Int32 M = (Int32)posicionRecomendada[2];
+
+                double mejorValor = mejorada[M, 2];
+
                 if (mejorada[0, 0] < mejorada[0, 1])
-                    label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
+                {
+                    label9.Text = NombreAlternativaA + " " +
+                                      "deberia ser " +
+                                      dato.obtenerDescripcion(mejorValor) + " " +
+                                      NombreAlternativaB;
+                }
                 else
-                    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1 / mejorada[pos, 2]);
+                {
+                    label9.Text = NombreAlternativaB + " " +
+                                     "deberia ser " +
+                                     dato.obtenerDescripcion((double)1 / mejorValor) + " " +
+                                     NombreAlternativaA;
+                }
+                
+               
+            
+            
+            
+            
             }
+        }
+        static double[] MaxValueIJ(double[,] intArray)
+        {
+            double maxVal = 0;
+
+            int k = 0;
+            int l = 0;
+            int m = 0;
+            int n = 0;
+
+            for (int i = 0; i < intArray.GetLength(1) - 1; i++)
+            {
+
+
+                for (int j = 0; j < intArray.GetLength(1) - 1; j++)
+                {
+                    if (intArray[i, 2] > maxVal)
+                    {
+
+                        maxVal = intArray[i, 2];
+                        k = (Int32)intArray[i, 0];
+                        l = (Int32)intArray[i, 1];
+                        m = i;
+                        n = j;
+
+                    }
+                }
+            }
+
+            double[] rdo = new double[4];
+            rdo[0] = k;
+            rdo[1] = l;
+            rdo[2] = m;
+            rdo[3] = n;
+            return rdo;
         }
 
         private void button2_Click(object sender, EventArgs e)
