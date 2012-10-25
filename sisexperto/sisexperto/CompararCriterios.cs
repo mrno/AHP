@@ -202,33 +202,43 @@ namespace sisexperto
             }
             else
             {
-                Int32 CodCriterioA=0;
-                Int32 CodCriterioB=0;
+                
+                string NombreCriterioA;
+                string NombreCriterioB;
                 mejorada = consistencia.buscarMejoresConsistencia(matriz);
                 double[] posicionRecomendada = MaxValueIJ(mejorada);
-                Int32 columna = (Int32)posicionRecomendada[1];
-                Int32 fila = (Int32)posicionRecomendada[0];
 
-                if (columna > fila)
+
+                
+                Int32 fila = (Int32)posicionRecomendada[0];
+                Int32 columna = (Int32)posicionRecomendada[1];
+
+                List<criterio> listaCriterios = dato.criteriosPorProyecto(id_proyecto);
+
+                NombreCriterioA = listaCriterios[fila].nombre;
+                NombreCriterioB = listaCriterios[columna].nombre;
+                
+              
+                
+                Int32 M = (Int32)posicionRecomendada[2];
+               
+                double mejorValor = mejorada[M, 2];
+
+                if (mejorada[0, 0] < mejorada[0, 1])
                 {
-                    CodCriterioA = listaComparacion[((Int32)posicionRecomendada[columna - 1])].id_criterio1;
-                    CodCriterioB = listaComparacion[((Int32)posicionRecomendada[columna - 1])].id_criterio2;   
+                    label9.Text = NombreCriterioA + " " +
+                                      "deberia ser " +
+                                      dato.obtenerDescripcion(mejorValor) + " " +
+                                      NombreCriterioB;     
                 }
                 else
                 {
-                    CodCriterioA = listaComparacion[((Int32)posicionRecomendada[fila - 1])].id_criterio1;
-                    CodCriterioB = listaComparacion[((Int32)posicionRecomendada[fila - 1])].id_criterio2;   
+                    label9.Text = NombreCriterioB + " " +
+                                     "deberia ser " +
+                                     dato.obtenerDescripcion((double)1 / mejorValor) + " " +
+                                     NombreCriterioA;     
                 }
-
                 
-                Int32 M = (Int32)posicionRecomendada[2];
-                Int32 N = (Int32)posicionRecomendada[3];
-                double mejorValor = mejorada[M, 2];
-             
-                    label9.Text =   buscarCriterioFromTB(CodCriterioA) + " " + 
-                                    "deberia ser "  +
-                                    dato.obtenerDescripcion(mejorValor) + " " + 
-                                    buscarCriterioFromTB(CodCriterioB);   
                
               
                

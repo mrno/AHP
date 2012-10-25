@@ -49,19 +49,19 @@ namespace sisexperto
 
             double[,] doubleArray = (double[,])resultado.ToArray(MWArrayComponent.Real);
 
-            //int cant = 0;
-            //foreach (double item in doubleArray)
-            //{
-            //    cant++;
-            //}
-            //cant--;
-            //cant = cant / 3;
+            int cant = 0;
+            foreach (double item in doubleArray)
+            {
+                cant++;
+            }
+            cant--;
+            cant = cant / 3;
 
-            //for (int i = 0; i < cant; i++)
-            //{
-            //    doubleArray[i, 0] = doubleArray[i, 0] - 1;
-            //    doubleArray[i, 1] = doubleArray[i, 1] - 1;
-            //}
+            for (int i = 0; i < cant; i++)
+            {
+                doubleArray[i, 0] = doubleArray[i, 0] - 1;
+                doubleArray[i, 1] = doubleArray[i, 1] - 1;
+            }
 
             return doubleArray;
         }
