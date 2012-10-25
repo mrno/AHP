@@ -13,8 +13,8 @@ namespace sisexperto
        public double[,] AgregarCriterios(AgrCriterio listaKCriterios)
        {
           
-           int i = listaKCriterios.listaCriterios.Count;
-           
+           //int i = listaKCriterios.listaCriterios.Count;
+           int i = listaKCriterios.listaCriterios[0].GetLength(0);
            double[,] salida = new double[i,i];
            utils.Unar(salida, i);
            
