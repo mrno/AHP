@@ -331,13 +331,13 @@
     <Diagrams>
       <Diagram Name="Modelo2">
         <EntityTypeShape EntityType="gisiabaseModel1.alternativa" Width="1.5" PointX="0.75" PointY="0.75" Height="1.592306315104167" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel1.comparacion_alternativa" Width="1.5" PointX="2.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel1.comparacion_criterio" Width="1.5" PointX="4.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel1.comparacion_alternativa" Width="2.25" PointX="2.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel1.comparacion_criterio" Width="2.125" PointX="5.5" PointY="0.875" Height="2.5571907552083335" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel1.criterio" Width="1.5" PointX="0.75" PointY="3.375" Height="1.7566536458333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel1.experto" Width="1.5" PointX="2.75" PointY="3.375" Height="1.7566536458333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel1.experto_proyecto" Width="1.5" PointX="4.75" PointY="3.375" Height="1.7566536458333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel1.proyecto" Width="1.5" PointX="6.75" PointY="0.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="gisiabaseModel1.ILSet" Width="1.5" PointX="6.75" PointY="2.75" Height="2.4140429687499996" />
+        <EntityTypeShape EntityType="gisiabaseModel1.experto" Width="1.5" PointX="2.625" PointY="4" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel1.experto_proyecto" Width="2.375" PointX="4.75" PointY="4" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel1.proyecto" Width="1.5" PointX="8.625" PointY="1.125" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="gisiabaseModel1.ILSet" Width="1.5" PointX="9.375" PointY="3.375" Height="2.7494921874999996" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -33,7 +33,7 @@ namespace sisexperto
         private void mostrar(object sender, EventArgs e)
         {
             label9.Text = "";
-
+            button3.Visible = false;
             button1.Visible = true;
             TrackBar track = (TrackBar)sender;
 
@@ -73,7 +73,7 @@ namespace sisexperto
                 track.SetBounds(75, y, 400, 45);
                 track.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
-                track.Value = 9;
+                track.Value = dato.obtenerEnteroCompAlternativa(comp.id_proyecto, comp.id_experto, comp.id_criterio, comp.pos_fila, comp.pos_columna);
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
                
@@ -173,13 +173,14 @@ namespace sisexperto
                 foreach (Control track in this.Controls)
                 {
                     if (track is TrackBar)
+                    {
+                        foreach (Control unLabel in this.Controls)
+                            {
+                                if (unLabel is Label && unLabel.Name == track.Name)
+                                    this.Controls.Remove(unLabel);
+                            }
                         this.Controls.Remove(track);
-                }
-
-                foreach (Control unLabel in this.Controls)
-                {
-                    if(unLabel is Label)
-                        this.Controls.Remove(unLabel);
+                    }
                 }
 
                 button1.Visible = true;
@@ -235,7 +236,6 @@ namespace sisexperto
                         else if (i > j)
                             matrizAlt[i, j] = (double)1 / (matrizAlt[j, i]);
                     }
-
                 }
 
             ConsistenciaMatriz consistencia = new ConsistenciaMatriz();
@@ -244,6 +244,7 @@ namespace sisexperto
             {
                 button1.Visible = true;
                 this.button3.Enabled = true;
+                this.button3.Visible = true;
                 MessageBox.Show("Matriz consistente.");
             }
             else
@@ -260,7 +261,6 @@ namespace sisexperto
                 double[] posicionRecomendada = MaxValueIJ(mejorada);
 
 
-
                 Int32 fila = (Int32)posicionRecomendada[0];
                 Int32 columna = (Int32)posicionRecomendada[1];
 
@@ -268,7 +268,6 @@ namespace sisexperto
 
                 NombreAlternativaA = listaAlternativas[fila].nombre;
                 NombreAlternativaB = listaAlternativas[columna].nombre;
-
 
 
                 Int32 M = (Int32)posicionRecomendada[2];
@@ -289,12 +288,6 @@ namespace sisexperto
                                      dato.obtenerDescripcion((double)1 / mejorValor) + " " +
                                      NombreAlternativaA;
                 }
-                
-               
-            
-            
-            
-            
             }
         }
         static double[] MaxValueIJ(double[,] intArray)

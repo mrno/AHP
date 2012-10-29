@@ -86,7 +86,7 @@ namespace sisexperto
                 track.SetBounds(75, y, 400, 45);
                 track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
-                track.Value = 9;
+                track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto, comp.id_experto, comp.pos_fila, comp.pos_columna);
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
 

@@ -36,15 +36,5 @@ namespace sisexperto
             frmProyectosAsignados.ShowDialog();
         }
 
-        private void FrmPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void calculoAHPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
     }
 }

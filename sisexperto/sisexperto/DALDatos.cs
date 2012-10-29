@@ -457,6 +457,62 @@ namespace sisexperto
             return 0;
         }
 
+        public int valorarFlotante(float valor)
+        {
+            if( valor == (float)9)
+                    return 1;
+
+            if( valor == (float)8)
+                    return 2;
+                    
+            if( valor == (float)7)
+                    return 3;
+                    
+            if( valor == (float)6)
+                    return 4;
+
+            if( valor == (float)5)
+                    return 5;
+                   
+            if( valor == (float)4)
+                    return 6;
+                    
+            if( valor == (float)3)
+                    return 7;
+                   
+            if( valor == (float)2)
+                    return 8;
+
+            if( valor == (float)1)
+                    return 9;
+                    
+            if( valor == (float)1/(float)2)
+                    return 10;
+                    
+            if( valor == (float)1 / (float)3)
+                    return 11;
+                    
+            if( valor == (float)1 / (float)4)
+                    return 12;
+                    
+            if( valor == (float)1 / (float)5)
+                    return 13;
+                    
+            if( valor == (float)1 / (float)6)
+                    return 14;
+                    
+            if( valor == (float)1 / (float)7)
+                    return 15;
+                    
+            if( valor == (float)1 / (float)8)
+                    return 16;
+                    
+            if( valor == (float)1 / (float)9)
+                    return 17;
+            
+            return 9;
+        }
+
         public string obtenerDescripcion(double valor)
         {
             if (valor == (float)1)
@@ -513,5 +569,31 @@ namespace sisexperto
             return "";
         }
 
+        public int obtenerEnteroCompAlternativa(int id_proyecto, int id_experto, int id_criterio, int pos_fila, int pos_columna)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            comparacion_alternativa comp = (from c in gisiaContexto.comparacion_alternativa
+                                            where (c.id_proyecto == id_proyecto
+                                                   && c.id_experto == id_experto
+                                                   && c.id_criterio == id_criterio
+                                                   && c.pos_fila == pos_fila
+                                                   && c.pos_columna == pos_columna)
+                                            select c).FirstOrDefault<comparacion_alternativa>();
+
+            return valorarFlotante((float)comp.valor);
+        }
+
+        public int obtenerEnteroCompCriterio(int id_proyecto, int id_experto, int pos_fila, int pos_columna)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            comparacion_criterio comp = (from c in gisiaContexto.comparacion_criterio
+                                         where (c.id_proyecto == id_proyecto && 
+                                                c.id_experto == id_experto && 
+                                                c.pos_fila == pos_fila && 
+                                                c.pos_columna == pos_columna)
+                                         select c).FirstOrDefault<comparacion_criterio>();
+
+            return valorarFlotante((float)comp.valor);
+        }
     }
 }

@@ -127,6 +127,11 @@ namespace sisexperto
             else
                 MessageBox.Show("Debe completar los campos Nombre y Descripcion.");
         }
+
+        private void CargarProyecto_Load(object sender, EventArgs e)
+        {
+
+        }
         
     }
 
