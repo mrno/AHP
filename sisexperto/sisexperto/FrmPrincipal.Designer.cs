@@ -103,7 +103,10 @@
             this.Name = "FrmPrincipal";
             this.Text = "FrmPrincipal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+<<<<<<< HEAD
          //   this.Load += new System.EventHandler(this.FrmPrincipal_Load);
+=======
+>>>>>>> 13c8c9a93debe6c1449b1da222a7ba88ddf999f0
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
