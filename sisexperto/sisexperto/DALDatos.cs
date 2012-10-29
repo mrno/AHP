@@ -536,7 +536,7 @@ namespace sisexperto
             if (valor == (float)7)
                 return "[7] es muy fuertemente más importante que ";
 
-            if (valor == 8)
+            if (valor == (float)8)
                 return "[8] ";
 
             if (valor == (float)9)
@@ -582,7 +582,31 @@ namespace sisexperto
 
             return valorarFlotante((float)comp.valor);
         }
+        public double obtenerValorCompAlternativa(int id_proyecto, int id_experto, int id_criterio, int pos_fila, int pos_columna)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            comparacion_alternativa comp = (from c in gisiaContexto.comparacion_alternativa
+                                            where (c.id_proyecto == id_proyecto
+                                                   && c.id_experto == id_experto
+                                                   && c.id_criterio == id_criterio
+                                                   && c.pos_fila == pos_fila
+                                                   && c.pos_columna == pos_columna)
+                                            select c).FirstOrDefault<comparacion_alternativa>();
 
+            return (float)comp.valor;
+        }
+        public double obtenerValorCompCriterio(int id_proyecto, int id_experto, int pos_fila, int pos_columna)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            comparacion_criterio comp = (from c in gisiaContexto.comparacion_criterio
+                                         where (c.id_proyecto == id_proyecto &&
+                                                c.id_experto == id_experto &&
+                                                c.pos_fila == pos_fila &&
+                                                c.pos_columna == pos_columna)
+                                         select c).FirstOrDefault<comparacion_criterio>();
+
+            return (float)comp.valor;
+        }
         public int obtenerEnteroCompCriterio(int id_proyecto, int id_experto, int pos_fila, int pos_columna)
         {
             gisiaContexto = new gisiabaseEntities2();

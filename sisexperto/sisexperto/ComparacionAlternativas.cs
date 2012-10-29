@@ -80,7 +80,8 @@ namespace sisexperto
                 Label miLabel = new Label();
                 miLabel.SetBounds(150, y + 45, 250, 30);
                 miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-                miLabel.Text = "";
+                double doble = dato.obtenerValorCompAlternativa(comp.id_proyecto, comp.id_experto, comp.id_criterio, comp.pos_fila, comp.pos_columna);
+                miLabel.Text = dato.obtenerDescripcion(doble);
                 Controls.Add(miLabel);
 
                 Label derechaTB = new Label();
@@ -286,37 +287,43 @@ namespace sisexperto
         }
         static double[] MaxValueIJ(double[,] intArray)
         {
-            double maxVal = 0;
+            //double maxVal = 0;
 
-            int k = 0;
-            int l = 0;
-            int m = 0;
-            int n = 0;
+            //int k = 0;
+            //int l = 0;
+            //int m = 0;
+            //int n = 0;
 
-            for (int i = 0; i < intArray.GetLength(1) - 1; i++)
-            {
+            //for (int i = 0; i < intArray.GetLength(1) - 1; i++)
+            //{
 
 
-                for (int j = 0; j < intArray.GetLength(1) - 1; j++)
-                {
-                    if (intArray[i, 2] > maxVal)
-                    {
+            //    for (int j = 0; j < intArray.GetLength(1) - 1; j++)
+            //    {
+            //        if (intArray[i, 2] > maxVal)
+            //        {
 
-                        maxVal = intArray[i, 2];
-                        k = (Int32)intArray[i, 0];
-                        l = (Int32)intArray[i, 1];
-                        m = i;
-                        n = j;
+            //            maxVal = intArray[i, 2];
+            //            k = (Int32)intArray[i, 0];
+            //            l = (Int32)intArray[i, 1];
+            //            m = i;
+            //            n = j;
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
+            //double[] rdo = new double[4];
+            //rdo[0] = k;
+            //rdo[1] = l;
+            //rdo[2] = m;
+            //rdo[3] = n;
+            //return rdo;
             double[] rdo = new double[4];
-            rdo[0] = k;
-            rdo[1] = l;
-            rdo[2] = m;
-            rdo[3] = n;
+            rdo[0] = (Int32)intArray[0, 0];
+            rdo[1] = (Int32)intArray[0, 1];
+            rdo[2] = 0;
+            rdo[3] = 0;
             return rdo;
         }
 
