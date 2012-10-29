@@ -249,12 +249,6 @@ namespace sisexperto
             }
             else
             {
-                
-                //mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
-                //if (mejorada[0, 0] < mejorada[0, 1])
-                //    label9.Text = "En la posición " + mejorada[0, 0].ToString() + "," + mejorada[0, 1].ToString() + " colocar " + dato.obtenerDescripcion(mejorada[pos, 2]);
-                //else
-                //    label9.Text = "En la posición " + mejorada[0, 1].ToString() + "," + mejorada[0, 0].ToString() + " colocar " + dato.obtenerDescripcion((double)1 / mejorada[pos, 2]);
                 string NombreAlternativaA;
                 string NombreAlternativaB;
                 mejorada = consistencia.buscarMejoresConsistencia(matrizAlt);
