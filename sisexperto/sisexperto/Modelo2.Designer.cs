@@ -1235,6 +1235,12 @@ namespace sisexperto
         /// <summary>
         /// Create a new experto_proyecto object.
         /// </summary>
+		/// <param name="id_asignacion">Valor inicial de la propiedad id_asignacion.</param>
+        /// <param name="id_proyecto">Valor inicial de la propiedad id_proyecto.</param>
+        /// <param name="id_experto">Valor inicial de la propiedad id_experto.</param>
+        /// <param name="iLPonderacion">Valor inicial de la propiedad ILPonderacion.</param>
+        /// <param name="valoracion_consistente">Valor inicial de la propiedad valoracion_consistente.</param>
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion, global::System.Boolean valoracion_consistente)
 
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
