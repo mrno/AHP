@@ -1227,13 +1227,15 @@ namespace sisexperto
         /// <param name="id_asignacion">Initial value of the id_asignacion property.</param>
         /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
         /// <param name="id_experto">Initial value of the id_experto property.</param>
+        /// <param name="ponderacion">Initial value of the ponderacion property.</param>
         /// <param name="iLPonderacion">Initial value of the ILPonderacion property.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion)
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double ponderacion, global::System.Double iLPonderacion)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_asignacion = id_asignacion;
             experto_proyecto.id_proyecto = id_proyecto;
             experto_proyecto.id_experto = id_experto;
+            experto_proyecto.ponderacion = ponderacion;
             experto_proyecto.ILPonderacion = iLPonderacion;
             return experto_proyecto;
         }
@@ -1319,9 +1321,9 @@ namespace sisexperto
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> ponderacion
+        public global::System.Double ponderacion
         {
             get
             {
@@ -1336,8 +1338,8 @@ namespace sisexperto
                 OnponderacionChanged();
             }
         }
-        private Nullable<global::System.Double> _ponderacion;
-        partial void OnponderacionChanging(Nullable<global::System.Double> value);
+        private global::System.Double _ponderacion;
+        partial void OnponderacionChanging(global::System.Double value);
         partial void OnponderacionChanged();
     
         /// <summary>

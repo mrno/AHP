@@ -55,6 +55,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterios)).BeginInit();
@@ -242,9 +243,12 @@
             // 
             this.dataGridExpertoProyecto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridExpertoProyecto.Location = new System.Drawing.Point(431, 351);
+            this.dataGridExpertoProyecto.MultiSelect = false;
             this.dataGridExpertoProyecto.Name = "dataGridExpertoProyecto";
+            this.dataGridExpertoProyecto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpertoProyecto.Size = new System.Drawing.Size(435, 150);
             this.dataGridExpertoProyecto.TabIndex = 26;
+            this.dataGridExpertoProyecto.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridExpertoProyecto_Click);
             // 
             // label7
             // 
@@ -262,6 +266,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 28;
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label8
             // 
@@ -272,11 +277,22 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Peso:";
             // 
+            // button1
+            // 
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(338, 376);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(55, 49);
+            this.button1.TabIndex = 30;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CargarProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 565);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label8);
@@ -299,6 +315,7 @@
             this.Name = "CargarProyecto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cargar datos";
+            this.Load += new System.EventHandler(this.CargarProyecto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterios)).EndInit();
@@ -334,8 +351,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridExpertoProyecto;
         private System.Windows.Forms.Label label7;
+   
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button1;
     }
 }
 

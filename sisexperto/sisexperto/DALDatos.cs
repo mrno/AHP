@@ -373,6 +373,21 @@ namespace sisexperto
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
+        public void modificarPonderacionExpertoProyectoAHP(int id_proyecto, int id_experto, int poderacion)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            experto_proyecto comp = (from c in gisiaContexto.experto_proyecto
+                                            where (c.id_proyecto == id_proyecto
+                                                   && c.id_experto == id_experto)
+                                                   
+                                            select c).FirstOrDefault<experto_proyecto>();
+            comp.ponderacion = poderacion;
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+
+
 
         public string valorarPalabra(int valor)
         {
