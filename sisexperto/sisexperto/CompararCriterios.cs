@@ -87,12 +87,16 @@ namespace sisexperto
                 track.SetBounds(75, y, 400, 45);
                 track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
-                track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto, comp.id_experto, comp.pos_fila, comp.pos_columna);
+                track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto,
+                    comp.id_experto, comp.pos_fila, comp.pos_columna);
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
 
                 Label miLabel = new Label();
                 miLabel.SetBounds(150, y + 45, 250, 30);
+                double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_experto, comp.pos_fila,
+                                                              comp.pos_columna);
+                miLabel.Text = dato.obtenerDescripcion(doble);
                 miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
              
 

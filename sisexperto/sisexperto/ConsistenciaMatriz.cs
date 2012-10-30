@@ -6,7 +6,7 @@ namespace sisexperto
 {
     public class ConsistenciaMatriz
     {
-
+        /*un nuevo comentario*/
         MatlabUtils matlabUtils = new MatlabUtils();
         public Boolean calcularConsistencia(double[,] matriz)
         {
