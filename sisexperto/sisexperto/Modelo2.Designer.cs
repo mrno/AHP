@@ -1228,13 +1228,15 @@ namespace sisexperto
         /// <param name="id_proyecto">Valor inicial de la propiedad id_proyecto.</param>
         /// <param name="id_experto">Valor inicial de la propiedad id_experto.</param>
         /// <param name="iLPonderacion">Valor inicial de la propiedad ILPonderacion.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion)
+        /// <param name="valoracion_consistente">Valor inicial de la propiedad valoracion_consistente.</param>
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion, global::System.Boolean valoracion_consistente)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_asignacion = id_asignacion;
             experto_proyecto.id_proyecto = id_proyecto;
             experto_proyecto.id_experto = id_experto;
             experto_proyecto.ILPonderacion = iLPonderacion;
+            experto_proyecto.valoracion_consistente = valoracion_consistente;
             return experto_proyecto;
         }
 
@@ -1363,6 +1365,30 @@ namespace sisexperto
         private global::System.Double _ILPonderacion;
         partial void OnILPonderacionChanging(global::System.Double value);
         partial void OnILPonderacionChanged();
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean valoracion_consistente
+        {
+            get
+            {
+                return _valoracion_consistente;
+            }
+            set
+            {
+                Onvaloracion_consistenteChanging(value);
+                ReportPropertyChanging("valoracion_consistente");
+                _valoracion_consistente = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("valoracion_consistente");
+                Onvaloracion_consistenteChanged();
+            }
+        }
+        private global::System.Boolean _valoracion_consistente;
+        partial void Onvaloracion_consistenteChanging(global::System.Boolean value);
+        partial void Onvaloracion_consistenteChanged();
 
         #endregion
     

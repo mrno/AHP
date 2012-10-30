@@ -245,6 +245,19 @@ namespace sisexperto
             
         }
 
+        public List<experto> expeProyConsistente(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            var lista = (from ep in gisiaContexto.experto_proyecto
+                         where ep.id_proyecto == id_proyecto && ep.valoracion_consistente == true
+                         select ep);
+            List<experto> listaExpertos = (from e in gisiaContexto.experto
+                                           join ep in lista on e.id_experto equals ep.id_experto
+                                           select e).ToList<experto>();
+            return listaExpertos;
+
+        }
+
         public void altaCriterio(int id_proyecto, string nombre, string descripcion)
         {
             gisiaContexto = new gisiabaseEntities2();
@@ -264,8 +277,22 @@ namespace sisexperto
             experto_proyecto asignacion = new experto_proyecto();
             asignacion.id_proyecto = id_proyecto;
             asignacion.id_experto = id_experto;
+            asignacion.valoracion_consistente = false;
             asignacion.ILPonderacion = 0;
             gisiaContexto.AddToexperto_proyecto(asignacion);
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+        public void actualizarConsistenciaProyecto(int id_proyecto, int id_experto, bool consistencia)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+
+            experto_proyecto asignacion = (from exp_proy in gisiaContexto.experto_proyecto
+                                           where exp_proy.id_proyecto == id_proyecto && exp_proy.id_experto == id_experto
+                                           select exp_proy).FirstOrDefault<experto_proyecto>();
+            
+            asignacion.valoracion_consistente = consistencia;
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
