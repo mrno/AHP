@@ -134,6 +134,7 @@
     <Compile Include="CargarProyecto.Designer.cs">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="FachadaSistema.cs" />
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
