@@ -255,6 +255,7 @@
     <None Include="Properties\DataSources\criterio.datasource" />
     <None Include="Properties\DataSources\criterio1.datasource" />
     <None Include="Properties\DataSources\experto.datasource" />
+    <None Include="Properties\DataSources\experto_proyecto.datasource" />
     <None Include="Properties\DataSources\gisiabaseEntities1.datasource" />
     <None Include="Properties\DataSources\gisiabaseEntities21.datasource" />
     <None Include="Properties\DataSources\proyecto.datasource" />

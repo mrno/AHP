@@ -21,7 +21,14 @@ namespace sisexperto
             InitializeComponent();
             id_proyecto = id;
         }
+        private void CargarProyecto_Load(object sender, EventArgs e)
+        {
+
+            List<experto_proyecto> lista = dato.expertosPorProyecto2(id_proyecto);
         
+        
+        
+        }
         private void button5_Click(object sender, EventArgs e)
         {
             if ((listaAlternativas.Count > 2) && (listaCriteiro.Count > 2))
@@ -128,10 +135,6 @@ namespace sisexperto
                 MessageBox.Show("Debe completar los campos Nombre y Descripcion.");
         }
 
-        private void CargarProyecto_Load(object sender, EventArgs e)
-        {
-
-        }
         
     }
 

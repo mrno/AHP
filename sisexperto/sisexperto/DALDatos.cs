@@ -236,14 +236,27 @@ namespace sisexperto
         {
             gisiaContexto = new gisiabaseEntities2();
             var lista = (from ep in gisiaContexto.experto_proyecto
-                                            where ep.id_proyecto == id_proyecto
-                                            select ep);
+                         where ep.id_proyecto == id_proyecto
+                         select ep);
             List<experto> listaExpertos = (from e in gisiaContexto.experto
                                            join ep in lista on e.id_experto equals ep.id_experto
                                            select e).ToList<experto>();
             return listaExpertos;
-            
+
         }
+
+        public List<experto_proyecto> expertosPorProyecto2(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            var lista = (from ep in gisiaContexto.experto_proyecto
+                         where ep.id_proyecto == id_proyecto
+                         select ep).ToList<experto_proyecto>();
+
+            return lista;
+
+        }
+
+
 
         public void altaCriterio(int id_proyecto, string nombre, string descripcion)
         {

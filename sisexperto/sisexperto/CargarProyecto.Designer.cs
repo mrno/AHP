@@ -31,7 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CargarProyecto));
             this.gridAlternativas = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridCriterios = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.criterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,16 +51,15 @@
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.criterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridExpertoProyecto = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertoProyecto)).BeginInit();
             this.SuspendLayout();
             // 
             // gridAlternativas
@@ -70,6 +75,24 @@
             this.gridAlternativas.Size = new System.Drawing.Size(435, 150);
             this.gridAlternativas.TabIndex = 0;
             // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            // 
+            // alternativaBindingSource
+            // 
+            this.alternativaBindingSource.DataSource = typeof(sisexperto.alternativa);
+            // 
             // gridCriterios
             // 
             this.gridCriterios.AutoGenerateColumns = false;
@@ -78,14 +101,32 @@
             this.nombreDataGridViewTextBoxColumn1,
             this.descripcionDataGridViewTextBoxColumn1});
             this.gridCriterios.DataSource = this.criterioBindingSource;
-            this.gridCriterios.Location = new System.Drawing.Point(431, 266);
+            this.gridCriterios.Location = new System.Drawing.Point(431, 195);
             this.gridCriterios.Name = "gridCriterios";
             this.gridCriterios.Size = new System.Drawing.Size(435, 150);
             this.gridCriterios.TabIndex = 4;
             // 
+            // nombreDataGridViewTextBoxColumn1
+            // 
+            this.nombreDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "nombre";
+            this.nombreDataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
+            // 
+            // descripcionDataGridViewTextBoxColumn1
+            // 
+            this.descripcionDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descripcionDataGridViewTextBoxColumn1.DataPropertyName = "descripcion";
+            this.descripcionDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn1.Name = "descripcionDataGridViewTextBoxColumn1";
+            // 
+            // criterioBindingSource
+            // 
+            this.criterioBindingSource.DataSource = typeof(sisexperto.criterio);
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(723, 461);
+            this.button5.Location = new System.Drawing.Point(697, 509);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(169, 42);
             this.button5.TabIndex = 7;
@@ -127,14 +168,14 @@
             // 
             // txt4
             // 
-            this.txt4.Location = new System.Drawing.Point(184, 349);
+            this.txt4.Location = new System.Drawing.Point(184, 278);
             this.txt4.Name = "txt4";
             this.txt4.Size = new System.Drawing.Size(100, 20);
             this.txt4.TabIndex = 15;
             // 
             // txt3
             // 
-            this.txt3.Location = new System.Drawing.Point(184, 300);
+            this.txt3.Location = new System.Drawing.Point(184, 229);
             this.txt3.Name = "txt3";
             this.txt3.Size = new System.Drawing.Size(100, 20);
             this.txt3.TabIndex = 14;
@@ -142,7 +183,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 356);
+            this.label1.Location = new System.Drawing.Point(68, 285);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 13;
@@ -151,7 +192,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(68, 307);
+            this.label4.Location = new System.Drawing.Point(68, 236);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 12;
@@ -170,7 +211,7 @@
             // button4
             // 
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(338, 307);
+            this.button4.Location = new System.Drawing.Point(338, 236);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 49);
             this.button4.TabIndex = 23;
@@ -180,62 +221,66 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(143, 19);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(143, 39);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.Size = new System.Drawing.Size(100, 20);
             this.label5.TabIndex = 24;
             this.label5.Text = "Alternativa:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(143, 243);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(143, 195);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.Size = new System.Drawing.Size(72, 20);
             this.label6.TabIndex = 25;
             this.label6.Text = "Criterio:";
             // 
-            // nombreDataGridViewTextBoxColumn1
+            // dataGridExpertoProyecto
             // 
-            this.nombreDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
+            this.dataGridExpertoProyecto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridExpertoProyecto.Location = new System.Drawing.Point(431, 351);
+            this.dataGridExpertoProyecto.Name = "dataGridExpertoProyecto";
+            this.dataGridExpertoProyecto.Size = new System.Drawing.Size(435, 150);
+            this.dataGridExpertoProyecto.TabIndex = 26;
             // 
-            // descripcionDataGridViewTextBoxColumn1
+            // label7
             // 
-            this.descripcionDataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionDataGridViewTextBoxColumn1.DataPropertyName = "descripcion";
-            this.descripcionDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn1.Name = "descripcionDataGridViewTextBoxColumn1";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(143, 342);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(114, 20);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Ponderacion:";
             // 
-            // criterioBindingSource
+            // textBox1
             // 
-            this.criterioBindingSource.DataSource = typeof(sisexperto.criterio);
+            this.textBox1.Location = new System.Drawing.Point(184, 376);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 28;
             // 
-            // nombreDataGridViewTextBoxColumn
+            // label8
             // 
-            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            this.descripcionDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "descripcion";
-            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
-            // 
-            // alternativaBindingSource
-            // 
-            this.alternativaBindingSource.DataSource = typeof(sisexperto.alternativa);
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(68, 383);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Peso:";
             // 
             // CargarProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 506);
+            this.ClientSize = new System.Drawing.Size(970, 565);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.dataGridExpertoProyecto);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button4);
@@ -254,11 +299,11 @@
             this.Name = "CargarProyecto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cargar datos";
-            this.Load += new System.EventHandler(this.CargarProyecto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertoProyecto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,6 +332,10 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridExpertoProyecto;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label8;
     }
 }
 
