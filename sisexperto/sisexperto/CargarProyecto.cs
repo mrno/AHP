@@ -38,6 +38,10 @@ namespace sisexperto
             listaExpertoProyecto = dato.expertosPorProyecto2(id_proyecto);
 
             dataGridExpertoProyecto.DataSource = listaExpertoProyecto;
+
+
+
+
         }
         private void button5_Click(object sender, EventArgs e)
         {
