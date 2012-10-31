@@ -15,13 +15,30 @@ namespace sisexperto
         private int id_proyecto;
         private List<alternativa> listaAlternativas = new List<alternativa>();
         private List<criterio> listaCriteiro = new List<criterio>();
+        private List<experto_proyecto> listaExpertoProyecto;
+        private DataGridViewCell cell;
+        private DataGridViewRow row;
 
         public CargarProyecto(int id)
         {
             InitializeComponent();
             id_proyecto = id;
         }
-        
+        private void CargarProyecto_Load(object sender, EventArgs e)
+        {
+
+           RefrescarListaExpertoProyecto();
+            dataGridExpertoProyecto.AutoGenerateColumns = true;
+         
+            
+        }
+
+        private void RefrescarListaExpertoProyecto()
+        {
+            listaExpertoProyecto = dato.expertosPorProyecto2(id_proyecto);
+
+            dataGridExpertoProyecto.DataSource = listaExpertoProyecto;
+        }
         private void button5_Click(object sender, EventArgs e)
         {
             if ((listaAlternativas.Count > 2) && (listaCriteiro.Count > 2))
@@ -138,11 +155,41 @@ namespace sisexperto
                 MessageBox.Show("Debe completar los campos Nombre y Descripcion.");
         }
 
-        private void CargarProyecto_Load(object sender, EventArgs e)
+        private void dataGridExpertoProyecto_Click(object sender, DataGridViewCellEventArgs e)
         {
-
+            row = this.dataGridExpertoProyecto.SelectedRows[0];
+           // row = this.dataGridExpertoProyecto.Rows[cell.RowIndex];
+            
+            string value = row.Cells[3].Value.ToString();
+            textBox1.Text = value;
         }
-        
+
+
+        private void cargarEnListLaPonderacion()
+        {
+           // listaExpertoProyecto[cell.RowIndex].ponderacion=Convert.ToInt32(textBox1.Text);
+            
+            Int32 ponderacion = Convert.ToInt32(textBox1.Text);
+            Int32 id_experto = listaExpertoProyecto[row.Index].id_experto;
+            dato.modificarPonderacionExpertoProyectoAHP(id_proyecto,id_experto,ponderacion);
+            RefrescarListaExpertoProyecto();
+        }
+
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            const char Delete = (char)8;
+            e.Handled = !Char.IsDigit(e.KeyChar) && e.KeyChar != Delete;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            cargarEnListLaPonderacion();
+        }
+
+     
+
+   
     }
 
 

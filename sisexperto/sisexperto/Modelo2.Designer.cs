@@ -1275,14 +1275,16 @@ namespace sisexperto
         /// <param name="id_asignacion">Valor inicial de la propiedad id_asignacion.</param>
         /// <param name="id_proyecto">Valor inicial de la propiedad id_proyecto.</param>
         /// <param name="id_experto">Valor inicial de la propiedad id_experto.</param>
+        /// <param name="ponderacion">Valor inicial de la propiedad ponderacion.</param>
         /// <param name="iLPonderacion">Valor inicial de la propiedad ILPonderacion.</param>
         /// <param name="valoracion_consistente">Valor inicial de la propiedad valoracion_consistente.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion, global::System.Boolean valoracion_consistente)
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double ponderacion, global::System.Double iLPonderacion, global::System.Boolean valoracion_consistente)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_asignacion = id_asignacion;
             experto_proyecto.id_proyecto = id_proyecto;
             experto_proyecto.id_experto = id_experto;
+            experto_proyecto.ponderacion = ponderacion;
             experto_proyecto.ILPonderacion = iLPonderacion;
             experto_proyecto.valoracion_consistente = valoracion_consistente;
             return experto_proyecto;
@@ -1369,9 +1371,9 @@ namespace sisexperto
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> ponderacion
+        public global::System.Double ponderacion
         {
             get
             {
@@ -1386,8 +1388,8 @@ namespace sisexperto
                 OnponderacionChanged();
             }
         }
-        private Nullable<global::System.Double> _ponderacion;
-        partial void OnponderacionChanging(Nullable<global::System.Double> value);
+        private global::System.Double _ponderacion;
+        partial void OnponderacionChanging(global::System.Double value);
         partial void OnponderacionChanged();
     
         /// <summary>

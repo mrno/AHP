@@ -51,7 +51,7 @@ namespace sisexperto
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
                         dato.modificarComparacionAlternativa(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
-                        dato.actualizarConsistenciaProyecto(id_experto, id_experto, false);
+                        dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
                         dato.actualizarMatrizAlternativa(id_proyecto, id_experto, id_criterio, false);
                     }
                 }
@@ -172,41 +172,10 @@ namespace sisexperto
             //button3.Visible = true;
         }
 
-        //private void button3_Click(object sender, EventArgs e)
-        //{
-        //    if (colaCriterio.Count != 0)
-        //    {
-        //        foreach (Control track in this.Controls)
-        //        {
-        //            if (track is TrackBar)
-        //            {
-        //                foreach (Control unLabel in this.Controls)
-        //                    {
-        //                        if (unLabel is Label && unLabel.Name == track.Name)
-        //                            this.Controls.Remove(unLabel);
-        //                    }
-        //                this.Controls.Remove(track);
-        //            }
-        //        }
-
-        //        button1.Visible = true;
-        //        crit = colaCriterio.Dequeue();
-        //        label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
-        //        cargarTracks(crit.id_criterio);
-
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Valoración finalizada. Matrices consistentes.");
-        //        dato.actualizarConsistenciaProyecto(id_experto, id_experto, true);
-        //        button4.Visible = true;
-        //    }
-        //}
-
         private void button4_Click(object sender, EventArgs e)
         {
-            CalcularAhp frmCalcularAhp = new CalcularAhp(id_proyecto, id_experto);
-            frmCalcularAhp.ShowDialog();
+            CalcularAhpAgregadoPonderado frmCalcularAhpAgregadoPonderado = new CalcularAhpAgregadoPonderado(id_proyecto, id_experto);
+            frmCalcularAhpAgregadoPonderado.ShowDialog();
             this.Close();
         }
 

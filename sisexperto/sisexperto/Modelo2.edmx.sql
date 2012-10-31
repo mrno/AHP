@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/29/2012 18:12:59
--- Generated from EDMX file: C:\Users\Leonardo\Documents\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
+-- Date Created: 10/31/2012 17:46:59
+-- Generated from EDMX file: C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -112,8 +112,9 @@ CREATE TABLE [dbo].[experto_proyecto] (
     [id_asignacion] int IDENTITY(1,1) NOT NULL,
     [id_proyecto] int  NOT NULL,
     [id_experto] int  NOT NULL,
-    [ponderacion] float  NULL,
-    [ILPonderacion] float  NOT NULL
+    [ponderacion] float  NOT NULL,
+    [ILPonderacion] float  NOT NULL,
+    [valoracion_consistente] bit  NOT NULL
 );
 GO
 

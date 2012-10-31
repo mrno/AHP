@@ -11,23 +11,45 @@ namespace sisexperto
 {
     public partial class LogExperto : Form
     {
-        private DALDatos dato = new DALDatos();
-        public LogExperto()
+        private FrmPrincipal ventanaOrigen;
+
+        public event FrmPrincipal.InicioSesion InicioCorrecto;
+
+        private FachadaSistema _fachada;
+
+        public LogExperto(FachadaSistema Fachada)
         {
             InitializeComponent();
+            _fachada = Fachada;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            if (dato.logExperto(textBox1.Text, textBox2.Text))
+            var experto = _fachada.ValidarExperto(textBoxUsuario.Text, textBoxContrasena.Text);
+            if (experto.nom_usuario == null)
             {
-                experto exp= dato.validarExperto(textBox1.Text, textBox2.Text);
-                FrmPrincipal frmProyAsignados = new FrmPrincipal(exp.id_experto);
-                frmProyAsignados.ShowDialog();
+                labelSesionInv.Visible = true;
             }
-            
+            else
+            {
+                InicioCorrecto(experto);
+                this.Close();
+            }
+        }
+        
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void textBoxContrasena_Enter(object sender, EventArgs e)
+        {
+            labelSesionInv.Visible = false;
+        }
+
+        private void textBoxUsuario_Enter(object sender, EventArgs e)
+        {
+            labelSesionInv.Visible = false;
         }
 
     }
