@@ -236,14 +236,29 @@ namespace sisexperto
         {
             gisiaContexto = new gisiabaseEntities2();
             var lista = (from ep in gisiaContexto.experto_proyecto
-                                            where ep.id_proyecto == id_proyecto
-                                            select ep);
+                         where ep.id_proyecto == id_proyecto
+                         select ep);
             List<experto> listaExpertos = (from e in gisiaContexto.experto
                                            join ep in lista on e.id_experto equals ep.id_experto
                                            select e).ToList<experto>();
             return listaExpertos;
-            
+
         }
+
+
+        public List<experto_proyecto> expertosPorProyecto2(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            var lista = (from ep in gisiaContexto.experto_proyecto
+                         where ep.id_proyecto == id_proyecto
+                         select ep).ToList<experto_proyecto>();
+
+            return lista;
+
+        }
+
+
+
 
         public List<experto> expeProyConsistente(int id_proyecto)
         {
@@ -255,6 +270,17 @@ namespace sisexperto
                                            join ep in lista on e.id_experto equals ep.id_experto
                                            select e).ToList<experto>();
             return listaExpertos;
+
+        }
+
+
+        public List<experto_proyecto> expePorProyConsistente(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            var lista = (from ep in gisiaContexto.experto_proyecto
+                         where ep.id_proyecto == id_proyecto && ep.valoracion_consistente == true
+                         select ep).ToList<experto_proyecto>();
+            return lista;
 
         }
 
@@ -387,6 +413,21 @@ namespace sisexperto
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
+        public void modificarPonderacionExpertoProyectoAHP(int id_proyecto, int id_experto, int poderacion)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            experto_proyecto comp = (from c in gisiaContexto.experto_proyecto
+                                            where (c.id_proyecto == id_proyecto
+                                                   && c.id_experto == id_experto)
+                                                   
+                                            select c).FirstOrDefault<experto_proyecto>();
+            comp.ponderacion = poderacion;
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+
+
 
         public string valorarPalabra(int valor)
         {

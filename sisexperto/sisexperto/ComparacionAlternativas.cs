@@ -48,7 +48,7 @@ namespace sisexperto
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
                         dato.modificarComparacionAlternativa(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
-                        dato.actualizarConsistenciaProyecto(id_experto, id_experto, false);
+                        dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
                     }
                 }
             }
@@ -193,15 +193,15 @@ namespace sisexperto
             else
             {
                 MessageBox.Show("Valoración finalizada. Matrices consistentes.");
-                dato.actualizarConsistenciaProyecto(id_experto, id_experto, true);
+                dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, true);
                 button4.Visible = true;
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            CalcularAhp frmCalcularAhp = new CalcularAhp(id_proyecto, id_experto);
-            frmCalcularAhp.ShowDialog();
+            CalcularAhpAgregadoPonderado frmCalcularAhpAgregadoPonderado = new CalcularAhpAgregadoPonderado(id_proyecto, id_experto);
+            frmCalcularAhpAgregadoPonderado.ShowDialog();
             this.Close();
         }
 

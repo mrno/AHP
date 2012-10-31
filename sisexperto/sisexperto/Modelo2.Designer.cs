@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
-using System.ComponentModel;
-using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Linq;
-using System.Runtime.Serialization;
+using System.Data.EntityClient;
+using System.ComponentModel;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+
 namespace sisexperto
 {
     #region Contexts
@@ -194,7 +194,6 @@ namespace sisexperto
         private ObjectSet<ILSet> _ILSetSet;
 
         #endregion
-
         #region AddTo Methods
     
         /// <summary>
@@ -262,11 +261,11 @@ namespace sisexperto
         }
 
         #endregion
-
     }
+    
 
     #endregion
-
+    
     #region Entities
     
     /// <summary>
@@ -295,7 +294,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -398,7 +396,6 @@ namespace sisexperto
         partial void OndescripcionChanged();
 
         #endregion
-
     
     }
     
@@ -438,7 +435,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -661,7 +657,6 @@ namespace sisexperto
         partial void OnvalorChanged();
 
         #endregion
-
     
     }
     
@@ -699,7 +694,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -898,7 +892,6 @@ namespace sisexperto
         partial void OnvalorChanged();
 
         #endregion
-
     
     }
     
@@ -930,7 +923,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1057,7 +1049,6 @@ namespace sisexperto
         partial void OnILPonderacionChanged();
 
         #endregion
-
     
     }
     
@@ -1091,7 +1082,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1218,7 +1208,6 @@ namespace sisexperto
         partial void OnclaveChanged();
 
         #endregion
-
     
     }
     
@@ -1235,25 +1224,25 @@ namespace sisexperto
         /// <summary>
         /// Create a new experto_proyecto object.
         /// </summary>
-		/// <param name="id_asignacion">Valor inicial de la propiedad id_asignacion.</param>
-        /// <param name="id_proyecto">Valor inicial de la propiedad id_proyecto.</param>
-        /// <param name="id_experto">Valor inicial de la propiedad id_experto.</param>
-        /// <param name="iLPonderacion">Valor inicial de la propiedad ILPonderacion.</param>
-        /// <param name="valoracion_consistente">Valor inicial de la propiedad valoracion_consistente.</param>
-        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double iLPonderacion, global::System.Boolean valoracion_consistente)
-
+        /// <param name="id_asignacion">Initial value of the id_asignacion property.</param>
+        /// <param name="id_proyecto">Initial value of the id_proyecto property.</param>
+        /// <param name="id_experto">Initial value of the id_experto property.</param>
+        /// <param name="ponderacion">Initial value of the ponderacion property.</param>
+        /// <param name="iLPonderacion">Initial value of the ILPonderacion property.</param>
+        /// <param name="valoracion_consistente">Initial value of the valoracion_consistente property.</param>
+        public static experto_proyecto Createexperto_proyecto(global::System.Int32 id_asignacion, global::System.Int32 id_proyecto, global::System.Int32 id_experto, global::System.Double ponderacion, global::System.Double iLPonderacion, global::System.Boolean valoracion_consistente)
         {
             experto_proyecto experto_proyecto = new experto_proyecto();
             experto_proyecto.id_asignacion = id_asignacion;
             experto_proyecto.id_proyecto = id_proyecto;
             experto_proyecto.id_experto = id_experto;
+            experto_proyecto.ponderacion = ponderacion;
             experto_proyecto.ILPonderacion = iLPonderacion;
             experto_proyecto.valoracion_consistente = valoracion_consistente;
             return experto_proyecto;
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1334,9 +1323,9 @@ namespace sisexperto
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> ponderacion
+        public global::System.Double ponderacion
         {
             get
             {
@@ -1351,8 +1340,8 @@ namespace sisexperto
                 OnponderacionChanged();
             }
         }
-        private Nullable<global::System.Double> _ponderacion;
-        partial void OnponderacionChanging(Nullable<global::System.Double> value);
+        private global::System.Double _ponderacion;
+        partial void OnponderacionChanging(global::System.Double value);
         partial void OnponderacionChanged();
     
         /// <summary>
@@ -1380,7 +1369,7 @@ namespace sisexperto
         partial void OnILPonderacionChanged();
     
         /// <summary>
-        /// No hay documentación de metadatos disponible.
+        /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
@@ -1404,7 +1393,6 @@ namespace sisexperto
         partial void Onvaloracion_consistenteChanged();
 
         #endregion
-
     
     }
     
@@ -1446,7 +1434,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1669,7 +1656,6 @@ namespace sisexperto
         partial void OnvalorChanged();
 
         #endregion
-
     
     }
     
@@ -1701,7 +1687,6 @@ namespace sisexperto
         }
 
         #endregion
-
         #region Primitive Properties
     
         /// <summary>
@@ -1804,11 +1789,9 @@ namespace sisexperto
         partial void OnobjetivoChanged();
 
         #endregion
-
     
     }
 
     #endregion
-
     
 }

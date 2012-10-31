@@ -4,8 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
+using MathWorks.MATLAB.NET.Arrays;
+using CalcularAHP;
+using Consistencia;
+using Mejora;
 
 namespace sisexperto
 {
@@ -109,6 +114,21 @@ namespace sisexperto
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             EjecutarLogin();
+
+
+            //una forma rebuscada para cargar las dll.
+            // con LoadAssembly no lo pude hacer funcionar.
+
+            //var foo1 = new  CalculoAHP();
+            //var foo3 = new   Consistencia.Consistencia();
+            //var foo4 = new   Mejora.Consistencia();
+
+
+        }
+
+        private void groupBoxProyectos_Enter(object sender, EventArgs e)
+        {
+
         }
 
         private void filtroProyecto_Leave(object sender, EventArgs e)
