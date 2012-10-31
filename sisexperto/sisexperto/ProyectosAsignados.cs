@@ -31,5 +31,13 @@ namespace sisexperto
             CompararCriterios frmComparar = new CompararCriterios(proy.id_proyecto,id_experto);
             frmComparar.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            Evaluaciones frmEval = new Evaluaciones(proy.id_proyecto, id_experto);
+            frmEval.ShowDialog();
+        }
+
     }
 }

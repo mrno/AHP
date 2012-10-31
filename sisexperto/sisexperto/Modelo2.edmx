@@ -13,6 +13,8 @@
           <EntitySet Name="experto" EntityType="gisiabaseModel1.Store.experto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel1.Store.experto_proyecto" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ILSetSet" EntityType="gisiabaseModel1.Store.ILSetSet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="matriz_alternativa" EntityType="gisiabaseModel1.Store.matriz_alternativa" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="matriz_criterio" EntityType="gisiabaseModel1.Store.matriz_criterio" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="proyecto" EntityType="gisiabaseModel1.Store.proyecto" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
         <EntityType Name="alternativa">
@@ -96,6 +98,25 @@
           <Property Name="id_asignacion" Type="nvarchar(max)" Nullable="false" />
           <Property Name="valor" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="matriz_alternativa">
+          <Key>
+            <PropertyRef Name="id_matrizAlternativa" />
+          </Key>
+          <Property Name="id_matrizAlternativa" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="id_criterio" Type="int" Nullable="false" />
+          <Property Name="consistente" Type="bit" />
+        </EntityType>
+        <EntityType Name="matriz_criterio">
+          <Key>
+            <PropertyRef Name="id_matrizCriterio" />
+          </Key>
+          <Property Name="id_matrizCriterio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="int" Nullable="false" />
+          <Property Name="id_experto" Type="int" Nullable="false" />
+          <Property Name="consistente" Type="bit" />
+        </EntityType>
         <EntityType Name="proyecto">
           <Key>
             <PropertyRef Name="id_proyecto" />
@@ -118,6 +139,8 @@
           <EntitySet Name="experto_proyecto" EntityType="gisiabaseModel1.experto_proyecto" />
           <EntitySet Name="proyecto" EntityType="gisiabaseModel1.proyecto" />
           <EntitySet Name="ILSetSet" EntityType="gisiabaseModel1.ILSet" />
+          <EntitySet Name="matriz_alternativa" EntityType="gisiabaseModel1.matriz_alternativa" />
+          <EntitySet Name="matriz_criterio" EntityType="gisiabaseModel1.matriz_criterio" />
         </EntityContainer>
         <EntityType Name="alternativa">
           <Key>
@@ -208,6 +231,25 @@
           <Property Type="String" Name="id_proyecto" Nullable="false" />
           <Property Type="String" Name="id_asignacion" Nullable="false" />
           <Property Type="String" Name="valor" Nullable="false" />
+        </EntityType>
+        <EntityType Name="matriz_alternativa">
+          <Key>
+            <PropertyRef Name="id_matrizAlternativa" />
+          </Key>
+          <Property Type="Int32" Name="id_matrizAlternativa" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id_proyecto" Nullable="false" />
+          <Property Type="Int32" Name="id_experto" Nullable="false" />
+          <Property Type="Int32" Name="id_criterio" Nullable="false" />
+          <Property Type="Boolean" Name="consistente" />
+        </EntityType>
+        <EntityType Name="matriz_criterio">
+          <Key>
+            <PropertyRef Name="id_matrizCriterio" />
+          </Key>
+          <Property Type="Int32" Name="id_matrizCriterio" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="id_proyecto" Nullable="false" />
+          <Property Type="Int32" Name="id_experto" Nullable="false" />
+          <Property Type="Boolean" Name="consistente" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -313,6 +355,27 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="matriz_alternativa">
+            <EntityTypeMapping TypeName="gisiabaseModel1.matriz_alternativa">
+              <MappingFragment StoreEntitySet="matriz_alternativa">
+                <ScalarProperty Name="consistente" ColumnName="consistente" />
+                <ScalarProperty Name="id_criterio" ColumnName="id_criterio" />
+                <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="id_matrizAlternativa" ColumnName="id_matrizAlternativa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="matriz_criterio">
+            <EntityTypeMapping TypeName="gisiabaseModel1.matriz_criterio">
+              <MappingFragment StoreEntitySet="matriz_criterio">
+                <ScalarProperty Name="consistente" ColumnName="consistente" />
+                <ScalarProperty Name="id_experto" ColumnName="id_experto" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="id_matrizCriterio" ColumnName="id_matrizCriterio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -341,6 +404,8 @@
         <EntityTypeShape EntityType="gisiabaseModel1.experto_proyecto" Width="2.375" PointX="4.75" PointY="4" Height="1.9802864583333326" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel1.proyecto" Width="1.5" PointX="8.625" PointY="1.125" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel1.ILSet" Width="1.5" PointX="9.375" PointY="3.375" Height="2.7494921874999996" />
+        <EntityTypeShape EntityType="gisiabaseModel1.matriz_alternativa" Width="1.5" PointX="1.5" PointY="6.625" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="gisiabaseModel1.matriz_criterio" Width="1.5" PointX="3.375" PointY="6.625" Height="1.7879850260416674" />
       </Diagram>
     </Diagrams>
   </Designer>

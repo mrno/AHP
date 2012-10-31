@@ -388,6 +388,80 @@ namespace sisexperto
             gisiaContexto.Dispose();
         }
 
+        public void altaMatrizCriterio(int id_proyecto, int id_experto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            matriz_criterio matriz = new matriz_criterio();
+            matriz.id_proyecto = id_proyecto;
+            matriz.id_experto = id_experto;
+            gisiaContexto.AddTomatriz_criterio(matriz);
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+        public void altaMatrizAlternativa(int id_proyecto, int id_experto, int id_criterio)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            matriz_alternativa matriz = new matriz_alternativa();
+            matriz.id_proyecto = id_proyecto;
+            matriz.id_experto = id_experto;
+            matriz.id_criterio = id_criterio;
+            gisiaContexto.AddTomatriz_alternativa(matriz);
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+        public void actualizarMatrizCriterio(int id_proyecto, int id_experto, bool consistente)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+
+            matriz_criterio matriz = (from m in gisiaContexto.matriz_criterio
+                                          where m.id_proyecto == id_proyecto && m.id_experto == id_experto
+                                          select m).FirstOrDefault<matriz_criterio>();
+
+            matriz.consistente = consistente;
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+        public void actualizarMatrizAlternativa(int id_proyecto, int id_experto, int id_criterio, bool consistente)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+
+            matriz_alternativa matriz = (from m in gisiaContexto.matriz_alternativa
+                                         where m.id_proyecto == id_proyecto && m.id_experto == id_experto && m.id_criterio == id_criterio
+                                         select m).FirstOrDefault<matriz_alternativa>();
+
+            matriz.consistente = consistente;
+            gisiaContexto.SaveChanges();
+            gisiaContexto.Dispose();
+        }
+
+        public List<matriz_criterio> obtenerMatrizCriterio(int id_proyecto, int id_experto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+
+            List<matriz_criterio> matriz = (from m in gisiaContexto.matriz_criterio
+                                            where m.id_proyecto == id_proyecto && m.id_experto == id_experto
+                                            select m).ToList<matriz_criterio>();
+            gisiaContexto.Dispose();
+            return matriz;
+        }
+
+        public List<matriz_alternativa> obtenerMatrizAlternativa(int id_proyecto, int id_experto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+
+            List<matriz_alternativa> listaMatriz = (from m in gisiaContexto.matriz_alternativa
+                                                    where m.id_proyecto == id_proyecto && m.id_experto == id_experto
+                                                    select m).ToList<matriz_alternativa>();
+            gisiaContexto.Dispose();
+            return listaMatriz;
+        }
+
+
+
+
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 9
