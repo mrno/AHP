@@ -1,6 +1,6 @@
 ﻿namespace sisexperto
 {
-    partial class CalcularAhp
+    partial class CalcularAhpAgregadoPonderado
     {
         /// <summary>
         /// Required designer variable.
@@ -47,7 +47,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 356);
             this.Controls.Add(this.label1);
-            this.Name = "CalcularAhp";
+            this.Name = "CalcularAhpAgregadoPonderado";
             this.Text = "CalcularAhp";
             this.Load += new System.EventHandler(this.CalcularAhp_Load);
             this.ResumeLayout(false);

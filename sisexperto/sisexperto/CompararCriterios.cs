@@ -60,7 +60,7 @@ namespace sisexperto
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
                         dato.modificarComparacionCriterios(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
-                        dato.actualizarConsistenciaProyecto(id_experto, id_experto, false);
+                        dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
                     }
                 }
             }

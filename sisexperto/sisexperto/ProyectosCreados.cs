@@ -16,8 +16,8 @@ namespace sisexperto
         private int id_experto;
         private int id;
         private CalculoAHP calculo;
-       
-        
+        private double[,] ranking;
+     
         private List<double[,]> listaCompleta = new List<double[,]>();
         private List<NAlternativas> listaNAlt;
         private AgregacionNoPonderada calculadorNoPonderadas = new AgregacionNoPonderada();
@@ -77,8 +77,15 @@ namespace sisexperto
                 }
 
                 //Luego de todo este despelote, listaCompleta está terminada para pasarse a la clase CalculoAHP.
+                
+                CalculoAHP calculo = new CalculoAHP();
+                ranking = calculo.calcularRanking(listaCompleta);
 
-                CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(listaCompleta, proy.id_proyecto);
+
+
+
+
+                CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(ranking, proy.id_proyecto);
                 frmAhpAgregado.ShowDialog();
             }
             else
@@ -93,48 +100,34 @@ namespace sisexperto
         private void button3_Click(object sender, EventArgs e)
         {
 
-            //proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
-            //listaExpertoProyecto = dato.expePorProyConsistente(proy.id_proyecto);
-            //PreparacionListaCriterioAlternativa preparacionLista = new PreparacionListaCriterioAlternativa();
+            proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            listaExpertoProyecto = dato.expePorProyConsistente(proy.id_proyecto);
+            PreparacionListaCriterioAlternativa preparacionLista = new PreparacionListaCriterioAlternativa();
 
-            //if (listaExpertoProyecto.Count != 0)
-            //{
-            //    List<double[,]> listaPreparada = preparacionLista.Preparar(id, id_experto)
-            //    List<KRankPonderado> listaKRankPonderado;
-            //    foreach (experto_proyecto exp in listaExpertoProyecto)
-            //    {
-            //        KRankPonderado kRankPonderado = new KRankPonderado();
-            //      calculo = new CalculoAHP();
-            //kRankPonderado.KRanking = calculo.calcularRanking(listaPreparada);
-            //        kRankPonderado.Peso = exp.ponderacion;
+            if (listaExpertoProyecto.Count != 0)
+            {
+                List<double[,]> listaPreparada = preparacionLista.Preparar(id, id_experto);
+                List<KRankPonderado> listaKRankPonderado = new List<KRankPonderado>();
+                foreach (experto_proyecto exp in listaExpertoProyecto)
+                {
+                    KRankPonderado kRankPonderado = new KRankPonderado();
+                  calculo = new CalculoAHP();
+            kRankPonderado.KRanking = calculo.calcularRanking(listaPreparada);
+                    kRankPonderado.Peso = Convert.ToInt32(exp.ponderacion);
+                    listaKRankPonderado.Add(kRankPonderado);
+                }
+                AgregacionPonderada agregacionPonderada = new AgregacionPonderada();
 
-            //    }
+                var rdo = agregacionPonderada.agregar(listaKRankPonderado);
 
-            //    matrizCriterioPonderar = new AgrCriterio(proy.id_proyecto);
 
-            //    //Acá procedo a agregarle la primer matriz, la de criterios:
-
-            //    listaCompleta.Add(calculadorPonderadas.agregar().AgregarCriterios(matrizCriterioPonderar));
-
-            //    //Acá creo una lista con las alternativas ponderadas en la primer línea y luego la recorro y para cada elemento le asigno
-            //    //su valor de atributo a la listaCompleta:
-
-            //    listaNAlt = calculadorNoPonderadas.AgregarAlternativas(listaAlternativasPonderar);
-
-            //    foreach (NAlternativas alt in listaNAlt)
-            //    {
-            //        listaCompleta.Add(alt.nAlternativas);
-            //    }
-
-            //    //Luego de todo este despelote, listaCompleta está terminada para pasarse a la clase CalculoAHP.
-
-            //    CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(listaCompleta, proy.id_proyecto);
-            //    frmAhpAgregado.ShowDialog();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Ningún experto ha valorado de manera consistente.");
-            //}
+               CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(rdo,proy.id_proyecto);
+               frmAhpAgregado.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Ningún experto ha valorado de manera consistente.");
+            }
 
 
         }

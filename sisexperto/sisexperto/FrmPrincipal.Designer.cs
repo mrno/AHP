@@ -177,7 +177,6 @@
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.Text = "FrmPrincipal";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.groupBoxProyectos.ResumeLayout(false);
             this.groupBoxProyectos.PerformLayout();

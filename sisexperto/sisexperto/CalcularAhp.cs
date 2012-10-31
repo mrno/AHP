@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace sisexperto
 {
-    public partial class CalcularAhp : Form
+    public partial class CalcularAhpAgregadoPonderado : Form
     {
         private double[,] ranking;
         private DALDatos dato = new DALDatos();
@@ -20,7 +20,7 @@ namespace sisexperto
         private int id_proyecto;
         private int id_experto;
 
-        public CalcularAhp(int id_proy, int id_exp)
+        public CalcularAhpAgregadoPonderado(int id_proy, int id_exp)
         {
             InitializeComponent();
             id_proyecto = id_proy;
