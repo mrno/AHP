@@ -29,13 +29,21 @@
         private void InitializeComponent()
         {
             this.proyectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.proyectosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.misProyectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proyectosAsignadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.groupBoxProyectos = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonProyectoEdicion = new System.Windows.Forms.Button();
+            this.buttonProyectoNuevo = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filtroProyecto = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBoxDetalleProyecto = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBoxProyectos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBoxDetalleProyecto.SuspendLayout();
             this.SuspendLayout();
             // 
             // proyectosToolStripMenuItem
@@ -44,82 +52,156 @@
             this.proyectosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.proyectosToolStripMenuItem.Text = "Proyectos";
             // 
-            // menuStrip1
+            // groupBoxProyectos
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.proyectosToolStripMenuItem1,
-            this.misProyectosToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(916, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.groupBoxProyectos.Controls.Add(this.label2);
+            this.groupBoxProyectos.Controls.Add(this.buttonProyectoEdicion);
+            this.groupBoxProyectos.Controls.Add(this.buttonProyectoNuevo);
+            this.groupBoxProyectos.Controls.Add(this.dataGridView1);
+            this.groupBoxProyectos.Controls.Add(this.filtroProyecto);
+            this.groupBoxProyectos.Controls.Add(this.label1);
+            this.groupBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxProyectos.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxProyectos.Name = "groupBoxProyectos";
+            this.groupBoxProyectos.Size = new System.Drawing.Size(482, 705);
+            this.groupBoxProyectos.TabIndex = 0;
+            this.groupBoxProyectos.TabStop = false;
+            this.groupBoxProyectos.Text = "Proyectos de Usuario";
+            this.groupBoxProyectos.Enter += new System.EventHandler(this.groupBoxProyectos_Enter);
             // 
-            // proyectosToolStripMenuItem1
+            // label2
             // 
-            this.proyectosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoToolStripMenuItem,
-            this.abrirToolStripMenuItem});
-            this.proyectosToolStripMenuItem1.Name = "proyectosToolStripMenuItem1";
-            this.proyectosToolStripMenuItem1.Size = new System.Drawing.Size(71, 20);
-            this.proyectosToolStripMenuItem1.Text = "Proyectos";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(161, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Listado de Proyectos:";
             // 
-            // nuevoToolStripMenuItem
+            // buttonProyectoEdicion
             // 
-            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.nuevoToolStripMenuItem.Text = "Nuevo";
-            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            this.buttonProyectoEdicion.Location = new System.Drawing.Point(272, 665);
+            this.buttonProyectoEdicion.Name = "buttonProyectoEdicion";
+            this.buttonProyectoEdicion.Size = new System.Drawing.Size(140, 30);
+            this.buttonProyectoEdicion.TabIndex = 5;
+            this.buttonProyectoEdicion.Text = "Editar";
+            this.buttonProyectoEdicion.UseVisualStyleBackColor = true;
+            this.buttonProyectoEdicion.Click += new System.EventHandler(this.buttonProyectoEdicion_Click);
             // 
-            // abrirToolStripMenuItem
+            // buttonProyectoNuevo
             // 
-            this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.abrirToolStripMenuItem.Text = "Abrir";
-            this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
+            this.buttonProyectoNuevo.Location = new System.Drawing.Point(70, 665);
+            this.buttonProyectoNuevo.Name = "buttonProyectoNuevo";
+            this.buttonProyectoNuevo.Size = new System.Drawing.Size(140, 30);
+            this.buttonProyectoNuevo.TabIndex = 4;
+            this.buttonProyectoNuevo.Text = "Nuevo";
+            this.buttonProyectoNuevo.UseVisualStyleBackColor = true;
+            this.buttonProyectoNuevo.Click += new System.EventHandler(this.buttonProyectoNuevo_Click);
             // 
-            // misProyectosToolStripMenuItem
+            // dataGridView1
             // 
-            this.misProyectosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.proyectosAsignadosToolStripMenuItem});
-            this.misProyectosToolStripMenuItem.Name = "misProyectosToolStripMenuItem";
-            this.misProyectosToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.misProyectosToolStripMenuItem.Text = "Mis Proyectos";
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Nombre,
+            this.Descripcion});
+            this.dataGridView1.Location = new System.Drawing.Point(7, 114);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(469, 535);
+            this.dataGridView1.TabIndex = 3;
             // 
-            // proyectosAsignadosToolStripMenuItem
+            // Id
             // 
-            this.proyectosAsignadosToolStripMenuItem.Name = "proyectosAsignadosToolStripMenuItem";
-            this.proyectosAsignadosToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.proyectosAsignadosToolStripMenuItem.Text = "Proyectos asignados";
-            this.proyectosAsignadosToolStripMenuItem.Click += new System.EventHandler(this.proyectosAsignadosToolStripMenuItem_Click);
+            this.Id.HeaderText = "ProyectoId";
+            this.Id.Name = "Id";
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            // 
+            // filtroProyecto
+            // 
+            this.filtroProyecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filtroProyecto.Location = new System.Drawing.Point(6, 53);
+            this.filtroProyecto.Name = "filtroProyecto";
+            this.filtroProyecto.Size = new System.Drawing.Size(470, 23);
+            this.filtroProyecto.TabIndex = 1;
+            this.filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";
+            this.filtroProyecto.Enter += new System.EventHandler(this.filtroProyecto_Enter);
+            this.filtroProyecto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.filtroProyecto_KeyUp);
+            this.filtroProyecto.Leave += new System.EventHandler(this.filtroProyecto_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Buscar Proyectos:";
+            // 
+            // groupBoxDetalleProyecto
+            // 
+            this.groupBoxDetalleProyecto.Controls.Add(this.button1);
+            this.groupBoxDetalleProyecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxDetalleProyecto.Location = new System.Drawing.Point(514, 12);
+            this.groupBoxDetalleProyecto.Name = "groupBoxDetalleProyecto";
+            this.groupBoxDetalleProyecto.Size = new System.Drawing.Size(482, 705);
+            this.groupBoxDetalleProyecto.TabIndex = 1;
+            this.groupBoxDetalleProyecto.TabStop = false;
+            this.groupBoxDetalleProyecto.Text = "Detalle del Proyecto";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(50, 263);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(166, 68);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Proyectos Asignados";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 473);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.groupBoxDetalleProyecto);
+            this.Controls.Add(this.groupBoxProyectos);
+            this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.Text = "FrmPrincipal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
+            this.groupBoxProyectos.ResumeLayout(false);
+            this.groupBoxProyectos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBoxDetalleProyecto.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ToolStripMenuItem proyectosToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem proyectosToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem misProyectosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem proyectosAsignadosToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBoxProyectos;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBoxDetalleProyecto;
+        private System.Windows.Forms.Button buttonProyectoEdicion;
+        private System.Windows.Forms.Button buttonProyectoNuevo;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.TextBox filtroProyecto;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
 
 
 
