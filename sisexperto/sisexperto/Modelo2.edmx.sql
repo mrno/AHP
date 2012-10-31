@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/30/2012 19:58:29
+-- Date Created: 10/30/2012 20:41:32
 -- Generated from EDMX file: C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
 -- --------------------------------------------------
 
@@ -40,11 +40,11 @@ GO
 IF OBJECT_ID(N'[dbo].[experto_proyecto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[experto_proyecto];
 GO
-IF OBJECT_ID(N'[dbo].[ILSetSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ILSetSet];
-GO
 IF OBJECT_ID(N'[dbo].[proyecto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[proyecto];
+GO
+IF OBJECT_ID(N'[dbo].[ILSetSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ILSetSet];
 GO
 
 -- --------------------------------------------------
@@ -113,7 +113,8 @@ CREATE TABLE [dbo].[experto_proyecto] (
     [id_proyecto] int  NOT NULL,
     [id_experto] int  NOT NULL,
     [ponderacion] float  NOT NULL,
-    [ILPonderacion] float  NOT NULL
+    [ILPonderacion] float  NOT NULL,
+    [valoracion_consistente] bit  NOT NULL
 );
 GO
 

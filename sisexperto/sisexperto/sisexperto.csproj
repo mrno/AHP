@@ -178,6 +178,7 @@
     <Compile Include="NuevoProyecto.Designer.cs">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreparacionListaCriterioAlternativa.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectosAsignados.cs">

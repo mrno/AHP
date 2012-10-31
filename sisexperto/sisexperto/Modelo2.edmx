@@ -80,6 +80,7 @@
     <Property Name="id_experto" Type="int" Nullable="false" />
     <Property Name="ponderacion" Type="float" Nullable="false" />
     <Property Name="ILPonderacion" Type="float" Nullable="false" />
+    <Property Name="valoracion_consistente" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="proyecto">
     <Key>
@@ -105,6 +106,7 @@
     <Property Name="valor" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
+
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gisiabaseModel1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -183,6 +185,7 @@
           <Property Name="id_experto" Type="Int32" Nullable="false" />
           <Property Name="ponderacion" Type="Double" Nullable="false" />
           <Property Type="Double" Name="ILPonderacion" Nullable="false" />
+          <Property Type="Boolean" Name="valoracion_consistente" Nullable="false" />
         </EntityType>
         <EntityType Name="proyecto">
           <Key>
@@ -282,6 +285,7 @@
           <ScalarProperty Name="id_experto" ColumnName="id_experto" />
           <ScalarProperty Name="ponderacion" ColumnName="ponderacion" />
           <ScalarProperty Name="ILPonderacion" ColumnName="ILPonderacion" />
+          <ScalarProperty Name="valoracion_consistente" ColumnName="valoracion_consistente" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

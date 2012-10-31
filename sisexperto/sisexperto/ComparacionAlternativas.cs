@@ -48,10 +48,10 @@ namespace sisexperto
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
                         dato.modificarComparacionAlternativa(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
+                        dato.actualizarConsistenciaProyecto(id_experto, id_experto, false);
                     }
                 }
             }
-
         }
 
         private void cargarTracks(int id_cri)
@@ -193,6 +193,7 @@ namespace sisexperto
             else
             {
                 MessageBox.Show("Valoración finalizada. Matrices consistentes.");
+                dato.actualizarConsistenciaProyecto(id_experto, id_experto, true);
                 button4.Visible = true;
             }
         }

@@ -60,6 +60,7 @@ namespace sisexperto
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
                         dato.modificarComparacionCriterios(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
+                        dato.actualizarConsistenciaProyecto(id_experto, id_experto, false);
                     }
                 }
             }
@@ -251,38 +252,7 @@ namespace sisexperto
 
         static double[] MaxValueIJ(double[,] intArray)
         {
-            //double maxVal = 0;
-            
-            //int k = 0;
-            //int l = 0;
-            //int m = 0;
-            //int n = 0;
-
-            // for (int i = 0; i < intArray.GetLength(1) - 1; i++)
-            //{
-
-
-            //    for (int j = 0; j < intArray.GetLength(1) - 1; j++)
-            //    {
-            //        if (intArray[i, 2] > maxVal)
-            //        {
-
-            //            maxVal = intArray[i, 2];
-            //            k = (Int32)intArray[i, 0];
-            //            l = (Int32)intArray[i, 1];
-            //            m = i;
-            //            n = j;
-
-            //        }
-            //    }
-            //}
-
-            //double[] rdo = new double[4];
-          //  rdo[0] = k;
-          //  rdo[1] = l;
-          //  rdo[2] = m;
-          //  rdo[3] = n;
-          //  return rdo;
+  
             double[] rdo = new double[4];
             rdo[0] = (Int32)intArray[0, 0];
             rdo[1] = (Int32)intArray[0, 1];
