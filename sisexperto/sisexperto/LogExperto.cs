@@ -13,37 +13,44 @@ namespace sisexperto
     {
         private FrmPrincipal ventanaOrigen;
 
-        public LogExperto(FrmPrincipal ventana)
+        public event FrmPrincipal.InicioSesion InicioCorrecto;
+
+        private FachadaSistema _fachada;
+
+        public LogExperto(FachadaSistema Fachada)
         {
             InitializeComponent();
-            ventanaOrigen = ventana;
+            _fachada = Fachada;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var experto = ventanaOrigen.Fachada.ValidarExperto(textBoxUsuario.Text, textBoxContrasena.Text);
-            if (experto == null)
+            var experto = _fachada.ValidarExperto(textBoxUsuario.Text, textBoxContrasena.Text);
+            if (experto.nom_usuario == null)
             {
-
+                labelSesionInv.Visible = true;
             }
             else
             {
-                ventanaOrigen.Experto = experto;
+                InicioCorrecto(experto);
                 this.Close();
             }
         }
-
-
-        private void LogExperto_FormClosed(object sender, FormClosedEventArgs e)
-        {/*
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                ventanaOrigen.Dispose();
-            }
-            else
-            {
-                
-            }*/
+        
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
+
+        private void textBoxContrasena_Enter(object sender, EventArgs e)
+        {
+            labelSesionInv.Visible = false;
+        }
+
+        private void textBoxUsuario_Enter(object sender, EventArgs e)
+        {
+            labelSesionInv.Visible = false;
+        }
+
     }
 }

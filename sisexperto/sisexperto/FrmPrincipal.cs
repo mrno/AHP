@@ -11,23 +11,80 @@ namespace sisexperto
 {
     public partial class FrmPrincipal : Form
     {
-        public FachadaSistema Fachada = new FachadaSistema();
+        public delegate void InicioSesion(experto exp);
 
-        public experto Experto;
+        private FachadaSistema _fachada = new FachadaSistema();
+
+        private experto _experto;
+        private IEnumerable<proyecto> _proyectosExperto;
+
+        private void LoginCorrecto(experto expert)
+        {
+            HabilitarGroupbox(true);
+            _experto = expert;
+            iniciarSesionToolStripMenuItem.Enabled = false;
+            cerrarSesionToolStripMenuItem.Enabled = true;
+            _proyectosExperto = _fachada.SolicitarProyectos(expert);
+            ActualizarGridProyectos("");
+        }
 
         public FrmPrincipal()
         {
             InitializeComponent();
-            Habilitar(true);
-            var log = new LogExperto(this);
-            log.ShowDialog();
+            HabilitarGroupbox(false);
             //id_experto = id_exp;
         }
 
-        private void Habilitar(bool bandera)
+        private void EjecutarLogin()
+        {
+            var log = new LogExperto(_fachada);
+            log.InicioCorrecto += (LoginCorrecto);
+            log.ShowDialog();
+        }
+
+        private void HabilitarGroupbox(bool bandera)
         {
             groupBoxProyectos.Visible = bandera;
             groupBoxDetalleProyecto.Visible = bandera;
+        }
+
+        private void ActualizarGridProyectos(string filtro)
+        {
+            var lista1 = (from p in _proyectosExperto
+                            where p.nombre.Contains(filtro) && p.objetivo.Contains(filtro)
+                            select new
+                            {
+                                ProyectoId = p.id_proyecto,
+                                Nombre = p.nombre,
+                                Objetivo = p.objetivo
+                            }).ToList();
+            var lista2 = (from p in _proyectosExperto
+                         where p.nombre.Contains(filtro) && !p.objetivo.Contains(filtro)
+                         select new
+                         {
+                             ProyectoId = p.id_proyecto,
+                             Nombre = p.nombre,
+                             Objetivo = p.objetivo
+                         }).ToList();
+            var lista3 = (from p in _proyectosExperto
+                          where !p.nombre.Contains(filtro) && p.objetivo.Contains(filtro)
+                          select new
+                          {
+                              ProyectoId = p.id_proyecto,
+                              Nombre = p.nombre,
+                              Objetivo = p.objetivo
+                          }).ToList();
+
+            var lista = lista1;
+            lista.AddRange(lista2);
+            lista.AddRange(lista3);
+            dataGridProyectos.DataSource = lista;
+
+            dataGridProyectos.Columns["ProyectoId"].Visible = false;
+            dataGridProyectos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridProyectos.BackgroundColor = Color.LightGray;
+            //dataGridProyectos.Columns["Nombre"].Width = 150;
+            //dataGridProyectos.Columns["Objetivo"].Width = 200;
         }
 
         /*
@@ -51,18 +108,12 @@ namespace sisexperto
         */
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void groupBoxProyectos_Enter(object sender, EventArgs e)
-        {
-
+            EjecutarLogin();
         }
 
         private void filtroProyecto_Leave(object sender, EventArgs e)
         {
-            filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";
-            
+            filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";            
         }
 
         private void filtroProyecto_Enter(object sender, EventArgs e)
@@ -72,25 +123,38 @@ namespace sisexperto
 
         private void filtroProyecto_KeyUp(object sender, KeyEventArgs e)
         {
-            //acá va la búsqueda en la tabla que actualiza el grid
+            ActualizarGridProyectos(filtroProyecto.Text);
         }
 
         private void buttonProyectoNuevo_Click(object sender, EventArgs e)
         {
-            NuevoProyecto frmNuevoProyecto = new NuevoProyecto(Experto.id_experto);
+            NuevoProyecto frmNuevoProyecto = new NuevoProyecto(_experto.id_experto);
             frmNuevoProyecto.ShowDialog();
         }
 
         private void buttonProyectoEdicion_Click(object sender, EventArgs e)
         {
-            ProyectosCreados frmProyectosCreados = new ProyectosCreados(Experto.id_experto);
+            ProyectosCreados frmProyectosCreados = new ProyectosCreados(_experto.id_experto);
             frmProyectosCreados.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(Experto.id_experto);
+            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(_experto.id_experto);
             frmProyectosAsignados.ShowDialog();
+        }
+        
+        private void iniciarSesionToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            EjecutarLogin();
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HabilitarGroupbox(false);
+            _fachada.experto = null;
+            cerrarSesionToolStripMenuItem.Enabled = false;
+            iniciarSesionToolStripMenuItem.Enabled = true;
         }
 
     }

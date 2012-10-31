@@ -10,9 +10,16 @@ namespace sisexperto
     {
         private DALDatos datos = new DALDatos();
 
+        public experto experto { get; set; }
+
         public experto ValidarExperto(string usuario, string password)
         {
             return datos.validarExperto(usuario, password);
+        }
+
+        public IEnumerable<proyecto> SolicitarProyectos(experto e)
+        {
+            return datos.proyectosPorCreador(e.id_experto);
         }
     }
 }

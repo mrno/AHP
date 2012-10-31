@@ -33,17 +33,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonProyectoEdicion = new System.Windows.Forms.Button();
             this.buttonProyectoNuevo = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridProyectos = new System.Windows.Forms.DataGridView();
             this.filtroProyecto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxDetalleProyecto = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxProyectos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             this.groupBoxDetalleProyecto.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // proyectosToolStripMenuItem
@@ -57,17 +60,16 @@
             this.groupBoxProyectos.Controls.Add(this.label2);
             this.groupBoxProyectos.Controls.Add(this.buttonProyectoEdicion);
             this.groupBoxProyectos.Controls.Add(this.buttonProyectoNuevo);
-            this.groupBoxProyectos.Controls.Add(this.dataGridView1);
+            this.groupBoxProyectos.Controls.Add(this.dataGridProyectos);
             this.groupBoxProyectos.Controls.Add(this.filtroProyecto);
             this.groupBoxProyectos.Controls.Add(this.label1);
             this.groupBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxProyectos.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxProyectos.Location = new System.Drawing.Point(12, 30);
             this.groupBoxProyectos.Name = "groupBoxProyectos";
-            this.groupBoxProyectos.Size = new System.Drawing.Size(482, 705);
+            this.groupBoxProyectos.Size = new System.Drawing.Size(482, 680);
             this.groupBoxProyectos.TabIndex = 0;
             this.groupBoxProyectos.TabStop = false;
             this.groupBoxProyectos.Text = "Proyectos de Usuario";
-            this.groupBoxProyectos.Enter += new System.EventHandler(this.groupBoxProyectos_Enter);
             // 
             // label2
             // 
@@ -80,7 +82,7 @@
             // 
             // buttonProyectoEdicion
             // 
-            this.buttonProyectoEdicion.Location = new System.Drawing.Point(272, 665);
+            this.buttonProyectoEdicion.Location = new System.Drawing.Point(272, 635);
             this.buttonProyectoEdicion.Name = "buttonProyectoEdicion";
             this.buttonProyectoEdicion.Size = new System.Drawing.Size(140, 30);
             this.buttonProyectoEdicion.TabIndex = 5;
@@ -90,7 +92,7 @@
             // 
             // buttonProyectoNuevo
             // 
-            this.buttonProyectoNuevo.Location = new System.Drawing.Point(70, 665);
+            this.buttonProyectoNuevo.Location = new System.Drawing.Point(70, 635);
             this.buttonProyectoNuevo.Name = "buttonProyectoNuevo";
             this.buttonProyectoNuevo.Size = new System.Drawing.Size(140, 30);
             this.buttonProyectoNuevo.TabIndex = 4;
@@ -98,32 +100,15 @@
             this.buttonProyectoNuevo.UseVisualStyleBackColor = true;
             this.buttonProyectoNuevo.Click += new System.EventHandler(this.buttonProyectoNuevo_Click);
             // 
-            // dataGridView1
+            // dataGridProyectos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Nombre,
-            this.Descripcion});
-            this.dataGridView1.Location = new System.Drawing.Point(7, 114);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(469, 535);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "ProyectoId";
-            this.Id.Name = "Id";
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
+            this.dataGridProyectos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridProyectos.Location = new System.Drawing.Point(7, 114);
+            this.dataGridProyectos.MultiSelect = false;
+            this.dataGridProyectos.Name = "dataGridProyectos";
+            this.dataGridProyectos.RowHeadersVisible = false;
+            this.dataGridProyectos.Size = new System.Drawing.Size(469, 505);
+            this.dataGridProyectos.TabIndex = 3;
             // 
             // filtroProyecto
             // 
@@ -150,9 +135,9 @@
             // 
             this.groupBoxDetalleProyecto.Controls.Add(this.button1);
             this.groupBoxDetalleProyecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxDetalleProyecto.Location = new System.Drawing.Point(514, 12);
+            this.groupBoxDetalleProyecto.Location = new System.Drawing.Point(514, 30);
             this.groupBoxDetalleProyecto.Name = "groupBoxDetalleProyecto";
-            this.groupBoxDetalleProyecto.Size = new System.Drawing.Size(482, 705);
+            this.groupBoxDetalleProyecto.Size = new System.Drawing.Size(482, 680);
             this.groupBoxDetalleProyecto.TabIndex = 1;
             this.groupBoxDetalleProyecto.TabStop = false;
             this.groupBoxDetalleProyecto.Text = "Detalle del Proyecto";
@@ -167,23 +152,73 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sesionToolStripMenuItem,
+            this.ayudaToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // sesionToolStripMenuItem
+            // 
+            this.sesionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iniciarSesionToolStripMenuItem,
+            this.cerrarSesionToolStripMenuItem});
+            this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
+            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.sesionToolStripMenuItem.Text = "Sesion";
+            // 
+            // iniciarSesionToolStripMenuItem
+            // 
+            this.iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
+            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.iniciarSesionToolStripMenuItem.Text = "Iniciar Sesion";
+            this.iniciarSesionToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click_1);
+            // 
+            // cerrarSesionToolStripMenuItem
+            // 
+            this.cerrarSesionToolStripMenuItem.Enabled = false;
+            this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
+            // 
+            // ayudaToolStripMenuItem
+            // 
+            this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1008, 719);
             this.Controls.Add(this.groupBoxDetalleProyecto);
             this.Controls.Add(this.groupBoxProyectos);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(1024, 758);
             this.Name = "FrmPrincipal";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmPrincipal";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.groupBoxProyectos.ResumeLayout(false);
             this.groupBoxProyectos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).EndInit();
             this.groupBoxDetalleProyecto.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -195,13 +230,15 @@
         private System.Windows.Forms.GroupBox groupBoxDetalleProyecto;
         private System.Windows.Forms.Button buttonProyectoEdicion;
         private System.Windows.Forms.Button buttonProyectoNuevo;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridView dataGridProyectos;
         private System.Windows.Forms.TextBox filtroProyecto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem sesionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iniciarSesionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
 
 
 

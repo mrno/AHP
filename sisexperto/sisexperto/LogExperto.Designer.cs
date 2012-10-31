@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonAceptar = new System.Windows.Forms.Button();
             this.buttonSalir = new System.Windows.Forms.Button();
+            this.labelSesionInv = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBoxUsuario
@@ -43,6 +44,7 @@
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(180, 23);
             this.textBoxUsuario.TabIndex = 0;
+            this.textBoxUsuario.Enter += new System.EventHandler(this.textBoxUsuario_Enter);
             // 
             // textBoxContrasena
             // 
@@ -52,6 +54,7 @@
             this.textBoxContrasena.PasswordChar = '*';
             this.textBoxContrasena.Size = new System.Drawing.Size(180, 23);
             this.textBoxContrasena.TabIndex = 1;
+            this.textBoxContrasena.Enter += new System.EventHandler(this.textBoxContrasena_Enter);
             // 
             // label1
             // 
@@ -76,7 +79,7 @@
             // buttonAceptar
             // 
             this.buttonAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAceptar.Location = new System.Drawing.Point(20, 119);
+            this.buttonAceptar.Location = new System.Drawing.Point(20, 140);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(140, 30);
             this.buttonAceptar.TabIndex = 4;
@@ -87,18 +90,31 @@
             // buttonSalir
             // 
             this.buttonSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSalir.Location = new System.Drawing.Point(175, 119);
+            this.buttonSalir.Location = new System.Drawing.Point(175, 140);
             this.buttonSalir.Name = "buttonSalir";
             this.buttonSalir.Size = new System.Drawing.Size(140, 30);
             this.buttonSalir.TabIndex = 5;
             this.buttonSalir.Text = "Salir";
             this.buttonSalir.UseVisualStyleBackColor = true;
+            this.buttonSalir.Click += new System.EventHandler(this.buttonSalir_Click);
+            // 
+            // labelSesionInv
+            // 
+            this.labelSesionInv.AutoSize = true;
+            this.labelSesionInv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSesionInv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelSesionInv.Location = new System.Drawing.Point(100, 105);
+            this.labelSesionInv.Name = "labelSesionInv";
+            this.labelSesionInv.Size = new System.Drawing.Size(189, 17);
+            this.labelSesionInv.TabIndex = 6;
+            this.labelSesionInv.Text = "Datos de Sesión Incorrectos!";
             // 
             // LogExperto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 161);
+            this.ClientSize = new System.Drawing.Size(334, 181);
+            this.Controls.Add(this.labelSesionInv);
             this.Controls.Add(this.buttonSalir);
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.label2);
@@ -108,9 +124,10 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LogExperto";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Experto";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LogExperto_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,5 +141,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonAceptar;
         private System.Windows.Forms.Button buttonSalir;
+        private System.Windows.Forms.Label labelSesionInv;
     }
 }
