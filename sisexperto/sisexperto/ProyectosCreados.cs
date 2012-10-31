@@ -106,10 +106,11 @@ namespace sisexperto
 
             if (listaExpertoProyecto.Count != 0)
             {
-                List<double[,]> listaPreparada = preparacionLista.Preparar(id, id_experto);
+               
                 List<KRankPonderado> listaKRankPonderado = new List<KRankPonderado>();
                 foreach (experto_proyecto exp in listaExpertoProyecto)
                 {
+                    List<double[,]> listaPreparada = preparacionLista.Preparar(proy.id_proyecto, exp.id_experto);
                     KRankPonderado kRankPonderado = new KRankPonderado();
                   calculo = new CalculoAHP();
             kRankPonderado.KRanking = calculo.calcularRanking(listaPreparada);

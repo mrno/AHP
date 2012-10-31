@@ -57,20 +57,11 @@ namespace sisexperto
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
 
-
-            var foo1 = typeof(CalculoAHP);
-            var foo2 = typeof(MWArray);
-            var foo3 = typeof(Consistencia.Consistencia);
-            var foo4 = typeof(Mejora.Consistencia);
-           
-
-            //Assembly CalcularAHP = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\CalcularAHP.dll");
-            //Assembly CalcularAHPNative = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\CalcularAHPNative.dll");
-            //Assembly Consistencia = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\Consistencia.dll");
-            //Assembly ConsistenciaNative = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\ConsistenciaNative.dll");
-            //Assembly Mejora = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\Mejora.dll");
-            //Assembly MejoraNative = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\MejoraNative.dll");
-            //Assembly MWArray = Assembly.LoadFile(@"C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\Dll\MWArray.dll");
+            //una forma rebuscada para cargar las dll.
+            // con LoadAssembly no lo pude hacer funcionar.
+            var foo1 = new  CalculoAHP();
+            var foo3 = new   Consistencia.Consistencia();
+            var foo4 = new   Mejora.Consistencia();
 
 
         }
