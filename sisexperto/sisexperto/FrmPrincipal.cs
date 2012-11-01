@@ -16,8 +16,6 @@ namespace sisexperto
 {
     public partial class FrmPrincipal : Form
     {
-        public delegate void InicioSesion(experto exp);
-
         private FachadaSistema _fachada = new FachadaSistema();
 
         private experto _experto;

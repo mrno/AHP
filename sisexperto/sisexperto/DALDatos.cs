@@ -490,7 +490,7 @@ namespace sisexperto
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
-
+        
         public List<matriz_criterio> obtenerMatrizCriterio(int id_proyecto, int id_experto)
         {
             gisiaContexto = new gisiabaseEntities2();
@@ -512,7 +512,7 @@ namespace sisexperto
             gisiaContexto.Dispose();
             return listaMatriz;
         }
-
+        
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 9
