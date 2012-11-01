@@ -11,141 +11,136 @@ namespace sisexperto
 {
     public partial class NuevoProyecto : Form
     {
-        private DALDatos dato = new DALDatos();
-        private gisiabaseEntities2 gisiaContexto = new gisiabaseEntities2();
-        private List<experto> lista = new List<experto>();
-        private List<experto> listaTodosExpertos = new List<experto>();
-        private int id_experto;
+        public delegate void Proyectos();
+        public event Proyectos ProyectoCreado;
+        
+        private List<experto> _expertosAsignados = new List<experto>();
+        private List<experto> _todosExpertos = new List<experto>();
 
-        public NuevoProyecto(int id_exp)
+        private int _experto;
+
+        private FachadaSistema _fachada;
+
+        public NuevoProyecto(FachadaSistema Fachada, experto experto)
         {
             InitializeComponent();
-            id_experto = id_exp;
+            labelNombreExperto.Text = string.Format("{0}, {1}", experto.apellido.ToUpper(), experto.nombre);
+            _experto = experto.id_experto;
+            _fachada = Fachada;
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void AsignarExperto(experto exp)
         {
-            if ((txt1.Text != "") && (txt2.Text != ""))
+            _expertosAsignados.Add(exp);
+            ActualizarGridExpertosAsignados();
+        }
+
+        private void ActualizarGridExpertosAsignados()
+        {
+            dataGridExpertosAsignados.DataSource = null;
+            var lista = _expertosAsignados;
+            lista.Reverse();
+            dataGridExpertosAsignados.DataSource = lista; 
+        }
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            //groupBox2.Visible = true;
+            //dataGridView2.Visible = false;
+            var ventanaCrearExperto = new CrearExperto(_fachada);
+            ventanaCrearExperto.ExpertoAgregado += (AsignarExperto);
+            ventanaCrearExperto.ShowDialog();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (_todosExpertos.Count > 0)
             {
-                if (lista.Count != 0)
+                experto exp = (experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem;
+                _todosExpertos.Remove((experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem);
+
+                dataGridExpertosDisponibles.DataSource = null;
+                dataGridExpertosDisponibles.DataSource = _todosExpertos;
+
+                AsignarExperto(exp);
+            }
+        }
+
+        private void btnQuitar_Click(object sender, EventArgs e)
+        {
+            if (_expertosAsignados.Count != 0)
+            {
+                _todosExpertos.Add((experto)dataGridExpertosAsignados.CurrentRow.DataBoundItem);
+                dataGridExpertosDisponibles.DataSource = null;
+                dataGridExpertosDisponibles.DataSource = _todosExpertos;
+
+                _expertosAsignados.Remove((experto)dataGridExpertosAsignados.CurrentRow.DataBoundItem);
+                dataGridExpertosAsignados.DataSource = null;
+                dataGridExpertosAsignados.DataSource = _expertosAsignados;
+            }
+        }
+
+        private void NuevoProyecto_Load(object sender, EventArgs e)
+        {
+           // dataGridExpertosDisponibles.Visible = true;
+            
+            _todosExpertos = _fachada.ObtenerExpertos().ToList();
+            dataGridExpertosDisponibles.DataSource = _todosExpertos;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonCrearYContinuar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+        }
+
+        private bool Guardar()
+        {
+            var bandera = false;
+            if ((textBoxNombreProyecto.Text != "") && (textBoxObjetivoProyecto.Text != ""))
+            {
+                if (_expertosAsignados.Count != 0)
                 {
-                    dato = new DALDatos();
-                    proyecto proy = dato.altaProyecto(id_experto, txt1.Text, txt2.Text);
-                    foreach (experto exp in lista)
-                    {
-                        if (exp.id_experto == 0)
-                        {
-                            dato.asignarProyecto(proy.id_proyecto, dato.altaExperto(exp.nombre, exp.apellido, exp.nom_usuario, exp.clave).id_experto);
-                        
-                        }
-                        else
-                        {
-                            dato.asignarProyecto(proy.id_proyecto, exp.id_experto);
-                        }
-                    }
+                    proyecto _proyecto = new proyecto { nombre = textBoxNombreProyecto.Text, objetivo = textBoxObjetivoProyecto.Text, id_creador = _experto };
+                    proyecto _proyectoAgregado = _fachada.AltaProyecto(_proyecto);
+
+                    _fachada.AsignarExpertosAlProyecto(_proyecto, _expertosAsignados);
+
+                    ProyectoCreado();
+
                     MessageBox.Show("El proyecto se ha creado satisfactoriamente.");
-                    this.Close();
+                    bandera = true;
                 }
                 else
                     MessageBox.Show("Debe asignar por lo menos un experto al proyecto.");
             }
             else
                 MessageBox.Show("Debe completar los campos Nombre y Objetivo.");
+
+            return bandera;
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
+        private void btnCrearYSalir_Click(object sender, EventArgs e)
         {
-            groupBox2.Visible = true;
-            dataGridView2.Visible = false;
+            if (Guardar())  
+                this.Close();
         }
 
-        private void btnExistente_Click(object sender, EventArgs e)
+        private void buttonLimpiar_Click(object sender, EventArgs e)
         {
-            groupBox2.Visible = false;
-            txt3.Text = "";
-            txt4.Text = "";
-            txt5.Text = "";
-            txt6.Text = "";
-            txt7.Text = "";
-            dataGridView2.Visible = true;
-        }
+            textBoxNombreProyecto.Text = "";
+            textBoxObjetivoProyecto.Text = "";
+            _todosExpertos.AddRange(_expertosAsignados);
 
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
+            _expertosAsignados.Clear();
+            dataGridExpertosAsignados.DataSource = null;
 
-           // DataGridViewRow row = new DataGridViewRow();
-            if (groupBox2.Visible == true)
-            {
-                experto exp = new experto();
-                exp.nombre = txt3.Text;
-                exp.apellido = txt4.Text;
-                exp.nom_usuario = txt5.Text;
-                exp.clave = txt6.Text;
-                lista.Add(exp);
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = lista;
-                txt3.Text = "";
-                txt4.Text = "";
-                txt5.Text = "";
-                txt6.Text = "";
-                txt7.Text = "";
-            }
-            else
-            {
-                experto exp = new experto();
-                exp = (experto)dataGridView2.CurrentRow.DataBoundItem;
-                listaTodosExpertos.Remove((experto)dataGridView2.CurrentRow.DataBoundItem);
-                dataGridView2.DataSource = null;
-                dataGridView2.DataSource = listaTodosExpertos;
-                lista.Add(exp);
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = lista;
- 
-            }
-            
-
-            //gisiaContexto.AddToexperto(exp);
-            //dataGridView1.DataSource = gisiaContexto.experto;
-
-
-
-
-
-            //dataGridView1.Rows.Add(exp);
-            //gisiaContexto.AddToexperto(exp);
-            //dataGridView1.DataSource = gisiaContexto.experto;
-
-
-
-            //experto exp = new experto();
-            //exp.nombre = txt3.Text;
-            //exp.apellido = txt4.Text;
-            //exp.nom_usuario = txt5.Text;
-            //exp.clave = txt6.Text;
-            //lista.Add(exp);
-            //dataGridView1.DataSource = lista;
-            //dataGridView1.Refresh();
-        }
-
-        private void btnQuitar_Click(object sender, EventArgs e)
-        {
-            if (lista.Count != 0)
-            {
-                listaTodosExpertos.Add((experto)dataGridView1.CurrentRow.DataBoundItem);
-                dataGridView2.DataSource = null;
-                dataGridView2.DataSource = listaTodosExpertos;
-                lista.Remove((experto)dataGridView1.CurrentRow.DataBoundItem);
-                dataGridView1.DataSource = null;
-                dataGridView1.DataSource = lista;
-            }
-        }
-
-        private void NuevoProyecto_Load(object sender, EventArgs e)
-        {
-            groupBox2.Visible = false;
-            dataGridView2.Visible = true;
-            listaTodosExpertos = dato.todosExpertos();
-            dataGridView2.DataSource = listaTodosExpertos;
+            dataGridExpertosDisponibles.DataSource = null;
+            dataGridExpertosDisponibles.DataSource = _todosExpertos;
         }
     }
 }

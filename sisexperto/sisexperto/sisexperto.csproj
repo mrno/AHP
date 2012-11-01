@@ -127,6 +127,12 @@
       <DependentUpon>CompararCriterios.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsistenciaMatriz.cs" />
+    <Compile Include="CrearExperto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearExperto.Designer.cs">
+      <DependentUpon>CrearExperto.cs</DependentUpon>
+    </Compile>
     <Compile Include="DALDatos.cs" />
     <Compile Include="CargarProyecto.cs">
       <SubType>Form</SubType>
@@ -140,7 +146,7 @@
     <Compile Include="Evaluaciones.Designer.cs">
       <DependentUpon>Evaluaciones.cs</DependentUpon>
     </Compile>
-    <Compile Include="FachadaSistema.cs" />
+    <Compile Include="Fachadas\FachadaProyectosExpertos.cs" />
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompararCriterios.resx">
       <DependentUpon>CompararCriterios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearExperto.resx">
+      <DependentUpon>CrearExperto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Evaluaciones.resx">
       <DependentUpon>Evaluaciones.cs</DependentUpon>
@@ -291,6 +300,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Entidades\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

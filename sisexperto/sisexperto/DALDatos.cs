@@ -774,5 +774,13 @@ namespace sisexperto
 
             return valorarFlotante((float)comp.valor);
         }
+
+        public bool ExisteUsuario(string Usuario)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            return 0 < (from c in gisiaContexto.experto
+                         where c.nom_usuario == Usuario
+                         select c).Count();
+        }
     }
 }

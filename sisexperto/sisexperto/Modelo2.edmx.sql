@@ -2,13 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
-<<<<<<< HEAD
--- Date Created: 10/31/2012 20:04:47
--- Generated from EDMX file: C:\Users\Leonardo\Documents\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
-=======
 -- Date Created: 10/31/2012 21:00:28
 -- Generated from EDMX file: C:\Users\Admincoli\Documents\Visual studio 2010\Projects\sisexperto\sisexperto\AHP\sisexperto\sisexperto\Modelo2.edmx
->>>>>>> 72fb122bce5ca0b1b2886514342830bd44053fc8
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;

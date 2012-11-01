@@ -47,5 +47,38 @@ namespace sisexperto
             }
 
         }
+
+        public proyecto AltaProyecto(proyecto proyecto)
+        {
+            return datos.altaProyecto(proyecto.id_creador, proyecto.nombre, proyecto.objetivo);
+        }
+
+        public experto AltaExperto(experto experto)
+        {
+            return datos.altaExperto(experto.nombre, experto.apellido, experto.nom_usuario, experto.clave);
+        }
+
+        public bool ExisteExperto(string NombreUsuario)
+        {
+            return datos.ExisteUsuario(NombreUsuario);
+        }
+
+        public void AsignarProyecto(proyecto proyecto, experto experto)
+        {
+            datos.asignarProyecto(proyecto.id_proyecto, experto.id_experto);
+        }
+
+        public IEnumerable<experto> ObtenerExpertos()
+        {
+            return datos.todosExpertos();
+        }
+
+        public void AsignarExpertosAlProyecto(proyecto Proyecto, IEnumerable<experto> Expertos)
+        {
+            foreach (experto experto in Expertos)
+            {
+                AsignarProyecto(Proyecto, experto);
+            }
+        }
     }
 }

@@ -75,7 +75,7 @@
             this.groupBoxProyectos.Location = new System.Drawing.Point(12, 30);
             this.groupBoxProyectos.Name = "groupBoxProyectos";
             this.groupBoxProyectos.Size = new System.Drawing.Size(482, 680);
-            this.groupBoxProyectos.TabIndex = 0;
+            this.groupBoxProyectos.TabIndex = 1;
             this.groupBoxProyectos.TabStop = false;
             this.groupBoxProyectos.Text = "Proyectos de Usuario";
             // 
@@ -85,7 +85,7 @@
             this.label2.Location = new System.Drawing.Point(6, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(161, 20);
-            this.label2.TabIndex = 6;
+            this.label2.TabIndex = 1;
             this.label2.Text = "Listado de Proyectos:";
             // 
             // buttonProyectoEdicion
@@ -119,7 +119,7 @@
             this.dataGridProyectos.RowHeadersVisible = false;
             this.dataGridProyectos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridProyectos.Size = new System.Drawing.Size(469, 505);
-            this.dataGridProyectos.TabIndex = 3;
+            this.dataGridProyectos.TabIndex = 2;
             // 
             // filtroProyecto
             // 
@@ -127,9 +127,10 @@
             this.filtroProyecto.Location = new System.Drawing.Point(6, 53);
             this.filtroProyecto.Name = "filtroProyecto";
             this.filtroProyecto.Size = new System.Drawing.Size(470, 23);
-            this.filtroProyecto.TabIndex = 1;
+            this.filtroProyecto.TabIndex = 0;
             this.filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";
             this.filtroProyecto.Enter += new System.EventHandler(this.filtroProyecto_Enter);
+            this.filtroProyecto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.filtroProyecto_KeyDown);
             this.filtroProyecto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.filtroProyecto_KeyUp);
             this.filtroProyecto.Leave += new System.EventHandler(this.filtroProyecto_Leave);
             // 
@@ -155,7 +156,7 @@
             this.groupBoxDetalleProyecto.Location = new System.Drawing.Point(514, 30);
             this.groupBoxDetalleProyecto.Name = "groupBoxDetalleProyecto";
             this.groupBoxDetalleProyecto.Size = new System.Drawing.Size(482, 680);
-            this.groupBoxDetalleProyecto.TabIndex = 1;
+            this.groupBoxDetalleProyecto.TabIndex = 2;
             this.groupBoxDetalleProyecto.TabStop = false;
             this.groupBoxDetalleProyecto.Text = "Detalle del Proyecto";
             // 
@@ -174,7 +175,7 @@
             this.label5.Location = new System.Drawing.Point(6, 91);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 20);
-            this.label5.TabIndex = 5;
+            this.label5.TabIndex = 1;
             this.label5.Text = "Alternativas";
             // 
             // dataGridCriterios
@@ -186,7 +187,7 @@
             this.dataGridCriterios.Name = "dataGridCriterios";
             this.dataGridCriterios.RowHeadersVisible = false;
             this.dataGridCriterios.Size = new System.Drawing.Size(230, 300);
-            this.dataGridCriterios.TabIndex = 4;
+            this.dataGridCriterios.TabIndex = 1;
             // 
             // dataGridAlternativas
             // 
@@ -197,7 +198,7 @@
             this.dataGridAlternativas.Name = "dataGridAlternativas";
             this.dataGridAlternativas.RowHeadersVisible = false;
             this.dataGridAlternativas.Size = new System.Drawing.Size(230, 300);
-            this.dataGridAlternativas.TabIndex = 3;
+            this.dataGridAlternativas.TabIndex = 0;
             // 
             // labelEstadoProyecto
             // 
@@ -236,7 +237,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
-            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // sesionToolStripMenuItem
