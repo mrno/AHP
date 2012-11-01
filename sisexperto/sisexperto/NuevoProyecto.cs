@@ -108,7 +108,7 @@ namespace sisexperto
                     proyecto _proyecto = new proyecto { nombre = textBoxNombreProyecto.Text, objetivo = textBoxObjetivoProyecto.Text, id_creador = _experto };
                     proyecto _proyectoAgregado = _fachada.AltaProyecto(_proyecto);
 
-                    _fachada.AsignarExpertosAlProyecto(_proyecto, _expertosAsignados);
+                    _fachada.AsignarExpertosAlProyecto(_proyectoAgregado, _expertosAsignados);
 
                     ProyectoCreado();
 
