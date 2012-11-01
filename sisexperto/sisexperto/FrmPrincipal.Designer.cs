@@ -37,6 +37,12 @@
             this.filtroProyecto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBoxDetalleProyecto = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridCriterios = new System.Windows.Forms.DataGridView();
+            this.dataGridAlternativas = new System.Windows.Forms.DataGridView();
+            this.labelEstadoProyecto = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,6 +52,8 @@
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             this.groupBoxDetalleProyecto.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +75,7 @@
             this.groupBoxProyectos.Location = new System.Drawing.Point(12, 30);
             this.groupBoxProyectos.Name = "groupBoxProyectos";
             this.groupBoxProyectos.Size = new System.Drawing.Size(482, 680);
-            this.groupBoxProyectos.TabIndex = 0;
+            this.groupBoxProyectos.TabIndex = 1;
             this.groupBoxProyectos.TabStop = false;
             this.groupBoxProyectos.Text = "Proyectos de Usuario";
             // 
@@ -77,7 +85,7 @@
             this.label2.Location = new System.Drawing.Point(6, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(161, 20);
-            this.label2.TabIndex = 6;
+            this.label2.TabIndex = 1;
             this.label2.Text = "Listado de Proyectos:";
             // 
             // buttonProyectoEdicion
@@ -102,13 +110,16 @@
             // 
             // dataGridProyectos
             // 
+            this.dataGridProyectos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridProyectos.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridProyectos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProyectos.Location = new System.Drawing.Point(7, 114);
             this.dataGridProyectos.MultiSelect = false;
             this.dataGridProyectos.Name = "dataGridProyectos";
             this.dataGridProyectos.RowHeadersVisible = false;
+            this.dataGridProyectos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridProyectos.Size = new System.Drawing.Size(469, 505);
-            this.dataGridProyectos.TabIndex = 3;
+            this.dataGridProyectos.TabIndex = 2;
             // 
             // filtroProyecto
             // 
@@ -116,9 +127,10 @@
             this.filtroProyecto.Location = new System.Drawing.Point(6, 53);
             this.filtroProyecto.Name = "filtroProyecto";
             this.filtroProyecto.Size = new System.Drawing.Size(470, 23);
-            this.filtroProyecto.TabIndex = 1;
+            this.filtroProyecto.TabIndex = 0;
             this.filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";
             this.filtroProyecto.Enter += new System.EventHandler(this.filtroProyecto_Enter);
+            this.filtroProyecto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.filtroProyecto_KeyDown);
             this.filtroProyecto.KeyUp += new System.Windows.Forms.KeyEventHandler(this.filtroProyecto_KeyUp);
             this.filtroProyecto.Leave += new System.EventHandler(this.filtroProyecto_Leave);
             // 
@@ -133,18 +145,82 @@
             // 
             // groupBoxDetalleProyecto
             // 
+            this.groupBoxDetalleProyecto.Controls.Add(this.label4);
+            this.groupBoxDetalleProyecto.Controls.Add(this.label5);
+            this.groupBoxDetalleProyecto.Controls.Add(this.dataGridCriterios);
+            this.groupBoxDetalleProyecto.Controls.Add(this.dataGridAlternativas);
+            this.groupBoxDetalleProyecto.Controls.Add(this.labelEstadoProyecto);
+            this.groupBoxDetalleProyecto.Controls.Add(this.label3);
             this.groupBoxDetalleProyecto.Controls.Add(this.button1);
             this.groupBoxDetalleProyecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxDetalleProyecto.Location = new System.Drawing.Point(514, 30);
             this.groupBoxDetalleProyecto.Name = "groupBoxDetalleProyecto";
             this.groupBoxDetalleProyecto.Size = new System.Drawing.Size(482, 680);
-            this.groupBoxDetalleProyecto.TabIndex = 1;
+            this.groupBoxDetalleProyecto.TabIndex = 2;
             this.groupBoxDetalleProyecto.TabStop = false;
             this.groupBoxDetalleProyecto.Text = "Detalle del Proyecto";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(242, 91);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Criterios";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 91);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 20);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Alternativas";
+            // 
+            // dataGridCriterios
+            // 
+            this.dataGridCriterios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridCriterios.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridCriterios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCriterios.Location = new System.Drawing.Point(246, 114);
+            this.dataGridCriterios.Name = "dataGridCriterios";
+            this.dataGridCriterios.RowHeadersVisible = false;
+            this.dataGridCriterios.Size = new System.Drawing.Size(230, 300);
+            this.dataGridCriterios.TabIndex = 1;
+            // 
+            // dataGridAlternativas
+            // 
+            this.dataGridAlternativas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridAlternativas.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridAlternativas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridAlternativas.Location = new System.Drawing.Point(10, 114);
+            this.dataGridAlternativas.Name = "dataGridAlternativas";
+            this.dataGridAlternativas.RowHeadersVisible = false;
+            this.dataGridAlternativas.Size = new System.Drawing.Size(230, 300);
+            this.dataGridAlternativas.TabIndex = 0;
+            // 
+            // labelEstadoProyecto
+            // 
+            this.labelEstadoProyecto.AutoSize = true;
+            this.labelEstadoProyecto.Location = new System.Drawing.Point(50, 50);
+            this.labelEstadoProyecto.Name = "labelEstadoProyecto";
+            this.labelEstadoProyecto.Size = new System.Drawing.Size(237, 20);
+            this.labelEstadoProyecto.TabIndex = 2;
+            this.labelEstadoProyecto.Text = "- ningun proyecto seleccionado -";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(155, 20);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Estado del Proyecto:";
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(50, 263);
+            this.button1.Location = new System.Drawing.Point(310, 606);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(166, 68);
             this.button1.TabIndex = 0;
@@ -161,7 +237,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
-            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // sesionToolStripMenuItem
@@ -215,6 +291,9 @@
             this.groupBoxProyectos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).EndInit();
             this.groupBoxDetalleProyecto.ResumeLayout(false);
+            this.groupBoxDetalleProyecto.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -239,6 +318,12 @@
         private System.Windows.Forms.ToolStripMenuItem iniciarSesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarSesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dataGridCriterios;
+        private System.Windows.Forms.DataGridView dataGridAlternativas;
+        private System.Windows.Forms.Label labelEstadoProyecto;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
 
 
 

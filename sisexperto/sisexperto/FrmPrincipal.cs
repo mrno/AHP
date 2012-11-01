@@ -16,8 +16,6 @@ namespace sisexperto
 {
     public partial class FrmPrincipal : Form
     {
-        public delegate void InicioSesion(experto exp);
-
         private FachadaSistema _fachada = new FachadaSistema();
 
         private experto _experto;
@@ -29,8 +27,13 @@ namespace sisexperto
             _experto = expert;
             iniciarSesionToolStripMenuItem.Enabled = false;
             cerrarSesionToolStripMenuItem.Enabled = true;
-            _proyectosExperto = _fachada.SolicitarProyectos(expert);
+            ActualizarProyectos(expert);
             ActualizarGridProyectos("");
+        }
+
+        private void ActualizarProyectos(experto expert)
+        {
+            _proyectosExperto = _fachada.SolicitarProyectos(expert);
         }
 
         public FrmPrincipal()
@@ -42,15 +45,31 @@ namespace sisexperto
 
         private void EjecutarLogin()
         {
-            var log = new LogExperto(_fachada);
-            log.InicioCorrecto += (LoginCorrecto);
-            log.ShowDialog();
+            var ventanaLogin = new LogExperto(_fachada);
+            ventanaLogin.InicioCorrecto += (LoginCorrecto);
+            ventanaLogin.ShowDialog();
+        }
+
+        private void NuevoProyecto()
+        {
+            var ventanaNuevoProyecto = new NuevoProyecto(_fachada, _experto);
+            ventanaNuevoProyecto.ProyectoCreado += (ActualizarGridPorProyectoNuevo);
+            ventanaNuevoProyecto.ShowDialog();
         }
 
         private void HabilitarGroupbox(bool bandera)
         {
             groupBoxProyectos.Visible = bandera;
             groupBoxDetalleProyecto.Visible = bandera;
+        }
+
+        private void ActualizarGridPorProyectoNuevo()
+        {
+            ActualizarProyectos(_experto);
+            if (filtroProyecto.Text == "Ingrese los filtros de búsqueda aquí")
+                ActualizarGridProyectos("");
+            else
+                ActualizarGridProyectos(filtroProyecto.Text);
         }
 
         private void ActualizarGridProyectos(string filtro)
@@ -114,7 +133,7 @@ namespace sisexperto
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             EjecutarLogin();
-
+            dataGridProyectos.RowEnter += (ActualizarDetalle);
 
             //una forma rebuscada para cargar las dll.
             // con LoadAssembly no lo pude hacer funcionar.
@@ -128,32 +147,44 @@ namespace sisexperto
 
         private void groupBoxProyectos_Enter(object sender, EventArgs e)
         {
-
+            
         }
 
         private void filtroProyecto_Leave(object sender, EventArgs e)
         {
-            filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";            
+            if (filtroProyecto.Text == "")
+                filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";            
         }
 
         private void filtroProyecto_Enter(object sender, EventArgs e)
         {
-            filtroProyecto.Text = "";
+            if (filtroProyecto.Text == "Ingrese los filtros de búsqueda aquí")
+                filtroProyecto.Text = "";
         }
 
         private void filtroProyecto_KeyUp(object sender, KeyEventArgs e)
         {
             ActualizarGridProyectos(filtroProyecto.Text);
+            if (filtroProyecto.Text.Length == 0)
+            {
+                filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";   
+            }
+        }
+
+        private void filtroProyecto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (filtroProyecto.Text == "Ingrese los filtros de búsqueda aquí")
+                filtroProyecto.Text = "";
         }
 
         private void buttonProyectoNuevo_Click(object sender, EventArgs e)
         {
-            NuevoProyecto frmNuevoProyecto = new NuevoProyecto(_experto.id_experto);
-            frmNuevoProyecto.ShowDialog();
+            NuevoProyecto();
         }
 
         private void buttonProyectoEdicion_Click(object sender, EventArgs e)
         {
+            dataGridProyectos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ProyectosCreados frmProyectosCreados = new ProyectosCreados(_experto.id_experto);
             frmProyectosCreados.ShowDialog();
         }
@@ -177,5 +208,30 @@ namespace sisexperto
             iniciarSesionToolStripMenuItem.Enabled = true;
         }
 
+        private void ActualizarDetalle(object sender, DataGridViewCellEventArgs  e)
+        {
+            int proyecto = 0;
+            try
+            {
+                proyecto = int.Parse(dataGridProyectos.Rows[e.RowIndex].Cells[0].Value.ToString());
+            }
+            catch (Exception)
+            {
+                
+            }
+            labelEstadoProyecto.Text = (from p in _proyectosExperto
+                                        where p.id_proyecto == proyecto
+                                        select p.nombre).FirstOrDefault();
+                
+
+            dataGridAlternativas.DataSource = (from a in _fachada.SolicitarAlternativas(proyecto)
+                                              select new { Nombre = a.nombre, Descripcion = a.descripcion })
+                                                  .ToList();
+            dataGridCriterios.DataSource = (from a in _fachada.SolicitarCriterios(proyecto)
+                                            select new { Nombre = a.nombre, Descripcion = a.descripcion })
+                                                  .ToList();
+        }
+
+        
     }
 }

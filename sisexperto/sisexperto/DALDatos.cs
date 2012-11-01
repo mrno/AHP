@@ -490,7 +490,7 @@ namespace sisexperto
             gisiaContexto.SaveChanges();
             gisiaContexto.Dispose();
         }
-
+        
         public List<matriz_criterio> obtenerMatrizCriterio(int id_proyecto, int id_experto)
         {
             gisiaContexto = new gisiabaseEntities2();
@@ -512,7 +512,7 @@ namespace sisexperto
             gisiaContexto.Dispose();
             return listaMatriz;
         }
-
+        
         public string valorarPalabra(int valor)
         {
             if (valor == 1)//corresponde a 9
@@ -773,6 +773,14 @@ namespace sisexperto
                                          select c).FirstOrDefault<comparacion_criterio>();
 
             return valorarFlotante((float)comp.valor);
+        }
+
+        public bool ExisteUsuario(string Usuario)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            return 0 < (from c in gisiaContexto.experto
+                         where c.nom_usuario == Usuario
+                         select c).Count();
         }
     }
 }

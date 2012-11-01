@@ -13,7 +13,8 @@ namespace sisexperto
     {
         private FrmPrincipal ventanaOrigen;
 
-        public event FrmPrincipal.InicioSesion InicioCorrecto;
+        public delegate void InicioSesion(experto exp);
+        public event InicioSesion InicioCorrecto;
 
         private FachadaSistema _fachada;
 
