@@ -21,5 +21,31 @@ namespace sisexperto
         {
             return datos.proyectosPorCreador(e.id_experto);
         }
+
+        public IEnumerable<alternativa> SolicitarAlternativas(int proyecto)
+        {
+            try
+            {
+                return datos.alternativasPorProyecto(proyecto);
+            }
+            catch (Exception)
+            {
+                return new List<alternativa>();
+            }
+            
+        }
+
+        public IEnumerable<criterio> SolicitarCriterios(int proyecto)
+        {
+            try
+            {
+                return datos.criteriosPorProyecto(proyecto);
+            }
+            catch (Exception)
+            {
+                return new List<criterio>();
+            }
+
+        }
     }
 }
