@@ -39,7 +39,7 @@ namespace sisexperto
             gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(id_proyecto, id_experto);
         }
 
-        private void modificarCriterio(object sender, DataGridViewCellEventArgs e)
+        private void modificaCriterio(object sender, EventArgs e)
         {
             matriz_criterio matriz = new matriz_criterio();
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
@@ -50,7 +50,7 @@ namespace sisexperto
             gridCriterio.DataSource = dato.obtenerMatrizCriterio(id_proyecto, id_experto);   
         }
 
-        private void modificarAlternativa(object sender, DataGridViewCellEventArgs e)
+        private void modificaAlternativa(object sender, EventArgs e)
         {
             matriz_alternativa matriz = new matriz_alternativa();
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
@@ -59,7 +59,6 @@ namespace sisexperto
             frmComparar.ShowDialog();
             gridAlternativa.DataSource = null;
             gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(matriz.id_proyecto, matriz.id_experto);
-
         }
     }
 }
