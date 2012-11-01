@@ -287,6 +287,7 @@ namespace sisexperto
 
         public List<experto> expeProyConsistente(int id_proyecto)
         {
+            
             gisiaContexto = new gisiabaseEntities2();
             var lista = (from ep in gisiaContexto.experto_proyecto
                          where ep.id_proyecto == id_proyecto && ep.valoracion_consistente == true

@@ -241,11 +241,6 @@ namespace sisexperto
             dataGridExpertosAsignados.Columns["Id"].Visible = false;
         }
 
-        private void groupNuevaAlternativa_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        
+      
     }
 }
