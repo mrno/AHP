@@ -61,6 +61,7 @@ namespace sisexperto
                         dato = new DALDatos();
                         dato.modificarComparacionCriterios(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
                         dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
+                        dato.actualizarMatrizCriterio(id_proyecto, id_experto, false);
                     }
                 }
             }
@@ -147,18 +148,6 @@ namespace sisexperto
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
           
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(400, y);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 40);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Siguiente";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = true;
-            this.button3.Enabled = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
 
         }
 
@@ -199,8 +188,7 @@ namespace sisexperto
 
             if (consistencia.calcularConsistencia(matriz))
             {
-                button3.Visible = true;
-                this.button3.Enabled = true;
+                dato.actualizarMatrizCriterio(id_proyecto, id_experto, true);
                 MessageBox.Show("Matriz consistente.");
             }
             else
@@ -269,19 +257,5 @@ namespace sisexperto
             label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ComparacionAlternativas frmCompAlternativas = new ComparacionAlternativas(id_proyecto, id_experto);
-            frmCompAlternativas.ShowDialog();
-            this.Close();
-
-            //this.Close();
-            //Singleton.Instance.crearComparacionAlternativas(id_proyecto, id_experto);
-
-            //pasarle una lista
-
-        }
-
-      
     }
 }

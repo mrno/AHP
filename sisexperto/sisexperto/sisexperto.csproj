@@ -134,6 +134,12 @@
     <Compile Include="CargarProyecto.Designer.cs">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Evaluaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Evaluaciones.Designer.cs">
+      <DependentUpon>Evaluaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="FachadaSistema.cs" />
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -197,7 +203,6 @@
     <EmbeddedResource Include="CalcularAhp.resx">
       <DependentUpon>CalcularAhp.cs</DependentUpon>
     </EmbeddedResource>
-    <Compile Include="Singleton.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="CalcularAhpAgregado.resx">
       <DependentUpon>CalcularAhpAgregado.cs</DependentUpon>
@@ -210,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompararCriterios.resx">
       <DependentUpon>CompararCriterios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Evaluaciones.resx">
+      <DependentUpon>Evaluaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
@@ -261,6 +269,8 @@
     <None Include="Properties\DataSources\experto_proyecto.datasource" />
     <None Include="Properties\DataSources\gisiabaseEntities1.datasource" />
     <None Include="Properties\DataSources\gisiabaseEntities21.datasource" />
+    <None Include="Properties\DataSources\matriz_alternativa.datasource" />
+    <None Include="Properties\DataSources\matriz_criterio.datasource" />
     <None Include="Properties\DataSources\proyecto.datasource" />
     <None Include="Properties\DataSources\proyecto1.datasource" />
     <None Include="Properties\Settings.settings">

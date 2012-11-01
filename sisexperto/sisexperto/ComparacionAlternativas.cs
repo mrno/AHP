@@ -14,20 +14,23 @@ namespace sisexperto
         private DALDatos dato = new DALDatos();
         private int id_proyecto;
         private int id_experto;
-        private Queue<criterio> colaCriterio;
+        private int id_criterio;
+
+        //private Queue<criterio> colaCriterio;
 
         private int y = 140;
 
         private double[,] mejorada;
         private int pos = 0;
-        private criterio crit;
         
-        public ComparacionAlternativas(int id_proy, int id_exp)
+        
+        public ComparacionAlternativas(int id_proy, int id_exp, int criterio)
         {
             InitializeComponent();
             id_proyecto = id_proy;
             id_experto = id_exp;
-            colaCriterio = dato.colaCriterios(id_proyecto);
+            id_criterio = criterio;
+            //colaCriterio = dato.colaCriterios(id_proyecto);
         }
 
         private void mostrar(object sender, EventArgs e)
@@ -49,6 +52,7 @@ namespace sisexperto
                         dato = new DALDatos();
                         dato.modificarComparacionAlternativa(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
                         dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
+                        dato.actualizarMatrizAlternativa(id_proyecto, id_experto, id_criterio, false);
                     }
                 }
             }
@@ -98,9 +102,10 @@ namespace sisexperto
         private void ComparacionAlternativas_Load(object sender, EventArgs e)
         {
  
-            crit = colaCriterio.Dequeue();
-            label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
-            cargarTracks(crit.id_criterio);
+            //crit = colaCriterio.Dequeue();
+
+            label20.Text = "Considerando el criterio: " + dato.criterioNombre(id_criterio).ToString();
+            cargarTracks(id_criterio);
 
             //int y = 140;
             // 
@@ -154,48 +159,17 @@ namespace sisexperto
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(310, y);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(150, 40);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Siguiente";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = true;
-            this.button3.Enabled = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            this.Controls.Add(this.button3);
-            button3.Visible = true;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (colaCriterio.Count != 0)
-            {
-                foreach (Control track in this.Controls)
-                {
-                    if (track is TrackBar)
-                    {
-                        foreach (Control unLabel in this.Controls)
-                            {
-                                if (unLabel is Label && unLabel.Name == track.Name)
-                                    this.Controls.Remove(unLabel);
-                            }
-                        this.Controls.Remove(track);
-                    }
-                }
-
-                button1.Visible = true;
-                crit = colaCriterio.Dequeue();
-                label20.Text = "Considerando el criterio: " + crit.nombre.ToString();
-                cargarTracks(crit.id_criterio);
-
-            }
-            else
-            {
-                MessageBox.Show("Valoración finalizada. Matrices consistentes.");
-                dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, true);
-                button4.Visible = true;
-            }
+            //this.button3.Location = new System.Drawing.Point(310, y);
+            //this.button3.Name = "button3";
+            //this.button3.Size = new System.Drawing.Size(150, 40);
+            //this.button3.TabIndex = 9;
+            //this.button3.Text = "Siguiente";
+            //this.button3.UseVisualStyleBackColor = true;
+            //this.button3.Visible = true;
+            //this.button3.Enabled = false;
+            //this.button3.Click += new System.EventHandler(this.button3_Click);
+            //this.Controls.Add(this.button3);
+            //button3.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -211,7 +185,7 @@ namespace sisexperto
            // Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
             List<comparacion_alternativa> listaAlt;
            
-                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto,crit.id_criterio);
+                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, id_criterio);
 
                 int cantidadFilas = 1;
 
@@ -244,9 +218,10 @@ namespace sisexperto
 
             if (consistencia.calcularConsistencia(matrizAlt))
             {
+                dato.actualizarMatrizAlternativa(id_proyecto, id_experto, id_criterio, true);
                 button1.Visible = true;
-                this.button3.Enabled = true;
-                this.button3.Visible = true;
+                //this.button3.Enabled = true;
+                //this.button3.Visible = true;
                 MessageBox.Show("Matriz consistente.");
             }
             else

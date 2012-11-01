@@ -17,11 +17,11 @@ namespace sisexperto
         private int id;
         private CalculoAHP calculo;
         private double[,] ranking;
-     
+        private proyecto proy;
         private List<double[,]> listaCompleta = new List<double[,]>();
         private List<NAlternativas> listaNAlt;
         private AgregacionNoPonderada calculadorNoPonderadas = new AgregacionNoPonderada();
-        private AgregacionPonderada calculadorPonderadas = new AgregacionPonderada();
+      
         private List<experto> listaExperto;
         private List<experto_proyecto> listaExpertoProyecto;
         private List<AgrAlternativas> listaAlternativasPonderar = new List<AgrAlternativas>();
@@ -36,12 +36,19 @@ namespace sisexperto
         private void ProyectosCreados_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = dato.proyectosPorCreador(id_experto);
+             proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            id = proy.id_proyecto;
+
+            button1.Enabled = false;
+            button2.Enabled = false;
+            button3.Enabled = false;
+            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
-            id = proy.id_proyecto;
+           
             CargarProyecto frmCargarProyecto = new CargarProyecto(id);
             frmCargarProyecto.ShowDialog();
         }
@@ -131,6 +138,20 @@ namespace sisexperto
             }
 
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = this.dataGridView1.SelectedRows[0];
+            Int32 value = Convert.ToInt32(row.Cells[0].Value);
+            if (!dato.existeCriterios(value) || !dato.existeAlternativas(value))
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
         }
     }
 }

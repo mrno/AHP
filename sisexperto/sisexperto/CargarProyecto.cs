@@ -38,6 +38,10 @@ namespace sisexperto
             listaExpertoProyecto = dato.expertosPorProyecto2(id_proyecto);
 
             dataGridExpertoProyecto.DataSource = listaExpertoProyecto;
+
+
+
+
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -58,6 +62,16 @@ namespace sisexperto
                 List<experto> listaExp = dato.expertosPorProyecto(id_proyecto);
                 List<criterio> listaCri = dato.criteriosPorProyecto(id_proyecto);
                 List<alternativa> listaAlt = dato.alternativasPorProyecto(id_proyecto);
+
+                foreach(experto exp in listaExp)
+                {
+                    dato.altaMatrizCriterio(id_proyecto, exp.id_experto);
+
+                    foreach (criterio cri in listaCri)
+                    {
+                        dato.altaMatrizAlternativa(id_proyecto, exp.id_experto, cri.id_criterio);
+                    }
+                }
 
                 Queue<criterio> colaCri;
                 Queue<alternativa> colaAlt;
