@@ -49,12 +49,15 @@
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dataGridExpertosAsignados = new System.Windows.Forms.DataGridView();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             this.groupBoxDetalleProyecto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosAsignados)).BeginInit();
             this.SuspendLayout();
             // 
             // proyectosToolStripMenuItem
@@ -71,6 +74,7 @@
             this.groupBoxProyectos.Controls.Add(this.dataGridProyectos);
             this.groupBoxProyectos.Controls.Add(this.filtroProyecto);
             this.groupBoxProyectos.Controls.Add(this.label1);
+            this.groupBoxProyectos.Controls.Add(this.button1);
             this.groupBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxProyectos.Location = new System.Drawing.Point(12, 30);
             this.groupBoxProyectos.Name = "groupBoxProyectos";
@@ -90,7 +94,7 @@
             // 
             // buttonProyectoEdicion
             // 
-            this.buttonProyectoEdicion.Location = new System.Drawing.Point(272, 635);
+            this.buttonProyectoEdicion.Location = new System.Drawing.Point(156, 635);
             this.buttonProyectoEdicion.Name = "buttonProyectoEdicion";
             this.buttonProyectoEdicion.Size = new System.Drawing.Size(140, 30);
             this.buttonProyectoEdicion.TabIndex = 5;
@@ -100,7 +104,7 @@
             // 
             // buttonProyectoNuevo
             // 
-            this.buttonProyectoNuevo.Location = new System.Drawing.Point(70, 635);
+            this.buttonProyectoNuevo.Location = new System.Drawing.Point(10, 635);
             this.buttonProyectoNuevo.Name = "buttonProyectoNuevo";
             this.buttonProyectoNuevo.Size = new System.Drawing.Size(140, 30);
             this.buttonProyectoNuevo.TabIndex = 4;
@@ -145,13 +149,14 @@
             // 
             // groupBoxDetalleProyecto
             // 
+            this.groupBoxDetalleProyecto.Controls.Add(this.dataGridExpertosAsignados);
+            this.groupBoxDetalleProyecto.Controls.Add(this.label6);
             this.groupBoxDetalleProyecto.Controls.Add(this.label4);
             this.groupBoxDetalleProyecto.Controls.Add(this.label5);
             this.groupBoxDetalleProyecto.Controls.Add(this.dataGridCriterios);
             this.groupBoxDetalleProyecto.Controls.Add(this.dataGridAlternativas);
             this.groupBoxDetalleProyecto.Controls.Add(this.labelEstadoProyecto);
             this.groupBoxDetalleProyecto.Controls.Add(this.label3);
-            this.groupBoxDetalleProyecto.Controls.Add(this.button1);
             this.groupBoxDetalleProyecto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxDetalleProyecto.Location = new System.Drawing.Point(514, 30);
             this.groupBoxDetalleProyecto.Name = "groupBoxDetalleProyecto";
@@ -165,18 +170,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(242, 91);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.Size = new System.Drawing.Size(71, 20);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Criterios";
+            this.label4.Text = "Criterios:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 91);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 20);
+            this.label5.Size = new System.Drawing.Size(96, 20);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Alternativas";
+            this.label5.Text = "Alternativas:";
             // 
             // dataGridCriterios
             // 
@@ -186,7 +191,7 @@
             this.dataGridCriterios.Location = new System.Drawing.Point(246, 114);
             this.dataGridCriterios.Name = "dataGridCriterios";
             this.dataGridCriterios.RowHeadersVisible = false;
-            this.dataGridCriterios.Size = new System.Drawing.Size(230, 300);
+            this.dataGridCriterios.Size = new System.Drawing.Size(230, 320);
             this.dataGridCriterios.TabIndex = 1;
             // 
             // dataGridAlternativas
@@ -197,7 +202,7 @@
             this.dataGridAlternativas.Location = new System.Drawing.Point(10, 114);
             this.dataGridAlternativas.Name = "dataGridAlternativas";
             this.dataGridAlternativas.RowHeadersVisible = false;
-            this.dataGridAlternativas.Size = new System.Drawing.Size(230, 300);
+            this.dataGridAlternativas.Size = new System.Drawing.Size(230, 320);
             this.dataGridAlternativas.TabIndex = 0;
             // 
             // labelEstadoProyecto
@@ -220,9 +225,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(310, 606);
+            this.button1.Location = new System.Drawing.Point(302, 635);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(166, 68);
+            this.button1.Size = new System.Drawing.Size(166, 30);
             this.button1.TabIndex = 0;
             this.button1.Text = "Proyectos Asignados";
             this.button1.UseVisualStyleBackColor = true;
@@ -270,6 +275,26 @@
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 450);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(155, 20);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Expertos Asignados:";
+            // 
+            // dataGridExpertosAsignados
+            // 
+            this.dataGridExpertosAsignados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridExpertosAsignados.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridExpertosAsignados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridExpertosAsignados.Location = new System.Drawing.Point(10, 473);
+            this.dataGridExpertosAsignados.Name = "dataGridExpertosAsignados";
+            this.dataGridExpertosAsignados.RowHeadersVisible = false;
+            this.dataGridExpertosAsignados.Size = new System.Drawing.Size(466, 192);
+            this.dataGridExpertosAsignados.TabIndex = 8;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,6 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosAsignados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,6 +350,8 @@
         private System.Windows.Forms.Label labelEstadoProyecto;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridExpertosAsignados;
 
 
 
