@@ -36,8 +36,7 @@ namespace sisexperto
         private void ProyectosCreados_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = dato.proyectosPorCreador(id_experto);
-             proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
-            id = proy.id_proyecto;
+             
 
             button1.Enabled = false;
             button2.Enabled = false;
@@ -48,7 +47,8 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            id = proy.id_proyecto;
             CargarProyecto frmCargarProyecto = new CargarProyecto(id);
             frmCargarProyecto.ShowDialog();
         }
@@ -107,7 +107,9 @@ namespace sisexperto
         private void button3_Click(object sender, EventArgs e)
         {
 
-            proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            
+            proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            id = proy.id_proyecto;
             listaExpertoProyecto = dato.expePorProyConsistente(proy.id_proyecto);
             PreparacionListaCriterioAlternativa preparacionLista = new PreparacionListaCriterioAlternativa();
 
@@ -147,10 +149,19 @@ namespace sisexperto
             if (!dato.existeCriterios(value) || !dato.existeAlternativas(value))
             {
                 button1.Enabled = true;
-            }
-            else
+                button2.Enabled = false;
+                button3.Enabled = false;
+                            }
+            if (dato.agregaPonderado(value))
             {
-                button1.Enabled = false;
+
+                button2.Enabled = false;
+                button3.Enabled = true;
+            }
+            else {
+
+                button2.Enabled = true;
+                button3.Enabled = false;
             }
         }
     }

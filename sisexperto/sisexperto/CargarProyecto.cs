@@ -29,8 +29,8 @@ namespace sisexperto
 
            RefrescarListaExpertoProyecto();
             dataGridExpertoProyecto.AutoGenerateColumns = true;
-         
-            
+
+            textBox1.Enabled = false;
         }
 
         private void RefrescarListaExpertoProyecto()
@@ -161,11 +161,13 @@ namespace sisexperto
 
         private void dataGridExpertoProyecto_Click(object sender, DataGridViewCellEventArgs e)
         {
+            textBox1.Enabled = true;
             row = this.dataGridExpertoProyecto.SelectedRows[0];
            // row = this.dataGridExpertoProyecto.Rows[cell.RowIndex];
             
             string value = row.Cells[3].Value.ToString();
             textBox1.Text = value;
+            
         }
 
 

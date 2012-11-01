@@ -47,6 +47,15 @@ namespace sisexperto
             return flag;
         }
 
+        public bool agregaPonderado(int id_proyecto)
+        {
+            gisiaContexto = new gisiabaseEntities2();
+            var flag  = (from ep in gisiaContexto.experto_proyecto
+                         where ep.id_proyecto == id_proyecto && ep.ponderacion != 0
+                         select ep).Any();
+                        return flag;
+        }
+
         public List<alternativa> alternativasPorProyecto(int id_proyecto)
         {
             gisiaContexto = new gisiabaseEntities2();

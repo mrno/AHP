@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/31/2012 21:00:28
--- Generated from EDMX file: C:\Users\Admincoli\Documents\Visual studio 2010\Projects\sisexperto\sisexperto\AHP\sisexperto\sisexperto\Modelo2.edmx
+-- Date Created: 11/01/2012 18:10:12
+-- Generated from EDMX file: C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -40,6 +40,9 @@ GO
 IF OBJECT_ID(N'[dbo].[experto_proyecto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[experto_proyecto];
 GO
+IF OBJECT_ID(N'[dbo].[proyecto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[proyecto];
+GO
 IF OBJECT_ID(N'[dbo].[ILSetSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ILSetSet];
 GO
@@ -48,9 +51,6 @@ IF OBJECT_ID(N'[dbo].[matriz_alternativa]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[matriz_criterio]', 'U') IS NOT NULL
     DROP TABLE [dbo].[matriz_criterio];
-GO
-IF OBJECT_ID(N'[dbo].[proyecto]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[proyecto];
 GO
 
 -- --------------------------------------------------
