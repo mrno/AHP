@@ -26,12 +26,7 @@ namespace sisexperto
             dataGridView1.DataSource = dato.proyectosExperto(id_experto);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            proyecto proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
-            Evaluaciones frmEval = new Evaluaciones(proy.id_proyecto, id_experto);
-            frmEval.ShowDialog();
-        }
+    
 
         private void cargarMatrices(object sender, DataGridViewCellEventArgs e)
         {
@@ -61,6 +56,11 @@ namespace sisexperto
             frmComparar.ShowDialog();
             gridCriterio.DataSource = null;
             gridCriterio.DataSource = dato.obtenerMatrizCriterio(matriz.id_proyecto, id_experto);  
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
 
     }

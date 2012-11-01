@@ -56,8 +56,6 @@ namespace sisexperto
                         return flag;
         }
 
-
-
         public List<alternativa> alternativasPorProyecto(int id_proyecto)
         {
             gisiaContexto = new gisiabaseEntities2();
