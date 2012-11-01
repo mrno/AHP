@@ -80,5 +80,19 @@ namespace sisexperto
                 AsignarProyecto(Proyecto, experto);
             }
         }
+
+        public IEnumerable<experto> ExpertosAsignados(proyecto Proyecto)
+        {
+            try
+            {
+                return datos.expertosPorProyecto(Proyecto.id_proyecto);
+            }
+            catch (Exception)
+            {
+
+                return new List<experto>();
+            }
+            
+        }
     }
 }
