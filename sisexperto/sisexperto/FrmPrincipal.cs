@@ -105,8 +105,8 @@ namespace sisexperto
             dataGridProyectos.DataSource = lista;
 
             dataGridProyectos.Columns["ProyectoId"].Visible = false;
-            dataGridProyectos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridProyectos.BackgroundColor = Color.LightGray;
+            //dataGridProyectos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dataGridProyectos.BackgroundColor = Color.LightGray;
             //dataGridProyectos.Columns["Nombre"].Width = 150;
             //dataGridProyectos.Columns["Objetivo"].Width = 200;
         }
@@ -219,9 +219,11 @@ namespace sisexperto
             {
                 
             }
-            labelEstadoProyecto.Text = (from p in _proyectosExperto
+            var elProyecto = (from p in _proyectosExperto
                                         where p.id_proyecto == proyecto
-                                        select p.nombre).FirstOrDefault();
+                                        select p).FirstOrDefault();
+
+            labelEstadoProyecto.Text = elProyecto.nombre;
                 
 
             dataGridAlternativas.DataSource = (from a in _fachada.SolicitarAlternativas(proyecto)
@@ -230,6 +232,18 @@ namespace sisexperto
             dataGridCriterios.DataSource = (from a in _fachada.SolicitarCriterios(proyecto)
                                             select new { Nombre = a.nombre, Descripcion = a.descripcion })
                                                   .ToList();
+
+            var lista = (from pro in _fachada.ExpertosAsignados(elProyecto)
+                         select new { Id = pro.id_experto, Apellido = pro.apellido, Nombre = pro.nombre })
+                                                    .ToList();
+
+            dataGridExpertosAsignados.DataSource = lista;
+            dataGridExpertosAsignados.Columns["Id"].Visible = false;
+        }
+
+        private void groupNuevaAlternativa_Enter(object sender, EventArgs e)
+        {
+
         }
 
         
