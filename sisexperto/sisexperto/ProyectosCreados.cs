@@ -47,7 +47,8 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
+            id = proy.id_proyecto;
             CargarProyecto frmCargarProyecto = new CargarProyecto(id);
             frmCargarProyecto.ShowDialog();
         }
