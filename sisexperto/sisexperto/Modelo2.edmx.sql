@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 10/31/2012 17:46:59
+-- Date Created: 10/31/2012 20:53:13
 -- Generated from EDMX file: C:\Documents and Settings\gisiaa\Mis documentos\GitHub\AHP\sisexperto\sisexperto\Modelo2.edmx
 -- --------------------------------------------------
 
@@ -40,11 +40,17 @@ GO
 IF OBJECT_ID(N'[dbo].[experto_proyecto]', 'U') IS NOT NULL
     DROP TABLE [dbo].[experto_proyecto];
 GO
-IF OBJECT_ID(N'[dbo].[proyecto]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[proyecto];
-GO
 IF OBJECT_ID(N'[dbo].[ILSetSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ILSetSet];
+GO
+IF OBJECT_ID(N'[dbo].[matriz_alternativa]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[matriz_alternativa];
+GO
+IF OBJECT_ID(N'[dbo].[matriz_criterio]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[matriz_criterio];
+GO
+IF OBJECT_ID(N'[dbo].[proyecto]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[proyecto];
 GO
 
 -- --------------------------------------------------
@@ -141,6 +147,25 @@ CREATE TABLE [dbo].[ILSetSet] (
 );
 GO
 
+-- Creating table 'matriz_alternativa'
+CREATE TABLE [dbo].[matriz_alternativa] (
+    [id_matrizAlternativa] int IDENTITY(1,1) NOT NULL,
+    [id_proyecto] int  NOT NULL,
+    [id_experto] int  NOT NULL,
+    [id_criterio] int  NOT NULL,
+    [consistente] bit  NULL
+);
+GO
+
+-- Creating table 'matriz_criterio'
+CREATE TABLE [dbo].[matriz_criterio] (
+    [id_matrizCriterio] int IDENTITY(1,1) NOT NULL,
+    [id_proyecto] int  NOT NULL,
+    [id_experto] int  NOT NULL,
+    [consistente] bit  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -191,6 +216,18 @@ GO
 ALTER TABLE [dbo].[ILSetSet]
 ADD CONSTRAINT [PK_ILSetSet]
     PRIMARY KEY CLUSTERED ([id_Model] ASC);
+GO
+
+-- Creating primary key on [id_matrizAlternativa] in table 'matriz_alternativa'
+ALTER TABLE [dbo].[matriz_alternativa]
+ADD CONSTRAINT [PK_matriz_alternativa]
+    PRIMARY KEY CLUSTERED ([id_matrizAlternativa] ASC);
+GO
+
+-- Creating primary key on [id_matrizCriterio] in table 'matriz_criterio'
+ALTER TABLE [dbo].[matriz_criterio]
+ADD CONSTRAINT [PK_matriz_criterio]
+    PRIMARY KEY CLUSTERED ([id_matrizCriterio] ASC);
 GO
 
 -- --------------------------------------------------
