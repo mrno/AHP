@@ -6,7 +6,7 @@ using sisexperto;
 
 namespace sisexperto
 {    
-    public class FachadaSistema
+    public class FachadaProyectosExpertos
     {
         private DALDatos datos = new DALDatos();
 

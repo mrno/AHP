@@ -11,12 +11,12 @@ namespace sisexperto
 {
     public partial class CrearExperto : Form
     {
-        private FachadaSistema _fachada;
+        private FachadaProyectosExpertos _fachada;
 
         public delegate void Expertos(experto experto);
         public event Expertos ExpertoAgregado;
 
-        public CrearExperto(FachadaSistema Fachada)
+        public CrearExperto(FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
             _fachada = Fachada;

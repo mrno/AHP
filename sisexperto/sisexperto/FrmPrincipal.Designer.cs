@@ -51,6 +51,9 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridExpertosAsignados = new System.Windows.Forms.DataGridView();
+            this.ejecutarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aHPPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aHPNoPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             this.groupBoxDetalleProyecto.SuspendLayout();
@@ -237,6 +240,7 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ejecutarToolStripMenuItem,
             this.sesionToolStripMenuItem,
             this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -295,6 +299,29 @@
             this.dataGridExpertosAsignados.Size = new System.Drawing.Size(466, 192);
             this.dataGridExpertosAsignados.TabIndex = 8;
             // 
+            // ejecutarToolStripMenuItem
+            // 
+            this.ejecutarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aHPPonderadoToolStripMenuItem,
+            this.aHPNoPonderadoToolStripMenuItem});
+            this.ejecutarToolStripMenuItem.Name = "ejecutarToolStripMenuItem";
+            this.ejecutarToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.ejecutarToolStripMenuItem.Text = "Ejecutar";
+            // 
+            // aHPPonderadoToolStripMenuItem
+            // 
+            this.aHPPonderadoToolStripMenuItem.Name = "aHPPonderadoToolStripMenuItem";
+            this.aHPPonderadoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aHPPonderadoToolStripMenuItem.Text = "AHP Ponderado";
+            this.aHPPonderadoToolStripMenuItem.Click += new System.EventHandler(this.aHPPonderadoToolStripMenuItem_Click);
+            // 
+            // aHPNoPonderadoToolStripMenuItem
+            // 
+            this.aHPNoPonderadoToolStripMenuItem.Name = "aHPNoPonderadoToolStripMenuItem";
+            this.aHPNoPonderadoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aHPNoPonderadoToolStripMenuItem.Text = "AHP No Ponderado";
+            this.aHPNoPonderadoToolStripMenuItem.Click += new System.EventHandler(this.aHPNoPonderadoToolStripMenuItem_Click);
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,6 +379,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridExpertosAsignados;
+        private System.Windows.Forms.ToolStripMenuItem ejecutarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aHPPonderadoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aHPNoPonderadoToolStripMenuItem;
 
 
 

@@ -19,10 +19,11 @@ namespace sisexperto
         private DataGridViewCell cell;
         private DataGridViewRow row;
 
-        public CargarProyecto(int id)
+        public CargarProyecto(proyecto proyecto)
         {
             InitializeComponent();
-            id_proyecto = id;
+            id_proyecto = proyecto.id_proyecto;
+            this.Text = string.Format("Modificar Alternativas y Criterios del Proyecto: {0}",proyecto.nombre);
         }
         private void CargarProyecto_Load(object sender, EventArgs e)
         {

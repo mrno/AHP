@@ -19,9 +19,9 @@ namespace sisexperto
 
         private int _experto;
 
-        private FachadaSistema _fachada;
+        private FachadaProyectosExpertos _fachada;
 
-        public NuevoProyecto(FachadaSistema Fachada, experto experto)
+        public NuevoProyecto(FachadaProyectosExpertos Fachada, experto experto)
         {
             InitializeComponent();
             labelNombreExperto.Text = string.Format("{0}, {1}", experto.apellido.ToUpper(), experto.nombre);

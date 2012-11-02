@@ -11,15 +11,20 @@ using MathWorks.MATLAB.NET.Arrays;
 using CalcularAHP;
 using Consistencia;
 using Mejora;
+using sisexperto.Fachadas;
+using sisexperto.UI;
 
 namespace sisexperto
 {
     public partial class FrmPrincipal : Form
     {
-        private FachadaSistema _fachada = new FachadaSistema();
+        private FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
+        private FachadaEjecucionProyecto _fachadaEjecucionProyectos = new FachadaEjecucionProyecto();
 
         private experto _experto;
         private IEnumerable<proyecto> _proyectosExperto;
+
+        private proyecto _proyectoSeleccionado;
 
         private void LoginCorrecto(experto expert)
         {
@@ -33,7 +38,7 @@ namespace sisexperto
 
         private void ActualizarProyectos(experto expert)
         {
-            _proyectosExperto = _fachada.SolicitarProyectos(expert);
+            _proyectosExperto = _fachadaProyectosExpertos.SolicitarProyectos(expert);
         }
 
         public FrmPrincipal()
@@ -45,14 +50,14 @@ namespace sisexperto
 
         private void EjecutarLogin()
         {
-            var ventanaLogin = new LogExperto(_fachada);
+            var ventanaLogin = new LogExperto(_fachadaProyectosExpertos);
             ventanaLogin.InicioCorrecto += (LoginCorrecto);
             ventanaLogin.ShowDialog();
         }
 
         private void NuevoProyecto()
         {
-            var ventanaNuevoProyecto = new NuevoProyecto(_fachada, _experto);
+            var ventanaNuevoProyecto = new NuevoProyecto(_fachadaProyectosExpertos, _experto);
             ventanaNuevoProyecto.ProyectoCreado += (ActualizarGridPorProyectoNuevo);
             ventanaNuevoProyecto.ShowDialog();
         }
@@ -184,9 +189,12 @@ namespace sisexperto
 
         private void buttonProyectoEdicion_Click(object sender, EventArgs e)
         {
+            CargarProyecto frmCargarProyecto = new CargarProyecto(_proyectoSeleccionado);
+            frmCargarProyecto.ShowDialog();
+            /*
             dataGridProyectos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ProyectosCreados frmProyectosCreados = new ProyectosCreados(_experto.id_experto);
-            frmProyectosCreados.ShowDialog();
+            frmProyectosCreados.ShowDialog();*/
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -203,7 +211,7 @@ namespace sisexperto
         private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HabilitarGroupbox(false);
-            _fachada.experto = null;
+            _fachadaProyectosExpertos.experto = null;
             cerrarSesionToolStripMenuItem.Enabled = false;
             iniciarSesionToolStripMenuItem.Enabled = true;
         }
@@ -219,21 +227,21 @@ namespace sisexperto
             {
                 
             }
-            var elProyecto = (from p in _proyectosExperto
+            _proyectoSeleccionado = (from p in _proyectosExperto
                                         where p.id_proyecto == proyecto
                                         select p).FirstOrDefault();
 
-            labelEstadoProyecto.Text = elProyecto.nombre;
-                
+            labelEstadoProyecto.Text = _proyectoSeleccionado.nombre;
 
-            dataGridAlternativas.DataSource = (from a in _fachada.SolicitarAlternativas(proyecto)
+
+            dataGridAlternativas.DataSource = (from a in _fachadaProyectosExpertos.SolicitarAlternativas(_proyectoSeleccionado.id_proyecto)
                                               select new { Nombre = a.nombre, Descripcion = a.descripcion })
                                                   .ToList();
-            dataGridCriterios.DataSource = (from a in _fachada.SolicitarCriterios(proyecto)
+            dataGridCriterios.DataSource = (from a in _fachadaProyectosExpertos.SolicitarCriterios(_proyectoSeleccionado.id_proyecto)
                                             select new { Nombre = a.nombre, Descripcion = a.descripcion })
                                                   .ToList();
 
-            var lista = (from pro in _fachada.ExpertosAsignados(elProyecto)
+            var lista = (from pro in _fachadaProyectosExpertos.ExpertosAsignados(_proyectoSeleccionado)
                          select new { Id = pro.id_experto, Apellido = pro.apellido, Nombre = pro.nombre })
                                                     .ToList();
 
@@ -241,7 +249,14 @@ namespace sisexperto
             dataGridExpertosAsignados.Columns["Id"].Visible = false;
         }
 
-        private void groupNuevaAlternativa_Enter(object sender, EventArgs e)
+
+        private void aHPPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
+            ventanaPonderacion.ShowDialog();
+        }
+
+        private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

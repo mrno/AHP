@@ -27,10 +27,11 @@ namespace sisexperto
         private List<AgrAlternativas> listaAlternativasPonderar = new List<AgrAlternativas>();
         private AgrCriterio matrizCriterioPonderar;
 
-        public ProyectosCreados(int id_exp)
+        public ProyectosCreados(experto exp, proyecto proy)
         {
             InitializeComponent();
-            id_experto = id_exp;
+            id_experto = exp.id_experto;
+            id = proy.id_proyecto;
         }
 
         private void ProyectosCreados_Load(object sender, EventArgs e)
@@ -47,10 +48,11 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
             id = proy.id_proyecto;
-            CargarProyecto frmCargarProyecto = new CargarProyecto(id);
-            frmCargarProyecto.ShowDialog();
+            CargarProyecto frmCargarProyecto = new CargarProyecto();
+            frmCargarProyecto.ShowDialog();*/
         }
 
         private void button2_Click(object sender, EventArgs e)

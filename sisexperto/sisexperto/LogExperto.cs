@@ -16,9 +16,9 @@ namespace sisexperto
         public delegate void InicioSesion(experto exp);
         public event InicioSesion InicioCorrecto;
 
-        private FachadaSistema _fachada;
+        private FachadaProyectosExpertos _fachada;
 
-        public LogExperto(FachadaSistema Fachada)
+        public LogExperto(FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
             _fachada = Fachada;
