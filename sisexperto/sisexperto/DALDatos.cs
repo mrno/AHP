@@ -56,8 +56,6 @@ namespace sisexperto
                         return flag;
         }
 
-
-
         public List<alternativa> alternativasPorProyecto(int id_proyecto)
         {
             gisiaContexto = new gisiabaseEntities2();
@@ -287,17 +285,43 @@ namespace sisexperto
 
         }
 
-        public List<experto> expeProyConsistente(int id_proyecto)
+        public List<experto> expeProyConsistente(int id_proy)
         {
-            gisiaContexto = new gisiabaseEntities2();
-            var lista = (from ep in gisiaContexto.experto_proyecto
-                         where ep.id_proyecto == id_proyecto && ep.valoracion_consistente == true
-                         select ep);
-            List<experto> listaExpertos = (from e in gisiaContexto.experto
-                                           join ep in lista on e.id_experto equals ep.id_experto
-                                           select e).ToList<experto>();
-            return listaExpertos;
 
+            int cont;
+            int consistetnes;
+
+            gisiaContexto = new gisiabaseEntities2();
+            List<experto> devolver = new List<experto>();
+            List<experto> exp_proy = expertosPorProyecto(id_proy);
+
+            foreach (experto expp in exp_proy)
+            {
+                consistetnes = 0;
+                var listaContarMat = obtenerMatrizCriterio(id_proy, expp.id_experto);
+                foreach (matriz_criterio m in listaContarMat)
+                {
+                    if (m.consistente.Value)
+                        consistetnes++;
+                }
+                var listaContarAlt = obtenerMatrizAlternativa(id_proy, expp.id_experto);
+                foreach (matriz_alternativa m in listaContarAlt)
+                {
+                    if (m.consistente.Value)
+                        consistetnes++;
+                }
+                cont = listaContarAlt.Count + listaContarMat.Count;
+
+                if (cont == consistetnes)
+                {
+                    experto miExperto = (from e in gisiaContexto.experto
+                                         where e.id_experto == expp.id_experto
+                                         select e).FirstOrDefault<experto>();
+
+                    devolver.Add(miExperto);
+                }
+            }
+            return devolver;
         }
 
         public List<experto_proyecto> expePorProyConsistente(int id_proyecto)
