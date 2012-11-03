@@ -17,6 +17,6 @@ namespace sisexperto.Entidades
 
         public virtual ICollection<Proyecto> ProyectosCreados { get; set; }
 
-        public virtual ICollection<Proyecto> ProyectosAsignados { get; set; }
+        public virtual ICollection<ExpertoEnProyecto> ProyectosAsignados { get; set; }
     }
 }

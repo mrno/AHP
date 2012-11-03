@@ -16,7 +16,7 @@ namespace sisexperto.Entidades
         public int CreadorId { get; set; }
         public virtual Experto Creador { get; set; }
 
-        public virtual ICollection<Experto> ExpertosAsignados { get; set; }
+        public virtual ICollection<ExpertoEnProyecto> ExpertosAsignados { get; set; }
 
         public virtual ICollection<Criterio> Criterios { get; set; }
 

@@ -149,6 +149,7 @@
     <Compile Include="Entidades\ComparacionCriterio.cs" />
     <Compile Include="Entidades\Criterio.cs" />
     <Compile Include="Entidades\Experto.cs" />
+    <Compile Include="Entidades\ExpertoEnProyecto.cs" />
     <Compile Include="Entidades\GisiaExpertoContext.cs" />
     <Compile Include="Entidades\Proyecto.cs" />
     <Compile Include="Entidades\ValoracionAlternativasPorCriterioExperto.cs" />
@@ -182,6 +183,10 @@
     <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.cs" />
     <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.Designer.cs">
       <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.cs" />
+    <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.Designer.cs">
+      <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo2.Designer.cs">
@@ -269,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.resx">
       <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.resx">
+      <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NuevaAlternativa.resx">
       <DependentUpon>NuevaAlternativa.cs</DependentUpon>

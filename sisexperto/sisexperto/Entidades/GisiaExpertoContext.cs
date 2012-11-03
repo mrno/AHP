@@ -21,19 +21,19 @@ namespace sisexperto.Entidades
         public DbSet<ComparacionAlternativa> ComparacionAlternativas { get; set; }
         
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Experto>()
-                .HasMany(e => e.ProyectosAsignados)
-                .WithMany(p => p.ExpertosAsignados)
-                .Map(mp =>
-                    {
-                        mp.ToTable("ExpertosPorProyecto");
-                        mp.MapLeftKey("ExpertoId");
-                        mp.MapRightKey("ProyectoId");
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Experto>()
+        //        .HasMany(e => e.ProyectosAsignados)
+        //        .WithMany(p => p.ExpertosAsignados)
+        //        .Map(mp =>
+        //            {
+        //                mp.ToTable("ExpertosPorProyecto");
+        //                mp.MapLeftKey("ExpertoId");
+        //                mp.MapRightKey("ProyectoId");
                         
-                    });
-            base.OnModelCreating(modelBuilder);
-        }
+        //            });
+        //    base.OnModelCreating(modelBuilder);
+        //}
     }
 }
