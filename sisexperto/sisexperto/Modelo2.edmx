@@ -396,7 +396,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Modelo2">
+      <Diagram Name="Modelo2" ZoomLevel="74">
         <EntityTypeShape EntityType="gisiabaseModel1.alternativa" Width="1.5" PointX="0.75" PointY="0.75" Height="1.592306315104167" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel1.comparacion_alternativa" Width="2.25" PointX="2.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="gisiabaseModel1.comparacion_criterio" Width="2.125" PointX="5.5" PointY="0.875" Height="2.5571907552083335" IsExpanded="true" />

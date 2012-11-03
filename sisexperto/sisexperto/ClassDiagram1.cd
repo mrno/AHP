@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="sisexperto.Entidades.Alternativa">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAACAAAAAAAAAAAgAABgAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Entidades\Alternativa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.ValoracionCriteriosPorExperto">
+    <Position X="4.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAMAEAAAAAAAAAAAAAAAAAAAAEAAAIAAAAAwA=</HashCode>
+      <FileName>Entidades\ValoracionCriteriosPorExperto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.ComparacionAlternativa">
+    <Position X="4.75" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAKAEQAAAAAAAAAAAEgEAAAACAAAAAAAAAIAA=</HashCode>
+      <FileName>Entidades\ComparacionAlternativa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.ComparacionCriterio">
+    <Position X="8.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAOAEAAAAAAAAAAAAEgEAAAAIAAAAAAAAAIAA=</HashCode>
+      <FileName>Entidades\ComparacionCriterio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.Criterio">
+    <Position X="3" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAgAAAAAAAgAABgAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Entidades\Criterio.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.Experto">
+    <Position X="8.25" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAEAAAAgAAAAAABAAAIAAAEAAAAEAA=</HashCode>
+      <FileName>Entidades\Experto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.Proyecto">
+    <Position X="1.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAGAAQAAAIABAAiAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Entidades\Proyecto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="sisexperto.Entidades.ValoracionAlternativasPorCriterioExperto">
+    <Position X="5.25" Y="3.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAMAEQAAIAAAAAAAAAAAAAEAAAAAAIAAAAAQA=</HashCode>
+      <FileName>Entidades\ValoracionAlternativasPorCriterioExperto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

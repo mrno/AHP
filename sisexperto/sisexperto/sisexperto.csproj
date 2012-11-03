@@ -67,6 +67,9 @@
     <Reference Include="ConsistenciaNative">
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Mejora">
       <HintPath>..\..\Dll\Mejora.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
       <HintPath>..\..\Dll\MWArray.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -140,6 +144,15 @@
     <Compile Include="CargarProyecto.Designer.cs">
       <DependentUpon>CargarProyecto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entidades\Alternativa.cs" />
+    <Compile Include="Entidades\ComparacionAlternativa.cs" />
+    <Compile Include="Entidades\ComparacionCriterio.cs" />
+    <Compile Include="Entidades\Criterio.cs" />
+    <Compile Include="Entidades\Experto.cs" />
+    <Compile Include="Entidades\GisiaExpertoContext.cs" />
+    <Compile Include="Entidades\Proyecto.cs" />
+    <Compile Include="Entidades\ValoracionAlternativasPorCriterioExperto.cs" />
+    <Compile Include="Entidades\ValoracionCriteriosPorExperto.cs" />
     <Compile Include="Evaluaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +175,15 @@
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="MatlabUtils.cs" />
+    <Compile Include="Migrations\201211030047193_GisiaExpertoContext creador.cs" />
+    <Compile Include="Migrations\201211030047193_GisiaExpertoContext creador.Designer.cs">
+      <DependentUpon>201211030047193_GisiaExpertoContext creador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.cs" />
+    <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.Designer.cs">
+      <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,6 +264,12 @@
     <EmbeddedResource Include="LogExperto.resx">
       <DependentUpon>LogExperto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211030047193_GisiaExpertoContext creador.resx">
+      <DependentUpon>201211030047193_GisiaExpertoContext creador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.resx">
+      <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NuevaAlternativa.resx">
       <DependentUpon>NuevaAlternativa.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +308,8 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Modelo2.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\alternativa.datasource" />
     <None Include="Properties\DataSources\alternativa1.datasource" />
     <None Include="Properties\DataSources\criterio.datasource" />
@@ -310,7 +340,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entidades\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>

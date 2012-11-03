@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using sisexperto;
+using sisexperto.Entidades;
 
 namespace sisexperto
 {    
     public class FachadaProyectosExpertos
     {
         private DALDatos datos = new DALDatos();
+
+        private GisiaExpertoContext _context = new GisiaExpertoContext();
 
         public experto experto { get; set; }
 

@@ -8,15 +8,15 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-
 namespace sisexperto
 {
     #region Contexts
@@ -226,6 +226,7 @@ namespace sisexperto
         private ObjectSet<matriz_criterio> _matriz_criterio;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -309,11 +310,11 @@ namespace sisexperto
         }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
     
     /// <summary>
@@ -342,6 +343,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -444,6 +446,7 @@ namespace sisexperto
         partial void OndescripcionChanged();
 
         #endregion
+
     
     }
     
@@ -483,6 +486,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -705,6 +709,7 @@ namespace sisexperto
         partial void OnvalorChanged();
 
         #endregion
+
     
     }
     
@@ -742,6 +747,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -940,6 +946,7 @@ namespace sisexperto
         partial void OnvalorChanged();
 
         #endregion
+
     
     }
     
@@ -971,6 +978,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1097,6 +1105,7 @@ namespace sisexperto
         partial void OnILPonderacionChanged();
 
         #endregion
+
     
     }
     
@@ -1130,6 +1139,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1256,6 +1266,7 @@ namespace sisexperto
         partial void OnclaveChanged();
 
         #endregion
+
     
     }
     
@@ -1291,6 +1302,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1441,6 +1453,7 @@ namespace sisexperto
         partial void Onvaloracion_consistenteChanged();
 
         #endregion
+
     
     }
     
@@ -1482,6 +1495,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1704,6 +1718,7 @@ namespace sisexperto
         partial void OnvalorChanged();
 
         #endregion
+
     
     }
     
@@ -1735,6 +1750,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1861,6 +1877,7 @@ namespace sisexperto
         partial void OnconsistenteChanged();
 
         #endregion
+
     
     }
     
@@ -1890,6 +1907,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1992,6 +2010,7 @@ namespace sisexperto
         partial void OnconsistenteChanged();
 
         #endregion
+
     
     }
     
@@ -2023,6 +2042,7 @@ namespace sisexperto
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -2125,9 +2145,11 @@ namespace sisexperto
         partial void OnobjetivoChanged();
 
         #endregion
+
     
     }
 
     #endregion
+
     
 }
