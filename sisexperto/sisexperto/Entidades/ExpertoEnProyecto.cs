@@ -18,5 +18,6 @@ namespace sisexperto.Entidades
         public Experto Experto { get; set; }
 
         public double Ponderacion { get; set; }
+        public double Peso { get; set; }
     }
 }

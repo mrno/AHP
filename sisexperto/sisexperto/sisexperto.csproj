@@ -316,7 +316,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Modelo2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\alternativa.datasource" />
     <None Include="Properties\DataSources\alternativa1.datasource" />

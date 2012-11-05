@@ -11,12 +11,13 @@ namespace sisexperto
     {
         private DALDatos datos = new DALDatos();
 
-        private GisiaExpertoContext _context = new GisiaExpertoContext();
+        //private GisiaExpertoContext _context = new GisiaExpertoContext();
 
         public experto experto { get; set; }
 
         public experto ValidarExperto(string usuario, string password)
         {
+            //using (var asd = new GisiaExpertoContext()) { }
             return datos.validarExperto(usuario, password);
         }
 
