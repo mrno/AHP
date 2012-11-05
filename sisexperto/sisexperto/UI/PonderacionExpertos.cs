@@ -15,9 +15,6 @@ namespace sisexperto.UI
     {   //Agregue para que ande el metodo provisorio
         private DALDatos dato = new DALDatos();
         private CalculoAHP calculo;
-
-
-
         private FachadaEjecucionProyecto _fachadaEjecucion;
         private List<experto_proyecto> _expertosConPonderacion;
         private proyecto _proyecto;

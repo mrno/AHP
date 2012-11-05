@@ -12,6 +12,7 @@ namespace sisexperto.Entidades
 
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Experto> Expertos { get; set; }
+        public DbSet<ExpertoEnProyecto> ExpertosEnProyectos { get; set; }
 
         public DbSet<Criterio> Criterios { get; set; }
         public DbSet<Alternativa> Alternativas { get; set; }
