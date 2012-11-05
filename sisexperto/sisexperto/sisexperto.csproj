@@ -67,7 +67,7 @@
     <Reference Include="ConsistenciaNative">
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Mejora">
@@ -188,6 +188,10 @@
     <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.Designer.cs">
       <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211052129511_nuevo.cs" />
+    <Compile Include="Migrations\201211052129511_nuevo.Designer.cs">
+      <DependentUpon>201211052129511_nuevo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modelo2.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -277,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.resx">
       <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211052129511_nuevo.resx">
+      <DependentUpon>201211052129511_nuevo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NuevaAlternativa.resx">
       <DependentUpon>NuevaAlternativa.cs</DependentUpon>

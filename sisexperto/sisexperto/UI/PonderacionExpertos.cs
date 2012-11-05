@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using sisexperto.Fachadas;
+using probaAHP;
 
 namespace sisexperto.UI
 {
     public partial class PonderacionExpertos : Form
-    {
+    {   //Agregue para que ande el metodo provisorio
+        private DALDatos dato = new DALDatos();
+        private CalculoAHP calculo;
+
+
+
         private FachadaEjecucionProyecto _fachadaEjecucion;
         private List<experto_proyecto> _expertosConPonderacion;
         private proyecto _proyecto;
@@ -38,10 +44,43 @@ namespace sisexperto.UI
             GuardarCambiosPonderacion();
         }
 
-        private void buttonContinuar_Click(object sender, EventArgs e)
-        {
-            GuardarCambiosPonderacion();
-            //_fachadaEjecucion.
+        
+        //TODO Este metodo llama de la forma vieja.
+        //Hay que hacerlo de nuevo en la fachada
+        private void EjecutarAgregacionPonderada() {
+
+
+            var listaExpertoProyecto = dato.expeProyConsistentePONDERADO(_proyecto.id_proyecto);
+            PreparacionListaCriterioAlternativa preparacionLista = new PreparacionListaCriterioAlternativa();
+
+            if (listaExpertoProyecto.Count != 0)
+            {
+
+                List<KRankPonderado> listaKRankPonderado = new List<KRankPonderado>();
+                foreach (experto_proyecto exp in listaExpertoProyecto)
+                {
+                    List<double[,]> listaPreparada = preparacionLista.Preparar(_proyecto.id_proyecto, exp.id_experto);
+                    KRankPonderado kRankPonderado = new KRankPonderado();
+                    calculo = new CalculoAHP();
+                    kRankPonderado.KRanking = calculo.calcularRanking(listaPreparada);
+                    kRankPonderado.Peso = Convert.ToInt32(exp.ponderacion);
+                    listaKRankPonderado.Add(kRankPonderado);
+                }
+                AgregacionPonderada agregacionPonderada = new AgregacionPonderada();
+
+                var rdo = agregacionPonderada.agregar(listaKRankPonderado);
+
+
+                CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(rdo, _proyecto.id_proyecto);
+                frmAhpAgregado.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Ningún experto ha valorado de manera consistente.");
+            }
+
+
+        
         }
 
         private void GuardarCambiosPonderacion()
@@ -58,10 +97,15 @@ namespace sisexperto.UI
 
         private void dataGridPonderacionExpertos_Leave(object sender, EventArgs e)
         {
-            if (PonderacionNula() || _fachadaEjecucion.PosibleEjecutarAHP())
-            {
-                buttonContinuar.Enabled = false;
-            } else buttonContinuar.Enabled = true;
+            //if (PonderacionNula() || _fachadaEjecucion.PosibleEjecutarAHP())
+            //{
+            //    buttonContinuar.Enabled = false;
+            //} else buttonContinuar.Enabled = true;
+        }
+
+        private void buttonContinuar_Click(object sender, EventArgs e)
+        {
+            EjecutarAgregacionPonderada();
         }
     }
 }
