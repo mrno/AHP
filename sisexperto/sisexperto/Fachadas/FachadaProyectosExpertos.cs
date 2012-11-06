@@ -2,101 +2,131 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using sisexperto;
-using sisexperto.Entidades;
+using sisExperto;
+using sisExperto.Entidades;
 
-namespace sisexperto
+namespace sisExperto
 {    
     public class FachadaProyectosExpertos
     {
-        private DALDatos datos = new DALDatos();
+        private GisiaExpertoContext _context = new GisiaExpertoContext();
 
-        //private GisiaExpertoContext _context = new GisiaExpertoContext();
+        public Experto Experto { get; set; }
 
-        public experto experto { get; set; }
-
-        public experto ValidarExperto(string usuario, string password)
+        public Experto ObtenerExpertoValido(string usuario, string password)
         {
             //using (var asd = new GisiaExpertoContext()) { }
-            return datos.validarExperto(usuario, password);
+            Experto = (from exp in _context.Expertos
+                       where exp.Usuario == usuario && exp.Clave == password
+                       select exp).FirstOrDefault();
+            return Experto;
         }
 
-        public IEnumerable<proyecto> SolicitarProyectos(experto e)
+        public IEnumerable<Proyecto> SolicitarProyectosAsignados(Experto e)
         {
-            return datos.proyectosPorCreador(e.id_experto);
+            return (from expEnProyecto in e.ProyectosAsignados
+                    select expEnProyecto.Proyecto);
         }
 
-        public IEnumerable<alternativa> SolicitarAlternativas(int proyecto)
+        public IEnumerable<Proyecto> SolicitarProyectosCreados(Experto e)
         {
-            try
-            {
-                return datos.alternativasPorProyecto(proyecto);
-            }
-            catch (Exception)
-            {
-                return new List<alternativa>();
-            }
-            
+            return e.ProyectosCreados;
         }
 
-        public IEnumerable<criterio> SolicitarCriterios(int proyecto)
+        public IEnumerable<Alternativa> SolicitarAlternativas(Proyecto p)
         {
-            try
-            {
-                return datos.criteriosPorProyecto(proyecto);
-            }
-            catch (Exception)
-            {
-                return new List<criterio>();
-            }
-
+            return p.Alternativas;
         }
 
-        public proyecto AltaProyecto(proyecto proyecto)
+        public IEnumerable<Criterio> SolicitarCriterios(Proyecto p)
         {
-            return datos.altaProyecto(proyecto.id_creador, proyecto.nombre, proyecto.objetivo);
+            return p.Criterios;
         }
 
-        public experto AltaExperto(experto experto)
+        public void AltaProyecto(Proyecto proyecto)
         {
-            return datos.altaExperto(experto.nombre, experto.apellido, experto.nom_usuario, experto.clave);
+            _context.Proyectos.Add(proyecto);
+            _context.SaveChanges();
+        }
+
+        public void AltaExperto(Experto Experto)
+        {
+            _context.Expertos.Add(Experto);
+            _context.SaveChanges();
         }
 
         public bool ExisteExperto(string NombreUsuario)
         {
-            return datos.ExisteUsuario(NombreUsuario);
+            var valor = _context.Expertos.Where(x => x.Usuario == NombreUsuario).Count();
+            return 0 < valor;
+        }
+        
+        public IEnumerable<Experto> ObtenerExpertos()
+        {
+            return _context.Expertos;
         }
 
-        public void AsignarProyecto(proyecto proyecto, experto experto)
+        public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
         {
-            datos.asignarProyecto(proyecto.id_proyecto, experto.id_experto);
-        }
-
-        public IEnumerable<experto> ObtenerExpertos()
-        {
-            return datos.todosExpertos();
-        }
-
-        public void AsignarExpertosAlProyecto(proyecto Proyecto, IEnumerable<experto> Expertos)
-        {
-            foreach (experto experto in Expertos)
+            foreach (var Experto in Expertos)
             {
-                AsignarProyecto(Proyecto, experto);
+                var lista = from exp in Expertos
+                            select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp };
+                Proyecto.ExpertosAsignados = lista.ToList();
+                _context.SaveChanges();
             }
         }
 
-        public IEnumerable<experto> ExpertosAsignados(proyecto Proyecto)
+        public IEnumerable<Experto> ExpertosAsignados(Proyecto Proyecto)
         {
             try
             {
-                return datos.expertosPorProyecto(Proyecto.id_proyecto);
+                List<Experto> lista = (from expEnProyecto in Proyecto.ExpertosAsignados
+                                        select expEnProyecto.Experto).ToList();
+                return lista;
             }
             catch (Exception)
             {
 
-                return new List<experto>();
+                return new List<Experto>();
             }
             
+        }
+
+        internal IEnumerable<Proyecto> ProyectosNoValorados(Entidades.Experto _experto)
+        {
+            return (from p in SolicitarProyectosCreados(_experto)
+                        where p.Estado == "Creado"
+                    select p);
+        }
+
+        public void GuardarAlternativas(Proyecto Proyecto, List<Alternativa> Alternativas)
+        {
+            //if (Proyecto.Alternativas == null) Proyecto.Alternativas = new List<Alternativa>();
+            /*
+            foreach (var item in Alternativas)
+            {
+                Proyecto.Alternativas.Add(item);
+            }*/
+            Proyecto.Alternativas = Alternativas;
+            _context.SaveChanges();
+        }
+
+        public void GuardarCriterios(Proyecto Proyecto, List<Criterio> Criterios)
+        {/*
+            if (Proyecto.Criterios == null) Proyecto.Criterios = new List<Criterio>();
+            foreach (var item in Criterios)
+            {
+                Proyecto.Criterios.Add(item);
+            }*/
+            Proyecto.Criterios = Criterios;
+            _context.SaveChanges();
+        }
+
+        public void CerrarEdicionProyecto(Proyecto P)
+        {
+            P.Estado = "Modificado";
+            _context.SaveChanges();
         }
     }
 }

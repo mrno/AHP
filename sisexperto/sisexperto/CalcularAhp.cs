@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class CalcularAhpAgregadoPonderado : Form
     {
@@ -15,30 +15,30 @@ namespace sisexperto
         private DALDatos dato = new DALDatos();
  
 
-        private List<alternativa> listaA;
+        private List<Alternativa> listaA;
         
         private int id_proyecto;
-        private int id_experto;
+        private int id_Experto;
 
         public CalcularAhpAgregadoPonderado(int id_proy, int id_exp)
         {
             InitializeComponent();
             id_proyecto = id_proy;
-            id_experto = id_exp;
+            id_Experto = id_exp;
         }
 
         private void CalcularAhp_Load(object sender, EventArgs e)
         {
             PreparacionListaCriterioAlternativa preparacion = new PreparacionListaCriterioAlternativa();
 
-            List<double[,]> listaCompleta = preparacion.Preparar(id_proyecto, id_experto);
+            List<double[,]> listaCompleta = preparacion.Preparar(id_proyecto, id_Experto);
 
             CalculoAHP calculo = new CalculoAHP();
             ranking = calculo.calcularRanking(listaCompleta);
-            listaA = dato.alternativasPorProyecto(id_proyecto);
+            listaA = dato.AlternativasPorProyecto(id_proyecto);
             int y = 70;
             int cont = 0;
-            foreach (alternativa alt in listaA)
+            foreach (Alternativa alt in listaA)
             {
                 Label izquierdaTB = new Label();
                 izquierdaTB.SetBounds(16, y, 200, 50);

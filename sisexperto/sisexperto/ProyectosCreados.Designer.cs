@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class ProyectosCreados
     {
@@ -62,7 +62,7 @@
             // 
             // proyectoBindingSource
             // 
-            this.proyectoBindingSource.DataSource = typeof(sisexperto.proyecto);
+            this.proyectoBindingSource.DataSource = typeof(sisExperto.proyecto);
             // 
             // button1
             // 

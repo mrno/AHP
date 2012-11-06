@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace sisexperto
+namespace sisExperto
 {
    public class AgrAlternativas
     {
@@ -15,30 +15,30 @@ namespace sisexperto
        {
            
 
-           //List<experto> listaExp = dato.expertosPorProyecto(id_proy);
-           List<criterio> listaCri = dato.criteriosPorProyecto(id_proy);
-           List<alternativa> listaAlternativa = dato.alternativasPorProyecto(id_proy);
-           //foreach (experto exp in listaExp)
+           //List<Experto> listaExp = dato.ExpertosPorProyecto(id_proy);
+           List<Criterio> listaCri = dato.CriteriosPorProyecto(id_proy);
+           List<Alternativa> listaAlternativa = dato.AlternativasPorProyecto(id_proy);
+           //foreach (Experto exp in listaExp)
            //{
 
-               foreach (criterio crit in listaCri)
+               foreach (Criterio crit in listaCri)
                {
-                   List<comparacion_alternativa> listaAlt;
+                   List<comparacion_Alternativa> listaAlt;
                    //List<String> listaExpertos = null;
                    
 
-                   listaAlt = dato.compAlternativaPorExpertoCriterio(id_proy, id_exp, crit.id_criterio);
+                   listaAlt = dato.compAlternativaPorExpertoCriterio(id_proy, id_exp, crit.id_Criterio);
                    
 
-                   //foreach (comparacion_alternativa comp in listaAlt)
+                   //foreach (comparacion_Alternativa comp in listaAlt)
                    //{
-                   //    if (comp.valor == 0 && !(listaExpertos.Contains(comp.id_experto.ToString())))
-                   //        listaExpertos.Add(comp.id_experto.ToString());
+                   //    if (comp.valor == 0 && !(listaExpertos.Contains(comp.id_Experto.ToString())))
+                   //        listaExpertos.Add(comp.id_Experto.ToString());
                    //}
 
                    int cantidadFilas = 1;
 
-                   foreach (comparacion_alternativa comp in listaAlt)
+                   foreach (comparacion_Alternativa comp in listaAlt)
                    {
                        if (comp.pos_fila == 0)
                            cantidadFilas++;
@@ -47,7 +47,7 @@ namespace sisexperto
                    
                    double[,] matrizAlt = new double[cantidadFilas, cantidadFilas];
 
-                   foreach (comparacion_alternativa comp in listaAlt)
+                   foreach (comparacion_Alternativa comp in listaAlt)
                    {
                        matrizAlt[comp.pos_fila, comp.pos_columna] = (double)comp.valor;
                    }

@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class LogExperto
     {

@@ -6,14 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using sisExperto.Entidades;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class LogExperto : Form
     {
         private FrmPrincipal ventanaOrigen;
 
-        public delegate void InicioSesion(experto exp);
+        public delegate void InicioSesion(Experto exp);
         public event InicioSesion InicioCorrecto;
 
         private FachadaProyectosExpertos _fachada;
@@ -26,14 +27,14 @@ namespace sisexperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var experto = _fachada.ValidarExperto(textBoxUsuario.Text, textBoxContrasena.Text);
-            if (experto.nom_usuario == null)
+            var Experto = _fachada.ObtenerExpertoValido(textBoxUsuario.Text, textBoxContrasena.Text);
+            if (Experto == null)
             {
                 labelSesionInv.Visible = true;
             }
             else
             {
-                InicioCorrecto(experto);
+                InicioCorrecto(Experto);
                 this.Close();
             }
         }

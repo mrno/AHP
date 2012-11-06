@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace sisexperto.Entidades
+namespace sisExperto.Entidades
 {
     [Table("Expertos")]
     public class Experto
@@ -14,6 +14,7 @@ namespace sisexperto.Entidades
         public string Nombre { get; set; }
         public string Usuario { get; set; }
         public string Clave { get; set; }
+        public bool Administrador { get; set; }
 
         public virtual ICollection<Proyecto> ProyectosCreados { get; set; }
 

@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using sisExperto.Entidades;
 
-namespace sisexperto.Fachadas
+namespace sisExperto.Fachadas
 {
     public class FachadaEjecucionProyecto
     {
-        private DALDatos datos = new DALDatos();
+        private GisiaExpertoContext _context = new GisiaExpertoContext();
 
-        public experto Proyecto { get; set; }
+        public Experto Proyecto { get; set; }
 
-        public List<experto_proyecto> ObtenerExpertosProyecto(proyecto _proyecto)
+        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {
-            return datos.expertosPorProyecto2(_proyecto.id_proyecto);
+            return _proyecto.ExpertosAsignados;
         }
 
-        public void GuardarCambios(List<experto_proyecto> _expertosConPonderacion)
+        public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
         {
-            throw new NotImplementedException();
+            foreach (var Experto in _ExpertosConPonderacion)
+            {
+                
+            }
         }
 
         public bool PosibleEjecutarAHP()

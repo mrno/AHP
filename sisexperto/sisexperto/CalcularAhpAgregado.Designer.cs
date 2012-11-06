@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class CalcularAhpAgregado
     {
@@ -39,7 +39,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(499, 22);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Ranking de alternativas AGREGADO para el proyecto actual:";
+            this.label1.Text = "Ranking de Alternativas AGREGADO para el proyecto actual:";
             // 
             // CalcularAhpAgregado
             // 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using probaAHP;
 
-namespace sisexperto
+namespace sisExperto
 {
    public class AgregacionNoPonderada
     {
@@ -28,7 +28,7 @@ namespace sisexperto
       
        public List<NAlternativas> AgregarAlternativas(List<AgrAlternativas> listaKNAlternativas)
        {
-           //buscamos la cantidad de alternativas.
+           //buscamos la cantidad de Alternativas.
            //es la longitud de la dimension de la matriz
          
            
@@ -39,9 +39,9 @@ namespace sisexperto
 
            foreach (var listaKnAlternativa in listaKNAlternativas[1].listaKNAlternativas)
            {
-               NAlternativas alternativa = new NAlternativas(cantAlter);
-               utils.Unar(alternativa.nAlternativas, cantAlter);
-               listaAlternativasAgregada.Add(alternativa);
+               NAlternativas Alternativa = new NAlternativas(cantAlter);
+               utils.Unar(Alternativa.nAlternativas, cantAlter);
+               listaAlternativasAgregada.Add(Alternativa);
            }
 
            foreach (var vble in listaKNAlternativas)

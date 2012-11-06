@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class CrearExperto
     {
@@ -65,7 +65,7 @@
             this.groupBox2.Size = new System.Drawing.Size(401, 166);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos del nuevo experto";
+            this.groupBox2.Text = "Datos del nuevo Experto";
             // 
             // textBoxClaveRepetida
             // 

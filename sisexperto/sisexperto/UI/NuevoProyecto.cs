@@ -6,47 +6,46 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using sisExperto.Entidades;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class NuevoProyecto : Form
     {
         public delegate void Proyectos();
         public event Proyectos ProyectoCreado;
         
-        private List<experto> _expertosAsignados = new List<experto>();
-        private List<experto> _todosExpertos = new List<experto>();
+        private List<Experto> _ExpertosAsignados = new List<Experto>();
+        private List<Experto> _todosExpertos = new List<Experto>();
 
-        private int _experto;
+        private Experto _Experto;
 
         private FachadaProyectosExpertos _fachada;
 
-        public NuevoProyecto(FachadaProyectosExpertos Fachada, experto experto)
+        public NuevoProyecto(FachadaProyectosExpertos Fachada, Experto Experto)
         {
             InitializeComponent();
-            labelNombreExperto.Text = string.Format("{0}, {1}", experto.apellido.ToUpper(), experto.nombre);
-            _experto = experto.id_experto;
+            labelNombreExperto.Text = string.Format("{0}, {1}", Experto.Apellido.ToUpper(), Experto.Nombre);
+            _Experto = Experto;
             _fachada = Fachada;
         }
 
-        private void AsignarExperto(experto exp)
+        private void AsignarExperto(Experto exp)
         {
-            _expertosAsignados.Add(exp);
+            _ExpertosAsignados.Add(exp);
             ActualizarGridExpertosAsignados();
         }
 
         private void ActualizarGridExpertosAsignados()
         {
             dataGridExpertosAsignados.DataSource = null;
-            var lista = _expertosAsignados;
+            var lista = _ExpertosAsignados;
             lista.Reverse();
             dataGridExpertosAsignados.DataSource = lista; 
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            //groupBox2.Visible = true;
-            //dataGridView2.Visible = false;
             var ventanaCrearExperto = new CrearExperto(_fachada);
             ventanaCrearExperto.ExpertoAgregado += (AsignarExperto);
             ventanaCrearExperto.ShowDialog();
@@ -56,34 +55,36 @@ namespace sisexperto
         {
             if (_todosExpertos.Count > 0)
             {
-                experto exp = (experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem;
-                _todosExpertos.Remove((experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem);
+                Experto exp = (Experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem;
+                //acá puede que vaya exp nomás
+                _todosExpertos.Remove((Experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem);
 
                 dataGridExpertosDisponibles.DataSource = null;
                 dataGridExpertosDisponibles.DataSource = _todosExpertos;
 
                 AsignarExperto(exp);
             }
+            btnQuitar.Enabled = true;
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-            if (_expertosAsignados.Count != 0)
+            if (_ExpertosAsignados.Count != 0)
             {
-                _todosExpertos.Add((experto)dataGridExpertosAsignados.CurrentRow.DataBoundItem);
+                _todosExpertos.Add((Experto)dataGridExpertosAsignados.CurrentRow.DataBoundItem);
                 dataGridExpertosDisponibles.DataSource = null;
                 dataGridExpertosDisponibles.DataSource = _todosExpertos;
 
-                _expertosAsignados.Remove((experto)dataGridExpertosAsignados.CurrentRow.DataBoundItem);
+                _ExpertosAsignados.Remove((Experto)dataGridExpertosAsignados.CurrentRow.DataBoundItem);
                 dataGridExpertosAsignados.DataSource = null;
-                dataGridExpertosAsignados.DataSource = _expertosAsignados;
+                dataGridExpertosAsignados.DataSource = _ExpertosAsignados;
             }
+            if (_ExpertosAsignados.Count == 0)
+                btnQuitar.Enabled = false;
         }
 
         private void NuevoProyecto_Load(object sender, EventArgs e)
         {
-           // dataGridExpertosDisponibles.Visible = true;
-            
             _todosExpertos = _fachada.ObtenerExpertos().ToList();
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
         }
@@ -103,20 +104,19 @@ namespace sisexperto
             var bandera = false;
             if ((textBoxNombreProyecto.Text != "") && (textBoxObjetivoProyecto.Text != ""))
             {
-                if (_expertosAsignados.Count != 0)
+                if (_ExpertosAsignados.Count != 0)
                 {
-                    proyecto _proyecto = new proyecto { nombre = textBoxNombreProyecto.Text, objetivo = textBoxObjetivoProyecto.Text, id_creador = _experto };
-                    proyecto _proyectoAgregado = _fachada.AltaProyecto(_proyecto);
-
-                    _fachada.AsignarExpertosAlProyecto(_proyectoAgregado, _expertosAsignados);
-
+                    Proyecto _proyecto = new Proyecto { Nombre = textBoxNombreProyecto.Text, Objetivo = textBoxObjetivoProyecto.Text, Creador = _Experto, Estado = "Creado" };
+                    
+                    _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
+                    _fachada.AltaProyecto(_proyecto);
                     ProyectoCreado();
 
                     MessageBox.Show("El proyecto se ha creado satisfactoriamente.");
                     bandera = true;
                 }
                 else
-                    MessageBox.Show("Debe asignar por lo menos un experto al proyecto.");
+                    MessageBox.Show("Debe asignar por lo menos un Experto al proyecto.");
             }
             else
                 MessageBox.Show("Debe completar los campos Nombre y Objetivo.");
@@ -134,9 +134,9 @@ namespace sisexperto
         {
             textBoxNombreProyecto.Text = "";
             textBoxObjetivoProyecto.Text = "";
-            _todosExpertos.AddRange(_expertosAsignados);
+            _todosExpertos.AddRange(_ExpertosAsignados);
 
-            _expertosAsignados.Clear();
+            _ExpertosAsignados.Clear();
             dataGridExpertosAsignados.DataSource = null;
 
             dataGridExpertosDisponibles.DataSource = null;

@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class ComparacionAlternativas
     {
@@ -61,7 +61,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(367, 31);
             this.label19.TabIndex = 11;
-            this.label19.Text = "Comparación de alternativas:";
+            this.label19.Text = "Comparación de Alternativas:";
             // 
             // label20
             // 

@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class ProyectosAsignados
     {
@@ -41,24 +41,24 @@
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idmatrizCriterioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idproyectoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idexpertoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idExpertoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consistenteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.matrizcriterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.matrizCriterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gridAlternativa = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consistenteDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.matrizalternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.matrizAlternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizcriterioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matrizCriterioBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizalternativaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matrizAlternativaBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +110,7 @@
             // 
             // proyectoBindingSource
             // 
-            this.proyectoBindingSource.DataSource = typeof(sisexperto.proyecto);
+            this.proyectoBindingSource.DataSource = typeof(sisExperto.proyecto);
             // 
             // groupBox2
             // 
@@ -132,9 +132,9 @@
             this.Column1,
             this.idmatrizCriterioDataGridViewTextBoxColumn,
             this.idproyectoDataGridViewTextBoxColumn,
-            this.idexpertoDataGridViewTextBoxColumn,
+            this.idExpertoDataGridViewTextBoxColumn,
             this.consistenteDataGridViewTextBoxColumn});
-            this.gridCriterio.DataSource = this.matrizcriterioBindingSource;
+            this.gridCriterio.DataSource = this.matrizCriterioBindingSource;
             this.gridCriterio.Location = new System.Drawing.Point(6, 19);
             this.gridCriterio.Name = "gridCriterio";
             this.gridCriterio.Size = new System.Drawing.Size(244, 66);
@@ -166,11 +166,11 @@
             this.idproyectoDataGridViewTextBoxColumn.HeaderText = "id_proyecto";
             this.idproyectoDataGridViewTextBoxColumn.Name = "idproyectoDataGridViewTextBoxColumn";
             // 
-            // idexpertoDataGridViewTextBoxColumn
+            // idExpertoDataGridViewTextBoxColumn
             // 
-            this.idexpertoDataGridViewTextBoxColumn.DataPropertyName = "id_experto";
-            this.idexpertoDataGridViewTextBoxColumn.HeaderText = "id_experto";
-            this.idexpertoDataGridViewTextBoxColumn.Name = "idexpertoDataGridViewTextBoxColumn";
+            this.idExpertoDataGridViewTextBoxColumn.DataPropertyName = "id_Experto";
+            this.idExpertoDataGridViewTextBoxColumn.HeaderText = "id_Experto";
+            this.idExpertoDataGridViewTextBoxColumn.Name = "idExpertoDataGridViewTextBoxColumn";
             // 
             // consistenteDataGridViewTextBoxColumn
             // 
@@ -178,9 +178,9 @@
             this.consistenteDataGridViewTextBoxColumn.HeaderText = "consistente";
             this.consistenteDataGridViewTextBoxColumn.Name = "consistenteDataGridViewTextBoxColumn";
             // 
-            // matrizcriterioBindingSource
+            // matrizCriterioBindingSource
             // 
-            this.matrizcriterioBindingSource.DataSource = typeof(sisexperto.matriz_criterio);
+            this.matrizCriterioBindingSource.DataSource = typeof(sisExperto.matriz_Criterio);
             // 
             // groupBox3
             // 
@@ -202,7 +202,7 @@
             this.Column5,
             this.consistenteDataGridViewTextBoxColumn1,
             this.Column4});
-            this.gridAlternativa.DataSource = this.matrizalternativaBindingSource;
+            this.gridAlternativa.DataSource = this.matrizAlternativaBindingSource;
             this.gridAlternativa.Location = new System.Drawing.Point(6, 19);
             this.gridAlternativa.Name = "gridAlternativa";
             this.gridAlternativa.Size = new System.Drawing.Size(463, 150);
@@ -229,9 +229,9 @@
             this.Column4.HeaderText = "Valorar";
             this.Column4.Name = "Column4";
             // 
-            // matrizalternativaBindingSource
+            // matrizAlternativaBindingSource
             // 
-            this.matrizalternativaBindingSource.DataSource = typeof(sisexperto.matriz_alternativa);
+            this.matrizAlternativaBindingSource.DataSource = typeof(sisExperto.matriz_Alternativa);
             // 
             // ProyectosAsignados
             // 
@@ -251,10 +251,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizcriterioBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matrizCriterioBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizalternativaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.matrizAlternativaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,8 +272,8 @@
         private System.Windows.Forms.DataGridView gridCriterio;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView gridAlternativa;
-        private System.Windows.Forms.BindingSource matrizcriterioBindingSource;
-        private System.Windows.Forms.BindingSource matrizalternativaBindingSource;
+        private System.Windows.Forms.BindingSource matrizCriterioBindingSource;
+        private System.Windows.Forms.BindingSource matrizAlternativaBindingSource;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistente;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
@@ -281,7 +281,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn idmatrizCriterioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idproyectoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idexpertoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idExpertoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn consistenteDataGridViewTextBoxColumn;
     }
 }

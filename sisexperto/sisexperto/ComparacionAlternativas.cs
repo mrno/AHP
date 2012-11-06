@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class ComparacionAlternativas : Form
     {
         private DALDatos dato = new DALDatos();
         private int id_proyecto;
-        private int id_experto;
-        private int id_criterio;
+        private int id_Experto;
+        private int id_Criterio;
 
-        //private Queue<criterio> colaCriterio;
+        //private Queue<Criterio> colaCriterio;
 
         private int y = 140;
 
@@ -24,12 +24,12 @@ namespace sisexperto
         private int pos = 0;
         
         
-        public ComparacionAlternativas(int id_proy, int id_exp, int criterio)
+        public ComparacionAlternativas(int id_proy, int id_exp, int Criterio)
         {
             InitializeComponent();
             id_proyecto = id_proy;
-            id_experto = id_exp;
-            id_criterio = criterio;
+            id_Experto = id_exp;
+            id_Criterio = Criterio;
             //colaCriterio = dato.colaCriterios(id_proyecto);
         }
 
@@ -50,9 +50,9 @@ namespace sisexperto
                         Label l = (Label)miLabel;
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
-                        dato.modificarComparacionAlternativa(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
-                        dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
-                        dato.actualizarMatrizAlternativa(id_proyecto, id_experto, id_criterio, false);
+                        dato.modificarComparacionAlternativa(id_proyecto, id_Experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
+                        dato.actualizarConsistenciaProyecto(id_proyecto, id_Experto, false);
+                        dato.actualizarMatrizAlternativa(id_proyecto, id_Experto, id_Criterio, false);
                     }
                 }
             }
@@ -63,34 +63,34 @@ namespace sisexperto
             dato = new DALDatos();
             y = 140;
 
-            List<comparacion_alternativa> listaComparacion = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, id_cri);
+            List<comparacion_Alternativa> listaComparacion = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_Experto, id_cri);
 
-            foreach (comparacion_alternativa comp in listaComparacion)
+            foreach (comparacion_Alternativa comp in listaComparacion)
             {
     
                 Label izquierdaTB = new Label();
                 izquierdaTB.SetBounds(5, y, 75, 50);
-                izquierdaTB.Text = dato.alternativaNombre(comp.id_alternativa1);
+                izquierdaTB.Text = dato.AlternativaNombre(comp.id_Alternativa1);
                 Controls.Add(izquierdaTB);
 
                 TrackBar track = new TrackBar();
                 track.SetBounds(75, y, 400, 45);
-                track.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+                track.Name = comp.id_Criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
-                track.Value = dato.obtenerEnteroCompAlternativa(comp.id_proyecto, comp.id_experto, comp.id_criterio, comp.pos_fila, comp.pos_columna);
+                track.Value = dato.obtenerEnteroCompAlternativa(comp.id_proyecto, comp.id_Experto, comp.id_Criterio, comp.pos_fila, comp.pos_columna);
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
                
                 Label miLabel = new Label();
                 miLabel.SetBounds(150, y + 45, 250, 30);
-                miLabel.Name = comp.id_criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-                double doble = dato.obtenerValorCompAlternativa(comp.id_proyecto, comp.id_experto, comp.id_criterio, comp.pos_fila, comp.pos_columna);
+                miLabel.Name = comp.id_Criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+                double doble = dato.obtenerValorCompAlternativa(comp.id_proyecto, comp.id_Experto, comp.id_Criterio, comp.pos_fila, comp.pos_columna);
                 miLabel.Text = dato.obtenerDescripcion(doble);
                 Controls.Add(miLabel);
 
                 Label derechaTB = new Label();
                 derechaTB.SetBounds(500, y, 80, 30);
-                derechaTB.Text = dato.alternativaNombre(comp.id_alternativa2);
+                derechaTB.Text = dato.AlternativaNombre(comp.id_Alternativa2);
                 Controls.Add(derechaTB);
 
                 button3.Enabled = false;
@@ -104,8 +104,8 @@ namespace sisexperto
  
             //crit = colaCriterio.Dequeue();
 
-            label20.Text = "Considerando el criterio: " + dato.criterioNombre(id_criterio).ToString();
-            cargarTracks(id_criterio);
+            label20.Text = "Considerando el Criterio: " + dato.CriterioNombre(id_Criterio).ToString();
+            cargarTracks(id_Criterio);
 
             //int y = 140;
             // 
@@ -174,7 +174,7 @@ namespace sisexperto
 
         private void button4_Click(object sender, EventArgs e)
         {
-            CalcularAhpAgregadoPonderado frmCalcularAhpAgregadoPonderado = new CalcularAhpAgregadoPonderado(id_proyecto, id_experto);
+            CalcularAhpAgregadoPonderado frmCalcularAhpAgregadoPonderado = new CalcularAhpAgregadoPonderado(id_proyecto, id_Experto);
             frmCalcularAhpAgregadoPonderado.ShowDialog();
             this.Close();
         }
@@ -182,14 +182,14 @@ namespace sisexperto
         private void button1_Click(object sender, EventArgs e)
         {
             label9.Text = "";
-           // Queue<criterio> colaCri = dato.colaCriterios(id_proyecto);
-            List<comparacion_alternativa> listaAlt;
+           // Queue<Criterio> colaCri = dato.colaCriterios(id_proyecto);
+            List<comparacion_Alternativa> listaAlt;
            
-                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_experto, id_criterio);
+                listaAlt = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_Experto, id_Criterio);
 
                 int cantidadFilas = 1;
 
-                foreach (comparacion_alternativa comp in listaAlt)
+                foreach (comparacion_Alternativa comp in listaAlt)
                 {
                     if (comp.pos_fila == 0)
                         cantidadFilas++;
@@ -197,7 +197,7 @@ namespace sisexperto
 
                 double[,] matrizAlt = new double[cantidadFilas, cantidadFilas];
 
-                foreach (comparacion_alternativa comp in listaAlt)
+                foreach (comparacion_Alternativa comp in listaAlt)
                 {
                     matrizAlt[comp.pos_fila, comp.pos_columna] = (double)comp.valor;
                 }
@@ -218,7 +218,7 @@ namespace sisexperto
 
             if (consistencia.calcularConsistencia(matrizAlt))
             {
-                dato.actualizarMatrizAlternativa(id_proyecto, id_experto, id_criterio, true);
+                dato.actualizarMatrizAlternativa(id_proyecto, id_Experto, id_Criterio, true);
                 button1.Visible = true;
                 //this.button3.Enabled = true;
                 //this.button3.Visible = true;
@@ -235,7 +235,7 @@ namespace sisexperto
                 Int32 fila = (Int32)posicionRecomendada[0];
                 Int32 columna = (Int32)posicionRecomendada[1];
 
-                List<alternativa> listaAlternativas = dato.alternativasPorProyecto(id_proyecto);
+                List<Alternativa> listaAlternativas = dato.AlternativasPorProyecto(id_proyecto);
 
                 NombreAlternativaA = listaAlternativas[fila].nombre;
                 NombreAlternativaB = listaAlternativas[columna].nombre;

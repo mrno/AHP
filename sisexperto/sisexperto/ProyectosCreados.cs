@@ -8,12 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 using probaAHP;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class ProyectosCreados : Form
     {
         private DALDatos dato = new DALDatos();
-        private int id_experto;
+        private int id_Experto;
         private int id;
         private CalculoAHP calculo;
         private double[,] ranking;
@@ -22,21 +22,21 @@ namespace sisexperto
         private List<NAlternativas> listaNAlt;
         private AgregacionNoPonderada calculadorNoPonderadas = new AgregacionNoPonderada();
       
-        private List<experto> listaExperto;
-        private List<experto_proyecto> listaExpertoProyecto;
+        private List<Experto> listaExperto;
+        private List<ExpertoEnProyecto> listaExpertoProyecto;
         private List<AgrAlternativas> listaAlternativasPonderar = new List<AgrAlternativas>();
         private AgrCriterio matrizCriterioPonderar;
 
-        public ProyectosCreados(experto exp, proyecto proy)
+        public ProyectosCreados(Experto exp, proyecto proy)
         {
             InitializeComponent();
-            id_experto = exp.id_experto;
+            id_Experto = exp.id_Experto;
             id = proy.id_proyecto;
         }
 
         private void ProyectosCreados_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = dato.proyectosPorCreador(id_experto);
+            dataGridView1.DataSource = dato.proyectosPorCreador(id_Experto);
              
 
             button1.Enabled = false;
@@ -62,20 +62,20 @@ namespace sisexperto
 
             if (listaExperto.Count != 0)
             {
-                foreach (experto exp in listaExperto)
+                foreach (Experto exp in listaExperto)
                 {
 
-                    AgrAlternativas altAgregar = new AgrAlternativas(proy.id_proyecto, exp.id_experto);
+                    AgrAlternativas altAgregar = new AgrAlternativas(proy.id_proyecto, exp.id_Experto);
                     listaAlternativasPonderar.Add(altAgregar);
                 }
 
                 matrizCriterioPonderar = new AgrCriterio(proy.id_proyecto);
 
-                //Acá procedo a agregarle la primer matriz, la de criterios:
+                //Acá procedo a agregarle la primer matriz, la de Criterios:
 
                 listaCompleta.Add(calculadorNoPonderadas.AgregarCriterios(matrizCriterioPonderar));
 
-                //Acá creo una lista con las alternativas ponderadas en la primer línea y luego la recorro y para cada elemento le asigno
+                //Acá creo una lista con las Alternativas ponderadas en la primer línea y luego la recorro y para cada elemento le asigno
                 //su valor de atributo a la listaCompleta:
 
                 listaNAlt = calculadorNoPonderadas.AgregarAlternativas(listaAlternativasPonderar);
@@ -99,7 +99,7 @@ namespace sisexperto
             }
             else
             {
-                MessageBox.Show("Ningún experto ha valorado de manera consistente.");
+                MessageBox.Show("Ningún Experto ha valorado de manera consistente.");
             }
 
 
@@ -119,9 +119,9 @@ namespace sisexperto
             {
                
                 List<KRankPonderado> listaKRankPonderado = new List<KRankPonderado>();
-                foreach (experto_proyecto exp in listaExpertoProyecto)
+                foreach (ExpertoEnProyecto exp in listaExpertoProyecto)
                 {
-                    List<double[,]> listaPreparada = preparacionLista.Preparar(proy.id_proyecto, exp.id_experto);
+                    List<double[,]> listaPreparada = preparacionLista.Preparar(proy.id_proyecto, exp.id_Experto);
                     KRankPonderado kRankPonderado = new KRankPonderado();
                   calculo = new CalculoAHP();
             kRankPonderado.KRanking = calculo.calcularRanking(listaPreparada);
@@ -138,7 +138,7 @@ namespace sisexperto
             }
             else
             {
-                MessageBox.Show("Ningún experto ha valorado de manera consistente.");
+                MessageBox.Show("Ningún Experto ha valorado de manera consistente.");
             }
 
 

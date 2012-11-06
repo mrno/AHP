@@ -6,7 +6,7 @@ using MathWorks.MATLAB.NET.Arrays;
 using VectCalc;
 
 
-namespace sisexperto
+namespace sisExperto
 {
     public class MatlabUtils
     {

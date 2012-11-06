@@ -9,13 +9,13 @@ using System.Windows.Forms;
 using Consistencia;
 using ConsistenciaNative;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class CompararCriterios : Form
     {
         private DALDatos dato;
         private int id_proyecto;
-        private int id_experto;
+        private int id_Experto;
         private TrackBar track;
         private double[,] mejorada;
         private int pos = 0;
@@ -24,7 +24,7 @@ namespace sisexperto
         {
             InitializeComponent();
             id_proyecto = id_p;
-            id_experto = id_e;
+            id_Experto = id_e;
         }
 
         private bool existe(string nombre)
@@ -59,9 +59,9 @@ namespace sisexperto
                         Label l = (Label)miLabel;
                         l.Text = dato.valorarPalabra(track.Value);
                         dato = new DALDatos();
-                        dato.modificarComparacionCriterios(id_proyecto, id_experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
-                        dato.actualizarConsistenciaProyecto(id_proyecto, id_experto, false);
-                        dato.actualizarMatrizCriterio(id_proyecto, id_experto, false);
+                        dato.modificarComparacionCriterios(id_proyecto, id_Experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
+                        dato.actualizarConsistenciaProyecto(id_proyecto, id_Experto, false);
+                        dato.actualizarMatrizCriterio(id_proyecto, id_Experto, false);
                     }
                 }
             }
@@ -73,15 +73,15 @@ namespace sisexperto
             dato = new DALDatos();
             int y = 140;
 
-            List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_experto);
+            List<comparacion_Criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_Experto);
 
-            List<criterio> lista = dato.criteriosPorProyecto(id_proyecto);
+            List<Criterio> lista = dato.CriteriosPorProyecto(id_proyecto);
 
-            foreach (comparacion_criterio comp in listaComparacion)
+            foreach (comparacion_Criterio comp in listaComparacion)
             {
                 Label izquierdaTB = new Label();
                 izquierdaTB.SetBounds(5, y, 75, 50);
-                izquierdaTB.Text = dato.criterioNombre(comp.id_criterio1);
+                izquierdaTB.Text = dato.CriterioNombre(comp.id_Criterio1);
                 Controls.Add(izquierdaTB);
 
                 TrackBar track = new TrackBar();
@@ -89,7 +89,7 @@ namespace sisexperto
                 track.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
                 track.SetRange(1, 17);
                 track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto,
-                    comp.id_experto, comp.pos_fila, comp.pos_columna);
+                    comp.id_Experto, comp.pos_fila, comp.pos_columna);
                 track.Scroll += new System.EventHandler(this.mostrar);
                 Controls.Add(track);
 
@@ -98,12 +98,12 @@ namespace sisexperto
 
                 Label derechaTB = new Label();
                 derechaTB.SetBounds(500, y, 80, 30);
-                derechaTB.Text = dato.criterioNombre(comp.id_criterio2);
+                derechaTB.Text = dato.CriterioNombre(comp.id_Criterio2);
                 Controls.Add(derechaTB);
 
                 Label miLabel = new Label();
                 miLabel.SetBounds(150, y + 45, 250, 30);
-                double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_experto, comp.pos_fila,
+                double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
                                                               comp.pos_columna);
                 miLabel.Text = dato.obtenerDescripcion(doble);
                 miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
@@ -155,10 +155,10 @@ namespace sisexperto
         {
 
             label9.Text = "";
-            List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_experto);
+            List<comparacion_Criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_Experto);
             int cantFilas = 1;
 
-            foreach (comparacion_criterio comp in listaComparacion)
+            foreach (comparacion_Criterio comp in listaComparacion)
             {
                 if (comp.pos_fila == 0)
                     cantFilas++;
@@ -166,7 +166,7 @@ namespace sisexperto
 
             double[,] matriz = new double[cantFilas,cantFilas];
 
-            foreach(comparacion_criterio comp in listaComparacion)
+            foreach(comparacion_Criterio comp in listaComparacion)
             {
                 matriz[comp.pos_fila, comp.pos_columna] = (double)comp.valor;
             }
@@ -188,7 +188,7 @@ namespace sisexperto
 
             if (consistencia.calcularConsistencia(matriz))
             {
-                dato.actualizarMatrizCriterio(id_proyecto, id_experto, true);
+                dato.actualizarMatrizCriterio(id_proyecto, id_Experto, true);
                 MessageBox.Show("Matriz consistente.");
             }
             else
@@ -204,7 +204,7 @@ namespace sisexperto
                 Int32 fila = (Int32)posicionRecomendada[0];
                 Int32 columna = (Int32)posicionRecomendada[1];
 
-                List<criterio> listaCriterios = dato.criteriosPorProyecto(id_proyecto);
+                List<Criterio> listaCriterios = dato.CriteriosPorProyecto(id_proyecto);
 
                 NombreCriterioA = listaCriterios[fila].nombre;
                 NombreCriterioB = listaCriterios[columna].nombre;

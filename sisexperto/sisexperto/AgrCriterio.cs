@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace sisexperto
+namespace sisExperto
 {
    public class AgrCriterio
     {
@@ -13,13 +13,13 @@ namespace sisexperto
 
        public AgrCriterio(int id_proy)
        {
-           List<experto> listaExp = dato.expertosPorProyecto(id_proy);
-           foreach (experto exp in listaExp)
+           List<Experto> listaExp = dato.ExpertosPorProyecto(id_proy);
+           foreach (Experto exp in listaExp)
            {
-               List<comparacion_criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proy, exp.id_experto);
+               List<comparacion_Criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proy, exp.id_Experto);
                int cantFilas = 1;
 
-               foreach (comparacion_criterio comp in listaComparacion)
+               foreach (comparacion_Criterio comp in listaComparacion)
                {
                    if (comp.pos_fila == 0)
                        cantFilas++;
@@ -27,7 +27,7 @@ namespace sisexperto
 
                double[,] matriz = new double[cantFilas, cantFilas];
 
-               foreach (comparacion_criterio comp in listaComparacion)
+               foreach (comparacion_Criterio comp in listaComparacion)
                {
                    matriz[comp.pos_fila, comp.pos_columna] = (double)comp.valor;
                }

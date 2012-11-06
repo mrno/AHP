@@ -6,16 +6,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using sisexperto.Fachadas;
+using sisExperto.Fachadas;
+using sisExperto.Entidades;
 
-namespace sisexperto.UI
+namespace sisExperto.UI
 {
     public partial class PonderacionExpertos : Form
     {
         private FachadaEjecucionProyecto _fachadaEjecucion;
-        private List<experto_proyecto> _expertosConPonderacion;
-        private proyecto _proyecto;
-        public PonderacionExpertos(FachadaEjecucionProyecto Fachada, proyecto Proyecto)
+        private List<ExpertoEnProyecto> _ExpertosConPonderacion;
+        private Proyecto _proyecto;
+        public PonderacionExpertos(FachadaEjecucionProyecto Fachada, Proyecto Proyecto)
         {
             InitializeComponent();
             _fachadaEjecucion = Fachada;
@@ -24,8 +25,8 @@ namespace sisexperto.UI
 
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
-            _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto);
-            dataGridPonderacionExpertos.DataSource = _expertosConPonderacion.ToList();
+            _ExpertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto).ToList();
+            dataGridPonderacionExpertos.DataSource = _ExpertosConPonderacion.ToList();
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -46,14 +47,15 @@ namespace sisexperto.UI
 
         private void GuardarCambiosPonderacion()
         {
-            _fachadaEjecucion.GuardarCambios(_expertosConPonderacion);
+            _fachadaEjecucion.GuardarCambios(_ExpertosConPonderacion);
         }
 
         private bool PonderacionNula()
         {
-            return 0 < (from ex in _expertosConPonderacion
-                        where ex.ponderacion == 0
-                        select ex).Count();
+            return 0 < 1;
+            //(from ex in _ExpertosConPonderacion
+            //               where ex.ponderacion == 0
+            //               select ex).Count();
         }
 
         private void dataGridPonderacionExpertos_Leave(object sender, EventArgs e)

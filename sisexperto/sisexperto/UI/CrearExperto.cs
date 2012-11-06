@@ -6,14 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using sisExperto.Entidades;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class CrearExperto : Form
     {
         private FachadaProyectosExpertos _fachada;
 
-        public delegate void Expertos(experto experto);
+        public delegate void Expertos(Experto Experto);
         public event Expertos ExpertoAgregado;
 
         public CrearExperto(FachadaProyectosExpertos Fachada)
@@ -43,14 +44,17 @@ namespace sisexperto
 
         private void Guardar()
         {
-            experto exp = new experto();
-            exp.nombre = textBoxNombre.Text;
-            exp.apellido = textBoxApellido.Text;
-            exp.nom_usuario = textBoxUsuario.Text;
-            exp.clave = textBoxClave.Text;
+            Experto exp = new Experto();
+            exp.Nombre = textBoxNombre.Text;
+            exp.Apellido = textBoxApellido.Text;
+            exp.Usuario = textBoxUsuario.Text;
+            exp.Clave = textBoxClave.Text;
 
-            //se crea el experto y se dispara el evento para que actualice los grids correspondientes
-            ExpertoAgregado(_fachada.AltaExperto(exp));
+            //se crea el Experto y se dispara el evento para que actualice los grids correspondientes
+            
+            //ExpertoAgregado(_fachada.AltaExperto(exp));
+            _fachada.AltaExperto(exp);
+            ExpertoAgregado(_fachada.ObtenerExpertoValido(exp.Usuario, exp.Clave));
         }
 
         private void Limpiar()

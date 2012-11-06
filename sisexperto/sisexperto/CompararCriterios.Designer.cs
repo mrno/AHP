@@ -1,4 +1,4 @@
-﻿namespace sisexperto
+﻿namespace sisExperto
 {
     partial class CompararCriterios
     {
@@ -125,7 +125,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(323, 31);
             this.label19.TabIndex = 10;
-            this.label19.Text = "Comparación de criterios:";
+            this.label19.Text = "Comparación de Criterios:";
             // 
             // label2
             // 

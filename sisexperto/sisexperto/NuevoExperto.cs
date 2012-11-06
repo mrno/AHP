@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace sisexperto
+namespace sisExperto
 {
     public partial class NuevoExperto : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace sisexperto.UI
+﻿namespace sisExperto.UI
 {
     partial class PonderacionExpertos
     {

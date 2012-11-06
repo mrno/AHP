@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace sisexperto.Entidades
+namespace sisExperto.Entidades
 {
     [Table("ValoracionAlternativasPorCriterioExperto")]
     public class ValoracionAlternativasPorCriterioExperto
