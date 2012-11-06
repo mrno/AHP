@@ -179,6 +179,12 @@
       <DependentUpon>201211052357258_administradores.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UI\MostrarRanking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarRanking.Designer.cs">
+      <DependentUpon>MostrarRanking.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211052357258_administradores.resx">
       <DependentUpon>201211052357258_administradores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MostrarRanking.resx">
+      <DependentUpon>MostrarRanking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
