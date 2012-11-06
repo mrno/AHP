@@ -43,6 +43,7 @@ namespace sisExperto
                 Controls.Add(izquierdaTB);
                 cont++;
                 y += 70;
+            
             }
 
 

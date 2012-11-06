@@ -17,9 +17,14 @@ namespace sisExperto.Fachadas
             return _proyecto.ExpertosAsignados;
         }
 
+        public IEnumerable<Alternativa> ObtenerAlternativasProyecto(Proyecto _proyecto) {
+
+            return _proyecto.Alternativas;
+        
+        }
 
 
-        public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
+              public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
         {
             foreach (var Experto in _ExpertosConPonderacion)
             {
