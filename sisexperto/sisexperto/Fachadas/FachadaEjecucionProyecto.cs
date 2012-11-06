@@ -38,17 +38,24 @@ namespace sisExperto.Fachadas
 
 
             var listaExperto = ExpertoProyectoConsistentes(_proyecto);
-            List<double[,]> listaMatrizCriterioAlternativas = new List<double[,]>();
+            List<double[,]> listaKMatrizCriterios = new List<double[,]>();
+            List<double[,]> listaKNMatrizAlternativas = new List<double[,]>();
 
             if (listaExperto.ToList().Count() != 0)
             {
-
+                var AgregacionNOPonderada = new AgregacionNoPonderada();
                 
 
                 foreach (ExpertoEnProyecto exp in listaExperto)
                 {
-                                      
-                    listaMatrizAlternativa.Add(exp.ValoracionCriteriosPorExperto.Matriz);
+                    listaKMatrizCriterios.Add(exp.ValoracionCriteriosPorExperto.Matriz);
+                    //foreach (ValoracionAlternativasPorCriterioExperto valAlt in exp.ValoracionAlternativasPorCriterioExperto) {
+                    //    listaKNMatrizAlternativas.Add(valAlt.Matriz);
+                    //}         
+                
+
+
+
                 }
 
                 CalculoAHP calculo = new CalculoAHP();
