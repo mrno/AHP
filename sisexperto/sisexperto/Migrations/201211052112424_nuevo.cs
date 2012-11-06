@@ -7,7 +7,7 @@ namespace sisExperto.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.ExpertosPonderadosEnProyectos", "Peso", c => c.Double(nullable: false));
+            AddColumn("dbo.ExpertosPonderadosEnProyectos", "Peso", c => c.Int(nullable: false));
         }
         
         public override void Down()

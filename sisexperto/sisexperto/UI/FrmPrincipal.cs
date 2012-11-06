@@ -244,13 +244,24 @@ namespace sisExperto
 
         private void aHPPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
-            //ventanaPonderacion.ShowDialog();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
+                ventanaPonderacion.ShowDialog();
+            }
+            else MessageBox.Show("Debe seleccionar algún proyecto.");
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            if (_proyectoSeleccionado != null)
+            {
+                if (_proyectoSeleccionado.Estado == "Ejecutable")
+                { 
+                    
+                }
+            }
+            else MessageBox.Show("Debe seleccionar algún proyecto.");
         }        
     }
 }

@@ -18,6 +18,6 @@ namespace sisExperto.Entidades
         public virtual Experto Experto { get; set; }
 
         public double Ponderacion { get; set; }
-        public double Peso { get; set; }
+        public int Peso { get; set; }
     }
 }
