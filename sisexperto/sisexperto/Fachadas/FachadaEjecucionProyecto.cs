@@ -38,33 +38,18 @@ namespace sisExperto.Fachadas
 
 
             var listaExperto = ExpertoProyectoConsistentes(_proyecto);
-            List<double[,]> listaMatrizAlternativa = new List<double[,]>();
+            List<double[,]> listaMatrizCriterioAlternativas = new List<double[,]>();
 
             if (listaExperto.ToList().Count() != 0)
             {
+
+                
+
                 foreach (ExpertoEnProyecto exp in listaExperto)
                 {
                                       
                     listaMatrizAlternativa.Add(exp.ValoracionCriteriosPorExperto.Matriz);
                 }
-
-                matrizCriterioPonderar = new AgrCriterio(_proyectoSeleccionado.id_proyecto);
-
-                //Acá procedo a agregarle la primer matriz, la de criterios:
-
-                listaCompleta.Add(calculadorNoPonderadas.AgregarCriterios(matrizCriterioPonderar));
-
-                //Acá creo una lista con las alternativas ponderadas en la primer línea y luego la recorro y para cada elemento le asigno
-                //su valor de atributo a la listaCompleta:
-
-                listaNAlt = calculadorNoPonderadas.AgregarAlternativas(listaAlternativasPonderar);
-
-                foreach (NAlternativas alt in listaNAlt)
-                {
-                    listaCompleta.Add(alt.nAlternativas);
-                }
-
-                //Luego de todo este despelote, listaCompleta está terminada para pasarse a la clase CalculoAHP.
 
                 CalculoAHP calculo = new CalculoAHP();
                 ranking = calculo.calcularRanking(listaCompleta);

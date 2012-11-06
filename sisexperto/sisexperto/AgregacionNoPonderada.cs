@@ -10,46 +10,39 @@ namespace sisExperto
     {
 
        Utils utils = new Utils();
-       public double[,] AgregarCriterios(AgrCriterio listaKCriterios)
+       public double[,] AgregarCriterios(List<double[,]> listaKCriterios)
        {
-          
-           //int i = listaKCriterios.listaCriterios.Count;
-           int i = listaKCriterios.listaCriterios[0].GetLength(0);
+           int i = listaKCriterios[0].GetLength(0);
            double[,] salida = new double[i,i];
            utils.Unar(salida, i);
-           
-           foreach (var VARIABLE in listaKCriterios.listaCriterios)
+           foreach (var VARIABLE in listaKCriterios)
            {
                utils.Productoria(salida, VARIABLE);
            }
 
            return salida;
               }
-      
-       public List<NAlternativas> AgregarAlternativas(List<AgrAlternativas> listaKNAlternativas)
+
+       public List<double[,]> AgregarAlternativas(List<double[,]> listaKNAlternativas)
        {
            //buscamos la cantidad de Alternativas.
            //es la longitud de la dimension de la matriz
+           List<double[,]> listaAlternativasAgregada = new List<double[,]>();
          
-           
-           List<NAlternativas> listaAlternativasAgregada = new List<NAlternativas>();
-         
-           int cantAlter = listaKNAlternativas[1].listaKNAlternativas[1].nAlternativas.GetLength(1);
+           int cantAlter = listaKNAlternativas[1].GetLength(1);
          
 
-           foreach (var listaKnAlternativa in listaKNAlternativas[1].listaKNAlternativas)
+           foreach (var listaKnAlternativa in listaKNAlternativas)
            {
-               NAlternativas Alternativa = new NAlternativas(cantAlter);
-               utils.Unar(Alternativa.nAlternativas, cantAlter);
-               listaAlternativasAgregada.Add(Alternativa);
+
+               listaAlternativasAgregada.Add(listaKnAlternativa);
            }
 
            foreach (var vble in listaKNAlternativas)
            {
                 int k = 0;
              
-               foreach (var listaKnAlternativa in vble.listaKNAlternativas)
-               {
+               
 
                
                   
@@ -58,14 +51,13 @@ namespace sisExperto
                    {
                        for (int j = 0; j < cantAlter ; j++)
                        {
-                           listaAlternativasAgregada[k].nAlternativas[i, j] *= listaKnAlternativa.nAlternativas[i, j];
+                           listaAlternativasAgregada[k][i, j] *= vble[i, j];
                        }
 
                    }
                    k += 1; 
 
-               }
-         
+              
 
             
            }
