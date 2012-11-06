@@ -67,7 +67,7 @@
     <Reference Include="ConsistenciaNative">
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Mejora">
@@ -175,6 +175,25 @@
     <Compile Include="Migrations\201211052112424_nuevo.cs" />
     <Compile Include="Migrations\201211052112424_nuevo.Designer.cs">
       <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
+    <Compile Include="Migrations\201211052129511_nuevo.cs" />
+    <Compile Include="Migrations\201211052129511_nuevo.Designer.cs">
+      <DependentUpon>201211052129511_nuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Modelo2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo2.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="NAlternativas.cs" />
+    <Compile Include="NuevaAlternativa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NuevaAlternativa.Designer.cs">
+      <DependentUpon>NuevaAlternativa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NuevoCriterio.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Migrations\201211052357258_administradores.cs" />
     <Compile Include="Migrations\201211052357258_administradores.Designer.cs">
@@ -241,6 +260,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211052112424_nuevo.resx">
       <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201211052129511_nuevo.resx">
+      <DependentUpon>201211052129511_nuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NuevaAlternativa.resx">
+      <DependentUpon>NuevaAlternativa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211052357258_administradores.resx">
       <DependentUpon>201211052357258_administradores.cs</DependentUpon>

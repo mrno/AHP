@@ -89,11 +89,6 @@ namespace sisExperto
                 
                 CalculoAHP calculo = new CalculoAHP();
                 ranking = calculo.calcularRanking(listaCompleta);
-
-
-
-
-
                 CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(ranking, proy.id_proyecto);
                 frmAhpAgregado.ShowDialog();
             }
@@ -108,8 +103,7 @@ namespace sisExperto
 
         private void button3_Click(object sender, EventArgs e)
         {
-
-            
+          
             proy = (proyecto)dataGridView1.CurrentRow.DataBoundItem;
             id = proy.id_proyecto;
             listaExpertoProyecto = dato.expePorProyConsistente(proy.id_proyecto);

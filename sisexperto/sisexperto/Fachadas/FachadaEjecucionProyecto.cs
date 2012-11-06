@@ -2,86 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using sisExperto.Entidades;
+using sisexperto.Entidades;
 
-namespace sisExperto.Fachadas
+namespace sisexperto.Fachadas
 {
     public class FachadaEjecucionProyecto
     {
+        private DALDatos datos = new DALDatos();
         private GisiaExpertoContext _context = new GisiaExpertoContext();
-        private FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
-        public Experto Proyecto { get; set; }
 
+        public experto Proyecto { get; set; }
+
+
+        //ASI SERIA EL NUEVO
+        //Esto accede a la nueva DB
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {
             return _proyecto.ExpertosAsignados;
         }
 
-    
-
-
-        public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
+        //Esto accede a la vieja DB
+        public List<experto_proyecto> ObtenerExpertosProyecto(proyecto _proyecto)
         {
-            foreach (var Experto in _ExpertosConPonderacion)
-            {
-                
-            }
+            return datos.expertosPorProyecto2(_proyecto.id_proyecto);
+        }
+
+        public void GuardarCambios(List<experto_proyecto> _expertosConPonderacion)
+        {
+            throw new NotImplementedException();
         }
 
         public bool PosibleEjecutarAHP()
         {
             return true;
         }
-
-
-        public void EjecucionAHPNoPonderado(Proyecto _proyecto) {
-
-
-            var listaExperto = ExpertoProyectoConsistentes(_proyecto);
-            List<double[,]> listaKMatrizCriterios = new List<double[,]>();
-            List<double[,]> listaKNMatrizAlternativas = new List<double[,]>();
-
-            if (listaExperto.ToList().Count() != 0)
-            {
-                var AgregacionNOPonderada = new AgregacionNoPonderada();
-                
-
-                foreach (ExpertoEnProyecto exp in listaExperto)
-                {
-                    listaKMatrizCriterios.Add(exp.ValoracionCriteriosPorExperto.Matriz);
-                    //foreach (ValoracionAlternativasPorCriterioExperto valAlt in exp.ValoracionAlternativasPorCriterioExperto) {
-                    //    listaKNMatrizAlternativas.Add(valAlt.Matriz);
-                    //}         
-                
-
-
-
-                }
-
-                CalculoAHP calculo = new CalculoAHP();
-                ranking = calculo.calcularRanking(listaCompleta);
-
-
-
-
-
-                CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(ranking, _proyectoSeleccionado.id_proyecto);
-                frmAhpAgregado.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Ningún experto ha valorado de manera consistente.");
-            }
-
-        
-        
-        
-        
-        }
-
-        public IEnumerable<ExpertoEnProyecto> ExpertoProyectoConsistentes(Proyecto _proyecto)
-        {
-            return _fachadaProyectosExpertos.ObtenerExpertosProyectoConsistente(_proyecto);
-                              }
     }
 }
