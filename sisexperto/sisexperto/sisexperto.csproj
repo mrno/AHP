@@ -67,7 +67,7 @@
     <Reference Include="ConsistenciaNative">
       <HintPath>..\..\Dll\ConsistenciaNative.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Mejora">
@@ -101,8 +101,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgregacionNoPonderada.cs" />
-    <Compile Include="CalculoAHP.cs" />
     <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
     <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
       <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
@@ -126,38 +124,6 @@
     <Compile Include="Migrations\201211062241515_cambiosEEP.cs" />
     <Compile Include="Migrations\201211062241515_cambiosEEP.Designer.cs">
       <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\EditarProyecto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\EditarProyecto.designer.cs">
-      <DependentUpon>EditarProyecto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\CrearExperto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\CrearExperto.Designer.cs">
-      <DependentUpon>CrearExperto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
-    <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
-      <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060523157_estadoProyecto1.cs" />
-    <Compile Include="Migrations\201211060523157_estadoProyecto1.Designer.cs">
-      <DependentUpon>201211060523157_estadoProyecto1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060528502_proyectoCambios.cs" />
-    <Compile Include="Migrations\201211060528502_proyectoCambios.Designer.cs">
-      <DependentUpon>201211060528502_proyectoCambios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060532417_proyectoCambios1.cs" />
-    <Compile Include="Migrations\201211060532417_proyectoCambios1.Designer.cs">
-      <DependentUpon>201211060532417_proyectoCambios1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060553217_proyectoCambios2.cs" />
-    <Compile Include="Migrations\201211060553217_proyectoCambios2.Designer.cs">
-      <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
@@ -211,37 +177,6 @@
     <Compile Include="Migrations\201211052112424_nuevo.cs" />
     <Compile Include="Migrations\201211052112424_nuevo.Designer.cs">
       <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
-    <Compile Include="Migrations\201211052129511_nuevo.cs" />
-    <Compile Include="Migrations\201211052129511_nuevo.Designer.cs">
-      <DependentUpon>201211052129511_nuevo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Modelo2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Modelo2.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="NAlternativas.cs" />
-    <Compile Include="NuevaAlternativa.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NuevaAlternativa.Designer.cs">
-      <DependentUpon>NuevaAlternativa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NuevoCriterio.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Migrations\201211052357258_administradores.cs" />
-    <Compile Include="Migrations\201211052357258_administradores.Designer.cs">
-      <DependentUpon>201211052357258_administradores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="UI\MostrarRanking.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MostrarRanking.Designer.cs">
-      <DependentUpon>MostrarRanking.cs</DependentUpon>
-    </Compile>
     </Compile>
     <Compile Include="Migrations\201211052357258_administradores.cs" />
     <Compile Include="Migrations\201211052357258_administradores.Designer.cs">
@@ -287,12 +222,6 @@
     <EmbeddedResource Include="UI\CrearExperto.resx">
       <DependentUpon>CrearExperto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\EditarProyecto.resx">
-      <DependentUpon>EditarProyecto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\CrearExperto.resx">
-      <DependentUpon>CrearExperto.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -311,17 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211052112424_nuevo.resx">
       <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
-    <EmbeddedResource Include="Migrations\201211052129511_nuevo.resx">
-      <DependentUpon>201211052129511_nuevo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NuevaAlternativa.resx">
-      <DependentUpon>NuevaAlternativa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211052357258_administradores.resx">
       <DependentUpon>201211052357258_administradores.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\MostrarRanking.resx">
-      <DependentUpon>MostrarRanking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
