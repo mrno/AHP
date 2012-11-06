@@ -38,14 +38,14 @@ namespace sisExperto.Fachadas
 
 
             var listaExperto = ExpertoProyectoConsistentes(_proyecto);
+            List<double[,]> listaMatrizAlternativa = new List<double[,]>();
 
             if (listaExperto.ToList().Count() != 0)
             {
                 foreach (ExpertoEnProyecto exp in listaExperto)
                 {
-
-                    Alternativa alternativa = new AgrAlternativas(_proyectoSeleccionado.id_proyecto, exp.id_experto);
-                    listaAlternativasPonderar.Add(alternativa);
+                                      
+                    listaMatrizAlternativa.Add(exp.ValoracionCriteriosPorExperto.Matriz);
                 }
 
                 matrizCriterioPonderar = new AgrCriterio(_proyectoSeleccionado.id_proyecto);
