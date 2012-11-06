@@ -139,6 +139,38 @@
     <Compile Include="UI\CrearExperto.Designer.cs">
       <DependentUpon>CrearExperto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
+    <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
+      <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211060523157_estadoProyecto1.cs" />
+    <Compile Include="Migrations\201211060523157_estadoProyecto1.Designer.cs">
+      <DependentUpon>201211060523157_estadoProyecto1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211060528502_proyectoCambios.cs" />
+    <Compile Include="Migrations\201211060528502_proyectoCambios.Designer.cs">
+      <DependentUpon>201211060528502_proyectoCambios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211060532417_proyectoCambios1.cs" />
+    <Compile Include="Migrations\201211060532417_proyectoCambios1.Designer.cs">
+      <DependentUpon>201211060532417_proyectoCambios1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211060553217_proyectoCambios2.cs" />
+    <Compile Include="Migrations\201211060553217_proyectoCambios2.Designer.cs">
+      <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EditarProyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditarProyecto.designer.cs">
+      <DependentUpon>EditarProyecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CrearExperto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CrearExperto.Designer.cs">
+      <DependentUpon>CrearExperto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entidades\Alternativa.cs" />
     <Compile Include="Entidades\ComparacionAlternativa.cs" />
     <Compile Include="Entidades\ComparacionCriterio.cs" />
@@ -210,6 +242,12 @@
     <Compile Include="UI\MostrarRanking.Designer.cs">
       <DependentUpon>MostrarRanking.cs</DependentUpon>
     </Compile>
+    </Compile>
+    <Compile Include="Migrations\201211052357258_administradores.cs" />
+    <Compile Include="Migrations\201211052357258_administradores.Designer.cs">
+      <DependentUpon>201211052357258_administradores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211062241515_cambiosEEP.resx">
       <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditarProyecto.resx">
+      <DependentUpon>EditarProyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CrearExperto.resx">
+      <DependentUpon>CrearExperto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>

@@ -14,24 +14,19 @@ namespace sisExperto.UI
     public partial class PonderacionExpertos : Form
     {
         private FachadaEjecucionProyecto _fachadaEjecucion;
-        private List<ExpertoEnProyecto> _expertosConPonderacion;
+        private List<ExpertoEnProyecto> _ExpertosConPonderacion;
         private Proyecto _proyecto;
-
-        private int _expertoSeleccionado;
-        
         public PonderacionExpertos(FachadaEjecucionProyecto Fachada, Proyecto Proyecto)
         {
             InitializeComponent();
             _fachadaEjecucion = Fachada;
             _proyecto = Proyecto;
-            dataGridPonderacionExpertos.RowEnter += (ActualizarExpertoSeleccionado);
         }
 
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
-            _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto).ToList();
-            comboBoxValor.SelectedIndex = 0;
-            ActualizarListaGrid();
+            _ExpertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto).ToList();
+            dataGridPonderacionExpertos.DataSource = _ExpertosConPonderacion.ToList();
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -47,12 +42,12 @@ namespace sisExperto.UI
         private void buttonContinuar_Click(object sender, EventArgs e)
         {
             GuardarCambiosPonderacion();
-            _fachadaEjecucion.GuardarPonderaciones(_proyecto, _expertosConPonderacion);
+            //_fachadaEjecucion.
         }
 
         private void GuardarCambiosPonderacion()
         {
-            _fachadaEjecucion.GuardarPonderaciones(_proyecto, _expertosConPonderacion);
+            _fachadaEjecucion.GuardarCambios(_ExpertosConPonderacion);
         }
 
         private bool PonderacionNula()
@@ -69,42 +64,6 @@ namespace sisExperto.UI
             {
                 buttonContinuar.Enabled = false;
             } else buttonContinuar.Enabled = true;
-        }
-
-        private void btnAgregar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                _expertosConPonderacion.ElementAt(_expertoSeleccionado).Peso = int.Parse(comboBoxValor.SelectedItem.ToString());
-                dataGridPonderacionExpertos.DataSource = null;
-                ActualizarListaGrid();
-            }
-            catch (Exception) { }
-        }
-
-        private void ActualizarExpertoSeleccionado(object sender, DataGridViewCellEventArgs e)
-        {
-            _expertoSeleccionado = e.RowIndex;
-        }
-
-        private void ActualizarListaGrid()
-        {
-            var ponder = (from exp in _expertosConPonderacion select exp.Peso).Sum();
-            if (ponder == 0)
-                ponder = 1;
-            var datosMostrados = (from expPond in _expertosConPonderacion
-                                  select new
-                                  {
-                                      IdExperto = expPond.ExpertoId,
-                                      Experto = expPond.Experto.Apellido + ", " + expPond.Experto.Nombre,
-                                      Peso = expPond.Peso,
-                                      Ponderacion = (double) expPond.Peso / ponder
-                                  });
-            //comboBoxValor.SelectedIndex = 0;
-            dataGridPonderacionExpertos.DataSource = null;
-            dataGridPonderacionExpertos.DataSource = datosMostrados.ToList();
-            dataGridPonderacionExpertos.Rows[_expertoSeleccionado].Selected = true;
-            dataGridPonderacionExpertos.Columns[0].Visible = false;
         }
     }
 }
