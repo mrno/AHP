@@ -9,7 +9,7 @@ namespace sisExperto.Fachadas
     public class FachadaEjecucionProyecto
     {
         private GisiaExpertoContext _context = new GisiaExpertoContext();
-
+        private FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
         public Experto Proyecto { get; set; }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
@@ -17,14 +17,10 @@ namespace sisExperto.Fachadas
             return _proyecto.ExpertosAsignados;
         }
 
-        public IEnumerable<Alternativa> ObtenerAlternativasProyecto(Proyecto _proyecto) {
-
-            return _proyecto.Alternativas;
-        
-        }
+    
 
 
-              public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
+        public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
         {
             foreach (var Experto in _ExpertosConPonderacion)
             {
@@ -41,15 +37,15 @@ namespace sisExperto.Fachadas
         public void EjecucionAHPNoPonderado(Proyecto _proyecto) {
 
 
-            listaExperto = dato.expeProyConsistente(_proyectoSeleccionado.id_proyecto);
+            var listaExperto = ExpertoProyectoConsistentes(_proyecto);
 
-            if (listaExperto.Count != 0)
+            if (listaExperto.ToList().Count() != 0)
             {
-                foreach (experto exp in listaExperto)
+                foreach (ExpertoEnProyecto exp in listaExperto)
                 {
 
-                    AgrAlternativas altAgregar = new AgrAlternativas(_proyectoSeleccionado.id_proyecto, exp.id_experto);
-                    listaAlternativasPonderar.Add(altAgregar);
+                    Alternativa alternativa = new AgrAlternativas(_proyectoSeleccionado.id_proyecto, exp.id_experto);
+                    listaAlternativasPonderar.Add(alternativa);
                 }
 
                 matrizCriterioPonderar = new AgrCriterio(_proyectoSeleccionado.id_proyecto);
@@ -91,6 +87,9 @@ namespace sisExperto.Fachadas
         
         }
 
-
+        public IEnumerable<ExpertoEnProyecto> ExpertoProyectoConsistentes(Proyecto _proyecto)
+        {
+            return _fachadaProyectosExpertos.ObtenerExpertosProyectoConsistente(_proyecto);
+                              }
     }
 }

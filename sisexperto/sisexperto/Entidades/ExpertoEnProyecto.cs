@@ -19,5 +19,9 @@ namespace sisExperto.Entidades
 
         public double Ponderacion { get; set; }
         public double Peso { get; set; }
+
+        public virtual ValoracionCriteriosPorExperto ValoracionCriteriosPorExperto { get; set; }
+        public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
+
     }
 }

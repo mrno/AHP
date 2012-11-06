@@ -6,32 +6,33 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using sisExperto.Entidades;
 
 namespace sisExperto
 {
     public partial class MostrarRanking : Form
     {
-
+        private FachadaProyectosExpertos _fachada;
 
         private double[,] rankingFinal;
-        private int id_proyecto;
+        private Proyecto _proyecto;
        
-        public MostrarRanking(double[,] ranking, int id_proy, int tipoAgregacion)
+        public MostrarRanking(double[,] ranking, Proyecto Proyecto, int tipoAgregacion)
         {
 
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
             InitializeComponent();
             rankingFinal = ranking;
-            id_proyecto = id_proy;
+            _proyecto = Proyecto;
 
         }
 
         private void CalcularAhpAgregado_Load(object sender, EventArgs e)
         {
 
-
-            listaAlt = dato.AlternativasPorProyecto(id_proyecto);
+            var listaAlt = _fachada.SolicitarAlternativas(_proyecto);
+            
             int y = 70;
             int cont = 0;
             foreach (Alternativa alt in listaAlt)
