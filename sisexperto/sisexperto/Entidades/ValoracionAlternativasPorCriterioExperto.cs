@@ -23,5 +23,32 @@ namespace sisExperto.Entidades
 
         public virtual ICollection<ComparacionAlternativa> ComparacionAlternativasPorCriterio { get; set; }
 
+        public double[,] Matriz
+        {
+            get
+            {
+
+                foreach (ComparacionAlternativa comp in ComparacionAlternativasPorCriterio)
+                {
+                    Matriz[comp.Fila, comp.Columna] = (double)comp.Valor;
+                }
+                int tope = ComparacionAlternativasPorCriterio.ToList().Count();
+                for (int i = 0; i < tope; i++)
+                {
+                    for (int j = 0; j < tope; j++)
+                    {
+                        if (i == j)
+                            Matriz[i, j] = 1;
+                        else if (i > j)
+                            Matriz[i, j] = (double)1 / (Matriz[j, i]);
+                    }
+
+                }
+                return Matriz;
+            }
+        }
+
+
+
     }
 }

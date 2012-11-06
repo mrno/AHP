@@ -101,6 +101,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculoAHP.cs" />
     <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
     <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
       <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
