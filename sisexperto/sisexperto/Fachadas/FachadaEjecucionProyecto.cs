@@ -2,39 +2,38 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using sisexperto.Entidades;
+using sisExperto.Entidades;
 
-namespace sisexperto.Fachadas
+namespace sisExperto.Fachadas
 {
     public class FachadaEjecucionProyecto
     {
-        private DALDatos datos = new DALDatos();
         private GisiaExpertoContext _context = new GisiaExpertoContext();
 
-        public experto Proyecto { get; set; }
+        public Experto Proyecto { get; set; }
 
-
-        //ASI SERIA EL NUEVO
-        //Esto accede a la nueva DB
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {
             return _proyecto.ExpertosAsignados;
         }
 
-        //Esto accede a la vieja DB
-        public List<experto_proyecto> ObtenerExpertosProyecto(proyecto _proyecto)
-        {
-            return datos.expertosPorProyecto2(_proyecto.id_proyecto);
-        }
-
-        public void GuardarCambios(List<experto_proyecto> _expertosConPonderacion)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool PosibleEjecutarAHP()
         {
             return true;
+        }
+
+        public void GuardarPonderaciones(Entidades.Proyecto _proyecto, List<ExpertoEnProyecto> _ExpertosConPonderacion)
+        {
+            foreach (var item in _ExpertosConPonderacion)
+            {
+                var expEnProyecto = (from ex in _context.ExpertosEnProyectos
+                                     where ex.Proyecto == _proyecto && ex.Experto == item.Experto
+                                     select ex).FirstOrDefault();
+                if (expEnProyecto == null)
+                    _proyecto.ExpertosAsignados.Add(item);
+                else expEnProyecto.Ponderacion = item.Ponderacion;
+            }
+            _context.SaveChanges();
         }
     }
 }

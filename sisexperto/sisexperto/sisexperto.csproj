@@ -123,6 +123,10 @@
     <Compile Include="Migrations\201211060553217_proyectoCambios2.Designer.cs">
       <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211062241515_cambiosEEP.cs" />
+    <Compile Include="Migrations\201211062241515_cambiosEEP.Designer.cs">
+      <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +240,9 @@
     <EmbeddedResource Include="Migrations\201211060553217_proyectoCambios2.resx">
       <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211062241515_cambiosEEP.resx">
+      <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>
     </EmbeddedResource>
@@ -309,6 +316,7 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.Alternativa.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Criterio.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
