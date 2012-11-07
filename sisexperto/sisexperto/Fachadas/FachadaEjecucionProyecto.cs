@@ -12,22 +12,14 @@ namespace sisExperto.Fachadas
         private FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
         public Experto Proyecto { get; set; }
 
-<<<<<<< HEAD
-        public Experto Proyecto { get; set; }
-
-=======
->>>>>>> 2b9f8ac... se avanza en la migracion, Calculo AHP NO Ponderado4
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {
             return _proyecto.ExpertosAsignados;
         }
 
-<<<<<<< HEAD
-=======
     
 
 
->>>>>>> 2b9f8ac... se avanza en la migracion, Calculo AHP NO Ponderado4
         public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
         {
             foreach (var Experto in _ExpertosConPonderacion)
