@@ -46,9 +46,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(12, 45);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 20);
+            this.label7.Size = new System.Drawing.Size(49, 20);
             this.label7.TabIndex = 34;
-            this.label7.Text = "Ponderación:";
+            this.label7.Text = "Peso:";
             // 
             // dataGridPonderacionExpertos
             // 
@@ -137,9 +137,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(180, 20);
+            this.label1.Size = new System.Drawing.Size(127, 20);
             this.label1.TabIndex = 38;
-            this.label1.Text = "Cambiar la ponderación:";
+            this.label1.Text = "Cambiar la peso:";
             // 
             // PonderacionExpertos
             // 
@@ -156,7 +156,7 @@
             this.Controls.Add(this.dataGridPonderacionExpertos);
             this.Name = "PonderacionExpertos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ponderación de Expertos";
+            this.Text = "Pesos de Expertos";
             this.Load += new System.EventHandler(this.PonderacionExpertos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPonderacionExpertos)).EndInit();
             this.ResumeLayout(false);
