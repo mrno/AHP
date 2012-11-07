@@ -37,41 +37,41 @@ namespace sisExperto.Fachadas
         public void EjecucionAHPNoPonderado(Proyecto _proyecto) {
 
 
-            var listaExperto = ExpertoProyectoConsistentes(_proyecto);
-            List<double[,]> listaKMatrizCriterios = new List<double[,]>();             
-            List<double[,]> listaKNMatrizAlternativas = new List<double[,]>();
-            List<double[,]> listaCompleta = new List<double[,]>();
-            if (listaExperto.ToList().Count() != 0)
-            {
-                var AgregacionNOPonderada = new AgregacionNoPonderada();
+            //var listaExperto = ExpertoProyectoConsistentes(_proyecto);
+            //List<double[,]> listaKMatrizCriterios = new List<double[,]>();             
+            //List<double[,]> listaKNMatrizAlternativas = new List<double[,]>();
+            //List<double[,]> listaCompleta = new List<double[,]>();
+            //if (listaExperto.ToList().Count() != 0)
+            //{
+            //    var AgregacionNOPonderada = new AgregacionNoPonderada();
                 
 
-                foreach (ExpertoEnProyecto exp in listaExperto)
-                {
-                    listaKMatrizCriterios.Add(exp.ValoracionCriteriosPorExperto.Matriz);
-                    //foreach (ValoracionAlternativasPorCriterioExperto valAlt in exp.ValoracionAlternativasPorCriterioExperto) {
-                    //    listaKNMatrizAlternativas.Add(valAlt.Matriz);
-                    //}         
+            //    foreach (ExpertoEnProyecto exp in listaExperto)
+            //    {
+            //        listaKMatrizCriterios.Add(exp.ValoracionCriteriosPorExperto.Matriz);
+            //        //foreach (ValoracionAlternativasPorCriterioExperto valAlt in exp.ValoracionAlternativasPorCriterioExperto) {
+            //        //    listaKNMatrizAlternativas.Add(valAlt.Matriz);
+            //        //}         
 
-                    listaCompleta.Add(AgregacionNOPonderada.AgregarCriterios(listaKMatrizCriterios));
-
-
-                }
-
-                CalculoAHP calculo = new CalculoAHP();
-                ranking = calculo.calcularRanking(listaCompleta);
+            //        listaCompleta.Add(AgregacionNOPonderada.AgregarCriterios(listaKMatrizCriterios));
 
 
+            //    }
+
+            //    CalculoAHP calculo = new CalculoAHP();
+            //    ranking = calculo.calcularRanking(listaCompleta);
 
 
 
-                CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(ranking, _proyectoSeleccionado.id_proyecto);
-                frmAhpAgregado.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Ningún experto ha valorado de manera consistente.");
-            }
+
+
+            //    CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(ranking, _proyectoSeleccionado.id_proyecto);
+            //    frmAhpAgregado.ShowDialog();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Ningún experto ha valorado de manera consistente.");
+            //}
 
         
         
@@ -81,7 +81,8 @@ namespace sisExperto.Fachadas
 
         public IEnumerable<ExpertoEnProyecto> ExpertoProyectoConsistentes(Proyecto _proyecto)
         {
-            return _fachadaProyectosExpertos.ObtenerExpertosProyectoConsistente(_proyecto);
-                              }
+           // return _fachadaProyectosExpertos.ObtenerExpertosProyectoConsistente(_proyecto);
+            return null;
+        }
     }
 }

@@ -86,13 +86,7 @@ namespace sisExperto.Entidades
         }
 
 
-        public void EstablecerMiPoderacion()
-        {
-            
-
-
-
-        }
+       
 
     }
 
