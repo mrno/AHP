@@ -76,7 +76,9 @@ namespace sisExperto.Entidades
                         expertoEnProyecto.ValoracionAlternativasPorCriterioExperto)
                 {
                     utils.Productoria(listaAlternativas[k], d.Matriz);
+                    k++;
                 }
+
             }
             listaCompleta.Add(matrizCriterio);
             listaCompleta.AddRange(listaAlternativas);
