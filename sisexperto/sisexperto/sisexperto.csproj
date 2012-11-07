@@ -129,6 +129,10 @@
     <Compile Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.Designer.cs">
       <DependentUpon>201211072244096_eliminacionCampoPonderacionModificacionPeso.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211072252434_rollBack.cs" />
+    <Compile Include="Migrations\201211072252434_rollBack.Designer.cs">
+      <DependentUpon>201211072252434_rollBack.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.resx">
       <DependentUpon>201211072244096_eliminacionCampoPonderacionModificacionPeso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211072252434_rollBack.resx">
+      <DependentUpon>201211072252434_rollBack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>
