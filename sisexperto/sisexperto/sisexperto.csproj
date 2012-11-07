@@ -125,6 +125,10 @@
     <Compile Include="Migrations\201211062241515_cambiosEEP.Designer.cs">
       <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.cs" />
+    <Compile Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.Designer.cs">
+      <DependentUpon>201211072244096_eliminacionCampoPonderacionModificacionPeso.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211062241515_cambiosEEP.resx">
       <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.resx">
+      <DependentUpon>201211072244096_eliminacionCampoPonderacionModificacionPeso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>

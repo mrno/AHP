@@ -22,16 +22,19 @@ namespace sisExperto.Fachadas
             return true;
         }
 
-        public void GuardarPonderaciones(Entidades.Proyecto _proyecto, List<ExpertoEnProyecto> _ExpertosConPonderacion)
+        public void GuardarPesosExpertosEnProyecto(Entidades.Proyecto _proyecto, List<ExpertoEnProyecto> _ExpertosConPonderacion)
         {
             foreach (var item in _ExpertosConPonderacion)
             {
                 var expEnProyecto = (from ex in _context.ExpertosEnProyectos
-                                     where ex.Proyecto == _proyecto && ex.Experto == item.Experto
+                                     where ex.ProyectoId == _proyecto.ProyectoId && ex.ExpertoId == item.Experto.ExpertoId
                                      select ex).FirstOrDefault();
                 if (expEnProyecto == null)
                     _proyecto.ExpertosAsignados.Add(item);
-                else expEnProyecto.Ponderacion = item.Ponderacion;
+                else
+                {
+                    expEnProyecto.Peso = item.Peso;
+                }
             }
             _context.SaveChanges();
         }

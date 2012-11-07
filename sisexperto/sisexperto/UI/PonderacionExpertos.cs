@@ -30,6 +30,8 @@ namespace sisExperto.UI
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
             _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto).ToList();
+            if (_proyecto.Estado != "Ejecutable")
+                buttonContinuar.Enabled = false;
             comboBoxValor.SelectedIndex = 0;
             ActualizarListaGrid();
         }
@@ -41,18 +43,19 @@ namespace sisExperto.UI
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            GuardarCambiosPonderacion();
+            GuardarCambiosExpertosEnProyecto();
+            MessageBox.Show("Ponderaciones guardadas con éxito.");
         }
 
         private void buttonContinuar_Click(object sender, EventArgs e)
         {
-            GuardarCambiosPonderacion();
-            _fachadaEjecucion.GuardarPonderaciones(_proyecto, _expertosConPonderacion);
+            GuardarCambiosExpertosEnProyecto();
+            _fachadaEjecucion.GuardarPesosExpertosEnProyecto(_proyecto, _expertosConPonderacion);
         }
 
-        private void GuardarCambiosPonderacion()
+        private void GuardarCambiosExpertosEnProyecto()
         {
-            _fachadaEjecucion.GuardarPonderaciones(_proyecto, _expertosConPonderacion);
+            _fachadaEjecucion.GuardarPesosExpertosEnProyecto(_proyecto, _expertosConPonderacion);
         }
 
         private bool PonderacionNula()
@@ -89,16 +92,12 @@ namespace sisExperto.UI
 
         private void ActualizarListaGrid()
         {
-            var ponder = (from exp in _expertosConPonderacion select exp.Peso).Sum();
-            if (ponder == 0)
-                ponder = 1;
             var datosMostrados = (from expPond in _expertosConPonderacion
                                   select new
                                   {
                                       IdExperto = expPond.ExpertoId,
                                       Experto = expPond.Experto.Apellido + ", " + expPond.Experto.Nombre,
-                                      Peso = expPond.Peso,
-                                      Ponderacion = (double) expPond.Peso / ponder
+                                      Peso = expPond.Peso
                                   });
             //comboBoxValor.SelectedIndex = 0;
             dataGridPonderacionExpertos.DataSource = null;
