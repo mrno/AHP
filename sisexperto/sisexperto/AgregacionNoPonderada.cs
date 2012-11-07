@@ -34,29 +34,35 @@ namespace sisExperto
            
            foreach (var listaKnAlternativa in listaKNAlternativas)
            {
-
-               listaAlternativasAgregada.Add(listaKnAlternativa);
+               double[,] AlternativasAgregada = new double[cantAlter,cantAlter];
+               utils.Unar(AlternativasAgregada, cantAlter);
+               listaAlternativasAgregada.Add(AlternativasAgregada);
            }
 
            foreach (var vble in listaKNAlternativas)
            {
                 int k = 0;
-             
-               
 
-               
-                  
 
-                   for (int i = 0; i < cantAlter ; i++)
+
+               foreach (var VARIABLE in vble.ComparacionAlternativasPorCriterio)
+               {
+
+                   for (int i = 0; i < cantAlter; i++)
                    {
-                       for (int j = 0; j < cantAlter ; j++)
+                       for (int j = 0; j < cantAlter; j++)
                        {
-                           listaAlternativasAgregada[k][i, j] *= vble[i, j];
+                           listaAlternativasAgregada[k][i, j] *= VARIABLE.[i, j];
                        }
 
                    }
                    k += 1; 
 
+
+               }
+                  
+
+             
               
 
             

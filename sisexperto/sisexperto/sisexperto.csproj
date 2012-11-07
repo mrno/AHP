@@ -102,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgregacionNoPonderada.cs" />
+    <Compile Include="Fachadas\FachadaCalculos.cs" />
     <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
     <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
       <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>

@@ -66,30 +66,8 @@ namespace sisExperto
             return _context.Expertos;
         }
 
-        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistente(Proyecto Proyecto)
-        {
-            var lista = from p in Proyecto.ExpertosAsignados
-                            where TodasValoracionesConsistentes(p)
-                            select p
-                            ;
 
-
-            return lista;
-        }
-
-        private bool TodasValoracionesConsistentes(ExpertoEnProyecto ExpertoEnProyecto) {
-
-            bool CriteriosConsistentes = ExpertoEnProyecto.ValoracionCriteriosPorExperto.Consistencia=true;
-            
-            var cantidadCriterios = ExpertoEnProyecto.ValoracionAlternativasPorCriterioExperto.Count();
-            
-            var listaAlternativasConsistente = from e in ExpertoEnProyecto.ValoracionAlternativasPorCriterioExperto
-                                               where e.Consistencia = true
-                                               select e;
-
-
-            return CriteriosConsistentes || cantidadCriterios == listaAlternativasConsistente.ToList().Count();
-        }
+       
 
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
         {

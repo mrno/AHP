@@ -1,8 +1,11 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using sisexperto.Fachadas;
+
 
 namespace sisExperto.Entidades
 {
@@ -25,6 +28,53 @@ namespace sisExperto.Entidades
         public virtual ICollection<Alternativa> Alternativas { get; set; }
 
         public virtual ICollection<ValoracionCriteriosPorExperto> CriteriosValoradosPorExpertos { get; set; }
+      
+
+        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistente()
+        {
+            var lista = from p in ExpertosAsignados
+                        where p.TodasMisValoracionesConsistentes()
+                        select p
+                          ;
+            Int32 denominador=0;
+            foreach (var expertoEnProyecto in lista)
+            {
+                denominador += Convert.ToInt32(expertoEnProyecto.Peso);
+            }
+            
+            foreach (var expertoEnProyecto in lista)
+            {
+                expertoEnProyecto.Ponderacion =(double) 1/denominador;
+            }
+            return lista;
+        }
+
+        public double[,] CalcularRankingNoPonderado()
+        {
+            foreach (var expertoEnProyecto in this.ObtenerExpertosProyectoConsistente())
+            {
+
+                var rdoPorExperto = expertoEnProyecto.CalcularMiRanking();
+
+
+
+
+            }
+
+            return 
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

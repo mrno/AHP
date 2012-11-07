@@ -38,7 +38,7 @@ namespace sisExperto.Fachadas
 
 
             var listaExperto = ExpertoProyectoConsistentes(_proyecto);
-            List<double[,]> listaKMatrizCriterios = new List<double[,]>();
+            List<double[,]> listaKMatrizCriterios = new List<double[,]>();             
             List<double[,]> listaKNMatrizAlternativas = new List<double[,]>();
             List<double[,]> listaCompleta = new List<double[,]>();
             if (listaExperto.ToList().Count() != 0)
