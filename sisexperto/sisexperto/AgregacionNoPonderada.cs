@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using probaAHP;
+using sisExperto.Entidades;
 
 namespace sisExperto
 {
@@ -23,15 +24,14 @@ namespace sisExperto
            return salida;
               }
 
-       public List<double[,]> AgregarAlternativas(List<double[,]> listaKNAlternativas)
+       public List<double[,]> AgregarAlternativas(List<ValoracionAlternativasPorCriterioExperto> listaKNAlternativas)
        {
            //buscamos la cantidad de Alternativas.
            //es la longitud de la dimension de la matriz
            List<double[,]> listaAlternativasAgregada = new List<double[,]>();
-         
-           int cantAlter = listaKNAlternativas[1].GetLength(1);
-         
 
+           int cantAlter = listaKNAlternativas[1].Matriz.GetLength(0);
+           
            foreach (var listaKnAlternativa in listaKNAlternativas)
            {
 
