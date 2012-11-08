@@ -185,8 +185,8 @@ namespace sisExperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(_Experto.ExpertoId);
-            //frmProyectosAsignados.ShowDialog();
+            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(_experto);
+            frmProyectosAsignados.ShowDialog();
         }
         
         private void iniciarSesionToolStripMenuItem_Click_1(object sender, EventArgs e)

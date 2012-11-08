@@ -110,7 +110,7 @@
             // 
             // proyectoBindingSource
             // 
-            this.proyectoBindingSource.DataSource = typeof(sisExperto.proyecto);
+          
             // 
             // groupBox2
             // 
@@ -180,7 +180,6 @@
             // 
             // matrizCriterioBindingSource
             // 
-            this.matrizCriterioBindingSource.DataSource = typeof(sisExperto.matriz_Criterio);
             // 
             // groupBox3
             // 
@@ -191,7 +190,6 @@
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Matrices de Alternativas";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // gridAlternativa
             // 
@@ -231,7 +229,6 @@
             // 
             // matrizAlternativaBindingSource
             // 
-            this.matrizAlternativaBindingSource.DataSource = typeof(sisExperto.matriz_Alternativa);
             // 
             // ProyectosAsignados
             // 
