@@ -22,7 +22,10 @@ namespace sisExperto
                           _experto.Nombre.ToString();
 
             var lista = from c in _experto.ProyectosAsignados select c.Proyecto;
+
+
             dataGridView1.DataSource = lista.ToList();
+            
         }
 
     
@@ -30,9 +33,13 @@ namespace sisExperto
         private void cargarMatrices(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
-            var expertoEnProyecto = (Valora)row.DataBoundItem;
-            gridCriterio.DataSource = expertoEnProyecto.ValoracionCriteriosPorExperto;
-            gridAlternativa.DataSource = expertoEnProyecto.ValoracionAlternativasPorCriterioExperto;
+
+
+            //var valoracionCriterios = (ValoracionCriteriosPorExperto)row.DataBoundItem;
+
+
+            gridCriterio.DataSource = _experto.ProyectosAsignados.Take(row.Index);
+            //gridAlternativa.DataSource = expertoEnProyecto.ValoracionAlternativasPorCriterioExperto;
             //gridCriterio.DataSource = dato.obtenerMatrizCriterio(proy.id_proyecto, id_Experto);
             //gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(proy.id_proyecto, id_Experto);
         }
