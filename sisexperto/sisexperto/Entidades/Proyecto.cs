@@ -97,6 +97,7 @@ namespace sisExperto.Entidades
 
             int dimension = Alternativas.Count;
             var rankAgregado = new double[dimension,1];
+            utils.Cerar(rankAgregado,1);
             foreach (ExpertoEnProyecto d in ObtenerExpertosProyectoConsistente())
             {
                 double[,] matriz = d.CalcularMiRanking();
@@ -106,7 +107,8 @@ namespace sisExperto.Entidades
                 }
             }
 
-          
+            MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
+            mostrarRanking.ShowDialog();
         }
     }
 }
