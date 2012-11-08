@@ -29,8 +29,10 @@ namespace sisExperto
 
         private void cargarMatrices(object sender, DataGridViewCellEventArgs e)
         {
-            //DataGridViewRow row = ((DataGridView)sender).CurrentRow;
-            //proy = (proyecto)row.DataBoundItem;
+            DataGridViewRow row = ((DataGridView)sender).CurrentRow;
+            var expertoEnProyecto = (Valora)row.DataBoundItem;
+            gridCriterio.DataSource = expertoEnProyecto.ValoracionCriteriosPorExperto;
+            gridAlternativa.DataSource = expertoEnProyecto.ValoracionAlternativasPorCriterioExperto;
             //gridCriterio.DataSource = dato.obtenerMatrizCriterio(proy.id_proyecto, id_Experto);
             //gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(proy.id_proyecto, id_Experto);
         }
