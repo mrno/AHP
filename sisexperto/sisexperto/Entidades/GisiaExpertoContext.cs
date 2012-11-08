@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace sisExperto.Entidades
 {
@@ -27,11 +28,15 @@ namespace sisExperto.Entidades
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            /*
             modelBuilder.Entity<Proyecto>()
                 .HasRequired(x => x.Creador)
                 .WithMany(b => b.ProyectosCreados)
-                .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);
+                .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);*/
             base.OnModelCreating(modelBuilder);
         }
+
+        public object OneToManyCascadeDeleteConvention { get; set; }
     }
 }
