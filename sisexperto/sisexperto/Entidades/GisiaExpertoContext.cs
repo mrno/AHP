@@ -10,6 +10,7 @@ namespace sisExperto.Entidades
     {
 
         public GisiaExpertoContext() : base("DataContext") { }
+
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Experto> Expertos { get; set; }
         public DbSet<ExpertoEnProyecto> ExpertosEnProyectos { get; set; }
