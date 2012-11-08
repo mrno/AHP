@@ -22,9 +22,21 @@ namespace sisExperto
 
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
+            labelTitulo.Text = Proyecto.Nombre;
+            if (tipoAgregacion==1)
+            {
+                labelSubtitulo.Text = "Ranking de Alternativas hecho con agregacion no ponderada";
+            }
+            else
+            {
+                labelTitulo.Text = "Ranking de Alternativas hecho con agregacion ponderada";
+            }
+            
             InitializeComponent();
             rankingFinal = ranking;
             _proyecto = Proyecto;
+
+            
 
         }
 
@@ -35,20 +47,40 @@ namespace sisExperto
             
             int y = 70;
             int cont = 0;
-            foreach (Alternativa alt in listaAlt)
+
+            List<Resultado> listaResultado = new List<Resultado>();
+            foreach (var alternativa in listaAlt)
+            {
+                Resultado resultado = new Resultado();
+                resultado.nombreAlternativa = alternativa.Nombre;
+                resultado.valorAlternativa = rankingFinal[cont, 0];
+                cont++;
+                listaResultado.Add(resultado);
+            }
+
+            listaResultado.OrderBy(x=>x.valorAlternativa);
+
+            foreach (Resultado resultado in listaResultado)
             {
                 Label izquierdaTB = new Label();
                 izquierdaTB.SetBounds(16, y, 200, 50);
-                izquierdaTB.Name = alt.nombre;
-                izquierdaTB.Text = alt.nombre.ToString() + " -> " + rankingFinal[cont, 0].ToString();
+                izquierdaTB.Name = resultado.nombreAlternativa;
+                izquierdaTB.Text = resultado.valorAlternativa.ToString();
                 Controls.Add(izquierdaTB);
                 cont++;
                 y += 70;
-            
+
+            }
+
             }
 
 
+        internal class Resultado
+        {
+            public String nombreAlternativa { get; set; }
+            public double valorAlternativa { get; set; }
 
         }
+
     }
 }

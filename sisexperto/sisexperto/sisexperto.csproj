@@ -144,6 +144,12 @@
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="MatlabUtils.cs" />
+    <Compile Include="UI\MostrarRanking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarRanking.Designer.cs">
+      <DependentUpon>MostrarRanking.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LogExperto.resx">
       <DependentUpon>LogExperto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MostrarRanking.resx">
+      <DependentUpon>MostrarRanking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
