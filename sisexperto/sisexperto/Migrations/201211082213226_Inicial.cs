@@ -3,7 +3,7 @@ namespace sisexperto.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initialDB : DbMigration
+    public partial class Inicial : DbMigration
     {
         public override void Up()
         {
@@ -16,10 +16,11 @@ namespace sisexperto.Migrations
                         Objetivo = c.String(),
                         Estado = c.String(),
                         CreadorId = c.Int(nullable: false),
+                        Creador_ExpertoId = c.Int(),
                     })
                 .PrimaryKey(t => t.ProyectoId)
-                .ForeignKey("dbo.Expertos", t => t.CreadorId)
-                .Index(t => t.CreadorId);
+                .ForeignKey("dbo.Expertos", t => t.Creador_ExpertoId)
+                .Index(t => t.Creador_ExpertoId);
             
             CreateTable(
                 "dbo.Expertos",
@@ -42,15 +43,15 @@ namespace sisexperto.Migrations
                         ExpertoId = c.Int(nullable: false),
                         Ponderacion = c.Double(nullable: false),
                         Peso = c.Int(nullable: false),
-                        ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId = c.Int(),
+                        ValoracionCriteriosPorExpertoId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ProyectoId, t.ExpertoId })
-                .ForeignKey("dbo.Proyectos", t => t.ProyectoId, cascadeDelete: true)
-                .ForeignKey("dbo.Expertos", t => t.ExpertoId, cascadeDelete: true)
-                .ForeignKey("dbo.ValoracionCriteriosPorExpertos", t => t.ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId)
+                .ForeignKey("dbo.Proyectos", t => t.ProyectoId)
+                .ForeignKey("dbo.Expertos", t => t.ExpertoId)
+                .ForeignKey("dbo.ValoracionCriteriosPorExpertos", t => t.ValoracionCriteriosPorExpertoId)
                 .Index(t => t.ProyectoId)
                 .Index(t => t.ExpertoId)
-                .Index(t => t.ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId);
+                .Index(t => t.ValoracionCriteriosPorExpertoId);
             
             CreateTable(
                 "dbo.ValoracionCriteriosPorExpertos",
@@ -63,8 +64,8 @@ namespace sisexperto.Migrations
                         Proyecto_ProyectoId = c.Int(),
                     })
                 .PrimaryKey(t => t.ValoracionCriteriosPorExpertoId)
-                .ForeignKey("dbo.Expertos", t => t.ExpertoId, cascadeDelete: true)
-                .ForeignKey("dbo.Criterios", t => t.CriterioId, cascadeDelete: true)
+                .ForeignKey("dbo.Expertos", t => t.ExpertoId)
+                .ForeignKey("dbo.Criterios", t => t.CriterioId)
                 .ForeignKey("dbo.Proyectos", t => t.Proyecto_ProyectoId)
                 .Index(t => t.ExpertoId)
                 .Index(t => t.CriterioId)
@@ -80,7 +81,7 @@ namespace sisexperto.Migrations
                         ProyectoId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CriterioId)
-                .ForeignKey("dbo.Proyectos", t => t.ProyectoId, cascadeDelete: true)
+                .ForeignKey("dbo.Proyectos", t => t.ProyectoId)
                 .Index(t => t.ProyectoId);
             
             CreateTable(
@@ -96,8 +97,8 @@ namespace sisexperto.Migrations
                         ExpertoEnProyecto_ExpertoId = c.Int(),
                     })
                 .PrimaryKey(t => t.ValoracionAlternativasPorCriterioExpertoId)
-                .ForeignKey("dbo.Expertos", t => t.ExpertoId, cascadeDelete: true)
-                .ForeignKey("dbo.Alternativas", t => t.AlternativaId, cascadeDelete: true)
+                .ForeignKey("dbo.Expertos", t => t.ExpertoId)
+                .ForeignKey("dbo.Alternativas", t => t.AlternativaId)
                 .ForeignKey("dbo.Criterios", t => t.Criterio_CriterioId)
                 .ForeignKey("dbo.ExpertosPonderadosEnProyectos", t => new { t.ExpertoEnProyecto_ProyectoId, t.ExpertoEnProyecto_ExpertoId })
                 .Index(t => t.ExpertoId)
@@ -115,7 +116,7 @@ namespace sisexperto.Migrations
                         ProyectoId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.AlternativaId)
-                .ForeignKey("dbo.Proyectos", t => t.ProyectoId, cascadeDelete: true)
+                .ForeignKey("dbo.Proyectos", t => t.ProyectoId)
                 .Index(t => t.ProyectoId);
             
             CreateTable(
@@ -130,7 +131,7 @@ namespace sisexperto.Migrations
                         ValoracionAlternativasPorCriterioExperto_ValoracionAlternativasPorCriterioExpertoId = c.Int(),
                     })
                 .PrimaryKey(t => t.ComparacionAlternativaId)
-                .ForeignKey("dbo.Alternativas", t => t.AlternativaId, cascadeDelete: true)
+                .ForeignKey("dbo.Alternativas", t => t.AlternativaId)
                 .ForeignKey("dbo.ValoracionAlternativasPorCriterioExperto", t => t.ValoracionAlternativasPorCriterioExperto_ValoracionAlternativasPorCriterioExpertoId)
                 .Index(t => t.AlternativaId)
                 .Index(t => t.ValoracionAlternativasPorCriterioExperto_ValoracionAlternativasPorCriterioExpertoId);
@@ -147,7 +148,7 @@ namespace sisexperto.Migrations
                         ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId = c.Int(),
                     })
                 .PrimaryKey(t => t.ComparacionCriterioId)
-                .ForeignKey("dbo.Criterios", t => t.CriterioId, cascadeDelete: true)
+                .ForeignKey("dbo.Criterios", t => t.CriterioId)
                 .ForeignKey("dbo.ValoracionCriteriosPorExpertos", t => t.ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId)
                 .Index(t => t.CriterioId)
                 .Index(t => t.ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId);
@@ -169,10 +170,10 @@ namespace sisexperto.Migrations
             DropIndex("dbo.ValoracionCriteriosPorExpertos", new[] { "Proyecto_ProyectoId" });
             DropIndex("dbo.ValoracionCriteriosPorExpertos", new[] { "CriterioId" });
             DropIndex("dbo.ValoracionCriteriosPorExpertos", new[] { "ExpertoId" });
-            DropIndex("dbo.ExpertosPonderadosEnProyectos", new[] { "ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId" });
+            DropIndex("dbo.ExpertosPonderadosEnProyectos", new[] { "ValoracionCriteriosPorExpertoId" });
             DropIndex("dbo.ExpertosPonderadosEnProyectos", new[] { "ExpertoId" });
             DropIndex("dbo.ExpertosPonderadosEnProyectos", new[] { "ProyectoId" });
-            DropIndex("dbo.Proyectos", new[] { "CreadorId" });
+            DropIndex("dbo.Proyectos", new[] { "Creador_ExpertoId" });
             DropForeignKey("dbo.ComparacionCriterios", "ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId", "dbo.ValoracionCriteriosPorExpertos");
             DropForeignKey("dbo.ComparacionCriterios", "CriterioId", "dbo.Criterios");
             DropForeignKey("dbo.ComparacionAlternativas", "ValoracionAlternativasPorCriterioExperto_ValoracionAlternativasPorCriterioExpertoId", "dbo.ValoracionAlternativasPorCriterioExperto");
@@ -186,10 +187,10 @@ namespace sisexperto.Migrations
             DropForeignKey("dbo.ValoracionCriteriosPorExpertos", "Proyecto_ProyectoId", "dbo.Proyectos");
             DropForeignKey("dbo.ValoracionCriteriosPorExpertos", "CriterioId", "dbo.Criterios");
             DropForeignKey("dbo.ValoracionCriteriosPorExpertos", "ExpertoId", "dbo.Expertos");
-            DropForeignKey("dbo.ExpertosPonderadosEnProyectos", "ValoracionCriteriosPorExperto_ValoracionCriteriosPorExpertoId", "dbo.ValoracionCriteriosPorExpertos");
+            DropForeignKey("dbo.ExpertosPonderadosEnProyectos", "ValoracionCriteriosPorExpertoId", "dbo.ValoracionCriteriosPorExpertos");
             DropForeignKey("dbo.ExpertosPonderadosEnProyectos", "ExpertoId", "dbo.Expertos");
             DropForeignKey("dbo.ExpertosPonderadosEnProyectos", "ProyectoId", "dbo.Proyectos");
-            DropForeignKey("dbo.Proyectos", "CreadorId", "dbo.Expertos");
+            DropForeignKey("dbo.Proyectos", "Creador_ExpertoId", "dbo.Expertos");
             DropTable("dbo.ComparacionCriterios");
             DropTable("dbo.ComparacionAlternativas");
             DropTable("dbo.Alternativas");
