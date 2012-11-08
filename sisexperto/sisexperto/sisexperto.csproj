@@ -223,6 +223,8 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

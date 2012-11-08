@@ -37,21 +37,29 @@
             this.gridCriterio = new System.Windows.Forms.DataGridView();
             this.consistente = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.matrizCriterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gridAlternativa = new System.Windows.Forms.DataGridView();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valoracionCriteriosPorExpertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.expertoIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expertoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.criterioIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.criterioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comparacionCriteriosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valoracionAlternativasPorCriterioExpertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consistenciaDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.matrizAlternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizCriterioBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizAlternativaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valoracionCriteriosPorExpertoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valoracionAlternativasPorCriterioExpertoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -101,8 +109,15 @@
             this.gridCriterio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCriterio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.consistente,
-            this.Column1});
-            this.gridCriterio.DataSource = this.matrizCriterioBindingSource;
+            this.Column1,
+            this.valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn,
+            this.consistenciaDataGridViewCheckBoxColumn,
+            this.expertoIdDataGridViewTextBoxColumn,
+            this.expertoDataGridViewTextBoxColumn,
+            this.criterioIdDataGridViewTextBoxColumn,
+            this.criterioDataGridViewTextBoxColumn,
+            this.comparacionCriteriosDataGridViewTextBoxColumn});
+            this.gridCriterio.DataSource = this.valoracionCriteriosPorExpertoBindingSource;
             this.gridCriterio.Location = new System.Drawing.Point(6, 19);
             this.gridCriterio.Name = "gridCriterio";
             this.gridCriterio.Size = new System.Drawing.Size(244, 66);
@@ -138,20 +153,77 @@
             this.gridAlternativa.AutoGenerateColumns = false;
             this.gridAlternativa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridAlternativa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column5,
+            this.alternativaDataGridViewTextBoxColumn,
+            this.consistenciaDataGridViewCheckBoxColumn1,
             this.Column4});
-            this.gridAlternativa.DataSource = this.matrizAlternativaBindingSource;
+            this.gridAlternativa.DataSource = this.valoracionAlternativasPorCriterioExpertoBindingSource;
             this.gridAlternativa.Location = new System.Drawing.Point(6, 19);
             this.gridAlternativa.Name = "gridAlternativa";
-            this.gridAlternativa.Size = new System.Drawing.Size(290, 150);
+            this.gridAlternativa.Size = new System.Drawing.Size(452, 150);
             this.gridAlternativa.TabIndex = 5;
             this.gridAlternativa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modificarAlternativa);
             // 
-            // Column5
+            // valoracionCriteriosPorExpertoBindingSource
             // 
-            this.Column5.DataPropertyName = "id_matrizAlternativa";
-            this.Column5.HeaderText = "Criterio";
-            this.Column5.Name = "Column5";
+            this.valoracionCriteriosPorExpertoBindingSource.DataSource = typeof(sisExperto.Entidades.ValoracionCriteriosPorExperto);
+            // 
+            // valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn
+            // 
+            this.valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn.DataPropertyName = "ValoracionCriteriosPorExpertoId";
+            this.valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn.HeaderText = "ValoracionCriteriosPorExpertoId";
+            this.valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn.Name = "valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn";
+            // 
+            // consistenciaDataGridViewCheckBoxColumn
+            // 
+            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
+            // 
+            // expertoIdDataGridViewTextBoxColumn
+            // 
+            this.expertoIdDataGridViewTextBoxColumn.DataPropertyName = "ExpertoId";
+            this.expertoIdDataGridViewTextBoxColumn.HeaderText = "ExpertoId";
+            this.expertoIdDataGridViewTextBoxColumn.Name = "expertoIdDataGridViewTextBoxColumn";
+            // 
+            // expertoDataGridViewTextBoxColumn
+            // 
+            this.expertoDataGridViewTextBoxColumn.DataPropertyName = "Experto";
+            this.expertoDataGridViewTextBoxColumn.HeaderText = "Experto";
+            this.expertoDataGridViewTextBoxColumn.Name = "expertoDataGridViewTextBoxColumn";
+            // 
+            // criterioIdDataGridViewTextBoxColumn
+            // 
+            this.criterioIdDataGridViewTextBoxColumn.DataPropertyName = "CriterioId";
+            this.criterioIdDataGridViewTextBoxColumn.HeaderText = "CriterioId";
+            this.criterioIdDataGridViewTextBoxColumn.Name = "criterioIdDataGridViewTextBoxColumn";
+            // 
+            // criterioDataGridViewTextBoxColumn
+            // 
+            this.criterioDataGridViewTextBoxColumn.DataPropertyName = "Criterio";
+            this.criterioDataGridViewTextBoxColumn.HeaderText = "Criterio";
+            this.criterioDataGridViewTextBoxColumn.Name = "criterioDataGridViewTextBoxColumn";
+            // 
+            // comparacionCriteriosDataGridViewTextBoxColumn
+            // 
+            this.comparacionCriteriosDataGridViewTextBoxColumn.DataPropertyName = "ComparacionCriterios";
+            this.comparacionCriteriosDataGridViewTextBoxColumn.HeaderText = "ComparacionCriterios";
+            this.comparacionCriteriosDataGridViewTextBoxColumn.Name = "comparacionCriteriosDataGridViewTextBoxColumn";
+            // 
+            // valoracionAlternativasPorCriterioExpertoBindingSource
+            // 
+            this.valoracionAlternativasPorCriterioExpertoBindingSource.DataSource = typeof(sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto);
+            // 
+            // alternativaDataGridViewTextBoxColumn
+            // 
+            this.alternativaDataGridViewTextBoxColumn.DataPropertyName = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn.HeaderText = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn.Name = "alternativaDataGridViewTextBoxColumn";
+            // 
+            // consistenciaDataGridViewCheckBoxColumn1
+            // 
+            this.consistenciaDataGridViewCheckBoxColumn1.DataPropertyName = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn1.HeaderText = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn1.Name = "consistenciaDataGridViewCheckBoxColumn1";
             // 
             // Column4
             // 
@@ -177,10 +249,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizCriterioBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.matrizAlternativaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valoracionCriteriosPorExpertoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valoracionAlternativasPorCriterioExpertoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,16 +270,24 @@
         private System.Windows.Forms.DataGridView gridCriterio;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView gridAlternativa;
-        private System.Windows.Forms.BindingSource matrizCriterioBindingSource;
-        private System.Windows.Forms.BindingSource matrizAlternativaBindingSource;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistente;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenteDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewButtonColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn idmatrizCriterioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idproyectoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idExpertoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn consistenteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valoracionCriteriosPorExpertoIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expertoIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expertoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn criterioIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn criterioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn comparacionCriteriosDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource valoracionCriteriosPorExpertoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn Column4;
+        private System.Windows.Forms.BindingSource valoracionAlternativasPorCriterioExpertoBindingSource;
     }
 }
