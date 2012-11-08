@@ -11,7 +11,7 @@ using MathWorks.MATLAB.NET.Arrays;
 using CalcularAHP;
 using Consistencia;
 using Mejora;
-using sisexperto.Fachadas;
+using sisExperto.Fachadas;
 using sisexperto.UI;
 
 namespace sisexperto

@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using sisexperto.Fachadas;
+using sisExperto.Fachadas;
+
 using probaAHP;
 
 namespace sisexperto.UI
@@ -82,7 +83,7 @@ namespace sisexperto.UI
 
         private void GuardarCambiosPonderacion()
         {
-            _fachadaEjecucion.GuardarCambios(_expertosConPonderacion);
+            //_fachadaEjecucion.GuardarCambios(_expertosConPonderacion);
         }
 
         private bool PonderacionNula()
