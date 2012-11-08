@@ -1,4 +1,4 @@
-namespace sisExperto.Migrations
+namespace sisexperto.Migrations
 {
     using System;
     using System.Data.Entity;

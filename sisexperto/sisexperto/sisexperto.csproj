@@ -102,38 +102,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachadas\FachadaCalculos.cs" />
-    <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
-    <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
-      <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
+    <Compile Include="Migrations\201211082033320_initialDB.cs" />
+    <Compile Include="Migrations\201211082033320_initialDB.Designer.cs">
+      <DependentUpon>201211082033320_initialDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201211060523157_estadoProyecto1.cs" />
-    <Compile Include="Migrations\201211060523157_estadoProyecto1.Designer.cs">
-      <DependentUpon>201211060523157_estadoProyecto1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060528502_proyectoCambios.cs" />
-    <Compile Include="Migrations\201211060528502_proyectoCambios.Designer.cs">
-      <DependentUpon>201211060528502_proyectoCambios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060532417_proyectoCambios1.cs" />
-    <Compile Include="Migrations\201211060532417_proyectoCambios1.Designer.cs">
-      <DependentUpon>201211060532417_proyectoCambios1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060553217_proyectoCambios2.cs" />
-    <Compile Include="Migrations\201211060553217_proyectoCambios2.Designer.cs">
-      <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211062241515_cambiosEEP.cs" />
-    <Compile Include="Migrations\201211062241515_cambiosEEP.Designer.cs">
-      <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.cs" />
-    <Compile Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.Designer.cs">
-      <DependentUpon>201211072244096_eliminacionCampoPonderacionModificacionPeso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211072252434_rollBack.cs" />
-    <Compile Include="Migrations\201211072252434_rollBack.Designer.cs">
-      <DependentUpon>201211072252434_rollBack.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,27 +144,6 @@
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="MatlabUtils.cs" />
-    <Compile Include="Migrations\201211030047193_GisiaExpertoContext creador.cs" />
-    <Compile Include="Migrations\201211030047193_GisiaExpertoContext creador.Designer.cs">
-      <DependentUpon>201211030047193_GisiaExpertoContext creador.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.cs" />
-    <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.Designer.cs">
-      <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.cs" />
-    <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.Designer.cs">
-      <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211052112424_nuevo.cs" />
-    <Compile Include="Migrations\201211052112424_nuevo.Designer.cs">
-      <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211052357258_administradores.cs" />
-    <Compile Include="Migrations\201211052357258_administradores.Designer.cs">
-      <DependentUpon>201211052357258_administradores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,29 +159,8 @@
       <DependentUpon>PonderacionExpertos.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Migrations\201211060520496_estadoProyecto.resx">
-      <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060523157_estadoProyecto1.resx">
-      <DependentUpon>201211060523157_estadoProyecto1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060528502_proyectoCambios.resx">
-      <DependentUpon>201211060528502_proyectoCambios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060532417_proyectoCambios1.resx">
-      <DependentUpon>201211060532417_proyectoCambios1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060553217_proyectoCambios2.resx">
-      <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211062241515_cambiosEEP.resx">
-      <DependentUpon>201211062241515_cambiosEEP.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211072244096_eliminacionCampoPonderacionModificacionPeso.resx">
-      <DependentUpon>201211072244096_eliminacionCampoPonderacionModificacionPeso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211072252434_rollBack.resx">
-      <DependentUpon>201211072252434_rollBack.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201211082033320_initialDB.resx">
+      <DependentUpon>201211082033320_initialDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>
@@ -243,21 +174,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LogExperto.resx">
       <DependentUpon>LogExperto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211030047193_GisiaExpertoContext creador.resx">
-      <DependentUpon>201211030047193_GisiaExpertoContext creador.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.resx">
-      <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.resx">
-      <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211052112424_nuevo.resx">
-      <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211052357258_administradores.resx">
-      <DependentUpon>201211052357258_administradores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
