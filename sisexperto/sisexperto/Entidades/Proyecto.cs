@@ -46,7 +46,7 @@ namespace sisExperto.Entidades
             return lista;
         }
 
-        public double[,] CalcularRankingNoPonderado()
+        public void CalcularRankingNoPonderado()
         {
             var utils = new Utils();
             var listaCompleta = new List<double[,]>();
@@ -83,16 +83,20 @@ namespace sisExperto.Entidades
             listaCompleta.AddRange(listaAlternativas);
 
 
-            return FachadaCalculos.Instance.calcularRanking(listaCompleta);
+            double[,] ranking =  FachadaCalculos.Instance.calcularRanking(listaCompleta);
+
+            MostrarRanking mostrarRanking = new MostrarRanking(ranking,this,1);
+            mostrarRanking.ShowDialog();
         }
 
 
-        public double[,] CalcularRankinPonderado()
+        public void CalcularRankinPonderado()
         {
             var utils = new Utils();
 
             int dimension = Alternativas.Count;
             var rankAgregado = new double[dimension,1];
+            utils.Cerar(rankAgregado,1);
             foreach (ExpertoEnProyecto d in ObtenerExpertosProyectoConsistente())
             {
                 double[,] matriz = d.CalcularMiRanking();
@@ -102,7 +106,8 @@ namespace sisExperto.Entidades
                 }
             }
 
-            return rankAgregado;
+            MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
+            mostrarRanking.ShowDialog();
         }
     }
 }

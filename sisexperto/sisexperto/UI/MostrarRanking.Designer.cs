@@ -28,27 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.labelSubtitulo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // labelTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(123, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(499, 22);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Ranking de Alternativas AGREGADO para el proyecto actual:";
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitulo.Location = new System.Drawing.Point(141, 9);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(0, 22);
+            this.labelTitulo.TabIndex = 1;
             // 
-            // CalcularAhpAgregado
+            // labelSubtitulo
+            // 
+            this.labelSubtitulo.AutoSize = true;
+            this.labelSubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSubtitulo.Location = new System.Drawing.Point(209, 55);
+            this.labelSubtitulo.Name = "labelSubtitulo";
+            this.labelSubtitulo.Size = new System.Drawing.Size(0, 22);
+            this.labelSubtitulo.TabIndex = 2;
+            // 
+            // MostrarRanking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 378);
-            this.Controls.Add(this.label1);
-            this.Name = "CalcularAhpAgregado";
-            this.Text = "CalcularAhpAgregado";
+            this.Controls.Add(this.labelSubtitulo);
+            this.Controls.Add(this.labelTitulo);
+            this.Name = "MostrarRanking";
+            this.Text = "Calcular AHP Agregado";
             this.Load += new System.EventHandler(this.CalcularAhpAgregado_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -57,6 +67,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.Label labelSubtitulo;
     }
 }

@@ -244,8 +244,8 @@ namespace sisExperto
 
         private void aHPPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
-            //ventanaPonderacion.ShowDialog();
+            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
+            ventanaPonderacion.ShowDialog();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)

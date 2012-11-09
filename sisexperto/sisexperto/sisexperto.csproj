@@ -102,9 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fachadas\FachadaCalculos.cs" />
-    <Compile Include="Migrations\201211082033320_initialDB.cs" />
-    <Compile Include="Migrations\201211082033320_initialDB.Designer.cs">
-      <DependentUpon>201211082033320_initialDB.cs</DependentUpon>
+    <Compile Include="Migrations\201211082213226_Inicial.cs" />
+    <Compile Include="Migrations\201211082213226_Inicial.Designer.cs">
+      <DependentUpon>201211082213226_Inicial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\EditarProyecto.cs">
@@ -144,6 +144,12 @@
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="MatlabUtils.cs" />
+    <Compile Include="UI\MostrarRanking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarRanking.Designer.cs">
+      <DependentUpon>MostrarRanking.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,8 +171,8 @@
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Migrations\201211082033320_initialDB.resx">
-      <DependentUpon>201211082033320_initialDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201211082213226_Inicial.resx">
+      <DependentUpon>201211082213226_Inicial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LogExperto.resx">
       <DependentUpon>LogExperto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MostrarRanking.resx">
+      <DependentUpon>MostrarRanking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
