@@ -101,26 +101,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201211060520496_estadoProyecto.cs" />
-    <Compile Include="Migrations\201211060520496_estadoProyecto.Designer.cs">
-      <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
+    <Compile Include="Fachadas\FachadaCalculos.cs" />
+    <Compile Include="Migrations\201211082033320_initialDB.cs" />
+    <Compile Include="Migrations\201211082033320_initialDB.Designer.cs">
+      <DependentUpon>201211082033320_initialDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201211060523157_estadoProyecto1.cs" />
-    <Compile Include="Migrations\201211060523157_estadoProyecto1.Designer.cs">
-      <DependentUpon>201211060523157_estadoProyecto1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060528502_proyectoCambios.cs" />
-    <Compile Include="Migrations\201211060528502_proyectoCambios.Designer.cs">
-      <DependentUpon>201211060528502_proyectoCambios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060532417_proyectoCambios1.cs" />
-    <Compile Include="Migrations\201211060532417_proyectoCambios1.Designer.cs">
-      <DependentUpon>201211060532417_proyectoCambios1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211060553217_proyectoCambios2.cs" />
-    <Compile Include="Migrations\201211060553217_proyectoCambios2.Designer.cs">
-      <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,27 +144,6 @@
       <DependentUpon>LogExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="MatlabUtils.cs" />
-    <Compile Include="Migrations\201211030047193_GisiaExpertoContext creador.cs" />
-    <Compile Include="Migrations\201211030047193_GisiaExpertoContext creador.Designer.cs">
-      <DependentUpon>201211030047193_GisiaExpertoContext creador.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.cs" />
-    <Compile Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.Designer.cs">
-      <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.cs" />
-    <Compile Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.Designer.cs">
-      <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211052112424_nuevo.cs" />
-    <Compile Include="Migrations\201211052112424_nuevo.Designer.cs">
-      <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211052357258_administradores.cs" />
-    <Compile Include="Migrations\201211052357258_administradores.Designer.cs">
-      <DependentUpon>201211052357258_administradores.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,21 +158,15 @@
     <Compile Include="UI\PonderacionExpertos.Designer.cs">
       <DependentUpon>PonderacionExpertos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ProyectosAsignados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ProyectosAsignados.Designer.cs">
+      <DependentUpon>ProyectosAsignados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Migrations\201211060520496_estadoProyecto.resx">
-      <DependentUpon>201211060520496_estadoProyecto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060523157_estadoProyecto1.resx">
-      <DependentUpon>201211060523157_estadoProyecto1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060528502_proyectoCambios.resx">
-      <DependentUpon>201211060528502_proyectoCambios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060532417_proyectoCambios1.resx">
-      <DependentUpon>201211060532417_proyectoCambios1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211060553217_proyectoCambios2.resx">
-      <DependentUpon>201211060553217_proyectoCambios2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201211082033320_initialDB.resx">
+      <DependentUpon>201211082033320_initialDB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>
@@ -221,21 +180,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LogExperto.resx">
       <DependentUpon>LogExperto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211030047193_GisiaExpertoContext creador.resx">
-      <DependentUpon>201211030047193_GisiaExpertoContext creador.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211030049545_cambio de nombre de una tabla VCPE.resx">
-      <DependentUpon>201211030049545_cambio de nombre de una tabla VCPE.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211030107485_clase ExpertosEnProyecto agregada.resx">
-      <DependentUpon>201211030107485_clase ExpertosEnProyecto agregada.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211052112424_nuevo.resx">
-      <DependentUpon>201211052112424_nuevo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211052357258_administradores.resx">
-      <DependentUpon>201211052357258_administradores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>
@@ -253,6 +197,9 @@
     </Compile>
     <EmbeddedResource Include="UI\PonderacionExpertos.resx">
       <DependentUpon>PonderacionExpertos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ProyectosAsignados.resx">
+      <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config">
       <SubType>Designer</SubType>
@@ -274,7 +221,10 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.Alternativa.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Criterio.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

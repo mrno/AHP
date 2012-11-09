@@ -66,6 +66,9 @@ namespace sisExperto
             return _context.Expertos;
         }
 
+
+       
+
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
         {
             foreach (var Experto in Expertos)

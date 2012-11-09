@@ -17,17 +17,26 @@ namespace sisExperto.Fachadas
             return _proyecto.ExpertosAsignados;
         }
 
-        public void GuardarCambios(List<ExpertoEnProyecto> _ExpertosConPonderacion)
-        {
-            foreach (var Experto in _ExpertosConPonderacion)
-            {
-                
-            }
-        }
-
         public bool PosibleEjecutarAHP()
         {
             return true;
+        }
+
+        public void GuardarPesosExpertosEnProyecto(Entidades.Proyecto _proyecto, List<ExpertoEnProyecto> _ExpertosConPonderacion)
+        {
+            foreach (var item in _ExpertosConPonderacion)
+            {
+                var expEnProyecto = (from ex in _context.ExpertosEnProyectos
+                                     where ex.ProyectoId == _proyecto.ProyectoId && ex.ExpertoId == item.Experto.ExpertoId
+                                     select ex).FirstOrDefault();
+                if (expEnProyecto == null)
+                    _proyecto.ExpertosAsignados.Add(item);
+                else
+                {
+                    expEnProyecto.Peso = item.Peso;
+                }
+            }
+            _context.SaveChanges();
         }
     }
 }

@@ -12,26 +12,18 @@ namespace probaAHP
         public double[,] agregar(List<KRankPonderado> listaKRanking)
         {
             Utils utils= new Utils();
-            
-            normalizarPesos(listaKRanking);
-            
-            int dimension = listaKRanking[1].KRanking.GetLength(0);
+             normalizarPesos(listaKRanking);
+             int dimension = listaKRanking[1].KRanking.GetLength(0);
             
             double[,] rankAgregado = new double[dimension, 1];
-
-            
-           // utils.Cerar(rankAgregado, dimension);
-
             foreach (var kRankPonderado in listaKRanking)
             {
 
                 for (int i = 0; i < dimension; i++)
                 {
                    
-
                         rankAgregado[i, 0] += kRankPonderado.KRanking[i, 0]*kRankPonderado.PesoPonderado;
-
-                   
+ 
                 }
 
             }
