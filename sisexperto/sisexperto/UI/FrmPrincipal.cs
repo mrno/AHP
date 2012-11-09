@@ -185,7 +185,7 @@ namespace sisExperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(_experto);
+            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(_experto, _fachadaProyectosExpertos);
             frmProyectosAsignados.ShowDialog();
         }
         
