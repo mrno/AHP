@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using sisExperto.Entidades;
+using System.Collections.Generic;
 
 namespace sisExperto
 {
@@ -10,35 +11,36 @@ namespace sisExperto
 
 
         private Experto _experto;
-        public ProyectosAsignados(Experto experto)
+        private List<Proyecto> _lista = new List<Proyecto>();
+        private FachadaProyectosExpertos _fachada;
+
+        public ProyectosAsignados(Experto experto, FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
             _experto = experto;
+            _fachada = Fachada;
+            _lista = _fachada.SolicitarProyectosAsignados(_experto).ToList<Proyecto>();
         }
 
         private void ProyectosAsignados_Load(object sender, EventArgs e)
         {
             label1.Text = "Nombre de Experto: " + _experto.Apellido.ToString() + "" +
                           _experto.Nombre.ToString();
-
-            var lista = from c in _experto.ProyectosAsignados select c.Proyecto;
-
-
-            dataGridView1.DataSource = lista.ToList();
             
+            dataGridView1.DataSource = _lista;
         }
-
-    
 
         private void cargarMatrices(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
 
-
+            gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
+            
             //var valoracionCriterios = (ValoracionCriteriosPorExperto)row.DataBoundItem;
 
 
             gridCriterio.DataSource = _experto.ProyectosAsignados.Take(row.Index);
+            
             //gridAlternativa.DataSource = expertoEnProyecto.ValoracionAlternativasPorCriterioExperto;
             //gridCriterio.DataSource = dato.obtenerMatrizCriterio(proy.id_proyecto, id_Experto);
             //gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(proy.id_proyecto, id_Experto);
@@ -53,6 +55,8 @@ namespace sisExperto
             //frmComparar.ShowDialog();
             //gridAlternativa.DataSource = null;
             //gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(matriz.id_proyecto, matriz.id_Experto);
+
+
         }
 
         private void modificarCriterio(object sender, DataGridViewCellEventArgs e)

@@ -27,7 +27,6 @@ namespace sisExperto.Entidades
 
         public virtual ICollection<ValoracionCriteriosPorExperto> CriteriosValoradosPorExpertos { get; set; }
 
-
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistente()
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados

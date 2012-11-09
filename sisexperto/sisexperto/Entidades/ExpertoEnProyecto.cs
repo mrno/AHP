@@ -26,11 +26,8 @@ namespace sisExperto.Entidades
 
 
         public virtual ValoracionCriteriosPorExperto ValoracionCriteriosPorExperto { get; set; }
+
         public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
-
-
-
-
 
         private double[,] MatrizCriterio()
         {

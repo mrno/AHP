@@ -66,7 +66,13 @@ namespace sisExperto
             return _context.Expertos;
         }
 
-
+        public List<ValoracionCriteriosPorExperto> matrizCriterio(Proyecto proy, Experto exp)
+        {
+            var matriz = (from expenproy in _context.ExpertosEnProyectos
+                          where expenproy.Proyecto == proy && expenproy.Experto == exp
+                          select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
+            return matriz;
+        }
        
 
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
