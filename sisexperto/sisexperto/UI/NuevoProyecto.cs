@@ -106,7 +106,7 @@ namespace sisExperto
             {
                 if (_ExpertosAsignados.Count != 0)
                 {
-                    Proyecto _proyecto = new Proyecto { Nombre = textBoxNombreProyecto.Text, Objetivo = textBoxObjetivoProyecto.Text, Creador = _Experto, Estado = "Creado" };
+                    Proyecto _proyecto = new Proyecto { Nombre = textBoxNombreProyecto.Text, Objetivo = textBoxObjetivoProyecto.Text, Creador = _Experto, Estado = "Creado", TipoProyecto = comboBoxTipoModelo.SelectedIndex};
                     
                     _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
                     _fachada.AltaProyecto(_proyecto);
@@ -135,7 +135,7 @@ namespace sisExperto
             textBoxNombreProyecto.Text = "";
             textBoxObjetivoProyecto.Text = "";
             _todosExpertos.AddRange(_ExpertosAsignados);
-
+           // comboBoxTipoModelo.SelectedItem = null;
             _ExpertosAsignados.Clear();
             dataGridExpertosAsignados.DataSource = null;
 

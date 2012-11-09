@@ -55,6 +55,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.comboBoxTipoModelo = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
@@ -256,6 +258,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.comboBoxTipoModelo);
             this.groupBox3.Controls.Add(this.labelNombreExperto);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.label2);
@@ -273,7 +277,7 @@
             // labelNombreExperto
             // 
             this.labelNombreExperto.AutoSize = true;
-            this.labelNombreExperto.Location = new System.Drawing.Point(73, 65);
+            this.labelNombreExperto.Location = new System.Drawing.Point(73, 54);
             this.labelNombreExperto.Name = "labelNombreExperto";
             this.labelNombreExperto.Size = new System.Drawing.Size(46, 17);
             this.labelNombreExperto.TabIndex = 6;
@@ -282,7 +286,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 65);
+            this.label1.Location = new System.Drawing.Point(7, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 5;
@@ -309,6 +313,27 @@
             this.buttonLimpiar.Text = "Limpiar Campos";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
+            // 
+            // comboBoxTipoModelo
+            // 
+            this.comboBoxTipoModelo.FormattingEnabled = true;
+            this.comboBoxTipoModelo.Items.AddRange(new object[] {
+            "1: AHP",
+            "2: IL",
+            "3: Ambos"});
+            this.comboBoxTipoModelo.Location = new System.Drawing.Point(134, 78);
+            this.comboBoxTipoModelo.Name = "comboBoxTipoModelo";
+            this.comboBoxTipoModelo.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxTipoModelo.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Ejecuta modelo/s:";
             // 
             // NuevoProyecto
             // 
@@ -367,5 +392,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource expertoBindingSource1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboBoxTipoModelo;
     }
 }

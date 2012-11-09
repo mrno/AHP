@@ -7,7 +7,7 @@ namespace probaAHP
 {
     public class Utils
     {
-
+       
         public void Productoria(double[,] salida, double[,] entrada)
         {
             int cantidad = entrada.GetLength(1);

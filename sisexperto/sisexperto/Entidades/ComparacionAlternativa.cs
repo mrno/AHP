@@ -10,8 +10,10 @@ namespace sisExperto.Entidades
         public int ComparacionAlternativaId { get; set; }
         public int Fila { get; set; }
         public int Columna { get; set; }
-        public double Valor { get; set; }
+        public double ValorAHP { get; set; }
+        public double ValorIL { get; set; }
 
+        
         //public int ProyectoId { get; set; }
         //public virtual Proyecto Proyecto { get; set; }
 

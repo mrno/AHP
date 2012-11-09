@@ -26,7 +26,7 @@ namespace sisExperto.Entidades
 
                 foreach (ComparacionCriterio comp in ComparacionCriterios)
                 {
-                    Matriz[comp.Fila, comp.Columna] = (double)comp.Valor;
+                    Matriz[comp.Fila, comp.Columna] = (double)comp.ValorAHP;
                 }
                 int tope = ComparacionCriterios.ToList().Count();
                 for (int i = 0; i < tope; i++)

@@ -30,7 +30,7 @@ namespace sisExperto.Entidades
 
                 foreach (ComparacionAlternativa comp in ComparacionAlternativasPorCriterio)
                 {
-                    Matriz[comp.Fila, comp.Columna] = (double)comp.Valor;
+                    Matriz[comp.Fila, comp.Columna] = (double)comp.ValorAHP;
                 }
                 int tope = ComparacionAlternativasPorCriterio.ToList().Count();
                 for (int i = 0; i < tope; i++)
