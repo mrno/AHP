@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using sisExperto.Entidades;
+using sisExperto.UI;
 
 namespace sisExperto
 {
@@ -87,6 +88,7 @@ namespace sisExperto
         {
             _todosExpertos = _fachada.ObtenerExpertos().ToList();
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
+            buttonCrearEtiquetas.Enabled = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -141,6 +143,26 @@ namespace sisExperto
 
             dataGridExpertosDisponibles.DataSource = null;
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
+        }
+
+        private void SetearBotonCrearEtiquetas(object sender, EventArgs e)
+        {
+            if (comboBoxTipoModelo.SelectedIndex==0 ||comboBoxTipoModelo.SelectedIndex==1)
+            {
+                buttonCrearEtiquetas.Enabled = true;
+
+            }
+            else
+            {
+                buttonCrearEtiquetas.Enabled = false;
+            }
+        }
+
+        private void buttonCrearEtiquetas_Click(object sender, EventArgs e)
+        {
+            //var ventanaCrearExperto = new CrearEtiquetas();
+            //ventanaCrearExperto.ExpertoAgregado += (AsignarExperto);
+            //ventanaCrearExperto.ShowDialog();
         }
     }
 }

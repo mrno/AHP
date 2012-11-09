@@ -51,12 +51,13 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonCrearEtiquetas = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxTipoModelo = new System.Windows.Forms.ComboBox();
             this.labelNombreExperto = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.comboBoxTipoModelo = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
@@ -258,6 +259,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.buttonCrearEtiquetas);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.comboBoxTipoModelo);
             this.groupBox3.Controls.Add(this.labelNombreExperto);
@@ -273,6 +275,38 @@
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos de proyecto";
+            // 
+            // buttonCrearEtiquetas
+            // 
+            this.buttonCrearEtiquetas.Location = new System.Drawing.Point(261, 78);
+            this.buttonCrearEtiquetas.Name = "buttonCrearEtiquetas";
+            this.buttonCrearEtiquetas.Size = new System.Drawing.Size(119, 23);
+            this.buttonCrearEtiquetas.TabIndex = 9;
+            this.buttonCrearEtiquetas.Text = "Crear Etiquetas";
+            this.buttonCrearEtiquetas.UseVisualStyleBackColor = true;
+            this.buttonCrearEtiquetas.Click += new System.EventHandler(this.buttonCrearEtiquetas_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 17);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Ejecuta modelo/s:";
+            // 
+            // comboBoxTipoModelo
+            // 
+            this.comboBoxTipoModelo.FormattingEnabled = true;
+            this.comboBoxTipoModelo.Items.AddRange(new object[] {
+            "1: AHP",
+            "2: IL",
+            "3: Ambos"});
+            this.comboBoxTipoModelo.Location = new System.Drawing.Point(134, 78);
+            this.comboBoxTipoModelo.Name = "comboBoxTipoModelo";
+            this.comboBoxTipoModelo.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxTipoModelo.TabIndex = 7;
+            this.comboBoxTipoModelo.SelectedIndexChanged += new System.EventHandler(this.SetearBotonCrearEtiquetas);
             // 
             // labelNombreExperto
             // 
@@ -313,27 +347,6 @@
             this.buttonLimpiar.Text = "Limpiar Campos";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
-            // 
-            // comboBoxTipoModelo
-            // 
-            this.comboBoxTipoModelo.FormattingEnabled = true;
-            this.comboBoxTipoModelo.Items.AddRange(new object[] {
-            "1: AHP",
-            "2: IL",
-            "3: Ambos"});
-            this.comboBoxTipoModelo.Location = new System.Drawing.Point(134, 78);
-            this.comboBoxTipoModelo.Name = "comboBoxTipoModelo";
-            this.comboBoxTipoModelo.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxTipoModelo.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 17);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Ejecuta modelo/s:";
             // 
             // NuevoProyecto
             // 
@@ -394,5 +407,6 @@
         private System.Windows.Forms.BindingSource expertoBindingSource1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxTipoModelo;
+        private System.Windows.Forms.Button buttonCrearEtiquetas;
     }
 }

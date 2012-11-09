@@ -10,9 +10,7 @@ namespace sisExperto.Fachadas
     {
         private GisiaExpertoContext _context = new GisiaExpertoContext();
 
-        public Experto Proyecto { get; set; }
-
-        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
+     public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {
             return _proyecto.ExpertosAsignados;
         }
