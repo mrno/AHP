@@ -30,5 +30,10 @@ namespace sisExperto.Entidades
                 .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);
         }
+
+        public GisiaExpertoContext()
+            : base("DataContext")
+        {
+        }
     }
 }
