@@ -78,7 +78,7 @@ namespace sisExperto.UI
                 MessageBox.Show("Proyecto actualizado satisfactoriamente.");
 
                 _proyectosNoValorados.Remove(_proyectoSeleccionado);                
-                comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);                
+             //   comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);                
                 _listaAlternativas = new List<Alternativa>();
              
                 _listaCriterios = new List<Criterio>();
@@ -87,12 +87,12 @@ namespace sisExperto.UI
                 try
                 {
                     _proyectoSeleccionado = _proyectosNoValorados[0];
-                    comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+                  //  comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
                 }
                 catch (Exception) { }
                 if (_proyectosNoValorados.Count == 0)
                 {
-                    comboBoxProyectos.Text = "";
+                   // comboBoxProyectos.Text = "";
                     buttonGuardar.Enabled = false;
                     buttonLimpiarAsignaciones.Enabled = false;
                     MessageBox.Show("No existen más proyectos por valorar.");
@@ -147,15 +147,15 @@ namespace sisExperto.UI
 
         private void EditarProyecto_Load(object sender, EventArgs e)
         {
-            comboBoxProyectos.DataSource = _proyectosNoValorados;
-            comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+            //comboBoxProyectos.DataSource = _proyectosNoValorados;
+            //comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
            
-            buttonQuitarCriterio.Enabled = false;
+            //buttonQuitarCriterio.Enabled = false;
         }
 
         private void comboBoxProyectos_Leave(object sender, EventArgs e)
         {
-            _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
+          //  _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
         }
     }
 }
