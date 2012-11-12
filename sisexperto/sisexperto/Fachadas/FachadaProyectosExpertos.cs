@@ -74,6 +74,24 @@ namespace sisExperto
                           select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
             return matriz;
         }
+
+        //ESTE MÉTODO DE ABAJO NO ME GUSTA MUCHO, SI ALGUIÉN TIENE UNA IDEA MÁS PIOLA, QUE LE META.
+
+        public List<ValoracionAlternativasPorCriterioExperto> matrizAlternativa(Proyecto proy, Experto exp)
+        {
+            var salida = new List<ValoracionAlternativasPorCriterioExperto>();
+            var matriz = (from val in _context.ValoracionesAlternativasPorCriterioExperto
+                          where val.Experto == exp
+                          select val).ToList<ValoracionAlternativasPorCriterioExperto>();
+
+            foreach (ValoracionAlternativasPorCriterioExperto valor in matriz)
+            {
+                foreach (Alternativa alt in proy.Alternativas)
+                    if (valor.Alternativa == alt)
+                        salida.Add(valor);
+            }
+            return salida;
+        }
        
 
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)

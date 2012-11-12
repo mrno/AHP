@@ -35,11 +35,12 @@ namespace sisExperto
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
 
             gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
-            
+            gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto);
+
             //var valoracionCriterios = (ValoracionCriteriosPorExperto)row.DataBoundItem;
 
 
-            gridCriterio.DataSource = _experto.ProyectosAsignados.Take(row.Index);
+            //gridCriterio.DataSource = _experto.ProyectosAsignados.Take(row.Index);
             
             //gridAlternativa.DataSource = expertoEnProyecto.ValoracionAlternativasPorCriterioExperto;
             //gridCriterio.DataSource = dato.obtenerMatrizCriterio(proy.id_proyecto, id_Experto);
@@ -70,8 +71,6 @@ namespace sisExperto
         //    gridCriterio.DataSource = dato.obtenerMatrizCriterio(matriz.id_proyecto, id_Experto);  
         //
         }
-
-     
 
     }
 }
