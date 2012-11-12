@@ -157,5 +157,17 @@ namespace sisExperto.UI
         {
           //  _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
         }
+
+        private void CargarComboEtiquetas(object sender, EventArgs e)
+        {
+             
+            foreach (var items in comboBox1.Items)
+            {
+
+                comboBox2.Items.Add(items);
+            }
+
+
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace sisExperto.Entidades
 
 
         public DbSet<Etiqueta> Etiqueta { get; set; }
-        public DbSet<ConjuntoEtiquetas> ConjuntoEtiquetases { get; set; }
+        public DbSet<ConjuntoEtiquetas> ConjuntoEtiquetas { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

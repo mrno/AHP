@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+
+
+
 
 namespace sisexperto.Entidades
 {
@@ -14,6 +13,9 @@ namespace sisexperto.Entidades
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int Cantidad { get; set; }
+
+
+        public virtual ICollection<Etiqueta> Etiquetas { get; set; }
 
     }
 }

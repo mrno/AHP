@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using sisExperto;
 using sisExperto.Entidades;
+using sisexperto.Entidades;
 
 namespace sisExperto
 {    
@@ -137,5 +138,27 @@ namespace sisExperto
             P.Estado = "Modificado";
             _context.SaveChanges();
         }
+
+
+
+        public void AltaConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
+        {
+            _context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
+            _context.SaveChanges();
+        }
+
+
+        public void AltaEtiqueta(Etiqueta Etiqueta)
+        {
+            _context.Etiqueta.Add(Etiqueta);
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<Etiqueta> SolicitarEtiquetas(ConjuntoEtiquetas ce)
+        {
+            return ce.Etiquetas;
+        }
+    
+    
     }
 }

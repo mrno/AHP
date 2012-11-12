@@ -43,12 +43,12 @@
             this.buttonQuitarCriterio = new System.Windows.Forms.Button();
             this.groupBoxCriterio = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -191,31 +191,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nombre del conjunto de etiquetas";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "3",
-            "5",
-            "7",
-            "9",
-            "11",
-            "13"});
-            this.comboBox1.Location = new System.Drawing.Point(407, 8);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(53, 21);
-            this.comboBox1.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(28, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(317, 20);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Cantidad de conjuntos de etiquetas a crear:";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -247,6 +222,32 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(330, 26);
             this.textBox2.TabIndex = 9;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "3",
+            "5",
+            "7",
+            "9",
+            "11",
+            "13"});
+            this.comboBox1.Location = new System.Drawing.Point(407, 8);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(53, 21);
+            this.comboBox1.TabIndex = 14;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.CargarComboEtiquetas);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label4.Location = new System.Drawing.Point(28, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(317, 20);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Cantidad de conjuntos de etiquetas a crear:";
             // 
             // comboBox2
             // 
