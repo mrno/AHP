@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using sisexperto.Entidades;
 
 namespace sisExperto.Entidades
 {
@@ -25,6 +26,9 @@ namespace sisExperto.Entidades
         public DbSet<ComparacionCriterio> ComparacionCriterios { get; set; }
         public DbSet<ComparacionAlternativa> ComparacionAlternativas { get; set; }
 
+
+        public DbSet<Etiqueta> Etiqueta { get; set; }
+        public DbSet<ConjuntoEtiquetas> ConjuntoEtiquetases { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
