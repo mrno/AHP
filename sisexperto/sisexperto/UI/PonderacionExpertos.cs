@@ -28,8 +28,8 @@ namespace sisexperto.UI
 
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
-            _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto);
-            dataGridPonderacionExpertos.DataSource = _expertosConPonderacion.ToList();
+            //_expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto);
+            //dataGridPonderacionExpertos.DataSource = _expertosConPonderacion.ToList();
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
