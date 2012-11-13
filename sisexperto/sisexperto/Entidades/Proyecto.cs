@@ -17,8 +17,8 @@ namespace sisExperto.Entidades
         public string Estado { get; set; }
         public int TipoProyecto
         {//1=AHP, 2=IL, 3=AMBOS
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get;
+            set;
         }
 
         public int CreadorId { get; set; }

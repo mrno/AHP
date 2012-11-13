@@ -251,6 +251,12 @@ namespace sisExperto
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void crearConjuntoDeEtiquetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaCreacionLabels = new CrearEtiquetas(null);
+            ventanaCreacionLabels.Show();
         }        
     }
 }

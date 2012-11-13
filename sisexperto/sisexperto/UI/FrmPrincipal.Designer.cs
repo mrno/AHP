@@ -68,6 +68,8 @@
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearConjuntoDeEtiquetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
@@ -387,10 +389,11 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ejecutarToolStripMenuItem,
             this.sesionToolStripMenuItem,
-            this.ayudaToolStripMenuItem});
+            this.ayudaToolStripMenuItem,
+            this.iLToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1014, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -400,20 +403,20 @@
             this.aHPPonderadoToolStripMenuItem,
             this.aHPNoPonderadoToolStripMenuItem});
             this.ejecutarToolStripMenuItem.Name = "ejecutarToolStripMenuItem";
-            this.ejecutarToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.ejecutarToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.ejecutarToolStripMenuItem.Text = "Ejecutar";
             // 
             // aHPPonderadoToolStripMenuItem
             // 
             this.aHPPonderadoToolStripMenuItem.Name = "aHPPonderadoToolStripMenuItem";
-            this.aHPPonderadoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aHPPonderadoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.aHPPonderadoToolStripMenuItem.Text = "AHP Ponderado";
             this.aHPPonderadoToolStripMenuItem.Click += new System.EventHandler(this.aHPPonderadoToolStripMenuItem_Click);
             // 
             // aHPNoPonderadoToolStripMenuItem
             // 
             this.aHPNoPonderadoToolStripMenuItem.Name = "aHPNoPonderadoToolStripMenuItem";
-            this.aHPNoPonderadoToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.aHPNoPonderadoToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.aHPNoPonderadoToolStripMenuItem.Text = "AHP No Ponderado";
             this.aHPNoPonderadoToolStripMenuItem.Click += new System.EventHandler(this.aHPNoPonderadoToolStripMenuItem_Click);
             // 
@@ -423,13 +426,13 @@
             this.iniciarSesionToolStripMenuItem,
             this.cerrarSesionToolStripMenuItem});
             this.sesionToolStripMenuItem.Name = "sesionToolStripMenuItem";
-            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.sesionToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.sesionToolStripMenuItem.Text = "Sesion";
             // 
             // iniciarSesionToolStripMenuItem
             // 
             this.iniciarSesionToolStripMenuItem.Name = "iniciarSesionToolStripMenuItem";
-            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.iniciarSesionToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.iniciarSesionToolStripMenuItem.Text = "Iniciar Sesion";
             this.iniciarSesionToolStripMenuItem.Click += new System.EventHandler(this.iniciarSesionToolStripMenuItem_Click_1);
             // 
@@ -437,28 +440,43 @@
             // 
             this.cerrarSesionToolStripMenuItem.Enabled = false;
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Sesion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // ayudaToolStripMenuItem
             // 
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
-            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
+            // 
+            // iLToolStripMenuItem
+            // 
+            this.iLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.crearConjuntoDeEtiquetsToolStripMenuItem});
+            this.iLToolStripMenuItem.Name = "iLToolStripMenuItem";
+            this.iLToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.iLToolStripMenuItem.Text = "IL";
+            // 
+            // crearConjuntoDeEtiquetsToolStripMenuItem
+            // 
+            this.crearConjuntoDeEtiquetsToolStripMenuItem.Name = "crearConjuntoDeEtiquetsToolStripMenuItem";
+            this.crearConjuntoDeEtiquetsToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.crearConjuntoDeEtiquetsToolStripMenuItem.Text = "Crear Conjunto de Etiquetas";
+            this.crearConjuntoDeEtiquetsToolStripMenuItem.Click += new System.EventHandler(this.crearConjuntoDeEtiquetsToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 719);
+            this.ClientSize = new System.Drawing.Size(1014, 719);
             this.Controls.Add(this.groupBoxDetalleProyecto);
             this.Controls.Add(this.groupBoxProyectos);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(1024, 768);
-            this.MinimumSize = new System.Drawing.Size(1024, 758);
+            this.MinimumSize = new System.Drawing.Size(1022, 732);
             this.Name = "FrmPrincipal";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -524,6 +542,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource alternativaBindingSource;
+        private System.Windows.Forms.ToolStripMenuItem iLToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crearConjuntoDeEtiquetsToolStripMenuItem;
 
 
 
