@@ -11,6 +11,7 @@ using MathWorks.MATLAB.NET.Arrays;
 using CalcularAHP;
 using Consistencia;
 using Mejora;
+using probaAHP;
 using sisExperto.Fachadas;
 using sisexperto.UI;
 
@@ -263,14 +264,61 @@ namespace sisexperto
 
         private void aHPPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
-            ventanaPonderacion.ShowDialog();
+     //var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
+     //ventanaPonderacion.ShowDialog();
+            CalcularAgregacionPonderada();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CalcularAgregacionNoPonderada();
         }
+
+
+
+       private void CalcularAgregacionPonderada()
+       {
+
+
+           proyecto proy = _proyectoSeleccionado;
+           Int32 id = proy.id_proyecto;
+           var listaExpertoProyecto = dato.expeProyConsistentePONDERADO(_proyectoSeleccionado.id_proyecto);
+           PreparacionListaCriterioAlternativa preparacionLista = new PreparacionListaCriterioAlternativa();
+           CalculoAHP calculo;
+
+           if (listaExpertoProyecto.Count != 0)
+           {
+
+               List<KRankPonderado> listaKRankPonderado = new List<KRankPonderado>();
+               foreach (experto_proyecto exp in listaExpertoProyecto)
+               {
+                   List<double[,]> listaPreparada = preparacionLista.Preparar(proy.id_proyecto, exp.id_experto);
+                   KRankPonderado kRankPonderado = new KRankPonderado();
+                   calculo = new CalculoAHP();
+                   kRankPonderado.KRanking = calculo.calcularRanking(listaPreparada);
+                   kRankPonderado.Peso = Convert.ToInt32(exp.ponderacion);
+                   listaKRankPonderado.Add(kRankPonderado);
+               }
+               AgregacionPonderada agregacionPonderada = new AgregacionPonderada();
+
+               var rdo = agregacionPonderada.agregar(listaKRankPonderado);
+
+
+               CalcularAhpAgregado frmAhpAgregado = new CalcularAhpAgregado(rdo, proy.id_proyecto);
+               frmAhpAgregado.ShowDialog();
+           }
+           else
+           {
+               MessageBox.Show("Ningún experto ha valorado de manera consistente.");
+           }
+
+
+
+       }
+
+
+
+
         //TODO Arreglar esto
         private void CalcularAgregacionNoPonderada() {
 
