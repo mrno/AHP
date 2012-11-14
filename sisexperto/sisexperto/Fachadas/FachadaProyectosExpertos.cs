@@ -154,7 +154,8 @@ namespace sisExperto
         public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios, Experto Experto)
         {
             List<ValoracionCriteriosPorExperto> list = new List<ValoracionCriteriosPorExperto>();
-            int i = 0;
+            int i = 1;
+
             foreach (var criterio in Criterios)
             {
             ValoracionCriteriosPorExperto valoracionCriteriosPorExperto = new ValoracionCriteriosPorExperto();
@@ -164,7 +165,7 @@ namespace sisExperto
                 List<ComparacionCriterio> list2 = new List<ComparacionCriterio>();
 
                
-                int j = 1;
+                int j = 0;
                 foreach (var criteriosPorExperto in list)
                 {
 
