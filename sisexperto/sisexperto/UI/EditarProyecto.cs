@@ -101,6 +101,7 @@ namespace sisExperto.UI
             {
                 _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
                 _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
+               _fachada.CrearValoracionCriteriosPorExperto(_proyectoSeleccionado, _listaCriterios,_experto);
                 _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
                 ProyectoModificado();
                 MessageBox.Show("Proyecto actualizado satisfactoriamente.");

@@ -70,7 +70,7 @@ namespace sisExperto
         public List<ValoracionCriteriosPorExperto> matrizCriterio(Proyecto proy, Experto exp)
         {
             var matriz = (from expenproy in _context.ExpertosEnProyectos
-                          where expenproy.Proyecto == proy && expenproy.Experto == exp
+                          where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
                           select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
             return matriz;
         }
@@ -81,7 +81,7 @@ namespace sisExperto
         {
             var salida = new List<ValoracionAlternativasPorCriterioExperto>();
             var matriz = (from val in _context.ValoracionesAlternativasPorCriterioExperto
-                          where val.Experto == exp
+                          where val.Experto.ExpertoId == exp.ExpertoId
                           select val).ToList<ValoracionAlternativasPorCriterioExperto>();
 
             foreach (ValoracionAlternativasPorCriterioExperto valor in matriz)
@@ -151,20 +151,40 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
+        public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios, Experto Experto)
+        {
+            List<ValoracionCriteriosPorExperto> list = new List<ValoracionCriteriosPorExperto>();
+            List<ComparacionCriterio> list2= new List<ComparacionCriterio>();
+            foreach (var criterio in Criterios)
+            {
+            ValoracionCriteriosPorExperto valoracionCriteriosPorExperto = new ValoracionCriteriosPorExperto();
+                valoracionCriteriosPorExperto.Criterio = criterio;
+                valoracionCriteriosPorExperto.Experto = Experto;
+                foreach (var VARIABLE in Criterios)
+                {
+                    ComparacionCriterio comparacionCriterio = new ComparacionCriterio();
+                    comparacionCriterio.Criterio = criterio;
+                    list2.Add(comparacionCriterio);    
+                    }
+                
+                list.Add(valoracionCriteriosPorExperto);
+
+            }
+            Proyecto.CriteriosValoradosPorExpertos = list;
+            _context.SaveChanges();
+        }
+
         public void CerrarEdicionProyecto(Proyecto P)
         {
             P.Estado = "Modificado";
             _context.SaveChanges();
         }
 
-
-
         public void AltaConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
         {
             _context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
             _context.SaveChanges();
         }
-
 
         public void AltaEtiqueta(Etiqueta Etiqueta)
         {
