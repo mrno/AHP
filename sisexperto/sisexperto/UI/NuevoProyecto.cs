@@ -108,7 +108,7 @@ namespace sisExperto
             {
                 if (_ExpertosAsignados.Count != 0)
                 {
-                    Proyecto _proyecto = new Proyecto { Nombre = textBoxNombreProyecto.Text, Objetivo = textBoxObjetivoProyecto.Text, Creador = _Experto, Estado = "Creado", TipoProyecto = comboBoxTipoModelo.SelectedIndex};
+                    Proyecto _proyecto = new Proyecto { Nombre = textBoxNombreProyecto.Text, Objetivo = textBoxObjetivoProyecto.Text, Creador = _Experto, Estado = "Creado", Tipo = comboBoxTipoModelo.SelectedIndex};
                     
                     _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
                     _fachada.AltaProyecto(_proyecto);

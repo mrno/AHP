@@ -15,7 +15,8 @@ namespace sisExperto.Entidades
         public string Objetivo { get; set; }
 
         public string Estado { get; set; }
-        public int TipoProyecto
+        
+        public int Tipo
         {//1=AHP, 2=IL, 3=AMBOS
             get;
             set;

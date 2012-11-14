@@ -101,6 +101,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201211140009470_inicial.cs" />
+    <Compile Include="Migrations\201211140009470_inicial.Designer.cs">
+      <DependentUpon>201211140009470_inicial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\ComparacionAlternativas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,15 +121,6 @@
     <Compile Include="Entidades\ConjuntoEtiquetas.cs" />
     <Compile Include="Entidades\Etiqueta.cs" />
     <Compile Include="Fachadas\FachadaCalculos.cs" />
-    <Compile Include="Migrations\201211082213226_Inicial.cs" />
-    <Compile Include="Migrations\201211082213226_Inicial.Designer.cs">
-      <DependentUpon>201211082213226_Inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211122127499_creacionEtiquetas.cs" />
-    <Compile Include="Migrations\201211122127499_creacionEtiquetas.Designer.cs">
-      <DependentUpon>201211122127499_creacionEtiquetas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\CrearEtiquetas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,17 +191,14 @@
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="Migrations\201211140009470_inicial.resx">
+      <DependentUpon>201211140009470_inicial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
       <DependentUpon>ComparacionAlternativas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CompararCriterios.resx">
       <DependentUpon>CompararCriterios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211082213226_Inicial.resx">
-      <DependentUpon>201211082213226_Inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211122127499_creacionEtiquetas.resx">
-      <DependentUpon>201211122127499_creacionEtiquetas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CrearEtiquetas.resx">
       <DependentUpon>CrearEtiquetas.cs</DependentUpon>

@@ -32,12 +32,13 @@ namespace sisExperto.Entidades
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            /*
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            
             modelBuilder.Entity<Proyecto>()
                 .HasRequired(x => x.Creador)
                 .WithMany(b => b.ProyectosCreados)
-                .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);*/
+                .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);
+            
             base.OnModelCreating(modelBuilder);
         }
 
