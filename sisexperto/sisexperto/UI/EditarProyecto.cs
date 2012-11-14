@@ -50,6 +50,8 @@ namespace sisExperto.UI
                 dataGridAlternativas.DataSource = _listaAlternativas;
 
                 buttonQuitarAlternativa.Enabled = true;
+                textBoxDescripcionAlternativa.Text = "";
+                textBoxNombreAlternativa.Text = "";
             }
             else MessageBox.Show("El Nombre y la Descripción de la alternativa no pueden estar vacíos.");
         }
@@ -80,6 +82,9 @@ namespace sisExperto.UI
                 dataGridCriterios.DataSource = _listaCriterios;
 
                 buttonQuitarCriterio.Enabled = true;
+
+                textBoxDescripcionCriterio.Text = "";
+                textBoxNombreCriterio.Text = "";
             }
             else MessageBox.Show("El Nombre y la Descripción del criterio no pueden estar vacíos.");
         }
