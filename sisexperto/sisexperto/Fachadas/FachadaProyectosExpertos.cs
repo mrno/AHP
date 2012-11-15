@@ -96,13 +96,21 @@ namespace sisExperto
 
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
         {
+            /*
             foreach (var Experto in Expertos)
             {
                 var lista = from exp in Expertos
                             select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp };
                 Proyecto.ExpertosAsignados = lista.ToList();
                 _context.SaveChanges();
-            }
+            }*/
+
+
+            var lista1 = from exp in Expertos
+                        select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp };
+            Proyecto.ExpertosAsignados = lista1.ToList();
+            _context.SaveChanges();
+            
         }
 
         public IEnumerable<Experto> ExpertosAsignados(Proyecto Proyecto)
