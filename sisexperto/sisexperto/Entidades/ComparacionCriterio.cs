@@ -12,12 +12,6 @@ namespace sisExperto.Entidades
         public int Columna { get; set; }
         public double ValorAHP { get; set; }
         public double ValorIL { get; set; }
-        //public int ProyectoId { get; set; }
-        //public virtual Proyecto Proyecto { get; set; }
-
-        //public int ExpertoId { get; set; }
-        //public virtual Experto Experto { get; set; }
-
         public int CriterioId { get; set; }
         public virtual Criterio Criterio { get; set; }
 

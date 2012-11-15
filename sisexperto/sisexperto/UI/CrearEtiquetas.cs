@@ -12,18 +12,14 @@ namespace sisExperto.UI
         public event EdicionProyecto ProyectoModificado;
         FachadaProyectosExpertos _fachada;
         private Proyecto _proyectoSeleccionado;
-        private Experto _experto;
-        private List<Proyecto> _proyectosNoValorados;
-        private List<Alternativa> _listaAlternativas = new List<Alternativa>();
+        private List<Etiqueta> _etiquetas = new List<Etiqueta>();
         private ConjuntoEtiquetas _conjuntoEtiquetas = new ConjuntoEtiquetas();
-
         public CrearEtiquetas(Proyecto Proyecto)
         {
             InitializeComponent();
             _proyectoSeleccionado = Proyecto;
-            _fachada = null;
-            _experto = null;
-            _proyectosNoValorados = null; //_fachada.ProyectosNoValorados(_experto).ToList();
+            _fachada = new FachadaProyectosExpertos();
+       
         }
       
         private void buttonAgregarEtiqueta_Click(object sender, EventArgs e)
@@ -34,82 +30,68 @@ namespace sisExperto.UI
                     {
                         Nombre = textBoxNombreEtiqueta.Text,
                         Descripcion = textBoxDescripcionEtiqueta.Text,
-                        a=0,
-                        b=0,
-                        c=0
+                        a =0, // Convert.ToInt32(comboBox2.SelectedText),
+                        b = Convert.ToInt32(dataGridEtiquetas.RowCount)+1,
+                        c =0, // Convert.ToInt32(comboBox2.SelectedText)
                         };
-                _conjuntoEtiquetas.Etiquetas.Add(etiqueta);
-                dataGridEtiquetas.DataSource = null;
-                dataGridEtiquetas.DataSource = _conjuntoEtiquetas;
-
+                _etiquetas.Add(etiqueta);
+                dataGridEtiquetas.DataSource = _etiquetas;
+                textBoxDescripcionEtiqueta.Text = "";
+                textBoxNombreEtiqueta.Text = "";
                 buttonQuitarEtiqueta.Enabled = true;
+                dataGridEtiquetas.Refresh();
+                textBoxNombreEtiqueta.Focus();
             }
             else MessageBox.Show("El Nombre y la Descripción de la etiqueta no pueden estar vacíos.");
         }
 
         private void buttonQuitarEtiqueta_Click(object sender, EventArgs e)
         {
-            _conjuntoEtiquetas.Etiquetas.Remove((Etiqueta)dataGridEtiquetas.CurrentRow.DataBoundItem);
+            _etiquetas.Remove((Etiqueta)dataGridEtiquetas.CurrentRow.DataBoundItem);
             dataGridEtiquetas.DataSource = null;
-            dataGridEtiquetas.DataSource = _conjuntoEtiquetas.Etiquetas;
+            dataGridEtiquetas.DataSource = _etiquetas;
 
-            if (_conjuntoEtiquetas.Etiquetas.Count == 0)
+            if (_etiquetas.Count == 0)
                 buttonQuitarEtiqueta.Enabled = false;
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
-            ////button 5
-            //if (_listaAlternativas.Count > 2 && _listaCriterios.Count > 2)
-            //{
-            //    _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
-            //    _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
-            //    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
-            //    ProyectoModificado();
-            //    MessageBox.Show("Proyecto actualizado satisfactoriamente.");
+            //button 5
 
-            //    _proyectosNoValorados.Remove(_proyectoSeleccionado);                
-            // //   comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);                
-            //    _listaAlternativas = new List<Alternativa>();
-             
-            //    _listaCriterios = new List<Criterio>();
-            //    dataGridEtiquetas.DataSource = null;
-            //    Limpiar();
-            //    try
-            //    {
-            //        _proyectoSeleccionado = _proyectosNoValorados[0];
-            //      //  comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
-            //    }
-            //    catch (Exception) { }
-            //    if (_proyectosNoValorados.Count == 0)
-            //    {
-            //       // comboBoxProyectos.Text = "";
-            //        buttonGuardar.Enabled = false;
-            //        buttonLimpiarAsignaciones.Enabled = false;
-            //        MessageBox.Show("No existen más proyectos por valorar.");
-            //        this.Close();
-            //    }
-            //}
-            //else
-            //{
-            //    string error = "";
-            //    if (_listaAlternativas.Count == 0 && _listaCriterios.Count == 0) error = "No se crearon Alternativas ni Criterios.";
-            //    if (_listaCriterios.Count == 0) error = "No se crearon Criterios.";
-            //    if (_listaAlternativas.Count == 0) error = "No se crearon Alternativas.";
-            //    MessageBox.Show(error);
-            //}
+            if ((_etiquetas.Count >= 3 && _etiquetas.Count <= 13) && ((_etiquetas.Count & 1) != 0))
+            {
+                _conjuntoEtiquetas.Descripcion = textBoxDescripcionConjunto.Text;
+                _conjuntoEtiquetas.Nombre = textBoxNombreConjunto.Text;
+                _conjuntoEtiquetas.Etiquetas = _etiquetas;
+                _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
+                dataGridEtiquetas.DataSource = null;
+                Limpiar();
+                MessageBox.Show("Se creo el conjunto de etiquetas satisfactoriamente.");
+                }
+            else
+            {
+                string error = "Se tienen que crear un conjunto con una cantidad de 3, 5, 7, 9, 11 o 13 etiquetas";
+                if (_etiquetas.Count == 0) error = "No se crearon Alternativas ni Criterios.";
+                MessageBox.Show(error);
+                textBoxNombreEtiqueta.Focus();
+            }
         }
 
         private void Limpiar()
         {
            
-            textBoxDescripcionEtiqueta.Text = "";
+            textBoxDescripcionConjunto.Text = "";
           
-            textBoxNombreEtiqueta.Text = "";
-       
+            textBoxNombreConjunto.Text = "";
+
             dataGridEtiquetas.DataSource = new List<Etiqueta>();
             
             buttonQuitarEtiqueta.Enabled = false;
+
+            _etiquetas = new List<Etiqueta>();
+
+            _conjuntoEtiquetas = new ConjuntoEtiquetas();
         }
 
         private void buttonLimpiarAsignaciones_Click(object sender, EventArgs e)
@@ -144,21 +126,6 @@ namespace sisExperto.UI
           //  _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
         }
 
-        private void CargarComboEtiquetas(object sender, EventArgs e)
-        {
-            comboBox2.Items.Clear();
-            int cantidad = Convert.ToInt32(comboBox1.SelectedItem);
-            for (int i = 0; i < cantidad; i++)
-            {
-               
-                
-                comboBox2.Items.Add(i+1);
-            }
-                
-          
-
-
-        }
-
+       
     }
 }

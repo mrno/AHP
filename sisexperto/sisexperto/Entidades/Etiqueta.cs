@@ -17,8 +17,8 @@ namespace sisexperto.Entidades
         public int b { get; set; }
         public int c { get; set; }
 
-        public int ConjuntoEtiquetasId { get; set; }
-        public virtual ConjuntoEtiquetas Alternativa { get; set; }
+        //public int ConjuntoEtiquetasId { get; set; }
+        //public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
 
     }
 }

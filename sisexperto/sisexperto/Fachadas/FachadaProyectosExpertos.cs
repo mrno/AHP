@@ -203,13 +203,13 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-        public void AltaConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
+        public void GuardarConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
         {
             _context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
             _context.SaveChanges();
         }
 
-        public void AltaEtiqueta(Etiqueta Etiqueta)
+        public void GuardarEtiqueta(Etiqueta Etiqueta)
         {
             _context.Etiqueta.Add(Etiqueta);
             _context.SaveChanges();
