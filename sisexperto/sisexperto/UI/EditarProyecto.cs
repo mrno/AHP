@@ -14,7 +14,7 @@ namespace sisExperto.UI
     {
         public delegate void EdicionProyecto();
         public event EdicionProyecto ProyectoModificado;
-
+        private int i = 0;
         FachadaProyectosExpertos _fachada;
 
         private Proyecto _proyectoSeleccionado;
@@ -32,6 +32,13 @@ namespace sisExperto.UI
             _proyectoSeleccionado = Proyecto;
             _fachada = Fachada;
             _experto = Experto;
+
+            //For testing
+            textBoxDescripcionAlternativa.Text = "A" + i;
+            textBoxNombreAlternativa.Text = "A" + i;
+
+            textBoxDescripcionCriterio.Text = "C" + i;
+            textBoxNombreCriterio.Text = "C" + i;
             _proyectosNoValorados = _fachada.ProyectosNoValorados(_experto).ToList();
         }
       
@@ -50,6 +57,8 @@ namespace sisExperto.UI
                 dataGridAlternativas.DataSource = _listaAlternativas;
 
                 buttonQuitarAlternativa.Enabled = true;
+                textBoxDescripcionAlternativa.Text = "A" + i++;
+                textBoxNombreAlternativa.Text = "A" + i++;
             }
             else MessageBox.Show("El Nombre y la Descripción de la alternativa no pueden estar vacíos.");
         }
@@ -80,6 +89,9 @@ namespace sisExperto.UI
                 dataGridCriterios.DataSource = _listaCriterios;
 
                 buttonQuitarCriterio.Enabled = true;
+
+                textBoxDescripcionCriterio.Text = "C" + i++;
+                textBoxNombreCriterio.Text = "C" + i++;
             }
             else MessageBox.Show("El Nombre y la Descripción del criterio no pueden estar vacíos.");
         }
@@ -101,7 +113,14 @@ namespace sisExperto.UI
             {
                 _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
                 _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
-               _fachada.CrearValoracionCriteriosPorExperto(_proyectoSeleccionado, _listaCriterios,_experto);
+
+                foreach (var VARIABLE in _proyectoSeleccionado.ExpertosAsignados)
+                {
+                    _fachada.CrearValoracionCriteriosPorExperto(_proyectoSeleccionado, _listaCriterios, VARIABLE.Experto);    
+                }
+
+                
+              
                 _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
                 ProyectoModificado();
                 MessageBox.Show("Proyecto actualizado satisfactoriamente.");

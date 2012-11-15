@@ -156,32 +156,47 @@ namespace sisExperto
                 Proyecto.Criterios.Add(item);
             }*/
             Proyecto.Criterios = Criterios;
-            _context.SaveChanges();
+        _context.SaveChanges();
         }
 
         public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios, Experto Experto)
         {
             List<ValoracionCriteriosPorExperto> list = new List<ValoracionCriteriosPorExperto>();
-            List<ComparacionCriterio> list2= new List<ComparacionCriterio>();
+            int i = 1;
+
             foreach (var criterio in Criterios)
             {
             ValoracionCriteriosPorExperto valoracionCriteriosPorExperto = new ValoracionCriteriosPorExperto();
                 valoracionCriteriosPorExperto.Criterio = criterio;
                 valoracionCriteriosPorExperto.Experto = Experto;
-                foreach (var VARIABLE in Criterios)
-                {
-                    ComparacionCriterio comparacionCriterio = new ComparacionCriterio();
-                    comparacionCriterio.Criterio = criterio;
-                    list2.Add(comparacionCriterio);    
-                    }
-                
                 list.Add(valoracionCriteriosPorExperto);
+                List<ComparacionCriterio> list2 = new List<ComparacionCriterio>();
 
+               
+                int j = 0;
+                foreach (var criteriosPorExperto in list)
+                {
+
+                    ComparacionCriterio comparacionCriterio = new ComparacionCriterio();
+                    comparacionCriterio.Criterio = criteriosPorExperto.Criterio;
+                    comparacionCriterio.Columna = i;
+                    comparacionCriterio.Fila = j;
+                    list2.Add(comparacionCriterio);
+                    j++;
+                }
+
+                valoracionCriteriosPorExperto.ComparacionCriterios=list2;
+                i++;
             }
             Proyecto.CriteriosValoradosPorExpertos = list;
+            
+     
             _context.SaveChanges();
-        }
+ }
 
+
+
+      
         public void CerrarEdicionProyecto(Proyecto P)
         {
             P.Estado = "Modificado";
