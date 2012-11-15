@@ -40,7 +40,7 @@ namespace sisExperto.UI
                 textBoxNombreEtiqueta.Text = "";
                 buttonQuitarEtiqueta.Enabled = true;
                 dataGridEtiquetas.Refresh();
-                textBoxNombreEtiqueta.Focus();
+               // textBoxNombreEtiqueta.Focus();
             }
             else MessageBox.Show("El Nombre y la Descripción de la etiqueta no pueden estar vacíos.");
         }

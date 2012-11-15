@@ -121,15 +121,16 @@
             // 
             this.dataGridEtiquetas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridEtiquetas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEtiquetas.Location = new System.Drawing.Point(6, 86);
+            this.dataGridEtiquetas.Location = new System.Drawing.Point(6, 100);
             this.dataGridEtiquetas.MultiSelect = false;
             this.dataGridEtiquetas.Name = "dataGridEtiquetas";
             this.dataGridEtiquetas.ReadOnly = true;
             this.dataGridEtiquetas.RowHeadersVisible = false;
             this.dataGridEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEtiquetas.Size = new System.Drawing.Size(428, 267);
-            this.dataGridEtiquetas.TabIndex = 0;
+            this.dataGridEtiquetas.Size = new System.Drawing.Size(428, 253);
+            this.dataGridEtiquetas.TabIndex = 2;
             // 
             // buttonAgregarCriterio
             // 
