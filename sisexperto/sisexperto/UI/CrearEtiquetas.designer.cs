@@ -36,7 +36,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxNombreEtiqueta = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.dataGridEtiquetas = new System.Windows.Forms.DataGridView();
             this.buttonAgregarCriterio = new System.Windows.Forms.Button();
             this.buttonQuitarEtiqueta = new System.Windows.Forms.Button();
             this.groupBoxCriterio = new System.Windows.Forms.GroupBox();
@@ -46,7 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDescripcionConjunto = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEtiquetas)).BeginInit();
+            this.dataGridEtiquetas = new System.Windows.Forms.DataGridView();
             this.groupBoxCriterio.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -117,21 +116,6 @@
             this.label7.TabIndex = 10;
             this.label7.Text = "Nombre:";
             // 
-            // dataGridEtiquetas
-            // 
-            this.dataGridEtiquetas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dataGridEtiquetas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.dataGridEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEtiquetas.Location = new System.Drawing.Point(6, 100);
-            this.dataGridEtiquetas.MultiSelect = false;
-            this.dataGridEtiquetas.Name = "dataGridEtiquetas";
-            this.dataGridEtiquetas.ReadOnly = true;
-            this.dataGridEtiquetas.RowHeadersVisible = false;
-            this.dataGridEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEtiquetas.Size = new System.Drawing.Size(428, 253);
-            this.dataGridEtiquetas.TabIndex = 2;
-            // 
             // buttonAgregarCriterio
             // 
             this.buttonAgregarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarCriterio.Image")));
@@ -154,9 +138,9 @@
             // 
             // groupBoxCriterio
             // 
+            this.groupBoxCriterio.Controls.Add(this.dataGridEtiquetas);
             this.groupBoxCriterio.Controls.Add(this.buttonQuitarEtiqueta);
             this.groupBoxCriterio.Controls.Add(this.buttonAgregarCriterio);
-            this.groupBoxCriterio.Controls.Add(this.dataGridEtiquetas);
             this.groupBoxCriterio.Controls.Add(this.label7);
             this.groupBoxCriterio.Controls.Add(this.textBoxNombreEtiqueta);
             this.groupBoxCriterio.Controls.Add(this.label8);
@@ -225,6 +209,18 @@
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             // 
+            // dataGridEtiquetas
+            // 
+            this.dataGridEtiquetas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridEtiquetas.Location = new System.Drawing.Point(28, 228);
+            this.dataGridEtiquetas.Name = "dataGridEtiquetas";
+            this.dataGridEtiquetas.RowHeadersVisible = false;
+            this.dataGridEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridEtiquetas.Size = new System.Drawing.Size(406, 125);
+            this.dataGridEtiquetas.TabIndex = 27;
+            // 
             // CrearEtiquetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,12 +234,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crear el conjunto de Etiquetas Linguisticas";
             this.Load += new System.EventHandler(this.EditarProyecto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEtiquetas)).EndInit();
             this.groupBoxCriterio.ResumeLayout(false);
             this.groupBoxCriterio.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridEtiquetas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,7 +257,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBoxNombreEtiqueta;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataGridEtiquetas;
         private System.Windows.Forms.Button buttonAgregarCriterio;
         private System.Windows.Forms.Button buttonQuitarEtiqueta;
         private System.Windows.Forms.GroupBox groupBoxCriterio;
@@ -271,6 +266,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDescripcionConjunto;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dataGridEtiquetas;
     }
 }
 
