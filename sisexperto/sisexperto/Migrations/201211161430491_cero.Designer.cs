@@ -5,13 +5,13 @@ namespace sisexperto.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class cambioMatriz : IMigrationMetadata
+    public sealed partial class cero : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(cambioMatriz));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(cero));
         
         string IMigrationMetadata.Id
         {
-            get { return "201211161351368_cambioMatriz"; }
+            get { return "201211161430491_cero"; }
         }
         
         string IMigrationMetadata.Source

@@ -109,9 +109,9 @@
     <Compile Include="Migrations\201211152041539_nuevaEtiqueta.Designer.cs">
       <DependentUpon>201211152041539_nuevaEtiqueta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201211161351368_cambioMatriz.cs" />
-    <Compile Include="Migrations\201211161351368_cambioMatriz.Designer.cs">
-      <DependentUpon>201211161351368_cambioMatriz.cs</DependentUpon>
+    <Compile Include="Migrations\201211161430491_cero.cs" />
+    <Compile Include="Migrations\201211161430491_cero.Designer.cs">
+      <DependentUpon>201211161430491_cero.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\ComparacionAlternativas.cs">
@@ -205,8 +205,8 @@
     <EmbeddedResource Include="Migrations\201211152041539_nuevaEtiqueta.resx">
       <DependentUpon>201211152041539_nuevaEtiqueta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211161351368_cambioMatriz.resx">
-      <DependentUpon>201211161351368_cambioMatriz.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201211161430491_cero.resx">
+      <DependentUpon>201211161430491_cero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
       <DependentUpon>ComparacionAlternativas.cs</DependentUpon>

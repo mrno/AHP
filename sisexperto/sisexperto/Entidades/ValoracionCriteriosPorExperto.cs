@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sisExperto.Entidades
 {
-    [Table("ValoracionCriteriosPorExpertos")]
+   
     public class ValoracionCriteriosPorExperto
     {
         public int ValoracionCriteriosPorExpertoId { get; set; }
