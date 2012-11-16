@@ -73,7 +73,8 @@ namespace sisExperto.Entidades
             foreach (ExpertoEnProyecto expertoEnProyecto in ObtenerExpertosProyectoConsistente())
             {
                 int k = 0;
-                utils.Productoria(matrizCriterio, expertoEnProyecto.ValoracionCriteriosPorExperto.Matriz);
+                //HAY QUE VER ESTO, se descajeto todo con el tema del cambio de las matrices....
+                //utils.Productoria(matrizCriterio, expertoEnProyecto.ValoracionCriteriosPorExperto.Matriz);
 
 
                 foreach (

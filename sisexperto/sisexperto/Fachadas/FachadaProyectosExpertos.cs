@@ -69,10 +69,14 @@ namespace sisExperto
 
         public List<ValoracionCriteriosPorExperto> matrizCriterio(Proyecto proy, Experto exp)
         {
-            var matriz = (from expenproy in _context.ExpertosEnProyectos
-                          where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
-                          select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
-            return matriz;
+
+            //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
+
+            //var matriz = (from expenproy in _context.ExpertosEnProyectos
+            //              where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
+            //              select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
+            //return matriz;
+            return null;
         }
 
         //ESTE MÉTODO DE ABAJO NO ME GUSTA MUCHO, SI ALGUIÉN TIENE UNA IDEA MÁS PIOLA, QUE LE META.

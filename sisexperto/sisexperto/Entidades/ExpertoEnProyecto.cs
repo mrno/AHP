@@ -29,11 +29,7 @@ namespace sisExperto.Entidades
 
         public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
 
-        private double[,] MatrizCriterio()
-        {
-            //AGREGAR DEFINICION
-            return this.ValoracionCriteriosPorExperto.Matriz;
-        }
+       
 
         public double[,] MatrizCriterioAHP
         {
@@ -129,7 +125,11 @@ namespace sisExperto.Entidades
         public List<double[,]> ListaCriterioAlternativas()
         {
             List<double[,]> listaCriterioAlternativas = new List<double[,]>();
-            listaCriterioAlternativas.Add(MatrizCriterio());
+            foreach (var valoracionCriteriosPorExperto in this.ValoracionCriteriosPorExperto)
+            {
+                listaCriterioAlternativas.Add(valoracionCriteriosPorExperto.Matriz);
+            }
+           
             listaCriterioAlternativas.AddRange(ListaMatrizAlternativas());
             return listaCriterioAlternativas;
 
@@ -152,18 +152,29 @@ namespace sisExperto.Entidades
         public bool TodasMisValoracionesConsistentes()
         {
 
-            bool CriteriosConsistentes = ValoracionCriteriosPorExperto.Consistencia = true;
 
+            return MisCriteriosConsistentes() && MisAlternativasConsistentes();
+        }
+
+        private bool MisCriteriosConsistentes()
+        {
+            bool flag= false;
+            foreach (var valoracionCriteriosPorExperto in ValoracionCriteriosPorExperto)
+            {
+                flag = (valoracionCriteriosPorExperto.Consistencia == true) ? true : false;
+            }
+
+            return flag;
+        }
+        private bool MisAlternativasConsistentes()
+        {
             var cantidadCriterios = ValoracionAlternativasPorCriterioExperto.Count();
 
             var listaAlternativasConsistente = from e in ValoracionAlternativasPorCriterioExperto
                                                where e.Consistencia = true
                                                select e;
-            return CriteriosConsistentes || cantidadCriterios == listaAlternativasConsistente.ToList().Count();
+            return cantidadCriterios == listaAlternativasConsistente.Count();
         }
-
-
-       
 
     }
 
