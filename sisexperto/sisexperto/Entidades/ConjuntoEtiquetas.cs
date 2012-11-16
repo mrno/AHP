@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 
-
-
-
 namespace sisexperto.Entidades
 {
    

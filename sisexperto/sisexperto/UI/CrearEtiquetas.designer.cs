@@ -45,10 +45,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDescripcionConjunto = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridEtiquetas = new System.Windows.Forms.DataGridView();
+            this.dataGridViewEtiquetas = new System.Windows.Forms.DataGridView();
             this.groupBoxCriterio.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEtiquetas)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonGuardar
@@ -138,7 +139,7 @@
             // 
             // groupBoxCriterio
             // 
-            this.groupBoxCriterio.Controls.Add(this.dataGridEtiquetas);
+            this.groupBoxCriterio.Controls.Add(this.dataGridViewEtiquetas);
             this.groupBoxCriterio.Controls.Add(this.buttonQuitarEtiqueta);
             this.groupBoxCriterio.Controls.Add(this.buttonAgregarCriterio);
             this.groupBoxCriterio.Controls.Add(this.label7);
@@ -209,17 +210,13 @@
             this.groupBox2.TabIndex = 35;
             this.groupBox2.TabStop = false;
             // 
-            // dataGridEtiquetas
+            // dataGridViewEtiquetas
             // 
-            this.dataGridEtiquetas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dataGridEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridEtiquetas.Location = new System.Drawing.Point(28, 228);
-            this.dataGridEtiquetas.Name = "dataGridEtiquetas";
-            this.dataGridEtiquetas.RowHeadersVisible = false;
-            this.dataGridEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridEtiquetas.Size = new System.Drawing.Size(406, 125);
-            this.dataGridEtiquetas.TabIndex = 27;
+            this.dataGridViewEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEtiquetas.Location = new System.Drawing.Point(10, 86);
+            this.dataGridViewEtiquetas.Name = "dataGridViewEtiquetas";
+            this.dataGridViewEtiquetas.Size = new System.Drawing.Size(424, 267);
+            this.dataGridViewEtiquetas.TabIndex = 27;
             // 
             // CrearEtiquetas
             // 
@@ -239,7 +236,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridEtiquetas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEtiquetas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,7 +263,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDescripcionConjunto;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridEtiquetas;
+        private System.Windows.Forms.DataGridView dataGridViewEtiquetas;
     }
 }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace sisexperto.Entidades
 {
     
@@ -17,8 +12,6 @@ namespace sisexperto.Entidades
         public int b { get; set; }
         public int c { get; set; }
 
-        //public int ConjuntoEtiquetasId { get; set; }
-        //public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
 
     }
 }

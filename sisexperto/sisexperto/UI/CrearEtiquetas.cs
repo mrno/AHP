@@ -31,15 +31,15 @@ namespace sisExperto.UI
                         Nombre = textBoxNombreEtiqueta.Text,
                         Descripcion = textBoxDescripcionEtiqueta.Text,
                         a =0, // Convert.ToInt32(comboBox2.SelectedText),
-                        b = Convert.ToInt32(dataGridEtiquetas.RowCount)+1,
+                        b = Convert.ToInt32(dataGridViewEtiquetas.RowCount)+1,
                         c =0, // Convert.ToInt32(comboBox2.SelectedText)
                         };
                 _etiquetas.Add(etiqueta);
-                dataGridEtiquetas.DataSource = _etiquetas;
+                dataGridViewEtiquetas.DataSource = _etiquetas;
                 textBoxDescripcionEtiqueta.Text = "";
                 textBoxNombreEtiqueta.Text = "";
                 buttonQuitarEtiqueta.Enabled = true;
-                dataGridEtiquetas.Refresh();
+                dataGridViewEtiquetas.Refresh();
                // textBoxNombreEtiqueta.Focus();
             }
             else MessageBox.Show("El Nombre y la Descripción de la etiqueta no pueden estar vacíos.");
@@ -47,9 +47,9 @@ namespace sisExperto.UI
 
         private void buttonQuitarEtiqueta_Click(object sender, EventArgs e)
         {
-            _etiquetas.Remove((Etiqueta)dataGridEtiquetas.CurrentRow.DataBoundItem);
-            dataGridEtiquetas.DataSource = null;
-            dataGridEtiquetas.DataSource = _etiquetas;
+            _etiquetas.Remove((Etiqueta)dataGridViewEtiquetas.CurrentRow.DataBoundItem);
+            dataGridViewEtiquetas.DataSource = null;
+            dataGridViewEtiquetas.DataSource = _etiquetas;
 
             if (_etiquetas.Count == 0)
                 buttonQuitarEtiqueta.Enabled = false;
@@ -83,7 +83,7 @@ namespace sisExperto.UI
           
             textBoxNombreConjunto.Text = "";
 
-            dataGridEtiquetas.DataSource = new List<Etiqueta>();
+           
             
             buttonQuitarEtiqueta.Enabled = false;
 
