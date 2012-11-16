@@ -101,18 +101,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201211140009470_inicial.cs" />
-    <Compile Include="Migrations\201211140009470_inicial.Designer.cs">
-      <DependentUpon>201211140009470_inicial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211152041539_nuevaEtiqueta.cs" />
-    <Compile Include="Migrations\201211152041539_nuevaEtiqueta.Designer.cs">
-      <DependentUpon>201211152041539_nuevaEtiqueta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211161430491_cero.cs" />
-    <Compile Include="Migrations\201211161430491_cero.Designer.cs">
-      <DependentUpon>201211161430491_cero.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -156,7 +144,7 @@
     <Compile Include="Entidades\GisiaExpertoContext.cs" />
     <Compile Include="Entidades\Proyecto.cs" />
     <Compile Include="Entidades\ValoracionAlternativasPorCriterioExperto.cs" />
-    <Compile Include="Entidades\ValoracionCriteriosPorExperto.cs" />
+    <Compile Include="Entidades\ValoracionCriteriosPorExpertos.cs" />
     <Compile Include="Fachadas\FachadaEjecucionProyecto.cs" />
     <Compile Include="Fachadas\FachadaProyectosExpertos.cs" />
     <Compile Include="UI\FrmPrincipal.cs">
@@ -199,15 +187,6 @@
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Migrations\201211140009470_inicial.resx">
-      <DependentUpon>201211140009470_inicial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211152041539_nuevaEtiqueta.resx">
-      <DependentUpon>201211152041539_nuevaEtiqueta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211161430491_cero.resx">
-      <DependentUpon>201211161430491_cero.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
       <DependentUpon>ComparacionAlternativas.cs</DependentUpon>
     </EmbeddedResource>

@@ -37,7 +37,7 @@ namespace sisExperto
             gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
             gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto);
 
-            //var valoracionCriterios = (ValoracionCriteriosPorExperto)row.DataBoundItem;
+            //var valoracionCriterios = (ValoracionCriteriosPorExpertos)row.DataBoundItem;
 
 
             //gridCriterio.DataSource = _experto.ProyectosAsignados.Take(row.Index);

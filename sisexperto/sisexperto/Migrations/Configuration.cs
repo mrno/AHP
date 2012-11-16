@@ -9,7 +9,7 @@ namespace sisexperto.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(sisExperto.Entidades.GisiaExpertoContext context)

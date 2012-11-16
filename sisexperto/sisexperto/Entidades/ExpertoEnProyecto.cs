@@ -23,8 +23,8 @@ namespace sisExperto.Entidades
         public int Peso { get; set; }
 
 
-        //public int ValoracionCriteriosPorExpertoId { get; set; }
-        public virtual ICollection<ValoracionCriteriosPorExperto> ValoracionCriteriosPorExperto { get; set; }
+      
+        public virtual ICollection<ValoracionCriteriosPorExpertos> ValoracionCriteriosPorExperto { get; set; }
 
         public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
 
@@ -77,7 +77,7 @@ namespace sisExperto.Entidades
                                                };
 
                         ValoracionCriteriosPorExperto.Add(
-                            new ValoracionCriteriosPorExperto()
+                            new ValoracionCriteriosPorExpertos()
                                 {
                                     Consistencia = false,
                                     Criterio = Proyecto.Criterios.ElementAt(i),

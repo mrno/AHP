@@ -20,7 +20,7 @@ namespace sisExperto.Entidades
         public DbSet<Criterio> Criterios { get; set; }
         public DbSet<Alternativa> Alternativas { get; set; }
 
-        public DbSet<ValoracionCriteriosPorExperto> ValoracionesCriteriosPorExpertos { get; set; }
+        public DbSet<ValoracionCriteriosPorExpertos> ValoracionesCriteriosPorExpertos { get; set; }
         public DbSet<ValoracionAlternativasPorCriterioExperto> ValoracionesAlternativasPorCriterioExperto { get; set; }
         
         public DbSet<ComparacionCriterio> ComparacionCriterios { get; set; }

@@ -203,7 +203,7 @@
             // 
             // valoracionCriteriosPorExpertoBindingSource
             // 
-            this.valoracionCriteriosPorExpertoBindingSource.DataSource = typeof(sisExperto.Entidades.ValoracionCriteriosPorExperto);
+            this.valoracionCriteriosPorExpertoBindingSource.DataSource = typeof(sisExperto.Entidades.ValoracionCriteriosPorExpertos);
             // 
             // groupBox3
             // 

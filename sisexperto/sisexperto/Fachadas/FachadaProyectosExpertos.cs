@@ -67,14 +67,14 @@ namespace sisExperto
             return _context.Expertos;
         }
 
-        public List<ValoracionCriteriosPorExperto> matrizCriterio(Proyecto proy, Experto exp)
+        public List<ValoracionCriteriosPorExpertos> matrizCriterio(Proyecto proy, Experto exp)
         {
 
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
             //var matriz = (from expenproy in _context.ExpertosEnProyectos
             //              where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
-            //              select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
+            //              select expenproy.ValoracionCriteriosPorExpertos).ToList<ValoracionCriteriosPorExpertos>();
             //return matriz;
             return null;
         }
@@ -167,12 +167,12 @@ namespace sisExperto
  //       {
  //           Queue<Criterio> cola = new Queue<Criterio>();
             
- //           List<ValoracionCriteriosPorExperto> list = new List<ValoracionCriteriosPorExperto>();
+ //           List<ValoracionCriteriosPorExpertos> list = new List<ValoracionCriteriosPorExpertos>();
  //           int i = 1;
 
  //           foreach (var criterio in Criterios)
  //           {
- //               ValoracionCriteriosPorExperto valoracionCriteriosPorExperto = new ValoracionCriteriosPorExperto();
+ //               ValoracionCriteriosPorExpertos valoracionCriteriosPorExperto = new ValoracionCriteriosPorExpertos();
  //               valoracionCriteriosPorExperto.Criterio = criterio;
  //               valoracionCriteriosPorExperto.Experto = Experto;
  //               //list.Add(valoracionCriteriosPorExperto);
@@ -203,7 +203,7 @@ namespace sisExperto
 
         public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios)
         {
-            List<ValoracionCriteriosPorExperto> lista = new List<ValoracionCriteriosPorExperto>();
+            List<ValoracionCriteriosPorExpertos> lista = new List<ValoracionCriteriosPorExpertos>();
 
             foreach(ExpertoEnProyecto exp in Proyecto.ExpertosAsignados)
             {
