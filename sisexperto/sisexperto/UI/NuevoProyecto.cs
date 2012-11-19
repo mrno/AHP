@@ -19,7 +19,8 @@ namespace sisExperto
         
         private List<Experto> _ExpertosAsignados = new List<Experto>();
         private List<Experto> _todosExpertos = new List<Experto>();
-        private List<ConjuntoEtiquetas> _conjuntoEtiquetases = new List<ConjuntoEtiquetas>(); 
+        private List<ConjuntoEtiquetas> _conjuntoEtiquetases = new List<ConjuntoEtiquetas>();
+       private List<Combinada> listaCombinada = new List<Combinada>();
 
         private Experto _Experto;
 
@@ -62,10 +63,11 @@ namespace sisExperto
                 Experto exp = (Experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem;
                 //acá puede que vaya exp nomás
                 _todosExpertos.Remove((Experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem);
-                 List<Combinada> listaCombinada = new List<Combinada>();
+              
                 var combinada = new Combinada();
                 combinada.Experto = exp;
                 combinada.ExpertoNombre = exp.Apellido;
+                
                 combinada.ConjuntoEtiquetas = new ConjuntoEtiquetas();
                 combinada.ConjuntoEtiquetasNombre = "NS/NC";
                 listaCombinada.Add(combinada);
