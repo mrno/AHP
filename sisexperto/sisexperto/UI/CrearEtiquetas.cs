@@ -35,12 +35,12 @@ namespace sisExperto.UI
                         c =0, // Convert.ToInt32(comboBox2.SelectedText)
                         };
                 _etiquetas.Add(etiqueta);
-                dataGridViewEtiquetas.DataSource = _etiquetas;
                 textBoxDescripcionEtiqueta.Text = "";
                 textBoxNombreEtiqueta.Text = "";
                 buttonQuitarEtiqueta.Enabled = true;
-                dataGridViewEtiquetas.Refresh();
-               // textBoxNombreEtiqueta.Focus();
+                dataGridViewEtiquetas.DataSource = null;
+                dataGridViewEtiquetas.DataSource = _etiquetas;
+               
             }
             else MessageBox.Show("El Nombre y la Descripción de la etiqueta no pueden estar vacíos.");
         }
@@ -83,7 +83,7 @@ namespace sisExperto.UI
           
             textBoxNombreConjunto.Text = "";
 
-           
+            dataGridViewEtiquetas.DataSource = null;
             
             buttonQuitarEtiqueta.Enabled = false;
 

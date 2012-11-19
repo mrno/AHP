@@ -2,6 +2,7 @@
 using System.Linq;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using sisexperto.Entidades;
 using sisexperto.Fachadas;
 
 namespace sisExperto.Entidades
@@ -23,8 +24,14 @@ namespace sisExperto.Entidades
         public int Peso { get; set; }
 
 
-      
-        public virtual ICollection<ValoracionCriteriosPorExpertos> ValoracionCriteriosPorExperto { get; set; }
+        //public int ConjuntoEtiquetasId { get; set; }
+        public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
+        
+        
+        
+
+
+        public virtual ICollection<ValoracionCriteriosPorExperto> ValoracionCriteriosPorExperto { get; set; }
 
         public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
 
@@ -77,7 +84,7 @@ namespace sisExperto.Entidades
                                                };
 
                         ValoracionCriteriosPorExperto.Add(
-                            new ValoracionCriteriosPorExpertos()
+                            new ValoracionCriteriosPorExperto()
                                 {
                                     Consistencia = false,
                                     Criterio = Proyecto.Criterios.ElementAt(i),

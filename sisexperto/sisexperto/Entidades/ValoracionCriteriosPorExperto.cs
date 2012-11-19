@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace sisExperto.Entidades
 {
    
-    public class ValoracionCriteriosPorExpertos
+    public class ValoracionCriteriosPorExperto
     {
         public int ValoracionCriteriosPorExpertoId { get; set; }
         public bool Consistencia { get; set; }

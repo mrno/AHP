@@ -67,14 +67,14 @@ namespace sisExperto
             return _context.Expertos;
         }
 
-        public List<ValoracionCriteriosPorExpertos> matrizCriterio(Proyecto proy, Experto exp)
+        public List<ValoracionCriteriosPorExperto> matrizCriterio(Proyecto proy, Experto exp)
         {
 
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
             //var matriz = (from expenproy in _context.ExpertosEnProyectos
             //              where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
-            //              select expenproy.ValoracionCriteriosPorExpertos).ToList<ValoracionCriteriosPorExpertos>();
+            //              select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
             //return matriz;
             return null;
         }
@@ -84,7 +84,7 @@ namespace sisExperto
         public List<ValoracionAlternativasPorCriterioExperto> matrizAlternativa(Proyecto proy, Experto exp)
         {
             var salida = new List<ValoracionAlternativasPorCriterioExperto>();
-            var matriz = (from val in _context.ValoracionesAlternativasPorCriterioExperto
+            var matriz = (from val in _context.ValoracionAlternativasPorCriterioExperto
                           where val.Experto.ExpertoId == exp.ExpertoId
                           select val).ToList<ValoracionAlternativasPorCriterioExperto>();
 
@@ -97,24 +97,28 @@ namespace sisExperto
             return salida;
         }
        
-
-        public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
+        public IEnumerable<ExpertoEnProyecto> AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
         {
-            /*
-            foreach (var Experto in Expertos)
-            {
-                var lista = from exp in Expertos
-                            select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp };
-                Proyecto.ExpertosAsignados = lista.ToList();
-                _context.SaveChanges();
-            }*/
-
-
+           
             var lista1 = from exp in Expertos
                         select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp };
             Proyecto.ExpertosAsignados = lista1.ToList();
             _context.SaveChanges();
-            
+            return Proyecto.ExpertosAsignados;
+        }
+
+        public void AsignarConjuntoEquiquetasAlExperto(IEnumerable<ExpertoEnProyecto> expertoEnProyectos, IEnumerable<ConjuntoEtiquetas> Conjunto)
+        {
+            var listaExpertos = from exp in expertoEnProyectos 
+                                select exp ;
+            int k = 0;
+            foreach (ExpertoEnProyecto expertoEnProyecto in listaExpertos)
+            {
+                expertoEnProyecto.ConjuntoEtiquetas = Conjunto.ToList()[k];
+                k++;
+                }
+            _context.SaveChanges();
+
         }
 
         public IEnumerable<Experto> ExpertosAsignados(Proyecto Proyecto)
@@ -167,12 +171,12 @@ namespace sisExperto
  //       {
  //           Queue<Criterio> cola = new Queue<Criterio>();
             
- //           List<ValoracionCriteriosPorExpertos> list = new List<ValoracionCriteriosPorExpertos>();
+ //           List<ValoracionCriteriosPorExperto> list = new List<ValoracionCriteriosPorExperto>();
  //           int i = 1;
 
  //           foreach (var criterio in Criterios)
  //           {
- //               ValoracionCriteriosPorExpertos valoracionCriteriosPorExperto = new ValoracionCriteriosPorExpertos();
+ //               ValoracionCriteriosPorExperto valoracionCriteriosPorExperto = new ValoracionCriteriosPorExperto();
  //               valoracionCriteriosPorExperto.Criterio = criterio;
  //               valoracionCriteriosPorExperto.Experto = Experto;
  //               //list.Add(valoracionCriteriosPorExperto);
@@ -203,7 +207,7 @@ namespace sisExperto
 
         public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios)
         {
-            List<ValoracionCriteriosPorExpertos> lista = new List<ValoracionCriteriosPorExpertos>();
+            List<ValoracionCriteriosPorExperto> lista = new List<ValoracionCriteriosPorExperto>();
 
             foreach(ExpertoEnProyecto exp in Proyecto.ExpertosAsignados)
             {
@@ -233,7 +237,10 @@ namespace sisExperto
         {
             return ce.Etiquetas;
         }
-    
-    
+
+        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
+        {
+            return _context.ConjuntoEtiquetas;
+        }
     }
 }

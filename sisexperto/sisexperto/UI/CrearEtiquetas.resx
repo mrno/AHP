@@ -121,8 +121,8 @@
   <data name="buttonAgregarCriterio.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAAAA
-        CwAB5DetvwAAAZFJREFUOE+dk98rQ2EYx03ijl1MWxsR2llRk8WirF3ihit/gXtaKYpyISmSlZFotmmz
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/wAA
+        Cv8BNGKaggAAAZFJREFUOE+dk98rQ2EYx03ijl1MWxsR2llRk8WirF3ihit/gXtaKYpyISmSlZFotmmz
         0ab8aBe7IOKC0Zg1oyhq5dKFtKuv533PzuLYypz69Pz+nvc8vUcBoET+2M+rfiWHu94VvxpZggnIWTyr
         xGfmA6mMnVsW5+vjLy8kEE4PYOexE5G3wf8JHLz2IZDqQDjdX7zAwqkSu89W+FMm7L/0YOFEWfgT5o5U
         4ByrMC/5ZLcfzPAmWxF6soj1LN97+A5mI5rcwtjSpMX57luxmWghEWPeOpvjAtPhGvgSnXDdGQgB7rgA
@@ -135,8 +135,8 @@
   <data name="buttonQuitarEtiqueta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOrAAA
-        DqwB3KhigwAAApJJREFUOE91Ul1IU2EYfs88m7Oz7bidM1eKZ7NWoUlpKqZU0GQXCUXCUsPuIroOhK6K
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAOqwAA
+        DqsBjuzE/AAAApJJREFUOE91Ul1IU2EYfs88m7Oz7bidM1eKZ7NWoUlpKqZU0GQXCUXCUsPuIroOhK6K
         Muii7iIiuqmVPxSJtvlbJpK6ftRWlL8ouAjNPBSkxyvZ23vGtrZlBx6+9/ve93m+733eA5DwjdaerX9X
         VlmUeJYYj9d4XH1HXe4t82cAGj5du7E5ebpO7gf4R6QbwDV37oLSX9uw4QFIFskk8r0jVZtrjVdw/dJV
         DBYdlLsSRFTy1DG3sk75tcbL2FRSvpEeEym1SpUt5y9urlZ7cKXqRATy8Rocc+TJT0mklcjBggPKqvtk

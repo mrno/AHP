@@ -31,7 +31,7 @@ namespace sisExperto.Entidades
 
         public virtual ICollection<Alternativa> Alternativas { get; set; }
 
-        public virtual ICollection<ValoracionCriteriosPorExpertos> CriteriosValoradosPorExpertos { get; set; }
+        public virtual ICollection<ValoracionCriteriosPorExperto> CriteriosValoradosPorExpertos { get; set; }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistente()
         {
@@ -74,7 +74,7 @@ namespace sisExperto.Entidades
             {
                 int k = 0;
                 //HAY QUE VER ESTO, se descajeto todo con el tema del cambio de las matrices....
-                //utils.Productoria(matrizCriterio, expertoEnProyecto.ValoracionCriteriosPorExpertos.Matriz);
+                //utils.Productoria(matrizCriterio, expertoEnProyecto.ValoracionCriteriosPorExperto.Matriz);
 
 
                 foreach (

@@ -101,6 +101,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entidades\Combinada.cs" />
+    <Compile Include="Migrations\201211192124186_fix.cs" />
+    <Compile Include="Migrations\201211192124186_fix.Designer.cs">
+      <DependentUpon>201211192124186_fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -144,7 +149,7 @@
     <Compile Include="Entidades\GisiaExpertoContext.cs" />
     <Compile Include="Entidades\Proyecto.cs" />
     <Compile Include="Entidades\ValoracionAlternativasPorCriterioExperto.cs" />
-    <Compile Include="Entidades\ValoracionCriteriosPorExpertos.cs" />
+    <Compile Include="Entidades\ValoracionCriteriosPorExperto.cs" />
     <Compile Include="Fachadas\FachadaEjecucionProyecto.cs" />
     <Compile Include="Fachadas\FachadaProyectosExpertos.cs" />
     <Compile Include="UI\FrmPrincipal.cs">
@@ -187,6 +192,9 @@
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="Migrations\201211192124186_fix.resx">
+      <DependentUpon>201211192124186_fix.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
       <DependentUpon>ComparacionAlternativas.cs</DependentUpon>
     </EmbeddedResource>
@@ -250,6 +258,8 @@
     <None Include="Properties\DataSources\proyecto.datasource" />
     <None Include="Properties\DataSources\proyecto1.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Alternativa.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.Combinada.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.ConjuntoEtiquetas.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Criterio.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />
