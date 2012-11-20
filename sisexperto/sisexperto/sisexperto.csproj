@@ -261,6 +261,7 @@
     <None Include="Properties\DataSources\sisexperto.Entidades.Combinada.datasource" />
     <None Include="Properties\DataSources\sisexperto.Entidades.ConjuntoEtiquetas.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Criterio.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.Etiqueta.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />

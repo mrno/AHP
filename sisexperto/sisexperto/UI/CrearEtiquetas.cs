@@ -30,8 +30,9 @@ namespace sisExperto.UI
                     {
                         Nombre = textBoxNombreEtiqueta.Text,
                         Descripcion = textBoxDescripcionEtiqueta.Text,
+                        Indice = _etiquetas.Count,
                         a =0, // Convert.ToInt32(comboBox2.SelectedText),
-                        b = Convert.ToInt32(dataGridViewEtiquetas.RowCount)+1,
+                        b = 0, //Convert.ToInt32(dataGridViewEtiquetas.RowCount),
                         c =0, // Convert.ToInt32(comboBox2.SelectedText)
                         };
                 _etiquetas.Add(etiqueta);
@@ -40,6 +41,8 @@ namespace sisExperto.UI
                 buttonQuitarEtiqueta.Enabled = true;
                 dataGridViewEtiquetas.DataSource = null;
                 dataGridViewEtiquetas.DataSource = _etiquetas;
+      
+                //dataGridViewEtiquetas.ColumnHeadersVisible
                
             }
             else MessageBox.Show("El Nombre y la Descripción de la etiqueta no pueden estar vacíos.");
@@ -61,6 +64,7 @@ namespace sisExperto.UI
 
             if ((_etiquetas.Count >= 3 && _etiquetas.Count <= 13) && ((_etiquetas.Count & 1) != 0))
             {
+                PrepararGuardado();
                 _conjuntoEtiquetas.Descripcion = textBoxDescripcionConjunto.Text;
                 _conjuntoEtiquetas.Nombre = textBoxNombreConjunto.Text;
                 _conjuntoEtiquetas.Etiquetas = _etiquetas;
@@ -111,13 +115,40 @@ namespace sisExperto.UI
             return false;
         }
 
-        private void EditarProyecto_Load(object sender, EventArgs e)
+        //Se setean los valores del triangulo del conjunto de etiquetas antes de guardar
+        private void PrepararGuardado()
         {
-            
+
+            foreach (Etiqueta etiqueta in _etiquetas)
+            {
+                etiqueta.b = (double) etiqueta.Indice/_etiquetas.Count;
+
+            }
+
+
         }
 
-        
 
+        private void AutoCreado(Int32 cuantos)
+        {
+
+            var etiqueta = new Etiqueta()
+            {
+                Nombre = textBoxNombreEtiqueta.Text,
+                Descripcion = textBoxDescripcionEtiqueta.Text,
+                Indice = _etiquetas.Count,
+                a = 0, // Convert.ToInt32(comboBox2.SelectedText),
+                b = 0, //Convert.ToInt32(dataGridViewEtiquetas.RowCount),
+                c = 0, // Convert.ToInt32(comboBox2.SelectedText)
+            };
+            _etiquetas.Add(etiqueta);
+            textBoxDescripcionEtiqueta.Text = "";
+            textBoxNombreEtiqueta.Text = "";
+            buttonQuitarEtiqueta.Enabled = true;
+            dataGridViewEtiquetas.DataSource = null;
+            dataGridViewEtiquetas.DataSource = _etiquetas;
+
+        }
        
     }
 }
