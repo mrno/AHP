@@ -7,9 +7,12 @@ using sisexperto.Fachadas;
 
 namespace sisExperto.Entidades
 {
-    [Table("ExpertosPonderadosEnProyectos")]
+    [Table("ExpertosEnProyecto")]
     public class ExpertoEnProyecto
     {
+
+        public int ExpertoEnProyectoId { get; set; }
+
         [Key, Column(Order = 0)]
         public int ProyectoId { get; set; }
 
