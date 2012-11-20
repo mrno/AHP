@@ -11,7 +11,6 @@ namespace sisExperto.UI
         public delegate void EdicionProyecto();
         public event EdicionProyecto ProyectoModificado;
         FachadaProyectosExpertos _fachada;
-
         private List<Etiqueta> _etiquetas = new List<Etiqueta>();
         private ConjuntoEtiquetas _conjuntoEtiquetas = new ConjuntoEtiquetas();
         public CrearEtiquetas(Proyecto Proyecto)
@@ -31,9 +30,9 @@ namespace sisExperto.UI
                         Nombre = textBoxNombreEtiqueta.Text,
                         Descripcion = textBoxDescripcionEtiqueta.Text,
                         Indice = _etiquetas.Count,
-                        a =0, // Convert.ToInt32(comboBox2.SelectedText),
-                        b = 0, //Convert.ToInt32(dataGridViewEtiquetas.RowCount),
-                        c =0, // Convert.ToInt32(comboBox2.SelectedText)
+                        a =0, 
+                        b = 0, 
+                        c =0, 
                         };
                 _etiquetas.Add(etiqueta);
                 textBoxDescripcionEtiqueta.Text = "";
@@ -42,7 +41,7 @@ namespace sisExperto.UI
                 dataGridViewEtiquetas.DataSource = null;
                 dataGridViewEtiquetas.DataSource = _etiquetas;
       
-                //dataGridViewEtiquetas.ColumnHeadersVisible
+              
                
             }
             else MessageBox.Show("El Nombre y la Descripción de la etiqueta no pueden estar vacíos.");
@@ -70,7 +69,8 @@ namespace sisExperto.UI
                 _conjuntoEtiquetas.Etiquetas = _etiquetas;
                 _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
                MessageBox.Show("Se creo el conjunto de etiquetas satisfactoriamente.");
-                }
+               Limpiar();
+            }
             else
             {
                 string error = "Se tienen que crear un conjunto con una cantidad de 3, 5, 7, 9, 11 o 13 etiquetas";
@@ -131,24 +131,109 @@ namespace sisExperto.UI
 
         private void AutoCreado(Int32 cuantos)
         {
-
-            var etiqueta = new Etiqueta()
+            _etiquetas = new List<Etiqueta>();
+            var padd = ((cuantos - 1)/2);
+            for (int i = 0; i < cuantos; i++)
             {
-                Nombre = textBoxNombreEtiqueta.Text,
-                Descripcion = textBoxDescripcionEtiqueta.Text,
-                Indice = _etiquetas.Count,
-                a = 0, // Convert.ToInt32(comboBox2.SelectedText),
-                b = 0, //Convert.ToInt32(dataGridViewEtiquetas.RowCount),
-                c = 0, // Convert.ToInt32(comboBox2.SelectedText)
-            };
-            _etiquetas.Add(etiqueta);
-            textBoxDescripcionEtiqueta.Text = "";
-            textBoxNombreEtiqueta.Text = "";
+                    var rdo = i<=padd ? i-padd : i-padd; 
+                                                                                                                                                
+                    var etiqueta = new Etiqueta()
+                    {
+                        Nombre = CrearNombre(rdo),
+                        Descripcion = CrearNombre(rdo),
+                        Indice = _etiquetas.Count,
+                    };    
+                _etiquetas.Add(etiqueta);
+            }
+            
             buttonQuitarEtiqueta.Enabled = true;
             dataGridViewEtiquetas.DataSource = null;
             dataGridViewEtiquetas.DataSource = _etiquetas;
 
         }
-       
+
+
+        private String CrearNombre(Int32 valor)
+        {
+
+            if (valor == (float)-6)                             //     TRECE
+                return "Extremadamente mas bajo";               //
+            if (valor == (float)-5)                                     //      ONCE
+               return "Bastante mas bajo";                              //
+            if (valor == (float)-4)                             //      NUEVE
+                return "Mas bajo";                              //      
+            if (valor == (float)-3)                     //     SIETE
+                return "Moderadamente mas bajo";        //  
+            if (valor == (float)-2)              //    CINCO
+                return "Minimamente mas bajo";   //
+            if (valor == (float)-1) //          
+                return "Bajo";      //
+            if (valor == (float)0)  //
+                return "Medio";     //  TRES
+            if (valor == (float)1)  //
+                return "Alto";      //
+            if (valor == (float)2)              //
+                return "Minimamente mas alto";  //    CINCO
+            if (valor == (float)3)                      //  
+                return "Moderadamente mas alto";        //     SIETE
+            if (valor == (float)4)                             //
+                return "Mas alto";                             //       NUEVE
+            if (valor == (float)5)                                      //
+                return "Bastante mas Alto";                             //    ONCE
+            if (valor == (float)6)                             //
+                return "Extremadamente Alto";                  //     TRECE
+            else
+            {
+                return "";
+
+            }
+        }
+
+        private void buttonTres_Click(object sender, EventArgs e)
+        {
+           
+            AutoCreado(Convert.ToInt32(buttonTres.Text));
+            //comboBoxCantidad.SelectedItem = 3;
+        }
+
+        private void buttonCinco_Click(object sender, EventArgs e)
+        {
+            
+            AutoCreado(Convert.ToInt32(buttonCinco.Text));
+            //comboBoxCantidad.SelectedItem = 5;
+        }
+
+        private void buttonSiete_Click(object sender, EventArgs e)
+        {
+           
+            AutoCreado(Convert.ToInt32(buttonSiete.Text));
+            //comboBoxCantidad.SelectedItem = 7;
+        }
+
+        private void buttonNueve_Click(object sender, EventArgs e)
+        {
+           
+            AutoCreado(Convert.ToInt32(buttonNueve.Text));
+            //comboBoxCantidad.SelectedItem = 9;
+        }
+
+        private void buttonOnce_Click(object sender, EventArgs e)
+        {
+           
+            AutoCreado(Convert.ToInt32(buttonOnce.Text));
+            //comboBoxCantidad.SelectedItem = 11;
+        }
+
+        private void buttonTrece_Click(object sender, EventArgs e)
+        {
+            
+            AutoCreado(Convert.ToInt32(buttonTrece.Text));
+            //comboBoxCantidad.SelectedItem = 13;
+        }
+
+        
+     
+
+        
     }
 }
