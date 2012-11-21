@@ -255,7 +255,7 @@ namespace sisExperto
 
         private void crearConjuntoDeEtiquetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaCreacionLabels = new CrearEtiquetas(null);
+            var ventanaCreacionLabels = new CrearEtiquetas(new Random(0).Next(0));
             ventanaCreacionLabels.Show();
         }        
     }

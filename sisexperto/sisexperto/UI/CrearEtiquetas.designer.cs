@@ -356,7 +356,7 @@
             this.Name = "CrearEtiquetas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Crear el conjunto de Etiquetas Linguisticas";
-            this.groupBoxCriterio.ResumeLayout(false);
+           this.groupBoxCriterio.ResumeLayout(false);
             this.groupBoxCriterio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEtiquetas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.etiquetaBindingSource)).EndInit();
