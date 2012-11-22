@@ -40,19 +40,19 @@
             // textBoxUsuario
             // 
             this.textBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUsuario.Location = new System.Drawing.Point(124, 27);
+            this.textBoxUsuario.Location = new System.Drawing.Point(129, 27);
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(180, 23);
+            this.textBoxUsuario.Size = new System.Drawing.Size(203, 23);
             this.textBoxUsuario.TabIndex = 0;
             this.textBoxUsuario.Enter += new System.EventHandler(this.textBoxUsuario_Enter);
             // 
             // textBoxContrasena
             // 
             this.textBoxContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxContrasena.Location = new System.Drawing.Point(124, 72);
+            this.textBoxContrasena.Location = new System.Drawing.Point(129, 72);
             this.textBoxContrasena.Name = "textBoxContrasena";
             this.textBoxContrasena.PasswordChar = '*';
-            this.textBoxContrasena.Size = new System.Drawing.Size(180, 23);
+            this.textBoxContrasena.Size = new System.Drawing.Size(203, 23);
             this.textBoxContrasena.TabIndex = 1;
             this.textBoxContrasena.Enter += new System.EventHandler(this.textBoxContrasena_Enter);
             // 
@@ -79,7 +79,7 @@
             // buttonAceptar
             // 
             this.buttonAceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAceptar.Location = new System.Drawing.Point(20, 140);
+            this.buttonAceptar.Location = new System.Drawing.Point(16, 139);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(140, 30);
             this.buttonAceptar.TabIndex = 4;
@@ -90,7 +90,7 @@
             // buttonSalir
             // 
             this.buttonSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSalir.Location = new System.Drawing.Point(175, 140);
+            this.buttonSalir.Location = new System.Drawing.Point(192, 139);
             this.buttonSalir.Name = "buttonSalir";
             this.buttonSalir.Size = new System.Drawing.Size(140, 30);
             this.buttonSalir.TabIndex = 5;
@@ -101,11 +101,11 @@
             // labelSesionInv
             // 
             this.labelSesionInv.AutoSize = true;
-            this.labelSesionInv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSesionInv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSesionInv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelSesionInv.Location = new System.Drawing.Point(100, 105);
+            this.labelSesionInv.Location = new System.Drawing.Point(126, 105);
             this.labelSesionInv.Name = "labelSesionInv";
-            this.labelSesionInv.Size = new System.Drawing.Size(189, 17);
+            this.labelSesionInv.Size = new System.Drawing.Size(217, 17);
             this.labelSesionInv.TabIndex = 6;
             this.labelSesionInv.Text = "Datos de Sesión Incorrectos!";
             // 
@@ -113,7 +113,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 181);
+            this.ClientSize = new System.Drawing.Size(344, 181);
             this.Controls.Add(this.labelSesionInv);
             this.Controls.Add(this.buttonSalir);
             this.Controls.Add(this.buttonAceptar);
