@@ -198,10 +198,21 @@ namespace sisExperto
             return ce.Etiquetas;
         }
 
-        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
+        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasT(int val)
         {
-            return _context.ConjuntoEtiquetas;
+            return (from c in _context.ConjuntoEtiquetas
+                    where c.Token == val
+                    select c);
+
         }
+
+        public IEnumerable<ConjuntoEtiquetas>  SolicitarConjuntoEtiquetas()
+        {
+
+            return _context.ConjuntoEtiquetas;
+
+        }
+
 
         public void CargarValoracionCriteriosPorExperto(Experto Experto, Proyecto Proyecto, double[,] MatrizCriterio)
         {
@@ -223,5 +234,6 @@ namespace sisExperto
             //double[,] matriza = expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP;
             _context.SaveChanges();
         }
+
     }
 }

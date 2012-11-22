@@ -11,11 +11,13 @@ namespace sisExperto.UI
         public delegate void EdicionProyecto();
         public event EdicionProyecto ProyectoModificado;
         FachadaProyectosExpertos _fachada;
+        private int _token;
         private List<Etiqueta> _etiquetas = new List<Etiqueta>();
         private ConjuntoEtiquetas _conjuntoEtiquetas = new ConjuntoEtiquetas();
-        public CrearEtiquetas(Proyecto Proyecto)
+        public CrearEtiquetas(int Token)
         {
             InitializeComponent();
+            _token = Token;
             //_proyectoSeleccionado = Proyecto;
             _fachada = new FachadaProyectosExpertos();
        
@@ -66,6 +68,7 @@ namespace sisExperto.UI
                 PrepararGuardado();
                 _conjuntoEtiquetas.Descripcion = textBoxDescripcionConjunto.Text;
                 _conjuntoEtiquetas.Nombre = textBoxNombreConjunto.Text;
+                _conjuntoEtiquetas.Token = _token;
                 _conjuntoEtiquetas.Etiquetas = _etiquetas;
                 _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
                MessageBox.Show("Se creo el conjunto de etiquetas satisfactoriamente.");
@@ -231,7 +234,9 @@ namespace sisExperto.UI
             //comboBoxCantidad.SelectedItem = 13;
         }
 
-        
+     
+
+      
      
 
         
