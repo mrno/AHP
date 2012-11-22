@@ -64,6 +64,7 @@
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.combinadaBindingSource)).BeginInit();
@@ -173,6 +174,7 @@
             this.dataGridCombinada.Name = "dataGridCombinada";
             this.dataGridCombinada.ReadOnly = true;
             this.dataGridCombinada.RowHeadersVisible = false;
+            this.dataGridCombinada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCombinada.Size = new System.Drawing.Size(348, 316);
             this.dataGridCombinada.TabIndex = 30;
             // 
@@ -228,7 +230,8 @@
             this.dataGridConjuntoEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridConjuntoEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridConjuntoEtiquetas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4});
+            this.dataGridViewTextBoxColumn4,
+            this.Cantidad});
             this.dataGridConjuntoEtiquetas.DataSource = this.conjuntoEtiquetasBindingSource;
             this.dataGridConjuntoEtiquetas.Location = new System.Drawing.Point(726, 22);
             this.dataGridConjuntoEtiquetas.Name = "dataGridConjuntoEtiquetas";
@@ -255,6 +258,7 @@
             this.administradorDataGridViewCheckBoxColumn1});
             this.dataGridExpertosDisponibles.DataSource = this.expertoBindingSource;
             this.dataGridExpertosDisponibles.Location = new System.Drawing.Point(10, 21);
+            this.dataGridExpertosDisponibles.MultiSelect = false;
             this.dataGridExpertosDisponibles.Name = "dataGridExpertosDisponibles";
             this.dataGridExpertosDisponibles.ReadOnly = true;
             this.dataGridExpertosDisponibles.RowHeadersVisible = false;
@@ -418,6 +422,13 @@
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
             // NuevoProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,5 +498,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn conjuntoEtiquetasNombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
     }
 }

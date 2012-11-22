@@ -74,6 +74,7 @@ namespace sisExperto.UI
                 _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
                MessageBox.Show("Se creo el conjunto de etiquetas satisfactoriamente.");
                Limpiar();
+                this.Close();
             }
             else
             {
