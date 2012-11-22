@@ -113,16 +113,8 @@ namespace sisExperto.UI
             {
                 _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
                 _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
-
-                //foreach (var VARIABLE in _proyectoSeleccionado.ExpertosAsignados)
-                //{
-                //    _fachada.CrearValoracionCriteriosPorExperto(_proyectoSeleccionado, _listaCriterios, VARIABLE.Experto);    
-                //}
-
-                //_fachada.CrearValoracionCriteriosPorExperto(_proyectoSeleccionado, _listaCriterios);    
-
-                
-                _fachada.CargarValoracionCriteriosPorExperto(_experto, _proyectoSeleccionado, new double[3,3]);
+                                
+                _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
 
                 _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
                 ProyectoModificado();

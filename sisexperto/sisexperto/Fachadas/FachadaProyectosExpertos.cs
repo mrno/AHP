@@ -208,32 +208,78 @@ namespace sisExperto
 
         public IEnumerable<ConjuntoEtiquetas>  SolicitarConjuntoEtiquetas()
         {
-
             return _context.ConjuntoEtiquetas;
-
         }
 
 
-        public void CargarValoracionCriteriosPorExperto(Experto Experto, Proyecto Proyecto, double[,] MatrizCriterio)
+        public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
         {
-            var matriz = new double[3,3];
-            for (int i = 0; i < 3; i++)
+            ExpertoEP.CriterioMatriz = new CriterioMatriz() { ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio };
+            
+            _context.SaveChanges();
+        }
+
+        public void CargarMatrizAlterntivas(ExpertoEnProyecto ExpertoEP, Criterio Criterio, double[,] MatrizAlternativa)
+        {
+            AlternativaMatriz matrizAlternativa = null;
+
+            try
             {
-                for (int j = 0; j < 3; j++)
+                matrizAlternativa = (from mat in ExpertoEP.AlternativasMatrices
+                                     where mat.CriterioId == Criterio.CriterioId
+                                     select mat).FirstOrDefault();
+            }
+            catch (Exception) 
+            {
+                ExpertoEP.AlternativasMatrices = new List<AlternativaMatriz>();
+            }
+
+            if (matrizAlternativa == null)
+            {
+                ExpertoEP.AlternativasMatrices.Add(
+                    new AlternativaMatriz()
+                    {
+                        Criterio = Criterio,
+                        ExpertoEnProyecto = ExpertoEP,
+                        MatrizAlternativaAHP = MatrizAlternativa,
+                        Consistencia = false
+                    });
+            }
+            else matrizAlternativa.MatrizAlternativaAHP = MatrizAlternativa;
+            _context.SaveChanges();
+        }
+
+
+        public void InicializarMatricesExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas, List<Criterio> ListaCriterios)
+        {
+            var dimensionCriterio = ListaCriterios.Count;
+            var dimensionAlternativa = ListaAlternativas.Count;
+
+            var matrizCriterio = GenerarMatriz(dimensionCriterio);
+            var matrizAlternativa = GenerarMatriz(dimensionAlternativa);
+
+            foreach (var expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
+            {
+                CargarMatrizCriterios(expertoEnProyecto, matrizCriterio);
+
+                foreach (var criterio in ListaCriterios)
+                {
+                    CargarMatrizAlterntivas(expertoEnProyecto, criterio, matrizAlternativa);
+                }
+            }     
+        }
+
+        private double[,] GenerarMatriz(int Dimension)
+        {
+            var matriz = new double[Dimension, Dimension];
+            for (int i = 0; i < Dimension; i++)
+            {
+                for (int j = 0; j < Dimension; j++)
                 {
                     matriz[i, j] = 1;
                 }
             }
-
-            var expertoEnProyecto = (from expP in _context.ExpertosEnProyectos
-                                     where expP.ExpertoId == Experto.ExpertoId
-                                     && expP.ProyectoId == Proyecto.ProyectoId
-                                     select expP).FirstOrDefault();
-
-            expertoEnProyecto.CriterioMatriz = new CriterioMatriz() { ExpertoEnProyecto = expertoEnProyecto, MatrizCriterioAHP = matriz };
-            //double[,] matriza = expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP;
-            _context.SaveChanges();
+            return matriz;
         }
-
     }
 }

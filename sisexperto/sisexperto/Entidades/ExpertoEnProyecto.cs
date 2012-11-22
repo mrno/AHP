@@ -75,27 +75,18 @@ namespace sisExperto.Entidades
 
         private List<double[,]> ListaMatrizAlternativas()
         {
-            List<double[,]> listaMatrizAlternativas = new List<double[,]>();
-            /*
-            foreach (var AlternativasPorCriterioExperto in ValoracionAlternativasPorCriterioExperto)
-            {
-                listaMatrizAlternativas.Add(AlternativasPorCriterioExperto.Matriz);
-            }*/
-            return listaMatrizAlternativas;
+            return (from c in AlternativasMatrices
+                    select c.MatrizAlternativaAHP).ToList();
         }
 
         public List<double[,]> ListaCriterioAlternativas()
         {
             List<double[,]> listaCriterioAlternativas = new List<double[,]>();
-            /*
-            foreach (var valoracionCriteriosPorExperto in this.ValoracionCriteriosPorExperto)
-            {
-                listaCriterioAlternativas.Add(valoracionCriteriosPorExperto.Matriz);
-            }
-           */
+            
+            listaCriterioAlternativas.Add(this.CriterioMatriz.MatrizCriterioAHP);
+
             listaCriterioAlternativas.AddRange(ListaMatrizAlternativas());
             return listaCriterioAlternativas;
-
         }
 
         public double[,] CalcularMiRanking()
@@ -108,40 +99,26 @@ namespace sisExperto.Entidades
             {
                 return new double[1,1];
             }
-
-
         }
 
         public bool TodasMisValoracionesConsistentes()
         {
-
-
             return MisCriteriosConsistentes() && MisAlternativasConsistentes();
         }
 
         private bool MisCriteriosConsistentes()
         {
-            bool flag= false;
-            /*
-            foreach (var valoracionCriteriosPorExperto in ValoracionCriteriosPorExperto)
-            {
-                flag = (valoracionCriteriosPorExperto.Consistencia == true) ? true : false;
-            }
-            */
-            return flag;
+            return CriterioMatriz.Consistencia;
         }
         
         private bool MisAlternativasConsistentes()
         {
-            /*
-            var cantidadCriterios = ValoracionAlternativasPorCriterioExperto.Count();
-
-            var listaAlternativasConsistente = from e in ValoracionAlternativasPorCriterioExperto
-                                               where e.Consistencia = true
-                                               select e;
-            return cantidadCriterios == listaAlternativasConsistente.Count();*/
-            return true;
+            var flag = true;
+            foreach (var matrizAlter in AlternativasMatrices)
+            {
+                flag &= matrizAlter.Consistencia;
+            }
+            return flag;
         }
-
     }
 }

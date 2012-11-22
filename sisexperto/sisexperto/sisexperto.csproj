@@ -116,6 +116,10 @@
     <Compile Include="Migrations\201211220344244_Nuevo2.Designer.cs">
       <DependentUpon>201211220344244_Nuevo2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211220358501_Nuevo3.cs" />
+    <Compile Include="Migrations\201211220358501_Nuevo3.Designer.cs">
+      <DependentUpon>201211220358501_Nuevo3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\ComparacionAlternativas.cs">
       <SubType>Form</SubType>
@@ -210,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201211220344244_Nuevo2.resx">
       <DependentUpon>201211220344244_Nuevo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211220358501_Nuevo3.resx">
+      <DependentUpon>201211220358501_Nuevo3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
       <DependentUpon>ComparacionAlternativas.cs</DependentUpon>
