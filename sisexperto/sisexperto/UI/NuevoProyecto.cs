@@ -10,12 +10,15 @@ namespace sisExperto
 {
     public partial class NuevoProyecto : Form
     {
+        private int token;
+        private bool flag = true;
         public delegate void Proyectos();
         public event Proyectos ProyectoCreado;
         private List<Experto> _ExpertosAsignados = new List<Experto>();
         private List<Experto> _todosExpertos = new List<Experto>();
         private List<ConjuntoEtiquetas> _conjuntoEtiquetases = new List<ConjuntoEtiquetas>();
         private List<ConjuntoEtiquetas> _EtiquetasAsignadas = new List<ConjuntoEtiquetas>();
+        private List<ConjuntoEtiquetas> _conjuntoEtiquetasExtendida = new List<ConjuntoEtiquetas>();
         private List<Combinada> listaCombinada = new List<Combinada>();
         private Experto _Experto;
         private FachadaProyectosExpertos _fachada;
@@ -103,9 +106,11 @@ namespace sisExperto
 
         private void NuevoProyecto_Load(object sender, EventArgs e)
         {
+            flag = false;
             _todosExpertos = _fachada.ObtenerExpertos().ToList();
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
-            _conjuntoEtiquetases = _fachada.SolicitarConjuntoEtiquetas().ToList();
+            _conjuntoEtiquetases.Clear();
+            _conjuntoEtiquetases = _fachada.SolicitarConjuntoEtiquetasT(0).ToList();
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
             buttonCrearEtiquetas.Enabled = false;
             dataGridConjuntoEtiquetas.Enabled = false;
@@ -135,15 +140,12 @@ namespace sisExperto
                     {
                         _ExpertosAsignados.Add(combinada.Experto);
                         _EtiquetasAsignadas.Add(combinada.ConjuntoEtiquetas);
-
                     }
-
-
-
-                    var expertoEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
+                    
+                    var expertosEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
                     _fachada.AltaProyecto(_proyecto);
 
-                    _fachada.AsignarConjuntoEquiquetasAlExperto(expertoEnProyecto, _EtiquetasAsignadas);
+                    _fachada.AsignarConjuntoEquiquetasAlExperto(expertosEnProyecto, _EtiquetasAsignadas);
                     ProyectoCreado();
 
                     MessageBox.Show("El proyecto se ha creado satisfactoriamente.");
@@ -195,8 +197,12 @@ namespace sisExperto
 
         private void buttonCrearEtiquetas_Click(object sender, EventArgs e)
         {
-            var ventanaCreacionLabels = new CrearEtiquetas(null);
+            var random = new Random();
+            token = random.Next(0, 100);
+            
+            var ventanaCreacionLabels = new CrearEtiquetas(token);
             ventanaCreacionLabels.Show();
+            flag = true;
         }
 
         private void buttonAgregarConjunto_Click(object sender, EventArgs e)
@@ -210,6 +216,27 @@ namespace sisExperto
 
         }
 
-    
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _conjuntoEtiquetasExtendida.AddRange(_fachada.SolicitarConjuntoEtiquetas());
+            _conjuntoEtiquetases.Clear();
+            _conjuntoEtiquetases.AddRange(_conjuntoEtiquetasExtendida);
+            dataGridConjuntoEtiquetas.DataSource = null;
+            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+            button1.Enabled = false;
         }
+
+        private void NuevoProyecto_Activated(object sender, EventArgs e)
+        {
+           if (flag) {
+            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
+            dataGridConjuntoEtiquetas.DataSource = null;
+            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;    
+
+            }
+            
+        }
+
+    
+     }
 }

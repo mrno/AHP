@@ -31,7 +31,8 @@ namespace sisExperto.Entidades
 
         public virtual ICollection<Alternativa> Alternativas { get; set; }
 
-        public virtual ICollection<ValoracionCriteriosPorExperto> CriteriosValoradosPorExpertos { get; set; }
+        ////cambiar esto: sacar
+        //public virtual ICollection<CriterioFila> CriteriosValoradosPorExpertos { get; set; }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistente()
         {
@@ -70,21 +71,19 @@ namespace sisExperto.Entidades
                 listaAlternativas.Add(AlternativasAgregada);
             }
 
-            foreach (ExpertoEnProyecto expertoEnProyecto in ObtenerExpertosProyectoConsistente())
-            {
-                int k = 0;
-                //HAY QUE VER ESTO, se descajeto todo con el tema del cambio de las matrices....
-                //utils.Productoria(matrizCriterio, expertoEnProyecto.ValoracionCriteriosPorExperto.Matriz);
-
-
-                foreach (
-                    ValoracionAlternativasPorCriterioExperto d in
-                        expertoEnProyecto.ValoracionAlternativasPorCriterioExperto)
+            foreach (var expertoEnProyecto in ExpertosAsignados)
+            {               
+                if(expertoEnProyecto.TodasMisValoracionesConsistentes())
                 {
-                    utils.Productoria(listaAlternativas[k], d.Matriz);
-                    k++;
-                }
+                    utils.Productoria(matrizCriterio, expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP);
 
+                    int k = 0;
+                    foreach (var d in expertoEnProyecto.AlternativasMatrices)
+                    {
+                        utils.Productoria(listaAlternativas[k], d.MatrizAlternativaAHP);
+                        k++;
+                    }
+                }
             }
             listaCompleta.Add(matrizCriterio);
             listaCompleta.AddRange(listaAlternativas);
@@ -92,7 +91,7 @@ namespace sisExperto.Entidades
 
             double[,] ranking =  FachadaCalculos.Instance.calcularRanking(listaCompleta);
 
-            MostrarRanking mostrarRanking = new MostrarRanking(ranking,this,1);
+            MostrarRanking mostrarRanking = new MostrarRanking(ranking, this, 1);
             mostrarRanking.ShowDialog();
         }
 
