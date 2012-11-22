@@ -1,16 +1,16 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{94202F0E-EF3C-463D-9942-082C41FB45E4}"
+	ProjectSection(SolutionItems) = preProject
+		Answer.txt = Answer.txt
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication", "MvcApplication\MvcApplication.csproj", "{6D4A5550-6F7D-4527-92A7-50FEEB2E44CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication.Domain", "MvcApplication.Domain\MvcApplication.Domain.csproj", "{9D64D50C-0A06-45ED-B6AD-2F19BB965739}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApplication.Controller", "MvcApplication.Controller\MvcApplication.Controller.csproj", "{7C38FFB5-740B-4103-B4B7-9F24DD94AD2D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{94202F0E-EF3C-463D-9942-082C41FB45E4}"
-	ProjectSection(SolutionItems) = preProject
-		Answer.txt = Answer.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
