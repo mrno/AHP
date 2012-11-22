@@ -16,7 +16,6 @@ namespace sisExperto
 
         public Experto ObtenerExpertoValido(string usuario, string password)
         {
-            //using (var asd = new GisiaExpertoContext()) { }
             Experto = (from exp in _context.Expertos
                        where exp.Usuario == usuario && exp.Clave == password
                        select exp).FirstOrDefault();
@@ -67,7 +66,7 @@ namespace sisExperto
             return _context.Expertos;
         }
 
-        public List<ValoracionCriteriosPorExperto> matrizCriterio(Proyecto proy, Experto exp)
+        public List<CriterioFila> matrizCriterio(Proyecto proy, Experto exp)
         {
 
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
@@ -81,8 +80,9 @@ namespace sisExperto
 
         //ESTE MÉTODO DE ABAJO NO ME GUSTA MUCHO, SI ALGUIÉN TIENE UNA IDEA MÁS PIOLA, QUE LE META.
 
-        public List<ValoracionAlternativasPorCriterioExperto> matrizAlternativa(Proyecto proy, Experto exp)
+        public List<CriterioFila> matrizAlternativa(Proyecto proy, Experto exp)
         {
+            /*
             var salida = new List<ValoracionAlternativasPorCriterioExperto>();
             var matriz = (from val in _context.ValoracionAlternativasPorCriterioExperto
                           where val.Experto.ExpertoId == exp.ExpertoId
@@ -93,15 +93,14 @@ namespace sisExperto
                 foreach (Alternativa alt in proy.Alternativas)
                     if (valor.Alternativa == alt)
                         salida.Add(valor);
-            }
-            return salida;
+            }*/
+            return null;
         }
        
         public IEnumerable<ExpertoEnProyecto> AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
-        {
-           
+        {           
             var lista1 = from exp in Expertos
-                        select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp };
+                        select new ExpertoEnProyecto { Proyecto = Proyecto, Experto = exp, CriterioMatriz = new CriterioMatriz() };
             Proyecto.ExpertosAsignados = lista1.ToList();
             _context.SaveChanges();
             return Proyecto.ExpertosAsignados;
@@ -131,10 +130,8 @@ namespace sisExperto
             }
             catch (Exception)
             {
-
                 return new List<Experto>();
-            }
-            
+            }            
         }
 
         internal IEnumerable<Proyecto> ProyectosNoValorados(Entidades.Experto _experto)
@@ -146,68 +143,30 @@ namespace sisExperto
 
         public void GuardarAlternativas(Proyecto Proyecto, List<Alternativa> Alternativas)
         {
-            //if (Proyecto.Alternativas == null) Proyecto.Alternativas = new List<Alternativa>();
-            /*
+            if (Proyecto.Alternativas == null) Proyecto.Alternativas = new List<Alternativa>();
+            
             foreach (var item in Alternativas)
             {
                 Proyecto.Alternativas.Add(item);
-            }*/
+            }
             Proyecto.Alternativas = Alternativas;
             _context.SaveChanges();
         }
 
         public void GuardarCriterios(Proyecto Proyecto, List<Criterio> Criterios)
-        {/*
+        {
             if (Proyecto.Criterios == null) Proyecto.Criterios = new List<Criterio>();
             foreach (var item in Criterios)
             {
                 Proyecto.Criterios.Add(item);
-            }*/
+            }
             Proyecto.Criterios = Criterios;
-        _context.SaveChanges();
+            _context.SaveChanges();
         }
-
- //       public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios, Experto Experto)
- //       {
- //           Queue<Criterio> cola = new Queue<Criterio>();
-            
- //           List<ValoracionCriteriosPorExperto> list = new List<ValoracionCriteriosPorExperto>();
- //           int i = 1;
-
- //           foreach (var criterio in Criterios)
- //           {
- //               ValoracionCriteriosPorExperto valoracionCriteriosPorExperto = new ValoracionCriteriosPorExperto();
- //               valoracionCriteriosPorExperto.Criterio = criterio;
- //               valoracionCriteriosPorExperto.Experto = Experto;
- //               //list.Add(valoracionCriteriosPorExperto);
- //               List<ComparacionCriterio> list2 = new List<ComparacionCriterio>();
-
-               
- //               int j = 0;
- //               foreach (var criteriosPorExperto in list)
- //               {
-
- //                   ComparacionCriterio comparacionCriterio = new ComparacionCriterio();
- //                   comparacionCriterio.Criterio = criteriosPorExperto.Criterio;
- //                   comparacionCriterio.Columna = i;
- //                   comparacionCriterio.Fila = j;
- //                   list2.Add(comparacionCriterio);
- //                   j++;
- //               }
-
- //               valoracionCriteriosPorExperto.ComparacionCriterios=list2;
- //               i++;
- //           }
- //           Proyecto.CriteriosValoradosPorExpertos = list;
-            
-     
- //           _context.SaveChanges();
- //}
-
 
         public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios)
         {
-            List<ValoracionCriteriosPorExperto> lista = new List<ValoracionCriteriosPorExperto>();
+            List<CriterioFila> lista = new List<CriterioFila>();
 
             foreach(ExpertoEnProyecto exp in Proyecto.ExpertosAsignados)
             {
@@ -242,6 +201,27 @@ namespace sisExperto
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
             return _context.ConjuntoEtiquetas;
+        }
+
+        public void CargarValoracionCriteriosPorExperto(Experto Experto, Proyecto Proyecto, double[,] MatrizCriterio)
+        {
+            var matriz = new double[3,3];
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    matriz[i, j] = 1;
+                }
+            }
+
+            var expertoEnProyecto = (from expP in _context.ExpertosEnProyectos
+                                     where expP.ExpertoId == Experto.ExpertoId
+                                     && expP.ProyectoId == Proyecto.ProyectoId
+                                     select expP).FirstOrDefault();
+
+            expertoEnProyecto.CriterioMatriz = new CriterioMatriz() { ExpertoEnProyecto = expertoEnProyecto, MatrizCriterioAHP = matriz };
+            //double[,] matriza = expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP;
+            _context.SaveChanges();
         }
     }
 }

@@ -135,11 +135,8 @@ namespace sisExperto
                     {
                         _ExpertosAsignados.Add(combinada.Experto);
                         _EtiquetasAsignadas.Add(combinada.ConjuntoEtiquetas);
-
                     }
-
-
-
+                    
                     var expertoEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
                     _fachada.AltaProyecto(_proyecto);
 
@@ -211,5 +208,5 @@ namespace sisExperto
         }
 
     
-        }
+     }
 }

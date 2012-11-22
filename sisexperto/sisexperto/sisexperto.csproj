@@ -102,9 +102,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\Combinada.cs" />
-    <Compile Include="Migrations\201211192124186_fix.cs" />
-    <Compile Include="Migrations\201211192124186_fix.Designer.cs">
-      <DependentUpon>201211192124186_fix.cs</DependentUpon>
+    <Compile Include="Entidades\AlternativaMatriz.cs" />
+    <Compile Include="Entidades\CriterioMatriz.cs" />
+    <Compile Include="Migrations\201211220332094_Nuevo.cs" />
+    <Compile Include="Migrations\201211220332094_Nuevo.Designer.cs">
+      <DependentUpon>201211220332094_Nuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211220342040_Nuevo1.cs" />
+    <Compile Include="Migrations\201211220342040_Nuevo1.Designer.cs">
+      <DependentUpon>201211220342040_Nuevo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211220344244_Nuevo2.cs" />
+    <Compile Include="Migrations\201211220344244_Nuevo2.Designer.cs">
+      <DependentUpon>201211220344244_Nuevo2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\ComparacionAlternativas.cs">
@@ -141,15 +151,15 @@
       <DependentUpon>CrearExperto.cs</DependentUpon>
     </Compile>
     <Compile Include="Entidades\Alternativa.cs" />
-    <Compile Include="Entidades\ComparacionAlternativa.cs" />
-    <Compile Include="Entidades\ComparacionCriterio.cs" />
+    <Compile Include="Entidades\AlternativaCelda.cs" />
+    <Compile Include="Entidades\CriterioCelda.cs" />
     <Compile Include="Entidades\Criterio.cs" />
     <Compile Include="Entidades\Experto.cs" />
     <Compile Include="Entidades\ExpertoEnProyecto.cs" />
     <Compile Include="Entidades\GisiaExpertoContext.cs" />
     <Compile Include="Entidades\Proyecto.cs" />
-    <Compile Include="Entidades\ValoracionAlternativasPorCriterioExperto.cs" />
-    <Compile Include="Entidades\ValoracionCriteriosPorExperto.cs" />
+    <Compile Include="Entidades\AlternativaFila.cs" />
+    <Compile Include="Entidades\CriterioFila.cs" />
     <Compile Include="Fachadas\FachadaEjecucionProyecto.cs" />
     <Compile Include="Fachadas\FachadaProyectosExpertos.cs" />
     <Compile Include="UI\FrmPrincipal.cs">
@@ -192,8 +202,14 @@
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Migrations\201211192124186_fix.resx">
-      <DependentUpon>201211192124186_fix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201211220332094_Nuevo.resx">
+      <DependentUpon>201211220332094_Nuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211220342040_Nuevo1.resx">
+      <DependentUpon>201211220342040_Nuevo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201211220344244_Nuevo2.resx">
+      <DependentUpon>201211220344244_Nuevo2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
       <DependentUpon>ComparacionAlternativas.cs</DependentUpon>

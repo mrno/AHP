@@ -5,13 +5,13 @@ namespace sisexperto.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class fix : IMigrationMetadata
+    public sealed partial class Nuevo1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Nuevo1));
         
         string IMigrationMetadata.Id
         {
-            get { return "201211192124186_fix"; }
+            get { return "201211220342040_Nuevo1"; }
         }
         
         string IMigrationMetadata.Source
