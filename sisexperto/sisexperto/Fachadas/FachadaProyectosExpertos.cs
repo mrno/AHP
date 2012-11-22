@@ -134,8 +134,7 @@ namespace sisExperto
 
                 return new List<Experto>();
             }
-            
-        }
+                   }
 
         internal IEnumerable<Proyecto> ProyectosNoValorados(Entidades.Experto _experto)
         {
