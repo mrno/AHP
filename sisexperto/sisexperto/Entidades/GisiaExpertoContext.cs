@@ -20,11 +20,14 @@ namespace sisExperto.Entidades
         public DbSet<Criterio> Criterios { get; set; }
         public DbSet<Alternativa> Alternativas { get; set; }
 
-        public DbSet<ValoracionCriteriosPorExperto> ValoracionCriteriosPorExpertos { get; set; }
-        public DbSet<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
-        
-        public DbSet<ComparacionCriterio> ComparacionCriterios { get; set; }
-        public DbSet<ComparacionAlternativa> ComparacionAlternativas { get; set; }
+        public DbSet<CriterioMatriz> CriteriosMatrices { get; set; }
+        public DbSet<CriterioFila> CriteriosFilas { get; set; }
+        public DbSet<CriterioCelda> CriteriosCeldas { get; set; }
+
+
+        public DbSet<AlternativaMatriz> AlternativasMatrices { get; set; }
+        public DbSet<AlternativaFila> AlternativasFilas { get; set; }
+        public DbSet<AlternativaCelda> AlternativasCeldas { get; set; }
 
 
         public DbSet<Etiqueta> Etiqueta { get; set; }
@@ -39,6 +42,11 @@ namespace sisExperto.Entidades
                 .WithMany(b => b.ProyectosCreados)
                 .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);
             
+            modelBuilder.Entity<CriterioMatriz>()                
+                .HasRequired(x => x.ExpertoEnProyecto)                
+                .WithRequiredDependent(x => x.CriterioMatriz);
+            
+
             base.OnModelCreating(modelBuilder);
         }
 

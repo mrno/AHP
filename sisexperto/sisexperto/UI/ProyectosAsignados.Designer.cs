@@ -201,10 +201,6 @@
             this.comparacionCriteriosDataGridViewTextBoxColumn.HeaderText = "ComparacionCriterios";
             this.comparacionCriteriosDataGridViewTextBoxColumn.Name = "comparacionCriteriosDataGridViewTextBoxColumn";
             // 
-            // valoracionCriteriosPorExpertoBindingSource
-            // 
-            this.valoracionCriteriosPorExpertoBindingSource.DataSource = typeof(sisExperto.Entidades.ValoracionCriteriosPorExperto);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.gridAlternativa);
@@ -248,10 +244,6 @@
             this.Column4.DataPropertyName = "id_matrizAlternativa";
             this.Column4.HeaderText = "Valorar";
             this.Column4.Name = "Column4";
-            // 
-            // valoracionAlternativasPorCriterioExpertoBindingSource
-            // 
-            this.valoracionAlternativasPorCriterioExpertoBindingSource.DataSource = typeof(sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto);
             // 
             // ProyectosAsignados
             // 

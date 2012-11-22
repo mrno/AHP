@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="5e7439d0-b084-406d-a117-95aa8108b3ec" name="CicloDeEjecucion" linkedPackageId="3866b13a-b2a5-49fe-8447-aee0d9687b77" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="eb654253-6a90-412b-a0c9-d3a4d68d9fb1">
+      <profileInstance Id="e14cd3bc-046c-43ef-924f-f576d0cb2326" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="c9fde5fb-7056-4ba0-895f-eca0bb46e8f6">
+      <profileInstance Id="f7f69f32-1a60-4191-adf5-aef49df293cc" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="e73e16b5-ab52-4ad0-9cf9-c0f7484c4c38" name="CicloDeEjecucion" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="2aa5b3ac-742c-40a9-bd49-ec2271572dad" />
+        <nodes>
+          <activityParameterNode Id="613455fd-016d-4c39-a7be-dc16ca6d32aa" name="Matriz de Valoración" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0e55467b-ecb5-48bf-a373-79051c532d51" />
+            <objectFlowTargets>
+              <objectFlow Id="4ce9c4c6-f7ef-41f7-865c-15f0c8498ed4" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="4cd93a0b-8b06-4dbf-b5bd-48b12b622316" LastKnownName="Target" />
+                <elementDefinition Id="2f726450-a4f6-44cd-bc4d-691bedd57f46" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="a64ee750-65d6-4769-952d-953463f25d08" name="2147483647" value="2147483647">
+                <elementDefinition Id="c2d7a3af-bc6c-4f22-bc9b-321c9fb05d76" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <objectNode Id="1a9a4946-6b0e-4d84-9e85-101520ac3b44" name="Poblaciones" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="a1623096-2bad-479f-8add-0c642e38d9e4" />
+            <objectFlowTargets>
+              <objectFlow Id="03e7041c-4099-4ebe-9d2c-483bdfebcf57" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="f960e0bc-61c6-40d6-a334-36f652991324" LastKnownName="Get: Población [i-1]" />
+                <elementDefinition Id="6a268486-9445-4941-9680-eeb53ebb668d" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="a4c02bd8-b94c-4df2-90f7-744e2b8a728b" name="2147483647" value="2147483647">
+                <elementDefinition Id="72c0a587-46db-4b1d-89c0-d597eb0816e0" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="e691aa8b-d14b-4321-9461-61ae79d3c585" name="Generar Población Inicial" isLeaf="false">
+            <elementDefinition Id="a335e080-419f-4daf-897c-832ab04134e7" />
+            <pins>
+              <opaqueActionHasOutputValues>
+                <outputPin Id="68a046d5-dbd8-4b87-b77e-bfa1bb2d8f3d" name="Población 0" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="65b85ea2-4fe8-4582-928e-38d80b844fbe" />
+                  <objectFlowTargets>
+                    <objectFlow Id="71ac72f8-1aa3-4c0f-979c-fe2207d9be8c" isLeaf="false" isMulticast="false" isMultireceive="false">
+                      <objectNodeMoniker Id="1a9a4946-6b0e-4d84-9e85-101520ac3b44" LastKnownName="Poblaciones" />
+                      <elementDefinition Id="80f8f9b8-f9da-49c2-a5e3-65bb0828f046" />
+                    </objectFlow>
+                  </objectFlowTargets>
+                  <upperBound>
+                    <literalInteger Id="80b607b3-0e42-4289-a3b3-21489922f955" name="2147483647" value="2147483647">
+                      <elementDefinition Id="3df9d9dd-2540-46e9-bb09-975750c57b95" />
+                    </literalInteger>
+                  </upperBound>
+                </outputPin>
+              </opaqueActionHasOutputValues>
+            </pins>
+          </opaqueAction>
+          <objectNode Id="8e9dfdea-9eb5-4f59-a1a0-9ef0b8868a67" name="Evolucionador" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="4856faa2-eff2-48f5-80cf-f51f9efc3bac" />
+            <objectFlowTargets>
+              <objectFlow Id="5bbe3c41-1177-4ff7-b5ff-6a03301e4e07" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="e691aa8b-d14b-4321-9461-61ae79d3c585" LastKnownName="Generar Población Inicial" />
+                <elementDefinition Id="f2036d0f-c1e9-42e4-9e22-d8eb2f1d7d0d" />
+              </objectFlow>
+              <objectFlow Id="868622f1-f9ed-4a6f-acd8-05ad6ed0a57f" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <opaqueActionMoniker Id="62630ebc-fcfc-4fdd-b2b6-c4375787fb68" LastKnownName="Evolucionar" />
+                <elementDefinition Id="66299823-7699-462b-97ce-fad81a8384aa" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="cc0f1133-31e7-408c-b1fe-1add3bffe0ba" name="2147483647" value="2147483647">
+                <elementDefinition Id="ed63005c-5dd8-4fc1-ac29-6968c6e27843" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <sendSignalAction Id="10bbbaf8-8d4e-4183-b3a4-b61b5b5cac74" name="Ventana: X% de la matriz está Completa" isLeaf="false">
+            <elementDefinition Id="15e59f4f-5823-476e-b179-d25c7452edc6" />
+            <flowNodeTargets>
+              <controlFlow Id="67b5004e-1518-4cdf-b6a4-fd4c34a0f8ea" isLeaf="false">
+                <acceptEventActionMoniker Id="af744b23-09ca-4290-8b9f-5c82cd4521b0" LastKnownName="Set: Target" />
+                <elementDefinition Id="69bebb2e-f791-45d7-b26a-5b5a5c7223cd" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="af744b23-09ca-4290-8b9f-5c82cd4521b0" name="Set: Target" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="ba5b4db3-0e9a-47c9-9251-353f84763d68" />
+            <objectFlowTargets>
+              <objectFlow Id="4c62e62e-ad0c-413f-b641-8e1f13e1de21" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="8e9dfdea-9eb5-4f59-a1a0-9ef0b8868a67" LastKnownName="Evolucionador" />
+                <elementDefinition Id="93c9c44d-17a1-41a1-9ed5-ebc63d67e6b7" />
+              </objectFlow>
+            </objectFlowTargets>
+            <pins>
+              <actionHasInputsInternal>
+                <inputPin Id="4cd93a0b-8b06-4dbf-b5bd-48b12b622316" name="Target" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="c1f7e45a-21c6-4062-a503-c1a9fca3ff57" />
+                  <upperBound>
+                    <literalInteger Id="4650ffef-f6c0-4ff2-b8b0-b668c849056e" name="2147483647" value="2147483647">
+                      <elementDefinition Id="7969d807-7bba-4014-a8d4-1dd7c9448422" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </actionHasInputsInternal>
+            </pins>
+          </acceptEventAction>
+          <opaqueAction Id="62630ebc-fcfc-4fdd-b2b6-c4375787fb68" name="Evolucionar" isLeaf="false">
+            <elementDefinition Id="af705875-74f3-4686-9f37-93cdcc05e59e" />
+            <flowNodeTargets>
+              <controlFlow Id="62ff7f57-4cf8-41f0-9f2d-a4064a11b074" isLeaf="false">
+                <opaqueActionMoniker Id="f960e0bc-61c6-40d6-a334-36f652991324" LastKnownName="Get: Población [i-1]" />
+                <elementDefinition Id="ae6e4606-b760-4637-9910-a4ab1e178d96" />
+              </controlFlow>
+              <controlFlow Id="9547edd6-63c6-4402-977f-2ec60cc74e08" isLeaf="false">
+                <opaqueActionMoniker Id="e775b15b-7220-4f0c-97c0-4edfc2dd7aa9" LastKnownName="i = 1" />
+                <elementDefinition Id="b3858cde-267a-4e61-87e9-64a76007df6b" />
+              </controlFlow>
+            </flowNodeTargets>
+            <pins>
+              <opaqueActionHasInputValues>
+                <inputPin Id="af027fc7-558f-44b3-a4f5-61720081a8c9" name="Parámetros AG" isLeaf="false" ordering="Unordered" isControlType="false" isControl="false">
+                  <elementDefinition Id="75e61be9-502a-4c3c-b3b2-f44f34d2079c" />
+                  <upperBound>
+                    <literalInteger Id="f9601238-3b21-4bdd-bdf3-597d35748e7e" name="2147483647" value="2147483647">
+                      <elementDefinition Id="f7ea2791-7e6b-403a-9990-45beaea57aad" />
+                    </literalInteger>
+                  </upperBound>
+                </inputPin>
+              </opaqueActionHasInputValues>
+            </pins>
+          </opaqueAction>
+          <activityParameterNode Id="25b8cdde-11af-45d4-b0cf-ac24d46ccca9" name="Operadores (Seleccion, Cruza y Mutación)" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="b262b910-5f1a-4115-a0d4-748ddfea5c1f" />
+            <objectFlowTargets>
+              <objectFlow Id="9f070b53-334e-44be-b7bf-aa8a769fe2bf" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <inputPinMoniker Id="af027fc7-558f-44b3-a4f5-61720081a8c9" LastKnownName="Parámetros AG" />
+                <elementDefinition Id="a770ed7a-3c84-4a71-9a7a-37d6b745cc46" />
+              </objectFlow>
+            </objectFlowTargets>
+            <upperBound>
+              <literalInteger Id="60aebeda-7c8c-4a50-af2b-637e61efe05d" name="2147483647" value="2147483647">
+                <elementDefinition Id="c477b408-ad53-43e2-8850-8227d46c89f0" />
+              </literalInteger>
+            </upperBound>
+          </activityParameterNode>
+          <forkNode Id="48778588-68bf-4677-9b92-b935e8901698" name="Fork1" isLeaf="false">
+            <elementDefinition Id="f789ad54-75ff-41e7-b8da-102ca0a85ae3" />
+            <flowNodeTargets>
+              <controlFlow Id="da1eae4e-9b33-4e96-b100-7e0f2595ce30" isLeaf="false">
+                <opaqueActionMoniker Id="8e11886d-e7c7-4290-ae5d-bad6dc77c19d" LastKnownName="Selección Directa" />
+                <elementDefinition Id="ad65a08d-6c1c-4d57-b7da-a7f2559a7d5c" />
+              </controlFlow>
+              <controlFlow Id="cbff9094-152d-48af-89fe-a2ce1a00dbf6" isLeaf="false">
+                <opaqueActionMoniker Id="3ca71264-db59-4ef6-9ec4-41017ec132a7" LastKnownName="Selección Cruza" />
+                <elementDefinition Id="150a3d5c-5207-457b-9be8-bcc4372b6003" />
+              </controlFlow>
+              <controlFlow Id="29f567b8-b120-48e1-b45d-fb79f141464e" isLeaf="false">
+                <opaqueActionMoniker Id="4e043bd2-d20f-4f70-911c-4667d7fac592" LastKnownName="Selección Mutación" />
+                <elementDefinition Id="a55182cf-06e9-4c53-b585-9dd0b283031b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction Id="f960e0bc-61c6-40d6-a334-36f652991324" name="Get: Población [i-1]" isLeaf="false">
+            <elementDefinition Id="5cce6e17-4600-49e5-ace9-e8e44364fcb7" />
+            <flowNodeTargets>
+              <controlFlow Id="a1421211-9521-42ec-bed6-4d44cb44681c" isLeaf="false">
+                <forkNodeMoniker Id="48778588-68bf-4677-9b92-b935e8901698" LastKnownName="Fork1" />
+                <elementDefinition Id="4b8ca227-11fd-432b-818f-527ce40316a7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="8e11886d-e7c7-4290-ae5d-bad6dc77c19d" name="Selección Directa" isLeaf="false">
+            <elementDefinition Id="8dc729ba-ac87-4122-b44b-9c6b7d0770fd" />
+            <flowNodeTargets>
+              <controlFlow Id="ad43a1d5-68cf-42ae-aa6f-dec87a7eb86e" isLeaf="false">
+                <joinNodeMoniker Id="5647ffe6-68ee-48d0-9164-a9b6baedcc84" LastKnownName="Join1" />
+                <elementDefinition Id="a3fb6ddb-1378-47c1-a2b0-d6606ea3f97e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="3ca71264-db59-4ef6-9ec4-41017ec132a7" name="Selección Cruza" isLeaf="false">
+            <elementDefinition Id="3ba30f4d-d68d-471e-99e6-ff010e7002bf" />
+            <flowNodeTargets>
+              <controlFlow Id="14db473d-17c6-42a7-ba3d-cf1d30efab1f" isLeaf="false">
+                <opaqueActionMoniker Id="2bd81797-f814-4f1a-9469-795dfad7aa12" LastKnownName="Cruza" />
+                <elementDefinition Id="620b9792-2be5-49f8-a30a-b6d25009b885" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="4e043bd2-d20f-4f70-911c-4667d7fac592" name="Selección Mutación" isLeaf="false">
+            <elementDefinition Id="3c0f70dc-4d74-402b-adb4-1f2ff0038ee3" />
+            <flowNodeTargets>
+              <controlFlow Id="aa81080c-6a34-43de-9e22-bbe9338490cf" isLeaf="false">
+                <opaqueActionMoniker Id="9387d7f1-9ba0-4326-8852-d99b1980b2b1" LastKnownName="Mutación" />
+                <elementDefinition Id="07b36332-efbf-4cf1-a3e9-2aa1f2f073d7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="2bd81797-f814-4f1a-9469-795dfad7aa12" name="Cruza" isLeaf="false">
+            <elementDefinition Id="b5904fa2-9e88-4d64-8f5c-3af4db6c57a6" />
+            <flowNodeTargets>
+              <controlFlow Id="f0ba68cc-4a89-4f71-a154-c90e571b79b1" isLeaf="false">
+                <joinNodeMoniker Id="5647ffe6-68ee-48d0-9164-a9b6baedcc84" LastKnownName="Join1" />
+                <elementDefinition Id="f3133b70-131d-47c0-b301-0655645a27a3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="9387d7f1-9ba0-4326-8852-d99b1980b2b1" name="Mutación" isLeaf="false">
+            <elementDefinition Id="33c54ed8-9082-43e9-a91c-19576b9cf1e0" />
+            <flowNodeTargets>
+              <controlFlow Id="f61a8881-0f12-4868-8775-4255ecae4e59" isLeaf="false">
+                <joinNodeMoniker Id="5647ffe6-68ee-48d0-9164-a9b6baedcc84" LastKnownName="Join1" />
+                <elementDefinition Id="afc751cc-09b4-4596-8369-7e331dac7781" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <joinNode Id="5647ffe6-68ee-48d0-9164-a9b6baedcc84" name="Join1" isLeaf="false">
+            <elementDefinition Id="39f38210-d63c-4330-a028-812b1311f415" />
+            <flowNodeTargets>
+              <controlFlow Id="b0770a30-aac3-4773-b4fb-094fb28c00ea" isLeaf="false">
+                <opaqueActionMoniker Id="62a4af4f-3f93-4198-bf79-c6d8b2fa3519" LastKnownName="Generar Nueva Población" />
+                <elementDefinition Id="b6dac58e-0d76-4bf7-bb69-b8b198f05cdd" />
+              </controlFlow>
+            </flowNodeTargets>
+          </joinNode>
+          <opaqueAction Id="62a4af4f-3f93-4198-bf79-c6d8b2fa3519" name="Generar Nueva Población" isLeaf="false">
+            <elementDefinition Id="d8940309-6f33-4918-9a13-bfde1a7ac142" />
+            <flowNodeTargets>
+              <controlFlow Id="97798fbe-7c2a-462c-b167-31ec2a690ad4" isLeaf="false">
+                <opaqueActionMoniker Id="bf36a7a1-3bf3-46f3-9e2c-dd012743f1d4" LastKnownName="i++" />
+                <elementDefinition Id="994cdfca-95ae-43eb-8474-5d531d91d897" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e775b15b-7220-4f0c-97c0-4edfc2dd7aa9" name="i = 1" isLeaf="false">
+            <elementDefinition Id="52c40034-c75d-4b27-8690-051532df7ec5" />
+          </opaqueAction>
+          <opaqueAction Id="bf36a7a1-3bf3-46f3-9e2c-dd012743f1d4" name="i++" isLeaf="false">
+            <elementDefinition Id="04bbadff-de85-4f80-86cf-5fa5587d5a9f" />
+            <flowNodeTargets>
+              <controlFlow Id="248c19c3-5d13-468a-8e08-c4ae0b3d78ef" isLeaf="false">
+                <opaqueActionMoniker Id="cf16e724-c5e1-4368-92af-176f1c8c6c14" LastKnownName="Set: Parada" />
+                <elementDefinition Id="f78a5db4-97e8-4c67-9957-552d409e0fb7" />
+              </controlFlow>
+            </flowNodeTargets>
+            <objectFlowTargets>
+              <objectFlow Id="e0affcd2-5298-4ad7-bc43-4c5d99b7f2fb" isLeaf="false" isMulticast="false" isMultireceive="false">
+                <objectNodeMoniker Id="1a9a4946-6b0e-4d84-9e85-101520ac3b44" LastKnownName="Poblaciones" />
+                <elementDefinition Id="827712ac-1c15-4a62-9f03-ee2c776646ec" />
+              </objectFlow>
+            </objectFlowTargets>
+          </opaqueAction>
+          <decisionNode Id="fff58817-cb91-46e4-a448-917cbc09eafc" name="Decision1" isLeaf="false">
+            <elementDefinition Id="d127ed26-4c74-4e91-a7e5-bae35058b343" />
+            <flowNodeTargets>
+              <controlFlow Id="33831344-358c-489e-b479-e53db12d29dd" guard="Parada = F" isLeaf="false">
+                <opaqueActionMoniker Id="f960e0bc-61c6-40d6-a334-36f652991324" LastKnownName="Get: Población [i-1]" />
+                <elementDefinition Id="7fcd275b-a824-444a-b839-5b1bbde85452" />
+              </controlFlow>
+              <controlFlow Id="10ab881f-b0af-483b-a48c-901f8ccc7ef5" guard="Parada = V" isLeaf="false">
+                <opaqueActionMoniker Id="c868b144-23f9-49f9-80e1-3c571039d7e7" LastKnownName="Fin" />
+                <elementDefinition Id="2ba9f277-04e7-473d-ad79-d21e29b69e46" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="c868b144-23f9-49f9-80e1-3c571039d7e7" name="Fin" isLeaf="false">
+            <elementDefinition Id="7c9b1304-8416-4ccb-a747-35b6f7ff320b" />
+          </opaqueAction>
+          <opaqueAction Id="cf16e724-c5e1-4368-92af-176f1c8c6c14" name="Set: Parada" isLeaf="false">
+            <elementDefinition Id="eca404c4-b939-4c4f-b39f-0465693ef040" />
+            <flowNodeTargets>
+              <controlFlow Id="c10b0f56-b0cf-46fc-ac33-36b680179023" isLeaf="false">
+                <decisionNodeMoniker Id="fff58817-cb91-46e4-a448-917cbc09eafc" LastKnownName="Decision1" />
+                <elementDefinition Id="ffaf1c47-48f9-4b9d-a235-4fc3d54c0a05" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="3866b13a-b2a5-49fe-8447-aee0d9687b77" name="AGModelingProject">
+    <elementDefinition Id="ce7e504e-1576-456a-b477-52f8cd5d68d8" />
+  </package>
+</activityRootModel>

@@ -14,7 +14,7 @@ namespace sisExperto.Entidades
         //posible valor de ponderación en proyecto IL
 
 
-        public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorExperto { get; set; }
+        //public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorExperto { get; set; }
         //public virtual ICollection<ComparacionAlternativa> ComparacionAlternativas { get; set; }
 
     }

@@ -10,17 +10,12 @@ namespace sisExperto.Entidades
     [Table("ExpertosEnProyecto")]
     public class ExpertoEnProyecto
     {
-
         public int ExpertoEnProyectoId { get; set; }
 
-        [Key, Column(Order = 0)]
         public int ProyectoId { get; set; }
-
         public virtual Proyecto Proyecto { get; set; }
 
-        [Key, Column(Order = 1)]
         public int ExpertoId { get; set; }
-
         public virtual Experto Experto { get; set; }
 
         public double Ponderacion { get; set; }
@@ -30,118 +25,68 @@ namespace sisExperto.Entidades
         //public int ConjuntoEtiquetasId { get; set; }
         public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
         
+        public virtual CriterioMatriz CriterioMatriz { get; set; }
+
+        public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
+
         
-        
 
 
-        public virtual ICollection<ValoracionCriteriosPorExperto> ValoracionCriteriosPorExperto { get; set; }
+        public double[,] GenerarMatrizAlternativas(Criterio Criterio)
+        { 
 
-        public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorCriterioExperto { get; set; }
+            var dimension = Proyecto.Alternativas.Count;
+            var matriz = new double[dimension, dimension];
+        /*
+            List<ValoracionAlternativasPorCriterioExperto> listaValoracion = 
+                (from c in ValoracionAlternativasPorCriterioExperto
+                                   where c.Criterio.CriterioId == Criterio.CriterioId
+                                   select c).ToList();
 
-       
-
-        public double[,] MatrizCriterioAHP
-        {
-            get
+            foreach (var val in listaValoracion)
             {
-                var matriz = new double[Proyecto.Criterios.Count,Proyecto.Criterios.Count];
+                foreach (var comp in val.ComparacionAlternativasPorCriterio)
+                {
+                    matriz[comp.Fila, comp.Columna] = comp.ValorAHP;
+                }                    
+            }
 
-                foreach (var val in ValoracionCriteriosPorExperto)
-                {
-                    foreach (var comp in val.ComparacionCriterios)
-                    {
-                        matriz[comp.Fila, comp.Columna] = comp.ValorAHP;
-                    }
-                    
-                }
-                for (int i = 0; i < Proyecto.Criterios.Count; i++)
-                {
-                    for (int j = 0; j < Proyecto.Criterios.Count; j++)
-                    {
-                        if (i==j)
-                            matriz[i, j] = 1;
-                        if (i>j)
-                            matriz[i, j] = (double)1.0/matriz[j, i];
-                    }
-                }
-                return matriz;
-            } 
-            set
+            for (int i = 0; i < dimension; i++)
             {
-                if(ValoracionCriteriosPorExperto.Count == 0)
+                for (int j = 0; j < dimension; j++)
                 {
-                    var listaC = Proyecto.Criterios;
-                    var j = 0;
-                    for (int i = 0; i < Proyecto.Criterios.Count - 1; i++)
-                    {
-                        listaC.Remove(listaC.First());
-                        var k = j;
-                        var compC = from c in listaC
-                                    select new ComparacionCriterio()
-                                               {
-                                                   Fila = i,
-                                                   Columna = ++k,
-                                                   Criterio = listaC.ElementAt(k - j - 1),
-                                                   ValorAHP = 0,
-                                                   ValorIL = 0
-                                               };
-
-                        ValoracionCriteriosPorExperto.Add(
-                            new ValoracionCriteriosPorExperto()
-                                {
-                                    Consistencia = false,
-                                    Criterio = Proyecto.Criterios.ElementAt(i),
-                                    ComparacionCriterios = compC.ToList()
-                                });
-                        j++;
-                    }
-                }
-                else
-                {
-                    var listaC = new List<ComparacionCriterio>();
-
-                    foreach (var val in ValoracionCriteriosPorExperto)
-                    {
-                        listaC.AddRange(val.ComparacionCriterios);
-                    }
-
-                    for (int i = 0; i < value.GetLength(0) - 1; i++)
-                    {
-                        for (int j = i + 1; j < value.GetLength(1); j++)
-                        {
-                            var celda = (from item in listaC
-                                         where item.Columna == j && item.Fila == i
-                                         select item).FirstOrDefault();
-                            celda.ValorAHP = value[i, j];
-                        }
-                    }
+                    if (i==j)
+                        matriz[i, j] = 1;
+                    if (i>j)
+                        matriz[i, j] = (double)1.0/matriz[j, i];
                 }
             }
+            */
+            return matriz;
         }
-        
+
+
+        public void GuardarMatrizAlternativas(double[,] MatrizAlternativa, Criterio Criterio)
+        { 
+            
+
+
+        }
+
         private List<double[,]> ListaMatrizAlternativas()
         {
-
-            List<double[,]> listaMatrizAlternativas = new List<double[,]>();
-
-            foreach (var AlternativasPorCriterioExperto in ValoracionAlternativasPorCriterioExperto)
-            {
-                listaMatrizAlternativas.Add(AlternativasPorCriterioExperto.Matriz);
-            }
-            return listaMatrizAlternativas;
+            return (from c in AlternativasMatrices
+                    select c.MatrizAlternativaAHP).ToList();
         }
 
         public List<double[,]> ListaCriterioAlternativas()
         {
             List<double[,]> listaCriterioAlternativas = new List<double[,]>();
-            foreach (var valoracionCriteriosPorExperto in this.ValoracionCriteriosPorExperto)
-            {
-                listaCriterioAlternativas.Add(valoracionCriteriosPorExperto.Matriz);
-            }
-           
+            
+            listaCriterioAlternativas.Add(this.CriterioMatriz.MatrizCriterioAHP);
+
             listaCriterioAlternativas.AddRange(ListaMatrizAlternativas());
             return listaCriterioAlternativas;
-
         }
 
         public double[,] CalcularMiRanking()
@@ -154,37 +99,26 @@ namespace sisExperto.Entidades
             {
                 return new double[1,1];
             }
-
-
         }
 
         public bool TodasMisValoracionesConsistentes()
         {
-
-
             return MisCriteriosConsistentes() && MisAlternativasConsistentes();
         }
 
         private bool MisCriteriosConsistentes()
         {
-            bool flag= false;
-            foreach (var valoracionCriteriosPorExperto in ValoracionCriteriosPorExperto)
-            {
-                flag = (valoracionCriteriosPorExperto.Consistencia == true) ? true : false;
-            }
-
-            return flag;
+            return CriterioMatriz.Consistencia;
         }
+        
         private bool MisAlternativasConsistentes()
         {
-            var cantidadCriterios = ValoracionAlternativasPorCriterioExperto.Count();
-
-            var listaAlternativasConsistente = from e in ValoracionAlternativasPorCriterioExperto
-                                               where e.Consistencia = true
-                                               select e;
-            return cantidadCriterios == listaAlternativasConsistente.Count();
+            var flag = true;
+            foreach (var matrizAlter in AlternativasMatrices)
+            {
+                flag &= matrizAlter.Consistencia;
+            }
+            return flag;
         }
-
     }
-
 }

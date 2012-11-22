@@ -30,7 +30,7 @@ namespace sisExperto.UI
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
             _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto).ToList();
-            if (_proyecto.Estado != "Ejecutable")
+            if (_proyecto.Estado != "Modificado")
                 buttonContinuar.Enabled = false;
             comboBoxValor.SelectedIndex = 0;
             ActualizarListaGrid();

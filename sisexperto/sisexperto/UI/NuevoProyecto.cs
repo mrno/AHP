@@ -141,15 +141,12 @@ namespace sisExperto
                     {
                         _ExpertosAsignados.Add(combinada.Experto);
                         _EtiquetasAsignadas.Add(combinada.ConjuntoEtiquetas);
-
                     }
-
-
-
-                    var expertoEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
+                    
+                    var expertosEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
                     _fachada.AltaProyecto(_proyecto);
 
-                    _fachada.AsignarConjuntoEquiquetasAlExperto(expertoEnProyecto, _EtiquetasAsignadas);
+                    _fachada.AsignarConjuntoEquiquetasAlExperto(expertosEnProyecto, _EtiquetasAsignadas);
                     ProyectoCreado();
 
                     MessageBox.Show("El proyecto se ha creado satisfactoriamente.");
@@ -246,5 +243,5 @@ namespace sisExperto
         }
 
     
-        }
+     }
 }
