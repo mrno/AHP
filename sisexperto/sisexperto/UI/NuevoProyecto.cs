@@ -228,6 +228,7 @@ namespace sisExperto
             _conjuntoEtiquetases.AddRange(_conjuntoEtiquetasExtendida);
             dataGridConjuntoEtiquetas.DataSource = null;
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+            dataGridConjuntoEtiquetas.Rows[0].Selected = true;
 
         }
 
@@ -236,10 +237,10 @@ namespace sisExperto
            if (flag) {
                _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
             dataGridConjuntoEtiquetas.DataSource = null;
-            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;    
-
+            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+            dataGridConjuntoEtiquetas.Rows[0].Selected = true;
             }
-            
+          
         }
 
     
