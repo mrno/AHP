@@ -29,26 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PonderacionExpertos));
-            this.label7 = new System.Windows.Forms.Label();
             this.dataGridPonderacionExpertos = new System.Windows.Forms.DataGridView();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonGuardar = new System.Windows.Forms.Button();
-            this.buttonContinuar = new System.Windows.Forms.Button();
             this.comboBoxValor = new System.Windows.Forms.ComboBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridPonderacionExpertos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 20);
-            this.label7.TabIndex = 34;
-            this.label7.Text = "Peso:";
             // 
             // dataGridPonderacionExpertos
             // 
@@ -57,19 +48,18 @@
             this.dataGridPonderacionExpertos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridPonderacionExpertos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridPonderacionExpertos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridPonderacionExpertos.Location = new System.Drawing.Point(12, 68);
+            this.dataGridPonderacionExpertos.Location = new System.Drawing.Point(12, 113);
             this.dataGridPonderacionExpertos.MultiSelect = false;
             this.dataGridPonderacionExpertos.Name = "dataGridPonderacionExpertos";
             this.dataGridPonderacionExpertos.RowHeadersVisible = false;
             this.dataGridPonderacionExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPonderacionExpertos.Size = new System.Drawing.Size(460, 340);
+            this.dataGridPonderacionExpertos.Size = new System.Drawing.Size(460, 292);
             this.dataGridPonderacionExpertos.TabIndex = 31;
-            this.dataGridPonderacionExpertos.Leave += new System.EventHandler(this.dataGridPonderacionExpertos_Leave);
             // 
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(320, 419);
+            this.buttonCancelar.Location = new System.Drawing.Point(270, 419);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(140, 30);
             this.buttonCancelar.TabIndex = 36;
@@ -80,24 +70,13 @@
             // buttonGuardar
             // 
             this.buttonGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonGuardar.Location = new System.Drawing.Point(20, 419);
+            this.buttonGuardar.Location = new System.Drawing.Point(70, 419);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(140, 30);
             this.buttonGuardar.TabIndex = 35;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
-            // 
-            // buttonContinuar
-            // 
-            this.buttonContinuar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonContinuar.Location = new System.Drawing.Point(170, 419);
-            this.buttonContinuar.Name = "buttonContinuar";
-            this.buttonContinuar.Size = new System.Drawing.Size(140, 30);
-            this.buttonContinuar.TabIndex = 37;
-            this.buttonContinuar.Text = "Continuar";
-            this.buttonContinuar.UseVisualStyleBackColor = true;
-            this.buttonContinuar.Click += new System.EventHandler(this.buttonContinuar_Click);
             // 
             // comboBoxValor
             // 
@@ -116,7 +95,7 @@
             "8",
             "9",
             "10"});
-            this.comboBoxValor.Location = new System.Drawing.Point(198, 6);
+            this.comboBoxValor.Location = new System.Drawing.Point(141, 47);
             this.comboBoxValor.Name = "comboBoxValor";
             this.comboBoxValor.Size = new System.Drawing.Size(93, 28);
             this.comboBoxValor.TabIndex = 40;
@@ -124,7 +103,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(297, 5);
+            this.btnAgregar.Location = new System.Drawing.Point(240, 46);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(30, 30);
             this.btnAgregar.TabIndex = 41;
@@ -135,21 +114,54 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(8, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 20);
             this.label1.TabIndex = 38;
-            this.label1.Text = "Cambiar la peso:";
+            this.label1.Text = "Cambiar el peso:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(8, 10);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Proyecto:";
+            // 
+            // comboBoxProyectos
+            // 
+            this.comboBoxProyectos.DisplayMember = "Nombre";
+            this.comboBoxProyectos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProyectos.FormattingEnabled = true;
+            this.comboBoxProyectos.Location = new System.Drawing.Point(89, 7);
+            this.comboBoxProyectos.Name = "comboBoxProyectos";
+            this.comboBoxProyectos.Size = new System.Drawing.Size(383, 28);
+            this.comboBoxProyectos.TabIndex = 43;
+            this.comboBoxProyectos.SelectedIndexChanged += new System.EventHandler(this.comboBoxProyectos_SelectedIndexChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(12, 90);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(168, 20);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Pesos de los expertos:";
             // 
             // PonderacionExpertos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 461);
+            this.Controls.Add(this.comboBoxProyectos);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.comboBoxValor);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonContinuar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.label7);
@@ -166,14 +178,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Button buttonGuardar;
-        private System.Windows.Forms.Button buttonContinuar;
         private System.Windows.Forms.DataGridView dataGridPonderacionExpertos;
         private System.Windows.Forms.ComboBox comboBoxValor;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridViewTextBoxColumn expertoDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxProyectos;
+        private System.Windows.Forms.Label label7;
     }
 }

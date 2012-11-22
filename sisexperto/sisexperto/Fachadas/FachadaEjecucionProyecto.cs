@@ -36,5 +36,15 @@ namespace sisExperto.Fachadas
             }
             _context.SaveChanges();
         }
+
+        internal double[,] CalcularRankingAHP(Proyecto _proyecto, int tipoAgregacion)
+        {
+            switch (tipoAgregacion)
+            {
+                case 1: return _proyecto.CalcularRankingNoPonderado();
+                case 2: return _proyecto.CalcularRankinPonderado();
+                default: return new double[_proyecto.Alternativas.Count, 1];
+            }
+        }
     }
 }
