@@ -106,6 +106,7 @@ namespace sisExperto
 
         private void NuevoProyecto_Load(object sender, EventArgs e)
         {
+            token = -1;
             flag = false;
             _todosExpertos = _fachada.ObtenerExpertos().ToList();
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
@@ -202,7 +203,6 @@ namespace sisExperto
         {
             var random = new Random();
             token = random.Next(0, 100);
-            
             var ventanaCreacionLabels = new CrearEtiquetas(token);
             ventanaCreacionLabels.Show();
             flag = true;
@@ -210,13 +210,18 @@ namespace sisExperto
 
         private void buttonAgregarConjunto_Click(object sender, EventArgs e)
         {
-            var conjuntoEtiquetas = (ConjuntoEtiquetas) dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
-            var index =  dataGridCombinada.CurrentRow.Index;
-            listaCombinada[index].ConjuntoEtiquetas = conjuntoEtiquetas;
-            listaCombinada[index].ConjuntoEtiquetasNombre = conjuntoEtiquetas.Nombre;
-            dataGridCombinada.DataSource = null;
-            dataGridCombinada.DataSource = listaCombinada;
 
+
+          
+               
+           
+                var conjuntoEtiquetas = (ConjuntoEtiquetas)dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
+                var index = dataGridCombinada.CurrentRow.Index;
+                listaCombinada[index].ConjuntoEtiquetas = conjuntoEtiquetas;
+                listaCombinada[index].ConjuntoEtiquetasNombre = conjuntoEtiquetas.Nombre;
+                dataGridCombinada.DataSource = null;
+                dataGridCombinada.DataSource = listaCombinada;  
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -226,13 +231,13 @@ namespace sisExperto
             _conjuntoEtiquetases.AddRange(_conjuntoEtiquetasExtendida);
             dataGridConjuntoEtiquetas.DataSource = null;
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
-            button1.Enabled = false;
+
         }
 
         private void NuevoProyecto_Activated(object sender, EventArgs e)
         {
            if (flag) {
-            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
+               _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
             dataGridConjuntoEtiquetas.DataSource = null;
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;    
 
