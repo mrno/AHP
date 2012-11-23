@@ -132,7 +132,6 @@ namespace sisExperto
                      
         }
 
-
         public IEnumerable<Proyecto> ProyectosNoValorados(Entidades.Experto _experto)
         {
             return (from p in SolicitarProyectosCreados(_experto)
@@ -210,7 +209,6 @@ namespace sisExperto
             return _context.ConjuntoEtiquetas;
         }
 
-
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
         {
             ExpertoEP.CriterioMatriz = new CriterioMatriz() { ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio };
@@ -247,7 +245,6 @@ namespace sisExperto
             else matrizAlternativa.MatrizAlternativaAHP = MatrizAlternativa;
             _context.SaveChanges();
         }
-
 
         public void InicializarMatricesExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas, List<Criterio> ListaCriterios)
         {

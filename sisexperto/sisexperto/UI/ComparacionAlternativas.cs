@@ -210,16 +210,13 @@ namespace sisExperto
                     derechaTB.Text = celda.Alternativa.Nombre.ToString();
                     Controls.Add(derechaTB);
 
-                    //    Label miLabel = new Label();
-                    //    miLabel.SetBounds(150, y + 45, 250, 30);
+                    Label miLabel = new Label();
+                    miLabel.SetBounds(150, y + 45, 250, 30);
                     //    double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
                     //                                                  comp.pos_columna);
                     //    miLabel.Text = dato.obtenerDescripcion(doble);
-                    //    miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-
-
-                    //    Controls.Add(miLabel);
-
+                    miLabel.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
+                    Controls.Add(miLabel);
 
                     y += 90;
                 }
