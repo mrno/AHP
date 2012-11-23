@@ -55,7 +55,7 @@ namespace sisExperto
             AlternativaMatriz matriz = new AlternativaMatriz();
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
             matriz = (AlternativaMatriz)row.DataBoundItem;
-            ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz);
+            ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz, _fachada);
             frmComparar.ShowDialog();
             gridAlternativa.DataSource = null;
             gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto).ToList();
@@ -69,7 +69,7 @@ namespace sisExperto
             CriterioMatriz matriz = new CriterioMatriz();
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
             matriz = (CriterioMatriz)row.DataBoundItem;
-            CompararCriterios frmComparar = new CompararCriterios(matriz);
+            CompararCriterios frmComparar = new CompararCriterios(matriz, _fachada);
             frmComparar.ShowDialog();
             gridCriterio.DataSource = null;
             gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);

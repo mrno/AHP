@@ -14,6 +14,11 @@ namespace sisExperto
 
         public Experto Experto { get; set; }
 
+        public void GuardarValoracion()
+        {
+            _context.SaveChanges();
+        }
+
         public Experto ObtenerExpertoValido(string usuario, string password)
         {
             Experto = (from exp in _context.Expertos
