@@ -28,14 +28,15 @@ namespace sisExperto
             _proyecto = Proyecto;
             rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
 
-            labelTitulo.Text = Proyecto.Nombre;
+            labelTitulo.Text = _proyecto.Nombre;
+
             if (tipoAgregacion==1)
             {
-                labelSubtitulo.Text = "Ranking de Alternativas hecho con agregacion no ponderada";
+                labelSubtitulo.Text = "Agregacion No Ponderada";
             }
             else
             {
-                labelTitulo.Text = "Ranking de Alternativas hecho con agregacion ponderada";
+                labelSubtitulo.Text = "Agregacion Ponderada";
             }              
         }
 
@@ -57,8 +58,8 @@ namespace sisExperto
                 listaResultado.Add(resultado);
             }
 
-            listaResultado.OrderBy(x => x.valorAlternativa);
-
+            listaResultado.OrderByDescending(x => x.valorAlternativa);
+            /*
             foreach (Resultado resultado in listaResultado)
             {
                 Label izquierdaTB = new Label();
@@ -69,7 +70,8 @@ namespace sisExperto
                 cont++;
                 y += 70;
 
-            }
+            }*/
+            dataGridResultados.DataSource = listaResultado;
         }
         
         internal class Resultado
