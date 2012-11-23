@@ -281,9 +281,11 @@
     <None Include="Properties\DataSources\proyecto.datasource" />
     <None Include="Properties\DataSources\proyecto1.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Alternativa.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.AlternativaMatriz.datasource" />
     <None Include="Properties\DataSources\sisexperto.Entidades.Combinada.datasource" />
     <None Include="Properties\DataSources\sisexperto.Entidades.ConjuntoEtiquetas.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Criterio.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.CriterioMatriz.datasource" />
     <None Include="Properties\DataSources\sisexperto.Entidades.Etiqueta.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />

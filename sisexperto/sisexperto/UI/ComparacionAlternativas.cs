@@ -6,17 +6,21 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using sisexperto.Entidades;
+using sisExperto.Entidades;
 
 namespace sisExperto
 {
     public partial class ComparacionAlternativas : Form
     {
         //private DALDatos dato = new DALDatos();
-        private int id_proyecto;
-        private int id_Experto;
-        private int id_Criterio;
+        //private int id_proyecto;
+        //private int id_Experto;
+        //private int id_Criterio;
 
         //private Queue<Criterio> colaCriterio;
+
+        private AlternativaMatriz matrizAlternativa;
 
         private int y = 140;
 
@@ -24,12 +28,14 @@ namespace sisExperto
         private int pos = 0;
         
         
-        public ComparacionAlternativas(int id_proy, int id_exp, int Criterio)
+        public ComparacionAlternativas(AlternativaMatriz matriz)
         {
             InitializeComponent();
-            id_proyecto = id_proy;
-            id_Experto = id_exp;
-            id_Criterio = Criterio;
+            matrizAlternativa = matriz;
+
+            //id_proyecto = id_proy;
+            //id_Experto = id_exp;
+            //id_Criterio = Criterio;
             //colaCriterio = dato.colaCriterios(id_proyecto);
         }
 
@@ -38,24 +44,39 @@ namespace sisExperto
             //label9.Text = "";
             //button3.Visible = false;
             //button1.Visible = true;
-            //TrackBar track = (TrackBar)sender;
+            TrackBar track = (TrackBar)sender;
 
-            //foreach (Control miLabel in this.FindForm().Controls)
-            //{
-            //    if (miLabel is Label)
-            //    {
-            //        if (miLabel.Name.ToString() == track.Name.ToString())
-            //        {
-            //            string[] posicion = track.Name.ToString().Split('x');
-            //            Label l = (Label)miLabel;
-            //            l.Text = dato.valorarPalabra(track.Value);
-            //            dato = new DALDatos();
-            //            dato.modificarComparacionAlternativa(id_proyecto, id_Experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
-            //            dato.actualizarConsistenciaProyecto(id_proyecto, id_Experto, false);
-            //            dato.actualizarMatrizAlternativa(id_proyecto, id_Experto, id_Criterio, false);
-            //        }
-            //    }
-            //}
+            foreach (Control miLabel in this.FindForm().Controls)
+            {
+                if (miLabel is Label)
+                {
+                    if (miLabel.Name.ToString() == track.Name.ToString())
+                    {
+                        string[] posicion = track.Name.ToString().Split('x');
+                        //Label l = (Label)miLabel;
+                        //l.Text = dato.valorarPalabra(track.Value);
+                        
+                        foreach (AlternativaFila fila in matrizAlternativa.FilasAlternativa)
+                        {
+                            foreach (AlternativaCelda celda in fila.CeldasAlternativas)
+                            {
+                                if ((celda.Fila == Convert.ToInt32(posicion[0])) && (celda.Columna == Convert.ToInt32(posicion[1])))
+                                {
+                                    //1
+                                    celda.ValorAHP = track.Value;
+
+                                    //2
+                                    matrizAlternativa.Consistencia = false;
+                                }
+                            }
+                        }
+                        
+                        //1   dato.modificarComparacionAlternativa(id_proyecto, id_Experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), Convert.ToInt32(posicion[2].ToString()), dato.valorarNumero(track.Value));
+                        //2   dato.actualizarConsistenciaProyecto(id_proyecto, id_Experto, false);
+                        //3   dato.actualizarMatrizAlternativa(id_proyecto, id_Experto, id_Criterio, false);
+                    }
+                }
+            }
         }
 
         private void cargarTracks(int id_cri)
@@ -101,75 +122,129 @@ namespace sisExperto
 
         private void ComparacionAlternativas_Load(object sender, EventArgs e)
         {
+            int y = 140;
+
+            foreach (AlternativaFila fila in matrizAlternativa.FilasAlternativa)
+            {
+                foreach (AlternativaCelda celda in fila.CeldasAlternativas)
+                {
+
+                    Label izquierdaTB = new Label();
+                    izquierdaTB.SetBounds(5, y, 75, 50);
+                    izquierdaTB.Text = fila.Alternativa.Nombre.ToString();
+                    Controls.Add(izquierdaTB);
+
+                    TrackBar track = new TrackBar();
+                    track.SetBounds(75, y, 400, 45);
+                    track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
+                    track.SetRange(1, 17);
+                    
+                    //track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto,
+                    //    comp.id_Experto, comp.pos_fila, comp.pos_columna);
+
+                    track.Scroll += new System.EventHandler(this.mostrar);
+                    Controls.Add(track);
+
+
+                    Label derechaTB = new Label();
+                    derechaTB.SetBounds(500, y, 80, 30);
+                    derechaTB.Text = celda.Alternativa.Nombre.ToString();
+                    Controls.Add(derechaTB);
+
+                    //    Label miLabel = new Label();
+                    //    miLabel.SetBounds(150, y + 45, 250, 30);
+                    //    double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
+                    //                                                  comp.pos_columna);
+                    //    miLabel.Text = dato.obtenerDescripcion(doble);
+                    //    miLabel.Name = comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
+
+
+                    //    Controls.Add(miLabel);
+
+
+                    y += 90;
+                }
+            }
+            
+        
+
+
+
+
+
+
+
+
+
  
-            //crit = colaCriterio.Dequeue();
+           // //crit = colaCriterio.Dequeue();
 
-           // label20.Text = "Considerando el Criterio: " + dato.CriterioNombre(id_Criterio).ToString();
-            cargarTracks(id_Criterio);
+           //// label20.Text = "Considerando el Criterio: " + dato.CriterioNombre(id_Criterio).ToString();
+           // cargarTracks(id_Criterio);
 
-            //int y = 140;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(5, y);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(150, 40);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Calcular consistencia";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            this.Controls.Add(this.button1);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(5, y + 45);
-            this.label9.Name = "label9";
-            this.label9.BackColor = Color.Red;
-            this.label9.Size = new System.Drawing.Size(150, 40);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "";
-            this.Controls.Add(this.label9);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(110, y);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(150, 40);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "AHP";
-            this.button4.Visible = false;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            this.Controls.Add(this.button4);
+           // //int y = 140;
+           // // 
+           // // button1
+           // // 
+           // this.button1.Location = new System.Drawing.Point(5, y);
+           // this.button1.Name = "button1";
+           // this.button1.Size = new System.Drawing.Size(150, 40);
+           // this.button1.TabIndex = 6;
+           // this.button1.Text = "Calcular consistencia";
+           // this.button1.UseVisualStyleBackColor = true;
+           // this.button1.Click += new System.EventHandler(this.button1_Click);
+           // this.Controls.Add(this.button1);
+           // // 
+           // // label9
+           // // 
+           // this.label9.AutoSize = true;
+           // this.label9.Location = new System.Drawing.Point(5, y + 45);
+           // this.label9.Name = "label9";
+           // this.label9.BackColor = Color.Red;
+           // this.label9.Size = new System.Drawing.Size(150, 40);
+           // this.label9.TabIndex = 7;
+           // this.label9.Text = "";
+           // this.Controls.Add(this.label9);
+           // // 
+           // // button4
+           // // 
+           // this.button4.Location = new System.Drawing.Point(110, y);
+           // this.button4.Name = "button4";
+           // this.button4.Size = new System.Drawing.Size(150, 40);
+           // this.button4.TabIndex = 2;
+           // this.button4.Text = "AHP";
+           // this.button4.Visible = false;
+           // this.button4.UseVisualStyleBackColor = true;
+           // this.button4.Click += new System.EventHandler(this.button4_Click);
+           // this.Controls.Add(this.button4);
 
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(210, y);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 30);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.Visible = true;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            //this.Controls.Add(this.button2);
+           // // 
+           // // button2
+           // // 
+           // this.button2.Location = new System.Drawing.Point(210, y);
+           // this.button2.Name = "button2";
+           // this.button2.Size = new System.Drawing.Size(100, 30);
+           // this.button2.TabIndex = 8;
+           // this.button2.Text = "button2";
+           // this.button2.Visible = true;
+           // this.button2.UseVisualStyleBackColor = true;
+           // this.button2.Click += new System.EventHandler(this.button2_Click);
+           // //this.Controls.Add(this.button2);
 
-            // 
-            // button3
-            // 
-            //this.button3.Location = new System.Drawing.Point(310, y);
-            //this.button3.Name = "button3";
-            //this.button3.Size = new System.Drawing.Size(150, 40);
-            //this.button3.TabIndex = 9;
-            //this.button3.Text = "Siguiente";
-            //this.button3.UseVisualStyleBackColor = true;
-            //this.button3.Visible = true;
-            //this.button3.Enabled = false;
-            //this.button3.Click += new System.EventHandler(this.button3_Click);
-            //this.Controls.Add(this.button3);
-            //button3.Visible = true;
+           // // 
+           // // button3
+           // // 
+           // //this.button3.Location = new System.Drawing.Point(310, y);
+           // //this.button3.Name = "button3";
+           // //this.button3.Size = new System.Drawing.Size(150, 40);
+           // //this.button3.TabIndex = 9;
+           // //this.button3.Text = "Siguiente";
+           // //this.button3.UseVisualStyleBackColor = true;
+           // //this.button3.Visible = true;
+           // //this.button3.Enabled = false;
+           // //this.button3.Click += new System.EventHandler(this.button3_Click);
+           // //this.Controls.Add(this.button3);
+           // //button3.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)

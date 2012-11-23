@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 using sisExperto.Entidades;
+using sisexperto.Entidades;
 using System.Collections.Generic;
 
 namespace sisExperto
@@ -35,7 +36,7 @@ namespace sisExperto
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
 
             gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
-            gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto);
+            gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto).ToList();
 
             //var valoracionCriterios = (ValoracionCriteriosPorExperto)row.DataBoundItem;
 
@@ -49,27 +50,30 @@ namespace sisExperto
 
         private void modificarAlternativa(object sender, DataGridViewCellEventArgs e)
         {
-            //matriz_Alternativa matriz = new matriz_Alternativa();
-            //DataGridViewRow row = ((DataGridView)sender).CurrentRow;
-            //matriz = (matriz_Alternativa)row.DataBoundItem;
-            //ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz.id_proyecto, matriz.id_Experto, matriz.id_Criterio);
-            //frmComparar.ShowDialog();
-            //gridAlternativa.DataSource = null;
-            //gridAlternativa.DataSource = dato.obtenerMatrizAlternativa(matriz.id_proyecto, matriz.id_Experto);
+
+
+            AlternativaMatriz matriz = new AlternativaMatriz();
+            DataGridViewRow row = ((DataGridView)sender).CurrentRow;
+            matriz = (AlternativaMatriz)row.DataBoundItem;
+            ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz);
+            frmComparar.ShowDialog();
+            gridAlternativa.DataSource = null;
+            gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto).ToList();
 
 
         }
 
         private void modificarCriterio(object sender, DataGridViewCellEventArgs e)
         {
-        //    matriz_Criterio matriz = new matriz_Criterio();
-        //    DataGridViewRow row = ((DataGridView)sender).CurrentRow;
-        //    matriz = (matriz_Criterio)row.DataBoundItem;
-        //    CompararCriterios frmComparar = new CompararCriterios(matriz.id_proyecto, matriz.id_Experto);
-        //    frmComparar.ShowDialog();
-        //    gridCriterio.DataSource = null;
-        //    gridCriterio.DataSource = dato.obtenerMatrizCriterio(matriz.id_proyecto, id_Experto);  
-        //
+
+            CriterioMatriz matriz = new CriterioMatriz();
+            DataGridViewRow row = ((DataGridView)sender).CurrentRow;
+            matriz = (CriterioMatriz)row.DataBoundItem;
+            CompararCriterios frmComparar = new CompararCriterios(matriz);
+            frmComparar.ShowDialog();
+            gridCriterio.DataSource = null;
+            gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
+        
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -66,35 +66,26 @@ namespace sisExperto
             return _context.Expertos;
         }
 
-        public List<CriterioFila> matrizCriterio(Proyecto proy, Experto exp)
+        public List<CriterioMatriz> matrizCriterio(Proyecto proy, Experto exp)
         {
 
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
-            //var matriz = (from expenproy in _context.ExpertosEnProyectos
-            //              where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
-            //              select expenproy.ValoracionCriteriosPorExperto).ToList<ValoracionCriteriosPorExperto>();
-            //return matriz;
-            return null;
+            var matriz = (from expenproy in _context.ExpertosEnProyectos
+                          where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
+                          select expenproy.CriterioMatriz).ToList<CriterioMatriz>();
+            return matriz;
         }
 
         //ESTE MÉTODO DE ABAJO NO ME GUSTA MUCHO, SI ALGUIÉN TIENE UNA IDEA MÁS PIOLA, QUE LE META.
 
-        public List<CriterioFila> matrizAlternativa(Proyecto proy, Experto exp)
+        public IEnumerable<AlternativaMatriz> matrizAlternativa(Proyecto proy, Experto exp)
         {
-            /*
-            var salida = new List<ValoracionAlternativasPorCriterioExperto>();
-            var matriz = (from val in _context.ValoracionAlternativasPorCriterioExperto
-                          where val.Experto.ExpertoId == exp.ExpertoId
-                          select val).ToList<ValoracionAlternativasPorCriterioExperto>();
 
-            foreach (ValoracionAlternativasPorCriterioExperto valor in matriz)
-            {
-                foreach (Alternativa alt in proy.Alternativas)
-                    if (valor.Alternativa == alt)
-                        salida.Add(valor);
-            }*/
-            return null;
+            var matriz = (from expenproy in _context.ExpertosEnProyectos
+                          where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
+                          select expenproy).FirstOrDefault();
+            return matriz.AlternativasMatrices;
         }
        
         public IEnumerable<ExpertoEnProyecto> AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
@@ -133,13 +124,11 @@ namespace sisExperto
                 return new List<Experto>();
 
             }
-                   }
-
-            }            
+                     
         }
 
 
-        internal IEnumerable<Proyecto> ProyectosNoValorados(Entidades.Experto _experto)
+        public IEnumerable<Proyecto> ProyectosNoValorados(Entidades.Experto _experto)
         {
             return (from p in SolicitarProyectosCreados(_experto)
                         where p.Estado == "Creado"
