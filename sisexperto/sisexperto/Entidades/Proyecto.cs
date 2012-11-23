@@ -53,7 +53,7 @@ namespace sisExperto.Entidades
             return lista;
         }
 
-        public void CalcularRankingNoPonderado()
+        public double[,] CalcularRankingNoPonderado()
         {
             var utils = new Utils();
             var listaCompleta = new List<double[,]>();
@@ -91,12 +91,13 @@ namespace sisExperto.Entidades
 
             double[,] ranking =  FachadaCalculos.Instance.calcularRanking(listaCompleta);
 
-            MostrarRanking mostrarRanking = new MostrarRanking(ranking, this, 1);
-            mostrarRanking.ShowDialog();
+            return ranking;
+            //MostrarRanking mostrarRanking = new MostrarRanking(ranking, this, 1);
+            //mostrarRanking.ShowDialog();
         }
 
 
-        public void CalcularRankinPonderado()
+        public double[,] CalcularRankinPonderado()
         {
             var utils = new Utils();
 
@@ -111,9 +112,9 @@ namespace sisExperto.Entidades
                     rankAgregado[i, 0] += matriz[i, 0]*d.Ponderacion;
                 }
             }
-
-            MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
-            mostrarRanking.ShowDialog();
+            return rankAgregado;
+            //MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
+            //mostrarRanking.ShowDialog();
         }
     }
 }

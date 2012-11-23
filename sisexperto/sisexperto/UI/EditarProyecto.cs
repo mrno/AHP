@@ -15,7 +15,7 @@ namespace sisExperto.UI
         public delegate void EdicionProyecto();
         public event EdicionProyecto ProyectoModificado;
         private int i = 0;
-        FachadaProyectosExpertos _fachada;
+        private FachadaProyectosExpertos _fachada;
 
         private Proyecto _proyectoSeleccionado;
         private Experto _experto;

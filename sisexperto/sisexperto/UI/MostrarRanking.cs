@@ -7,44 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using sisExperto.Entidades;
+using sisExperto.Fachadas;
 
 namespace sisExperto
 {
     public partial class MostrarRanking : Form
     {
-        private FachadaProyectosExpertos _fachada;
+        private FachadaEjecucionProyecto _fachada;
 
         private double[,] rankingFinal;
         private Proyecto _proyecto;
        
-        public MostrarRanking(double[,] ranking, Proyecto Proyecto, int tipoAgregacion)
+        public MostrarRanking(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion)
         {
-
+            InitializeComponent();
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
-            labelTitulo.Text = Proyecto.Nombre;
+
+            _fachada = Fachada;
+            _proyecto = Proyecto;
+            rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
+
+            labelTitulo.Text = _proyecto.Nombre;
+
             if (tipoAgregacion==1)
             {
-                labelSubtitulo.Text = "Ranking de Alternativas hecho con agregacion no ponderada";
+                labelSubtitulo.Text = "Agregacion No Ponderada";
             }
             else
             {
-                labelTitulo.Text = "Ranking de Alternativas hecho con agregacion ponderada";
-            }
-            
-            InitializeComponent();
-            rankingFinal = ranking;
-            _proyecto = Proyecto;
-
-            
-
+                labelSubtitulo.Text = "Agregacion Ponderada";
+            }              
         }
 
         private void CalcularAhpAgregado_Load(object sender, EventArgs e)
         {
 
-            var listaAlt = _fachada.SolicitarAlternativas(_proyecto);
-            
+            var listaAlt = _proyecto.Alternativas;
+
             int y = 70;
             int cont = 0;
 
@@ -58,8 +58,8 @@ namespace sisExperto
                 listaResultado.Add(resultado);
             }
 
-            listaResultado.OrderBy(x=>x.valorAlternativa);
-
+            listaResultado.OrderByDescending(x => x.valorAlternativa);
+            /*
             foreach (Resultado resultado in listaResultado)
             {
                 Label izquierdaTB = new Label();
@@ -70,17 +70,14 @@ namespace sisExperto
                 cont++;
                 y += 70;
 
-            }
-
-            }
-
-
+            }*/
+            dataGridResultados.DataSource = listaResultado;
+        }
+        
         internal class Resultado
         {
             public String nombreAlternativa { get; set; }
             public double valorAlternativa { get; set; }
-
         }
-
     }
 }

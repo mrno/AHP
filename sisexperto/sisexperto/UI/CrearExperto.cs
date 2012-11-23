@@ -54,7 +54,14 @@ namespace sisExperto
             
             //ExpertoAgregado(_fachada.AltaExperto(exp));
             _fachada.AltaExperto(exp);
-            ExpertoAgregado(_fachada.ObtenerExpertoValido(exp.Usuario, exp.Clave));
+            try
+            {
+                ExpertoAgregado(_fachada.ObtenerExpertoValido(exp.Usuario, exp.Clave));
+            }
+            catch (Exception)
+            {
+                
+            }
         }
 
         private void Limpiar()

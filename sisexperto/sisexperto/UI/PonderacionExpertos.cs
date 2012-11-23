@@ -15,23 +15,30 @@ namespace sisExperto.UI
     {
         private FachadaEjecucionProyecto _fachadaEjecucion;
         private List<ExpertoEnProyecto> _expertosConPonderacion;
-        private Proyecto _proyecto;
+        private Proyecto _proyectoSeleccionado;
+        private List<Proyecto> _proyectos;
 
         private int _expertoSeleccionado;
+        private bool _iniciado = false;
         
-        public PonderacionExpertos(FachadaEjecucionProyecto Fachada, Proyecto Proyecto)
+        public PonderacionExpertos(FachadaEjecucionProyecto Fachada, IEnumerable<Proyecto> Proyectos, Proyecto Proyecto)
         {
             InitializeComponent();
             _fachadaEjecucion = Fachada;
-            _proyecto = Proyecto;
+            _proyectoSeleccionado = Proyecto;
+            _proyectos = Proyectos.ToList();
             dataGridPonderacionExpertos.RowEnter += (ActualizarExpertoSeleccionado);
+            
+            comboBoxProyectos.DataSource = _proyectos;
+            comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+            _iniciado = true;
         }
 
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
-            _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyecto).ToList();
-            if (_proyecto.Estado != "Modificado")
-                buttonContinuar.Enabled = false;
+            
+
+            _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyectoSeleccionado).ToList();
             comboBoxValor.SelectedIndex = 0;
             ActualizarListaGrid();
         }
@@ -47,32 +54,11 @@ namespace sisExperto.UI
             MessageBox.Show("Ponderaciones guardadas con éxito.");
         }
 
-        private void buttonContinuar_Click(object sender, EventArgs e)
-        {
-            GuardarCambiosExpertosEnProyecto();
-            _fachadaEjecucion.GuardarPesosExpertosEnProyecto(_proyecto, _expertosConPonderacion);
-        }
-
         private void GuardarCambiosExpertosEnProyecto()
         {
-            _fachadaEjecucion.GuardarPesosExpertosEnProyecto(_proyecto, _expertosConPonderacion);
+            _fachadaEjecucion.GuardarPesosExpertosEnProyecto(_proyectoSeleccionado, _expertosConPonderacion);
         }
 
-        private bool PonderacionNula()
-        {
-            return 0 < 1;
-            //(from ex in _ExpertosConPonderacion
-            //               where ex.ponderacion == 0
-            //               select ex).Count();
-        }
-
-        private void dataGridPonderacionExpertos_Leave(object sender, EventArgs e)
-        {
-            if (PonderacionNula() || _fachadaEjecucion.PosibleEjecutarAHP())
-            {
-                buttonContinuar.Enabled = false;
-            } else buttonContinuar.Enabled = true;
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -104,6 +90,16 @@ namespace sisExperto.UI
             dataGridPonderacionExpertos.DataSource = datosMostrados.ToList();
             dataGridPonderacionExpertos.Rows[_expertoSeleccionado].Selected = true;
             dataGridPonderacionExpertos.Columns[0].Visible = false;
+        }
+
+        private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_iniciado)
+            {
+                _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
+                _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyectoSeleccionado).ToList();
+                ActualizarListaGrid();
+            }
         }
     }
 }

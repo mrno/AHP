@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -12,12 +13,15 @@ namespace sisExperto
 {
     public partial class LogExperto : Form
     {
-        private FrmPrincipal ventanaOrigen;
+
 
         public delegate void InicioSesion(Experto exp);
         public event InicioSesion InicioCorrecto;
 
         private FachadaProyectosExpertos _fachada;
+        private string user;
+        private string pass;
+
 
         public LogExperto(FachadaProyectosExpertos Fachada)
         {
@@ -27,7 +31,18 @@ namespace sisExperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var Experto = _fachada.ObtenerExpertoValido(textBoxUsuario.Text, textBoxContrasena.Text);
+
+            user = textBoxUsuario.Text;
+            pass = textBoxContrasena.Text;
+            entrar();
+            
+        }
+        private void entrar()
+        {
+           
+
+
+            var Experto = _fachada.ObtenerExpertoValido(user, pass);
             if (Experto == null)
             {
                 labelSesionInv.Visible = true;
@@ -37,8 +52,8 @@ namespace sisExperto
                 InicioCorrecto(Experto);
                 this.Close();
             }
+
         }
-        
         private void buttonSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -54,5 +69,8 @@ namespace sisExperto
             labelSesionInv.Visible = false;
         }
 
+     
+
+    
     }
 }

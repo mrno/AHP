@@ -244,19 +244,37 @@ namespace sisExperto
 
         private void aHPPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectoSeleccionado);
-            ventanaPonderacion.ShowDialog();
+            //tipoAgregacion=1 -> NO Ponderado
+            //tipoAgregacion=2 -> Ponderado
+
+            var ventanaAHPPonderado = new MostrarRanking(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
+            ventanaAHPPonderado.ShowDialog();
+            //_proyectoSeleccionado.CalcularRankinPonderado();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var ventanaAHPNoPonderado = new MostrarRanking(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
+            ventanaAHPNoPonderado.ShowDialog();
+            //_proyectoSeleccionado.CalcularRankingNoPonderado();
         }
 
         private void crearConjuntoDeEtiquetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ventanaCreacionLabels = new CrearEtiquetas(new Random(0).Next(0));
             ventanaCreacionLabels.Show();
+        }
+
+        private void crearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaCreacion = new CrearExperto(_fachadaProyectosExpertos);
+            ventanaCreacion.ShowDialog();
+        }
+
+        private void ponderarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto, _proyectoSeleccionado);
+            ventanaPonderacion.ShowDialog();
         }        
     }
 }
