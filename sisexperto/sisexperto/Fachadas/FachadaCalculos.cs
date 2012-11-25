@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using MathWorks.MATLAB.NET.Arrays;
 using sisExperto;
+using MathWorks.MATLAB.NET.Arrays;
+
 
 namespace sisexperto.Fachadas
 {
@@ -12,6 +14,8 @@ namespace sisexperto.Fachadas
     {
         private static volatile FachadaCalculos instance;
         private static object syncRoot = new Object();
+        private MatlabUtils _matlabutils = new MatlabUtils();
+        
 
         private FachadaCalculos() { }
 
@@ -45,6 +49,26 @@ namespace sisexperto.Fachadas
             return resultado;
         }
 
+
+        public bool CalcularConsistencia(double[,] matriz)
+        {
+            Consistencia.Consistencia c = new Consistencia.Consistencia();
+            MWNumericArray matlabNumericArray = (MWNumericArray)_matlabutils.MLArrayFromNetArray(matriz);
+
+            MWLogicalArray result = (MWLogicalArray)c.calcConsist(matlabNumericArray);
+
+            Boolean resultadoEntero = (Boolean)result;
+
+            // LA CONVERSION ARROJA:
+            // RESULTADO 1=VERDADERO, 0=FALSO.
+            Boolean resultadoBoolean = Convert.ToBoolean(resultadoEntero);
+
+            return resultadoBoolean;
+        }
+
+
     }
+
+
 
 }

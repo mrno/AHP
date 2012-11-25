@@ -76,10 +76,16 @@ namespace sisExperto
 
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
+            
+            //var matriz = (from expenproy in _context.ExpertosEnProyectos
+            //              where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
+            //              select expenproy.CriterioMatriz).ToList<CriterioMatriz>();
+            //return matriz;
+
             var matriz = (from expenproy in _context.ExpertosEnProyectos
                           where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
-                          select expenproy.CriterioMatriz).ToList<CriterioMatriz>();
-            return matriz;
+                          select expenproy.CriterioMatriz);
+            return matriz.ToList<CriterioMatriz>();
         }
 
         //ESTE MÉTODO DE ABAJO NO ME GUSTA MUCHO, SI ALGUIÉN TIENE UNA IDEA MÁS PIOLA, QUE LE META.

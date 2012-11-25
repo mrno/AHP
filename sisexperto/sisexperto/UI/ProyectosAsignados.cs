@@ -14,6 +14,7 @@ namespace sisExperto
         private Experto _experto;
         private List<Proyecto> _lista = new List<Proyecto>();
         private FachadaProyectosExpertos _fachada;
+        private Proyecto _proyectoSeleccionado;
 
         public ProyectosAsignados(Experto experto, FachadaProyectosExpertos Fachada)
         {
@@ -34,9 +35,10 @@ namespace sisExperto
         private void cargarMatrices(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
+            _proyectoSeleccionado = (Proyecto)row.DataBoundItem;
 
-            gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
-            gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto).ToList();
+            gridCriterio.DataSource = _fachada.matrizCriterio(_proyectoSeleccionado, _experto);
+            gridAlternativa.DataSource = _fachada.matrizAlternativa(_proyectoSeleccionado, _experto).ToList();
 
             //var valoracionCriterios = (ValoracionCriteriosPorExperto)row.DataBoundItem;
 
@@ -58,7 +60,7 @@ namespace sisExperto
             ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz, _fachada);
             frmComparar.ShowDialog();
             gridAlternativa.DataSource = null;
-            gridAlternativa.DataSource = _fachada.matrizAlternativa(((Proyecto)row.DataBoundItem), _experto).ToList();
+            gridAlternativa.DataSource = _fachada.matrizAlternativa(_proyectoSeleccionado, _experto).ToList();
 
 
         }
@@ -72,7 +74,7 @@ namespace sisExperto
             CompararCriterios frmComparar = new CompararCriterios(matriz, _fachada);
             frmComparar.ShowDialog();
             gridCriterio.DataSource = null;
-            gridCriterio.DataSource = _fachada.matrizCriterio(((Proyecto)row.DataBoundItem), _experto);
+            gridCriterio.DataSource = _fachada.matrizCriterio(_proyectoSeleccionado, _experto);
         
         }
 

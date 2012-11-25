@@ -10,6 +10,7 @@ using Consistencia;
 using ConsistenciaNative;
 using sisexperto.Entidades;
 using sisExperto.Entidades;
+using sisexperto.Fachadas;
 
 namespace sisExperto
 {
@@ -280,6 +281,9 @@ namespace sisExperto
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            matrizCriterio.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matrizCriterio.MatrizCriterioAHP);
+            miFachada.GuardarValoracion();
 
             //label9.Text = "";
             //List<comparacion_Criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_Experto);
