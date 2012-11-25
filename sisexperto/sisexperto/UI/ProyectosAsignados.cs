@@ -9,33 +9,29 @@ namespace sisExperto
 {
     public partial class ProyectosAsignados : Form
     {
-
-
         private Experto _experto;
-        private List<Proyecto> _lista = new List<Proyecto>();
+        private List<Proyecto> _listaProyectos = new List<Proyecto>();
         private FachadaProyectosExpertos _fachada;
         private Proyecto _proyectoSeleccionado;
 
-        public ProyectosAsignados(Experto experto, FachadaProyectosExpertos Fachada)
+        public ProyectosAsignados(Experto experto, Proyecto ProyectoSeleccionado, FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
+            _proyectoSeleccionado = ProyectoSeleccionado;
             _experto = experto;
             _fachada = Fachada;
-            _lista = _fachada.SolicitarProyectosAsignados(_experto).ToList<Proyecto>();
+            _listaProyectos = _fachada.SolicitarProyectosAsignados(_experto).ToList<Proyecto>();
         }
 
         private void ProyectosAsignados_Load(object sender, EventArgs e)
         {
-            label1.Text = "Nombre de Experto: " + _experto.Apellido.ToString() + "" +
-                          _experto.Nombre.ToString();
-            
-            dataGridView1.DataSource = _lista;
+            comboBoxProyectos.DataSource = _listaProyectos;
+            comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+            comboBoxProyectos.SelectedIndexChanged += (comboBoxProyectos_SelectedIndexChanged);
         }
 
-        private void cargarMatrices(object sender, DataGridViewCellEventArgs e)
+        private void cargarMatrices()
         {
-            DataGridViewRow row = ((DataGridView)sender).CurrentRow;
-            _proyectoSeleccionado = (Proyecto)row.DataBoundItem;
 
             gridCriterio.DataSource = _fachada.matrizCriterio(_proyectoSeleccionado, _experto);
             gridAlternativa.DataSource = _fachada.matrizAlternativa(_proyectoSeleccionado, _experto).ToList();
@@ -74,14 +70,17 @@ namespace sisExperto
             CompararCriterios frmComparar = new CompararCriterios(matriz, _fachada);
             frmComparar.ShowDialog();
             gridCriterio.DataSource = null;
-            gridCriterio.DataSource = _fachada.matrizCriterio(_proyectoSeleccionado, _experto);
-        
+            gridCriterio.DataSource = _fachada.matrizCriterio(_proyectoSeleccionado, _experto);        
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
+            cargarMatrices();
 
         }
+
 
     }
 }

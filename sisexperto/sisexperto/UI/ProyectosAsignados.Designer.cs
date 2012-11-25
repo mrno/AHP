@@ -29,66 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridCriterio = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.valorar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.criterioMatrizBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gridAlternativa = new System.Windows.Forms.DataGridView();
-            this.valorar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.valorarAlt = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.valorarAlt = new System.Windows.Forms.DataGridViewButtonColumn();
             this.alternativaMatrizBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.criterioMatrizBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterio)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.criterioMatrizBindingSource)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaMatrizBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.criterioMatrizBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // proyectoBindingSource
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Location = new System.Drawing.Point(25, 40);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(495, 190);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Proyectos recientes sin valorar";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.dataGridView1.DataSource = this.proyectoBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(463, 150);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.cargarMatrices);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.proyectoBindingSource.DataSource = typeof(sisExperto.Entidades.Proyecto);
             // 
             // groupBox2
             // 
@@ -117,6 +82,23 @@
             this.gridCriterio.TabIndex = 4;
             this.gridCriterio.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modificarCriterio);
             // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Consistencia";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Consistencia";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // valorar
+            // 
+            this.valorar.HeaderText = "Valorar";
+            this.valorar.Name = "valorar";
+            this.valorar.ReadOnly = true;
+            // 
+            // criterioMatrizBindingSource
+            // 
+            this.criterioMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.CriterioMatriz);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.gridAlternativa);
@@ -144,18 +126,6 @@
             this.gridAlternativa.TabIndex = 5;
             this.gridAlternativa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modificarAlternativa);
             // 
-            // valorar
-            // 
-            this.valorar.HeaderText = "Valorar";
-            this.valorar.Name = "valorar";
-            this.valorar.ReadOnly = true;
-            // 
-            // valorarAlt
-            // 
-            this.valorarAlt.HeaderText = "Valorar";
-            this.valorarAlt.Name = "valorarAlt";
-            this.valorarAlt.ReadOnly = true;
-            // 
             // dataGridViewCheckBoxColumn2
             // 
             this.dataGridViewCheckBoxColumn2.DataPropertyName = "Consistencia";
@@ -163,59 +133,58 @@
             this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
             this.dataGridViewCheckBoxColumn2.ReadOnly = true;
             // 
+            // valorarAlt
+            // 
+            this.valorarAlt.HeaderText = "Valorar";
+            this.valorarAlt.Name = "valorarAlt";
+            this.valorarAlt.ReadOnly = true;
+            // 
             // alternativaMatrizBindingSource
             // 
             this.alternativaMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaMatriz);
             // 
-            // dataGridViewCheckBoxColumn1
+            // comboBoxProyectos
             // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Consistencia";
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Consistencia";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.comboBoxProyectos.DataSource = this.proyectoBindingSource;
+            this.comboBoxProyectos.DisplayMember = "Nombre";
+            this.comboBoxProyectos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProyectos.FormattingEnabled = true;
+            this.comboBoxProyectos.Location = new System.Drawing.Point(93, 6);
+            this.comboBoxProyectos.Name = "comboBoxProyectos";
+            this.comboBoxProyectos.Size = new System.Drawing.Size(419, 28);
+            this.comboBoxProyectos.TabIndex = 32;
             // 
-            // criterioMatrizBindingSource
+            // label2
             // 
-            this.criterioMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.CriterioMatriz);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Objetivo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Objetivo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // proyectoBindingSource
-            // 
-            this.proyectoBindingSource.DataSource = typeof(sisExperto.Entidades.Proyecto);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 31;
+            this.label2.Text = "Proyecto:";
             // 
             // ProyectosAsignados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(538, 539);
+            this.ClientSize = new System.Drawing.Size(524, 536);
+            this.Controls.Add(this.comboBoxProyectos);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label1);
             this.Name = "ProyectosAsignados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Proyectos asignados";
+            this.Text = "Valorar Proyecto";
             this.Load += new System.EventHandler(this.ProyectosAsignados_Load);
-            this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterio)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.criterioMatrizBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaMatrizBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.criterioMatrizBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -223,9 +192,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn objetivoDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -245,8 +211,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn criterioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn comparacionCriteriosDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.BindingSource proyectoBindingSource;
         private System.Windows.Forms.BindingSource criterioMatrizBindingSource;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
@@ -254,5 +218,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private System.Windows.Forms.DataGridViewButtonColumn valorarAlt;
         private System.Windows.Forms.BindingSource alternativaMatrizBindingSource;
+        private System.Windows.Forms.ComboBox comboBoxProyectos;
+        private System.Windows.Forms.Label label2;
     }
 }
