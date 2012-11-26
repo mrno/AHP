@@ -132,6 +132,14 @@ namespace sisExperto
             return "";
         }
 
+        public int valorarFlotante(double valor)
+        {
+            if (valor >= 1)
+                return 10 - (int)valor;
+            else
+                return 8 + (int)Math.Ceiling(1.0 / valor);
+        }
+
         private bool existe(string nombre)
         {
             bool resultado = new bool();
@@ -174,6 +182,7 @@ namespace sisExperto
                                  celda.ValorAHP = valorarNumero(track.Value);
 
                                  //2
+                                 //GuardarConsistencia();    puede ser esa opción también.
                                  matrizCriterio.Consistencia = false;
 
                                  miFachada.GuardarValoracion();
@@ -194,7 +203,6 @@ namespace sisExperto
 
         private void CompararCriterios_Load(object sender, EventArgs e)
         {
-            //dato = new DALDatos();
             int y = 140;
 
             List<CriterioCelda> listaCeldas = new List<CriterioCelda>();
@@ -214,10 +222,7 @@ namespace sisExperto
                     track.SetBounds(75, y, 400, 45);
                     track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     track.SetRange(1, 17);
-
-                    //track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto,
-                    //    comp.id_Experto, comp.pos_fila, comp.pos_columna);
-
+                    track.Value = valorarFlotante(celda.ValorAHP);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
 
@@ -231,7 +236,7 @@ namespace sisExperto
                     miLabel.SetBounds(150, y + 45, 250, 30);
                     //    double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
                     //                                                  comp.pos_columna);
-                    //    miLabel.Text = dato.obtenerDescripcion(doble);
+                    miLabel.Text = valorarPalabra(track.Value);
                     miLabel.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     Controls.Add(miLabel);
 
@@ -285,13 +290,13 @@ namespace sisExperto
             //// 
             //// button1
             //// 
-            //this.button1.Location = new System.Drawing.Point(20, y);
-            //this.button1.Name = "button1";
-            //this.button1.Size = new System.Drawing.Size(150, 40);
-            //this.button1.TabIndex = 6;
-            //this.button1.Text = "Calcular consistencia";
-            //this.button1.UseVisualStyleBackColor = true;
-            //this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Location = new System.Drawing.Point(20, y);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 40);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Calcular consistencia";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             //// 
             //// label9
             //// 
@@ -318,11 +323,17 @@ namespace sisExperto
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GuardarConsistencia()
         {
-
             matrizCriterio.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matrizCriterio.MatrizCriterioAHP);
             miFachada.GuardarValoracion();
+            if (matrizCriterio.Consistencia)
+                MessageBox.Show("Matriz consistente");
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GuardarConsistencia();
+            
 
             //label9.Text = "";
             //List<comparacion_Criterio> listaComparacion = dato.comparacionCriterioPorExperto(id_proyecto, id_Experto);

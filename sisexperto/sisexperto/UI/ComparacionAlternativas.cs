@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using sisexperto.Entidades;
 using sisExperto.Entidades;
+using sisexperto.Fachadas;
 
 namespace sisExperto
 {
@@ -137,6 +138,15 @@ namespace sisExperto
             return "";
         }
 
+        public int valorarFlotante(double valor)
+        {
+            if (valor >= 1)
+                return 10 - (int)valor;
+            else
+                return 8 + (int)Math.Ceiling(1.0 / valor);
+
+        }
+
         private void mostrar(object sender, EventArgs e)
         {
             //label9.Text = "";
@@ -237,10 +247,7 @@ namespace sisExperto
                     track.SetBounds(75, y, 400, 45);
                     track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     track.SetRange(1, 17);
-                    
-                    //track.Value = dato.obtenerEnteroCompCriterio(comp.id_proyecto,
-                    //    comp.id_Experto, comp.pos_fila, comp.pos_columna);
-
+                    track.Value = valorarFlotante(celda.ValorAHP);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
 
@@ -254,7 +261,7 @@ namespace sisExperto
                     miLabel.SetBounds(150, y + 45, 250, 30);
                     //    double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
                     //                                                  comp.pos_columna);
-                    //    miLabel.Text = dato.obtenerDescripcion(doble);
+                    miLabel.Text = valorarPalabra(track.Value);
                     miLabel.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     Controls.Add(miLabel);
 
@@ -263,12 +270,6 @@ namespace sisExperto
             }
             
         
-
-
-
-
-
-
 
 
 
@@ -282,14 +283,14 @@ namespace sisExperto
            // // 
            // // button1
            // // 
-           // this.button1.Location = new System.Drawing.Point(5, y);
-           // this.button1.Name = "button1";
-           // this.button1.Size = new System.Drawing.Size(150, 40);
-           // this.button1.TabIndex = 6;
-           // this.button1.Text = "Calcular consistencia";
-           // this.button1.UseVisualStyleBackColor = true;
-           // this.button1.Click += new System.EventHandler(this.button1_Click);
-           // this.Controls.Add(this.button1);
+            this.button1.Location = new System.Drawing.Point(5, y);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 40);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Calcular consistencia";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Controls.Add(this.button1);
            // // 
            // // label9
            // // 
@@ -350,8 +351,17 @@ namespace sisExperto
             //this.Close();
         }
 
+        private void GuardarConsistencia()
+        {
+            matrizAlternativa.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matrizAlternativa.MatrizAlternativaAHP);
+            miFachada.GuardarValoracion();
+            if (matrizAlternativa.Consistencia)
+                MessageBox.Show("Matriz consistente");
+        }
         private void button1_Click(object sender, EventArgs e)
         {
+            GuardarConsistencia();
+
            // label9.Text = "";
            //// Queue<Criterio> colaCri = dato.colaCriterios(id_proyecto);
            // List<comparacion_Alternativa> listaAlt;
