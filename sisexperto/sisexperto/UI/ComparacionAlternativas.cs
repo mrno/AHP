@@ -23,6 +23,7 @@ namespace sisExperto
 
         private AlternativaMatriz matrizAlternativa;
         private FachadaProyectosExpertos miFachada;
+        private Proyecto _proyecto;
 
         private int y = 140;
 
@@ -30,11 +31,12 @@ namespace sisExperto
         private int pos = 0;
 
 
-        public ComparacionAlternativas(AlternativaMatriz matriz, FachadaProyectosExpertos facha)
+        public ComparacionAlternativas(AlternativaMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy)
         {
             InitializeComponent();
             matrizAlternativa = matriz;
             miFachada = facha;
+            _proyecto = proy;
 
             //id_proyecto = id_proy;
             //id_Experto = id_exp;
@@ -138,13 +140,18 @@ namespace sisExperto
             return "";
         }
 
-        public int valorarFlotante(double valor)
+        public int valorarDoble(double valor)
         {
             if (valor >= 1)
                 return 10 - (int)valor;
             else
                 return 8 + (int)Math.Ceiling(1.0 / valor);
 
+        }
+
+        public string obtenerDescripcion(double valor)
+        {
+            return valorarPalabra(valorarDoble(valor));
         }
 
         private void mostrar(object sender, EventArgs e)
@@ -247,7 +254,7 @@ namespace sisExperto
                     track.SetBounds(75, y, 400, 45);
                     track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     track.SetRange(1, 17);
-                    track.Value = valorarFlotante(celda.ValorAHP);
+                    track.Value = valorarDoble(celda.ValorAHP);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
 
@@ -294,14 +301,14 @@ namespace sisExperto
            // // 
            // // label9
            // // 
-           // this.label9.AutoSize = true;
-           // this.label9.Location = new System.Drawing.Point(5, y + 45);
-           // this.label9.Name = "label9";
-           // this.label9.BackColor = Color.Red;
-           // this.label9.Size = new System.Drawing.Size(150, 40);
-           // this.label9.TabIndex = 7;
-           // this.label9.Text = "";
-           // this.Controls.Add(this.label9);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, y + 45);
+            this.label9.Name = "label9";
+            this.label9.BackColor = Color.Red;
+            this.label9.Size = new System.Drawing.Size(150, 40);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "";
+            this.Controls.Add(this.label9);
            // // 
            // // button4
            // // 
@@ -357,6 +364,44 @@ namespace sisExperto
             miFachada.GuardarValoracion();
             if (matrizAlternativa.Consistencia)
                 MessageBox.Show("Matriz consistente");
+            else
+            {
+
+                string NombreAlternativaA;
+                string NombreAlternativaB;
+                mejorada = FachadaCalculos.Instance.buscarMejoresConsistencia(matrizAlternativa.MatrizAlternativaAHP);
+                double[] posicionRecomendada = MaxValueIJ(mejorada);
+
+
+                Int32 fila = (Int32)posicionRecomendada[0];
+                Int32 columna = (Int32)posicionRecomendada[1];
+
+                List<Alternativa> listaAlternativa = _proyecto.Alternativas.ToList();
+
+                NombreAlternativaA = listaAlternativa[fila].Nombre;
+                NombreAlternativaB = listaAlternativa[columna].Nombre;
+
+
+                Int32 M = (Int32)posicionRecomendada[2];
+
+                double mejorValor = mejorada[M, 2];
+
+                if (mejorada[0, 0] < mejorada[0, 1])
+                {
+                    label9.Text = NombreAlternativaA + " " +
+                                      "deberia ser " +
+                                      obtenerDescripcion(mejorValor) + " " +
+                                      NombreAlternativaB;
+                }
+                else
+                {
+                    label9.Text = NombreAlternativaB + " " +
+                                     "deberia ser " +
+                                     obtenerDescripcion((double)1 / mejorValor) + " " +
+                                     NombreAlternativaA;
+
+                }
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {

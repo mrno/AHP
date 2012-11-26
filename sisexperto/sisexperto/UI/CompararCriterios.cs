@@ -22,16 +22,17 @@ namespace sisExperto
 
         private CriterioMatriz matrizCriterio;
         private FachadaProyectosExpertos miFachada;
-
+        private Proyecto _proyecto;
         private TrackBar track;
         private double[,] mejorada;
         private int pos = 0;
 
-        public CompararCriterios(CriterioMatriz matriz, FachadaProyectosExpertos facha)
+        public CompararCriterios(CriterioMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy)
         {
             InitializeComponent();
             matrizCriterio = matriz;
             miFachada = facha;
+            _proyecto = proy;
             //id_proyecto = id_p;
             //id_Experto = id_e;
         }
@@ -132,13 +133,20 @@ namespace sisExperto
             return "";
         }
 
-        public int valorarFlotante(double valor)
+        public int valorarDoble(double valor)
         {
             if (valor >= 1)
                 return 10 - (int)valor;
             else
                 return 8 + (int)Math.Ceiling(1.0 / valor);
         }
+
+        public string obtenerDescripcion(double valor)
+        {
+           return valorarPalabra(valorarDoble(valor));
+        }
+
+
 
         private bool existe(string nombre)
         {
@@ -222,7 +230,7 @@ namespace sisExperto
                     track.SetBounds(75, y, 400, 45);
                     track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     track.SetRange(1, 17);
-                    track.Value = valorarFlotante(celda.ValorAHP);
+                    track.Value = valorarDoble(celda.ValorAHP);
                     track.Scroll += new System.EventHandler(this.mostrar);
                     Controls.Add(track);
 
@@ -300,13 +308,13 @@ namespace sisExperto
             //// 
             //// label9
             //// 
-            //this.label9.AutoSize = true;
-            //this.label9.Location = new System.Drawing.Point(20, y + 45);
-            //this.label9.Name = "label9";
-            //this.label9.BackColor = Color.Red;
-            //this.label9.Size = new System.Drawing.Size(40, 30);
-            //this.label9.TabIndex = 7;
-            //this.label9.Text = "";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(20, y + 45);
+            this.label9.Name = "label9";
+            this.label9.BackColor = Color.Red;
+            this.label9.Size = new System.Drawing.Size(40, 30);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "";
             
             //// 
             //// button2
@@ -329,6 +337,44 @@ namespace sisExperto
             miFachada.GuardarValoracion();
             if (matrizCriterio.Consistencia)
                 MessageBox.Show("Matriz consistente");
+            else
+            {
+
+                string NombreAlternativaA;
+                string NombreAlternativaB;
+                mejorada = FachadaCalculos.Instance.buscarMejoresConsistencia(matrizCriterio.MatrizCriterioAHP);
+                double[] posicionRecomendada = MaxValueIJ(mejorada);
+
+
+                Int32 fila = (Int32)posicionRecomendada[0];
+                Int32 columna = (Int32)posicionRecomendada[1];
+
+                List<Criterio> listaCriterios = _proyecto.Criterios.ToList();
+
+                NombreAlternativaA = listaCriterios[fila].Nombre;
+                NombreAlternativaB = listaCriterios[columna].Nombre;
+
+
+                Int32 M = (Int32)posicionRecomendada[2];
+
+                double mejorValor = mejorada[M, 2];
+
+                if (mejorada[0, 0] < mejorada[0, 1])
+                {
+                    label9.Text = NombreAlternativaA + " " +
+                                      "deberia ser " +
+                                      obtenerDescripcion(mejorValor) + " " +
+                                      NombreAlternativaB;
+                }
+                else
+                {
+                    label9.Text = NombreAlternativaB + " " +
+                                     "deberia ser " +
+                                     obtenerDescripcion((double)1 / mejorValor) + " " +
+                                     NombreAlternativaA;
+
+                }
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -430,12 +476,12 @@ namespace sisExperto
             return rdo;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-        //    pos++;
-        //    label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
-        //
-        }
+        //private void button2_Click(object sender, EventArgs e)
+        //{
+        ////    pos++;
+        ////    label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
+        ////
+        //}
 
     }
 }

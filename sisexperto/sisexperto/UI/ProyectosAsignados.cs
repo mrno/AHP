@@ -40,6 +40,7 @@ namespace sisExperto
             checkBoxConsistencia.Checked = _expertoEnProyecto.CriterioMatriz.Consistencia;
 
             var listaAlternativas = _fachada.matrizAlternativa(_proyectoSeleccionado, _experto).ToList();
+            gridAlternativa.DataSource = null;
             gridAlternativa.DataSource = listaAlternativas;
             
             for (int i = 0; i < listaAlternativas.Count; i++)
@@ -62,10 +63,9 @@ namespace sisExperto
             AlternativaMatriz matriz = new AlternativaMatriz();
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
             matriz = (AlternativaMatriz)row.DataBoundItem;
-            ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz, _fachada);
+            ComparacionAlternativas frmComparar = new ComparacionAlternativas(matriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
-            gridAlternativa.DataSource = null;
-            gridAlternativa.DataSource = _fachada.matrizAlternativa(_proyectoSeleccionado, _experto).ToList();
+            cargarMatrices();
         }
 
         private void modificarCriterio(object sender, DataGridViewCellEventArgs e)
@@ -88,8 +88,9 @@ namespace sisExperto
 
         private void buttonValorarCriterio_Click(object sender, EventArgs e)
         {
-            CompararCriterios frmComparar = new CompararCriterios(_expertoEnProyecto.CriterioMatriz, _fachada);
+            CompararCriterios frmComparar = new CompararCriterios(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
+            cargarMatrices();
         }
     }
 }
