@@ -43,28 +43,28 @@
             this.groupBoxAlternativa = new System.Windows.Forms.GroupBox();
             this.buttonQuitarAlternativa = new System.Windows.Forms.Button();
             this.buttonAgregarAlternativa = new System.Windows.Forms.Button();
-            this.groupBoxCriterio = new System.Windows.Forms.GroupBox();
-            this.buttonQuitarCriterio = new System.Windows.Forms.Button();
-            this.buttonAgregarCriterio = new System.Windows.Forms.Button();
-            this.dataGridCriterios = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxNombreCriterio = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxDescripcionCriterio = new System.Windows.Forms.TextBox();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonLimpiarAsignaciones = new System.Windows.Forms.Button();
+            this.textBoxDescripcionCriterio = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxNombreCriterio = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dataGridCriterios = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonAgregarCriterio = new System.Windows.Forms.Button();
+            this.buttonQuitarCriterio = new System.Windows.Forms.Button();
+            this.groupBoxCriterio = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).BeginInit();
             this.groupBoxAlternativa.SuspendLayout();
-            this.groupBoxCriterio.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).BeginInit();
+            this.groupBoxCriterio.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridAlternativas
@@ -184,104 +184,6 @@
             this.buttonAgregarAlternativa.UseVisualStyleBackColor = true;
             this.buttonAgregarAlternativa.Click += new System.EventHandler(this.buttonAgregarAlternativa_Click);
             // 
-            // groupBoxCriterio
-            // 
-            this.groupBoxCriterio.Controls.Add(this.buttonQuitarCriterio);
-            this.groupBoxCriterio.Controls.Add(this.buttonAgregarCriterio);
-            this.groupBoxCriterio.Controls.Add(this.dataGridCriterios);
-            this.groupBoxCriterio.Controls.Add(this.label7);
-            this.groupBoxCriterio.Controls.Add(this.textBoxNombreCriterio);
-            this.groupBoxCriterio.Controls.Add(this.label8);
-            this.groupBoxCriterio.Controls.Add(this.textBoxDescripcionCriterio);
-            this.groupBoxCriterio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxCriterio.Location = new System.Drawing.Point(12, 268);
-            this.groupBoxCriterio.Name = "groupBoxCriterio";
-            this.groupBoxCriterio.Size = new System.Drawing.Size(500, 225);
-            this.groupBoxCriterio.TabIndex = 27;
-            this.groupBoxCriterio.TabStop = false;
-            this.groupBoxCriterio.Text = "Criterios";
-            // 
-            // buttonQuitarCriterio
-            // 
-            this.buttonQuitarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonQuitarCriterio.Image")));
-            this.buttonQuitarCriterio.Location = new System.Drawing.Point(444, 26);
-            this.buttonQuitarCriterio.Name = "buttonQuitarCriterio";
-            this.buttonQuitarCriterio.Size = new System.Drawing.Size(50, 50);
-            this.buttonQuitarCriterio.TabIndex = 26;
-            this.buttonQuitarCriterio.UseVisualStyleBackColor = true;
-            this.buttonQuitarCriterio.Click += new System.EventHandler(this.buttonQuitarCriterio_Click);
-            // 
-            // buttonAgregarCriterio
-            // 
-            this.buttonAgregarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarCriterio.Image")));
-            this.buttonAgregarCriterio.Location = new System.Drawing.Point(388, 26);
-            this.buttonAgregarCriterio.Name = "buttonAgregarCriterio";
-            this.buttonAgregarCriterio.Size = new System.Drawing.Size(50, 50);
-            this.buttonAgregarCriterio.TabIndex = 25;
-            this.buttonAgregarCriterio.UseVisualStyleBackColor = true;
-            this.buttonAgregarCriterio.Click += new System.EventHandler(this.buttonAgregarCriterio_Click);
-            // 
-            // dataGridCriterios
-            // 
-            this.dataGridCriterios.AutoGenerateColumns = false;
-            this.dataGridCriterios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridCriterios.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dataGridCriterios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridCriterios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.dataGridCriterios.DataSource = this.criterioBindingSource;
-            this.dataGridCriterios.Location = new System.Drawing.Point(6, 94);
-            this.dataGridCriterios.Name = "dataGridCriterios";
-            this.dataGridCriterios.RowHeadersVisible = false;
-            this.dataGridCriterios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridCriterios.Size = new System.Drawing.Size(488, 125);
-            this.dataGridCriterios.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Descripcion";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Descripcion";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "Nombre:";
-            // 
-            // textBoxNombreCriterio
-            // 
-            this.textBoxNombreCriterio.Location = new System.Drawing.Point(108, 22);
-            this.textBoxNombreCriterio.Name = "textBoxNombreCriterio";
-            this.textBoxNombreCriterio.Size = new System.Drawing.Size(274, 26);
-            this.textBoxNombreCriterio.TabIndex = 8;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 57);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(96, 20);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Descripción:";
-            // 
-            // textBoxDescripcionCriterio
-            // 
-            this.textBoxDescripcionCriterio.Location = new System.Drawing.Point(108, 54);
-            this.textBoxDescripcionCriterio.Name = "textBoxDescripcionCriterio";
-            this.textBoxDescripcionCriterio.Size = new System.Drawing.Size(274, 26);
-            this.textBoxDescripcionCriterio.TabIndex = 9;
-            // 
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -332,6 +234,104 @@
             this.buttonLimpiarAsignaciones.UseVisualStyleBackColor = true;
             this.buttonLimpiarAsignaciones.Click += new System.EventHandler(this.buttonLimpiarAsignaciones_Click);
             // 
+            // textBoxDescripcionCriterio
+            // 
+            this.textBoxDescripcionCriterio.Location = new System.Drawing.Point(108, 54);
+            this.textBoxDescripcionCriterio.Name = "textBoxDescripcionCriterio";
+            this.textBoxDescripcionCriterio.Size = new System.Drawing.Size(274, 26);
+            this.textBoxDescripcionCriterio.TabIndex = 9;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 57);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(96, 20);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Descripción:";
+            // 
+            // textBoxNombreCriterio
+            // 
+            this.textBoxNombreCriterio.Location = new System.Drawing.Point(108, 22);
+            this.textBoxNombreCriterio.Name = "textBoxNombreCriterio";
+            this.textBoxNombreCriterio.Size = new System.Drawing.Size(274, 26);
+            this.textBoxNombreCriterio.TabIndex = 8;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Nombre:";
+            // 
+            // dataGridCriterios
+            // 
+            this.dataGridCriterios.AutoGenerateColumns = false;
+            this.dataGridCriterios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridCriterios.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridCriterios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridCriterios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.dataGridCriterios.DataSource = this.criterioBindingSource;
+            this.dataGridCriterios.Location = new System.Drawing.Point(6, 94);
+            this.dataGridCriterios.Name = "dataGridCriterios";
+            this.dataGridCriterios.RowHeadersVisible = false;
+            this.dataGridCriterios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridCriterios.Size = new System.Drawing.Size(488, 125);
+            this.dataGridCriterios.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Descripcion";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Descripcion";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Nombre";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // buttonAgregarCriterio
+            // 
+            this.buttonAgregarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarCriterio.Image")));
+            this.buttonAgregarCriterio.Location = new System.Drawing.Point(388, 26);
+            this.buttonAgregarCriterio.Name = "buttonAgregarCriterio";
+            this.buttonAgregarCriterio.Size = new System.Drawing.Size(50, 50);
+            this.buttonAgregarCriterio.TabIndex = 25;
+            this.buttonAgregarCriterio.UseVisualStyleBackColor = true;
+            this.buttonAgregarCriterio.Click += new System.EventHandler(this.buttonAgregarCriterio_Click);
+            // 
+            // buttonQuitarCriterio
+            // 
+            this.buttonQuitarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonQuitarCriterio.Image")));
+            this.buttonQuitarCriterio.Location = new System.Drawing.Point(444, 26);
+            this.buttonQuitarCriterio.Name = "buttonQuitarCriterio";
+            this.buttonQuitarCriterio.Size = new System.Drawing.Size(50, 50);
+            this.buttonQuitarCriterio.TabIndex = 26;
+            this.buttonQuitarCriterio.UseVisualStyleBackColor = true;
+            this.buttonQuitarCriterio.Click += new System.EventHandler(this.buttonQuitarCriterio_Click);
+            // 
+            // groupBoxCriterio
+            // 
+            this.groupBoxCriterio.Controls.Add(this.buttonQuitarCriterio);
+            this.groupBoxCriterio.Controls.Add(this.buttonAgregarCriterio);
+            this.groupBoxCriterio.Controls.Add(this.dataGridCriterios);
+            this.groupBoxCriterio.Controls.Add(this.label7);
+            this.groupBoxCriterio.Controls.Add(this.textBoxNombreCriterio);
+            this.groupBoxCriterio.Controls.Add(this.label8);
+            this.groupBoxCriterio.Controls.Add(this.textBoxDescripcionCriterio);
+            this.groupBoxCriterio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxCriterio.Location = new System.Drawing.Point(12, 268);
+            this.groupBoxCriterio.Name = "groupBoxCriterio";
+            this.groupBoxCriterio.Size = new System.Drawing.Size(500, 225);
+            this.groupBoxCriterio.TabIndex = 27;
+            this.groupBoxCriterio.TabStop = false;
+            this.groupBoxCriterio.Text = "Criterios";
+            // 
             // EditarProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,10 +353,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).EndInit();
             this.groupBoxAlternativa.ResumeLayout(false);
             this.groupBoxAlternativa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).EndInit();
             this.groupBoxCriterio.ResumeLayout(false);
             this.groupBoxCriterio.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,21 +381,21 @@
         private System.Windows.Forms.GroupBox groupBoxAlternativa;
         private System.Windows.Forms.Button buttonQuitarAlternativa;
         private System.Windows.Forms.Button buttonAgregarAlternativa;
-        private System.Windows.Forms.GroupBox groupBoxCriterio;
-        private System.Windows.Forms.Button buttonQuitarCriterio;
-        private System.Windows.Forms.Button buttonAgregarCriterio;
-        private System.Windows.Forms.DataGridView dataGridCriterios;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxNombreCriterio;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBoxDescripcionCriterio;
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxProyectos;
         private System.Windows.Forms.Button buttonLimpiarAsignaciones;
         private System.Windows.Forms.BindingSource proyectoBindingSource;
+        private System.Windows.Forms.TextBox textBoxDescripcionCriterio;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxNombreCriterio;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridView dataGridCriterios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.Button buttonAgregarCriterio;
+        private System.Windows.Forms.Button buttonQuitarCriterio;
+        private System.Windows.Forms.GroupBox groupBoxCriterio;
     }
 }
 
