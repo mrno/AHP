@@ -124,6 +124,7 @@ namespace sisExperto
         */
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
+            
             EjecutarLogin();
             dataGridAlternativas.DataSource = new List<Alternativa>();
             dataGridCriterios.DataSource = new List<Criterio>();

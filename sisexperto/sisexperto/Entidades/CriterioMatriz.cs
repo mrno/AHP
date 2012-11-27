@@ -39,7 +39,7 @@ namespace sisexperto.Entidades
                         if (i==j)
                             matriz[i, j] = 1;
                         if (i>j)
-                            matriz[i, j] = (double)1.0/matriz[j, i];
+                            matriz[i, j] = 1/matriz[j, i];
                     }
                 }
                 return matriz;

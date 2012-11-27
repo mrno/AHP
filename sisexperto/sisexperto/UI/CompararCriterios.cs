@@ -16,16 +16,13 @@ namespace sisExperto
 {
     public partial class CompararCriterios : Form
     {
-       // private DALDatos dato;
-        //private int id_proyecto;
-        //private int id_Experto;
-
+      
         private CriterioMatriz matrizCriterio;
         private FachadaProyectosExpertos miFachada;
         private Proyecto _proyecto;
         private TrackBar track;
         private double[,] mejorada;
-        private int pos = 0;
+      
 
         public CompararCriterios(CriterioMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy)
         {
@@ -148,26 +145,12 @@ namespace sisExperto
 
 
 
-        private bool existe(string nombre)
-        {
-            bool resultado = new bool();
-            resultado = false;
-            foreach (Label miLabel in this.FindForm().Controls)
-            {
-                if (nombre == miLabel.Name)
-                {
-                    miLabel.Text = nombre;
-                    miLabel.Refresh();
-                    resultado = true;
-                }
-            }
-            return resultado;
-        }
+      
 
         private void mostrar(object sender, EventArgs e)
         {
-         //   label9.Text = "";
-         //   button3.Visible = false;
+            label9.Text = "";
+        
          track = (TrackBar)sender;
 
          foreach (Control miLabel in this.FindForm().Controls)
@@ -316,17 +299,7 @@ namespace sisExperto
             this.label9.TabIndex = 7;
             this.label9.Text = "";
             
-            //// 
-            //// button2
-            //// 
-            //this.button2.Location = new System.Drawing.Point(200, y);
-            //this.button2.Name = "button2";
-            //this.button2.Size = new System.Drawing.Size(150, 40);
-            //this.button2.TabIndex = 8;
-            //this.button2.Text = "button2";
-            //this.button3.Visible = false;
-            //this.button2.UseVisualStyleBackColor = true;
-            //this.button2.Click += new System.EventHandler(this.button2_Click);
+
           
 
         }
@@ -476,12 +449,7 @@ namespace sisExperto
             return rdo;
         }
 
-        //private void button2_Click(object sender, EventArgs e)
-        //{
-        ////    pos++;
-        ////    label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
-        ////
-        //}
+    
 
     }
 }

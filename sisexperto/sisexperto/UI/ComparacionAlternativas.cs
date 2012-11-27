@@ -14,21 +14,13 @@ namespace sisExperto
 {
     public partial class ComparacionAlternativas : Form
     {
-        //private DALDatos dato = new DALDatos();
-        //private int id_proyecto;
-        //private int id_Experto;
-        //private int id_Criterio;
-
-        //private Queue<Criterio> colaCriterio;
-
+      
         private AlternativaMatriz matrizAlternativa;
         private FachadaProyectosExpertos miFachada;
         private Proyecto _proyecto;
-
         private int y = 140;
-
         private double[,] mejorada;
-        private int pos = 0;
+     
 
 
         public ComparacionAlternativas(AlternativaMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy)
@@ -38,10 +30,6 @@ namespace sisExperto
             miFachada = facha;
             _proyecto = proy;
 
-            //id_proyecto = id_proy;
-            //id_Experto = id_exp;
-            //id_Criterio = Criterio;
-            //colaCriterio = dato.colaCriterios(id_proyecto);
         }
 
         public float valorarNumero(int valor)
@@ -156,7 +144,7 @@ namespace sisExperto
 
         private void mostrar(object sender, EventArgs e)
         {
-            //label9.Text = "";
+            label9.Text = "";
             //button3.Visible = false;
             //button1.Visible = true;
             TrackBar track = (TrackBar)sender;
@@ -195,47 +183,7 @@ namespace sisExperto
             }
         }
 
-        private void cargarTracks(int id_cri)
-        {
-            //dato = new DALDatos();
-            //y = 140;
-
-            //List<comparacion_Alternativa> listaComparacion = dato.compAlternativaPorExpertoCriterio(id_proyecto, id_Experto, id_cri);
-
-            //foreach (comparacion_Alternativa comp in listaComparacion)
-            //{
     
-            //    Label izquierdaTB = new Label();
-            //    izquierdaTB.SetBounds(5, y, 75, 50);
-            //    izquierdaTB.Text = dato.AlternativaNombre(comp.id_Alternativa1);
-            //    Controls.Add(izquierdaTB);
-
-            //    TrackBar track = new TrackBar();
-            //    track.SetBounds(75, y, 400, 45);
-            //    track.Name = comp.id_Criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-            //    track.SetRange(1, 17);
-            //    track.Value = dato.obtenerEnteroCompAlternativa(comp.id_proyecto, comp.id_Experto, comp.id_Criterio, comp.pos_fila, comp.pos_columna);
-            //    track.Scroll += new System.EventHandler(this.mostrar);
-            //    Controls.Add(track);
-               
-            //    Label miLabel = new Label();
-            //    miLabel.SetBounds(150, y + 45, 250, 30);
-            //    miLabel.Name = comp.id_Criterio.ToString() + 'x' + comp.pos_fila.ToString() + 'x' + comp.pos_columna.ToString();
-            //    double doble = dato.obtenerValorCompAlternativa(comp.id_proyecto, comp.id_Experto, comp.id_Criterio, comp.pos_fila, comp.pos_columna);
-            //    miLabel.Text = dato.obtenerDescripcion(doble);
-            //    Controls.Add(miLabel);
-
-            //    Label derechaTB = new Label();
-            //    derechaTB.SetBounds(500, y, 80, 30);
-            //    derechaTB.Text = dato.AlternativaNombre(comp.id_Alternativa2);
-            //    Controls.Add(derechaTB);
-
-            //    button3.Enabled = false;
-
-            //    y += 90;
-            //}
-        }
-
         private void ComparacionAlternativas_Load(object sender, EventArgs e)
         {
             int y = 140;
@@ -351,13 +299,7 @@ namespace sisExperto
            // //button3.Visible = true;
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //CalcularAhpAgregadoPonderado frmCalcularAhpAgregadoPonderado = new CalcularAhpAgregadoPonderado(id_proyecto, id_Experto);
-            //frmCalcularAhpAgregadoPonderado.ShowDialog();
-            //this.Close();
-        }
-
+       
         private void GuardarConsistencia()
         {
             matrizAlternativa.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matrizAlternativa.MatrizAlternativaAHP);
@@ -489,39 +431,7 @@ namespace sisExperto
         }
         static double[] MaxValueIJ(double[,] intArray)
         {
-            //double maxVal = 0;
-
-            //int k = 0;
-            //int l = 0;
-            //int m = 0;
-            //int n = 0;
-
-            //for (int i = 0; i < intArray.GetLength(1) - 1; i++)
-            //{
-
-
-            //    for (int j = 0; j < intArray.GetLength(1) - 1; j++)
-            //    {
-            //        if (intArray[i, 2] > maxVal)
-            //        {
-
-            //            maxVal = intArray[i, 2];
-            //            k = (Int32)intArray[i, 0];
-            //            l = (Int32)intArray[i, 1];
-            //            m = i;
-            //            n = j;
-
-            //        }
-            //    }
-            //}
-
-            //double[] rdo = new double[4];
-            //rdo[0] = k;
-            //rdo[1] = l;
-            //rdo[2] = m;
-            //rdo[3] = n;
-            //return rdo;
-            double[] rdo = new double[4];
+           double[] rdo = new double[4];
             rdo[0] = (Int32)intArray[0, 0];
             rdo[1] = (Int32)intArray[0, 1];
             rdo[2] = 0;
@@ -529,15 +439,6 @@ namespace sisExperto
             return rdo;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //pos++;
-            //label9.Text = "En la posición " + mejorada[pos, 0].ToString() + "," + mejorada[pos, 1].ToString() + " colocar " + dato.obtenerDescripcion((double)mejorada[pos, 2]);
-        
-        }
-
-       
-
-      
+     
     }
 }

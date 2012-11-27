@@ -48,7 +48,7 @@ namespace sisExperto.Entidades
 
             foreach (ExpertoEnProyecto expertoEnProyecto in lista)
             {
-                expertoEnProyecto.Ponderacion = (double) 1/denominador;
+                expertoEnProyecto.Ponderacion = (double) expertoEnProyecto.Peso/denominador;
             }
             return lista;
         }
@@ -61,7 +61,7 @@ namespace sisExperto.Entidades
 
 
             var matrizCriterio = new double[Criterios.Count,Criterios.Count];
-            utils.Cerar(matrizCriterio, Criterios.Count);
+            utils.Unar(matrizCriterio, Criterios.Count);
 
 
             for (int i = 0; i < Alternativas.Count; i++)
