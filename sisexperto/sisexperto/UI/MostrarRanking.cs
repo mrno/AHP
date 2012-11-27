@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisExperto.Fachadas;
@@ -59,18 +55,7 @@ namespace sisExperto
             }
 
             listaResultado.OrderByDescending(x => x.valorAlternativa);
-            /*
-            foreach (Resultado resultado in listaResultado)
-            {
-                Label izquierdaTB = new Label();
-                izquierdaTB.SetBounds(16, y, 200, 50);
-                izquierdaTB.Name = resultado.nombreAlternativa;
-                izquierdaTB.Text = resultado.valorAlternativa.ToString();
-                Controls.Add(izquierdaTB);
-                cont++;
-                y += 70;
 
-            }*/
             dataGridResultados.DataSource = listaResultado;
         }
         

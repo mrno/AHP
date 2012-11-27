@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
-using MathWorks.MATLAB.NET.Arrays;
-using CalcularAHP;
-using Consistencia;
-using Mejora;
 using sisExperto.Fachadas;
 using sisExperto.UI;
 using sisExperto.Entidades;
@@ -96,32 +87,9 @@ namespace sisExperto
             lista.AddRange(lista3);
             dataGridProyectos.DataSource = lista;
 
-            //dataGridProyectos.Columns["ProyectoId"].Visible = false;
-            //dataGridProyectos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //dataGridProyectos.BackgroundColor = Color.LightGray;
-            //dataGridProyectos.Columns["Nombre"].Width = 150;
-            //dataGridProyectos.Columns["Objetivo"].Width = 200;
         }
 
-        /*
-        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NuevoProyecto frmNuevoProyecto = new NuevoProyecto(id_Experto);
-            frmNuevoProyecto.ShowDialog();
-        }
-
-        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ProyectosCreados frmProyectosCreados = new ProyectosCreados(id_Experto);
-            frmProyectosCreados.ShowDialog();
-        }
-
-        private void proyectosAsignadosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(id_Experto);
-            frmProyectosAsignados.ShowDialog();
-        }
-        */
+ 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             
@@ -129,14 +97,6 @@ namespace sisExperto
             dataGridAlternativas.DataSource = new List<Alternativa>();
             dataGridCriterios.DataSource = new List<Criterio>();
             dataGridProyectos.RowEnter += (ActualizarDetalle);
-            
-            //una forma rebuscada para cargar las dll.
-            // con LoadAssembly no lo pude hacer funcionar.
-
-            //var foo1 = new  CalculoAHP();
-            //var foo3 = new   Consistencia.Consistencia();
-            //var foo4 = new   Mejora.Consistencia();
-
 
         }
 

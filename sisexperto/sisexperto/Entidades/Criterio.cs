@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace sisExperto.Entidades
 {
     public class Criterio
@@ -10,12 +9,6 @@ namespace sisExperto.Entidades
 
         public int ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
-
-        //posible valor de ponderación en proyecto IL
-
-
-        //public virtual ICollection<ValoracionAlternativasPorCriterioExperto> ValoracionAlternativasPorExperto { get; set; }
-        //public virtual ICollection<ComparacionAlternativa> ComparacionAlternativas { get; set; }
 
     }
 }

@@ -9,7 +9,6 @@
         public int ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
 
-        //public virtual ICollection<ComparacionAlternativa> ComparacionesAlternativas { get; set; }
-
+       
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 using sisexperto.Entidades;
 using sisexperto.Fachadas;
 
@@ -11,22 +10,14 @@ namespace sisExperto.Entidades
     public class ExpertoEnProyecto
     {
         public int ExpertoEnProyectoId { get; set; }
-
         public int ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
-
         public int ExpertoId { get; set; }
         public virtual Experto Experto { get; set; }
-
         public double Ponderacion { get; set; }
         public int Peso { get; set; }
-
-
-        //public int ConjuntoEtiquetasId { get; set; }
         public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
-        
         public virtual CriterioMatriz CriterioMatriz { get; set; }
-
         public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
 
         
