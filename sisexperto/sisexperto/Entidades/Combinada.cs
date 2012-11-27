@@ -4,7 +4,6 @@ namespace sisexperto.Entidades
 {
     public class Combinada
     {
-
         public string ExpertoNombre { get; set; }
         public string ExpertoApellido { get; set; }
         public bool Admin { get; set; }

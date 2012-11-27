@@ -3,46 +3,45 @@ using System.Collections.Generic;
 using MathWorks.MATLAB.NET.Arrays;
 using sisExperto;
 
-
-
 namespace sisexperto.Fachadas
 {
-    
-    public sealed class FachadaCalculos 
+    public sealed class FachadaCalculos
     {
         private static volatile FachadaCalculos instance;
-        private static object syncRoot = new Object();
-        private MatlabUtils _matlabutils = new MatlabUtils();
-        
+        private static readonly object syncRoot = new Object();
+        private readonly MatlabUtils _matlabutils = new MatlabUtils();
 
-        private FachadaCalculos() { }
+
+        private FachadaCalculos()
+        {
+        }
 
         public static FachadaCalculos Instance
-    {
-        get
         {
-            if (instance == null)
+            get
             {
-                lock (syncRoot)
+                if (instance == null)
                 {
-                    if (instance == null)
-                        instance = new FachadaCalculos();
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                            instance = new FachadaCalculos();
+                    }
                 }
-            }
 
-            return instance;
+                return instance;
+            }
         }
-    }
-   
-        
+
+
         public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas)
         {
-            CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
-            MatlabUtils matlabUtils = new MatlabUtils();
+            var calcularAhp = new CalcularAHP.CalcularAHP();
+            var matlabUtils = new MatlabUtils();
             MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
             MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
-            MWNumericArray mwArray = (MWNumericArray)calcularAhp.rankCalc(vectCriterios, superMatriz);
-            var resultado = matlabUtils.NetArrayFromMLArray((MWNumericArray)mwArray);
+            var mwArray = (MWNumericArray) calcularAhp.rankCalc(vectCriterios, superMatriz);
+            double[,] resultado = matlabUtils.NetArrayFromMLArray(mwArray);
 
             return resultado;
         }
@@ -50,12 +49,12 @@ namespace sisexperto.Fachadas
 
         public bool CalcularConsistencia(double[,] matriz)
         {
-            Consistencia.Consistencia c = new Consistencia.Consistencia();
-            MWNumericArray matlabNumericArray = (MWNumericArray)_matlabutils.MLArrayFromNetArray(matriz);
+            var c = new Consistencia.Consistencia();
+            MWNumericArray matlabNumericArray = _matlabutils.MLArrayFromNetArray(matriz);
 
-            MWLogicalArray result = (MWLogicalArray)c.calcConsist(matlabNumericArray);
+            var result = (MWLogicalArray) c.calcConsist(matlabNumericArray);
 
-            Boolean resultadoEntero = (Boolean)result;
+            Boolean resultadoEntero = result;
 
             // LA CONVERSION ARROJA:
             // RESULTADO 1=VERDADERO, 0=FALSO.
@@ -77,14 +76,13 @@ namespace sisexperto.Fachadas
             // el primer valor es el que mejor mejora la consistencia y asi sucesivamente.
 
             var mejorarConsistencia = new Mejora.Consistencia();
-            MWNumericArray matlabNumericArray = (MWNumericArray)_matlabutils.MLArrayFromNetArray(matriz);
+            MWNumericArray matlabNumericArray = _matlabutils.MLArrayFromNetArray(matriz);
 
 
-            MWNumericArray resultado = (MWNumericArray)mejorarConsistencia.impConsist(matlabNumericArray);
+            var resultado = (MWNumericArray) mejorarConsistencia.impConsist(matlabNumericArray);
 
 
-
-            double[,] doubleArray = (double[,])resultado.ToArray(MWArrayComponent.Real);
+            var doubleArray = (double[,]) resultado.ToArray(MWArrayComponent.Real);
 
             int cant = 0;
             foreach (double item in doubleArray)
@@ -92,7 +90,7 @@ namespace sisexperto.Fachadas
                 cant++;
             }
             cant--;
-            cant = cant / 3;
+            cant = cant/3;
 
             for (int i = 0; i < cant; i++)
             {
@@ -103,7 +101,4 @@ namespace sisexperto.Fachadas
             return doubleArray;
         }
     }
-
-
-
 }

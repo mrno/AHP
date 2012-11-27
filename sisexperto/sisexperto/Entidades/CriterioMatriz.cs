@@ -17,56 +17,55 @@ namespace sisexperto.Entidades
         {
             get
             {
-                var dimension = ExpertoEnProyecto.Proyecto.Criterios.Count;
-                var matriz = new double[dimension, dimension];                
+                int dimension = ExpertoEnProyecto.Proyecto.Criterios.Count;
+                var matriz = new double[dimension,dimension];
 
-                foreach (var filas in FilasCriterio)
+                foreach (CriterioFila filas in FilasCriterio)
                 {
-                    foreach (var celda in filas.CeldasCriterios)
+                    foreach (CriterioCelda celda in filas.CeldasCriterios)
                     {
                         matriz[celda.Fila, celda.Columna] = celda.ValorAHP;
                     }
-                    
                 }
                 for (int i = 0; i < dimension; i++)
                 {
                     for (int j = 0; j < dimension; j++)
                     {
-                        if (i==j)
+                        if (i == j)
                             matriz[i, j] = 1;
-                        if (i>j)
+                        if (i > j)
                             matriz[i, j] = 1/matriz[j, i];
                     }
                 }
                 return matriz;
             }
             set
-            {                
-                if(FilasCriterio == null)
+            {
+                if (FilasCriterio == null)
                 {
                     FilasCriterio = new List<CriterioFila>();
 
-                    List<Criterio> listaC = new List<Criterio>();
+                    var listaC = new List<Criterio>();
                     listaC.AddRange(ExpertoEnProyecto.Proyecto.Criterios);
 
-                    var j = 0;
+                    int j = 0;
                     for (int i = 0; i < value.GetLength(0) - 1; i++)
                     {
                         listaC.Remove(listaC.First());
-                        var k = j;
-                        List<CriterioCelda> list = 
+                        int k = j;
+                        var list =
                             new List<CriterioCelda>(from c in listaC
-                                               select new CriterioCelda()
-                                               {
-                                                   Fila = i,
-                                                   Columna = ++k,
-                                                   Criterio = listaC.ElementAt(k - j - 1),
-                                                   ValorAHP = 1.0,
-                                                   ValorIL = 0
-                                               });
+                                                    select new CriterioCelda
+                                                               {
+                                                                   Fila = i,
+                                                                   Columna = ++k,
+                                                                   Criterio = listaC.ElementAt(k - j - 1),
+                                                                   ValorAHP = 1.0,
+                                                                   ValorIL = 0
+                                                               });
 
                         FilasCriterio.Add(
-                            new CriterioFila()
+                            new CriterioFila
                                 {
                                     Criterio = ExpertoEnProyecto.Proyecto.Criterios.ElementAt(i),
                                     CeldasCriterios = list.ToList()
@@ -78,7 +77,7 @@ namespace sisexperto.Entidades
                 {
                     var listaC = new List<CriterioCelda>();
 
-                    foreach (var val in FilasCriterio)
+                    foreach (CriterioFila val in FilasCriterio)
                     {
                         listaC.AddRange(val.CeldasCriterios);
                     }
@@ -87,9 +86,9 @@ namespace sisexperto.Entidades
                     {
                         for (int j = i + 1; j < value.GetLength(1); j++)
                         {
-                            var celda = (from item in listaC
-                                         where item.Columna == j && item.Fila == i
-                                         select item).FirstOrDefault();
+                            CriterioCelda celda = (from item in listaC
+                                                   where item.Columna == j && item.Fila == i
+                                                   select item).FirstOrDefault();
                             celda.ValorAHP = value[i, j];
                         }
                     }

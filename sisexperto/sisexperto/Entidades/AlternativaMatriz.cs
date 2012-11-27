@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using sisExperto.Entidades;
 
@@ -21,16 +20,15 @@ namespace sisexperto.Entidades
         {
             get
             {
-                var dimension = ExpertoEnProyecto.Proyecto.Alternativas.Count;
-                var matriz = new double[dimension, dimension];
+                int dimension = ExpertoEnProyecto.Proyecto.Alternativas.Count;
+                var matriz = new double[dimension,dimension];
 
-                foreach (var filas in FilasAlternativa)
+                foreach (AlternativaFila filas in FilasAlternativa)
                 {
-                    foreach (var celda in filas.CeldasAlternativas)
+                    foreach (AlternativaCelda celda in filas.CeldasAlternativas)
                     {
                         matriz[celda.Fila, celda.Columna] = celda.ValorAHP;
                     }
-
                 }
                 for (int i = 0; i < dimension; i++)
                 {
@@ -39,7 +37,7 @@ namespace sisexperto.Entidades
                         if (i == j)
                             matriz[i, j] = 1;
                         if (i > j)
-                            matriz[i, j] = (double)1.0 / matriz[j, i];
+                            matriz[i, j] = 1.0/matriz[j, i];
                     }
                 }
                 return matriz;
@@ -50,27 +48,27 @@ namespace sisexperto.Entidades
                 {
                     FilasAlternativa = new List<AlternativaFila>();
 
-                    List<Alternativa> listaC = new List<Alternativa>();
+                    var listaC = new List<Alternativa>();
                     listaC.AddRange(ExpertoEnProyecto.Proyecto.Alternativas);
 
-                    var j = 0;
+                    int j = 0;
                     for (int i = 0; i < value.GetLength(0) - 1; i++)
                     {
                         listaC.Remove(listaC.First());
-                        var k = j;
-                        List<AlternativaCelda> list =
+                        int k = j;
+                        var list =
                             new List<AlternativaCelda>(from c in listaC
-                                                    select new AlternativaCelda()
-                                                    {
-                                                        Fila = i,
-                                                        Columna = ++k,
-                                                        Alternativa = listaC.ElementAt(k - j - 1),
-                                                        ValorAHP = 1.0,
-                                                        ValorIL = 0
-                                                    });
+                                                       select new AlternativaCelda
+                                                                  {
+                                                                      Fila = i,
+                                                                      Columna = ++k,
+                                                                      Alternativa = listaC.ElementAt(k - j - 1),
+                                                                      ValorAHP = 1.0,
+                                                                      ValorIL = 0
+                                                                  });
 
                         FilasAlternativa.Add(
-                            new AlternativaFila()
+                            new AlternativaFila
                                 {
                                     Alternativa = ExpertoEnProyecto.Proyecto.Alternativas.ElementAt(i),
                                     CeldasAlternativas = list.ToList()
@@ -82,7 +80,7 @@ namespace sisexperto.Entidades
                 {
                     var listaC = new List<AlternativaCelda>();
 
-                    foreach (var val in FilasAlternativa)
+                    foreach (AlternativaFila val in FilasAlternativa)
                     {
                         listaC.AddRange(val.CeldasAlternativas);
                     }
@@ -91,9 +89,9 @@ namespace sisexperto.Entidades
                     {
                         for (int j = i + 1; j < value.GetLength(1); j++)
                         {
-                            var celda = (from item in listaC
-                                         where item.Columna == j && item.Fila == i
-                                         select item).FirstOrDefault();
+                            AlternativaCelda celda = (from item in listaC
+                                                      where item.Columna == j && item.Fila == i
+                                                      select item).FirstOrDefault();
                             celda.ValorAHP = value[i, j];
                         }
                     }

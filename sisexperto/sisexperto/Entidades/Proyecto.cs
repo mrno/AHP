@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using probaAHP;
+using sisexperto.Entidades;
 using sisexperto.Fachadas;
 
 namespace sisExperto.Entidades
@@ -15,12 +16,9 @@ namespace sisExperto.Entidades
         public string Objetivo { get; set; }
 
         public string Estado { get; set; }
-        
-        public int Tipo
-        {//1=AHP, 2=IL, 3=AMBOS
-            get;
-            set;
-        }
+
+        public int Tipo { //1=AHP, 2=IL, 3=AMBOS
+            get; set; }
 
         public int CreadorId { get; set; }
         public virtual Experto Creador { get; set; }
@@ -71,14 +69,14 @@ namespace sisExperto.Entidades
                 listaAlternativas.Add(AlternativasAgregada);
             }
 
-            foreach (var expertoEnProyecto in ExpertosAsignados)
-            {               
-                if(expertoEnProyecto.TodasMisValoracionesConsistentes())
+            foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
+            {
+                if (expertoEnProyecto.TodasMisValoracionesConsistentes())
                 {
                     utils.Productoria(matrizCriterio, expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP);
 
                     int k = 0;
-                    foreach (var d in expertoEnProyecto.AlternativasMatrices)
+                    foreach (AlternativaMatriz d in expertoEnProyecto.AlternativasMatrices)
                     {
                         utils.Productoria(listaAlternativas[k], d.MatrizAlternativaAHP);
                         k++;
@@ -89,7 +87,7 @@ namespace sisExperto.Entidades
             listaCompleta.AddRange(listaAlternativas);
 
 
-            double[,] ranking =  FachadaCalculos.Instance.calcularRanking(listaCompleta);
+            double[,] ranking = FachadaCalculos.Instance.calcularRanking(listaCompleta);
 
             return ranking;
             //MostrarRanking mostrarRanking = new MostrarRanking(ranking, this, 1);
@@ -103,7 +101,7 @@ namespace sisExperto.Entidades
 
             int dimension = Alternativas.Count;
             var rankAgregado = new double[dimension,1];
-            utils.Cerar(rankAgregado,1);
+            utils.Cerar(rankAgregado, 1);
             foreach (ExpertoEnProyecto d in ObtenerExpertosProyectoConsistente())
             {
                 double[,] matriz = d.CalcularMiRanking();

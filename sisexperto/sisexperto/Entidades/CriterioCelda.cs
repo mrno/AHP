@@ -11,6 +11,5 @@
 
         public int CriterioId { get; set; }
         public virtual Criterio Criterio { get; set; }
-
     }
 }

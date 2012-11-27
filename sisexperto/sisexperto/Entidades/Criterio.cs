@@ -1,5 +1,4 @@
-﻿
-namespace sisExperto.Entidades
+﻿namespace sisExperto.Entidades
 {
     public class Criterio
     {
@@ -9,6 +8,5 @@ namespace sisExperto.Entidades
 
         public int ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
-
     }
 }

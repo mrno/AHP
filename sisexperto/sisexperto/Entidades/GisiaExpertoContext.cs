@@ -1,12 +1,16 @@
-﻿using System.Data.Entity;
+﻿
+
+using System.Data.Entity;
 using sisexperto.Entidades;
+
 
 namespace sisExperto.Entidades
 {
     public class GisiaExpertoContext : DbContext
     {
-
-        public GisiaExpertoContext() : base("DataContext") { }
+        public GisiaExpertoContext() : base("DataContext")
+        {
+        }
 
         public DbSet<Proyecto> Proyectos { get; set; }
         public DbSet<Experto> Expertos { get; set; }
@@ -31,21 +35,18 @@ namespace sisExperto.Entidades
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            
+
             modelBuilder.Entity<Proyecto>()
                 .HasRequired(x => x.Creador)
                 .WithMany(b => b.ProyectosCreados)
                 .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);
-            
-            modelBuilder.Entity<CriterioMatriz>()                
-                .HasRequired(x => x.ExpertoEnProyecto)                
+
+            modelBuilder.Entity<CriterioMatriz>()
+                .HasRequired(x => x.ExpertoEnProyecto)
                 .WithRequiredDependent(x => x.CriterioMatriz);
-            
+
 
             base.OnModelCreating(modelBuilder);
         }
-
-       
-
     }
 }

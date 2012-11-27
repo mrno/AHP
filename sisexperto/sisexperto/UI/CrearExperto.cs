@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using sisExperto.Entidades;
 
@@ -12,16 +6,21 @@ namespace sisExperto
 {
     public partial class CrearExperto : Form
     {
-        private FachadaProyectosExpertos _fachada;
+        #region Delegates
 
         public delegate void Expertos(Experto Experto);
-        public event Expertos ExpertoAgregado;
+
+        #endregion
+
+        private readonly FachadaProyectosExpertos _fachada;
 
         public CrearExperto(FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
             _fachada = Fachada;
         }
+
+        public event Expertos ExpertoAgregado;
 
         private void buttonCrearContinuar_Click(object sender, EventArgs e)
         {
@@ -44,14 +43,14 @@ namespace sisExperto
 
         private void Guardar()
         {
-            Experto exp = new Experto();
+            var exp = new Experto();
             exp.Nombre = textBoxNombre.Text;
             exp.Apellido = textBoxApellido.Text;
             exp.Usuario = textBoxUsuario.Text;
             exp.Clave = textBoxClave.Text;
 
             //se crea el Experto y se dispara el evento para que actualice los grids correspondientes
-            
+
             //ExpertoAgregado(_fachada.AltaExperto(exp));
             _fachada.AltaExperto(exp);
             try
@@ -60,7 +59,6 @@ namespace sisExperto
             }
             catch (Exception)
             {
-                
             }
         }
 
@@ -80,7 +78,7 @@ namespace sisExperto
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private bool Validar()
@@ -96,8 +94,7 @@ namespace sisExperto
             labelValidacion.Text = error1 + error2;
 
             return (!_fachada.ExisteExperto(textBoxUsuario.Text) &&
-                ((textBoxClave.Text == textBoxClaveRepetida.Text) && textBoxClave.Text != ""));
+                    ((textBoxClave.Text == textBoxClaveRepetida.Text) && textBoxClave.Text != ""));
         }
-        
     }
 }

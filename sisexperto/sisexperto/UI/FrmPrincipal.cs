@@ -2,21 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using sisExperto.Entidades;
 using sisExperto.Fachadas;
 using sisExperto.UI;
-using sisExperto.Entidades;
 
 namespace sisExperto
 {
     public partial class FrmPrincipal : Form
     {
-        private FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
-        private FachadaEjecucionProyecto _fachadaEjecucionProyectos = new FachadaEjecucionProyecto();
+        private readonly FachadaEjecucionProyecto _fachadaEjecucionProyectos = new FachadaEjecucionProyecto();
+        private readonly FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
 
         private Experto _experto;
-        private IEnumerable<Proyecto> _proyectosExperto;
 
         private Proyecto _proyectoSeleccionado;
+        private IEnumerable<Proyecto> _proyectosExperto;
+
+        public FrmPrincipal()
+        {
+            InitializeComponent();
+            HabilitarGroupbox(false);
+            buttonProyectoEdicion.Enabled = false;
+            //id_Experto = id_exp;
+        }
 
         private void LoginCorrecto(Experto expert)
         {
@@ -31,14 +39,6 @@ namespace sisExperto
         private void ActualizarProyectos(Experto expert)
         {
             _proyectosExperto = _fachadaProyectosExpertos.SolicitarProyectosCreados(expert);
-        }
-
-        public FrmPrincipal()
-        {
-            InitializeComponent();
-            HabilitarGroupbox(false);
-            buttonProyectoEdicion.Enabled = false;
-            //id_Experto = id_exp;
         }
 
         private void EjecutarLogin()
@@ -72,43 +72,39 @@ namespace sisExperto
 
         private void ActualizarGridProyectos(string filtro)
         {
-            var lista1 = (from p in _proyectosExperto
-                            where p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
-                            select p).ToList();
-            var lista2 = (from p in _proyectosExperto
-                         where p.Nombre.Contains(filtro) && !p.Objetivo.Contains(filtro)
-                         select p).ToList();
-            var lista3 = (from p in _proyectosExperto
-                          where !p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
-                          select p).ToList();
+            List<Proyecto> lista1 = (from p in _proyectosExperto
+                                     where p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
+                                     select p).ToList();
+            List<Proyecto> lista2 = (from p in _proyectosExperto
+                                     where p.Nombre.Contains(filtro) && !p.Objetivo.Contains(filtro)
+                                     select p).ToList();
+            List<Proyecto> lista3 = (from p in _proyectosExperto
+                                     where !p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
+                                     select p).ToList();
 
-            var lista = lista1;
+            List<Proyecto> lista = lista1;
             lista.AddRange(lista2);
             lista.AddRange(lista3);
             dataGridProyectos.DataSource = lista;
-
         }
 
- 
+
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            
             EjecutarLogin();
             dataGridAlternativas.DataSource = new List<Alternativa>();
             dataGridCriterios.DataSource = new List<Criterio>();
             dataGridProyectos.RowEnter += (ActualizarDetalle);
-
         }
 
         private void groupBoxProyectos_Enter(object sender, EventArgs e)
         {
-            
         }
 
         private void filtroProyecto_Leave(object sender, EventArgs e)
         {
             if (filtroProyecto.Text == "")
-                filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";            
+                filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";
         }
 
         private void filtroProyecto_Enter(object sender, EventArgs e)
@@ -122,7 +118,7 @@ namespace sisExperto
             ActualizarGridProyectos(filtroProyecto.Text);
             if (filtroProyecto.Text.Length == 0)
             {
-                filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";   
+                filtroProyecto.Text = "Ingrese los filtros de búsqueda aquí";
             }
         }
 
@@ -139,17 +135,18 @@ namespace sisExperto
 
         private void buttonProyectoEdicion_Click(object sender, EventArgs e)
         {
-            EditarProyecto _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
             _ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
             _ventanaCargarProyecto.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProyectosAsignados frmProyectosAsignados = new ProyectosAsignados(_experto, _proyectoSeleccionado, _fachadaProyectosExpertos);
+            var frmProyectosAsignados = new ProyectosAsignados(_experto, _proyectoSeleccionado,
+                                                               _fachadaProyectosExpertos);
             frmProyectosAsignados.ShowDialog();
         }
-        
+
         private void iniciarSesionToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             EjecutarLogin();
@@ -167,8 +164,8 @@ namespace sisExperto
         {
             //int proyecto = 0;
             try
-            {                
-                _proyectoSeleccionado = (Proyecto)dataGridProyectos.Rows[e.RowIndex].DataBoundItem;
+            {
+                _proyectoSeleccionado = (Proyecto) dataGridProyectos.Rows[e.RowIndex].DataBoundItem;
 
                 labelEstadoProyecto.Text = _proyectoSeleccionado.Estado;
 
@@ -177,29 +174,40 @@ namespace sisExperto
             }
             catch (Exception)
             {
-                
             }
 
             try
             {
-                dataGridAlternativas.DataSource = (from a in _fachadaProyectosExpertos.SolicitarAlternativas(_proyectoSeleccionado)
-                                                   select a).ToList();
+                dataGridAlternativas.DataSource =
+                    (from a in _fachadaProyectosExpertos.SolicitarAlternativas(_proyectoSeleccionado)
+                     select a).ToList();
             }
-            catch (Exception) { dataGridAlternativas.DataSource = new List<Alternativa>(); }
+            catch (Exception)
+            {
+                dataGridAlternativas.DataSource = new List<Alternativa>();
+            }
 
             try
             {
-                dataGridCriterios.DataSource = (from c in _fachadaProyectosExpertos.SolicitarCriterios(_proyectoSeleccionado)
-                                                select c).ToList();
+                dataGridCriterios.DataSource =
+                    (from c in _fachadaProyectosExpertos.SolicitarCriterios(_proyectoSeleccionado)
+                     select c).ToList();
             }
-            catch (Exception) {dataGridCriterios.DataSource = new List<Criterio>();}
+            catch (Exception)
+            {
+                dataGridCriterios.DataSource = new List<Criterio>();
+            }
 
             try
             {
-                dataGridExpertosAsignados.DataSource = (from ex in _fachadaProyectosExpertos.ExpertosAsignados(_proyectoSeleccionado)
-                                                        select ex).ToList();
+                dataGridExpertosAsignados.DataSource =
+                    (from ex in _fachadaProyectosExpertos.ExpertosAsignados(_proyectoSeleccionado)
+                     select ex).ToList();
             }
-            catch (Exception) { dataGridExpertosAsignados.DataSource = new List<Experto>(); }            
+            catch (Exception)
+            {
+                dataGridExpertosAsignados.DataSource = new List<Experto>();
+            }
         }
 
 
@@ -234,8 +242,9 @@ namespace sisExperto
 
         private void ponderarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto, _proyectoSeleccionado);
+            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto,
+                                                             _proyectoSeleccionado);
             ventanaPonderacion.ShowDialog();
-        }        
+        }
     }
 }

@@ -9,11 +9,11 @@ namespace sisExperto
 {
     public partial class MostrarRanking : Form
     {
-        private FachadaEjecucionProyecto _fachada;
+        private readonly FachadaEjecucionProyecto _fachada;
 
-        private double[,] rankingFinal;
-        private Proyecto _proyecto;
-       
+        private readonly Proyecto _proyecto;
+        private readonly double[,] rankingFinal;
+
         public MostrarRanking(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion)
         {
             InitializeComponent();
@@ -26,28 +26,27 @@ namespace sisExperto
 
             labelTitulo.Text = _proyecto.Nombre;
 
-            if (tipoAgregacion==1)
+            if (tipoAgregacion == 1)
             {
                 labelSubtitulo.Text = "Agregacion No Ponderada";
             }
             else
             {
                 labelSubtitulo.Text = "Agregacion Ponderada";
-            }              
+            }
         }
 
         private void CalcularAhpAgregado_Load(object sender, EventArgs e)
         {
-
-            var listaAlt = _proyecto.Alternativas;
+            ICollection<Alternativa> listaAlt = _proyecto.Alternativas;
 
             int y = 70;
             int cont = 0;
 
-            List<Resultado> listaResultado = new List<Resultado>();
-            foreach (var alternativa in listaAlt)
+            var listaResultado = new List<Resultado>();
+            foreach (Alternativa alternativa in listaAlt)
             {
-                Resultado resultado = new Resultado();
+                var resultado = new Resultado();
                 resultado.nombreAlternativa = alternativa.Nombre;
                 resultado.valorAlternativa = rankingFinal[cont, 0];
                 cont++;
@@ -58,11 +57,15 @@ namespace sisExperto
 
             dataGridResultados.DataSource = listaResultado;
         }
-        
+
+        #region Nested type: Resultado
+
         internal class Resultado
         {
             public String nombreAlternativa { get; set; }
             public double valorAlternativa { get; set; }
         }
+
+        #endregion
     }
 }

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace probaAHP
+﻿namespace probaAHP
 {
     public class Utils
     {
-       
         public void Productoria(double[,] salida, double[,] entrada)
         {
             int cantidad = entrada.GetLength(1);
@@ -15,13 +9,9 @@ namespace probaAHP
             {
                 for (int j = 0; j < cantidad; j++)
                 {
-
                     salida[i, j] *= entrada[i, j];
-
                 }
             }
-
-
         }
 
         public void Unar(double[,] salida, int cantidad)
@@ -31,11 +21,10 @@ namespace probaAHP
                 for (int k = 0; k < cantidad; k++)
                 {
                     salida[j, k] = 1;
-
                 }
             }
         }
-        
+
         public void Cerar(double[,] salida, int cantidad)
         {
             for (int j = 0; j < cantidad; j++)
@@ -43,7 +32,6 @@ namespace probaAHP
                 for (int k = 0; k < cantidad; k++)
                 {
                     salida[j, k] = 0;
-
                 }
             }
         }

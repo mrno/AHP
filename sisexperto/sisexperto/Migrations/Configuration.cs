@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using sisExperto.Entidades;
+
 namespace sisexperto.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<sisExperto.Entidades.GisiaExpertoContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<GisiaExpertoContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(sisExperto.Entidades.GisiaExpertoContext context)
+        protected override void Seed(GisiaExpertoContext context)
         {
             //  This method will be called after migrating to the latest version.
 

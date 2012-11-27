@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using sisExperto.Fachadas;
 using sisExperto.Entidades;
+using sisExperto.Fachadas;
 
 namespace sisExperto.UI
 {
     public partial class PonderacionExpertos : Form
     {
-        private FachadaEjecucionProyecto _fachadaEjecucion;
-        private List<ExpertoEnProyecto> _expertosConPonderacion;
-        private Proyecto _proyectoSeleccionado;
-        private List<Proyecto> _proyectos;
+        private readonly FachadaEjecucionProyecto _fachadaEjecucion;
+        private readonly bool _iniciado;
+        private readonly List<Proyecto> _proyectos;
 
         private int _expertoSeleccionado;
-        private bool _iniciado = false;
-        
+        private List<ExpertoEnProyecto> _expertosConPonderacion;
+        private Proyecto _proyectoSeleccionado;
+
         public PonderacionExpertos(FachadaEjecucionProyecto Fachada, IEnumerable<Proyecto> Proyectos, Proyecto Proyecto)
         {
             InitializeComponent();
@@ -28,7 +24,7 @@ namespace sisExperto.UI
             _proyectoSeleccionado = Proyecto;
             _proyectos = Proyectos.ToList();
             dataGridPonderacionExpertos.RowEnter += (ActualizarExpertoSeleccionado);
-            
+
             comboBoxProyectos.DataSource = _proyectos;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
             _iniciado = true;
@@ -36,8 +32,6 @@ namespace sisExperto.UI
 
         private void PonderacionExpertos_Load(object sender, EventArgs e)
         {
-            
-
             _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyectoSeleccionado).ToList();
             comboBoxValor.SelectedIndex = 0;
             ActualizarListaGrid();
@@ -45,7 +39,7 @@ namespace sisExperto.UI
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void buttonGuardar_Click(object sender, EventArgs e)
@@ -64,11 +58,14 @@ namespace sisExperto.UI
         {
             try
             {
-                _expertosConPonderacion.ElementAt(_expertoSeleccionado).Peso = int.Parse(comboBoxValor.SelectedItem.ToString());
+                _expertosConPonderacion.ElementAt(_expertoSeleccionado).Peso =
+                    int.Parse(comboBoxValor.SelectedItem.ToString());
                 dataGridPonderacionExpertos.DataSource = null;
                 ActualizarListaGrid();
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+            }
         }
 
         private void ActualizarExpertoSeleccionado(object sender, DataGridViewCellEventArgs e)
@@ -80,11 +77,11 @@ namespace sisExperto.UI
         {
             var datosMostrados = (from expPond in _expertosConPonderacion
                                   select new
-                                  {
-                                      IdExperto = expPond.ExpertoId,
-                                      Experto = expPond.Experto.Apellido + ", " + expPond.Experto.Nombre,
-                                      Peso = expPond.Peso
-                                  });
+                                             {
+                                                 IdExperto = expPond.ExpertoId,
+                                                 Experto = expPond.Experto.Apellido + ", " + expPond.Experto.Nombre,
+                                                 expPond.Peso
+                                             });
             //comboBoxValor.SelectedIndex = 0;
             dataGridPonderacionExpertos.DataSource = null;
             dataGridPonderacionExpertos.DataSource = datosMostrados.ToList();
@@ -96,7 +93,7 @@ namespace sisExperto.UI
         {
             if (_iniciado)
             {
-                _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
+                _proyectoSeleccionado = (Proyecto) comboBoxProyectos.SelectedItem;
                 _expertosConPonderacion = _fachadaEjecucion.ObtenerExpertosProyecto(_proyectoSeleccionado).ToList();
                 ActualizarListaGrid();
             }

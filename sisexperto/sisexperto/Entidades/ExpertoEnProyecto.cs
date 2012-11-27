@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using sisexperto.Entidades;
 using sisexperto.Fachadas;
 
@@ -20,15 +20,12 @@ namespace sisExperto.Entidades
         public virtual CriterioMatriz CriterioMatriz { get; set; }
         public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
 
-        
-
 
         public double[,] GenerarMatrizAlternativas(Criterio Criterio)
-        { 
-
-            var dimension = Proyecto.Alternativas.Count;
-            var matriz = new double[dimension, dimension];
-        /*
+        {
+            int dimension = Proyecto.Alternativas.Count;
+            var matriz = new double[dimension,dimension];
+            /*
             List<ValoracionAlternativasPorCriterioExperto> listaValoracion = 
                 (from c in ValoracionAlternativasPorCriterioExperto
                                    where c.Criterio.CriterioId == Criterio.CriterioId
@@ -58,10 +55,7 @@ namespace sisExperto.Entidades
 
 
         public void GuardarMatrizAlternativas(double[,] MatrizAlternativa, Criterio Criterio)
-        { 
-            
-
-
+        {
         }
 
         private List<double[,]> ListaMatrizAlternativas()
@@ -72,9 +66,9 @@ namespace sisExperto.Entidades
 
         public List<double[,]> ListaCriterioAlternativas()
         {
-            List<double[,]> listaCriterioAlternativas = new List<double[,]>();
-            
-            listaCriterioAlternativas.Add(this.CriterioMatriz.MatrizCriterioAHP);
+            var listaCriterioAlternativas = new List<double[,]>();
+
+            listaCriterioAlternativas.Add(CriterioMatriz.MatrizCriterioAHP);
 
             listaCriterioAlternativas.AddRange(ListaMatrizAlternativas());
             return listaCriterioAlternativas;
@@ -84,7 +78,7 @@ namespace sisExperto.Entidades
         {
             if (TodasMisValoracionesConsistentes())
             {
-                return FachadaCalculos.Instance.calcularRanking(this.ListaCriterioAlternativas());
+                return FachadaCalculos.Instance.calcularRanking(ListaCriterioAlternativas());
             }
             else
             {
@@ -101,11 +95,11 @@ namespace sisExperto.Entidades
         {
             return CriterioMatriz.Consistencia;
         }
-        
+
         private bool MisAlternativasConsistentes()
         {
-            var flag = true;
-            foreach (var matrizAlter in AlternativasMatrices)
+            bool flag = true;
+            foreach (AlternativaMatriz matrizAlter in AlternativasMatrices)
             {
                 flag &= matrizAlter.Consistencia;
             }

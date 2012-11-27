@@ -6,9 +6,9 @@ namespace sisExperto.Fachadas
 {
     public class FachadaEjecucionProyecto
     {
-        private GisiaExpertoContext _context = new GisiaExpertoContext();
+        private readonly GisiaExpertoContext _context = new GisiaExpertoContext();
 
-     public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
+        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {
             return _proyecto.ExpertosAsignados;
         }
@@ -18,13 +18,15 @@ namespace sisExperto.Fachadas
             return true;
         }
 
-        public void GuardarPesosExpertosEnProyecto(Entidades.Proyecto _proyecto, List<ExpertoEnProyecto> _ExpertosConPonderacion)
+        public void GuardarPesosExpertosEnProyecto(Proyecto _proyecto, List<ExpertoEnProyecto> _ExpertosConPonderacion)
         {
-            foreach (var item in _ExpertosConPonderacion)
+            foreach (ExpertoEnProyecto item in _ExpertosConPonderacion)
             {
-                var expEnProyecto = (from ex in _context.ExpertosEnProyectos
-                                     where ex.ProyectoId == _proyecto.ProyectoId && ex.ExpertoId == item.Experto.ExpertoId
-                                     select ex).FirstOrDefault();
+                ExpertoEnProyecto expEnProyecto = (from ex in _context.ExpertosEnProyectos
+                                                   where
+                                                       ex.ProyectoId == _proyecto.ProyectoId &&
+                                                       ex.ExpertoId == item.Experto.ExpertoId
+                                                   select ex).FirstOrDefault();
                 if (expEnProyecto == null)
                     _proyecto.ExpertosAsignados.Add(item);
                 else
@@ -39,9 +41,12 @@ namespace sisExperto.Fachadas
         {
             switch (tipoAgregacion)
             {
-                case 1: return _proyecto.CalcularRankingNoPonderado();
-                case 2: return _proyecto.CalcularRankinPonderado();
-                default: return new double[_proyecto.Alternativas.Count, 1];
+                case 1:
+                    return _proyecto.CalcularRankingNoPonderado();
+                case 2:
+                    return _proyecto.CalcularRankinPonderado();
+                default:
+                    return new double[_proyecto.Alternativas.Count,1];
             }
         }
     }

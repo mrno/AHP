@@ -10,18 +10,22 @@ namespace sisExperto
 {
     public partial class NuevoProyecto : Form
     {
-        private int token;
-        private bool flag = true;
+        #region Delegates
+
         public delegate void Proyectos();
-        public event Proyectos ProyectoCreado;
-        private List<Experto> _ExpertosAsignados = new List<Experto>();
-        private List<Experto> _todosExpertos = new List<Experto>();
+
+        #endregion
+
+        private readonly List<ConjuntoEtiquetas> _EtiquetasAsignadas = new List<ConjuntoEtiquetas>();
+        private readonly Experto _Experto;
+        private readonly List<Experto> _ExpertosAsignados = new List<Experto>();
+        private readonly List<ConjuntoEtiquetas> _conjuntoEtiquetasExtendida = new List<ConjuntoEtiquetas>();
+        private readonly FachadaProyectosExpertos _fachada;
+        private readonly List<Combinada> listaCombinada = new List<Combinada>();
         private List<ConjuntoEtiquetas> _conjuntoEtiquetases = new List<ConjuntoEtiquetas>();
-        private List<ConjuntoEtiquetas> _EtiquetasAsignadas = new List<ConjuntoEtiquetas>();
-        private List<ConjuntoEtiquetas> _conjuntoEtiquetasExtendida = new List<ConjuntoEtiquetas>();
-        private List<Combinada> listaCombinada = new List<Combinada>();
-        private Experto _Experto;
-        private FachadaProyectosExpertos _fachada;
+        private List<Experto> _todosExpertos = new List<Experto>();
+        private bool flag = true;
+        private int token;
 
         public NuevoProyecto(FachadaProyectosExpertos Fachada, Experto Experto)
         {
@@ -32,9 +36,11 @@ namespace sisExperto
             buttonCrearEtiquetas.Enabled = false;
         }
 
+        public event Proyectos ProyectoCreado;
+
         private void AsignarExperto(Experto exp)
         {
-            Combinada combinada = new Combinada();
+            var combinada = new Combinada();
             combinada.Experto = exp;
             combinada.ExpertoApellido = exp.Apellido;
             combinada.ExpertoNombre = exp.Nombre;
@@ -45,9 +51,9 @@ namespace sisExperto
         private void ActualizarGridCombinada()
         {
             dataGridCombinada.DataSource = null;
-            var lista = listaCombinada;
+            List<Combinada> lista = listaCombinada;
             lista.Reverse();
-            dataGridCombinada.DataSource = lista; 
+            dataGridCombinada.DataSource = lista;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -61,13 +67,13 @@ namespace sisExperto
         {
             if (_todosExpertos.Count > 0)
             {
-                Experto exp = (Experto)dataGridExpertosDisponibles.CurrentRow.DataBoundItem;
+                var exp = (Experto) dataGridExpertosDisponibles.CurrentRow.DataBoundItem;
                 //acá puede que vaya exp nomás
                 _todosExpertos.Remove(exp);
                 dataGridExpertosDisponibles.DataSource = null;
                 dataGridExpertosDisponibles.DataSource = _todosExpertos;
 
-                var combinada = new Combinada()
+                var combinada = new Combinada
                                     {
                                         ConjuntoEtiquetas = null,
                                         Admin = exp.Administrador,
@@ -75,7 +81,6 @@ namespace sisExperto
                                         ConjuntoEtiquetasNombre = "",
                                         Experto = exp,
                                         ExpertoNombre = exp.Nombre
-                                        
                                     };
                 listaCombinada.Add(combinada);
 
@@ -83,7 +88,7 @@ namespace sisExperto
                 dataGridCombinada.DataSource = null;
                 dataGridCombinada.DataSource = listaCombinada.ToList();
 
-               // AsignarExperto(exp);
+                // AsignarExperto(exp);
             }
             btnQuitar.Enabled = true;
         }
@@ -92,11 +97,11 @@ namespace sisExperto
         {
             if (_ExpertosAsignados.Count != 0)
             {
-                _todosExpertos.Add((Experto)dataGridCombinada.CurrentRow.DataBoundItem);
+                _todosExpertos.Add((Experto) dataGridCombinada.CurrentRow.DataBoundItem);
                 dataGridExpertosDisponibles.DataSource = null;
                 dataGridExpertosDisponibles.DataSource = _todosExpertos;
 
-                _ExpertosAsignados.Remove((Experto)dataGridCombinada.CurrentRow.DataBoundItem);
+                _ExpertosAsignados.Remove((Experto) dataGridCombinada.CurrentRow.DataBoundItem);
                 dataGridCombinada.DataSource = null;
                 dataGridCombinada.DataSource = _ExpertosAsignados;
             }
@@ -130,20 +135,28 @@ namespace sisExperto
 
         private bool Guardar()
         {
-            var bandera = false;
+            bool bandera = false;
             if ((textBoxNombreProyecto.Text != "") && (textBoxObjetivoProyecto.Text != ""))
             {
                 if (listaCombinada.Count != 0)
                 {
-                    Proyecto _proyecto = new Proyecto { Nombre = textBoxNombreProyecto.Text, Objetivo = textBoxObjetivoProyecto.Text, Creador = _Experto, Estado = "Creado", Tipo = comboBoxTipoModelo.SelectedIndex};
+                    var _proyecto = new Proyecto
+                                        {
+                                            Nombre = textBoxNombreProyecto.Text,
+                                            Objetivo = textBoxObjetivoProyecto.Text,
+                                            Creador = _Experto,
+                                            Estado = "Creado",
+                                            Tipo = comboBoxTipoModelo.SelectedIndex
+                                        };
 
                     foreach (Combinada combinada in listaCombinada)
                     {
                         _ExpertosAsignados.Add(combinada.Experto);
                         _EtiquetasAsignadas.Add(combinada.ConjuntoEtiquetas);
                     }
-                    
-                    var expertosEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto, _ExpertosAsignados);
+
+                    IEnumerable<ExpertoEnProyecto> expertosEnProyecto = _fachada.AsignarExpertosAlProyecto(_proyecto,
+                                                                                                           _ExpertosAsignados);
                     _fachada.AltaProyecto(_proyecto);
 
                     _fachada.AsignarConjuntoEquiquetasAlExperto(expertosEnProyecto, _EtiquetasAsignadas);
@@ -163,8 +176,8 @@ namespace sisExperto
 
         private void btnCrearYSalir_Click(object sender, EventArgs e)
         {
-            if (Guardar())  
-                this.Close();
+            if (Guardar())
+                Close();
         }
 
         private void buttonLimpiar_Click(object sender, EventArgs e)
@@ -181,12 +194,11 @@ namespace sisExperto
 
         private void SetearBotonCrearEtiquetas(object sender, EventArgs e)
         {
-            if (comboBoxTipoModelo.SelectedIndex==1 ||comboBoxTipoModelo.SelectedIndex==2)
+            if (comboBoxTipoModelo.SelectedIndex == 1 || comboBoxTipoModelo.SelectedIndex == 2)
             {
                 buttonCrearEtiquetas.Enabled = true;
                 dataGridConjuntoEtiquetas.Enabled = true;
                 buttonAgregarConjunto.Enabled = true;
-
             }
             else
             {
@@ -207,18 +219,12 @@ namespace sisExperto
 
         private void buttonAgregarConjunto_Click(object sender, EventArgs e)
         {
-
-
-          
-               
-           
-                var conjuntoEtiquetas = (ConjuntoEtiquetas)dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
-                var index = dataGridCombinada.CurrentRow.Index;
-                listaCombinada[index].ConjuntoEtiquetas = conjuntoEtiquetas;
-                listaCombinada[index].ConjuntoEtiquetasNombre = conjuntoEtiquetas.Nombre;
-                dataGridCombinada.DataSource = null;
-                dataGridCombinada.DataSource = listaCombinada;  
-           
+            var conjuntoEtiquetas = (ConjuntoEtiquetas) dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
+            int index = dataGridCombinada.CurrentRow.Index;
+            listaCombinada[index].ConjuntoEtiquetas = conjuntoEtiquetas;
+            listaCombinada[index].ConjuntoEtiquetasNombre = conjuntoEtiquetas.Nombre;
+            dataGridCombinada.DataSource = null;
+            dataGridCombinada.DataSource = listaCombinada;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -229,20 +235,17 @@ namespace sisExperto
             dataGridConjuntoEtiquetas.DataSource = null;
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
             dataGridConjuntoEtiquetas.Rows[0].Selected = true;
-
         }
 
         private void NuevoProyecto_Activated(object sender, EventArgs e)
         {
-           if (flag) {
-               _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
-            dataGridConjuntoEtiquetas.DataSource = null;
-            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
-            dataGridConjuntoEtiquetas.Rows[0].Selected = true;
+            if (flag)
+            {
+                _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
+                dataGridConjuntoEtiquetas.DataSource = null;
+                dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+                dataGridConjuntoEtiquetas.Rows[0].Selected = true;
             }
-          
         }
-
-    
-     }
+    }
 }
