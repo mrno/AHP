@@ -24,9 +24,7 @@ namespace sisExperto
             matrizCriterio = matriz;
             miFachada = facha;
             _proyecto = proy;
-            //id_proyecto = id_p;
-            //id_Experto = id_e;
-        }
+       }
 
         public float valorarNumero(int valor)
         {
@@ -173,11 +171,7 @@ namespace sisExperto
                             }
                         }
 
-                        //dato = new DALDatos();
-                        //dato.modificarComparacionCriterios(id_proyecto, id_Experto, Convert.ToInt32(posicion[0].ToString()), Convert.ToInt32(posicion[1].ToString()), dato.valorarNumero(track.Value));
-                        //dato.actualizarConsistenciaProyecto(id_proyecto, id_Experto, false);
-                        //dato.actualizarMatrizCriterio(id_proyecto, id_Experto, false);
-                    }
+                        }
                 }
             }
         }
@@ -186,9 +180,7 @@ namespace sisExperto
         {
             int y = 140;
 
-            var listaCeldas = new List<CriterioCelda>();
-
-            foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
+          foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
             {
                 foreach (CriterioCelda celda in fila.CeldasCriterios)
                 {

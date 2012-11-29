@@ -10,6 +10,10 @@ namespace sisexperto.Fachadas
         private static volatile FachadaCalculos instance;
         private static readonly object syncRoot = new Object();
         private readonly MatlabUtils _matlabutils = new MatlabUtils();
+        private Consistencia.Consistencia c = new Consistencia.Consistencia();
+        private Mejora.Consistencia mejorarConsistencia = new Mejora.Consistencia();
+        private CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
+        private MatlabUtils matlabUtils = new MatlabUtils();
 
 
         private FachadaCalculos()
@@ -36,8 +40,8 @@ namespace sisexperto.Fachadas
 
         public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas)
         {
-            var calcularAhp = new CalcularAHP.CalcularAHP();
-            var matlabUtils = new MatlabUtils();
+  
+            
             MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
             MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
             var mwArray = (MWNumericArray) calcularAhp.rankCalc(vectCriterios, superMatriz);
@@ -49,7 +53,7 @@ namespace sisexperto.Fachadas
 
         public bool CalcularConsistencia(double[,] matriz)
         {
-            var c = new Consistencia.Consistencia();
+            
             MWNumericArray matlabNumericArray = _matlabutils.MLArrayFromNetArray(matriz);
 
             var result = (MWLogicalArray) c.calcConsist(matlabNumericArray);
@@ -75,7 +79,7 @@ namespace sisexperto.Fachadas
             // estos valores estan ordenados en funcion de "que tanto mejora la consistencia"
             // el primer valor es el que mejor mejora la consistencia y asi sucesivamente.
 
-            var mejorarConsistencia = new Mejora.Consistencia();
+            
             MWNumericArray matlabNumericArray = _matlabutils.MLArrayFromNetArray(matriz);
 
 

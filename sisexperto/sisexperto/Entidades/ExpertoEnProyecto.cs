@@ -74,6 +74,14 @@ namespace sisExperto.Entidades
             return listaCriterioAlternativas;
         }
 
+        public ConjuntoEtiquetas MiConjuntoEtiquetas()
+        {
+
+
+            return ConjuntoEtiquetas;
+        }
+
+
         public double[,] CalcularMiRanking()
         {
             if (TodasMisValoracionesConsistentes())

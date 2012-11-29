@@ -35,6 +35,8 @@
             this.buttonAceptar = new System.Windows.Forms.Button();
             this.buttonSalir = new System.Windows.Forms.Button();
             this.labelSesionInv = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // textBoxUsuario
@@ -109,11 +111,19 @@
             this.labelSesionInv.TabIndex = 6;
             this.labelSesionInv.Text = "Datos de Sesión Incorrectos!";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(16, 186);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(316, 23);
+            this.progressBar1.TabIndex = 7;
+            // 
             // LogExperto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 181);
+            this.ClientSize = new System.Drawing.Size(344, 221);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelSesionInv);
             this.Controls.Add(this.buttonSalir);
             this.Controls.Add(this.buttonAceptar);
@@ -128,6 +138,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Experto";
+            this.Load += new System.EventHandler(this.CargaProgress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +153,7 @@
         private System.Windows.Forms.Button buttonAceptar;
         private System.Windows.Forms.Button buttonSalir;
         private System.Windows.Forms.Label labelSesionInv;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

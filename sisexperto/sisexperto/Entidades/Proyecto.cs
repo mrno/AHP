@@ -56,18 +56,20 @@ namespace sisExperto.Entidades
             var utils = new Utils();
             var listaCompleta = new List<double[,]>();
             var listaAlternativas = new List<double[,]>();
-
+            int k;
 
             var matrizCriterio = new double[Criterios.Count,Criterios.Count];
             utils.Unar(matrizCriterio, Criterios.Count);
 
 
-            for (int i = 0; i < Alternativas.Count; i++)
+            for (int i = 0; i < Criterios.Count; i++)
             {
                 var AlternativasAgregada = new double[Alternativas.Count,Alternativas.Count];
                 utils.Unar(AlternativasAgregada, Alternativas.Count);
                 listaAlternativas.Add(AlternativasAgregada);
             }
+
+
 
             foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
             {
@@ -75,7 +77,7 @@ namespace sisExperto.Entidades
                 {
                     utils.Productoria(matrizCriterio, expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP);
 
-                    int k = 0;
+                    k = 0;
                     foreach (AlternativaMatriz d in expertoEnProyecto.AlternativasMatrices)
                     {
                         utils.Productoria(listaAlternativas[k], d.MatrizAlternativaAHP);
@@ -86,6 +88,10 @@ namespace sisExperto.Entidades
             listaCompleta.Add(matrizCriterio);
             listaCompleta.AddRange(listaAlternativas);
 
+            foreach (double[,] doublese in listaCompleta)
+            {
+               // doublese = doublese ** 
+            }
 
             double[,] ranking = FachadaCalculos.Instance.calcularRanking(listaCompleta);
 

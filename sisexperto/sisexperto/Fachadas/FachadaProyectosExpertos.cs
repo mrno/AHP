@@ -31,6 +31,18 @@ namespace sisExperto
                     select expEnProyecto.Proyecto);
         }
 
+        public ExpertoEnProyecto SolicitarExpertoProyectoActual (Proyecto _proyecto, Experto _experto)
+        {
+
+            return (from expEnProyecto in _experto.ProyectosAsignados
+                    where expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
+                    select expEnProyecto
+
+                   ).FirstOrDefault();
+            
+
+        }
+
         public IEnumerable<Proyecto> SolicitarProyectosCreados(Experto e)
         {
             return e.ProyectosCreados;
@@ -211,6 +223,7 @@ namespace sisExperto
                     select c);
         }
 
+  
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
             return _context.ConjuntoEtiquetas;

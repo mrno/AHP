@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisExperto.Fachadas;
 using sisExperto.UI;
+using sisexperto.UI;
 
 namespace sisExperto
 {
@@ -217,14 +218,14 @@ namespace sisExperto
             //tipoAgregacion=2 -> Ponderado
 
             var ventanaAHPPonderado = new MostrarRanking(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
-            ventanaAHPPonderado.ShowDialog();
+            ventanaAHPPonderado.Show();
             //_proyectoSeleccionado.CalcularRankinPonderado();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ventanaAHPNoPonderado = new MostrarRanking(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
-            ventanaAHPNoPonderado.ShowDialog();
+            ventanaAHPNoPonderado.Show();
             //_proyectoSeleccionado.CalcularRankingNoPonderado();
         }
 
@@ -245,6 +246,12 @@ namespace sisExperto
             var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto,
                                                              _proyectoSeleccionado);
             ventanaPonderacion.ShowDialog();
+        }
+
+        private void valorarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaValoracionIL = new CompararIL(_fachadaProyectosExpertos, _proyectoSeleccionado);
+            ventanaValoracionIL.ShowDialog();
         }
     }
 }

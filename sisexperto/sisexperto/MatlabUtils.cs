@@ -53,6 +53,7 @@ namespace sisExperto
         {
             var vectCalc = new VectCalc.VectCalc();
             int cantidad = lista.Count - 1;
+            int cantAlternativa = lista[1].GetLength(0);
             var matrizSalida = new double[lista.Count,cantidad];
             var preMatriz = new double[,] {};
 
@@ -64,7 +65,7 @@ namespace sisExperto
 
                 preMatriz = NetArrayFromMLArray(preRdo);
 
-                for (int j = 0; j < cantidad; j++)
+                for (int j = 0; j < cantAlternativa; j++)
                 {
                     matrizSalida[j, i] = preMatriz[j, 0];
                 }
