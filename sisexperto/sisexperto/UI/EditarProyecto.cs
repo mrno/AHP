@@ -23,7 +23,8 @@ namespace sisExperto.UI
         private List<Criterio> _listaCriterios = new List<Criterio>();
         private Proyecto _proyectoSeleccionado;
         private int i;
-
+        private int numeroCriterio =1;
+        private int numeroAlternativa = 1;
 
         public EditarProyecto(Proyecto Proyecto, Experto Experto, FachadaProyectosExpertos Fachada)
         {
@@ -33,11 +34,11 @@ namespace sisExperto.UI
             _experto = Experto;
 
             //For testing
-            textBoxDescripcionAlternativa.Text = "A" + i;
-            textBoxNombreAlternativa.Text = "A" + i;
+            textBoxDescripcionAlternativa.Text = "A" + numeroAlternativa;
+            textBoxNombreAlternativa.Text = "A" + numeroAlternativa;
 
-            textBoxDescripcionCriterio.Text = "C" + i;
-            textBoxNombreCriterio.Text = "C" + i;
+            textBoxDescripcionCriterio.Text = "C" + numeroCriterio;
+            textBoxNombreCriterio.Text = "C" + numeroCriterio;
             _proyectosNoValorados = _fachada.ProyectosNoValorados(_experto).ToList();
         }
 
@@ -58,8 +59,10 @@ namespace sisExperto.UI
                 dataGridAlternativas.DataSource = _listaAlternativas;
 
                 buttonQuitarAlternativa.Enabled = true;
-                textBoxDescripcionAlternativa.Text = "A" + i++;
-                textBoxNombreAlternativa.Text = "A" + i++;
+                numeroAlternativa++;
+                textBoxDescripcionAlternativa.Text = "A" + numeroAlternativa;
+                textBoxNombreAlternativa.Text = "A" + numeroAlternativa;
+               
             }
             else MessageBox.Show("El Nombre y la Descripción de la alternativa no pueden estar vacíos.");
         }
@@ -70,7 +73,7 @@ namespace sisExperto.UI
             _listaAlternativas.Remove(alt);
             dataGridAlternativas.DataSource = null;
             dataGridAlternativas.DataSource = _listaAlternativas;
-
+            numeroAlternativa--;
             if (_listaAlternativas.Count == 0)
                 buttonQuitarAlternativa.Enabled = false;
         }
@@ -90,9 +93,10 @@ namespace sisExperto.UI
                 dataGridCriterios.DataSource = _listaCriterios;
 
                 buttonQuitarCriterio.Enabled = true;
-
-                textBoxDescripcionCriterio.Text = "C" + i++;
-                textBoxNombreCriterio.Text = "C" + i++;
+                numeroCriterio++;
+                textBoxDescripcionCriterio.Text = "C" + numeroCriterio;
+                textBoxNombreCriterio.Text = "C" + numeroCriterio;
+                
             }
             else MessageBox.Show("El Nombre y la Descripción del criterio no pueden estar vacíos.");
         }
@@ -102,7 +106,7 @@ namespace sisExperto.UI
             _listaCriterios.Remove((Criterio) dataGridCriterios.CurrentRow.DataBoundItem);
             dataGridCriterios.DataSource = null;
             dataGridCriterios.DataSource = _listaCriterios;
-
+            numeroCriterio--;
             if (_listaCriterios.Count == 0)
                 buttonQuitarCriterio.Enabled = false;
         }

@@ -10,6 +10,7 @@ namespace sisExperto.Entidades
     {
         public GisiaExpertoContext() : base("DataContext")
         {
+         
         }
 
         public DbSet<Proyecto> Proyectos { get; set; }
@@ -34,6 +35,7 @@ namespace sisExperto.Entidades
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+         
             //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
             modelBuilder.Entity<Proyecto>()

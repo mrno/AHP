@@ -229,9 +229,8 @@ namespace sisExperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _conjuntoEtiquetasExtendida.AddRange(_fachada.SolicitarConjuntoEtiquetas());
-            _conjuntoEtiquetases.Clear();
-            _conjuntoEtiquetases.AddRange(_conjuntoEtiquetasExtendida);
+  
+            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetas());
             dataGridConjuntoEtiquetas.DataSource = null;
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
             dataGridConjuntoEtiquetas.Rows[0].Selected = true;

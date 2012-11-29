@@ -216,6 +216,16 @@ namespace sisExperto
             return ce.Etiquetas;
         }
 
+        public ConjuntoEtiquetas SolicitarEtiquetasDelExperto (ExpertoEnProyecto expertoEnProyecto)
+        {
+
+            return _context.ConjuntoEtiquetas.ToList()[1];
+            //List<Etiqueta> lista = (from c in _context.Etiqueta
+            //        where c.ConjuntoEtiquetasId == expertoEnProyecto.ConjuntoEtiquetas.ConjuntoEtiquetasId
+            //        select c).ToList();
+            //return lista;
+
+        }        
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasT(int val)
         {
             return (from c in _context.ConjuntoEtiquetas

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using sisExperto;
 using sisExperto.Entidades;
@@ -27,9 +28,9 @@ namespace sisexperto.UI
         }
 
           private void mostrar(object sender, EventArgs e)
-        {
-           
+          {
 
+             
             track = (TrackBar) sender;
 
             foreach (Control miLabel in FindForm().Controls)
@@ -40,7 +41,8 @@ namespace sisexperto.UI
                     {
                         string[] posicion = track.Name.Split('x');
                         var l = (Label) miLabel;
-                        l.Text = "algo";
+
+                        l.Text = miFachada.SolicitarEtiquetasDelExperto(_expertoEnProyecto).Etiquetas.ToString();
 
                         foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
                         {
@@ -66,6 +68,12 @@ namespace sisexperto.UI
             }
         }
 
+        private int Mediar(int valorCelda)
+        {
+            
+            return valorCelda == 0 ? 1 : 1;
+        }
+
         public void CompararIL_load(object sender, EventArgs e)
         {
                 int y = 140;
@@ -84,8 +92,8 @@ namespace sisexperto.UI
                         var track = new TrackBar();
                         track.SetBounds(75, y, 400, 45);
                         track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
-                        track.SetRange(1, 17);
-                        track.Value =  celda.ValorILNumerico;
+                        track.SetRange(1, _expertoEnProyecto.ConjuntoEtiquetas.Cantidad);
+                        track.Value =  Mediar(celda.ValorILNumerico);
                         track.Scroll += mostrar;
                         Controls.Add(track);
 

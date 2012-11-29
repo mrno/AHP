@@ -200,9 +200,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
-        //private System.Windows.Forms.Button button2;
-        //private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label9;
+       private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
