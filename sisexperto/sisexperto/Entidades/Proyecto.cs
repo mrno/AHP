@@ -57,6 +57,7 @@ namespace sisExperto.Entidades
             var listaCompleta = new List<double[,]>();
             var listaAlternativas = new List<double[,]>();
             int k;
+            int kk = 0;
 
             var matrizCriterio = new double[Criterios.Count,Criterios.Count];
             utils.Unar(matrizCriterio, Criterios.Count);
@@ -83,15 +84,30 @@ namespace sisExperto.Entidades
                         utils.Productoria(listaAlternativas[k], d.MatrizAlternativaAHP);
                         k++;
                     }
+                    kk++;
                 }
             }
+
             listaCompleta.Add(matrizCriterio);
             listaCompleta.AddRange(listaAlternativas);
-
+           
+            double exponente = (double)1/kk;
             foreach (double[,] doublese in listaCompleta)
             {
-               // doublese = doublese ** 
+
+                for (int i = 0; i < doublese.GetLength(0); i++)
+                {
+                    for (int j = 0; j < doublese.GetLength(0); j++)
+                    {
+                        doublese[i, j] = Math.Pow(doublese[i, j], exponente);
+                    }
+                    
+                }
+                
             }
+
+
+
 
             double[,] ranking = FachadaCalculos.Instance.calcularRanking(listaCompleta);
 
