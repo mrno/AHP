@@ -61,7 +61,7 @@ namespace sisexperto.Entidades
                                                                    Columna = ++k,
                                                                    Criterio = listaC.ElementAt(k - j - 1),
                                                                    ValorAHP = 1.0,
-                                                                   ValorIL = 0
+                                                                   ValorILNumerico = 0
                                                                });
 
                         FilasCriterio.Add(

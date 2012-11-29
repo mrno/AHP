@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
+using sisexperto.UI;
 
 namespace sisExperto
 {
@@ -92,6 +93,12 @@ namespace sisExperto
             var frmComparar = new CompararCriterios(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
             cargarMatrices();
+        }
+
+        private void buttonVerMatrizCriterio_Click(object sender, EventArgs e)
+        {
+            var ventanaValoracionIL = new CompararIL(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
+            ventanaValoracionIL.ShowDialog();
         }
     }
 }

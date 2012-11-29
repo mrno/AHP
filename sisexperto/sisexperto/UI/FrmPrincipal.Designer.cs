@@ -499,7 +499,7 @@
             this.valorarToolStripMenuItem.Name = "valorarToolStripMenuItem";
             this.valorarToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
             this.valorarToolStripMenuItem.Text = "Valorar";
-            this.valorarToolStripMenuItem.Click += new System.EventHandler(this.valorarToolStripMenuItem_Click);
+            
             // 
             // FrmPrincipal
             // 

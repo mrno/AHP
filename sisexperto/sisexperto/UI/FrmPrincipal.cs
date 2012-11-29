@@ -248,10 +248,6 @@ namespace sisExperto
             ventanaPonderacion.ShowDialog();
         }
 
-        private void valorarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var ventanaValoracionIL = new CompararIL(_fachadaProyectosExpertos, _proyectoSeleccionado);
-            ventanaValoracionIL.ShowDialog();
-        }
+        
     }
 }
