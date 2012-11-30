@@ -16,7 +16,7 @@ namespace sisExperto
         private ExpertoEnProyecto _expertoEnProyecto;
         private Proyecto _proyectoSeleccionado;
 
-        public ProyectosAsignados(Experto experto, Proyecto ProyectoSeleccionado, FachadaProyectosExpertos Fachada)
+        public ProyectosAsignados(Experto experto,  Proyecto ProyectoSeleccionado, FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
             _proyectoSeleccionado = ProyectoSeleccionado;

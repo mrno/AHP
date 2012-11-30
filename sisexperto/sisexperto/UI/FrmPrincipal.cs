@@ -39,7 +39,7 @@ namespace sisExperto
 
         private void ActualizarProyectos(Experto expert)
         {
-            _proyectosExperto = _fachadaProyectosExpertos.SolicitarProyectosCreados(expert);
+            _proyectosExperto = _fachadaProyectosExpertos.SolicitarProyectosAsignados(expert);
         }
 
         private void EjecutarLogin()
