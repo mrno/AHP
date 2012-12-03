@@ -16,7 +16,7 @@ namespace sisexperto.UI
         private readonly FachadaProyectosExpertos miFachada;
         private readonly CriterioMatriz matrizCriterio;
         private TrackBar track;
-
+        private int i = 0;
         public CompararIL(CriterioMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy)
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace sisexperto.UI
 
              
             track = (TrackBar) sender;
-
+              i = 0;
             foreach (Control miLabel in FindForm().Controls)
             {
                 if (miLabel is Label)
@@ -42,7 +42,7 @@ namespace sisexperto.UI
                         string[] posicion = track.Name.Split('x');
                         var l = (Label) miLabel;
 
-                        l.Text = miFachada.SolicitarEtiquetasDelExperto(_expertoEnProyecto).Etiquetas.ToString();
+                        l.Text = miFachada.SolicitarEtiquetasDelExperto(_expertoEnProyecto)[i].Nombre;
 
                         foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
                         {
@@ -65,6 +65,7 @@ namespace sisexperto.UI
 
                         }
                 }
+                i++;
             }
         }
 

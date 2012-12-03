@@ -24,7 +24,7 @@ namespace sisExperto
         private readonly List<Combinada> listaCombinada = new List<Combinada>();
         private List<ConjuntoEtiquetas> _conjuntoEtiquetases = new List<ConjuntoEtiquetas>();
         private List<Experto> _todosExpertos = new List<Experto>();
-        private bool flag = true;
+        private bool IniciaFormPrimeraVez = true;
         private int token;
 
         public NuevoProyecto(FachadaProyectosExpertos Fachada, Experto Experto)
@@ -112,15 +112,22 @@ namespace sisExperto
         private void NuevoProyecto_Load(object sender, EventArgs e)
         {
             token = -1;
-            flag = false;
+            
             _todosExpertos = _fachada.ObtenerExpertos().ToList();
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
-            _conjuntoEtiquetases.Clear();
-            _conjuntoEtiquetases = _fachada.SolicitarConjuntoEtiquetasT(0).ToList();
-            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+            CargarDataGridConjuntoEtiquetas();
             buttonCrearEtiquetas.Enabled = false;
             dataGridConjuntoEtiquetas.Enabled = false;
             buttonAgregarConjunto.Enabled = false;
+            IniciaFormPrimeraVez = false;
+        }
+
+        private void CargarDataGridConjuntoEtiquetas()
+        {
+            _conjuntoEtiquetases.Clear();
+            _conjuntoEtiquetases = _fachada.SolicitarConjuntoEtiquetasT(token).ToList();
+            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -214,7 +221,7 @@ namespace sisExperto
             token = random.Next(0, 100);
             var ventanaCreacionLabels = new CrearEtiquetas(token);
             ventanaCreacionLabels.Show();
-            flag = true;
+            IniciaFormPrimeraVez = true;
         }
 
         private void buttonAgregarConjunto_Click(object sender, EventArgs e)
@@ -233,12 +240,24 @@ namespace sisExperto
             _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetas());
             dataGridConjuntoEtiquetas.DataSource = null;
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
-            dataGridConjuntoEtiquetas.Rows[0].Selected = true;
+            if (_conjuntoEtiquetases.Count==0)
+            {
+                MessageBox.Show("No existe Conjunto de Etiquetas, deberia crearlas y asignar a los expertos");
+            }
+            else
+            {
+                dataGridConjuntoEtiquetas.Rows[0].Selected = true;    
+            }
+            
         }
 
         private void NuevoProyecto_Activated(object sender, EventArgs e)
         {
-            if (flag)
+            if (!IniciaFormPrimeraVez)
+            {
+               
+            }
+            else
             {
                 _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasT(token));
                 dataGridConjuntoEtiquetas.DataSource = null;
