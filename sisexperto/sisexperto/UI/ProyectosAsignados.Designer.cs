@@ -42,23 +42,36 @@
             this.buttonVerMatrizCriterio = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBoxConsistencia = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPageAHP = new System.Windows.Forms.TabPage();
+            this.tabPageIL = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaMatrizBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPageAHP.SuspendLayout();
+            this.tabPageIL.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.gridAlternativa);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 113);
+            this.groupBox3.Location = new System.Drawing.Point(6, 84);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(500, 336);
+            this.groupBox3.Size = new System.Drawing.Size(500, 285);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Valoración de Alternativas:";
+            this.groupBox3.Text = "Comparacion de Alternativas:";
             // 
             // gridAlternativa
             // 
@@ -77,7 +90,7 @@
             this.gridAlternativa.Name = "gridAlternativa";
             this.gridAlternativa.ReadOnly = true;
             this.gridAlternativa.RowHeadersVisible = false;
-            this.gridAlternativa.Size = new System.Drawing.Size(488, 305);
+            this.gridAlternativa.Size = new System.Drawing.Size(488, 254);
             this.gridAlternativa.TabIndex = 5;
             this.gridAlternativa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modificarAlternativa);
             // 
@@ -113,8 +126,9 @@
             this.comboBoxProyectos.FormattingEnabled = true;
             this.comboBoxProyectos.Location = new System.Drawing.Point(93, 6);
             this.comboBoxProyectos.Name = "comboBoxProyectos";
-            this.comboBoxProyectos.Size = new System.Drawing.Size(419, 28);
+            this.comboBoxProyectos.Size = new System.Drawing.Size(436, 28);
             this.comboBoxProyectos.TabIndex = 32;
+            this.comboBoxProyectos.SelectedIndexChanged += new System.EventHandler(this.comboBoxProyectos_SelectedIndexChanged_1);
             // 
             // proyectoBindingSource
             // 
@@ -158,12 +172,12 @@
             this.groupBox1.Controls.Add(this.buttonValorarCriterio);
             this.groupBox1.Controls.Add(this.buttonVerMatrizCriterio);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 45);
+            this.groupBox1.Location = new System.Drawing.Point(6, 16);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(500, 62);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Valoración de Criterios:";
+            this.groupBox1.Text = "Comparacion de Criterios:";
             // 
             // checkBoxConsistencia
             // 
@@ -177,15 +191,97 @@
             this.checkBoxConsistencia.Text = ":Valores Consistentes";
             this.checkBoxConsistencia.UseVisualStyleBackColor = true;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPageAHP);
+            this.tabControl1.Controls.Add(this.tabPageIL);
+            this.tabControl1.Location = new System.Drawing.Point(5, 40);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(528, 401);
+            this.tabControl1.TabIndex = 37;
+            // 
+            // tabPageAHP
+            // 
+            this.tabPageAHP.Controls.Add(this.groupBox1);
+            this.tabPageAHP.Controls.Add(this.groupBox3);
+            this.tabPageAHP.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAHP.Name = "tabPageAHP";
+            this.tabPageAHP.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAHP.Size = new System.Drawing.Size(520, 375);
+            this.tabPageAHP.TabIndex = 0;
+            this.tabPageAHP.Text = "AHP";
+            this.tabPageAHP.UseVisualStyleBackColor = true;
+            // 
+            // tabPageIL
+            // 
+            this.tabPageIL.Controls.Add(this.groupBox2);
+            this.tabPageIL.Location = new System.Drawing.Point(4, 22);
+            this.tabPageIL.Name = "tabPageIL";
+            this.tabPageIL.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageIL.Size = new System.Drawing.Size(520, 375);
+            this.tabPageIL.TabIndex = 1;
+            this.tabPageIL.Text = "IL";
+            this.tabPageIL.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(10, 20);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(500, 349);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Valoraciones";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewButtonColumn1});
+            this.dataGridView1.DataSource = this.alternativaMatrizBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 25);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(488, 318);
+            this.dataGridView1.TabIndex = 5;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Criterio";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.DataPropertyName = "Consistencia";
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Consistente";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "Valorar Alternativa";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.ReadOnly = true;
+            // 
             // ProyectosAsignados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 461);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(538, 445);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.comboBoxProyectos);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.groupBox3);
             this.Name = "ProyectosAsignados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Valorar Proyecto";
@@ -196,6 +292,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPageAHP.ResumeLayout(false);
+            this.tabPageIL.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,5 +332,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Criterio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
         private System.Windows.Forms.DataGridViewButtonColumn valorarAlt;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPageAHP;
+        private System.Windows.Forms.TabPage tabPageIL;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
     }
 }
