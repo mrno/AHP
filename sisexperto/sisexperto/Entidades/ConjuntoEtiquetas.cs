@@ -12,5 +12,6 @@ namespace sisexperto.Entidades
         public int Token { get; set; }
 
         public virtual IEnumerable<Etiqueta> Etiquetas { get; set; }
+
     }
 }

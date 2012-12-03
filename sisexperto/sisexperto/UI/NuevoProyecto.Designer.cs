@@ -443,7 +443,7 @@
             this.Name = "NuevoProyecto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Nuevo Proyecto";
-            this.Activated += new System.EventHandler(this.NuevoProyecto_Activated);
+
             this.Load += new System.EventHandler(this.NuevoProyecto_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).EndInit();

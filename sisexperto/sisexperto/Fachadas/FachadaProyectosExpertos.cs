@@ -226,13 +226,28 @@ namespace sisExperto
             return lista;
 
         }        
-        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasT(int val)
+        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
             return (from c in _context.ConjuntoEtiquetas
                     where c.Token == val
                     select c);
         }
 
+        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
+        {
+
+            var listaProyectosConCE =  (from c in _context.ExpertosEnProyectos
+                    where c.ConjuntoEtiquetas != null
+                    select c.ConjuntoEtiquetas).ToList();
+
+            var listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
+
+
+            return listaCompletaCE.Except(listaProyectosConCE);
+
+
+
+        }
   
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
