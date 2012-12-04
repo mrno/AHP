@@ -128,7 +128,7 @@
             this.comboBoxProyectos.Name = "comboBoxProyectos";
             this.comboBoxProyectos.Size = new System.Drawing.Size(436, 28);
             this.comboBoxProyectos.TabIndex = 32;
-            this.comboBoxProyectos.SelectedIndexChanged += new System.EventHandler(this.comboBoxProyectos_SelectedIndexChanged_1);
+         
             // 
             // proyectoBindingSource
             // 

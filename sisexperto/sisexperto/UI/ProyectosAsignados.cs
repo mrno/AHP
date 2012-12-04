@@ -71,6 +71,17 @@ namespace sisExperto
         {
             _proyectoSeleccionado = (Proyecto) comboBoxProyectos.SelectedItem;
             cargarMatrices();
+            if (_proyectoSeleccionado.Tipo == 0)
+            {
+                tabPageAHP.Enabled = true;
+                tabPageIL.Enabled = false;
+            }
+            else
+            {
+                tabPageIL.Enabled = true;
+                tabPageAHP.Enabled = true;
+            }
+
         }
 
         private void buttonValorarCriterio_Click(object sender, EventArgs e)
@@ -86,19 +97,6 @@ namespace sisExperto
             ventanaValoracionIL.ShowDialog();
         }
 
-        private void comboBoxProyectos_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (_proyectoSeleccionado.Tipo==1)
-            {
-                tabPageAHP.Enabled = true;
-                tabPageIL.Enabled = false;
-            }
-            else
-            {
-                tabPageIL.Enabled = true;
-                tabPageAHP.Enabled = true;
-            }
-
-        }
+       
     }
 }
