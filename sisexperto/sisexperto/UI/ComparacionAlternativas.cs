@@ -154,7 +154,7 @@ namespace sisExperto
 
                         foreach (AlternativaFila fila in matrizAlternativa.FilasAlternativa)
                         {
-                            foreach (AlternativaCeldaAHP celda in fila.CeldasAlternativas)
+                            foreach (AlternativaCelda celda in fila.CeldasAlternativas)
                             {
                                 if ((celda.Fila == Convert.ToInt32(posicion[0])) &&
                                     (celda.Columna == Convert.ToInt32(posicion[1])))
@@ -184,7 +184,7 @@ namespace sisExperto
 
             foreach (AlternativaFila fila in matrizAlternativa.FilasAlternativa)
             {
-                foreach (AlternativaCeldaAHP celda in fila.CeldasAlternativas)
+                foreach (AlternativaCelda celda in fila.CeldasAlternativas)
                 {
                     var izquierdaTB = new Label();
                     izquierdaTB.SetBounds(5, y, 75, 50);

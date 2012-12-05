@@ -17,7 +17,6 @@ namespace sisExperto
         private double[,] mejorada;
         private TrackBar track;
 
-
         public CompararCriterios(CriterioMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy)
         {
             InitializeComponent();
@@ -135,7 +134,6 @@ namespace sisExperto
             return valorarPalabra(valorarDoble(valor));
         }
 
-
         private void mostrar(object sender, EventArgs e)
         {
             label9.Text = "";
@@ -160,7 +158,7 @@ namespace sisExperto
                                     (celda.Columna == Convert.ToInt32(posicion[1])))
                                 {
                                     //1
-                                    celda.ValorAHP = valorarNumero(track.Value);
+                                    celda.Valor = valorarNumero(track.Value);
 
                                     //2
                                     //GuardarConsistencia();    puede ser esa opción también.
@@ -195,7 +193,7 @@ namespace sisExperto
                     track.SetBounds(75, y, 400, 45);
                     track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                     track.SetRange(1, 17);
-                    track.Value = valorarDoble(celda.ValorAHP);
+                    track.Value = valorarDoble(celda.Valor);
                     track.Scroll += mostrar;
                     Controls.Add(track);
 

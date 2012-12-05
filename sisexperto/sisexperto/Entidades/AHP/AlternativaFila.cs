@@ -9,8 +9,7 @@ namespace sisExperto.Entidades
         public int AlternativaId { get; set; }
         public virtual Alternativa Alternativa { get; set; }
 
-        public virtual ICollection<AlternativaCeldaAHP> CeldasAlternativas { get; set; }
+        public virtual ICollection<AlternativaCelda> CeldasAlternativas { get; set; }
 
-       
-    }
+       }
 }

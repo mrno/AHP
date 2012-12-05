@@ -14,8 +14,6 @@ namespace sisExperto.Entidades
         public virtual ICollection<CriterioCelda> CeldasCriterios { get; set; }
 
 
-        //Esta coleccion es para IL
-        public virtual ICollection<AlternativaCeldaIL> CeldasAlternativasIL { get; set; }
-       
+     
     }
 }

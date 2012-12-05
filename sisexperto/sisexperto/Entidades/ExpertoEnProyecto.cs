@@ -16,10 +16,11 @@ namespace sisExperto.Entidades
         public virtual Experto Experto { get; set; }
         public double Ponderacion { get; set; }
         public int Peso { get; set; }
-        public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
+        
         public virtual CriterioMatriz CriterioMatriz { get; set; }
         public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
-        public virtual ICollection<CriterioFila> CriterioFilasIL { get; set; }
+       
+        public virtual ValoracionIL ValoracionIl { get; set; }
 
         public double[,] GenerarMatrizAlternativas(Criterio Criterio)
         {
@@ -35,7 +36,7 @@ namespace sisExperto.Entidades
             {
                 foreach (var comp in val.ComparacionAlternativasPorCriterio)
                 {
-                    matriz[comp.Fila, comp.Columna] = comp.ValorAHP;
+                    matriz[comp.Fila, comp.Columna] = comp.Valor;
                 }                    
             }
 
@@ -52,7 +53,6 @@ namespace sisExperto.Entidades
             */
             return matriz;
         }
-
 
         public void GuardarMatrizAlternativas(double[,] MatrizAlternativa, Criterio Criterio)
         {
@@ -73,15 +73,7 @@ namespace sisExperto.Entidades
             listaCriterioAlternativas.AddRange(ListaMatrizAlternativas());
             return listaCriterioAlternativas;
         }
-
-        public ConjuntoEtiquetas MiConjuntoEtiquetas()
-        {
-
-
-            return ConjuntoEtiquetas;
-        }
-
-
+        
         public double[,] CalcularMiRanking()
         {
             if (TodasMisValoracionesConsistentes())

@@ -52,7 +52,7 @@ namespace sisexperto.UI
                                     (celda.Columna == Convert.ToInt32(posicion[1])))
                                 {
                                     //1
-                                    celda.ValorILNumerico = (track.Value);
+                                    //celda.ValorILNumerico = (track.Value);
 
                                     //2
                                     //GuardarConsistencia();    puede ser esa opción también.
@@ -93,8 +93,9 @@ namespace sisexperto.UI
                         var track = new TrackBar();
                         track.SetBounds(75, y, 400, 45);
                         track.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
-                        track.SetRange(1, _expertoEnProyecto.ConjuntoEtiquetas.Cantidad);
-                        track.Value =  Mediar(celda.ValorILNumerico);
+                       track.SetRange(1, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad);
+                       
+                       // track.Value =  Mediar(celda.ValorILNumerico);
                         track.Scroll += mostrar;
                         Controls.Add(track);
 
@@ -108,7 +109,7 @@ namespace sisexperto.UI
                         miLabel.SetBounds(150, y + 45, 250, 30);
                         //    double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
                         //                                                  comp.pos_columna);
-                        miLabel.Text = celda.ValorILLinguistico;
+                        //miLabel.Text = celda.ValorILLinguistico;
                         miLabel.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
                         Controls.Add(miLabel);
 

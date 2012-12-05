@@ -26,7 +26,7 @@ namespace sisexperto.Entidades
                 {
                     foreach (CriterioCelda celda in filas.CeldasCriterios)
                     {
-                        matriz[celda.Fila, celda.Columna] = celda.ValorAHP;
+                        matriz[celda.Fila, celda.Columna] = celda.Valor;
                     }
                 }
                 for (int i = 0; i < dimension; i++)
@@ -62,8 +62,8 @@ namespace sisexperto.Entidades
                                                                    Fila = i,
                                                                    Columna = ++k,
                                                                    Criterio = listaC.ElementAt(k - j - 1),
-                                                                   ValorAHP = 1.0,
-                                                                   ValorILNumerico = 0
+                                                                   Valor = 1.0
+                                                                   //ValorILNumerico = 0
                                                                });
 
                         FilasCriterio.Add(
@@ -91,7 +91,7 @@ namespace sisexperto.Entidades
                             CriterioCelda celda = (from item in listaC
                                                    where item.Columna == j && item.Fila == i
                                                    select item).FirstOrDefault();
-                            celda.ValorAHP = value[i, j];
+                            celda.Valor = value[i, j];
                         }
                     }
                 }

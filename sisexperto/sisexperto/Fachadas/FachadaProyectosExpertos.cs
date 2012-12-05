@@ -86,12 +86,7 @@ namespace sisExperto
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
 
-            //var matriz = (from expenproy in _context.ExpertosEnProyectos
-            //              where expenproy.Proyecto.ProyectoId == proy.ProyectoId && expenproy.Experto.ExpertoId == exp.ExpertoId
-            //              select expenproy.CriterioMatriz).ToList<CriterioMatriz>();
-            //return matriz;
-
-            IQueryable<CriterioMatriz> matriz = (from expenproy in _context.ExpertosEnProyectos
+     IQueryable<CriterioMatriz> matriz = (from expenproy in _context.ExpertosEnProyectos
                                                  where
                                                      expenproy.Proyecto.ProyectoId == proy.ProyectoId &&
                                                      expenproy.Experto.ExpertoId == exp.ExpertoId
@@ -134,7 +129,7 @@ namespace sisExperto
             int k = 0;
             foreach (ExpertoEnProyecto expertoEnProyecto in listaExpertos)
             {
-                expertoEnProyecto.ConjuntoEtiquetas = Conjunto.ToList()[k];
+                expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas = Conjunto.ToList()[k];
                 k++;
             }
             _context.SaveChanges();
@@ -214,9 +209,10 @@ namespace sisExperto
 
 
             List<Etiqueta> lista = (from c in _context.Etiqueta
-                                    where c.ConjuntoEtiquetasId == expertoEnProyecto.ConjuntoEtiquetas.ConjuntoEtiquetasId
+                                    where c.ConjuntoEtiquetasId == expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.ConjuntoEtiquetasId
                                     select c).ToList();
             return lista;
+
 
         }        
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
@@ -229,9 +225,9 @@ namespace sisExperto
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
         {
 
-            var listaProyectosConCE =  (from c in _context.ExpertosEnProyectos
-                    where c.ConjuntoEtiquetas != null
-                    select c.ConjuntoEtiquetas).ToList();
+            var listaProyectosConCE = (from c in _context.ExpertosEnProyectos
+                                       where c.ValoracionIl.ConjuntoEtiquetas != null
+                                       select c.ValoracionIl.ConjuntoEtiquetas).ToList();
 
             var listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
 
@@ -239,7 +235,7 @@ namespace sisExperto
             return listaCompletaCE.Except(listaProyectosConCE);
 
 
-
+           
         }
   
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
@@ -305,7 +301,7 @@ namespace sisExperto
             }
         }
 
-
+        //TODO ver todo esto
         public void InicializarILExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas,
                                                 List<Criterio> ListaCriterios)
         {
@@ -320,12 +316,11 @@ namespace sisExperto
             }
            
         }
-
+        //TODO ver todo esto
         private void CrearFilasCriteriosIL(ExpertoEnProyecto _expertoEnProyecto, CriterioFila _criterioFila)
         {
             
-
-
+     
         }
         private double[,] GenerarMatriz(int Dimension)
         {
