@@ -1,4 +1,7 @@
-﻿namespace sisExperto.Entidades
+﻿using System.Collections.Generic;
+using sisexperto.Entidades;
+
+namespace sisExperto.Entidades
 {
     public class Criterio
     {
@@ -8,5 +11,7 @@
 
         public int ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
+
+
     }
 }

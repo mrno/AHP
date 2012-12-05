@@ -1,8 +1,8 @@
 ﻿namespace sisExperto.Entidades
 {
-    public class AlternativaCelda
+    public class AlternativaCeldaAHP
     {
-        public int AlternativaCeldaId { get; set; }
+        public int AlternativaCeldaAHPId { get; set; }
         public int Fila { get; set; }
         public int Columna { get; set; }
         public double ValorAHP { get; set; }

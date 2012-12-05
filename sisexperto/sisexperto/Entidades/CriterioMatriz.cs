@@ -11,8 +11,10 @@ namespace sisexperto.Entidades
 
         public virtual ExpertoEnProyecto ExpertoEnProyecto { get; set; }
 
+        //Esta coleccion es para AHP
         public virtual ICollection<CriterioFila> FilasCriterio { get; set; }
 
+        
         public double[,] MatrizCriterioAHP
         {
             get

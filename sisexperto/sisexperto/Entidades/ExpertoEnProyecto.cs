@@ -19,7 +19,7 @@ namespace sisExperto.Entidades
         public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
         public virtual CriterioMatriz CriterioMatriz { get; set; }
         public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
-
+        public virtual ICollection<CriterioFila> CriterioFilasIL { get; set; }
 
         public double[,] GenerarMatrizAlternativas(Criterio Criterio)
         {

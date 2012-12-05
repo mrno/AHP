@@ -184,14 +184,7 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-        public void CrearValoracionCriteriosPorExperto(Proyecto Proyecto, List<Criterio> Criterios)
-        {
-            var lista = new List<CriterioFila>();
-
-            foreach (ExpertoEnProyecto exp in Proyecto.ExpertosAsignados)
-            {
-            }
-        }
+       
 
         public void CerrarEdicionProyecto(Proyecto P)
         {
@@ -312,6 +305,28 @@ namespace sisExperto
             }
         }
 
+
+        public void InicializarILExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas,
+                                                List<Criterio> ListaCriterios)
+        {
+            foreach (ExpertoEnProyecto expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
+            {
+                CrearFilasCriteriosIL(expertoEnProyecto, null);
+
+                foreach (Criterio criterio in ListaCriterios)
+                {
+                    //CargarMatrizAlterntivas(expertoEnProyecto, criterio, matrizAlternativa);
+                }
+            }
+           
+        }
+
+        private void CrearFilasCriteriosIL(ExpertoEnProyecto _expertoEnProyecto, CriterioFila _criterioFila)
+        {
+            
+
+
+        }
         private double[,] GenerarMatriz(int Dimension)
         {
             var matriz = new double[Dimension,Dimension];

@@ -27,7 +27,7 @@ namespace sisExperto.Entidades
 
         public DbSet<AlternativaMatriz> AlternativasMatrices { get; set; }
         public DbSet<AlternativaFila> AlternativasFilas { get; set; }
-        public DbSet<AlternativaCelda> AlternativasCeldas { get; set; }
+        public DbSet<AlternativaCeldaAHP> AlternativasCeldas { get; set; }
 
 
         public DbSet<Etiqueta> Etiqueta { get; set; }

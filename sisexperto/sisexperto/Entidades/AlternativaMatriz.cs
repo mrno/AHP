@@ -25,7 +25,7 @@ namespace sisexperto.Entidades
 
                 foreach (AlternativaFila filas in FilasAlternativa)
                 {
-                    foreach (AlternativaCelda celda in filas.CeldasAlternativas)
+                    foreach (AlternativaCeldaAHP celda in filas.CeldasAlternativas)
                     {
                         matriz[celda.Fila, celda.Columna] = celda.ValorAHP;
                     }
@@ -57,8 +57,8 @@ namespace sisexperto.Entidades
                         listaC.Remove(listaC.First());
                         int k = j;
                         var list =
-                            new List<AlternativaCelda>(from c in listaC
-                                                       select new AlternativaCelda
+                            new List<AlternativaCeldaAHP>(from c in listaC
+                                                       select new AlternativaCeldaAHP
                                                                   {
                                                                       Fila = i,
                                                                       Columna = ++k,
@@ -78,7 +78,7 @@ namespace sisexperto.Entidades
                 }
                 else
                 {
-                    var listaC = new List<AlternativaCelda>();
+                    var listaC = new List<AlternativaCeldaAHP>();
 
                     foreach (AlternativaFila val in FilasAlternativa)
                     {
@@ -89,10 +89,10 @@ namespace sisexperto.Entidades
                     {
                         for (int j = i + 1; j < value.GetLength(1); j++)
                         {
-                            AlternativaCelda celda = (from item in listaC
+                            AlternativaCeldaAHP celdaAhp = (from item in listaC
                                                       where item.Columna == j && item.Fila == i
                                                       select item).FirstOrDefault();
-                            celda.ValorAHP = value[i, j];
+                            celdaAhp.ValorAHP = value[i, j];
                         }
                     }
                 }

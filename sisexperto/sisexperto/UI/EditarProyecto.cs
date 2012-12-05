@@ -119,11 +119,21 @@ namespace sisExperto.UI
                 _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
                 _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
 
-                _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-
-                _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
-                ProyectoModificado();
+                if (_proyectoSeleccionado.Tipo==1)
+                {
+                    _fachada.InicializarILExpertos(_proyectoSeleccionado,_listaAlternativas, _listaCriterios);
+                }
+                else
+                {
+                    //Esto es para los proyectos que ejecutan AHP
+                    _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+                    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
+                    ProyectoModificado();    
+                }
+                
                 MessageBox.Show("Proyecto actualizado satisfactoriamente.");
+
+
 
                 _proyectosNoValorados.Remove(_proyectoSeleccionado);
                 comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);

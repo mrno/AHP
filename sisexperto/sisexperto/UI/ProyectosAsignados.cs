@@ -30,13 +30,14 @@ namespace sisExperto
         {
             comboBoxProyectos.DataSource = _listaProyectos;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
-            cargarMatrices();
+            cargarMatricesAHP();
+            cargarMatricesIL();
             comboBoxProyectos.SelectedIndexChanged += (comboBoxProyectos_SelectedIndexChanged);
             tabPageAHP.Enabled = false;
             tabPageIL.Enabled = false;
         }
 
-        private void cargarMatrices()
+        private void cargarMatricesAHP()
         {
             _expertoEnProyecto = (from c in _experto.ProyectosAsignados
                                   where c.ProyectoId == _proyectoSeleccionado.ProyectoId
@@ -52,7 +53,26 @@ namespace sisExperto
             {
                 gridAlternativa.Rows[i].Cells[0].Value = listaAlternativas[i].Criterio.Nombre;
             }
-}
+        }
+
+
+        private void cargarMatricesIL()
+        {
+            _expertoEnProyecto = (from c in _experto.ProyectosAsignados
+                                  where c.ProyectoId == _proyectoSeleccionado.ProyectoId
+                                  select c).FirstOrDefault();
+            checkBoxConsistencia.Checked = _expertoEnProyecto.CriterioMatriz.Consistencia;
+
+            List<Alternativa> listaAlternativas =
+                _fachada.SolicitarAlternativas(_proyectoSeleccionado).ToList();
+            gridCriterios.DataSource = null;
+            gridCriterios.DataSource = listaAlternativas;
+
+            for (int i = 0; i < listaAlternativas.Count; i++)
+            {
+                gridCriterios.Rows[i].Cells[2].Value = listaAlternativas[i].Nombre;
+            }
+        }
 
         private void modificarAlternativa(object sender, DataGridViewCellEventArgs e)
         {
@@ -61,7 +81,7 @@ namespace sisExperto
             matriz = (AlternativaMatriz) row.DataBoundItem;
             var frmComparar = new ComparacionAlternativas(matriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
-            cargarMatrices();
+            cargarMatricesAHP();
         }
 
 
@@ -70,7 +90,7 @@ namespace sisExperto
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
             _proyectoSeleccionado = (Proyecto) comboBoxProyectos.SelectedItem;
-            cargarMatrices();
+            cargarMatricesAHP();
             if (_proyectoSeleccionado.Tipo == 0)
             {
                 tabPageAHP.Enabled = true;
@@ -88,7 +108,7 @@ namespace sisExperto
         {
             var frmComparar = new CompararCriterios(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
-            cargarMatrices();
+            cargarMatricesAHP();
         }
 
         private void buttonVerMatrizCriterio_Click(object sender, EventArgs e)
