@@ -121,13 +121,12 @@ namespace sisExperto
             return Proyecto.ExpertosAsignados;
         }
 
-        public void AsignarConjuntoEquiquetasAlExperto(IEnumerable<ExpertoEnProyecto> expertoEnProyectos,
+        public void AsignarConjuntoEquiquetasAlExperto(IEnumerable<ExpertoEnProyecto> expertosEnProyectos,
                                                        IEnumerable<ConjuntoEtiquetas> Conjunto)
         {
-            IEnumerable<ExpertoEnProyecto> listaExpertos = from exp in expertoEnProyectos
-                                                           select exp;
+           
             int k = 0;
-            foreach (ExpertoEnProyecto expertoEnProyecto in listaExpertos)
+            foreach (ExpertoEnProyecto expertoEnProyecto in expertosEnProyectos)
             {
                 expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas = Conjunto.ToList()[k];
                 k++;

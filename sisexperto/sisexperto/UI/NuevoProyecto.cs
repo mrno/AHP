@@ -133,7 +133,7 @@ namespace sisExperto
             
 
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
-            if (_conjuntoEtiquetases.Count != 0)
+            if (_conjuntoEtiquetases.Count == 1)
             {
                 dataGridConjuntoEtiquetas.Rows[0].Selected = true;
             }
