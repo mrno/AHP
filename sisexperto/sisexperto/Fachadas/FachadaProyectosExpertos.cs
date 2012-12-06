@@ -190,15 +190,19 @@ namespace sisExperto
         {
             
             _context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
+            foreach (var item in ConjuntoEtiquetas.Etiquetas)
+            {
+                _context.Etiqueta.Add(item);
+            }
             
             _context.SaveChanges();
         }
 
-        public void GuardarEtiqueta(Etiqueta Etiqueta)
-        {
-            _context.Etiqueta.Add(Etiqueta);
-            _context.SaveChanges();
-        }
+        //public void GuardarEtiqueta(Etiqueta Etiqueta)
+        //{
+        //    _context.Etiqueta.Add(Etiqueta);
+        //    _context.SaveChanges();
+        //}
 
         public IEnumerable<Etiqueta> SolicitarEtiquetas(ConjuntoEtiquetas ce)
         {
@@ -209,12 +213,12 @@ namespace sisExperto
         {
 
 
-            List<Etiqueta> lista = (from c in _context.Etiqueta
-                                    where c.ConjuntoEtiquetasId == expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.ConjuntoEtiquetasId
-                                    select c).ToList();
-            return lista;
+            //List<Etiqueta> lista = (from c in _context.Etiqueta
+            //                        where c.ConjuntoEtiquetasId == expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.ConjuntoEtiquetasId
+            //                        select c).ToList();
+            //return lista;
 
-
+            return null;
         }        
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
