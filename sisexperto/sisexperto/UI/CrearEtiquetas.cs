@@ -74,6 +74,7 @@ namespace sisExperto.UI
                 _conjuntoEtiquetas.Etiquetas = _etiquetas;
                 _conjuntoEtiquetas.Cantidad = _etiquetas.Count;
                 _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
+              
                 MessageBox.Show("Se creo el conjunto de etiquetas satisfactoriamente.");
                 Limpiar();
                 Close();

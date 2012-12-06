@@ -188,7 +188,9 @@ namespace sisExperto
 
         public void GuardarConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
         {
+            
             _context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
+            
             _context.SaveChanges();
         }
 
