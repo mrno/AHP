@@ -24,22 +24,35 @@ namespace sisExperto
             InitializeComponent();
             HabilitarGroupbox(false);
             buttonProyectoEdicion.Enabled = false;
-            //id_Experto = id_exp;
+            buttonProyectoValoraciones.Enabled = false;
         }
 
         private void LoginCorrecto(Experto expert)
         {
+            menuStrip1.Visible = true;
             HabilitarGroupbox(true);
             _experto = expert;
             iniciarSesionToolStripMenuItem.Enabled = false;
             cerrarSesionToolStripMenuItem.Enabled = true;
             ActualizarProyectos(expert);
             ActualizarGridProyectos("");
+            ModoDeAdministracion(expert.Administrador);
+        }
+
+        private void ModoDeAdministracion(bool esAdministrador)
+        {
+            buttonProyectoNuevo.Visible = esAdministrador;
+            expertosToolStripMenuItem.Visible = esAdministrador;
+            crearConjuntoDeEtiquetsToolStripMenuItem.Visible = esAdministrador;
+            aHPNoPonderadoToolStripMenuItem.Visible = esAdministrador;
+            aHPPonderadoToolStripMenuItem.Visible = esAdministrador;
         }
 
         private void ActualizarProyectos(Experto expert)
         {
-            _proyectosExperto = _fachadaProyectosExpertos.SolicitarProyectosAsignados(expert);
+            var lista = _fachadaProyectosExpertos.SolicitarProyectosAsignados(expert).ToList();
+            lista.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(expert).ToList());
+            _proyectosExperto = lista.Distinct();
         }
 
         private void EjecutarLogin()
@@ -60,6 +73,10 @@ namespace sisExperto
         {
             groupBoxProyectos.Visible = bandera;
             groupBoxDetalleProyecto.Visible = bandera;
+            ejecutarToolStripMenuItem.Visible = bandera;
+            expertosToolStripMenuItem.Visible = bandera;
+            iLToolStripMenuItem.Visible = bandera;
+            
         }
 
         private void ActualizarGridPorProyectoNuevo()
@@ -96,10 +113,38 @@ namespace sisExperto
             dataGridAlternativas.DataSource = new List<Alternativa>();
             dataGridCriterios.DataSource = new List<Criterio>();
             dataGridProyectos.RowEnter += (ActualizarDetalle);
+            dataGridProyectos.RowEnter += (HabilitarBotones);
         }
 
-        private void groupBoxProyectos_Enter(object sender, EventArgs e)
+        private void HabilitarBotones(object sender, DataGridViewCellEventArgs ea)
         {
+            if (_proyectoSeleccionado != null)
+            {
+                //verifico si el experto es creador y permito la edicion
+                if (_proyectoSeleccionado.CreadorId == _experto.ExpertoId)
+                {
+                    if (_proyectoSeleccionado.Estado == "Creado") buttonProyectoEdicion.Enabled = true;
+                    else buttonProyectoEdicion.Enabled = false;
+                }
+                else buttonProyectoEdicion.Enabled = false;
+
+                //verifico si el experto esta asignado y permito la valacion
+                var expertoAsignado = (from e in _proyectoSeleccionado.ExpertosAsignados
+                                       where e.ExpertoId == _experto.ExpertoId
+                                       select e).Count() == 1;
+                if (expertoAsignado)
+                {
+                    //acá tiene que ir "listo" posteriormente
+                    if (_proyectoSeleccionado.Estado == "Listo") buttonProyectoValoraciones.Enabled = true;
+                    else buttonProyectoValoraciones.Enabled = false;
+                }
+                else buttonProyectoValoraciones.Enabled = false;
+            }
+            else
+            {
+                buttonProyectoEdicion.Enabled = false;
+                buttonProyectoValoraciones.Enabled = false;
+            }
         }
 
         private void filtroProyecto_Leave(object sender, EventArgs e)
@@ -170,8 +215,6 @@ namespace sisExperto
 
                 labelEstadoProyecto.Text = _proyectoSeleccionado.Estado;
 
-                if (_proyectoSeleccionado.Estado == "Creado") buttonProyectoEdicion.Enabled = true;
-                else buttonProyectoEdicion.Enabled = false;
             }
             catch (Exception)
             {
@@ -209,6 +252,7 @@ namespace sisExperto
             {
                 dataGridExpertosAsignados.DataSource = new List<Experto>();
             }
+
         }
 
 
@@ -217,14 +261,14 @@ namespace sisExperto
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
 
-            var ventanaAHPPonderado = new MostrarRanking(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
+            var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
             ventanaAHPPonderado.Show();
             //_proyectoSeleccionado.CalcularRankinPonderado();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaAHPNoPonderado = new MostrarRanking(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
+            var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
             ventanaAHPNoPonderado.Show();
             //_proyectoSeleccionado.CalcularRankingNoPonderado();
         }
@@ -241,6 +285,12 @@ namespace sisExperto
             ventanaCreacion.ShowDialog();
         }
 
+        private void aHPPersonalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, _experto);
+            ventanaAHPPersonal.Show();
+        }
+
         private void ponderarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto,
@@ -248,6 +298,11 @@ namespace sisExperto
             ventanaPonderacion.ShowDialog();
         }
 
-        
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaEdicion =  new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
+            ventanaEdicion.ShowDialog();
+        }        
     }
 }

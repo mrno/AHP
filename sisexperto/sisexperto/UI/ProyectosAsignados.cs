@@ -33,8 +33,8 @@ namespace sisExperto
             cargarMatricesAHP();
             cargarMatricesIL();
             comboBoxProyectos.SelectedIndexChanged += (comboBoxProyectos_SelectedIndexChanged);
-            tabPageAHP.Enabled = false;
-            tabPageIL.Enabled = false;
+            //tabPageAHP.Enabled = false;
+            //tabPageIL.Enabled = false;
         }
 
         private void cargarMatricesAHP()

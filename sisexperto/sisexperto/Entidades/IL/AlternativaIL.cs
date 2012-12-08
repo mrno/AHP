@@ -7,10 +7,7 @@ namespace sisexperto.Entidades
 {
     public class AlternativaIL
     {
-
-        public int AlternativaILId { get; set; }
-        
-
+        public int AlternativaILId { get; set; }        
         public virtual ICollection<ValorCriterio> ValorCriterios { get; set; }
     }
 }

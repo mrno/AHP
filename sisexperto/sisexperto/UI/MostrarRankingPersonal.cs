@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
-using sisExperto.Entidades;
 using sisExperto.Fachadas;
+using sisExperto.Entidades;
 
-namespace sisExperto
+namespace sisexperto.UI
 {
-    public partial class MostrarRanking : Form
+    public partial class MostrarRankingPersonal : Form
     {
-        private readonly FachadaEjecucionProyecto _fachada;
+        private FachadaEjecucionProyecto _fachada;
 
-        private readonly Proyecto _proyecto;
-        private readonly double[,] rankingFinal;
+        private Proyecto _proyecto;
+        private Experto _experto;
+        private double[,] rankingFinal;
 
-        public MostrarRanking(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion)
+        public MostrarRankingPersonal(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, Experto Experto)
         {
             InitializeComponent();
             //tipoAgregacion=1 -> NO Ponderado
@@ -22,25 +27,18 @@ namespace sisExperto
 
             _fachada = Fachada;
             _proyecto = Proyecto;
-            rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
+            _experto = Experto;
+
+            //rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
 
             labelTitulo.Text = _proyecto.Nombre;
-
-            if (tipoAgregacion == 1)
-            {
-                labelSubtitulo.Text = "Agregacion No Ponderada";
-            }
-            else
-            {
-                labelSubtitulo.Text = "Agregacion Ponderada";
-            }
+            labelSubtitulo.Text = _experto.Nombre;
         }
 
         private void CalcularAhpAgregado_Load(object sender, EventArgs e)
         {
             ICollection<Alternativa> listaAlt = _proyecto.Alternativas;
 
-            int y = 70;
             int cont = 0;
 
             var listaResultado = new List<Resultado>();

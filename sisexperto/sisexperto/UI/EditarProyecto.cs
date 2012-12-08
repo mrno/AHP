@@ -8,15 +8,16 @@ namespace sisExperto.UI
 {
     public partial class EditarProyecto : Form
     {
-        #region Delegates
+        #region Delegates and Events
 
         public delegate void EdicionProyecto();
+        public event EdicionProyecto ProyectoModificado;
 
         #endregion
 
-        private readonly Experto _experto;
-        private readonly FachadaProyectosExpertos _fachada;
-        private readonly List<Proyecto> _proyectosNoValorados;
+        private Experto _experto;
+        private FachadaProyectosExpertos _fachada;
+        private List<Proyecto> _proyectosNoValorados;
 
 
         private List<Alternativa> _listaAlternativas = new List<Alternativa>();
@@ -42,7 +43,6 @@ namespace sisExperto.UI
             _proyectosNoValorados = _fachada.ProyectosNoValorados(_experto).ToList();
         }
 
-        public event EdicionProyecto ProyectoModificado;
 
         private void buttonAgregarAlternativa_Click(object sender, EventArgs e)
         {

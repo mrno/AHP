@@ -1,6 +1,6 @@
 ﻿namespace sisExperto
 {
-    partial class MostrarRanking
+    partial class MostrarRankingAgregado
     {
         /// <summary>
         /// Required designer variable.

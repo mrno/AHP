@@ -54,17 +54,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.expertoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expertoApellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adminDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.combinadaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.conjuntoEtiquetasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.expertoApellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expertoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adminDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.administradorDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).BeginInit();
@@ -163,10 +163,11 @@
             // 
             this.dataGridCombinada.AutoGenerateColumns = false;
             this.dataGridCombinada.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridCombinada.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridCombinada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCombinada.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.expertoNombreDataGridViewTextBoxColumn,
             this.expertoApellidoDataGridViewTextBoxColumn,
+            this.expertoNombreDataGridViewTextBoxColumn,
             this.adminDataGridViewCheckBoxColumn,
             this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn});
             this.dataGridCombinada.DataSource = this.combinadaBindingSource;
@@ -360,34 +361,6 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
-            // expertoNombreDataGridViewTextBoxColumn
-            // 
-            this.expertoNombreDataGridViewTextBoxColumn.DataPropertyName = "ExpertoNombre";
-            this.expertoNombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.expertoNombreDataGridViewTextBoxColumn.Name = "expertoNombreDataGridViewTextBoxColumn";
-            this.expertoNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expertoApellidoDataGridViewTextBoxColumn
-            // 
-            this.expertoApellidoDataGridViewTextBoxColumn.DataPropertyName = "ExpertoApellido";
-            this.expertoApellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.expertoApellidoDataGridViewTextBoxColumn.Name = "expertoApellidoDataGridViewTextBoxColumn";
-            this.expertoApellidoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adminDataGridViewCheckBoxColumn
-            // 
-            this.adminDataGridViewCheckBoxColumn.DataPropertyName = "Admin";
-            this.adminDataGridViewCheckBoxColumn.HeaderText = "Admin";
-            this.adminDataGridViewCheckBoxColumn.Name = "adminDataGridViewCheckBoxColumn";
-            this.adminDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // conjuntoEtiquetasNombreDataGridViewTextBoxColumn
-            // 
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.DataPropertyName = "ConjuntoEtiquetasNombre";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.HeaderText = "Etiquetas";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.Name = "conjuntoEtiquetasNombreDataGridViewTextBoxColumn";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // combinadaBindingSource
             // 
             this.combinadaBindingSource.DataSource = typeof(sisexperto.Entidades.Combinada);
@@ -402,6 +375,38 @@
             // conjuntoEtiquetasBindingSource
             // 
             this.conjuntoEtiquetasBindingSource.DataSource = typeof(sisexperto.Entidades.ConjuntoEtiquetas);
+            // 
+            // expertoBindingSource
+            // 
+            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
+            // 
+            // expertoApellidoDataGridViewTextBoxColumn
+            // 
+            this.expertoApellidoDataGridViewTextBoxColumn.DataPropertyName = "ExpertoApellido";
+            this.expertoApellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.expertoApellidoDataGridViewTextBoxColumn.Name = "expertoApellidoDataGridViewTextBoxColumn";
+            this.expertoApellidoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // expertoNombreDataGridViewTextBoxColumn
+            // 
+            this.expertoNombreDataGridViewTextBoxColumn.DataPropertyName = "ExpertoNombre";
+            this.expertoNombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.expertoNombreDataGridViewTextBoxColumn.Name = "expertoNombreDataGridViewTextBoxColumn";
+            this.expertoNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adminDataGridViewCheckBoxColumn
+            // 
+            this.adminDataGridViewCheckBoxColumn.DataPropertyName = "Admin";
+            this.adminDataGridViewCheckBoxColumn.HeaderText = "Admin";
+            this.adminDataGridViewCheckBoxColumn.Name = "adminDataGridViewCheckBoxColumn";
+            this.adminDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // conjuntoEtiquetasNombreDataGridViewTextBoxColumn
+            // 
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.DataPropertyName = "ConjuntoEtiquetasNombre";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.HeaderText = "Etiquetas";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.Name = "conjuntoEtiquetasNombreDataGridViewTextBoxColumn";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -421,13 +426,9 @@
             // 
             this.administradorDataGridViewCheckBoxColumn1.DataPropertyName = "Administrador";
             this.administradorDataGridViewCheckBoxColumn1.FillWeight = 50F;
-            this.administradorDataGridViewCheckBoxColumn1.HeaderText = "Administrador";
+            this.administradorDataGridViewCheckBoxColumn1.HeaderText = "Admin";
             this.administradorDataGridViewCheckBoxColumn1.Name = "administradorDataGridViewCheckBoxColumn1";
             this.administradorDataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // expertoBindingSource
-            // 
-            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
             // NuevoProyecto
             // 
@@ -443,7 +444,6 @@
             this.Name = "NuevoProyecto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Nuevo Proyecto";
-
             this.Load += new System.EventHandler(this.NuevoProyecto_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).EndInit();
@@ -484,20 +484,20 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxTipoModelo;
         private System.Windows.Forms.Button buttonCrearEtiquetas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.Button buttonAgregarConjunto;
         private System.Windows.Forms.DataGridView dataGridConjuntoEtiquetas;
         private System.Windows.Forms.BindingSource conjuntoEtiquetasBindingSource;
         private System.Windows.Forms.BindingSource combinadaBindingSource;
         private System.Windows.Forms.DataGridView dataGridCombinada;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expertoNombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expertoApellidoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn adminDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn conjuntoEtiquetasNombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expertoApellidoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expertoNombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn adminDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn conjuntoEtiquetasNombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn1;
     }
 }

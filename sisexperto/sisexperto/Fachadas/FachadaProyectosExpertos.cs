@@ -27,8 +27,15 @@ namespace sisExperto
 
         public IEnumerable<Proyecto> SolicitarProyectosAsignados(Experto e)
         {
-            return (from expEnProyecto in e.ProyectosAsignados
-                    select expEnProyecto.Proyecto);
+            try
+            {
+                return (from expEnProyecto in e.ProyectosAsignados
+                        select expEnProyecto.Proyecto);
+            }
+            catch (Exception)
+            {
+                return new List<Proyecto>();
+            }
         }
 
         public ExpertoEnProyecto SolicitarExpertoProyectoActual (Proyecto _proyecto, Experto _experto)
@@ -106,34 +113,28 @@ namespace sisExperto
             return matriz.AlternativasMatrices;
         }
 
-        public IEnumerable<ExpertoEnProyecto> AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos)
+        public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos, IEnumerable<ConjuntoEtiquetas> Etiquetas)
         {
-            IEnumerable<ExpertoEnProyecto> lista1 = from exp in Expertos
-                                                    select
-                                                        new ExpertoEnProyecto
-                                                            {
-                                                                Proyecto = Proyecto,
-                                                                Experto = exp,
-                                                                CriterioMatriz = new CriterioMatriz()
-                                                            };
-            Proyecto.ExpertosAsignados = lista1.ToList();
-            _context.SaveChanges();
-            return Proyecto.ExpertosAsignados;
-        }
+            List<ExpertoEnProyecto> listaExpertos = new List<ExpertoEnProyecto>();
 
-        public void AsignarConjuntoEquiquetasAlExperto(IEnumerable<ExpertoEnProyecto> expertosEnProyectos,
-                                                       IEnumerable<ConjuntoEtiquetas> Conjunto)
-        {
-           
-            int k = 0;
-            foreach (ExpertoEnProyecto expertoEnProyecto in expertosEnProyectos)
+            for (int i = 0; i < Expertos.Count(); i++)
             {
-                expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas = Conjunto.ToList()[k];
-                k++;
+                listaExpertos.Add(new ExpertoEnProyecto
+                                    {
+                                        Proyecto = Proyecto,
+                                        Experto = Expertos.ElementAt(i),
+                                        ValoracionIl = new ValoracionIL
+                                        {
+                                            ConjuntoEtiquetas = Etiquetas.ElementAt(i)
+                                        }
+                                    });
             }
+                       
+
+            Proyecto.ExpertosAsignados = listaExpertos.ToList();
             _context.SaveChanges();
         }
-
+        
         public IEnumerable<Experto> ExpertosAsignados(Proyecto Proyecto)
         {
             try
@@ -182,7 +183,7 @@ namespace sisExperto
 
         public void CerrarEdicionProyecto(Proyecto P)
         {
-            P.Estado = "Modificado";
+            P.Estado = "Listo";
             _context.SaveChanges();
         }
 
@@ -250,9 +251,10 @@ namespace sisExperto
 
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
         {
-            ExpertoEP.CriterioMatriz = new CriterioMatriz
-                                           {ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio};
+            //ExpertoEP.CriterioMatriz = new CriterioMatriz
+             //                              {ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio};
 
+            _context.CriteriosMatrices.Add(new CriterioMatriz { ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio });
             _context.SaveChanges();
         }
 

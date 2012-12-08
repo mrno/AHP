@@ -39,9 +39,7 @@ namespace sisexperto.Fachadas
 
 
         public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas)
-        {
-  
-            
+        {            
             MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
             MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
             var mwArray = (MWNumericArray) calcularAhp.rankCalc(vectCriterios, superMatriz);
