@@ -27,6 +27,7 @@ namespace sisExperto.UI
 
             comboBoxProyectos.DataSource = _proyectos;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+
             _iniciado = true;
         }
 

@@ -261,15 +261,23 @@ namespace sisExperto
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
 
-            var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
-            ventanaAHPPonderado.Show();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
+                ventanaAHPPonderado.Show(); 
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
             //_proyectoSeleccionado.CalcularRankinPonderado();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
-            ventanaAHPNoPonderado.Show();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
+                ventanaAHPNoPonderado.Show(); 
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
             //_proyectoSeleccionado.CalcularRankingNoPonderado();
         }
 
@@ -287,22 +295,34 @@ namespace sisExperto
 
         private void aHPPersonalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, _experto);
-            ventanaAHPPersonal.Show();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, _experto);
+                ventanaAHPPersonal.Show();
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }
 
         private void ponderarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto,
-                                                             _proyectoSeleccionado);
-            ventanaPonderacion.ShowDialog();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaPonderacion = new PonderacionExpertos(_fachadaEjecucionProyectos, _proyectosExperto,
+                                                                     _proyectoSeleccionado);
+                ventanaPonderacion.ShowDialog();
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaEdicion =  new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-            ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
-            ventanaEdicion.ShowDialog();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaEdicion = new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+                ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
+                ventanaEdicion.ShowDialog(); 
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }        
     }
 }
