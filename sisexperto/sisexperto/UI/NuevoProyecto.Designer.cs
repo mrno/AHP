@@ -239,7 +239,7 @@
             this.dataGridConjuntoEtiquetas.Name = "dataGridConjuntoEtiquetas";
             this.dataGridConjuntoEtiquetas.ReadOnly = true;
             this.dataGridConjuntoEtiquetas.RowHeadersVisible = false;
-            this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(271, 279);
             this.dataGridConjuntoEtiquetas.TabIndex = 6;
             // 
