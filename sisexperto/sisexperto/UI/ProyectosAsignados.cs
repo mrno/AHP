@@ -60,20 +60,22 @@ namespace sisExperto
 
         private void cargarMatricesIL()
         {
-            _expertoEnProyecto = (from c in _experto.ProyectosAsignados
-                                  where c.ProyectoId == _proyectoSeleccionado.ProyectoId
-                                  select c).FirstOrDefault();
-          
+            
+                _expertoEnProyecto = (from c in _experto.ProyectosAsignados
+                                      where c.ProyectoId == _proyectoSeleccionado.ProyectoId
+                                      select c).FirstOrDefault();
 
-            List<AlternativaIL> listaAlternativas =
-                _fachada.SolicitarAlternativasIL(_expertoEnProyecto).ToList();
-            gridCriterios.DataSource = null;
-            gridCriterios.DataSource = listaAlternativas;
 
-            for (int i = 0; i < listaAlternativas.Count; i++)
-            {
-                gridCriterios.Rows[i].Cells[2].Value = listaAlternativas[i].AlternativaILId;
-            }
+                List<AlternativaIL> listaAlternativas =
+                    _fachada.SolicitarAlternativasIL(_expertoEnProyecto).ToList();
+                gridCriterios.DataSource = null;
+                gridCriterios.DataSource = listaAlternativas;
+
+                for (int i = 0; i < listaAlternativas.Count; i++)
+                {
+                    gridCriterios.Rows[i].Cells[2].Value = listaAlternativas[i].AlternativaILId;
+                } 
+            
         }
 
         private void modificarAlternativa(object sender, DataGridViewCellEventArgs e)

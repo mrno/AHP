@@ -50,8 +50,18 @@ namespace sisExperto
 
         private void ActualizarProyectos(Experto expert)
         {
-            var lista = _fachadaProyectosExpertos.SolicitarProyectosAsignados(expert).ToList();
-            lista.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(expert).ToList());
+            var lista = new List<Proyecto>();
+            try
+            {
+                lista.AddRange(_fachadaProyectosExpertos.SolicitarProyectosAsignados(expert).ToList());
+            }
+            catch (Exception){}
+            try
+            {
+                lista.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(expert).ToList());
+            }
+            catch (Exception){}
+
             _proyectosExperto = lista.Distinct();
         }
 
