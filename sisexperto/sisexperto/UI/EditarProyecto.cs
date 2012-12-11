@@ -118,54 +118,8 @@ namespace sisExperto.UI
             {
                 _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
                 _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
-
-                if (_proyectoSeleccionado.Tipo==1)
-                {
-                    _fachada.InicializarILExpertos(_proyectoSeleccionado,_listaAlternativas, _listaCriterios);
-                }
-                else if(_proyectoSeleccionado.Tipo==1)
-                {
-                    //Esto es para los proyectos que ejecutan AHP
-                    _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
-                    ProyectoModificado();    
-                }
-                else
-                {
-                    _fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    //Esto es para los proyectos que ejecutan AHP
-                    _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
-                    ProyectoModificado();  
-                }
                 
-                MessageBox.Show("Proyecto actualizado satisfactoriamente.");
-
-
-
-                _proyectosNoValorados.Remove(_proyectoSeleccionado);
-                comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);
-                _listaAlternativas = new List<Alternativa>();
-                dataGridAlternativas.DataSource = null;
-                _listaCriterios = new List<Criterio>();
-                dataGridCriterios.DataSource = null;
-                Limpiar();
-                try
-                {
-                    _proyectoSeleccionado = _proyectosNoValorados[0];
-                    comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
-                }
-                catch (Exception)
-                {
-                }
-                if (_proyectosNoValorados.Count == 0)
-                {
-                    comboBoxProyectos.Text = "";
-                    buttonGuardar.Enabled = false;
-                    buttonLimpiarAsignaciones.Enabled = false;
-                    MessageBox.Show("No existen más proyectos por valorar.");
-                    Close();
-                }
+                GuardarAlternativasCriteriosAHP();
             }
             else
             {
@@ -178,6 +132,56 @@ namespace sisExperto.UI
             }
         }
 
+
+        private void GuardarAlternativasCriteriosAHP()
+        {
+
+            
+
+           
+                _fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+            
+            
+                //Esto es para los proyectos que ejecutan AHP
+                _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+                _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
+                ProyectoModificado();
+           
+                
+                //Esto es para los proyectos que ejecutan AHP
+                _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+                _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
+                ProyectoModificado();
+          
+
+            MessageBox.Show("Proyecto actualizado satisfactoriamente.");
+
+
+
+            _proyectosNoValorados.Remove(_proyectoSeleccionado);
+            comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);
+            _listaAlternativas = new List<Alternativa>();
+            dataGridAlternativas.DataSource = null;
+            _listaCriterios = new List<Criterio>();
+            dataGridCriterios.DataSource = null;
+            Limpiar();
+            try
+            {
+                _proyectoSeleccionado = _proyectosNoValorados[0];
+                comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+            }
+            catch (Exception)
+            {
+            }
+            if (_proyectosNoValorados.Count == 0)
+            {
+                comboBoxProyectos.Text = "";
+                buttonGuardar.Enabled = false;
+                buttonLimpiarAsignaciones.Enabled = false;
+                MessageBox.Show("No existen más proyectos por valorar.");
+                Close();
+            }
+        }
         private void Limpiar()
         {
             textBoxDescripcionAlternativa.Text = "";
