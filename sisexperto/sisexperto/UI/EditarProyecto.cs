@@ -119,31 +119,21 @@ namespace sisExperto.UI
                 _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
                 _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
 
-                if (_proyectoSeleccionado.Tipo==1)
+                switch (_proyectoSeleccionado.Tipo)
                 {
-                    //Esto es para los proyectos que ejecutan IL.
-                    _fachada.InicializarILExpertos(_proyectoSeleccionado,_listaAlternativas, _listaCriterios);
+                    case 0:
+                        GuardarAHP(); break;
+                    case 1:
+                        GuardarIL(); break;
+                    case 2:
+                        {
+                            GuardarIL();
+                            GuardarAHP();
+                            break;
+                        }
                 }
-                else if(_proyectoSeleccionado.Tipo==1)
-                {
-                    //Esto es para los proyectos que ejecutan AHP.
-                    _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
-                    ProyectoModificado();    
-                }
-                else
-                {
-                    _fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    //Esto es para los proyectos que ejecutan AMBOS modelos.
-                    _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
-                    ProyectoModificado();  
-                }
-                
-                MessageBox.Show("Proyecto actualizado satisfactoriamente.");
 
-
-
+                //elimina los datos del combobox y la lista de proyectos que están para modificar
                 _proyectosNoValorados.Remove(_proyectoSeleccionado);
                 comboBoxProyectos.DataSource = new List<Proyecto>(_proyectosNoValorados);
                 _listaAlternativas = new List<Alternativa>();
@@ -177,6 +167,29 @@ namespace sisExperto.UI
                 if (_listaAlternativas.Count == 0) error = "No se crearon Alternativas.";
                 MessageBox.Show(error);
             }
+        }
+
+        private void GuardarAHP()
+        {
+            //Esto es para los proyectos que ejecutan AHP.
+            _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+            _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
+            ProyectoModificado();
+            
+            MessageBox.Show("Proyecto actualizado satisfactoriamente.");
+        }
+
+        private void GuardarIL()
+        {
+            //Esto es para los proyectos que ejecutan IL.
+            //_fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+         
+            _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
+            ProyectoModificado();
+            
+
+            MessageBox.Show("Proyecto actualizado satisfactoriamente.");
+
         }
 
         private void Limpiar()
