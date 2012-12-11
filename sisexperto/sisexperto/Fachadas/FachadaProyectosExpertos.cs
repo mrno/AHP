@@ -46,8 +46,6 @@ namespace sisExperto
                     select expEnProyecto
 
                    ).FirstOrDefault();
-            
-
         }
 
         public IEnumerable<Proyecto> SolicitarProyectosCreados(Experto e)
@@ -126,7 +124,8 @@ namespace sisExperto
                                         ValoracionIl = new ValoracionIL
                                         {
                                             ConjuntoEtiquetas = Etiquetas.ElementAt(i)
-                                        }
+                                        },
+                                        Peso = 1
                                     });
             }
                        

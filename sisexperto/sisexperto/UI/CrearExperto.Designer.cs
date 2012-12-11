@@ -44,11 +44,13 @@
             this.buttonCrearSalir = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
             this.labelValidacion = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Controls.Add(this.textBoxClaveRepetida);
             this.groupBox2.Controls.Add(this.textBoxClave);
             this.groupBox2.Controls.Add(this.textBoxUsuario);
@@ -62,8 +64,8 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(401, 166);
-            this.groupBox2.TabIndex = 23;
+            this.groupBox2.Size = new System.Drawing.Size(401, 191);
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del nuevo Experto";
             // 
@@ -72,37 +74,37 @@
             this.textBoxClaveRepetida.Location = new System.Drawing.Point(156, 135);
             this.textBoxClaveRepetida.Name = "textBoxClaveRepetida";
             this.textBoxClaveRepetida.PasswordChar = '*';
-            this.textBoxClaveRepetida.Size = new System.Drawing.Size(210, 23);
-            this.textBoxClaveRepetida.TabIndex = 30;
+            this.textBoxClaveRepetida.Size = new System.Drawing.Size(239, 23);
+            this.textBoxClaveRepetida.TabIndex = 4;
             // 
             // textBoxClave
             // 
             this.textBoxClave.Location = new System.Drawing.Point(156, 106);
             this.textBoxClave.Name = "textBoxClave";
             this.textBoxClave.PasswordChar = '*';
-            this.textBoxClave.Size = new System.Drawing.Size(210, 23);
-            this.textBoxClave.TabIndex = 29;
+            this.textBoxClave.Size = new System.Drawing.Size(239, 23);
+            this.textBoxClave.TabIndex = 3;
             // 
             // textBoxUsuario
             // 
             this.textBoxUsuario.Location = new System.Drawing.Point(156, 77);
             this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(210, 23);
-            this.textBoxUsuario.TabIndex = 28;
+            this.textBoxUsuario.Size = new System.Drawing.Size(239, 23);
+            this.textBoxUsuario.TabIndex = 2;
             // 
             // textBoxApellido
             // 
             this.textBoxApellido.Location = new System.Drawing.Point(156, 48);
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(239, 23);
-            this.textBoxApellido.TabIndex = 27;
+            this.textBoxApellido.TabIndex = 1;
             // 
             // textBoxNombre
             // 
             this.textBoxNombre.Location = new System.Drawing.Point(156, 19);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(239, 23);
-            this.textBoxNombre.TabIndex = 26;
+            this.textBoxNombre.TabIndex = 0;
             // 
             // labelClaveRepetida
             // 
@@ -152,10 +154,10 @@
             // buttonCrearContinuar
             // 
             this.buttonCrearContinuar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCrearContinuar.Location = new System.Drawing.Point(419, 27);
+            this.buttonCrearContinuar.Location = new System.Drawing.Point(419, 19);
             this.buttonCrearContinuar.Name = "buttonCrearContinuar";
             this.buttonCrearContinuar.Size = new System.Drawing.Size(140, 30);
-            this.buttonCrearContinuar.TabIndex = 24;
+            this.buttonCrearContinuar.TabIndex = 1;
             this.buttonCrearContinuar.Text = "Crear y Continuar";
             this.buttonCrearContinuar.UseVisualStyleBackColor = true;
             this.buttonCrearContinuar.Click += new System.EventHandler(this.buttonCrearContinuar_Click);
@@ -163,10 +165,10 @@
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(419, 135);
+            this.buttonCancelar.Location = new System.Drawing.Point(419, 127);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(140, 30);
-            this.buttonCancelar.TabIndex = 25;
+            this.buttonCancelar.TabIndex = 4;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -174,10 +176,10 @@
             // buttonCrearSalir
             // 
             this.buttonCrearSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCrearSalir.Location = new System.Drawing.Point(419, 63);
+            this.buttonCrearSalir.Location = new System.Drawing.Point(419, 55);
             this.buttonCrearSalir.Name = "buttonCrearSalir";
             this.buttonCrearSalir.Size = new System.Drawing.Size(140, 30);
-            this.buttonCrearSalir.TabIndex = 26;
+            this.buttonCrearSalir.TabIndex = 2;
             this.buttonCrearSalir.Text = "Crear y Salir";
             this.buttonCrearSalir.UseVisualStyleBackColor = true;
             this.buttonCrearSalir.Click += new System.EventHandler(this.buttonCrearSalir_Click);
@@ -185,10 +187,10 @@
             // buttonLimpiar
             // 
             this.buttonLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLimpiar.Location = new System.Drawing.Point(419, 99);
+            this.buttonLimpiar.Location = new System.Drawing.Point(419, 91);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(140, 30);
-            this.buttonLimpiar.TabIndex = 27;
+            this.buttonLimpiar.TabIndex = 3;
             this.buttonLimpiar.Text = "Limpiar Campos";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
@@ -197,17 +199,28 @@
             // 
             this.labelValidacion.AutoSize = true;
             this.labelValidacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelValidacion.Location = new System.Drawing.Point(18, 190);
+            this.labelValidacion.Location = new System.Drawing.Point(12, 206);
             this.labelValidacion.Name = "labelValidacion";
             this.labelValidacion.Size = new System.Drawing.Size(233, 17);
             this.labelValidacion.TabIndex = 28;
             this.labelValidacion.Text = "Ingrese los datos del nuevo usuario";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(156, 164);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.checkBox1.Size = new System.Drawing.Size(114, 21);
+            this.checkBox1.TabIndex = 27;
+            this.checkBox1.Text = "Administrador";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // CrearExperto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 216);
+            this.ClientSize = new System.Drawing.Size(571, 229);
             this.Controls.Add(this.labelValidacion);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.buttonCrearSalir);
@@ -242,5 +255,6 @@
         private System.Windows.Forms.Button buttonCrearSalir;
         private System.Windows.Forms.Button buttonLimpiar;
         private System.Windows.Forms.Label labelValidacion;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

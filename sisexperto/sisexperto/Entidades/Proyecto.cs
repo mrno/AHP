@@ -36,8 +36,8 @@ namespace sisExperto.Entidades
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
                                                    where p.TodasMisValoracionesConsistentes()
-                                                   select p
-                ;
+                                                   select p;
+             
             Int32 denominador = 0;
             foreach (ExpertoEnProyecto expertoEnProyecto in lista)
             {

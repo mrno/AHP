@@ -263,8 +263,12 @@ namespace sisExperto
 
             if (_proyectoSeleccionado != null)
             {
-                var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
-                ventanaAHPPonderado.Show(); 
+                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistente().Count() > 0)
+                {
+                    var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
+                    ventanaAHPPonderado.Show();
+                }
+                else MessageBox.Show("No existen expertos con valoraciones consistentes.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
             //_proyectoSeleccionado.CalcularRankinPonderado();
@@ -274,8 +278,12 @@ namespace sisExperto
         {
             if (_proyectoSeleccionado != null)
             {
-                var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
-                ventanaAHPNoPonderado.Show(); 
+                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistente().Count() > 0)
+                {
+                    var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
+                    ventanaAHPNoPonderado.Show();
+                }
+                else MessageBox.Show("No existen expertos con valoraciones consistentes.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
             //_proyectoSeleccionado.CalcularRankingNoPonderado();
@@ -297,8 +305,18 @@ namespace sisExperto
         {
             if (_proyectoSeleccionado != null)
             {
-                var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, _experto);
-                ventanaAHPPersonal.Show();
+                var expertoEnProyecto = _fachadaProyectosExpertos.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
+
+                if (!expertoEnProyecto.TodasMisValoracionesConsistentes())
+                {
+                    MessageBox.Show("No se puede realizar esta operación porque las todas sus valoraciones no son consistentes.");
+                    
+                }
+                else
+                {
+                    var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, expertoEnProyecto);
+                    ventanaAHPPersonal.Show();
+                }
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
         }

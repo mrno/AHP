@@ -48,6 +48,7 @@ namespace sisExperto
             exp.Apellido = textBoxApellido.Text;
             exp.Usuario = textBoxUsuario.Text;
             exp.Clave = textBoxClave.Text;
+            exp.Administrador = checkBox1.Checked;
 
             //se crea el Experto y se dispara el evento para que actualice los grids correspondientes
 

@@ -56,7 +56,7 @@
             this.dataGridPonderacionExpertos.RowHeadersVisible = false;
             this.dataGridPonderacionExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridPonderacionExpertos.Size = new System.Drawing.Size(458, 305);
-            this.dataGridPonderacionExpertos.TabIndex = 31;
+            this.dataGridPonderacionExpertos.TabIndex = 6;
             // 
             // buttonCancelar
             // 
@@ -65,7 +65,7 @@
             this.buttonCancelar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(140, 30);
-            this.buttonCancelar.TabIndex = 36;
+            this.buttonCancelar.TabIndex = 8;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -77,7 +77,7 @@
             this.buttonGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(140, 30);
-            this.buttonGuardar.TabIndex = 35;
+            this.buttonGuardar.TabIndex = 7;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -103,7 +103,7 @@
             this.comboBoxValor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxValor.Name = "comboBoxValor";
             this.comboBoxValor.Size = new System.Drawing.Size(138, 28);
-            this.comboBoxValor.TabIndex = 40;
+            this.comboBoxValor.TabIndex = 3;
             // 
             // btnAgregar
             // 
@@ -112,7 +112,7 @@
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(30, 30);
-            this.btnAgregar.TabIndex = 41;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -124,7 +124,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 20);
-            this.label1.TabIndex = 38;
+            this.label1.TabIndex = 2;
             this.label1.Text = "Cambiar el peso:";
             // 
             // label2
@@ -135,7 +135,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 20);
-            this.label2.TabIndex = 42;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Proyecto:";
             // 
             // comboBoxProyectos
@@ -148,7 +148,7 @@
             this.comboBoxProyectos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxProyectos.Name = "comboBoxProyectos";
             this.comboBoxProyectos.Size = new System.Drawing.Size(375, 28);
-            this.comboBoxProyectos.TabIndex = 43;
+            this.comboBoxProyectos.TabIndex = 1;
             this.comboBoxProyectos.SelectedIndexChanged += new System.EventHandler(this.comboBoxProyectos_SelectedIndexChanged);
             // 
             // label7
@@ -159,7 +159,7 @@
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(168, 20);
-            this.label7.TabIndex = 34;
+            this.label7.TabIndex = 5;
             this.label7.Text = "Pesos de los expertos:";
             // 
             // PonderacionExpertos

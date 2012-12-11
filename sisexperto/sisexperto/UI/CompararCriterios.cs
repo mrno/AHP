@@ -136,11 +136,11 @@ namespace sisExperto
 
         private void mostrar(object sender, EventArgs e)
         {
-            label9.Text = "";
+            labelSugerencia.Text = "";
 
             track = (TrackBar) sender;
 
-            foreach (Control miLabel in FindForm().Controls)
+            foreach (Control miLabel in panelComparacion.Controls)
             {
                 if (miLabel is Label)
                 {
@@ -168,8 +168,7 @@ namespace sisExperto
                                 }
                             }
                         }
-
-                        }
+                    }
                 }
             }
         }
@@ -178,7 +177,7 @@ namespace sisExperto
         {
             int y = 140;
 
-          foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
+            foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
             {
                 foreach (CriterioCelda celda in fila.CeldasCriterios)
                 {
@@ -187,7 +186,7 @@ namespace sisExperto
                     var izquierdaTB = new Label();
                     izquierdaTB.SetBounds(5, y, 75, 50);
                     izquierdaTB.Text = fila.Criterio.Nombre;
-                    Controls.Add(izquierdaTB);
+                    panelComparacion.Controls.Add(izquierdaTB);
 
                     var track = new TrackBar();
                     track.SetBounds(75, y, 400, 45);
@@ -195,13 +194,13 @@ namespace sisExperto
                     track.SetRange(1, 17);
                     track.Value = valorarDoble(celda.Valor);
                     track.Scroll += mostrar;
-                    Controls.Add(track);
+                    panelComparacion.Controls.Add(track);
 
 
                     var derechaTB = new Label();
                     derechaTB.SetBounds(500, y, 80, 30);
                     derechaTB.Text = celda.Criterio.Nombre;
-                    Controls.Add(derechaTB);
+                    panelComparacion.Controls.Add(derechaTB);
 
                     var miLabel = new Label();
                     miLabel.SetBounds(150, y + 45, 250, 30);
@@ -209,7 +208,7 @@ namespace sisExperto
                     //                                                  comp.pos_columna);
                     miLabel.Text = valorarPalabra(track.Value);
                     miLabel.Name = celda.Fila.ToString() + 'x' + celda.Columna.ToString();
-                    Controls.Add(miLabel);
+                    panelComparacion.Controls.Add(miLabel);
 
                     y += 90;
                 }
@@ -220,23 +219,23 @@ namespace sisExperto
             //// 
             //// button1
             //// 
-            button1.Location = new Point(20, y);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 40);
-            button1.TabIndex = 6;
-            button1.Text = "Calcular consistencia";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            //button1.Location = new Point(20, y);
+            //button1.Name = "button1";
+            //button1.Size = new Size(140,30);
+            //button1.TabIndex = 6;
+            //button1.Text = "Listo";
+            //button1.UseVisualStyleBackColor = true;
+            //button1.Click += button1_Click;
             //// 
             //// label9
             //// 
-            label9.AutoSize = true;
-            label9.Location = new Point(20, y + 45);
-            label9.Name = "label9";
-            label9.BackColor = Color.Red;
-            label9.Size = new Size(40, 30);
-            label9.TabIndex = 7;
-            label9.Text = "";
+            //labelSugerencia.AutoSize = true;
+            //labelSugerencia.Location = new Point(20, y + 45);
+            //labelSugerencia.Name = "label9";
+            //labelSugerencia.BackColor = Color.Red;
+            //labelSugerencia.Size = new Size(40, 30);
+            //labelSugerencia.TabIndex = 7;
+            //labelSugerencia.Text = "";
         }
 
         private void GuardarConsistencia()
@@ -247,6 +246,7 @@ namespace sisExperto
                 MessageBox.Show("Matriz consistente");
             else
             {
+                
                 string NombreAlternativaA;
                 string NombreAlternativaB;
                 mejorada = FachadaCalculos.Instance.buscarMejoresConsistencia(matrizCriterio.MatrizCriterioAHP);
@@ -268,14 +268,14 @@ namespace sisExperto
 
                 if (mejorada[0, 0] < mejorada[0, 1])
                 {
-                    label9.Text = NombreAlternativaA + " " +
+                    labelSugerencia.Text = "Sugerencia: " + NombreAlternativaA + " " +
                                   "deberia ser " +
                                   obtenerDescripcion(mejorValor) + " " +
                                   NombreAlternativaB;
                 }
                 else
                 {
-                    label9.Text = NombreAlternativaB + " " +
+                    labelSugerencia.Text = "Sugerencia: " + NombreAlternativaB + " " +
                                   "deberia ser " +
                                   obtenerDescripcion(1/mejorValor) + " " +
                                   NombreAlternativaA;
@@ -285,10 +285,7 @@ namespace sisExperto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            GuardarConsistencia();
-
-
-          
+            GuardarConsistencia();          
         }
 
         private static double[] MaxValueIJ(double[,] intArray)
@@ -300,5 +297,6 @@ namespace sisExperto
             rdo[3] = 0;
             return rdo;
         }
+               
     }
 }

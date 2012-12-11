@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using sisExperto.Fachadas;
 using sisExperto.Entidades;
+using sisExperto;
 
 namespace sisexperto.UI
 {
@@ -16,10 +17,10 @@ namespace sisexperto.UI
         private FachadaEjecucionProyecto _fachada;
 
         private Proyecto _proyecto;
-        private Experto _experto;
+        private ExpertoEnProyecto _experto;
         private double[,] rankingFinal;
 
-        public MostrarRankingPersonal(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, Experto Experto)
+        public MostrarRankingPersonal(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, ExpertoEnProyecto ExpertoEnProyecto)
         {
             InitializeComponent();
             //tipoAgregacion=1 -> NO Ponderado
@@ -27,15 +28,15 @@ namespace sisexperto.UI
 
             _fachada = Fachada;
             _proyecto = Proyecto;
-            _experto = Experto;
+            _experto = ExpertoEnProyecto;
 
-            //rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
+            rankingFinal = _experto.CalcularMiRanking();
 
             labelTitulo.Text = _proyecto.Nombre;
-            labelSubtitulo.Text = _experto.Nombre;
+            labelSubtitulo.Text = string.Format("{0}, {1}", _experto.Experto.Apellido.ToUpper(), _experto.Experto.Nombre);
         }
 
-        private void CalcularAhpAgregado_Load(object sender, EventArgs e)
+        private void MostrarRankingPersonal_Load(object sender, EventArgs e)
         {
             ICollection<Alternativa> listaAlt = _proyecto.Alternativas;
 
@@ -45,25 +46,25 @@ namespace sisexperto.UI
             foreach (Alternativa alternativa in listaAlt)
             {
                 var resultado = new Resultado();
-                resultado.nombreAlternativa = alternativa.Nombre;
-                resultado.valorAlternativa = rankingFinal[cont, 0];
+                resultado.Alternativa = alternativa.Nombre;
+                resultado.Porcentaje = rankingFinal[cont, 0];
                 cont++;
                 listaResultado.Add(resultado);
             }
-
-            listaResultado.OrderByDescending(x => x.valorAlternativa);
-
-            dataGridResultados.DataSource = listaResultado;
+            
+            dataGridResultados.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
         }
 
         #region Nested type: Resultado
 
         internal class Resultado
         {
-            public String nombreAlternativa { get; set; }
-            public double valorAlternativa { get; set; }
+            public String Alternativa { get; set; }
+            public double Porcentaje { get; set; }
         }
 
         #endregion
+
+        
     }
 }
