@@ -60,6 +60,11 @@ namespace sisExperto
             return p.Alternativas;
         }
 
+        public IEnumerable<AlternativaIL> SolicitarAlternativasIL(ExpertoEnProyecto exp)
+        {
+            return exp.ValoracionIl.AlternativasIL;
+        }
+
         public IEnumerable<Criterio> SolicitarCriterios(Proyecto p)
         {
             return p.Criterios;
@@ -179,8 +184,6 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-       
-
         public void CerrarEdicionProyecto(Proyecto P)
         {
             P.Estado = "Listo";
@@ -199,28 +202,33 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-        //public void GuardarEtiqueta(Etiqueta Etiqueta)
-        //{
-        //    _context.Etiqueta.Add(Etiqueta);
-        //    _context.SaveChanges();
-        //}
-
         public IEnumerable<Etiqueta> SolicitarEtiquetas(ConjuntoEtiquetas ce)
         {
             return ce.Etiquetas;
         }
 
-        public List<Etiqueta> SolicitarEtiquetasDelExperto(ExpertoEnProyecto expertoEnProyecto)
+        public ConjuntoEtiquetas SolicitarConjuntoEtiquetasDelExperto(ValoracionIL valoracionIl)
         {
 
 
-            //List<Etiqueta> lista = (from c in _context.Etiqueta
-            //                        where c.ConjuntoEtiquetasId == expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.ConjuntoEtiquetasId
-            //                        select c).ToList();
-            //return lista;
+          return (from c in _context.ConjuntoEtiquetas
+                                    where c == valoracionIl.ConjuntoEtiquetas
+                                    select c).FirstOrDefault();
+            
 
-            return null;
-        }        
+          
+        }   
+     
+        
+        public ValoracionIL SolicitarValoracionILDelExpertoEnProycto(ExpertoEnProyecto expertoEnProyecto)
+        {
+            
+            return (from e in _context.ExpertosEnProyectos
+                        where e==expertoEnProyecto
+                        select e.ValoracionIl).FirstOrDefault();
+
+
+        }
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
             return (from c in _context.ConjuntoEtiquetas

@@ -14,6 +14,7 @@ namespace sisExperto
         private readonly FachadaProyectosExpertos _fachada;
         private readonly List<Proyecto> _listaProyectos = new List<Proyecto>();
         private ExpertoEnProyecto _expertoEnProyecto;
+       
         private Proyecto _proyectoSeleccionado;
         
 
@@ -23,6 +24,7 @@ namespace sisExperto
             _proyectoSeleccionado = ProyectoSeleccionado;
             _experto = experto;
             _fachada = Fachada;
+            //_expertoEnProyecto = _fachada.SolicitarExpertoEnProyecto(_experto,_proyectoSeleccionado)
             _listaProyectos = _fachada.SolicitarProyectosAsignados(_experto).ToList();
         }
 
@@ -61,16 +63,16 @@ namespace sisExperto
             _expertoEnProyecto = (from c in _experto.ProyectosAsignados
                                   where c.ProyectoId == _proyectoSeleccionado.ProyectoId
                                   select c).FirstOrDefault();
-            checkBoxConsistencia.Checked = _expertoEnProyecto.CriterioMatriz.Consistencia;
+          
 
-            List<Alternativa> listaAlternativas =
-                _fachada.SolicitarAlternativas(_proyectoSeleccionado).ToList();
+            List<AlternativaIL> listaAlternativas =
+                _fachada.SolicitarAlternativasIL(_expertoEnProyecto).ToList();
             gridCriterios.DataSource = null;
             gridCriterios.DataSource = listaAlternativas;
 
             for (int i = 0; i < listaAlternativas.Count; i++)
             {
-                gridCriterios.Rows[i].Cells[2].Value = listaAlternativas[i].Nombre;
+                gridCriterios.Rows[i].Cells[2].Value = listaAlternativas[i].AlternativaILId;
             }
         }
 
@@ -85,7 +87,15 @@ namespace sisExperto
         }
 
 
+        private void modificarAlternativasIL(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = ((DataGridView)sender).CurrentRow;
 
+            //var frm = new CompararIL()
+            var ventanaValoracionIL = new CompararIL(_fachada, _proyectoSeleccionado, (AlternativaIL)row.DataBoundItem);
+            ventanaValoracionIL.ShowDialog();
+
+        }
 
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -109,12 +119,6 @@ namespace sisExperto
             var frmComparar = new CompararCriterios(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
             cargarMatricesAHP();
-        }
-
-        private void buttonVerMatrizCriterio_Click(object sender, EventArgs e)
-        {
-            var ventanaValoracionIL = new CompararIL(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
-            ventanaValoracionIL.ShowDialog();
         }
 
        

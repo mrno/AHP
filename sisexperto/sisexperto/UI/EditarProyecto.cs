@@ -123,12 +123,20 @@ namespace sisExperto.UI
                 {
                     _fachada.InicializarILExpertos(_proyectoSeleccionado,_listaAlternativas, _listaCriterios);
                 }
-                else
+                else if(_proyectoSeleccionado.Tipo==1)
                 {
                     //Esto es para los proyectos que ejecutan AHP
                     _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
                     _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
                     ProyectoModificado();    
+                }
+                else
+                {
+                    _fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+                    //Esto es para los proyectos que ejecutan AHP
+                    _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+                    _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
+                    ProyectoModificado();  
                 }
                 
                 MessageBox.Show("Proyecto actualizado satisfactoriamente.");
