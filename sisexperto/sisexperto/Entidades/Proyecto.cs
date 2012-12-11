@@ -36,8 +36,8 @@ namespace sisExperto.Entidades
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
                                                    where p.TodasMisValoracionesConsistentes()
-                                                   select p
-                ;
+                                                   select p;
+             
             Int32 denominador = 0;
             foreach (ExpertoEnProyecto expertoEnProyecto in lista)
             {
@@ -76,12 +76,12 @@ namespace sisExperto.Entidades
             {
                 if (expertoEnProyecto.TodasMisValoracionesConsistentes())
                 {
-                    utils.Productoria(matrizCriterio, expertoEnProyecto.CriterioMatriz.MatrizCriterioAHP);
+                    utils.Productoria(matrizCriterio, expertoEnProyecto.CriterioMatriz.Matriz);
 
                     k = 0;
                     foreach (AlternativaMatriz d in expertoEnProyecto.AlternativasMatrices)
                     {
-                        utils.Productoria(listaAlternativas[k], d.MatrizAlternativaAHP);
+                        utils.Productoria(listaAlternativas[k], d.Matriz);
                         k++;
                     }
                     kk++;

@@ -46,8 +46,6 @@ namespace sisExperto
                     select expEnProyecto
 
                    ).FirstOrDefault();
-            
-
         }
 
         public IEnumerable<Proyecto> SolicitarProyectosCreados(Experto e)
@@ -131,7 +129,8 @@ namespace sisExperto
                                         ValoracionIl = new ValoracionIL
                                         {
                                             ConjuntoEtiquetas = Etiquetas.ElementAt(i)
-                                        }
+                                        },
+                                        Peso = 1
                                     });
             }
                        
@@ -262,7 +261,7 @@ namespace sisExperto
             //ExpertoEP.CriterioMatriz = new CriterioMatriz
              //                              {ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio};
 
-            _context.CriteriosMatrices.Add(new CriterioMatriz { ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio });
+            _context.CriteriosMatrices.Add(new CriterioMatriz { ExpertoEnProyecto = ExpertoEP, Matriz = MatrizCriterio });
             _context.SaveChanges();
         }
 
@@ -288,11 +287,11 @@ namespace sisExperto
                         {
                             Criterio = Criterio,
                             ExpertoEnProyecto = ExpertoEP,
-                            MatrizAlternativaAHP = MatrizAlternativa,
+                            Matriz = MatrizAlternativa,
                             Consistencia = false
                         });
             }
-            else matrizAlternativa.MatrizAlternativaAHP = MatrizAlternativa;
+            else matrizAlternativa.Matriz = MatrizAlternativa;
             _context.SaveChanges();
         }
 

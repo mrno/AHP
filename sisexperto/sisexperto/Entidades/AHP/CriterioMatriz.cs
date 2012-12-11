@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using sisExperto.Entidades;
+using sisexperto.Entidades.AHP;
 
 namespace sisexperto.Entidades
 {
-    public class CriterioMatriz
+    public class CriterioMatriz : IAHPMatrizComparable
     {
         public int CriterioMatrizId { get; set; }
         public bool Consistencia { get; set; }
@@ -15,7 +16,7 @@ namespace sisexperto.Entidades
         public virtual ICollection<CriterioFila> FilasCriterio { get; set; }
 
         
-        public double[,] MatrizCriterioAHP
+        public double[,] Matriz
         {
             get
             {

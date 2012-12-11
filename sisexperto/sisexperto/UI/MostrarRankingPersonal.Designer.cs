@@ -112,6 +112,7 @@
             this.Controls.Add(this.labelTitulo);
             this.Name = "MostrarRankingPersonal";
             this.Text = "MostrarRankingPersonal";
+            this.Load += new System.EventHandler(this.MostrarRankingPersonal_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).EndInit();
             this.ResumeLayout(false);

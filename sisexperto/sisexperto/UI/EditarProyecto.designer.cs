@@ -53,8 +53,8 @@
             this.textBoxNombreCriterio = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridCriterios = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAgregarCriterio = new System.Windows.Forms.Button();
             this.buttonQuitarCriterio = new System.Windows.Forms.Button();
             this.groupBoxCriterio = new System.Windows.Forms.GroupBox();
@@ -82,7 +82,7 @@
             this.dataGridAlternativas.RowHeadersVisible = false;
             this.dataGridAlternativas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridAlternativas.Size = new System.Drawing.Size(488, 125);
-            this.dataGridAlternativas.TabIndex = 0;
+            this.dataGridAlternativas.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -110,7 +110,7 @@
             this.buttonGuardar.Location = new System.Drawing.Point(30, 499);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(140, 30);
-            this.buttonGuardar.TabIndex = 7;
+            this.buttonGuardar.TabIndex = 3;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
             this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
@@ -138,14 +138,14 @@
             this.textBoxDescripcionAlternativa.Location = new System.Drawing.Point(108, 54);
             this.textBoxDescripcionAlternativa.Name = "textBoxDescripcionAlternativa";
             this.textBoxDescripcionAlternativa.Size = new System.Drawing.Size(274, 26);
-            this.textBoxDescripcionAlternativa.TabIndex = 9;
+            this.textBoxDescripcionAlternativa.TabIndex = 1;
             // 
             // textBoxNombreAlternativa
             // 
             this.textBoxNombreAlternativa.Location = new System.Drawing.Point(108, 22);
             this.textBoxNombreAlternativa.Name = "textBoxNombreAlternativa";
             this.textBoxNombreAlternativa.Size = new System.Drawing.Size(274, 26);
-            this.textBoxNombreAlternativa.TabIndex = 8;
+            this.textBoxNombreAlternativa.TabIndex = 0;
             // 
             // groupBoxAlternativa
             // 
@@ -160,7 +160,7 @@
             this.groupBoxAlternativa.Location = new System.Drawing.Point(12, 37);
             this.groupBoxAlternativa.Name = "groupBoxAlternativa";
             this.groupBoxAlternativa.Size = new System.Drawing.Size(500, 225);
-            this.groupBoxAlternativa.TabIndex = 26;
+            this.groupBoxAlternativa.TabIndex = 1;
             this.groupBoxAlternativa.TabStop = false;
             this.groupBoxAlternativa.Text = "Alternativas";
             // 
@@ -170,7 +170,7 @@
             this.buttonQuitarAlternativa.Location = new System.Drawing.Point(444, 26);
             this.buttonQuitarAlternativa.Name = "buttonQuitarAlternativa";
             this.buttonQuitarAlternativa.Size = new System.Drawing.Size(50, 50);
-            this.buttonQuitarAlternativa.TabIndex = 26;
+            this.buttonQuitarAlternativa.TabIndex = 3;
             this.buttonQuitarAlternativa.UseVisualStyleBackColor = true;
             this.buttonQuitarAlternativa.Click += new System.EventHandler(this.buttonQuitarAlternativa_Click);
             // 
@@ -180,7 +180,7 @@
             this.buttonAgregarAlternativa.Location = new System.Drawing.Point(388, 26);
             this.buttonAgregarAlternativa.Name = "buttonAgregarAlternativa";
             this.buttonAgregarAlternativa.Size = new System.Drawing.Size(50, 50);
-            this.buttonAgregarAlternativa.TabIndex = 25;
+            this.buttonAgregarAlternativa.TabIndex = 2;
             this.buttonAgregarAlternativa.UseVisualStyleBackColor = true;
             this.buttonAgregarAlternativa.Click += new System.EventHandler(this.buttonAgregarAlternativa_Click);
             // 
@@ -190,7 +190,7 @@
             this.buttonCancelar.Location = new System.Drawing.Point(350, 499);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(140, 30);
-            this.buttonCancelar.TabIndex = 28;
+            this.buttonCancelar.TabIndex = 5;
             this.buttonCancelar.Text = "Cancelar";
             this.buttonCancelar.UseVisualStyleBackColor = true;
             this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
@@ -215,7 +215,7 @@
             this.comboBoxProyectos.Location = new System.Drawing.Point(93, 6);
             this.comboBoxProyectos.Name = "comboBoxProyectos";
             this.comboBoxProyectos.Size = new System.Drawing.Size(419, 28);
-            this.comboBoxProyectos.TabIndex = 30;
+            this.comboBoxProyectos.TabIndex = 0;
             this.comboBoxProyectos.SelectedIndexChanged += new System.EventHandler(this.comboBoxProyectos_SelectedIndexChanged);
             this.comboBoxProyectos.Leave += new System.EventHandler(this.comboBoxProyectos_Leave);
             // 
@@ -229,7 +229,7 @@
             this.buttonLimpiarAsignaciones.Location = new System.Drawing.Point(190, 499);
             this.buttonLimpiarAsignaciones.Name = "buttonLimpiarAsignaciones";
             this.buttonLimpiarAsignaciones.Size = new System.Drawing.Size(140, 30);
-            this.buttonLimpiarAsignaciones.TabIndex = 31;
+            this.buttonLimpiarAsignaciones.TabIndex = 4;
             this.buttonLimpiarAsignaciones.Text = "Limpiar";
             this.buttonLimpiarAsignaciones.UseVisualStyleBackColor = true;
             this.buttonLimpiarAsignaciones.Click += new System.EventHandler(this.buttonLimpiarAsignaciones_Click);
@@ -239,7 +239,7 @@
             this.textBoxDescripcionCriterio.Location = new System.Drawing.Point(108, 54);
             this.textBoxDescripcionCriterio.Name = "textBoxDescripcionCriterio";
             this.textBoxDescripcionCriterio.Size = new System.Drawing.Size(274, 26);
-            this.textBoxDescripcionCriterio.TabIndex = 9;
+            this.textBoxDescripcionCriterio.TabIndex = 1;
             // 
             // label8
             // 
@@ -255,7 +255,7 @@
             this.textBoxNombreCriterio.Location = new System.Drawing.Point(108, 22);
             this.textBoxNombreCriterio.Name = "textBoxNombreCriterio";
             this.textBoxNombreCriterio.Size = new System.Drawing.Size(274, 26);
-            this.textBoxNombreCriterio.TabIndex = 8;
+            this.textBoxNombreCriterio.TabIndex = 0;
             // 
             // label7
             // 
@@ -281,13 +281,7 @@
             this.dataGridCriterios.RowHeadersVisible = false;
             this.dataGridCriterios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridCriterios.Size = new System.Drawing.Size(488, 125);
-            this.dataGridCriterios.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Descripcion";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Descripcion";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridCriterios.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -295,13 +289,19 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Nombre";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Descripcion";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Descripcion";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
             // buttonAgregarCriterio
             // 
             this.buttonAgregarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarCriterio.Image")));
             this.buttonAgregarCriterio.Location = new System.Drawing.Point(388, 26);
             this.buttonAgregarCriterio.Name = "buttonAgregarCriterio";
             this.buttonAgregarCriterio.Size = new System.Drawing.Size(50, 50);
-            this.buttonAgregarCriterio.TabIndex = 25;
+            this.buttonAgregarCriterio.TabIndex = 2;
             this.buttonAgregarCriterio.UseVisualStyleBackColor = true;
             this.buttonAgregarCriterio.Click += new System.EventHandler(this.buttonAgregarCriterio_Click);
             // 
@@ -311,7 +311,7 @@
             this.buttonQuitarCriterio.Location = new System.Drawing.Point(444, 26);
             this.buttonQuitarCriterio.Name = "buttonQuitarCriterio";
             this.buttonQuitarCriterio.Size = new System.Drawing.Size(50, 50);
-            this.buttonQuitarCriterio.TabIndex = 26;
+            this.buttonQuitarCriterio.TabIndex = 3;
             this.buttonQuitarCriterio.UseVisualStyleBackColor = true;
             this.buttonQuitarCriterio.Click += new System.EventHandler(this.buttonQuitarCriterio_Click);
             // 
@@ -328,7 +328,7 @@
             this.groupBoxCriterio.Location = new System.Drawing.Point(12, 268);
             this.groupBoxCriterio.Name = "groupBoxCriterio";
             this.groupBoxCriterio.Size = new System.Drawing.Size(500, 225);
-            this.groupBoxCriterio.TabIndex = 27;
+            this.groupBoxCriterio.TabIndex = 2;
             this.groupBoxCriterio.TabStop = false;
             this.groupBoxCriterio.Text = "Criterios";
             // 

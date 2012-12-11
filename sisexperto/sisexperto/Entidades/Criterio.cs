@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using sisexperto.Entidades;
+using sisexperto.Entidades.AHP;
 
 namespace sisExperto.Entidades
 {
-    public class Criterio
+    public class Criterio : IAHPComparable
     {
         public int CriterioId { get; set; }
         public string Nombre { get; set; }
