@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using sisExperto.Entidades;
+using sisexperto.Entidades;
 
 namespace sisExperto.UI
 {
@@ -182,7 +183,8 @@ namespace sisExperto.UI
         private void GuardarIL()
         {
             //Esto es para los proyectos que ejecutan IL.
-            //_fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
+             
+            _fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
          
             _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
             ProyectoModificado();

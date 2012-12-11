@@ -256,7 +256,7 @@ namespace sisExperto
             CargarDataGridConjuntoEtiquetas();
         }
 
-        private void buttonAgregarConjunto_Click(object sender, EventArgs e)
+        private void buttonAgregarConjuntoAlExperto_Click(object sender, EventArgs e)
         {
             var conjuntoEtiquetas = (ConjuntoEtiquetas) dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
             int index = dataGridCombinada.CurrentRow.Index;
@@ -266,7 +266,7 @@ namespace sisExperto
             dataGridCombinada.DataSource = _listaCombinadaExpertosAsignados;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonVerTodosLosConjuntos_Click(object sender, EventArgs e )
         {
             _conjuntoEtiquetases.Clear();
             _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetas());
@@ -276,10 +276,8 @@ namespace sisExperto
             {
                 MessageBox.Show("No existe Conjunto de Etiquetas, deberia crearlas y asignar a los expertos");
             }
-            else
-            {
-                dataGridConjuntoEtiquetas.Rows[0].Selected = true;    
-            }            
+           
+     
         }
     }
 }

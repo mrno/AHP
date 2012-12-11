@@ -319,23 +319,46 @@ namespace sisExperto
         public void InicializarILExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas,
                                                 List<Criterio> ListaCriterios)
         {
-            foreach (ExpertoEnProyecto expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
-            {
-                CrearFilasCriteriosIL(expertoEnProyecto, null);
 
-                foreach (Criterio criterio in ListaCriterios)
+
+            foreach (var expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
+            {
+                ValoracionIL valoracionIl = SolicitarValoracionILDelExpertoEnProycto(expertoEnProyecto);
+ 
+                List<AlternativaIL> listaAlternativaIL = new List<AlternativaIL>();
+               
+                foreach (Alternativa Alternativa in ListaAlternativas)
                 {
-                    //CargarMatrizAlterntivas(expertoEnProyecto, criterio, matrizAlternativa);
+
+                    AlternativaIL alternativaIl = new AlternativaIL();
+                    alternativaIl.Nombre = Alternativa.Nombre;
+                    alternativaIl.Descripcion = Alternativa.Descripcion;
+                   
+                   
+                    
+                    List<ValorCriterio> listValorCriterioIL = new List<ValorCriterio>();
+                    foreach (Criterio criterio in ListaCriterios)
+                    {
+                        ValorCriterio valorCriterio = new ValorCriterio();
+                        valorCriterio.Nombre = criterio.Nombre;
+                        valorCriterio.Descripcion = criterio.Descripcion;
+                        listValorCriterioIL.Add(valorCriterio);
+                    }
+
+                    alternativaIl.ValorCriterios = listValorCriterioIL;
+
+                    listaAlternativaIL.Add(alternativaIl);
                 }
+
+                valoracionIl.AlternativasIL = listaAlternativaIL;
+
             }
-           
+
+            _context.SaveChanges();
+
+
         }
-        //TODO ver todo esto
-        private void CrearFilasCriteriosIL(ExpertoEnProyecto _expertoEnProyecto, CriterioFila _criterioFila)
-        {
-            
-     
-        }
+
         private double[,] GenerarMatriz(int Dimension)
         {
             var matriz = new double[Dimension,Dimension];
