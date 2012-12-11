@@ -253,7 +253,7 @@ namespace sisExperto
   
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
-            return _context.ConjuntoEtiquetas;
+            return _context.ConjuntoEtiquetas.ToList();
         }
 
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)

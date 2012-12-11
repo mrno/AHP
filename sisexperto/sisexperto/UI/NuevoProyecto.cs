@@ -269,8 +269,9 @@ namespace sisExperto
         private void buttonVerTodosLosConjuntos_Click(object sender, EventArgs e )
         {
             _conjuntoEtiquetases.Clear();
-            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetas());
             dataGridConjuntoEtiquetas.DataSource = null;
+            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetas());
+  
             dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
             if (_conjuntoEtiquetases.Count==0)
             {
@@ -278,6 +279,11 @@ namespace sisExperto
             }
            
      
+        }
+
+        private void buttonRefrescar_Click(object sender, EventArgs e)
+        {
+            CargarDataGridConjuntoEtiquetas();
         }
     }
 }
