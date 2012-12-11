@@ -121,11 +121,12 @@ namespace sisExperto.UI
 
                 if (_proyectoSeleccionado.Tipo==1)
                 {
+                    //Esto es para los proyectos que ejecutan IL.
                     _fachada.InicializarILExpertos(_proyectoSeleccionado,_listaAlternativas, _listaCriterios);
                 }
                 else if(_proyectoSeleccionado.Tipo==1)
                 {
-                    //Esto es para los proyectos que ejecutan AHP
+                    //Esto es para los proyectos que ejecutan AHP.
                     _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
                     _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
                     ProyectoModificado();    
@@ -133,7 +134,7 @@ namespace sisExperto.UI
                 else
                 {
                     _fachada.InicializarILExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
-                    //Esto es para los proyectos que ejecutan AHP
+                    //Esto es para los proyectos que ejecutan AMBOS modelos.
                     _fachada.InicializarMatricesExpertos(_proyectoSeleccionado, _listaAlternativas, _listaCriterios);
                     _fachada.CerrarEdicionProyecto(_proyectoSeleccionado);
                     ProyectoModificado();  
