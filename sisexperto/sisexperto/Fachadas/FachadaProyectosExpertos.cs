@@ -213,21 +213,21 @@ namespace sisExperto
           return (from c in _context.ConjuntoEtiquetas
                                     where c == valoracionIl.ConjuntoEtiquetas
                                     select c).FirstOrDefault();
-            
-
-          
         }   
      
         
-        public ValoracionIL SolicitarValoracionILDelExpertoEnProycto(ExpertoEnProyecto expertoEnProyecto)
-        {
-            
-            return (from e in _context.ExpertosEnProyectos
-                        where e==expertoEnProyecto
-                        select e.ValoracionIl).FirstOrDefault();
+        //public ValoracionIL SolicitarValoracionILDelExpertoEnProycto(ExpertoEnProyecto expertoEnProyecto)
+        //{
 
 
-        }
+        //    var algo = solicitarExperProyectoActual();
+
+        //           (from e in _context.ExpertosEnProyectos
+        //                where e==expertoEnProyecto
+        //                select e.ValoracionIl).FirstOrDefault();
+
+        //       return algo;
+        //}
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
             return (from c in _context.ConjuntoEtiquetas
@@ -323,7 +323,7 @@ namespace sisExperto
 
             foreach (var expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
             {
-                ValoracionIL valoracionIl = SolicitarValoracionILDelExpertoEnProycto(expertoEnProyecto);
+                ValoracionIL valoracionIl = expertoEnProyecto.ValoracionIl;
  
                 List<AlternativaIL> listaAlternativaIL = new List<AlternativaIL>();
                

@@ -33,6 +33,9 @@ namespace sisExperto.Entidades
         public DbSet<Etiqueta> Etiqueta { get; set; }
         public DbSet<ConjuntoEtiquetas> ConjuntoEtiquetas { get; set; }
 
+        public DbSet<AlternativaIL> AlternativasIL { get; set; }
+        public DbSet<ValorCriterio> ValoresCriterios { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
          
