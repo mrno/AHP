@@ -65,6 +65,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.buttonRefrescar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.combinadaBindingSource)).BeginInit();
@@ -132,6 +133,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonRefrescar);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.dataGridCombinada);
             this.groupBox1.Controls.Add(this.buttonAgregarConjunto);
@@ -151,9 +153,9 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(853, 307);
+            this.button1.Location = new System.Drawing.Point(857, 307);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 30);
+            this.button1.Size = new System.Drawing.Size(140, 30);
             this.button1.TabIndex = 7;
             this.button1.Text = "Ver todos";
             this.button1.UseVisualStyleBackColor = true;
@@ -239,7 +241,7 @@
             this.dataGridConjuntoEtiquetas.Name = "dataGridConjuntoEtiquetas";
             this.dataGridConjuntoEtiquetas.ReadOnly = true;
             this.dataGridConjuntoEtiquetas.RowHeadersVisible = false;
-            this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(271, 279);
             this.dataGridConjuntoEtiquetas.TabIndex = 6;
             // 
@@ -431,6 +433,17 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
+            // buttonRefrescar
+            // 
+            this.buttonRefrescar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefrescar.Location = new System.Drawing.Point(726, 307);
+            this.buttonRefrescar.Name = "buttonRefrescar";
+            this.buttonRefrescar.Size = new System.Drawing.Size(118, 30);
+            this.buttonRefrescar.TabIndex = 8;
+            this.buttonRefrescar.Text = "Refrescar";
+            this.buttonRefrescar.UseVisualStyleBackColor = true;
+            this.buttonRefrescar.Click += new System.EventHandler(this.buttonRefrescar_Click);
+            // 
             // NuevoProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,5 +513,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.Button buttonRefrescar;
     }
 }
