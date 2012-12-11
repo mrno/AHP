@@ -1,6 +1,7 @@
-﻿namespace sisExperto.Entidades
+﻿using sisexperto.Entidades.AHP;
+namespace sisExperto.Entidades
 {
-    public class Alternativa
+    public class Alternativa : IAHPComparable
     {
         public int AlternativaId { get; set; }
         public string Nombre { get; set; }

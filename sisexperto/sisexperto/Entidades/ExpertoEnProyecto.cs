@@ -61,14 +61,14 @@ namespace sisExperto.Entidades
         private List<double[,]> ListaMatrizAlternativas()
         {
             return (from c in AlternativasMatrices
-                    select c.MatrizAlternativaAHP).ToList();
+                    select c.Matriz).ToList();
         }
 
         public List<double[,]> ListaCriterioAlternativas()
         {
             var listaCriterioAlternativas = new List<double[,]>();
 
-            listaCriterioAlternativas.Add(CriterioMatriz.MatrizCriterioAHP);
+            listaCriterioAlternativas.Add(CriterioMatriz.Matriz);
 
             listaCriterioAlternativas.AddRange(ListaMatrizAlternativas());
             return listaCriterioAlternativas;
