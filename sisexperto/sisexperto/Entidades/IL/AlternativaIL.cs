@@ -10,6 +10,6 @@ namespace sisexperto.Entidades
         public int AlternativaILId { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public virtual ICollection<ValorCriterio> ValorCriterios { get; set; }
+        public virtual List<ValorCriterio> ValorCriterios { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace sisexperto.Entidades
 
         public int ValoracionILId { get; set;  }
         public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
-        public virtual ICollection<AlternativaIL> AlternativasIL { get; set; }
+        public virtual List<AlternativaIL> AlternativasIL { get; set; }
 
 
     }

@@ -40,12 +40,17 @@ namespace sisexperto.UI
                     if (miLabel.Name == track.Name)
                     {
                         string[] posicion = track.Name.Split('x');
-                        var l = (Label) miLabel;
+                        Label l = (Label) miLabel;
 
-                        var listaEtiquetas = _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas;
-                            //_miFachada.SolicitarConjuntoEtiquetasDelExperto(_expertoEnProyecto.ValoracionIl).Etiquetas;
-                        
+                        List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas;
+
+
                         l.Text = listaEtiquetas[(track.Value - 1)].Nombre;
+
+
+                        //_alternativaIl.ValorCriterios[track.Value - 1].ValorILNumerico =
+                        //    listaEtiquetas[(track.Value - 1)].Indice;
+                        //_miFachada.GuardarValoracion();
 
                         //foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
                         //{
@@ -56,17 +61,15 @@ namespace sisexperto.UI
                         //        {
                         //            //1
                         //            //celda.ValorILNumerico = (track.Value);
-
                         //            //2
                         //            //GuardarConsistencia();    puede ser esa opción también.
                         //            matrizCriterio.Consistencia = false;
-
                         //            //miFachada.GuardarValoracion();
                         //        }
                         //    }
                         //}
 
-                        }
+                    }
                 }
                 i++;
             }
@@ -81,11 +84,10 @@ namespace sisexperto.UI
         public void CompararIL_load(object sender, EventArgs e)
         {
                 int y = 140;
-
+            nombreAlternativa.Text = _alternativaIl.Nombre;
                 foreach (var fila in _alternativaIl.ValorCriterios)
                 {
 
-                    //listaCeldas.Add(celda);
 
                     var izquierdaTB = new Label();
                     izquierdaTB.SetBounds(5, y, 75, 50);

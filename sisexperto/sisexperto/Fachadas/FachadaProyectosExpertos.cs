@@ -227,32 +227,36 @@ namespace sisExperto
 
         //       return algo;
         //}
-        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
+        public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
-            return (from c in _context.ConjuntoEtiquetas
-                    where c.Token == val
-                    select c);
+
+            IQueryable<ConjuntoEtiquetas> lista = (from c in _context.ConjuntoEtiquetas
+                         where c.Token == val
+                         select c);
+            List<ConjuntoEtiquetas> listaFinal = lista.ToList();
+            return listaFinal;
         }
 
-        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
+        public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
         {
 
-            var listaProyectosConCE = (from c in _context.ExpertosEnProyectos
+            List<ConjuntoEtiquetas> listaProyectosConCE = (from c in _context.ExpertosEnProyectos
                                        where c.ValoracionIl.ConjuntoEtiquetas != null
                                        select c.ValoracionIl.ConjuntoEtiquetas).ToList();
 
-            var listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
+            List<ConjuntoEtiquetas> listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
+
+            List<ConjuntoEtiquetas> lista = listaCompletaCE.Except(listaProyectosConCE).ToList();
+            return lista;
 
 
-            return listaCompletaCE.Except(listaProyectosConCE);
 
-
-           
         }
-  
-        public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
+
+        public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
-            return _context.ConjuntoEtiquetas.ToList();
+            List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
+            return lista;
         }
 
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
