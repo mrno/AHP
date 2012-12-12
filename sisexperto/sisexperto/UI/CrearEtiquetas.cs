@@ -126,7 +126,9 @@ namespace sisExperto.UI
         {
             foreach (Etiqueta etiqueta in _etiquetas)
             {
-                etiqueta.b = (double) etiqueta.Indice/_etiquetas.Count;
+                etiqueta.a = (double) etiqueta.Indice/_etiquetas.Count;
+                etiqueta.b = 1;
+                etiqueta.c = 0;
             }
         }
 
@@ -143,7 +145,7 @@ namespace sisExperto.UI
                                    {
                                        Nombre = CrearNombre(rdo),
                                        Descripcion = CrearNombre(rdo),
-                                       Indice = _etiquetas.Count,
+                                       Indice = _etiquetas.Count+1,
                                    };
                 _etiquetas.Add(etiqueta);
             }
