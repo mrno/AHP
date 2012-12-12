@@ -281,7 +281,7 @@ namespace sisExperto
                 else MessageBox.Show("No existen expertos con valoraciones consistentes.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
-            //_proyectoSeleccionado.CalcularRankinPonderado();
+            //_proyectoSeleccionado.CalcularRankinAHPPonderado();
         }
 
         private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -296,7 +296,7 @@ namespace sisExperto
                 else MessageBox.Show("No existen expertos con valoraciones consistentes.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
-            //_proyectoSeleccionado.CalcularRankingNoPonderado();
+            //_proyectoSeleccionado.CalcularRankingAHPNoPonderado();
         }
 
         private void crearConjuntoDeEtiquetsToolStripMenuItem_Click(object sender, EventArgs e)

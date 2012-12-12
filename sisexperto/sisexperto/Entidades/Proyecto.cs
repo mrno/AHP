@@ -51,7 +51,7 @@ namespace sisExperto.Entidades
             return lista;
         }
 
-        public double[,] CalcularRankingNoPonderado()
+        public double[,] CalcularRankingAHPNoPonderado()
         {
             var utils = new Utils();
             var listaCompleta = new List<double[,]>();
@@ -117,7 +117,7 @@ namespace sisExperto.Entidades
         }
 
 
-        public double[,] CalcularRankinPonderado()
+        public double[,] CalcularRankinAHPPonderado()
         {
             var utils = new Utils();
 
@@ -136,5 +136,9 @@ namespace sisExperto.Entidades
             //MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
             //mostrarRanking.ShowDialog();
         }
+    
+    
+    
+    
     }
 }

@@ -42,9 +42,9 @@ namespace sisExperto.Fachadas
             switch (tipoAgregacion)
             {
                 case 1:
-                    return _proyecto.CalcularRankingNoPonderado();
+                    return _proyecto.CalcularRankingAHPNoPonderado();
                 case 2:
-                    return _proyecto.CalcularRankinPonderado();
+                    return _proyecto.CalcularRankinAHPPonderado();
                 default:
                     return new double[_proyecto.Alternativas.Count,1];
             }
