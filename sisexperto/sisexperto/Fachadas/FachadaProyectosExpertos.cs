@@ -168,7 +168,7 @@ namespace sisExperto
             {
                 Proyecto.Alternativas.Add(item);
             }
-            Proyecto.Alternativas = Alternativas;
+            //Proyecto.Alternativas = Alternativas;
             _context.SaveChanges();
         }
 
@@ -206,14 +206,13 @@ namespace sisExperto
             return ce.Etiquetas;
         }
 
-        public ConjuntoEtiquetas SolicitarConjuntoEtiquetasDelExperto(ValoracionIL valoracionIl)
-        {
+        //public ConjuntoEtiquetas SolicitarConjuntoEtiquetasDelExperto(ValoracionIL valoracionIl)
+        //{
 
-
-          return (from c in _context.ConjuntoEtiquetas
-                                    where c == valoracionIl.ConjuntoEtiquetas
-                                    select c).FirstOrDefault();
-        }   
+        //  return (from c in _context.ConjuntoEtiquetas
+        //                            where c == valoracionIl.ConjuntoEtiquetas
+        //                            select c).FirstOrDefault();
+        //}   
      
         
         //public ValoracionIL SolicitarValoracionILDelExpertoEnProycto(ExpertoEnProyecto expertoEnProyecto)

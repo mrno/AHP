@@ -80,10 +80,10 @@ namespace sisExperto
 
         private void modificarAlternativa(object sender, DataGridViewCellEventArgs e)
         {
-            var matriz = new AlternativaMatriz();
+            var alternativa = new AlternativaIL();
             DataGridViewRow row = ((DataGridView) sender).CurrentRow;
-            matriz = (AlternativaMatriz) row.DataBoundItem;
-            var frmComparar = new ComparacionAlternativas(matriz, _fachada, _proyectoSeleccionado);
+            alternativa = (AlternativaIL) row.DataBoundItem;
+            var frmComparar = new CompararIL(_fachada,_proyectoSeleccionado, alternativa);
             frmComparar.ShowDialog();
             cargarMatricesAHP();
         }

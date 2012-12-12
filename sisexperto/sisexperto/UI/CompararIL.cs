@@ -42,10 +42,10 @@ namespace sisexperto.UI
                         string[] posicion = track.Name.Split('x');
                         var l = (Label) miLabel;
 
-                        var listaEtiquetas =
-                            _miFachada.SolicitarConjuntoEtiquetasDelExperto(_expertoEnProyecto.ValoracionIl).Etiquetas;
-
-                        l.Text = listaEtiquetas[track.Value].Nombre;
+                        var listaEtiquetas = _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas;
+                            //_miFachada.SolicitarConjuntoEtiquetasDelExperto(_expertoEnProyecto.ValoracionIl).Etiquetas;
+                        
+                        l.Text = listaEtiquetas[(track.Value - 1)].Nombre;
 
                         //foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
                         //{
@@ -87,10 +87,10 @@ namespace sisexperto.UI
 
                     //listaCeldas.Add(celda);
 
-                    //var izquierdaTB = new Label();
-                    //izquierdaTB.SetBounds(5, y, 75, 50);
-                    //izquierdaTB.Text = fila.
-                        // Controls.Add(izquierdaTB);
+                    var izquierdaTB = new Label();
+                    izquierdaTB.SetBounds(5, y, 75, 50);
+                    izquierdaTB.Text = fila.Nombre;
+                    Controls.Add(izquierdaTB);
 
                     var track = new TrackBar();
                     track.SetBounds(75, y, 400, 45);
@@ -113,7 +113,6 @@ namespace sisexperto.UI
                     //                                                  comp.pos_columna);
                     //miLabel.Text = celda.ValorILLinguistico;
                     miLabel.Name = fila.Nombre;
-                    miLabel.Text = fila.Nombre;
                     Controls.Add(miLabel);
 
                     y += 90;
