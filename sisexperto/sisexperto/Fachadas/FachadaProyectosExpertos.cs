@@ -228,6 +228,9 @@ namespace sisExperto
 
 
         }
+
+
+
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
             List<ConjuntoEtiquetas> lista = (from c in _context.ConjuntoEtiquetas
@@ -245,24 +248,20 @@ namespace sisExperto
 
             List<ConjuntoEtiquetas> listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
 
-           List<ConjuntoEtiquetas> listaFinal = listaCompletaCE.Except(listaProyectosConCE).ToList();
+        IEnumerable<ConjuntoEtiquetas> listaFinal = listaCompletaCE.Except(listaProyectosConCE);
             return listaFinal;
 
-
-
         }
-  
+
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
-            List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
+         List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
             return lista;
         }
 
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
         {
-            //ExpertoEP.CriterioMatriz = new CriterioMatriz
-             //                              {ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio};
-
+         
             _context.CriteriosMatrices.Add(new CriterioMatriz { ExpertoEnProyecto = ExpertoEP, Matriz = MatrizCriterio });
             _context.SaveChanges();
         }

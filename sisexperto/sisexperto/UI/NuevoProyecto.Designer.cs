@@ -55,6 +55,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.expertoApellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expertoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adminDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -66,9 +69,7 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.administradorDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).BeginInit();
@@ -136,6 +137,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -159,20 +161,20 @@
             // buttonRefrescar
             // 
             this.buttonRefrescar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefrescar.Location = new System.Drawing.Point(711, 307);
+            this.buttonRefrescar.Location = new System.Drawing.Point(697, 308);
             this.buttonRefrescar.Name = "buttonRefrescar";
-            this.buttonRefrescar.Size = new System.Drawing.Size(140, 30);
+            this.buttonRefrescar.Size = new System.Drawing.Size(97, 30);
             this.buttonRefrescar.TabIndex = 8;
             this.buttonRefrescar.Text = "Creadas aca";
             this.buttonRefrescar.UseVisualStyleBackColor = true;
-            this.buttonRefrescar.Click += new System.EventHandler(this.buttonRefrescar_Click);
+            this.buttonRefrescar.Click += new System.EventHandler(this.buttonCreadasAca_Click);
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(857, 307);
+            this.button1.Location = new System.Drawing.Point(921, 307);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 30);
+            this.button1.Size = new System.Drawing.Size(76, 30);
             this.button1.TabIndex = 7;
             this.button1.Text = "Ver todas";
             this.button1.UseVisualStyleBackColor = true;
@@ -204,7 +206,7 @@
             this.buttonAgregarConjunto.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarConjunto.Image")));
             this.buttonAgregarConjunto.Location = new System.Drawing.Point(646, 78);
             this.buttonAgregarConjunto.Name = "buttonAgregarConjunto";
-            this.buttonAgregarConjunto.Size = new System.Drawing.Size(59, 50);
+            this.buttonAgregarConjunto.Size = new System.Drawing.Size(45, 50);
             this.buttonAgregarConjunto.TabIndex = 5;
             this.buttonAgregarConjunto.Text = "<<<<<<";
             this.buttonAgregarConjunto.UseVisualStyleBackColor = true;
@@ -222,13 +224,13 @@
             this.dataGridViewTextBoxColumn4,
             this.Cantidad});
             this.dataGridConjuntoEtiquetas.DataSource = this.conjuntoEtiquetasBindingSource;
-            this.dataGridConjuntoEtiquetas.Location = new System.Drawing.Point(711, 44);
+            this.dataGridConjuntoEtiquetas.Location = new System.Drawing.Point(697, 44);
             this.dataGridConjuntoEtiquetas.MultiSelect = false;
             this.dataGridConjuntoEtiquetas.Name = "dataGridConjuntoEtiquetas";
             this.dataGridConjuntoEtiquetas.ReadOnly = true;
             this.dataGridConjuntoEtiquetas.RowHeadersVisible = false;
             this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(286, 257);
+            this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(300, 257);
             this.dataGridConjuntoEtiquetas.TabIndex = 6;
             // 
             // Cantidad
@@ -382,6 +384,39 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label5.Location = new System.Drawing.Point(720, 21);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(168, 17);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Conjunto de Etiquetas";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label6.Location = new System.Drawing.Point(316, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(245, 17);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Asignaciones Expertos Etiquetas";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label7.Location = new System.Drawing.Point(7, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 17);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Expertos";
+            // 
             // expertoApellidoDataGridViewTextBoxColumn
             // 
             this.expertoApellidoDataGridViewTextBoxColumn.DataPropertyName = "ExpertoApellido";
@@ -451,38 +486,16 @@
             // 
             this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
-            // label5
+            // button2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Location = new System.Drawing.Point(720, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(168, 17);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Conjunto de Etiquetas";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(316, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(245, 17);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Asignaciones Expertos Etiquetas";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label7.Location = new System.Drawing.Point(7, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 17);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Expertos";
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(800, 307);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 30);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "No asignadas";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonVerNoAsignadas_Click);
             // 
             // NuevoProyecto
             // 
@@ -558,5 +571,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button2;
     }
 }
