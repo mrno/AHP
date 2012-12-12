@@ -230,30 +230,32 @@ namespace sisExperto
         }
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
-            return (from c in _context.ConjuntoEtiquetas
+            List<ConjuntoEtiquetas> lista = (from c in _context.ConjuntoEtiquetas
                     where c.Token == val
-                    select c);
+                    select c).ToList();
+            return lista;
         }
 
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
         {
 
-            var listaProyectosConCE = (from c in _context.ExpertosEnProyectos
+            List<ConjuntoEtiquetas> listaProyectosConCE = (from c in _context.ExpertosEnProyectos
                                        where c.ValoracionIl.ConjuntoEtiquetas != null
                                        select c.ValoracionIl.ConjuntoEtiquetas).ToList();
 
-            var listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
+            List<ConjuntoEtiquetas> listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
+
+           List<ConjuntoEtiquetas> listaFinal = listaCompletaCE.Except(listaProyectosConCE).ToList();
+            return listaFinal;
 
 
-            return listaCompletaCE.Except(listaProyectosConCE);
 
-
-           
         }
   
         public IEnumerable<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
         {
-            return _context.ConjuntoEtiquetas.ToList();
+            List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
+            return lista;
         }
 
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
