@@ -36,7 +36,7 @@ namespace sisExperto.UI
                                    {
                                        Nombre = textBoxNombreEtiqueta.Text,
                                        Descripcion = textBoxDescripcionEtiqueta.Text,
-                                       Indice = _etiquetas.Count,
+                                       Indice = _etiquetas.Count+1,
                                        a = 0,
                                        b = 0,
                                        c = 0,
