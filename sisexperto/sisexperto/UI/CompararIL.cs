@@ -44,12 +44,20 @@ namespace sisexperto.UI
 
                         List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas;
 
+                        var etiqueta = listaEtiquetas[(track.Value - 1)];
+                        l.Text = etiqueta.Nombre;
 
-                        l.Text = listaEtiquetas[(track.Value - 1)].Nombre;
-
-
+                        foreach (var item in _alternativaIl.ValorCriterios)
+                        {
+                            if (item.Nombre == track.Name)
+                            {
+                                item.ValorILNumerico = etiqueta.Indice;
+                                item.ValorILLinguistico = etiqueta.Nombre;
+                            }
+                        }
+                        _miFachada.GuardarValoracion();
                         //_alternativaIl.ValorCriterios[track.Value - 1].ValorILNumerico =
-                        //    listaEtiquetas[(track.Value - 1)].Indice;
+                        //listaEtiquetas[(track.Value - 1)].Indice;
                         //_miFachada.GuardarValoracion();
 
                         //foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
