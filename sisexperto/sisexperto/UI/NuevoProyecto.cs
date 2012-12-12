@@ -125,31 +125,15 @@ namespace sisExperto
             
             _todosExpertos = _fachada.ObtenerExpertos().ToList();
             dataGridExpertosDisponibles.DataSource = _todosExpertos;
-            CargarDataGridConjuntoEtiquetas();
+          var lista = _fachada.SolicitarConjuntoEtiquetasToken(token);
+            CargarGrillaConjuntoEtiquetas(lista);
             buttonCrearEtiquetas.Enabled = false;
             dataGridConjuntoEtiquetas.Enabled = false;
             buttonAgregarConjunto.Enabled = false;
             
         }
 
-        private void CargarDataGridConjuntoEtiquetas()
-        {
-            _conjuntoEtiquetases.Clear();
-            dataGridConjuntoEtiquetas.DataSource = null;
-            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetasSinAsignar());            
-
-            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
-            //if (_conjuntoEtiquetases.Count == 1)
-            //{
-            //    dataGridConjuntoEtiquetas.Rows[0].Selected = true;
-            //}
-            //else
-            //{
-            //    dataGridConjuntoEtiquetas.Enabled = false;
-            //}
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
+       private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
         }
@@ -252,8 +236,10 @@ namespace sisExperto
             token = random.Next(0, 100);
             var ventanaCreacionLabels = new CrearEtiquetas(token);
             ventanaCreacionLabels.ShowDialog();
-         
-            CargarDataGridConjuntoEtiquetas();
+
+
+      var lista = _fachada.SolicitarConjuntoEtiquetasToken(token);
+            CargarGrillaConjuntoEtiquetas(lista);
         }
 
         private void buttonAgregarConjuntoAlExperto_Click(object sender, EventArgs e)
@@ -268,22 +254,38 @@ namespace sisExperto
 
         private void buttonVerTodosLosConjuntos_Click(object sender, EventArgs e )
         {
-            _conjuntoEtiquetases.Clear();
-            dataGridConjuntoEtiquetas.DataSource = null;
-            _conjuntoEtiquetases.AddRange(_fachada.SolicitarConjuntoEtiquetas());
-  
-            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
-            if (_conjuntoEtiquetases.Count==0)
-            {
-                MessageBox.Show("No existe Conjunto de Etiquetas, deberia crearlas y asignar a los expertos");
-            }
+
+            IEnumerable<ConjuntoEtiquetas> lista = _fachada.SolicitarConjuntoEtiquetas();
+            CargarGrillaConjuntoEtiquetas(lista);
            
-     
+        }
+       
+
+        private void buttonCreadasAca_Click(object sender, EventArgs e)
+        {
+            IEnumerable<ConjuntoEtiquetas> lista = _fachada.SolicitarConjuntoEtiquetasToken(token);
+            CargarGrillaConjuntoEtiquetas(lista);
+           
+            
         }
 
-        private void buttonRefrescar_Click(object sender, EventArgs e)
+        private void buttonVerNoAsignadas_Click(object sender, EventArgs e)
         {
-            CargarDataGridConjuntoEtiquetas();
+          IEnumerable<ConjuntoEtiquetas> lista = _fachada.SolicitarConjuntoEtiquetasSinAsignar();
+            CargarGrillaConjuntoEtiquetas(lista);
+        }
+
+        private void CargarGrillaConjuntoEtiquetas(IEnumerable<ConjuntoEtiquetas> lista)
+        {
+
+
+            _conjuntoEtiquetases.Clear();
+            dataGridConjuntoEtiquetas.DataSource = null;
+            _conjuntoEtiquetases.AddRange(lista);
+            dataGridConjuntoEtiquetas.DataSource = _conjuntoEtiquetases;
+            dataGridConjuntoEtiquetas.Refresh();
+
+
         }
     }
 }
