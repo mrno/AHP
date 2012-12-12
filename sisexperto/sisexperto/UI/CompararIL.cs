@@ -56,27 +56,6 @@ namespace sisexperto.UI
                             }
                         }
                         _miFachada.GuardarValoracion();
-                        //_alternativaIl.ValorCriterios[track.Value - 1].ValorILNumerico =
-                        //listaEtiquetas[(track.Value - 1)].Indice;
-                        //_miFachada.GuardarValoracion();
-
-                        //foreach (CriterioFila fila in matrizCriterio.FilasCriterio)
-                        //{
-                        //    foreach (CriterioCelda celda in fila.CeldasCriterios)
-                        //    {
-                        //        if ((celda.Fila == Convert.ToInt32(posicion[0])) &&
-                        //            (celda.Columna == Convert.ToInt32(posicion[1])))
-                        //        {
-                        //            //1
-                        //            //celda.ValorILNumerico = (track.Value);
-                        //            //2
-                        //            //GuardarConsistencia();    puede ser esa opción también.
-                        //            matrizCriterio.Consistencia = false;
-                        //            //miFachada.GuardarValoracion();
-                        //        }
-                        //    }
-                        //}
-
                     }
                 }
                 i++;
