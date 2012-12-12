@@ -72,6 +72,7 @@ namespace sisExperto.UI
                 _conjuntoEtiquetas.Nombre = textBoxNombreConjunto.Text;
                 _conjuntoEtiquetas.Token = _token;
                 _conjuntoEtiquetas.Etiquetas = _etiquetas;
+                _conjuntoEtiquetas.Tipo = 1;
                 _conjuntoEtiquetas.Cantidad = _etiquetas.Count;
                 _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
               

@@ -10,7 +10,10 @@ namespace sisexperto.Entidades
         public int Cantidad { get; set; }
 
         public int Token { get; set; }
-
+        //la propiedad tipo hace referencia si el conjunto de etiquetas en base o virtual.
+        //la base son aquellas que reflejan las valoraciones reales de los expertos.
+        //la virtual es la extrapolada y normalizada que se usa en los calculos de IL.
+        public int Tipo { get; set; }
         public virtual List<Etiqueta> Etiquetas { get; set; }
 
     }
