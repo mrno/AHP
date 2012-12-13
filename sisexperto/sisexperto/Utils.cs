@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using sisexperto.Entidades;
 
 namespace probaAHP
 {
@@ -80,21 +81,53 @@ namespace probaAHP
         return (double)(valoracionNormalizada * CardinalidadCEExpertoK) / CardinalidadCEN;
     }
     
-    public double AgregacionMediaGeometricaKExpertos(List<Int32> listaKValoraciones)
+    public double AgregacionMediaGeometricaKExpertos(ValoracionIL Valoraciones)
     {
         double resultado = 0 ;
-        int exponente = listaKValoraciones.Count;
+        int exponente = Valoraciones.AlternativasIL.Count;
+        var lista = Valoraciones.AlternativasIL;
 
-        foreach (int valor in listaKValoraciones)
+
+        foreach (AlternativaIL alternativaIl in lista)
         {
-            resultado =resultado*valor;
+
+            foreach (ValorCriterio valor in alternativaIl.ValorCriterios)
+            {
+                 resultado =resultado*valor.ValorILNumerico;
+            }
+            return Math.Pow(resultado, exponente);
         }
 
-        return Math.Pow(resultado, exponente);
+      
 
     }
 
 
+
+        public ValoracionIL ObtenerEstructuraRdo(ValoracionIL valoracionIlingreso)
+        {
+
+            ValoracionIL valoracionIlSalida = new ValoracionIL();
+
+
+            List<AlternativaIL> listAlternativaIls = new List<AlternativaIL>();
+            foreach (AlternativaIL alternativaIl in valoracionIlingreso.AlternativasIL)
+            {
+                AlternativaIL alternativaIls = new AlternativaIL();
+                List<ValorCriterio> listaValorCriterio = new List<ValorCriterio>();
+
+                foreach (ValorCriterio valorCriterio in alternativaIl.ValorCriterios)
+                {
+                    ValorCriterio valorCriterios = new ValorCriterio();
+                    valorCriterios.ValorILNumerico = 1;
+                    listaValorCriterio.Add(valorCriterios); 
+                }
+                alternativaIls.ValorCriterios = listaValorCriterio;
+                listAlternativaIls.Add(alternativaIls);
+            }
+            valoracionIlSalida.AlternativasIL = listAlternativaIls;
+            return valoracionIlSalida;
+        }
 
     }
 }
