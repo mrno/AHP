@@ -65,6 +65,8 @@
             this.aHPPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aHPNoPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aHPPersonalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iLAgregadoConMediaGeometricaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iLAgregadoConPonderacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearConjuntoDeEtiquetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.valorarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,8 +79,6 @@
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iLAgregadoConMediaGeometricaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iLAgregadoConPonderacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
@@ -440,6 +440,19 @@
             this.aHPPersonalToolStripMenuItem.Text = "AHP personal";
             this.aHPPersonalToolStripMenuItem.Click += new System.EventHandler(this.aHPPersonalToolStripMenuItem_Click);
             // 
+            // iLAgregadoConMediaGeometricaToolStripMenuItem
+            // 
+            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Name = "iLAgregadoConMediaGeometricaToolStripMenuItem";
+            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Text = "IL agregado con media geometrica";
+            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Click += new System.EventHandler(this.iLAgregadoConMediaGeometricaToolStripMenuItem_Click);
+            // 
+            // iLAgregadoConPonderacionToolStripMenuItem
+            // 
+            this.iLAgregadoConPonderacionToolStripMenuItem.Name = "iLAgregadoConPonderacionToolStripMenuItem";
+            this.iLAgregadoConPonderacionToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.iLAgregadoConPonderacionToolStripMenuItem.Text = "IL agregado con ponderacion";
+            // 
             // iLToolStripMenuItem
             // 
             this.iLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -530,18 +543,6 @@
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
-            // 
-            // iLAgregadoConMediaGeometricaToolStripMenuItem
-            // 
-            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Name = "iLAgregadoConMediaGeometricaToolStripMenuItem";
-            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
-            this.iLAgregadoConMediaGeometricaToolStripMenuItem.Text = "IL agregado con media geometrica";
-            // 
-            // iLAgregadoConPonderacionToolStripMenuItem
-            // 
-            this.iLAgregadoConPonderacionToolStripMenuItem.Name = "iLAgregadoConPonderacionToolStripMenuItem";
-            this.iLAgregadoConPonderacionToolStripMenuItem.Size = new System.Drawing.Size(261, 22);
-            this.iLAgregadoConPonderacionToolStripMenuItem.Text = "IL agregado con ponderacion";
             // 
             // FrmPrincipal
             // 

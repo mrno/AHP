@@ -137,8 +137,30 @@ namespace sisExperto.Entidades
             //mostrarRanking.ShowDialog();
         }
     
-    
-    
-    
+    public  void CalcularRankingILNoPonderado()
+    {
+        ArmarConjuntoEtiquetasNormalizado();
+
+
+    }
+
+        public  ConjuntoEtiquetas ArmarConjuntoEtiquetasNormalizado()
+        {
+            Utils utils = new Utils();
+            List<Int32> listaCardinalidadEtiquetasK = new List<int>();
+            foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
+            {
+                listaCardinalidadEtiquetasK.Add(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
+            }
+
+            Int32 cardinalidadCEN = utils.MCM(listaCardinalidadEtiquetasK.ToArray());
+
+
+
+            return null;
+        }
+
+
+
     }
 }

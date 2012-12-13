@@ -351,6 +351,12 @@ namespace sisExperto
                 ventanaEdicion.ShowDialog(); 
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
+        }
+
+        private void iLAgregadoConMediaGeometricaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaIL = new MostrarResultadoIL(_proyectoSeleccionado);
+            ventanaIL.Show();
         }        
     }
 }

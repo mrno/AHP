@@ -1,4 +1,6 @@
-﻿namespace probaAHP
+﻿using System;
+
+namespace probaAHP
 {
     public class Utils
     {
@@ -35,5 +37,46 @@
                 }
             }
         }
+
+
+
+
+
+
+        public int MCM(params int[] numeros)
+        {
+            int maximo = 1;
+            int tmp = 0;
+            foreach (int b in numeros)
+            {
+                numeros[tmp] = Math.Abs(b);
+                maximo = maximo * numeros[tmp];
+                tmp++;
+            }
+            int resultado = 1;
+            for (int i = 2; i <= maximo; i++)
+            {
+                bool a = true;
+                foreach (int b in numeros)
+                {
+                    if (i % b != 0)
+                    {
+                        a = false;
+                    }
+                }
+                if (a)
+                {
+                    resultado = i;
+                    break;
+                }
+            }
+            return resultado;
+        }
+    
+    
+    
+    
+    
+    
     }
 }
