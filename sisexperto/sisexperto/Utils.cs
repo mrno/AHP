@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace probaAHP
 {
@@ -73,10 +74,31 @@ namespace probaAHP
             return resultado;
         }
     
+    public int ExtrapoladoAConjuntoNormalizado(Int32 valoracion, Int32 CardinalidadCEN, Int32 CardinalidadCEExpertoK)
+    {
+        return (valoracion*CardinalidadCEN)/CardinalidadCEExpertoK;
+    }
+
+    public double InversaExtrapoladoAConjuntoNormalizado(Int32 valoracionNormalizada, Int32 CardinalidadCEN, Int32 CardinalidadCEExpertoK)
+    {
+        return (double)(valoracionNormalizada * CardinalidadCEExpertoK) / CardinalidadCEN;
+    }
     
-    
-    
-    
-    
+    public double AgregacionMediaGeometricaKExpertos(List<Int32> listaKValoraciones)
+    {
+        double resultado = 0 ;
+        int exponente = listaKValoraciones.Count;
+
+        foreach (int valor in listaKValoraciones)
+        {
+            resultado =resultado*valor;
+        }
+
+        return Math.Pow(resultado, exponente);
+
+    }
+
+
+
     }
 }
