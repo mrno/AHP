@@ -5,7 +5,8 @@ namespace probaAHP
 {
     public class Utils
     {
-        public void Productoria(double[,] salida, double[,] entrada)
+    
+    public void Productoria(double[,] salida, double[,] entrada)
         {
             int cantidad = entrada.GetLength(1);
             for (int i = 0; i < cantidad; i++)
@@ -17,7 +18,7 @@ namespace probaAHP
             }
         }
 
-        public void Unar(double[,] salida, int cantidad)
+    public void Unar(double[,] salida, int cantidad)
         {
             for (int j = 0; j < cantidad; j++)
             {
@@ -28,7 +29,7 @@ namespace probaAHP
             }
         }
 
-        public void Cerar(double[,] salida, int cantidad)
+    public void Cerar(double[,] salida, int cantidad)
         {
             for (int j = 0; j < cantidad; j++)
             {
@@ -39,12 +40,7 @@ namespace probaAHP
             }
         }
 
-
-
-
-
-
-        public int MCM(params int[] numeros)
+    public int Mcm(params int[] numeros)
         {
             int maximo = 1;
             int tmp = 0;

@@ -153,7 +153,7 @@ namespace sisExperto.Entidades
                 listaCardinalidadEtiquetasK.Add(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
             }
 
-            Int32 cardinalidadCEN = utils.MCM(listaCardinalidadEtiquetasK.ToArray());
+            Int32 cardinalidadCEN = utils.Mcm(listaCardinalidadEtiquetasK.ToArray());
 
 
 
