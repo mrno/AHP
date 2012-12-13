@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace probaAHP
 {
     public class Utils
     {
-        public void Productoria(double[,] salida, double[,] entrada)
+    
+    public void Productoria(double[,] salida, double[,] entrada)
         {
             int cantidad = entrada.GetLength(1);
             for (int i = 0; i < cantidad; i++)
@@ -16,7 +18,7 @@ namespace probaAHP
             }
         }
 
-        public void Unar(double[,] salida, int cantidad)
+    public void Unar(double[,] salida, int cantidad)
         {
             for (int j = 0; j < cantidad; j++)
             {
@@ -27,7 +29,7 @@ namespace probaAHP
             }
         }
 
-        public void Cerar(double[,] salida, int cantidad)
+    public void Cerar(double[,] salida, int cantidad)
         {
             for (int j = 0; j < cantidad; j++)
             {
@@ -38,12 +40,7 @@ namespace probaAHP
             }
         }
 
-
-
-
-
-
-        public int MCM(params int[] numeros)
+    public int Mcm(params int[] numeros)
         {
             int maximo = 1;
             int tmp = 0;
@@ -73,10 +70,31 @@ namespace probaAHP
             return resultado;
         }
     
+    public int ExtrapoladoAConjuntoNormalizado(Int32 valoracion, Int32 CardinalidadCEN, Int32 CardinalidadCEExpertoK)
+    {
+        return (valoracion*CardinalidadCEN)/CardinalidadCEExpertoK;
+    }
+
+    public double InversaExtrapoladoAConjuntoNormalizado(Int32 valoracionNormalizada, Int32 CardinalidadCEN, Int32 CardinalidadCEExpertoK)
+    {
+        return (double)(valoracionNormalizada * CardinalidadCEExpertoK) / CardinalidadCEN;
+    }
     
-    
-    
-    
-    
+    public double AgregacionMediaGeometricaKExpertos(List<Int32> listaKValoraciones)
+    {
+        double resultado = 0 ;
+        int exponente = listaKValoraciones.Count;
+
+        foreach (int valor in listaKValoraciones)
+        {
+            resultado =resultado*valor;
+        }
+
+        return Math.Pow(resultado, exponente);
+
+    }
+
+
+
     }
 }
