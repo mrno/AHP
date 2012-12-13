@@ -24,13 +24,13 @@ namespace sisexperto.UI
 
         public void MostrarResultadoIL_Load(object sender, EventArgs e)
         {
-            List<int> listaCriterio = new List<int>();
+            
 
             _proyecto.ArmarConjuntoEtiquetasNormalizado();
 
             foreach (var exp in _proyecto.ExpertosAsignados)
             {
-                int = 0;
+                
                 foreach (var alt in exp.ValoracionIl.AlternativasIL)
 	            {
 		            
