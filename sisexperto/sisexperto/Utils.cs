@@ -81,7 +81,7 @@ namespace probaAHP
         return (double)(valoracionNormalizada * CardinalidadCEExpertoK) / CardinalidadCEN;
     }
     
-    public double AgregacionMediaGeometricaKExpertos(ValoracionIL Valoraciones)
+    public ValoracionIL AgregacionMediaGeometricaKExpertos(ValoracionIL Valoraciones)
     {
         double resultado = 0 ;
         int exponente = Valoraciones.AlternativasIL.Count;
@@ -93,13 +93,13 @@ namespace probaAHP
 
             foreach (ValorCriterio valor in alternativaIl.ValorCriterios)
             {
-                 resultado =resultado*valor.ValorILNumerico;
+                Math.Pow(valor.ValorILNumerico, exponente); 
             }
-            return Math.Pow(resultado, exponente);
+            
         }
 
-      
 
+        return Valoraciones;
     }
 
 
