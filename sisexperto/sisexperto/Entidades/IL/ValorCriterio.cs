@@ -8,8 +8,6 @@ namespace sisexperto.Entidades
         public int ValorCriterioId { get; set; }
         public int ValorILNumerico { get; set; }
         public string ValorILLinguistico { get; set; }
-
      
-
     }
 }
