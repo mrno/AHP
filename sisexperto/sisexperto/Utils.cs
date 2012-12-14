@@ -104,7 +104,7 @@ namespace probaAHP
 
 
 
-        public ValoracionIL ObtenerEstructuraRdo(ValoracionIL valoracionIlingreso)
+    public ValoracionIL ObtenerEstructuraRdo(ValoracionIL valoracionIlingreso)
         {
 
             ValoracionIL valoracionIlSalida = new ValoracionIL();
