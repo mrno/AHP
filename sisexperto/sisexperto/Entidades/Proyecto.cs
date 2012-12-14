@@ -144,7 +144,7 @@ namespace sisExperto.Entidades
 
     }
 
-        public  ConjuntoEtiquetas ArmarConjuntoEtiquetasNormalizado()
+        public  int ArmarConjuntoEtiquetasNormalizado()
         {
             Utils utils = new Utils();
             List<Int32> listaCardinalidadEtiquetasK = new List<int>();
@@ -155,9 +155,7 @@ namespace sisExperto.Entidades
 
             Int32 cardinalidadCEN = utils.Mcm(listaCardinalidadEtiquetasK.ToArray());
 
-
-
-            return null;
+            return cardinalidadCEN;
         }
 
 
