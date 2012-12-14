@@ -98,7 +98,7 @@ namespace probaAHP
             return Math.Pow(resultado, exponente);
         }
 
-      
+        return Math.Pow(resultado, exponente);
 
     }
 

@@ -41,20 +41,21 @@ namespace sisexperto.UI
 
             foreach (var exp in _proyecto.ExpertosAsignados)
             {
+                i = 0;
                 foreach (var alt in exp.ValoracionIl.AlternativasIL)
 	            {
+                    j = 0;
                     foreach (var cri in alt.ValorCriterios)
                     {
                         resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(cri.ValorILNumerico, cardinalidadCEN, exp.ValoracionIl.ConjuntoEtiquetas.Cantidad);
-                        i++;
+                        j++;
                     }
-                    j++;
+                    i++;
 	            }
                 k++;
             }
             util.AgregacionMediaGeometricaKExpertos(resultado);
-            int a = 0;
-            a++;
+           //No entiendo muy bien que hace el AgregacionMediaGeometricaExpertos...
         }
     }
 }
