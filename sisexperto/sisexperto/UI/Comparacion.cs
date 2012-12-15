@@ -19,6 +19,7 @@ namespace sisexperto.UI
         protected IAHPMatrizComparable _matriz;
         protected IEnumerable<IAHPComparable> _listaElementosAComparar;
         protected FachadaProyectosExpertos _fachada;
+        protected IEnumerable<double[]> _sugerencias = new List<double[]>();
         protected double[,] mejorada;
 
         public Comparacion(IAHPMatrizComparable Matriz, FachadaProyectosExpertos Fachada, Proyecto Proyecto)
@@ -140,6 +141,7 @@ namespace sisexperto.UI
 
         protected void buttonConsistencia_Click(object sender, EventArgs e)
         {
+            buttonListo.Enabled = false;
             GuardarConsistencia();
         }
 
@@ -150,50 +152,40 @@ namespace sisexperto.UI
             if (_matriz.Consistencia)
                 MessageBox.Show("Matriz consistente");
             else
-                MostrarSugerencia();
+            {
+                ActualizarSugerencias();
+                if (_sugerencias.Count() > 0)
+                {
+                    buttonAplicar.Enabled = true;
+                    buttonDescartar.Enabled = true;
+                    MostrarSugerencia();
+                }                
+            }
         }
 
         protected void MostrarSugerencia()
-        {
-            mejorada = FachadaCalculos.Instance.buscarMejoresConsistencia(_matriz.Matriz);
-            double[] posicionRecomendada = MaxValueIJ(mejorada);
+        {            
+            double[] sugerencia = _sugerencias.FirstOrDefault();
 
-
-            var fila = (Int32)posicionRecomendada[0];
-            var columna = (Int32)posicionRecomendada[1];
+            var fila = (Int32)sugerencia[0];
+            var columna = (Int32)sugerencia[1];
             
             var NombreAlternativaA = _listaElementosAComparar.ElementAt(fila).Nombre;
             var NombreAlternativaB = _listaElementosAComparar.ElementAt(columna).Nombre;
-
-
-            var M = (Int32)posicionRecomendada[2];
-
-            double mejorValor = mejorada[M, 2];
-
-            if (mejorada[0, 0] < mejorada[0, 1])
-            {
-                labelSugerencia.Text = "Sugerencia: " + NombreAlternativaA + " " +
-                              "deberia ser " +
-                              obtenerDescripcion(mejorValor) + " " +
-                              NombreAlternativaB;
-            }
-            else
-            {
-                labelSugerencia.Text = "Sugerencia: " + NombreAlternativaB + " " +
-                              "deberia ser " +
-                              obtenerDescripcion(1 / mejorValor) + " " +
-                              NombreAlternativaA;
-            }
+            
+            double mejorValor = sugerencia[2];
+                        
+            labelSugerencia.Text = "Sugerencia: " + NombreAlternativaA + " " +
+                            "deberia ser " +
+                            obtenerDescripcion(mejorValor) + " " +
+                            NombreAlternativaB;
+           
         }
 
-        private static double[] MaxValueIJ(double[,] intArray)
+        private void ActualizarSugerencias()
         {
-            var rdo = new double[4];
-            rdo[0] = (Int32)intArray[0, 0];
-            rdo[1] = (Int32)intArray[0, 1];
-            rdo[2] = 0;
-            rdo[3] = 0;
-            return rdo;
+            _sugerencias = FachadaCalculos.Instance.BuscarSugerencias(_matriz.Matriz);
+            
         }
 
         protected void GenerarTracks(IAHPComparable Fila, int PFila, IAHPComparable Celda, int PCelda, double Valor, int y)
@@ -228,5 +220,83 @@ namespace sisexperto.UI
         public virtual void MoverTrack(object sender, EventArgs e) {}
 
         public virtual void OnLoad(object sender, EventArgs e) { }
+
+        private void buttonCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonAplicar_Click(object sender, EventArgs e)
+        {
+            buttonListo.Enabled = false;
+            var combinacionAplicar = _sugerencias.FirstOrDefault();
+
+            ActualizarTrack((int)combinacionAplicar[0], (int)combinacionAplicar[1], combinacionAplicar[2]);
+            ActualizarMatriz((int)combinacionAplicar[0], (int)combinacionAplicar[1], combinacionAplicar[2]);
+
+            labelSugerencia.Text = "Sugerencia:";
+            buttonAplicar.Enabled = false;
+            buttonDescartar.Enabled = false;
+
+            GuardarConsistencia();            
+        }
+
+        private void ActualizarMatriz(int fila, int columna, double valor)
+        {
+            //puede evitarse quizás, pero ya vamos a probarlo
+            var dimension = _matriz.Matriz.GetLength(0);
+            var matriz = new double[dimension, dimension];
+            for (int i = 0; i < dimension; i++)
+            {
+                for (int j = 0; j < dimension; j++)
+                {
+                    matriz[i, j] = _matriz.Matriz[i, j];
+                }
+            }
+
+            matriz[fila, columna] = valor;
+
+            _matriz.Matriz = matriz;
+
+            _fachada.GuardarValoracion();
+        }
+
+        private void ActualizarTrack(int fila, int celda, double valor) 
+        {
+            TrackBar track = new TrackBar();
+            Label label = new Label();
+            foreach (Control c in panelComparacion.Controls)
+            {
+                if ((c is TrackBar) && (c.Name == fila.ToString() + 'x' + celda.ToString()))
+                {
+                    track = c as TrackBar;
+                }
+                if ((c is Label) && (c.Name == fila.ToString() + 'x' + celda.ToString()))
+                {
+                    label = c as Label;
+                }
+            }
+            track.Value = valorarDoble(valor);
+            label.Text = valorarPalabra(valorarDoble(valor));
+        }
+
+        private void buttonDescartar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var lista = _sugerencias.ToList();
+                lista.RemoveAt(0);
+
+                _sugerencias = lista;
+                MostrarSugerencia();
+            }
+            catch (Exception)
+            {
+                labelSugerencia.Text = "Sugerencia: Cambie otros valores, porque se ha quedado sin sugerencias";
+               
+                buttonAplicar.Enabled = false;
+                buttonDescartar.Enabled = false;
+            } 
+        }
     }
 }

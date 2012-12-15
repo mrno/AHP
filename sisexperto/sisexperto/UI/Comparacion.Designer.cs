@@ -88,6 +88,7 @@
             // buttonAplicar
             // 
             this.buttonAplicar.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonAplicar.Enabled = false;
             this.buttonAplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAplicar.Location = new System.Drawing.Point(325, 3);
             this.buttonAplicar.Name = "buttonAplicar";
@@ -95,10 +96,12 @@
             this.buttonAplicar.TabIndex = 16;
             this.buttonAplicar.Text = "Aplicar";
             this.buttonAplicar.UseVisualStyleBackColor = false;
+            this.buttonAplicar.Click += new System.EventHandler(this.buttonAplicar_Click);
             // 
             // buttonDescartar
             // 
             this.buttonDescartar.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonDescartar.Enabled = false;
             this.buttonDescartar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDescartar.Location = new System.Drawing.Point(325, 35);
             this.buttonDescartar.Name = "buttonDescartar";
@@ -106,6 +109,7 @@
             this.buttonDescartar.TabIndex = 15;
             this.buttonDescartar.Text = "Descartar";
             this.buttonDescartar.UseVisualStyleBackColor = false;
+            this.buttonDescartar.Click += new System.EventHandler(this.buttonDescartar_Click);
             // 
             // buttonCerrar
             // 
@@ -115,6 +119,7 @@
             this.buttonCerrar.Size = new System.Drawing.Size(140, 30);
             this.buttonCerrar.TabIndex = 17;
             this.buttonCerrar.Text = "Cerrar";
+            this.buttonCerrar.Click += new System.EventHandler(this.buttonCerrar_Click);
             // 
             // buttonListo
             // 
@@ -243,6 +248,7 @@
             this.Controls.Add(this.panelInferior);
             this.Controls.Add(this.panelComparacion);
             this.Name = "Comparacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Comparacion";
             this.Load += new System.EventHandler(this.OnLoad);
             this.panelInferior.ResumeLayout(false);

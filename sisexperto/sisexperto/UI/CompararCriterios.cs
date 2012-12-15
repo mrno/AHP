@@ -22,6 +22,11 @@ namespace sisExperto
         
         public override void MoverTrack(object sender, EventArgs e)
         {
+            buttonListo.Enabled = true;
+            buttonAplicar.Enabled = false;
+            buttonDescartar.Enabled = false;
+            labelSugerencia.Text = "Sugerencia:";
+
             var track = (TrackBar) sender;
             var _matrizCriterio = (CriterioMatriz)_matriz;
             foreach (Control miLabel in panelComparacion.Controls)

@@ -14,14 +14,19 @@ namespace sisExperto
     {
         public ComparacionAlternativas(AlternativaMatriz matriz, FachadaProyectosExpertos facha, Proyecto proy) : base(matriz, facha, proy)
         {
-            _listaElementosAComparar = proy.Criterios;
+            _listaElementosAComparar = proy.Alternativas;
         }
 
         public override void MoverTrack(object sender, EventArgs e)
         {
+            buttonListo.Enabled = true;
+            buttonAplicar.Enabled = false;
+            buttonDescartar.Enabled = false;
+            labelSugerencia.Text = "Sugerencia:";
+
             var track = (TrackBar) sender;
             var _matrizAlternativa = (AlternativaMatriz)_matriz;
-            foreach (Control miLabel in FindForm().Controls)
+            foreach (Control miLabel in panelComparacion.Controls)
             {
                 if (miLabel is Label)
                 {

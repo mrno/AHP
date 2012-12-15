@@ -65,7 +65,8 @@ namespace sisexperto.Fachadas
             return resultadoBoolean;
         }
 
-        public double[,] buscarMejoresConsistencia(double[,] matriz)
+
+        public double[,] BuscarMejoresConsistencia(double[,] matriz)
         {
             //se le pasa una matriz consistente, hay que validar previamente con el metodo de arriba.
             // el resultado es una matriz de nx3.
@@ -77,14 +78,14 @@ namespace sisexperto.Fachadas
             // estos valores estan ordenados en funcion de "que tanto mejora la consistencia"
             // el primer valor es el que mejor mejora la consistencia y asi sucesivamente.
 
-            
+
             MWNumericArray matlabNumericArray = _matlabutils.MLArrayFromNetArray(matriz);
 
 
-            var resultado = (MWNumericArray) mejorarConsistencia.impConsist(matlabNumericArray);
+            var resultado = (MWNumericArray)mejorarConsistencia.impConsist(matlabNumericArray);
 
 
-            var doubleArray = (double[,]) resultado.ToArray(MWArrayComponent.Real);
+            var doubleArray = (double[,])resultado.ToArray(MWArrayComponent.Real);
 
             int cant = 0;
             foreach (double item in doubleArray)
@@ -92,7 +93,7 @@ namespace sisexperto.Fachadas
                 cant++;
             }
             cant--;
-            cant = cant/3;
+            cant = cant / 3;
 
             for (int i = 0; i < cant; i++)
             {
@@ -101,6 +102,56 @@ namespace sisexperto.Fachadas
             }
 
             return doubleArray;
+        }
+
+        public IEnumerable<double[]> BuscarSugerencias(double[,] p)
+        {
+            List<double[]> listaSugerencias = new List<double[]>();
+
+            MWNumericArray matlabNumericArray = _matlabutils.MLArrayFromNetArray(p);
+
+            var resultado = (MWNumericArray)mejorarConsistencia.impConsist(matlabNumericArray);
+
+            var doubleArray = (double[,])resultado.ToArray(MWArrayComponent.Real);
+
+            int cant = (doubleArray.Length - 1) / 3; // acá habría que ver por qué va el -1
+            
+            for (int i = 0; i < cant; i++)
+            {
+                var vector = new double[3]
+                                    {   doubleArray[i,0] - 1, // número de fila normalizado (por eso el menos 1)
+                                        doubleArray[i,1] - 1, // número de la columna normalizado
+                                        doubleArray[i,2]};   // valor que se debe cambiar
+                if (vector[0] < vector[1])
+                    listaSugerencias.Add(vector);
+                else listaSugerencias.Add(new double[3] { vector[1], vector[0], (1 / vector[2]) });
+            }
+
+            //var matriz = MatrizALista(p);
+
+            //foreach (var item in listaSugerencias)
+            //{
+            //    if (matriz.Contains(item))
+            //    {
+            //        listaSugerencias.Remove(item);
+            //    }
+            //}
+
+            return listaSugerencias;
+        }
+
+        public List<double[]> MatrizALista(double[,] matriz)
+        {
+            var dimension = matriz.GetLength(0);
+            var lista = new List<double[]>();
+            for (int i = 0; i < dimension; i++)
+            {
+                for (int j = 0; j < dimension; j++)
+                {
+                    lista.Add(new double[3] { i, j, matriz[i, j] });
+                }
+            }
+            return lista;
         }
     }
 }
