@@ -17,7 +17,7 @@ namespace sisExperto
         private IEnumerable<Experto> _expertosAgregados;
         private readonly double[,] rankingFinal;
 
-        public MostrarRankingAgregado(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion)
+        public MostrarRankingAgregado(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion, int modelo)
         {
             InitializeComponent();
             //tipoAgregacion=1 -> NO Ponderado
@@ -25,12 +25,31 @@ namespace sisExperto
 
             _fachada = Fachada;
             _proyecto = Proyecto;
-            _expertosAgregados = from c in  _proyecto.ObtenerExpertosProyectoConsistente()
-                                 select c.Experto;
+
+
+
+            if (modelo==0)//AHP
+            {
+                _expertosAgregados = from c in _proyecto.ObtenerExpertosProyectoConsistente()
+                                     select c.Experto;
+                rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
+            }
+            else //IL
+            {
+                _expertosAgregados = _fachadaExpertos.ExpertosAsignados(_proyecto);
+                // tipoAgregacion 1 = No ponderado
+                // tipoAgregacion 2 = Ponderado
+                rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion);
+            }
+
+
+            
+            
+
 
             dataGridExpertos.DataSource = _expertosAgregados.ToList();
 
-            rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
+            
 
             labelTitulo.Text = _proyecto.Nombre;
 
@@ -42,9 +61,12 @@ namespace sisExperto
             {
                 labelSubtitulo.Text = "Agregacion Ponderada";
             }
+
+
+
         }
 
-        private void CalcularAhpAgregado_Load(object sender, EventArgs e)
+        private void CalcularAgregacion_Load(object sender, EventArgs e)
         {
             ICollection<Alternativa> listaAlt = _proyecto.Alternativas;
 

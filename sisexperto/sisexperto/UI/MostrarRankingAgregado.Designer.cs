@@ -188,7 +188,7 @@
             this.Name = "MostrarRankingAgregado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Resultados AHP Agregado";
-            this.Load += new System.EventHandler(this.CalcularAhpAgregado_Load);
+            this.Load += new System.EventHandler(this.CalcularAgregacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

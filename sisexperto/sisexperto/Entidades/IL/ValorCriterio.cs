@@ -6,7 +6,7 @@ namespace sisexperto.Entidades
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int ValorCriterioId { get; set; }
-        public int ValorILNumerico { get; set; }
+        public double ValorILNumerico { get; set; }
         public string ValorILLinguistico { get; set; }
      
     }

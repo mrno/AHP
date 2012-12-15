@@ -51,7 +51,7 @@ namespace sisexperto.UI
                         {
                             if (item.Nombre == track.Name)
                             {
-                                item.ValorILNumerico = etiqueta.Indice;
+                                item.ValorILNumerico = etiqueta.Indice-1;
                                 item.ValorILLinguistico = etiqueta.Nombre;
                             }
                         }

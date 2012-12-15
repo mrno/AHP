@@ -197,12 +197,6 @@
     <Compile Include="UI\MostrarRankingPersonal.Designer.cs">
       <DependentUpon>MostrarRankingPersonal.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\MostrarResultadoIL.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\MostrarResultadoIL.Designer.cs">
-      <DependentUpon>MostrarResultadoIL.cs</DependentUpon>
-    </Compile>
     <Compile Include="UI\NuevoProyecto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MostrarRankingPersonal.resx">
       <DependentUpon>MostrarRankingPersonal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\MostrarResultadoIL.resx">
-      <DependentUpon>MostrarResultadoIL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NuevoProyecto.resx">
       <DependentUpon>NuevoProyecto.cs</DependentUpon>

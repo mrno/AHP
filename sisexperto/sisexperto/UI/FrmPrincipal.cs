@@ -275,7 +275,7 @@ namespace sisExperto
             {
                 if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistente().Count() > 0)
                 {
-                    var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2);
+                    var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2, 0);
                     ventanaAHPPonderado.Show();
                 }
                 else MessageBox.Show("No existen expertos con valoraciones consistentes.");
@@ -290,7 +290,7 @@ namespace sisExperto
             {
                 if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistente().Count() > 0)
                 {
-                    var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1);
+                    var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1, 0);
                     ventanaAHPNoPonderado.Show();
                 }
                 else MessageBox.Show("No existen expertos con valoraciones consistentes.");
@@ -355,8 +355,14 @@ namespace sisExperto
 
         private void iLAgregadoConMediaGeometricaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaIL = new MostrarResultadoIL(_proyectoSeleccionado);
-            ventanaIL.Show();
+            if (_proyectoSeleccionado != null)
+            {
+               
+                    var ventanaILNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1, 1);
+                    ventanaILNoPonderado.Show();
+               
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }        
     }
 }

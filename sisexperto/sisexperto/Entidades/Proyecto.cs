@@ -51,6 +51,9 @@ namespace sisExperto.Entidades
             return lista;
         }
 
+
+
+
         public double[,] CalcularRankingAHPNoPonderado()
         {
             var utils = new Utils();
@@ -136,10 +139,68 @@ namespace sisExperto.Entidades
             //MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
             //mostrarRanking.ShowDialog();
         }
-    
-    public  void CalcularRankingILNoPonderado()
+
+        public double[,] CalcularRankingILNoPonderado()
     {
-        ArmarConjuntoEtiquetasNormalizado();
+
+        var utils = new Utils();
+
+        int dimension = Alternativas.Count;
+        var rankAgregado = new double[dimension, 1];
+        utils.Cerar(rankAgregado, 1);
+
+
+      // var CCEN = ArmarConjuntoEtiquetasNormalizado();
+        Utils util = new Utils();
+        var resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl);
+        int i ;
+        int j ;
+        int k = 0;
+        List<int> lista = new List<int>();
+        foreach (var exp in ExpertosAsignados)
+        {
+            lista.Add(exp.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
+
+        }
+        int cardinalidadCEN = util.Mcm(lista.ToArray());
+
+        foreach (var exp in ExpertosAsignados)
+        {
+            i = 0;
+            foreach (var alt in exp.ValoracionIl.AlternativasIL)
+            {
+                j = 0;
+                foreach (var cri in alt.ValorCriterios)
+                {
+                    resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(Convert.ToInt32(cri.ValorILNumerico), cardinalidadCEN, exp.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
+                    j++;
+                }
+                i++;
+            }
+            k++;
+        }
+
+
+        util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
+ //No entiendo muy bien que hace el AgregacionMediaGeometricaExpertos...
+            int iAlternativa = 0;
+
+            foreach (var VARIABLE in resultado.AlternativasIL)
+            {
+
+                foreach (var valor in VARIABLE.ValorCriterios)
+                {
+
+                    rankAgregado[iAlternativa, 0] += valor.ValorILNumerico;
+
+                }
+
+                iAlternativa++;
+            }
+
+            return rankAgregado;
+
+
 
 
     }
