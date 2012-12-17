@@ -35,8 +35,6 @@
             this.buttonProyectoEdicion = new System.Windows.Forms.Button();
             this.buttonProyectoNuevo = new System.Windows.Forms.Button();
             this.dataGridProyectos = new System.Windows.Forms.DataGridView();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.objetivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filtroProyecto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -79,6 +77,9 @@
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.objetivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
@@ -152,6 +153,7 @@
             this.dataGridProyectos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridProyectos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nombreDataGridViewTextBoxColumn,
+            this.Tipo,
             this.objetivoDataGridViewTextBoxColumn});
             this.dataGridProyectos.DataSource = this.proyectoBindingSource;
             this.dataGridProyectos.Location = new System.Drawing.Point(7, 114);
@@ -162,20 +164,6 @@
             this.dataGridProyectos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridProyectos.Size = new System.Drawing.Size(469, 505);
             this.dataGridProyectos.TabIndex = 2;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // objetivoDataGridViewTextBoxColumn
-            // 
-            this.objetivoDataGridViewTextBoxColumn.DataPropertyName = "Objetivo";
-            this.objetivoDataGridViewTextBoxColumn.HeaderText = "Objetivo";
-            this.objetivoDataGridViewTextBoxColumn.Name = "objetivoDataGridViewTextBoxColumn";
-            this.objetivoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // proyectoBindingSource
             // 
@@ -544,6 +532,27 @@
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.DataPropertyName = "Tipo";
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // objetivoDataGridViewTextBoxColumn
+            // 
+            this.objetivoDataGridViewTextBoxColumn.DataPropertyName = "Objetivo";
+            this.objetivoDataGridViewTextBoxColumn.HeaderText = "Objetivo";
+            this.objetivoDataGridViewTextBoxColumn.Name = "objetivoDataGridViewTextBoxColumn";
+            this.objetivoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -608,8 +617,6 @@
         private System.Windows.Forms.ToolStripMenuItem ejecutarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aHPPonderadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aHPNoPonderadoToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn objetivoDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource proyectoBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn3;
@@ -632,6 +639,9 @@
         private System.Windows.Forms.ToolStripMenuItem ponderarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem iLAgregadoConMediaGeometricaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iLAgregadoConPonderacionToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn objetivoDataGridViewTextBoxColumn;
 
 
 
