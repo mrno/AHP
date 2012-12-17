@@ -61,7 +61,7 @@ namespace sisexperto.UI
                         {
                             if (item.Nombre == track.Name)
                             {
-                                item.ValorILNumerico = etiqueta.Indice - 1;
+                                item.ValorILNumerico = etiqueta.Indice;
                                 item.ValorILLinguistico = etiqueta.Nombre;
                             }
                         }
@@ -96,11 +96,11 @@ namespace sisexperto.UI
                     track.SetRange(1, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad);
 
                     //track.Value = valorarDoble(fila.ValorILNumerico);
-                    if (fila.ValorILNumerico == 0)
-                        track.Value = (int)Math.Ceiling((double)track.Maximum / 2);
-                    else
-                        track.Value = (Int32)fila.ValorILNumerico + 1;
-
+                    //if (fila.ValorILNumerico == 0)
+                    //    track.Value = (int)Math.Ceiling((double)track.Maximum / 2);
+                    //else
+                    //    track.Value = (Int32)fila.ValorILNumerico + 1;
+                    track.Value = (Int32)fila.ValorILNumerico;
                     track.Scroll += mostrar;
                     Controls.Add(track);
 
