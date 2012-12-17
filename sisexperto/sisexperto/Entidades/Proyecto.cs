@@ -195,24 +195,39 @@ namespace sisExperto.Entidades
             }
 
 
-
-            return NormalizarIl(rankAgregado);
+            
+            return NormalizarIlFinal((rankAgregado));
     }
 
-        private double[,] NormalizarIl(double[,] rank)
+        private double[,] NormalizarIlFinal(double[,] rank)
         {
             double sum = 0;
-            for (int i = 0; i < rank.GetLength(1); i++)
+
+            for (int i = 0; i < rank.GetLength(0); i++)
             {
-               sum += rank[i, 0];
+                sum += rank[i, 0] ;
             }
-            for (int i = 0; i < rank.GetLength(1); i++)
+
+            for (int i = 0; i < rank.GetLength(0); i++)
             {
-                rank[i, 0] = rank[i, 0]/sum;
+                rank[i, 0] = rank[i, 0] / sum;
             }
-            
+
             return rank;
         }
+
+
+        //private double[,] NormalizarIl(double[,] rank)
+        //{
+        //    double sum = Criterios.Count;
+           
+        //    for (int i = 0; i < rank.GetLength(0); i++)
+        //    {
+        //        rank[i, 0] = rank[i, 0]/sum;
+        //    }
+            
+        //    return rank;
+        //}
 
 
         public  int ArmarConjuntoEtiquetasNormalizado()
