@@ -148,9 +148,6 @@ namespace sisExperto.Entidades
         int dimension = Alternativas.Count;
         var rankAgregado = new double[dimension, 1];
         utils.Cerar(rankAgregado, 1);
-
-
-      // var CCEN = ArmarConjuntoEtiquetasNormalizado();
         Utils util = new Utils();
         var resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl);
         int i ;
@@ -182,28 +179,41 @@ namespace sisExperto.Entidades
 
 
         util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
- //No entiendo muy bien que hace el AgregacionMediaGeometricaExpertos...
+ 
             int iAlternativa = 0;
-
+          
             foreach (var VARIABLE in resultado.AlternativasIL)
             {
 
                 foreach (var valor in VARIABLE.ValorCriterios)
                 {
-
                     rankAgregado[iAlternativa, 0] += valor.ValorILNumerico;
 
                 }
-
+                rankAgregado[iAlternativa, 0] /= VARIABLE.ValorCriterios.Count;
                 iAlternativa++;
             }
 
-            return rankAgregado;
 
 
-
-
+            return NormalizarIl(rankAgregado);
     }
+
+        private double[,] NormalizarIl(double[,] rank)
+        {
+            double sum = 0;
+            for (int i = 0; i < rank.GetLength(1); i++)
+            {
+               sum += rank[i, 0];
+            }
+            for (int i = 0; i < rank.GetLength(1); i++)
+            {
+                rank[i, 0] = rank[i, 0]/sum;
+            }
+            
+            return rank;
+        }
+
 
         public  int ArmarConjuntoEtiquetasNormalizado()
         {
@@ -213,9 +223,7 @@ namespace sisExperto.Entidades
             {
                 listaCardinalidadEtiquetasK.Add(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
             }
-
             Int32 cardinalidadCEN = utils.Mcm(listaCardinalidadEtiquetasK.ToArray());
-
             return cardinalidadCEN;
         }
 
