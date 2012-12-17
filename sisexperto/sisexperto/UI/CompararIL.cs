@@ -6,8 +6,6 @@ using sisExperto.Entidades;
 using sisexperto.Entidades;
 
 
-
-
 namespace sisexperto.UI
 {
     public partial class CompararIL : Form
@@ -19,6 +17,7 @@ namespace sisexperto.UI
         private readonly AlternativaIL _alternativaIl;
         private TrackBar track;
         private int i = 0;
+
         public CompararIL(FachadaProyectosExpertos facha, Proyecto proy, AlternativaIL alternativaIl)
         {
             InitializeComponent();
@@ -29,7 +28,18 @@ namespace sisexperto.UI
             _alternativaIl = alternativaIl;
         }
 
-          private void mostrar(object sender, EventArgs e)
+        protected int valorarDoble(double valor)
+        {
+            foreach (var item in _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas)
+            {
+                if (valor == item.b)
+                    return item.Indice;
+                return 1;
+            }
+            return 1;
+        }
+
+        private void mostrar(object sender, EventArgs e)
           {
             track = (TrackBar) sender;
               i = 0;
@@ -51,7 +61,7 @@ namespace sisexperto.UI
                         {
                             if (item.Nombre == track.Name)
                             {
-                                item.ValorILNumerico = etiqueta.Indice-1;
+                                item.ValorILNumerico = etiqueta.Indice - 1;
                                 item.ValorILLinguistico = etiqueta.Nombre;
                             }
                         }
@@ -71,11 +81,10 @@ namespace sisexperto.UI
         public void CompararIL_load(object sender, EventArgs e)
         {
                 int y = 140;
-            nombreAlternativa.Text = _alternativaIl.Nombre;
+                nombreAlternativa.Text = _alternativaIl.Nombre;
+                
                 foreach (var fila in _alternativaIl.ValorCriterios)
                 {
-
-
                     var izquierdaTB = new Label();
                     izquierdaTB.SetBounds(5, y, 75, 50);
                     izquierdaTB.Text = fila.Nombre;
@@ -86,21 +95,14 @@ namespace sisexperto.UI
                     track.Name = fila.Nombre;
                     track.SetRange(1, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad);
 
-                    // track.Value =  Mediar(celda.ValorILNumerico);
+                    //track.Value = valorarDoble(fila.ValorILNumerico);
+                    track.Value = (Int32)fila.ValorILNumerico + 1;
                     track.Scroll += mostrar;
                     Controls.Add(track);
 
-
-                    //var derechaTB = new Label();
-                    //derechaTB.SetBounds(500, y, 80, 30);
-                    //derechaTB.Text = celda.Criterio.Nombre;
-                    //Controls.Add(derechaTB);
-
                     var miLabel = new Label();
                     miLabel.SetBounds(150, y + 45, 250, 30);
-                    //    double doble = dato.obtenerValorCompCriterio(comp.id_proyecto, comp.id_Experto, comp.pos_fila,
-                    //                                                  comp.pos_columna);
-                    //miLabel.Text = celda.ValorILLinguistico;
+                    miLabel.Text = fila.ValorILLinguistico;
                     miLabel.Name = fila.Nombre;
                     Controls.Add(miLabel);
 
