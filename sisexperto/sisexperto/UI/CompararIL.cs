@@ -96,7 +96,11 @@ namespace sisexperto.UI
                     track.SetRange(1, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad);
 
                     //track.Value = valorarDoble(fila.ValorILNumerico);
-                    track.Value = (Int32)fila.ValorILNumerico + 1;
+                    if (fila.ValorILNumerico == 0)
+                        track.Value = (int)Math.Ceiling((double)track.Maximum / 2);
+                    else
+                        track.Value = (Int32)fila.ValorILNumerico + 1;
+
                     track.Scroll += mostrar;
                     Controls.Add(track);
 
