@@ -12,7 +12,7 @@ namespace sisExperto
     {
         private readonly FachadaEjecucionProyecto _fachada;
         private FachadaProyectosExpertos _fachadaExpertos = new FachadaProyectosExpertos();
-
+        private int _modelo;
         private readonly Proyecto _proyecto;
         private IEnumerable<Experto> _expertosAgregados;
         private readonly double[,] rankingFinal;
@@ -25,7 +25,7 @@ namespace sisExperto
 
             _fachada = Fachada;
             _proyecto = Proyecto;
-
+            _modelo = modelo;
 
 
             if (modelo==0)//AHP
@@ -99,7 +99,16 @@ namespace sisExperto
         {
             var exp = (Experto)dataGridExpertos.CurrentRow.DataBoundItem;
             var expEnProyecto = _fachadaExpertos.SolicitarExpertoProyectoActual(_proyecto, exp);
-            var ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto);
+            MostrarRankingPersonal ventanaRankingPersonal;
+            if (_modelo==0)//AHP
+               {
+                    ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 1);
+               }
+               else
+               {
+                    ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 2);       
+               }
+            
             ventanaRankingPersonal.Show();
         }
     }

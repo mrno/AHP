@@ -129,7 +129,7 @@ namespace sisExperto.Entidades
             utils.Cerar(rankAgregado, 1);
             foreach (ExpertoEnProyecto d in ObtenerExpertosProyectoConsistente())
             {
-                double[,] matriz = d.CalcularMiRanking();
+                double[,] matriz = d.CalcularMiRankingAHP();
                 for (int i = 0; i < dimension; i++)
                 {
                     rankAgregado[i, 0] += matriz[i, 0]*d.Ponderacion;
@@ -149,72 +149,46 @@ namespace sisExperto.Entidades
         var rankAgregado = new double[dimension, 1];
         utils.Cerar(rankAgregado, 1);
         Utils util = new Utils();
-        var resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl);
+        ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl);
         int i ;
         int j ;
         int k = 0;
-        List<int> lista = new List<int>();
-        foreach (var exp in ExpertosAsignados)
-        {
-            lista.Add(exp.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
 
-        }
-        int cardinalidadCEN = util.Mcm(lista.ToArray());
+
+
+            int cardinalidadCEN = ObtenerCardinalidadCEN();
 
         foreach (var exp in ExpertosAsignados)
         {
-            i = 0;
-            foreach (var alt in exp.ValoracionIl.AlternativasIL)
-            {
-                j = 0;
-                foreach (var cri in alt.ValorCriterios)
-                {
-                    resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(Convert.ToInt32(cri.ValorILNumerico), cardinalidadCEN, exp.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
-                    j++;
-                }
-                i++;
-            }
+          
+            exp.CalcularMiRankingIL(resultado, cardinalidadCEN);
             k++;
         }
 
 
         util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
  
-            int iAlternativa = 0;
+        utils.AgregacionCriterios(resultado, rankAgregado);
           
-            foreach (var VARIABLE in resultado.AlternativasIL)
-            {
-
-                foreach (var valor in VARIABLE.ValorCriterios)
-                {
-                    rankAgregado[iAlternativa, 0] += valor.ValorILNumerico;
-
-                }
-                rankAgregado[iAlternativa, 0] /= VARIABLE.ValorCriterios.Count;
-                iAlternativa++;
-            }
+           
 
 
             
-            return NormalizarIlFinal((rankAgregado));
+            return utils.NormalizarIlFinal((rankAgregado));
     }
-
-        private double[,] NormalizarIlFinal(double[,] rank)
+        public int ObtenerCardinalidadCEN()
         {
-            double sum = 0;
+            Utils util = new Utils();
+            List<int> lista = new List<int>();
 
-            for (int i = 0; i < rank.GetLength(0); i++)
+            foreach (var exp in ExpertosAsignados)
             {
-                sum += rank[i, 0] ;
+                lista.Add(exp.ValoracionIl.ConjuntoEtiquetas.Cantidad - 1);
             }
-
-            for (int i = 0; i < rank.GetLength(0); i++)
-            {
-                rank[i, 0] = rank[i, 0] / sum;
-            }
-
-            return rank;
+           return util.Mcm(lista.ToArray());
         }
+
+
 
 
         //private double[,] NormalizarIl(double[,] rank)

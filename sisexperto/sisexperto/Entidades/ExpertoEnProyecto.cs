@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using probaAHP;
 using sisexperto.Entidades;
 using sisexperto.Fachadas;
 
@@ -74,7 +76,7 @@ namespace sisExperto.Entidades
             return listaCriterioAlternativas;
         }
         
-        public double[,] CalcularMiRanking()
+        public double[,] CalcularMiRankingAHP()
         {
             if (TodasMisValoracionesConsistentes())
             {
@@ -85,6 +87,25 @@ namespace sisExperto.Entidades
                 return new double[1,1];
             }
         }
+
+        public void CalcularMiRankingIL(ValoracionIL resultado, int cardinalidadCEN)
+        {
+            Utils util = new Utils();
+            int j;
+            int i=0;
+            foreach (var alt in ValoracionIl.AlternativasIL)
+            {
+                j = 0;
+                foreach (var cri in alt.ValorCriterios)
+                {
+                    resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(Convert.ToInt32(cri.ValorILNumerico), cardinalidadCEN, ValoracionIl.ConjuntoEtiquetas.Cantidad - 1);
+                    j++;
+                }
+                i++;
+            }
+           
+        }
+
 
         public bool TodasMisValoracionesConsistentes()
         {

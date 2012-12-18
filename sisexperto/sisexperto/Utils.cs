@@ -6,7 +6,40 @@ namespace probaAHP
 {
     public class Utils
     {
-    
+        public void AgregacionCriterios(ValoracionIL resultado, double[,] rankAgregado)
+        {
+            int iAlternativa = 0;
+            foreach (var VARIABLE in resultado.AlternativasIL)
+            {
+
+                foreach (var valor in VARIABLE.ValorCriterios)
+                {
+                    rankAgregado[iAlternativa, 0] += valor.ValorILNumerico;
+
+                }
+                rankAgregado[iAlternativa, 0] /= VARIABLE.ValorCriterios.Count;
+                iAlternativa++;
+            }
+        }
+
+
+        public double[,] NormalizarIlFinal(double[,] rank)
+        {
+            double sum = 0;
+
+            for (int i = 0; i < rank.GetLength(0); i++)
+            {
+                sum += rank[i, 0];
+            }
+
+            for (int i = 0; i < rank.GetLength(0); i++)
+            {
+                rank[i, 0] = rank[i, 0] / sum;
+            }
+
+            return rank;
+        }
+
     public void Productoria(double[,] salida, double[,] entrada)
         {
             int cantidad = entrada.GetLength(1);

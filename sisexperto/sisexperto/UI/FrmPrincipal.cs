@@ -324,7 +324,7 @@ namespace sisExperto
                 }
                 else
                 {
-                    var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, expertoEnProyecto);
+                    var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, expertoEnProyecto, 1);
                     ventanaAHPPersonal.Show();
                 }
             }

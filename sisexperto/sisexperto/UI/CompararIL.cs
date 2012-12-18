@@ -99,8 +99,8 @@ namespace sisexperto.UI
                     //if (fila.ValorILNumerico == 0)
                     //    track.Value = (int)Math.Ceiling((double)track.Maximum / 2);
                     //else
-                    //    track.Value = (Int32)fila.ValorILNumerico + 1;
-                    track.Value = (Int32)fila.ValorILNumerico;
+                       track.Value = (Int32)fila.ValorILNumerico + 1;
+                    //track.Value = (Int32)fila.ValorILNumerico;
                     track.Scroll += mostrar;
                     Controls.Add(track);
 
