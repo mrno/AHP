@@ -37,7 +37,7 @@ namespace sisExperto
 
         //El siguiente metodo recibe una matriz y devuelve un vector.
 
-        public MWNumericArray ObtenerVectorCriterios(List<double[,]> lista)
+        public MWNumericArray ObtenerVectorCriteriosAHP(List<double[,]> lista)
         {
             var vectCalc = new VectCalc.VectCalc();
             Double[,] matrizCriterios = lista[0];
@@ -48,6 +48,14 @@ namespace sisExperto
             return rdo;
         }
 
+
+
+        public MWNumericArray ObtenerVectorCriteriosIL(List<double[,]> lista)
+        {
+            
+            
+            return null;
+        }
 
         public MWNumericArray ObtenerSuperMatrizAlternativas(List<double[,]> lista)
         {

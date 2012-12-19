@@ -45,17 +45,17 @@ namespace sisexperto.UI
                 rankingFinal = new double[dimension, 1];
                util.Cerar(rankingFinal, 1);
                
-               //ValoracionIL resultado = util.ObtenerEstructuraRdo(_experto.ValoracionIl);
-
-               //_experto.CalcularMiRankingIL(resultado, _proyecto.ObtenerCardinalidadCEN());
-               //util.AgregacionCriterios(resultado, rankAgregado);
-               //rankingFinal = rankAgregado;
+         
                 double acumulador;
                 double promedio;
                 
                 int posicion = 0;
-                foreach (var alt in _experto.ValoracionIl.AlternativasIL)
+             
+                foreach (AlternativaIL alt in _experto.ValoracionIl.AlternativasIL)
                 {
+
+                    //para obtener el vector de pesos en IL, quedo obsoleto 
+                    //util.MultiplicarWCriterios(alt.ValorCriterios);
                     promedio = 0;
                     acumulador = 0;
                     foreach (var cri in alt.ValorCriterios)
