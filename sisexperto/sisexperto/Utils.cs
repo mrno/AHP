@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using sisExperto;
 using sisexperto.Entidades;
 
 namespace probaAHP
@@ -23,6 +24,43 @@ namespace probaAHP
         }
 
 
+        public void MultiplicarWCriterios(List<ValorCriterio> listCriterio )
+        {
+            
+            MatlabUtils matlabUtils = new MatlabUtils();
+            List<double[,]> list = new List<double[,]>();
+            list.Add(GenerarMatrizDesdeLista(listCriterio));
+
+
+            var resultado = matlabUtils.NetArrayFromMLArray(matlabUtils.ObtenerVectorCriteriosAHP(list));
+            int i = 0;
+            foreach (ValorCriterio valorCriterio in listCriterio)
+            {
+                valorCriterio.ValorILNumerico *= resultado[i, 0];
+                i++;
+            }
+
+        }
+
+
+        public double[,] GenerarMatrizDesdeLista(List<ValorCriterio> list )
+        {
+            int dimension = list.Count;
+            var matriz = new double[dimension, dimension];
+
+            for (int i = 0; i < dimension; i++)
+            {
+                for (int j = 0; j < dimension; j++)
+                {
+                    if (i == j)
+                        matriz[i, j] = 1;
+                    if (i > j)
+                        matriz[i, j] = (double)1.0 / matriz[j, i];
+                }
+            }
+
+            return matriz;
+        }
         public double[,] NormalizarIlFinal(double[,] rank)
         {
             double sum = 0;

@@ -139,8 +139,8 @@ namespace sisExperto.Entidades
             //MostrarRanking mostrarRanking = new MostrarRanking(rankAgregado, this, 2);
             //mostrarRanking.ShowDialog();
         }
-
-        public double[,] CalcularRankingILNoPonderado()
+        //1=media geometrica 2=ponderada
+        public double[,] CalcularRankingILNoPonderado(int TipoAgregacion)
     {
 
         var utils = new Utils();
@@ -150,8 +150,6 @@ namespace sisExperto.Entidades
         utils.Cerar(rankAgregado, 1);
         Utils util = new Utils();
         ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl);
-        int i ;
-        int j ;
         int k = 0;
 
 
@@ -162,19 +160,23 @@ namespace sisExperto.Entidades
         {
           
             exp.CalcularMiRankingIL(resultado, cardinalidadCEN);
+
             k++;
         }
 
+            
+            Boolean res = TipoAgregacion == 2 ? true : false;
 
         util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
- 
+            foreach (AlternativaIL alternativaIl in resultado.AlternativasIL)
+            {
+              //  utils.MultiplicarWCriterios(alternativaIl.ValorCriterios);    
+            }
+            
+
         utils.AgregacionCriterios(resultado, rankAgregado);
           
-           
-
-
-            
-            return utils.NormalizarIlFinal((rankAgregado));
+           return utils.NormalizarIlFinal((rankAgregado));
     }
         public int ObtenerCardinalidadCEN()
         {
@@ -188,20 +190,24 @@ namespace sisExperto.Entidades
            return util.Mcm(lista.ToArray());
         }
 
+        public void MultiplicarPorExpPesos(ValoracionIL resultado)
+        {
 
 
+            foreach (ExpertoEnProyecto expertoEnProyecto    in ExpertosAsignados   )
+            {
 
-        //private double[,] NormalizarIl(double[,] rank)
-        //{
-        //    double sum = Criterios.Count;
-           
-        //    for (int i = 0; i < rank.GetLength(0); i++)
-        //    {
-        //        rank[i, 0] = rank[i, 0]/sum;
-        //    }
-            
-        //    return rank;
-        //}
+
+                foreach (AlternativaIL alternativaIl in resultado.AlternativasIL)
+                {
+                    
+
+
+                }
+            }
+        }
+
+
 
 
         public  int ArmarConjuntoEtiquetasNormalizado()

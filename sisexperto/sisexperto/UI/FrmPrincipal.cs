@@ -363,6 +363,11 @@ namespace sisExperto
                
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
+        }
+
+        private void iLAgregadoConPonderacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }        
     }
 }

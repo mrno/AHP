@@ -96,6 +96,7 @@ namespace sisExperto.Entidades
             foreach (var alt in ValoracionIl.AlternativasIL)
             {
                 j = 0;
+
                 foreach (var cri in alt.ValorCriterios)
                 {
                     resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(Convert.ToInt32(cri.ValorILNumerico), cardinalidadCEN, ValoracionIl.ConjuntoEtiquetas.Cantidad - 1);

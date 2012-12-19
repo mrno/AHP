@@ -40,13 +40,16 @@ namespace sisexperto.Fachadas
 
         public double[,] calcularRanking(List<Double[,]> listaCriterioAlternativas)
         {            
-            MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriterios(listaCriterioAlternativas);
+            MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriteriosAHP(listaCriterioAlternativas);
             MWNumericArray superMatriz = matlabUtils.ObtenerSuperMatrizAlternativas(listaCriterioAlternativas);
             var mwArray = (MWNumericArray) calcularAhp.rankCalc(vectCriterios, superMatriz);
             double[,] resultado = matlabUtils.NetArrayFromMLArray(mwArray);
 
             return resultado;
         }
+
+    
+
 
 
         public bool CalcularConsistencia(double[,] matriz)
