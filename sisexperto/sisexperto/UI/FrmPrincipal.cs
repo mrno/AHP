@@ -273,7 +273,7 @@ namespace sisExperto
 
             if (_proyectoSeleccionado != null)
             {
-                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistente().Count() > 0)
+                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistenteAHP().Count() > 0)
                 {
                     var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2, 0);
                     ventanaAHPPonderado.Show();
@@ -288,7 +288,7 @@ namespace sisExperto
         {
             if (_proyectoSeleccionado != null)
             {
-                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistente().Count() > 0)
+                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistenteAHP().Count() > 0)
                 {
                     var ventanaAHPNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1, 0);
                     ventanaAHPNoPonderado.Show();

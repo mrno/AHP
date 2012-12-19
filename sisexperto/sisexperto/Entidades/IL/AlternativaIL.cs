@@ -10,6 +10,7 @@ namespace sisexperto.Entidades
         public int AlternativaILId { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public bool Valorada { get; set; }
         public virtual List<ValorCriterio> ValorCriterios { get; set; }
     }
 }

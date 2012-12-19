@@ -346,7 +346,7 @@ namespace sisExperto
                         valorCriterio.Nombre = criterio.Nombre;
                         valorCriterio.Descripcion = criterio.Descripcion;
                         valorCriterio.ValorILNumerico = (expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count + 1) / 2;
-                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas[((expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count + 1) / 2) - 1].Nombre;
+                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas[(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre;
                         listValorCriterioIL.Add(valorCriterio);
                     }
 

@@ -72,6 +72,13 @@ namespace sisexperto.UI
             }
         }
 
+        private void marcarAlternativaIL(object sender, EventArgs e)
+        {
+            _alternativaIl.Valorada = true;
+            _miFachada.GuardarValoracion();
+            this.Close();
+        }
+
         private int Mediar(int valorCelda)
         {
             
@@ -99,8 +106,8 @@ namespace sisexperto.UI
                     //if (fila.ValorILNumerico == 0)
                     //    track.Value = (int)Math.Ceiling((double)track.Maximum / 2);
                     //else
-                       track.Value = (Int32)fila.ValorILNumerico + 1;
-                    //track.Value = (Int32)fila.ValorILNumerico;
+                       //track.Value = (Int32)fila.ValorILNumerico + 1;
+                    track.Value = (Int32)fila.ValorILNumerico;
                     track.Scroll += mostrar;
                     Controls.Add(track);
 
@@ -113,6 +120,12 @@ namespace sisexperto.UI
                     y += 90;
                     
                 }
+
+                var boton = new Button();
+                boton.SetBounds(507, y, 75, 50);
+                boton.Text = "Finalizar";
+                boton.Click += marcarAlternativaIL;
+                Controls.Add(boton);
             }
         }
     } 

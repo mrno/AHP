@@ -32,7 +32,7 @@ namespace sisExperto.Entidades
         ////cambiar esto: sacar
         //public virtual ICollection<CriterioFila> CriteriosValoradosPorExpertos { get; set; }
 
-        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistente()
+        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteAHP()
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
                                                    where p.TodasMisValoracionesConsistentes()
@@ -51,7 +51,13 @@ namespace sisExperto.Entidades
             return lista;
         }
 
-
+        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteIL()
+        {
+            IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
+                                                   where p.ValoracionIl.valorada()
+                                                   select p;
+            return lista;
+        }
 
 
         public double[,] CalcularRankingAHPNoPonderado()
@@ -127,7 +133,7 @@ namespace sisExperto.Entidades
             int dimension = Alternativas.Count;
             var rankAgregado = new double[dimension,1];
             utils.Cerar(rankAgregado, 1);
-            foreach (ExpertoEnProyecto d in ObtenerExpertosProyectoConsistente())
+            foreach (ExpertoEnProyecto d in ObtenerExpertosProyectoConsistenteAHP())
             {
                 double[,] matriz = d.CalcularMiRankingAHP();
                 for (int i = 0; i < dimension; i++)
@@ -156,9 +162,9 @@ namespace sisExperto.Entidades
 
 
 
-            int cardinalidadCEN = ObtenerCardinalidadCEN();
+        int cardinalidadCEN = ObtenerCardinalidadCEN();
 
-        foreach (var exp in ExpertosAsignados)
+        foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
         {
           
             exp.CalcularMiRankingIL(resultado, cardinalidadCEN);

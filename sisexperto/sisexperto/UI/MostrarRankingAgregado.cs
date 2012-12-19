@@ -30,13 +30,14 @@ namespace sisExperto
 
             if (modelo==0)//AHP
             {
-                _expertosAgregados = from c in _proyecto.ObtenerExpertosProyectoConsistente()
+                _expertosAgregados = from c in _proyecto.ObtenerExpertosProyectoConsistenteAHP()
                                      select c.Experto;
                 rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
             }
             else //IL
             {
-                _expertosAgregados = _fachadaExpertos.ExpertosAsignados(_proyecto);
+                _expertosAgregados = from c in _proyecto.ObtenerExpertosProyectoConsistenteIL()
+                                     select c.Experto;
                 // tipoAgregacion 1 = No ponderado
                 // tipoAgregacion 2 = Ponderado
                 rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion);
