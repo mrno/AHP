@@ -367,7 +367,14 @@ namespace sisExperto
 
         private void iLAgregadoConPonderacionToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_proyectoSeleccionado != null)
+            {
 
+                var ventanaILNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2, 1);
+                ventanaILNoPonderado.Show();
+
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }        
     }
 }

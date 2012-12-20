@@ -36,12 +36,12 @@
             this.dataGridResultados = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridExpertos = new System.Windows.Forms.DataGridView();
             this.buttonMostrar = new System.Windows.Forms.Button();
-            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridExpertos = new System.Windows.Forms.DataGridView();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.administradorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -123,6 +123,18 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Expertos Agregados:";
             // 
+            // buttonMostrar
+            // 
+            this.buttonMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonMostrar.Location = new System.Drawing.Point(90, 343);
+            this.buttonMostrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonMostrar.Name = "buttonMostrar";
+            this.buttonMostrar.Size = new System.Drawing.Size(180, 30);
+            this.buttonMostrar.TabIndex = 36;
+            this.buttonMostrar.Text = "Ver Ranking Personal";
+            this.buttonMostrar.UseVisualStyleBackColor = true;
+            this.buttonMostrar.Click += new System.EventHandler(this.buttonMostrar_Click);
+            // 
             // dataGridExpertos
             // 
             this.dataGridExpertos.AutoGenerateColumns = false;
@@ -139,22 +151,6 @@
             this.dataGridExpertos.RowHeadersVisible = false;
             this.dataGridExpertos.Size = new System.Drawing.Size(350, 310);
             this.dataGridExpertos.TabIndex = 5;
-            // 
-            // buttonMostrar
-            // 
-            this.buttonMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMostrar.Location = new System.Drawing.Point(90, 343);
-            this.buttonMostrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonMostrar.Name = "buttonMostrar";
-            this.buttonMostrar.Size = new System.Drawing.Size(180, 30);
-            this.buttonMostrar.TabIndex = 36;
-            this.buttonMostrar.Text = "Ver Ranking Personal";
-            this.buttonMostrar.UseVisualStyleBackColor = true;
-            this.buttonMostrar.Click += new System.EventHandler(this.buttonMostrar_Click);
-            // 
-            // expertoBindingSource
-            // 
-            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
             // apellidoDataGridViewTextBoxColumn
             // 
@@ -174,6 +170,10 @@
             this.administradorDataGridViewCheckBoxColumn.HeaderText = "Administrador";
             this.administradorDataGridViewCheckBoxColumn.Name = "administradorDataGridViewCheckBoxColumn";
             // 
+            // expertoBindingSource
+            // 
+            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
+            // 
             // MostrarRankingAgregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,7 +187,7 @@
             this.Controls.Add(this.labelTitulo);
             this.Name = "MostrarRankingAgregado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Resultados AHP Agregado";
+            //this.Text = "C A M B I A R";
             this.Load += new System.EventHandler(this.CalcularAgregacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).EndInit();
             this.groupBox1.ResumeLayout(false);

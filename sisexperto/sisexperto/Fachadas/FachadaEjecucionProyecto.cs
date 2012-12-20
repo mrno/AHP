@@ -52,15 +52,18 @@ namespace sisExperto.Fachadas
 
         internal double[,] CalcularRankingIL(Proyecto _proyecto, int tipoAgregacion)
         {
-            switch (tipoAgregacion)
+            if (tipoAgregacion == 1)
             {
-                case 1:
-                    return _proyecto.CalcularRankingILNoPonderado();
-                case 2:
-                    //return _proyecto.CalcularRankinAHPPonderado();
-                default:
-                    return new double[_proyecto.Alternativas.Count, 1];
+                return _proyecto.CalcularRankingIL(false);
+
             }
+            else
+            {
+                return _proyecto.CalcularRankingIL(true);
+            }
+                   
+               
+               
         }
     }
 }

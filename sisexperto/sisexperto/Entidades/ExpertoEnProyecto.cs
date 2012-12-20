@@ -88,7 +88,7 @@ namespace sisExperto.Entidades
             }
         }
 
-        public void CalcularMiRankingIL(ValoracionIL resultado, int cardinalidadCEN)
+        public void CalcularMiRankingIL(ValoracionIL resultado, int cardinalidadCEN, bool ConPeso)
         {
             Utils util = new Utils();
             int j;
@@ -99,13 +99,23 @@ namespace sisExperto.Entidades
 
                 foreach (var cri in alt.ValorCriterios)
                 {
-                    resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(Convert.ToInt32(cri.ValorILNumerico), cardinalidadCEN, ValoracionIl.ConjuntoEtiquetas.Cantidad - 1);
+                    resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= util.ExtrapoladoAConjuntoNormalizado(Convert.ToInt32(cri.ValorILNumerico), cardinalidadCEN, ValoracionIl.ConjuntoEtiquetas.Cantidad - 1); 
+                    if (ConPeso)
+                    {
+                     
+                        resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= this.Ponderacion;
+                    }
+                   
+
+
                     j++;
                 }
                 i++;
             }
            
         }
+
+
 
 
         public bool TodasMisValoracionesConsistentes()

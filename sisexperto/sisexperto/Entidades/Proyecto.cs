@@ -38,6 +38,13 @@ namespace sisExperto.Entidades
                                                    where p.TodasMisValoracionesConsistentes()
                                                    select p;
              
+           PonderarExpertos(lista);
+            return lista;
+        }
+
+        public void PonderarExpertos(IEnumerable<ExpertoEnProyecto> lista)
+        {
+             
             Int32 denominador = 0;
             foreach (ExpertoEnProyecto expertoEnProyecto in lista)
             {
@@ -46,9 +53,9 @@ namespace sisExperto.Entidades
 
             foreach (ExpertoEnProyecto expertoEnProyecto in lista)
             {
-                expertoEnProyecto.Ponderacion = (double) expertoEnProyecto.Peso/denominador;
+                expertoEnProyecto.Ponderacion = (double)expertoEnProyecto.Peso / denominador;
             }
-            return lista;
+
         }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteIL()
@@ -56,6 +63,7 @@ namespace sisExperto.Entidades
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
                                                    where p.ValoracionIl.valorada()
                                                    select p;
+            PonderarExpertos(lista);
             return lista;
         }
 
@@ -146,7 +154,7 @@ namespace sisExperto.Entidades
             //mostrarRanking.ShowDialog();
         }
         //1=media geometrica 2=ponderada
-        public double[,] CalcularRankingILNoPonderado(int TipoAgregacion)
+        public double[,] CalcularRankingIL(bool ConPeso)
     {
 
         var utils = new Utils();
@@ -164,14 +172,22 @@ namespace sisExperto.Entidades
 
         foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
         {
-          
-            exp.CalcularMiRankingIL(resultado, cardinalidadCEN);
+          if (ConPeso)
+          {
+
+              exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+          }
+          else
+          {
+              exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
+          }
+            
 
             k++;
         }
 
             
-            Boolean res = TipoAgregacion == 2 ? true : false;
+          //  Boolean res = TipoAgregacion == 2 ? true : false;
 
         util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
             foreach (AlternativaIL alternativaIl in resultado.AlternativasIL)

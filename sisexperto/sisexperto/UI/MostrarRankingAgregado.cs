@@ -53,16 +53,34 @@ namespace sisExperto
             
 
             labelTitulo.Text = _proyecto.Nombre;
-
-            if (tipoAgregacion == 1)
+            if (modelo==0)
             {
-                labelSubtitulo.Text = "Agregacion No Ponderada";
+                this.Text = "Agregacion AHP";
+                if (tipoAgregacion == 1)
+                {
+                    labelSubtitulo.Text = "Agregacion No Ponderada, media geometrica";
+                    
+                }
+                else
+                {
+                    labelSubtitulo.Text = "Agregacion Ponderada";
+                }
+
             }
             else
             {
-                labelSubtitulo.Text = "Agregacion Ponderada";
-            }
 
+                   this.Text = "Agregacion IL";
+                if (tipoAgregacion == 1)
+                {
+                    labelSubtitulo.Text = "Agregacion No Ponderada, media geometrica";
+                    
+                }
+                else
+                {
+                    labelSubtitulo.Text = "Agregacion Ponderada";
+                }
+            }
 
 
         }

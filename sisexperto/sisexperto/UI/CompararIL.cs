@@ -54,7 +54,7 @@ namespace sisexperto.UI
 
                         List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas;
 
-                        var etiqueta = listaEtiquetas[(track.Value - 1)];
+                        var etiqueta = listaEtiquetas[(track.Value )];
                         l.Text = etiqueta.Nombre;
 
                         foreach (var item in _alternativaIl.ValorCriterios)
@@ -100,14 +100,18 @@ namespace sisexperto.UI
                     var track = new TrackBar();
                     track.SetBounds(75, y, 400, 45);
                     track.Name = fila.Nombre;
-                    track.SetRange(1, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad);
+                    track.SetRange(0, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
 
                     //track.Value = valorarDoble(fila.ValorILNumerico);
                     //if (fila.ValorILNumerico == 0)
                     //    track.Value = (int)Math.Ceiling((double)track.Maximum / 2);
                     //else
-                       //track.Value = (Int32)fila.ValorILNumerico + 1;
+                    
+                    
+                    //  track.Value = (Int32)fila.ValorILNumerico + 1;
                     track.Value = (Int32)fila.ValorILNumerico;
+                    
+                    
                     track.Scroll += mostrar;
                     Controls.Add(track);
 
