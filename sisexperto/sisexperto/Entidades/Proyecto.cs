@@ -163,7 +163,7 @@ namespace sisExperto.Entidades
         var rankAgregado = new double[dimension, 1];
         utils.Cerar(rankAgregado, 1);
         Utils util = new Utils();
-        ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl);
+        ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl, ConPeso);
         int k = 0;
 
 
@@ -176,24 +176,25 @@ namespace sisExperto.Entidades
           {
 
               exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+
+
           }
           else
           {
               exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
+              
+
           }
-            
+
+          
 
             k++;
         }
 
-            
-          //  Boolean res = TipoAgregacion == 2 ? true : false;
-
-        util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
-            foreach (AlternativaIL alternativaIl in resultado.AlternativasIL)
-            {
-              //  utils.MultiplicarWCriterios(alternativaIl.ValorCriterios);    
-            }
+        if (!ConPeso)
+        {
+            util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
+        }
             
 
         utils.AgregacionCriterios(resultado, rankAgregado);

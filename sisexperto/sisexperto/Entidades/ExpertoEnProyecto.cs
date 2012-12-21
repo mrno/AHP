@@ -99,6 +99,8 @@ namespace sisExperto.Entidades
 
                 foreach (var cri in alt.ValorCriterios)
                 {
+
+
                     var param1 = Convert.ToInt32(cri.ValorILNumerico);
                     var param3 = ValoracionIl.ConjuntoEtiquetas.Cantidad - 1;
                     var param2 = cardinalidadCEN;
@@ -107,13 +109,18 @@ namespace sisExperto.Entidades
                     int variable = util.ExtrapoladoAConjuntoNormalizado(param1,
                                                                         param2,
                                                                         param3);
-                    var final = variable*Ponderacion;
+                    
+                    if (!ConPeso)
+                    {
+                        var final = variable;
                     resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= final; 
-                    //if (ConPeso)
-                    //{
                    
-        //resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= Ponderacion;
-                    //}
+                    }else
+                    {
+                        var final = variable * Ponderacion;
+                        resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico += final; 
+
+                    }
                    
 
 

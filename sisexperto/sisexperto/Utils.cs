@@ -10,6 +10,7 @@ namespace probaAHP
         public void AgregacionCriterios(ValoracionIL resultado, double[,] rankAgregado)
         {
             int iAlternativa = 0;
+            int denominador = resultado.AlternativasIL[0].ValorCriterios.Count;
             foreach (var VARIABLE in resultado.AlternativasIL)
             {
 
@@ -18,7 +19,7 @@ namespace probaAHP
                     rankAgregado[iAlternativa, 0] += valor.ValorILNumerico;
 
                 }
-                rankAgregado[iAlternativa, 0] /= VARIABLE.ValorCriterios.Count;
+                rankAgregado[iAlternativa, 0] /= denominador;
                 iAlternativa++;
             }
         }
@@ -167,7 +168,7 @@ namespace probaAHP
 
 
 
-        public ValoracionIL ObtenerEstructuraRdo(ValoracionIL valoracionIlingreso)
+        public ValoracionIL ObtenerEstructuraRdo(ValoracionIL valoracionIlingreso, bool ConPeso)
         {
 
             ValoracionIL valoracionIlSalida = new ValoracionIL();
@@ -182,7 +183,17 @@ namespace probaAHP
                 foreach (ValorCriterio valorCriterio in alternativaIl.ValorCriterios)
                 {
                     ValorCriterio valorCriterios = new ValorCriterio();
-                    valorCriterios.ValorILNumerico = 1;
+
+                    if (ConPeso)
+                    {
+                        valorCriterios.ValorILNumerico = 0;    
+                    }
+                    else
+                    {
+                        valorCriterios.ValorILNumerico = 1;
+
+                    }
+                    
                     listaValorCriterio.Add(valorCriterios); 
                 }
                 alternativaIls.ValorCriterios = listaValorCriterio;
