@@ -34,21 +34,43 @@ namespace sisexperto.UI
         {
             comboBoxProyectos.DataSource = _proyectosAHP;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+            comboBoxProyectos.SelectedIndexChanged += new EventHandler(comboBoxProyectos_SelectedIndexChanged);
 
-            dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
-            dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
+            _expertosDelProyecto = _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado).ToList();
+            _expertosDisponibles = _fachada.ObtenerExpertosFueraDelProyecto(_proyectoSeleccionado).ToList();
+
+
+            expertoBindingSource.DataSource = _expertosDisponibles;
+            expertoEnProyectoBindingSource.DataSource = _expertosDelProyecto;
+
+            //dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
+            //dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
         }
 
         private void comboBoxProyectos_Leave(object sender, EventArgs e)
+        {
+            //_proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
+            //_expertosDisponibles = _fachada.ObtenerExpertosFueraDelProyecto(_proyectoSeleccionado).ToList();
+            //_expertosDelProyecto = _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado).ToList();
+
+            //dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
+            //dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
+        }
+
+        private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
             _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
             _expertosDisponibles = _fachada.ObtenerExpertosFueraDelProyecto(_proyectoSeleccionado).ToList();
             _expertosDelProyecto = _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado).ToList();
 
-            dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
-            dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
-        }
 
+            expertoBindingSource.DataSource = _expertosDisponibles;
+            expertoEnProyectoBindingSource.DataSource = _expertosDelProyecto;
+
+            //dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
+            //dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
+        }
+        
         private void AsignarExperto(Experto experto)
         {
             try
@@ -57,14 +79,23 @@ namespace sisexperto.UI
             }
             catch (Exception) { }
 
-            _expertosDelProyecto.Add(new ExpertoEnProyecto() { Experto = experto, Proyecto = _proyectoSeleccionado });
+            _expertosDelProyecto.Add(new ExpertoEnProyecto() { Experto = experto, Proyecto = _proyectoSeleccionado, Activo = true });
 
-            dataGridExpertosDisponibles.DataSource = null;
+            expertoBindingSource.DataSource = null;
+            expertoEnProyectoBindingSource.DataSource = null;
+
+            expertoBindingSource.DataSource = _expertosDisponibles;
             dataGridExpertosDisponibles.Refresh();
-            dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
-            dataGridExpertosEnProyecto.DataSource = null;
-            dataGridExpertosDisponibles.Refresh();
-            dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
+
+            expertoEnProyectoBindingSource.DataSource = _expertosDelProyecto;
+            dataGridExpertosEnProyecto.Refresh();
+
+            //dataGridExpertosDisponibles.DataSource = null;
+            //dataGridExpertosDisponibles.Refresh();
+            //dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
+            //dataGridExpertosEnProyecto.DataSource = null;
+            //dataGridExpertosDisponibles.Refresh();
+            //dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
         }
 
         private void DesasignarExperto(Experto experto)
@@ -72,12 +103,21 @@ namespace sisexperto.UI
             _expertosDisponibles.Add(experto);
             _expertosDelProyecto.Remove(_expertosDelProyecto.Where(x => x.Experto == experto).FirstOrDefault());
 
-            dataGridExpertosDisponibles.DataSource = null;
+            expertoBindingSource.DataSource = null;
+            expertoEnProyectoBindingSource.DataSource = null;
+
+            expertoBindingSource.DataSource = _expertosDisponibles;
             dataGridExpertosDisponibles.Refresh();
-            dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
-            dataGridExpertosEnProyecto.DataSource = null;
-            dataGridExpertosDisponibles.Refresh();
-            dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
+
+            expertoEnProyectoBindingSource.DataSource = _expertosDelProyecto;
+            dataGridExpertosEnProyecto.Refresh();
+
+            //dataGridExpertosDisponibles.DataSource = null;
+            //dataGridExpertosDisponibles.Refresh();
+            //dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
+            //dataGridExpertosEnProyecto.DataSource = null;
+            //dataGridExpertosDisponibles.Refresh();
+            //dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
         }
         
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -136,17 +176,10 @@ namespace sisexperto.UI
 
         private void Guardar()
         {
-            _proyectoSeleccionado.GuardarExpertos(_expertosDelProyecto);
+            _fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
         }
 
-        private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
-            _expertosDisponibles = _fachada.ObtenerExpertosFueraDelProyecto(_proyectoSeleccionado).ToList();
-            _expertosDelProyecto = _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado).ToList();
+        
 
-            dataGridExpertosDisponibles.DataSource = _expertosDisponibles;
-            dataGridExpertosEnProyecto.DataSource = _expertosDelProyecto;
-        }
     }
 }

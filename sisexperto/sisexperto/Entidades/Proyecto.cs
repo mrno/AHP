@@ -40,13 +40,14 @@ namespace sisExperto.Entidades
 
         public void GuardarExpertos(IEnumerable<ExpertoEnProyecto> expertosEnProyecto)
         {
-            foreach (var item in expertosEnProyecto)
+            foreach (var item in ExpertosAsignados)
+            {
+                item.Activo = expertosEnProyecto.Contains(item);
+            }
+
+            foreach (var item in (expertosEnProyecto.Except(ExpertosAsignados)))
 	        {
-                //asignación y añade si no existe
-		        if (!(item.Activo = ExpertosAsignados.Contains(item)))
-                {
-                    ExpertosAsignados.Add(item);
-                }
+                ExpertosAsignados.Add(item);
 	        }
         }
 

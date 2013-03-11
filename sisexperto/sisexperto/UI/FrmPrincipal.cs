@@ -234,8 +234,10 @@ namespace sisExperto
         #region EditarProyecto y Valoraciones
         private void buttonProyectoEdicion_Click(object sender, EventArgs e)
         {
-            var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-            _ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
+            //var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+
+            var _ventanaCargarProyecto = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            //_ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
             _ventanaCargarProyecto.ShowDialog();
         }
 

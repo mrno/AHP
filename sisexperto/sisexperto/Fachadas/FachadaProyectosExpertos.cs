@@ -26,13 +26,19 @@ namespace sisExperto
 
         public IEnumerable<Experto> ObtenerExpertosFueraDelProyecto(Proyecto proyecto)
         {
-            var expertosDelProyecto = (from c in proyecto.ExpertosAsignados ?? new List<ExpertoEnProyecto>()
-                                       where c.Activo
-                                       select c.Experto);
+            var expertosDelProyecto = new List<int>();
 
-            return from c in _context.Expertos
-                   where !expertosDelProyecto.Contains(c)
-                   select c;
+            try
+            {
+                expertosDelProyecto.AddRange(from c in proyecto.ExpertosAsignados
+                                             where c.Activo
+                                             select c.ExpertoId);
+            }
+            catch (Exception) { }
+
+            return (from c in _context.Expertos
+                    where !expertosDelProyecto.Contains(c.ExpertoId)
+                    select c).ToList();
         }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosActivosEnProyecto(Proyecto proyecto)

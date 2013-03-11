@@ -34,11 +34,7 @@ namespace sisExperto.Entidades
         public string ApellidoNombre { get { return Experto.ApellidoYNombre; } }
         public bool Creador { get { return ExpertoId == Proyecto.CreadorId; } }
         public bool Administrador { get { return Experto.Administrador; } }
-
-
-
-
-
+        
         public double[,] GenerarMatrizAlternativas(Criterio Criterio)
         {
             int dimension = Proyecto.Alternativas.Count;
