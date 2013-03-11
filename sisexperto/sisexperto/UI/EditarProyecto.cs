@@ -122,11 +122,11 @@ namespace sisExperto.UI
 
                 switch (_proyectoSeleccionado.Tipo)
                 {
-                    case 0:
+                    case "AHP":
                         GuardarAHP(); break;
-                    case 1:
+                    case "IL":
                         GuardarIL(); break;
-                    case 2:
+                    case "AMBOS":
                         {
                             GuardarIL();
                             GuardarAHP();

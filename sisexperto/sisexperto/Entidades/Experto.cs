@@ -14,8 +14,8 @@ namespace sisExperto.Entidades
         public bool Administrador { get; set; }
 
         public virtual ICollection<Proyecto> ProyectosCreados { get; set; }
-
-
         public virtual ICollection<ExpertoEnProyecto> ProyectosAsignados { get; set; }
+
+        public string ApellidoYNombre { get { return Apellido.ToUpper() + ", " + Nombre; } }
     }
 }

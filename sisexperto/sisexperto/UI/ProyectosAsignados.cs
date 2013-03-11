@@ -108,7 +108,7 @@ namespace sisExperto
         {
             _proyectoSeleccionado = (Proyecto) comboBoxProyectos.SelectedItem;
             cargarMatricesAHP();
-            if (_proyectoSeleccionado.Tipo == 0)
+            if (_proyectoSeleccionado.Tipo == "AHP")
             {
                 tabPageAHP.Enabled = true;
                 tabPageIL.Enabled = false;

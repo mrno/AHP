@@ -11,11 +11,16 @@ namespace sisExperto.Entidades
     [Table("ExpertosEnProyecto")]
     public class ExpertoEnProyecto
     {
+        #region Propiedades
         public int ExpertoEnProyectoId { get; set; }
+        public bool Activo { get; set; }
+
         public int ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
+
         public int ExpertoId { get; set; }
         public virtual Experto Experto { get; set; }
+
         public double Ponderacion { get; set; }
         public int Peso { get; set; }
         
@@ -23,6 +28,16 @@ namespace sisExperto.Entidades
         public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
        
         public virtual ValoracionIL ValoracionIl { get; set; }
+
+        #endregion
+
+        public string ApellidoNombre { get { return Experto.ApellidoYNombre; } }
+        public bool Creador { get { return ExpertoId == Proyecto.CreadorId; } }
+        public bool Administrador { get { return Experto.Administrador; } }
+
+
+
+
 
         public double[,] GenerarMatrizAlternativas(Criterio Criterio)
         {
@@ -130,10 +145,7 @@ namespace sisExperto.Entidades
             }
            
         }
-
-
-
-
+        
         public bool TodasMisValoracionesConsistentes()
         {
             return MisCriteriosConsistentes() && MisAlternativasConsistentes();

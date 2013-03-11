@@ -1,5 +1,6 @@
 namespace sisexperto.Migrations
 {
+    using sisExperto.Entidades;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,6 +15,15 @@ namespace sisexperto.Migrations
 
         protected override void Seed(sisExperto.Entidades.GisiaExpertoContext context)
         {
+            context.Expertos.AddOrUpdate(new Experto()
+            {
+                Usuario = "Admin",
+                Nombre = "Usuario",
+                Apellido = "Super",
+                Administrador = true,
+                Clave = "admin"
+            });
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

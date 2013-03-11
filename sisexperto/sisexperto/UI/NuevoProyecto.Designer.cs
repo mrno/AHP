@@ -37,47 +37,49 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.buttonRefrescar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBoxAsignados = new System.Windows.Forms.GroupBox();
             this.dataGridCombinada = new System.Windows.Forms.DataGridView();
-            this.buttonAgregarConjunto = new System.Windows.Forms.Button();
-            this.dataGridConjuntoEtiquetas = new System.Windows.Forms.DataGridView();
-            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adminDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.apellidoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expertoEnProyectoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBoxDisponible = new System.Windows.Forms.GroupBox();
+            this.buttonCrearEtiquetas = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.dataGridExpertosDisponibles = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.administradorDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.buttonRefrescar = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridConjuntoEtiquetas = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.conjuntoEtiquetasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.buttonAgregarConjunto = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.buttonCrearEtiquetas = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxTipoModelo = new System.Windows.Forms.ComboBox();
             this.labelNombreExperto = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonCrearYContinuar = new System.Windows.Forms.Button();
             this.buttonLimpiar = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.expertoApellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expertoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adminDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.combinadaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.conjuntoEtiquetasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.administradorDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBoxAsignados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).BeginInit();
+            this.groupBoxDisponible.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.combinadaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.conjuntoEtiquetasBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conjuntoEtiquetasBindingSource)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -137,48 +139,27 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.buttonRefrescar);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.dataGridCombinada);
-            this.groupBox1.Controls.Add(this.buttonAgregarConjunto);
-            this.groupBox1.Controls.Add(this.dataGridConjuntoEtiquetas);
-            this.groupBox1.Controls.Add(this.dataGridExpertosDisponibles);
+            this.groupBox1.Controls.Add(this.groupBoxAsignados);
+            this.groupBox1.Controls.Add(this.groupBoxDisponible);
             this.groupBox1.Controls.Add(this.btnQuitar);
             this.groupBox1.Controls.Add(this.btnAgregar);
-            this.groupBox1.Controls.Add(this.btnNuevo);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(13, 129);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1003, 344);
+            this.groupBox1.Size = new System.Drawing.Size(959, 344);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Asignar Expertos";
             // 
-            // buttonRefrescar
+            // groupBoxAsignados
             // 
-            this.buttonRefrescar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRefrescar.Location = new System.Drawing.Point(697, 308);
-            this.buttonRefrescar.Name = "buttonRefrescar";
-            this.buttonRefrescar.Size = new System.Drawing.Size(97, 30);
-            this.buttonRefrescar.TabIndex = 8;
-            this.buttonRefrescar.Text = "Creadas aca";
-            this.buttonRefrescar.UseVisualStyleBackColor = true;
-            this.buttonRefrescar.Click += new System.EventHandler(this.buttonCreadasAca_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(921, 307);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(76, 30);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Ver todas";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.buttonVerTodosLosConjuntos_Click);
+            this.groupBoxAsignados.Controls.Add(this.dataGridCombinada);
+            this.groupBoxAsignados.Location = new System.Drawing.Point(653, 22);
+            this.groupBoxAsignados.Name = "groupBoxAsignados";
+            this.groupBoxAsignados.Size = new System.Drawing.Size(300, 273);
+            this.groupBoxAsignados.TabIndex = 14;
+            this.groupBoxAsignados.TabStop = false;
+            this.groupBoxAsignados.Text = "Expertos Asignados";
             // 
             // dataGridCombinada
             // 
@@ -187,58 +168,93 @@
             this.dataGridCombinada.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridCombinada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridCombinada.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.expertoApellidoDataGridViewTextBoxColumn,
-            this.expertoNombreDataGridViewTextBoxColumn,
             this.adminDataGridViewCheckBoxColumn,
+            this.apellidoNombreDataGridViewTextBoxColumn,
             this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn});
-            this.dataGridCombinada.DataSource = this.combinadaBindingSource;
-            this.dataGridCombinada.Location = new System.Drawing.Point(316, 44);
+            this.dataGridCombinada.DataSource = this.expertoEnProyectoViewModelBindingSource;
+            this.dataGridCombinada.Location = new System.Drawing.Point(46, 56);
             this.dataGridCombinada.Name = "dataGridCombinada";
             this.dataGridCombinada.ReadOnly = true;
             this.dataGridCombinada.RowHeadersVisible = false;
             this.dataGridCombinada.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridCombinada.Size = new System.Drawing.Size(324, 294);
+            this.dataGridCombinada.Size = new System.Drawing.Size(179, 141);
             this.dataGridCombinada.TabIndex = 4;
             // 
-            // buttonAgregarConjunto
+            // adminDataGridViewCheckBoxColumn
             // 
-            this.buttonAgregarConjunto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAgregarConjunto.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarConjunto.Image")));
-            this.buttonAgregarConjunto.Location = new System.Drawing.Point(646, 78);
-            this.buttonAgregarConjunto.Name = "buttonAgregarConjunto";
-            this.buttonAgregarConjunto.Size = new System.Drawing.Size(45, 50);
-            this.buttonAgregarConjunto.TabIndex = 5;
-            this.buttonAgregarConjunto.Text = "<<<<<<";
-            this.buttonAgregarConjunto.UseVisualStyleBackColor = true;
-            this.buttonAgregarConjunto.Click += new System.EventHandler(this.buttonAgregarConjuntoAlExperto_Click);
+            this.adminDataGridViewCheckBoxColumn.DataPropertyName = "Admin";
+            this.adminDataGridViewCheckBoxColumn.HeaderText = "Administrador";
+            this.adminDataGridViewCheckBoxColumn.Name = "adminDataGridViewCheckBoxColumn";
+            this.adminDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
-            // dataGridConjuntoEtiquetas
+            // apellidoNombreDataGridViewTextBoxColumn
             // 
-            this.dataGridConjuntoEtiquetas.AllowUserToAddRows = false;
-            this.dataGridConjuntoEtiquetas.AllowUserToDeleteRows = false;
-            this.dataGridConjuntoEtiquetas.AutoGenerateColumns = false;
-            this.dataGridConjuntoEtiquetas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridConjuntoEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
-            this.dataGridConjuntoEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridConjuntoEtiquetas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4,
-            this.Cantidad});
-            this.dataGridConjuntoEtiquetas.DataSource = this.conjuntoEtiquetasBindingSource;
-            this.dataGridConjuntoEtiquetas.Location = new System.Drawing.Point(697, 44);
-            this.dataGridConjuntoEtiquetas.MultiSelect = false;
-            this.dataGridConjuntoEtiquetas.Name = "dataGridConjuntoEtiquetas";
-            this.dataGridConjuntoEtiquetas.ReadOnly = true;
-            this.dataGridConjuntoEtiquetas.RowHeadersVisible = false;
-            this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(300, 257);
-            this.dataGridConjuntoEtiquetas.TabIndex = 6;
+            this.apellidoNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoNombre";
+            this.apellidoNombreDataGridViewTextBoxColumn.HeaderText = "Experto";
+            this.apellidoNombreDataGridViewTextBoxColumn.Name = "apellidoNombreDataGridViewTextBoxColumn";
+            this.apellidoNombreDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // Cantidad
+            // conjuntoEtiquetasNombreDataGridViewTextBoxColumn
             // 
-            this.Cantidad.DataPropertyName = "Cantidad";
-            this.Cantidad.HeaderText = "Cantidad";
-            this.Cantidad.Name = "Cantidad";
-            this.Cantidad.ReadOnly = true;
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.DataPropertyName = "ConjuntoEtiquetasNombre";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.HeaderText = "Conjunto de Etiquetas";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.Name = "conjuntoEtiquetasNombreDataGridViewTextBoxColumn";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // expertoEnProyectoViewModelBindingSource
+            // 
+            this.expertoEnProyectoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ExpertoEnProyectoViewModel);
+            // 
+            // groupBoxDisponible
+            // 
+            this.groupBoxDisponible.Controls.Add(this.buttonCrearEtiquetas);
+            this.groupBoxDisponible.Controls.Add(this.button2);
+            this.groupBoxDisponible.Controls.Add(this.buttonAgregarConjunto);
+            this.groupBoxDisponible.Controls.Add(this.button1);
+            this.groupBoxDisponible.Controls.Add(this.dataGridExpertosDisponibles);
+            this.groupBoxDisponible.Controls.Add(this.label7);
+            this.groupBoxDisponible.Controls.Add(this.buttonRefrescar);
+            this.groupBoxDisponible.Controls.Add(this.label5);
+            this.groupBoxDisponible.Controls.Add(this.dataGridConjuntoEtiquetas);
+            this.groupBoxDisponible.Controls.Add(this.btnNuevo);
+            this.groupBoxDisponible.Location = new System.Drawing.Point(6, 22);
+            this.groupBoxDisponible.Name = "groupBoxDisponible";
+            this.groupBoxDisponible.Size = new System.Drawing.Size(580, 273);
+            this.groupBoxDisponible.TabIndex = 13;
+            this.groupBoxDisponible.TabStop = false;
+            this.groupBoxDisponible.Text = "Expertos y Conjuntos de Etiquetas Disponibles";
+            // 
+            // buttonCrearEtiquetas
+            // 
+            this.buttonCrearEtiquetas.Location = new System.Drawing.Point(180, 202);
+            this.buttonCrearEtiquetas.Name = "buttonCrearEtiquetas";
+            this.buttonCrearEtiquetas.Size = new System.Drawing.Size(119, 23);
+            this.buttonCrearEtiquetas.TabIndex = 4;
+            this.buttonCrearEtiquetas.Text = "Crear Etiquetas";
+            this.buttonCrearEtiquetas.UseVisualStyleBackColor = true;
+            this.buttonCrearEtiquetas.Click += new System.EventHandler(this.buttonCrearEtiquetas_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(420, 208);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(115, 30);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "No asignadas";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.buttonVerNoAsignadas_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(127, 237);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(76, 30);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Ver todas";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.buttonVerTodosLosConjuntos_Click);
             // 
             // dataGridExpertosDisponibles
             // 
@@ -252,20 +268,140 @@
             this.dataGridViewTextBoxColumn6,
             this.administradorDataGridViewCheckBoxColumn1});
             this.dataGridExpertosDisponibles.DataSource = this.expertoBindingSource;
-            this.dataGridExpertosDisponibles.Location = new System.Drawing.Point(10, 44);
+            this.dataGridExpertosDisponibles.Location = new System.Drawing.Point(6, 44);
             this.dataGridExpertosDisponibles.MultiSelect = false;
             this.dataGridExpertosDisponibles.Name = "dataGridExpertosDisponibles";
             this.dataGridExpertosDisponibles.ReadOnly = true;
             this.dataGridExpertosDisponibles.RowHeadersVisible = false;
             this.dataGridExpertosDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridExpertosDisponibles.Size = new System.Drawing.Size(245, 293);
+            this.dataGridExpertosDisponibles.Size = new System.Drawing.Size(159, 140);
             this.dataGridExpertosDisponibles.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Apellido";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Apellido";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Nombre";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // administradorDataGridViewCheckBoxColumn1
+            // 
+            this.administradorDataGridViewCheckBoxColumn1.DataPropertyName = "Administrador";
+            this.administradorDataGridViewCheckBoxColumn1.FillWeight = 50F;
+            this.administradorDataGridViewCheckBoxColumn1.HeaderText = "Admin";
+            this.administradorDataGridViewCheckBoxColumn1.Name = "administradorDataGridViewCheckBoxColumn1";
+            this.administradorDataGridViewCheckBoxColumn1.ReadOnly = true;
+            // 
+            // expertoBindingSource
+            // 
+            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label7.Location = new System.Drawing.Point(6, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(71, 17);
+            this.label7.TabIndex = 11;
+            this.label7.Text = "Expertos";
+            // 
+            // buttonRefrescar
+            // 
+            this.buttonRefrescar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRefrescar.Location = new System.Drawing.Point(317, 202);
+            this.buttonRefrescar.Name = "buttonRefrescar";
+            this.buttonRefrescar.Size = new System.Drawing.Size(97, 30);
+            this.buttonRefrescar.TabIndex = 8;
+            this.buttonRefrescar.Text = "Creadas aca";
+            this.buttonRefrescar.UseVisualStyleBackColor = true;
+            this.buttonRefrescar.Click += new System.EventHandler(this.buttonCreadasAca_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.label5.Location = new System.Drawing.Point(177, 22);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(168, 17);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Conjunto de Etiquetas";
+            // 
+            // dataGridConjuntoEtiquetas
+            // 
+            this.dataGridConjuntoEtiquetas.AllowUserToAddRows = false;
+            this.dataGridConjuntoEtiquetas.AllowUserToDeleteRows = false;
+            this.dataGridConjuntoEtiquetas.AutoGenerateColumns = false;
+            this.dataGridConjuntoEtiquetas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridConjuntoEtiquetas.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridConjuntoEtiquetas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridConjuntoEtiquetas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn4,
+            this.Cantidad});
+            this.dataGridConjuntoEtiquetas.DataSource = this.conjuntoEtiquetasBindingSource;
+            this.dataGridConjuntoEtiquetas.Location = new System.Drawing.Point(171, 44);
+            this.dataGridConjuntoEtiquetas.MultiSelect = false;
+            this.dataGridConjuntoEtiquetas.Name = "dataGridConjuntoEtiquetas";
+            this.dataGridConjuntoEtiquetas.ReadOnly = true;
+            this.dataGridConjuntoEtiquetas.RowHeadersVisible = false;
+            this.dataGridConjuntoEtiquetas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(180, 140);
+            this.dataGridConjuntoEtiquetas.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Nombre";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // Cantidad
+            // 
+            this.Cantidad.DataPropertyName = "Cantidad";
+            this.Cantidad.HeaderText = "Cantidad";
+            this.Cantidad.Name = "Cantidad";
+            this.Cantidad.ReadOnly = true;
+            // 
+            // conjuntoEtiquetasBindingSource
+            // 
+            this.conjuntoEtiquetasBindingSource.DataSource = typeof(sisexperto.Entidades.ConjuntoEtiquetas);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
+            this.btnNuevo.Location = new System.Drawing.Point(9, 188);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
+            this.btnNuevo.TabIndex = 1;
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // buttonAgregarConjunto
+            // 
+            this.buttonAgregarConjunto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAgregarConjunto.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarConjunto.Image")));
+            this.buttonAgregarConjunto.Location = new System.Drawing.Point(508, 56);
+            this.buttonAgregarConjunto.Name = "buttonAgregarConjunto";
+            this.buttonAgregarConjunto.Size = new System.Drawing.Size(45, 50);
+            this.buttonAgregarConjunto.TabIndex = 5;
+            this.buttonAgregarConjunto.Text = "<<<<<<";
+            this.buttonAgregarConjunto.UseVisualStyleBackColor = true;
+            this.buttonAgregarConjunto.Click += new System.EventHandler(this.buttonAgregarConjuntoAlExperto_Click);
             // 
             // btnQuitar
             // 
             this.btnQuitar.Enabled = false;
             this.btnQuitar.Image = ((System.Drawing.Image)(resources.GetObject("btnQuitar.Image")));
-            this.btnQuitar.Location = new System.Drawing.Point(260, 134);
+            this.btnQuitar.Location = new System.Drawing.Point(602, 156);
             this.btnQuitar.Name = "btnQuitar";
             this.btnQuitar.Size = new System.Drawing.Size(50, 50);
             this.btnQuitar.TabIndex = 3;
@@ -275,26 +411,15 @@
             // btnAgregar
             // 
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(260, 78);
+            this.btnAgregar.Location = new System.Drawing.Point(597, 100);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(50, 50);
             this.btnAgregar.TabIndex = 2;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
-            this.btnNuevo.Location = new System.Drawing.Point(260, 22);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
-            this.btnNuevo.TabIndex = 1;
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.buttonCrearEtiquetas);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.comboBoxTipoModelo);
             this.groupBox3.Controls.Add(this.labelNombreExperto);
@@ -311,16 +436,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos de proyecto";
             // 
-            // buttonCrearEtiquetas
-            // 
-            this.buttonCrearEtiquetas.Location = new System.Drawing.Point(261, 78);
-            this.buttonCrearEtiquetas.Name = "buttonCrearEtiquetas";
-            this.buttonCrearEtiquetas.Size = new System.Drawing.Size(119, 23);
-            this.buttonCrearEtiquetas.TabIndex = 4;
-            this.buttonCrearEtiquetas.Text = "Crear Etiquetas";
-            this.buttonCrearEtiquetas.UseVisualStyleBackColor = true;
-            this.buttonCrearEtiquetas.Click += new System.EventHandler(this.buttonCrearEtiquetas_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -332,6 +447,7 @@
             // 
             // comboBoxTipoModelo
             // 
+            this.comboBoxTipoModelo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTipoModelo.FormattingEnabled = true;
             this.comboBoxTipoModelo.Items.AddRange(new object[] {
             "1: AHP",
@@ -384,144 +500,33 @@
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label5.Location = new System.Drawing.Point(720, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(168, 17);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Conjunto de Etiquetas";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label6.Location = new System.Drawing.Point(316, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(245, 17);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Asignaciones Expertos Etiquetas";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label7.Location = new System.Drawing.Point(7, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(71, 17);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Expertos";
-            // 
-            // expertoApellidoDataGridViewTextBoxColumn
-            // 
-            this.expertoApellidoDataGridViewTextBoxColumn.DataPropertyName = "ExpertoApellido";
-            this.expertoApellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.expertoApellidoDataGridViewTextBoxColumn.Name = "expertoApellidoDataGridViewTextBoxColumn";
-            this.expertoApellidoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expertoNombreDataGridViewTextBoxColumn
-            // 
-            this.expertoNombreDataGridViewTextBoxColumn.DataPropertyName = "ExpertoNombre";
-            this.expertoNombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.expertoNombreDataGridViewTextBoxColumn.Name = "expertoNombreDataGridViewTextBoxColumn";
-            this.expertoNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adminDataGridViewCheckBoxColumn
-            // 
-            this.adminDataGridViewCheckBoxColumn.DataPropertyName = "Admin";
-            this.adminDataGridViewCheckBoxColumn.HeaderText = "Admin";
-            this.adminDataGridViewCheckBoxColumn.Name = "adminDataGridViewCheckBoxColumn";
-            this.adminDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // conjuntoEtiquetasNombreDataGridViewTextBoxColumn
-            // 
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.DataPropertyName = "ConjuntoEtiquetasNombre";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.HeaderText = "Etiquetas";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.Name = "conjuntoEtiquetasNombreDataGridViewTextBoxColumn";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // combinadaBindingSource
-            // 
-            this.combinadaBindingSource.DataSource = typeof(sisexperto.Entidades.Combinada);
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // conjuntoEtiquetasBindingSource
-            // 
-            this.conjuntoEtiquetasBindingSource.DataSource = typeof(sisexperto.Entidades.ConjuntoEtiquetas);
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Apellido";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Apellido";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // administradorDataGridViewCheckBoxColumn1
-            // 
-            this.administradorDataGridViewCheckBoxColumn1.DataPropertyName = "Administrador";
-            this.administradorDataGridViewCheckBoxColumn1.FillWeight = 50F;
-            this.administradorDataGridViewCheckBoxColumn1.HeaderText = "Admin";
-            this.administradorDataGridViewCheckBoxColumn1.Name = "administradorDataGridViewCheckBoxColumn1";
-            this.administradorDataGridViewCheckBoxColumn1.ReadOnly = true;
-            // 
-            // expertoBindingSource
-            // 
-            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
-            // 
-            // button2
-            // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(800, 307);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 30);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "No asignadas";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.buttonVerNoAsignadas_Click);
-            // 
-            // NuevoProyecto
+            // CrearProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 526);
+            this.ClientSize = new System.Drawing.Size(984, 511);
             this.Controls.Add(this.buttonLimpiar);
             this.Controls.Add(this.buttonCrearYContinuar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGuardar);
-            this.Name = "NuevoProyecto";
+            this.Name = "CrearProyecto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Nuevo Proyecto";
             this.Load += new System.EventHandler(this.NuevoProyecto_Load);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxAsignados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCombinada)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).EndInit();
+            this.groupBoxDisponible.ResumeLayout(false);
+            this.groupBoxDisponible.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conjuntoEtiquetasBindingSource)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.combinadaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.conjuntoEtiquetasBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -555,22 +560,22 @@
         private System.Windows.Forms.Button buttonAgregarConjunto;
         private System.Windows.Forms.DataGridView dataGridConjuntoEtiquetas;
         private System.Windows.Forms.BindingSource conjuntoEtiquetasBindingSource;
-        private System.Windows.Forms.BindingSource combinadaBindingSource;
         private System.Windows.Forms.DataGridView dataGridCombinada;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expertoApellidoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expertoNombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn adminDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn conjuntoEtiquetasNombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn1;
         private System.Windows.Forms.Button buttonRefrescar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBoxAsignados;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn adminDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoNombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn conjuntoEtiquetasNombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource expertoEnProyectoViewModelBindingSource;
+        private System.Windows.Forms.GroupBox groupBoxDisponible;
     }
 }

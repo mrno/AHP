@@ -46,7 +46,6 @@
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(203, 23);
             this.textBoxUsuario.TabIndex = 0;
-            this.textBoxUsuario.Enter += new System.EventHandler(this.textBoxUsuario_Enter);
             // 
             // textBoxContrasena
             // 
@@ -56,7 +55,6 @@
             this.textBoxContrasena.PasswordChar = '*';
             this.textBoxContrasena.Size = new System.Drawing.Size(203, 23);
             this.textBoxContrasena.TabIndex = 1;
-            this.textBoxContrasena.Enter += new System.EventHandler(this.textBoxContrasena_Enter);
             // 
             // label1
             // 
@@ -87,7 +85,7 @@
             this.buttonAceptar.TabIndex = 4;
             this.buttonAceptar.Text = "Aceptar";
             this.buttonAceptar.UseVisualStyleBackColor = true;
-            this.buttonAceptar.Click += new System.EventHandler(this.button1_Click);
+            this.buttonAceptar.Click += new System.EventHandler(this.buttonAceptar_Click);
             // 
             // buttonSalir
             // 
@@ -138,7 +136,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Experto";
-            this.Load += new System.EventHandler(this.CargaProgress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

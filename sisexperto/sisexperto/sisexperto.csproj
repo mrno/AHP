@@ -72,6 +72,7 @@
       <HintPath>..\..\Dll\MWArray.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -86,29 +87,27 @@
   <ItemGroup>
     <Compile Include="Entidades\AHP\IAHPComparable.cs" />
     <Compile Include="Entidades\AHP\IAHPMatrizComparable.cs" />
+    <Compile Include="Entidades\AHP\ValoracionAHP.cs" />
     <Compile Include="Entidades\IL\AlternativaIL.cs" />
     <Compile Include="Entidades\Combinada.cs" />
     <Compile Include="Entidades\AHP\AlternativaMatriz.cs" />
     <Compile Include="Entidades\AHP\CriterioMatriz.cs" />
     <Compile Include="Entidades\IL\ValoracionIL.cs" />
     <Compile Include="Entidades\IL\ValorCriterio.cs" />
-    <Compile Include="Migrations\201211220332094_Nuevo.cs" />
-    <Compile Include="Migrations\201211220332094_Nuevo.Designer.cs">
-      <DependentUpon>201211220332094_Nuevo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211220342040_Nuevo1.cs" />
-    <Compile Include="Migrations\201211220342040_Nuevo1.Designer.cs">
-      <DependentUpon>201211220342040_Nuevo1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211220344244_Nuevo2.cs" />
-    <Compile Include="Migrations\201211220344244_Nuevo2.Designer.cs">
-      <DependentUpon>201211220344244_Nuevo2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211220358501_Nuevo3.cs" />
-    <Compile Include="Migrations\201211220358501_Nuevo3.Designer.cs">
-      <DependentUpon>201211220358501_Nuevo3.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UI\AsignarExpertosAHP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosAHP.Designer.cs">
+      <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosIL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosIL.Designer.cs">
+      <DependentUpon>AsignarExpertosIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clases\ExpertoEnProyectoViewModel.cs" />
     <Compile Include="UI\Comparacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +140,12 @@
     </Compile>
     <Compile Include="UI\CrearEtiquetas.designer.cs">
       <DependentUpon>CrearEtiquetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CrearProyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CrearProyecto.Designer.cs">
+      <DependentUpon>CrearProyecto.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\EditarExpertosEnProyecto.cs">
       <SubType>Form</SubType>
@@ -218,17 +223,8 @@
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
-    <EmbeddedResource Include="Migrations\201211220332094_Nuevo.resx">
-      <DependentUpon>201211220332094_Nuevo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211220342040_Nuevo1.resx">
-      <DependentUpon>201211220342040_Nuevo1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211220344244_Nuevo2.resx">
-      <DependentUpon>201211220344244_Nuevo2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201211220358501_Nuevo3.resx">
-      <DependentUpon>201211220358501_Nuevo3.cs</DependentUpon>
+    <EmbeddedResource Include="UI\AsignarExpertosAHP.resx">
+      <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Comparacion.resx">
       <DependentUpon>Comparacion.cs</DependentUpon>
@@ -244,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CrearEtiquetas.resx">
       <DependentUpon>CrearEtiquetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CrearProyecto.resx">
+      <DependentUpon>CrearProyecto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarExpertosEnProyecto.resx">
       <DependentUpon>EditarExpertosEnProyecto.cs</DependentUpon>
@@ -290,6 +289,7 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="App1.config" />
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\alternativa.datasource" />
@@ -317,6 +317,7 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ExpertoEnProyectoViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -17,6 +17,35 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
+        public IEnumerable<Proyecto> ObtenerProyectosPorTipo(string tipo)
+        {
+            return from c in _context.Proyectos
+                   where c.Tipo == tipo
+                   select c;
+        }
+
+        public IEnumerable<Experto> ObtenerExpertosFueraDelProyecto(Proyecto proyecto)
+        {
+            var expertosDelProyecto = (from c in proyecto.ExpertosAsignados ?? new List<ExpertoEnProyecto>()
+                                       where c.Activo
+                                       select c.Experto);
+
+            return from c in _context.Expertos
+                   where !expertosDelProyecto.Contains(c)
+                   select c;
+        }
+
+        public IEnumerable<ExpertoEnProyecto> ObtenerExpertosActivosEnProyecto(Proyecto proyecto)
+        {
+            return proyecto.ExpertosEnProyectoActivos();
+        }
+
+        public void GuardarExpertos(Proyecto proyecto, IEnumerable<ExpertoEnProyecto> expertosEnProyecto)
+        {
+            proyecto.GuardarExpertos(expertosEnProyecto);
+            _context.SaveChanges();
+        }
+
         public Experto ObtenerExpertoValido(string usuario, string password)
         {
             Experto = (from exp in _context.Expertos
@@ -55,7 +84,7 @@ namespace sisExperto
 
         public IEnumerable<Alternativa> SolicitarAlternativas(Proyecto p)
         {
-            return p.Alternativas;
+            return p.Alternativas ?? new List<Alternativa>();
         }
 
         public IEnumerable<AlternativaIL> SolicitarAlternativasIL(ExpertoEnProyecto exp)
@@ -68,10 +97,11 @@ namespace sisExperto
             return p.Criterios;
         }
 
-        public void AltaProyecto(Proyecto proyecto)
+        public Proyecto AltaProyecto(Proyecto proyecto)
         {
             _context.Proyectos.Add(proyecto);
             _context.SaveChanges();
+            return proyecto;
         }
 
         public void AltaExperto(Experto Experto)
@@ -239,7 +269,6 @@ namespace sisExperto
 
         public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
         {
-
             List<ConjuntoEtiquetas> listaProyectosConCE = (from c in _context.ExpertosEnProyectos
                                        where c.ValoracionIl.ConjuntoEtiquetas != null
                                        select c.ValoracionIl.ConjuntoEtiquetas).ToList();
@@ -248,9 +277,6 @@ namespace sisExperto
 
             List<ConjuntoEtiquetas> lista = listaCompletaCE.Except(listaProyectosConCE).ToList();
             return lista;
-
-
-
         }
 
         public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetas()
@@ -261,9 +287,6 @@ namespace sisExperto
 
         public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
         {
-            //ExpertoEP.CriterioMatriz = new CriterioMatriz
-             //                              {ExpertoEnProyecto = ExpertoEP, MatrizCriterioAHP = MatrizCriterio};
-
             _context.CriteriosMatrices.Add(new CriterioMatriz { ExpertoEnProyecto = ExpertoEP, Matriz = MatrizCriterio });
             _context.SaveChanges();
         }

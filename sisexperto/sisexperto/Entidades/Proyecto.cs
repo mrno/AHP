@@ -11,26 +11,44 @@ namespace sisExperto.Entidades
     [Table("Proyectos")]
     public class Proyecto
     {
+        #region Propiedades
+
         public int ProyectoId { get; set; }
         public string Nombre { get; set; }
         public string Objetivo { get; set; }
-
         public string Estado { get; set; }
-
-        public int Tipo { //1=AHP, 2=IL, 3=AMBOS
-            get; set; }
+        public string Tipo { get; set; } //1=AHP, 2=IL, 3=AMBOS
 
         public int CreadorId { get; set; }
         public virtual Experto Creador { get; set; }
 
         public virtual ICollection<ExpertoEnProyecto> ExpertosAsignados { get; set; }
-
         public virtual ICollection<Criterio> Criterios { get; set; }
-
         public virtual ICollection<Alternativa> Alternativas { get; set; }
+
+        #endregion
 
         ////cambiar esto: sacar
         //public virtual ICollection<CriterioFila> CriteriosValoradosPorExpertos { get; set; }
+
+        public IEnumerable<ExpertoEnProyecto> ExpertosEnProyectoActivos()
+        {
+            return from c in ExpertosAsignados ?? new List<ExpertoEnProyecto>()
+                   where c.Activo
+                   select c;
+        }
+
+        public void GuardarExpertos(IEnumerable<ExpertoEnProyecto> expertosEnProyecto)
+        {
+            foreach (var item in expertosEnProyecto)
+	        {
+                //asignación y añade si no existe
+		        if (!(item.Activo = ExpertosAsignados.Contains(item)))
+                {
+                    ExpertosAsignados.Add(item);
+                }
+	        }
+        }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteAHP()
         {
@@ -43,8 +61,7 @@ namespace sisExperto.Entidades
         }
 
         public void PonderarExpertos(IEnumerable<ExpertoEnProyecto> lista)
-        {
-             
+        {             
             Int32 denominador = 0;
             foreach (ExpertoEnProyecto expertoEnProyecto in lista)
             {
@@ -55,7 +72,6 @@ namespace sisExperto.Entidades
             {
                 expertoEnProyecto.Ponderacion = (double)expertoEnProyecto.Peso / denominador;
             }
-
         }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteIL()
@@ -155,52 +171,52 @@ namespace sisExperto.Entidades
         }
         //1=media geometrica 2=ponderada
         public double[,] CalcularRankingIL(bool ConPeso)
-    {
-
-        var utils = new Utils();
-
-        int dimension = Alternativas.Count;
-        var rankAgregado = new double[dimension, 1];
-        utils.Cerar(rankAgregado, 1);
-        Utils util = new Utils();
-        ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl, ConPeso);
-        int k = 0;
-
-
-
-        int cardinalidadCEN = ObtenerCardinalidadCEN();
-
-        foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
         {
-          if (ConPeso)
-          {
 
-              exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+            var utils = new Utils();
+
+            int dimension = Alternativas.Count;
+            var rankAgregado = new double[dimension, 1];
+            utils.Cerar(rankAgregado, 1);
+            Utils util = new Utils();
+            ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl, ConPeso);
+            int k = 0;
 
 
-          }
-          else
-          {
-              exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
-              
 
-          }
+            int cardinalidadCEN = ObtenerCardinalidadCEN();
 
-          
+            foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
+            {
+                if (ConPeso)
+                {
 
-            k++;
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+
+
+                }
+                else
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
+
+
+                }
+
+
+
+                k++;
+            }
+
+            if (!ConPeso)
+            {
+                util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
+            }
+
+
+            utils.AgregacionCriterios(resultado, rankAgregado);
+
+            return utils.NormalizarIlFinal((rankAgregado));
         }
-
-        if (!ConPeso)
-        {
-            util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
-        }
-            
-
-        utils.AgregacionCriterios(resultado, rankAgregado);
-          
-           return utils.NormalizarIlFinal((rankAgregado));
-    }
         public int ObtenerCardinalidadCEN()
         {
             Utils util = new Utils();
@@ -247,5 +263,7 @@ namespace sisExperto.Entidades
 
 
 
+
+        
     }
 }
