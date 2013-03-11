@@ -236,7 +236,7 @@ namespace sisExperto
         {
             //var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
 
-            var _ventanaCargarProyecto = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            var _ventanaCargarProyecto = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
             //_ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
             _ventanaCargarProyecto.ShowDialog();
         }

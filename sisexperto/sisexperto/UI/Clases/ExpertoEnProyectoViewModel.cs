@@ -9,10 +9,10 @@ namespace sisexperto.UI.Clases
 {
     public class ExpertoEnProyectoViewModel
     {
-        private sisExperto.Entidades.Experto _experto;
-
         public Experto Experto { get; set; }
+        public Proyecto Proyecto { get; set; }
         public ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
+        public bool Activo { get; set; }
 
         public string ApellidoNombre { get { return Experto.Apellido + ", " + Experto.Nombre; } }
         public bool Admin { get { return Experto.Administrador; } }
@@ -22,11 +22,12 @@ namespace sisexperto.UI.Clases
         {
             Experto = experto;
             ConjuntoEtiquetas = conjuntoEtiquetas;
+            Activo = true;
         }
 
         public ExpertoEnProyectoViewModel(Experto experto)
         {
-            _experto = experto;
+            Experto = experto;
         }
     }
 }

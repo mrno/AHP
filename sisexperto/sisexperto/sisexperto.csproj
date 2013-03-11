@@ -226,6 +226,9 @@
     <EmbeddedResource Include="UI\AsignarExpertosAHP.resx">
       <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsignarExpertosIL.resx">
+      <DependentUpon>AsignarExpertosIL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Comparacion.resx">
       <DependentUpon>Comparacion.cs</DependentUpon>
     </EmbeddedResource>
