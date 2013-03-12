@@ -235,18 +235,7 @@ namespace sisExperto
 
         private void buttonProyectoEdicionExpertos_Click(object sender, EventArgs e)
         {
-            Form ventanaEditarExpertos = null;
-            if (_proyectoSeleccionado.Tipo == "AHP")
-            {
-                ventanaEditarExpertos = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-                (ventanaEditarExpertos as AsignarExpertosAHP).ProyectoModificado += (ActualizarGridPorProyecto);
-            }
-            else
-            {
-                ventanaEditarExpertos = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-                (ventanaEditarExpertos as AsignarExpertosIL).ProyectoModificado += (ActualizarGridPorProyecto);
-            }
-            ventanaEditarExpertos.ShowDialog();
+            
         }
 
         private void alternativasYCriteriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -301,13 +290,23 @@ namespace sisExperto
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_proyectoSeleccionado != null)
-            {
-                //var ventanaEdicion = new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-                //ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyecto);
-                //ventanaEdicion.ShowDialog();
-            }
-            else MessageBox.Show("No seleccionó ningún proyecto.");
+            //if (_proyectoSeleccionado != null)
+            //{
+                Form ventanaEditarExpertos = null;
+            //    if (_proyectoSeleccionado.Tipo == "AHP")
+            //    {
+            //        ventanaEditarExpertos = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            //        (ventanaEditarExpertos as AsignarExpertosAHP).ProyectoModificado += (ActualizarGridPorProyecto);
+            //    }
+            //    else
+            //    {
+            //        ventanaEditarExpertos = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            //        (ventanaEditarExpertos as AsignarExpertosIL).ProyectoModificado += (ActualizarGridPorProyecto);
+            //    }
+            //    ventanaEditarExpertos.ShowDialog();
+            //}
+            //else MessageBox.Show("No seleccionó ningún proyecto.");
+                ventanaEditarExpertos = new AsignarExpertosProyectoListo(_proyectoSeleccionado);
         }
         #endregion
         
@@ -412,6 +411,8 @@ namespace sisExperto
             _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
         }
         #endregion
+
+       
 
     }
 }
