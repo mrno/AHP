@@ -35,10 +35,13 @@ namespace sisexperto.UI
         public AsignarExpertosIL(Proyecto proyecto, Experto experto, FachadaProyectosExpertos fachada)
         {
             InitializeComponent();
+            Text += proyecto.Tipo;
+
             _experto = experto;
             _fachada = fachada;
             _proyectoSeleccionado = proyecto;
-            _proyectosIL = _fachada.ObtenerProyectosPorTipo("IL").ToList();
+            _proyectosIL = _fachada.ObtenerProyectosPorTipo(proyecto.Tipo).ToList();
+            
         }
 
         private void AsignarExpertosIL_Load(object sender, EventArgs e)

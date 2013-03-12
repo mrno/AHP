@@ -240,7 +240,7 @@
             this.Controls.Add(this.groupBoxDisponible);
             this.Controls.Add(this.btnAgregar);
             this.Name = "AsignarExpertosAHP";
-            this.Text = "Asignar Expertos AHP";
+            this.Text = "Asignar Expertos - Proyectos: AHP";
             this.Load += new System.EventHandler(this.AsignarExpertosAHP_Load);
             this.groupBoxAsignados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosEnProyecto)).EndInit();

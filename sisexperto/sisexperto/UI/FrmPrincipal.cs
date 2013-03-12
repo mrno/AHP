@@ -404,7 +404,14 @@ namespace sisExperto
 
         #endregion
 
-        
+
+        #region Publicar Proyecto
+
+        private void buttonPublicar_Click(object sender, EventArgs e)
+        {
+            _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
+        }
+        #endregion
 
     }
 }
