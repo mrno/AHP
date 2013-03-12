@@ -2,6 +2,7 @@
 
 using System.Data.Entity;
 using sisexperto.Entidades;
+using sisexperto.Entidades.AHP;
 
 
 namespace sisExperto.Entidades
@@ -46,9 +47,10 @@ namespace sisExperto.Entidades
                 .WithMany(b => b.ProyectosCreados)
                 .HasForeignKey(x => x.CreadorId).WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<CriterioMatriz>()
-                .HasRequired(x => x.ExpertoEnProyecto)
-                .WithRequiredDependent(x => x.CriterioMatriz);
+            modelBuilder.Entity<ValoracionAHP>()
+                .HasRequired(x => x.ExpertoEnProyecto);
+            modelBuilder.Entity<ValoracionIL>()
+                .HasRequired(x => x.ExpertoEnProyecto);
 
 
             base.OnModelCreating(modelBuilder);

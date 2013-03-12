@@ -35,10 +35,13 @@ namespace sisexperto.UI
         public AsignarExpertosIL(Proyecto proyecto, Experto experto, FachadaProyectosExpertos fachada)
         {
             InitializeComponent();
+            Text += proyecto.Tipo;
+
             _experto = experto;
             _fachada = fachada;
             _proyectoSeleccionado = proyecto;
-            _proyectosIL = _fachada.ObtenerProyectosPorTipo("IL").ToList();
+            _proyectosIL = _fachada.ObtenerProyectosPorTipo(proyecto.Tipo).ToList();
+            
         }
 
         private void AsignarExpertosIL_Load(object sender, EventArgs e)
@@ -132,7 +135,7 @@ namespace sisexperto.UI
             _expertosDisponibles = _fachada.ObtenerExpertosFueraDelProyecto(_proyectoSeleccionado).ToList();
 
             _expertosDelProyecto = (from c in _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado)
-                                    select new ExpertoEnProyectoViewModel(c.Experto, c.Proyecto, c.ValoracionIl != null ? c.ValoracionIl.ConjuntoEtiquetas : null, c.Activo)).ToList();
+                                    select new ExpertoEnProyectoViewModel(c.Experto, c.Proyecto, c.ValoracionIL != null ? c.ValoracionIL.ConjuntoEtiquetas : null, c.Activo)).ToList();
                                    
             expertoBindingSource.DataSource = _expertosDisponibles;
             expertoEnProyectoViewModelBindingSource.DataSource = _expertosDelProyecto;
@@ -188,7 +191,7 @@ namespace sisexperto.UI
                                            Experto = c.Experto,
                                            Proyecto = c.Proyecto,
                                            Activo = c.Activo,
-                                           ValoracionIl = new ValoracionIL
+                                           ValoracionIL = new ValoracionIL
                                            {
                                                ConjuntoEtiquetas = c.ConjuntoEtiquetas
                                            }

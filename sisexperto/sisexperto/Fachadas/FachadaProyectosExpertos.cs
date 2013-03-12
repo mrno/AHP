@@ -95,7 +95,7 @@ namespace sisExperto
 
         public IEnumerable<AlternativaIL> SolicitarAlternativasIL(ExpertoEnProyecto exp)
         {
-            return exp.ValoracionIl.AlternativasIL;
+            return exp.ValoracionIL.AlternativasIL;
         }
 
         public IEnumerable<Criterio> SolicitarCriterios(Proyecto p)
@@ -132,11 +132,11 @@ namespace sisExperto
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
 
-     IQueryable<CriterioMatriz> matriz = (from expenproy in _context.ExpertosEnProyectos
+            IQueryable<CriterioMatriz> matriz = (from expenproy in _context.ExpertosEnProyectos
                                                  where
                                                      expenproy.Proyecto.ProyectoId == proy.ProyectoId &&
                                                      expenproy.Experto.ExpertoId == exp.ExpertoId
-                                                 select expenproy.CriterioMatriz);
+                                                 select expenproy.ValoracionAHP.CriterioMatriz);
             return matriz.ToList();
         }
 
@@ -149,7 +149,7 @@ namespace sisExperto
                                             expenproy.Proyecto.ProyectoId == proy.ProyectoId &&
                                             expenproy.Experto.ExpertoId == exp.ExpertoId
                                         select expenproy).FirstOrDefault();
-            return matriz.AlternativasMatrices;
+            return matriz.ValoracionAHP.AlternativasMatrices;
         }
 
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos, IEnumerable<ConjuntoEtiquetas> Etiquetas)
@@ -162,7 +162,7 @@ namespace sisExperto
                                     {
                                         Proyecto = Proyecto,
                                         Experto = Expertos.ElementAt(i),
-                                        ValoracionIl = new ValoracionIL
+                                        ValoracionIL = new ValoracionIL
                                         {
                                             ConjuntoEtiquetas = Etiquetas.ElementAt(i)
                                         },
@@ -189,10 +189,10 @@ namespace sisExperto
             }
         }
 
-        public IEnumerable<Proyecto> ProyectosNoValorados(Experto _experto)
+        public IEnumerable<Proyecto> ProyectosParaEditar(Experto _experto)
         {
             return (from p in SolicitarProyectosCreados(_experto)
-                    where p.Estado == "Creado"
+                    where (p.Estado == "Creado") || (p.Estado == "En Edicion")
                     select p);
         }
 
@@ -217,6 +217,39 @@ namespace sisExperto
             }
             Proyecto.Criterios = Criterios;
             _context.SaveChanges();
+        }
+
+        public string PublicarProyecto(Proyecto proyecto)
+        {
+            if (proyecto.Alternativas.Count > 2 && proyecto.Alternativas.Count > 2)
+            {
+                switch (proyecto.Tipo)
+                {
+                    case "AHP":
+                        GuardarAHP(proyecto); break;
+                    case "IL":
+                        GuardarIL(proyecto); break;
+                    case "AMBOS":
+                        {
+                            GuardarIL(proyecto);
+                            GuardarAHP(proyecto);
+                            break;
+                        }
+                }
+            }
+            return proyecto.Estado;
+        }
+
+        private void GuardarAHP(Proyecto proyecto)
+        {
+            InicializarMatricesExpertos(proyecto);
+            CerrarEdicionProyecto(proyecto);
+        }
+
+        private void GuardarIL(Proyecto proyecto)
+        {
+            InicializarILExpertos(proyecto);
+            CerrarEdicionProyecto(proyecto);
         }
 
         public void CerrarEdicionProyecto(Proyecto P)
@@ -278,8 +311,8 @@ namespace sisExperto
         public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
         {
             List<ConjuntoEtiquetas> listaProyectosConCE = (from c in _context.ExpertosEnProyectos
-                                       where c.ValoracionIl.ConjuntoEtiquetas != null
-                                       select c.ValoracionIl.ConjuntoEtiquetas).ToList();
+                                       where c.ValoracionIL.ConjuntoEtiquetas != null
+                                       select c.ValoracionIL.ConjuntoEtiquetas).ToList();
 
             List<ConjuntoEtiquetas> listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
 
@@ -305,18 +338,18 @@ namespace sisExperto
 
             try
             {
-                matrizAlternativa = (from mat in ExpertoEP.AlternativasMatrices
+                matrizAlternativa = (from mat in ExpertoEP.ValoracionAHP.AlternativasMatrices
                                      where mat.CriterioId == Criterio.CriterioId
                                      select mat).FirstOrDefault();
             }
             catch (Exception)
             {
-                ExpertoEP.AlternativasMatrices = new List<AlternativaMatriz>();
+                ExpertoEP.ValoracionAHP.AlternativasMatrices = new List<AlternativaMatriz>();
             }
 
             if (matrizAlternativa == null)
             {
-                ExpertoEP.AlternativasMatrices.Add(
+                ExpertoEP.ValoracionAHP.AlternativasMatrices.Add(
                     new AlternativaMatriz
                         {
                             Criterio = Criterio,
@@ -329,20 +362,19 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-        public void InicializarMatricesExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas,
-                                                List<Criterio> ListaCriterios)
+        public void InicializarMatricesExpertos(Proyecto proyecto)
         {
-            int dimensionCriterio = ListaCriterios.Count;
-            int dimensionAlternativa = ListaAlternativas.Count;
+            int dimensionCriterio = proyecto.Criterios.Count;
+            int dimensionAlternativa = proyecto.Alternativas.Count;
 
             double[,] matrizCriterio = GenerarMatriz(dimensionCriterio);
             double[,] matrizAlternativa = GenerarMatriz(dimensionAlternativa);
 
-            foreach (ExpertoEnProyecto expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
+            foreach (ExpertoEnProyecto expertoEnProyecto in proyecto.ExpertosAsignados)
             {
                 CargarMatrizCriterios(expertoEnProyecto, matrizCriterio);
 
-                foreach (Criterio criterio in ListaCriterios)
+                foreach (Criterio criterio in proyecto.Criterios)
                 {
                     CargarMatrizAlterntivas(expertoEnProyecto, criterio, matrizAlternativa);
                 }
@@ -350,20 +382,16 @@ namespace sisExperto
         }
 
         //TODO ver todo esto
-        public void InicializarILExpertos(Proyecto ProyectoSeleccionado, List<Alternativa> ListaAlternativas,
-                                                List<Criterio> ListaCriterios)
+        public void InicializarILExpertos(Proyecto proyecto)
         {
-
-
-            foreach (var expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
+            foreach (var expertoEnProyecto in proyecto.ExpertosAsignados)
             {
-                ValoracionIL valoracionIl = expertoEnProyecto.ValoracionIl;
+                ValoracionIL valoracionIl = expertoEnProyecto.ValoracionIL;
  
                 List<AlternativaIL> listaAlternativaIL = new List<AlternativaIL>();
                
-                foreach (Alternativa Alternativa in ListaAlternativas)
+                foreach (Alternativa Alternativa in proyecto.Alternativas)
                 {
-
                     AlternativaIL alternativaIl = new AlternativaIL();
                     alternativaIl.Nombre = Alternativa.Nombre;
                     alternativaIl.Descripcion = Alternativa.Descripcion;
@@ -371,13 +399,13 @@ namespace sisExperto
                    
                     
                     List<ValorCriterio> listValorCriterioIL = new List<ValorCriterio>();
-                    foreach (Criterio criterio in ListaCriterios)
+                    foreach (Criterio criterio in proyecto.Criterios)
                     {
                         ValorCriterio valorCriterio = new ValorCriterio();
                         valorCriterio.Nombre = criterio.Nombre;
                         valorCriterio.Descripcion = criterio.Descripcion;
-                        valorCriterio.ValorILNumerico = (expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2;
-                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas[(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre;
+                        valorCriterio.ValorILNumerico = (expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2;
+                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas[(expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre;
                         listValorCriterioIL.Add(valorCriterio);
                     }
 
@@ -389,10 +417,7 @@ namespace sisExperto
                 valoracionIl.AlternativasIL = listaAlternativaIL;
 
             }
-
             _context.SaveChanges();
-
-
         }
 
         private double[,] GenerarMatriz(int Dimension)

@@ -93,6 +93,7 @@
     <Compile Include="Entidades\AHP\CriterioMatriz.cs" />
     <Compile Include="Entidades\IL\ValoracionIL.cs" />
     <Compile Include="Entidades\IL\ValorCriterio.cs" />
+    <Compile Include="Entidades\Valoracion.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="UI\AsignarExpertosAHP.cs">
       <SubType>Form</SubType>
@@ -151,12 +152,6 @@
     </Compile>
     <Compile Include="UI\CrearProyecto.Designer.cs">
       <DependentUpon>CrearProyecto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\EditarExpertosEnProyecto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\EditarExpertosEnProyecto.Designer.cs">
-      <DependentUpon>EditarExpertosEnProyecto.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\EditarProyecto.cs">
       <SubType>Form</SubType>
@@ -254,9 +249,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CrearProyecto.resx">
       <DependentUpon>CrearProyecto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\EditarExpertosEnProyecto.resx">
-      <DependentUpon>EditarExpertosEnProyecto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\EditarProyecto.resx">
       <DependentUpon>EditarProyecto.cs</DependentUpon>

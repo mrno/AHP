@@ -55,7 +55,7 @@ namespace sisExperto.Entidades
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteAHP()
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
-                                                   where p.TodasMisValoracionesConsistentes()
+                                                   where p.ValoracionAHP.TodasMisValoracionesConsistentes()
                                                    select p;
              
            PonderarExpertos(lista);
@@ -79,7 +79,7 @@ namespace sisExperto.Entidades
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteIL()
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
-                                                   where p.ValoracionIl.valorada()
+                                                   where p.ValoracionIL.valorada()
                                                    select p;
             PonderarExpertos(lista);
             return lista;
@@ -106,12 +106,12 @@ namespace sisExperto.Entidades
             
             foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
             {
-                if (expertoEnProyecto.TodasMisValoracionesConsistentes())
+                if (expertoEnProyecto.ValoracionAHP.TodasMisValoracionesConsistentes())
                 {
-                    utils.Productoria(matrizCriterio, expertoEnProyecto.CriterioMatriz.Matriz);
+                    utils.Productoria(matrizCriterio, expertoEnProyecto.ValoracionAHP.CriterioMatriz.Matriz);
 
                     k = 0;
-                    foreach (AlternativaMatriz d in expertoEnProyecto.AlternativasMatrices)
+                    foreach (AlternativaMatriz d in expertoEnProyecto.ValoracionAHP.AlternativasMatrices)
                     {
                         utils.Productoria(listaAlternativas[k], d.Matriz);
                         k++;
@@ -173,7 +173,7 @@ namespace sisExperto.Entidades
             var rankAgregado = new double[dimension, 1];
             utils.Cerar(rankAgregado, 1);
             Utils util = new Utils();
-            ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIl, ConPeso);
+            ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIL, ConPeso);
             int k = 0;
 
 
@@ -218,7 +218,7 @@ namespace sisExperto.Entidades
 
             foreach (var exp in ExpertosAsignados)
             {
-                lista.Add(exp.ValoracionIl.ConjuntoEtiquetas.Cantidad - 1);
+                lista.Add(exp.ValoracionIL.ConjuntoEtiquetas.Cantidad - 1);
             }
            return util.Mcm(lista.ToArray());
         }
@@ -246,7 +246,7 @@ namespace sisExperto.Entidades
             List<Int32> listaCardinalidadEtiquetasK = new List<int>();
             foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
             {
-                listaCardinalidadEtiquetasK.Add(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
+                listaCardinalidadEtiquetasK.Add(expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Cantidad-1);
             }
             Int32 cardinalidadCEN = utils.Mcm(listaCardinalidadEtiquetasK.ToArray());
             return cardinalidadCEN;

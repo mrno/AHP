@@ -44,7 +44,7 @@ namespace sisExperto
             _expertoEnProyecto = (from c in _experto.ProyectosAsignados
                                   where c.ProyectoId == _proyectoSeleccionado.ProyectoId
                                   select c).FirstOrDefault();
-            checkBoxConsistencia.Checked = _expertoEnProyecto.CriterioMatriz.Consistencia;
+            checkBoxConsistencia.Checked = _expertoEnProyecto.ValoracionAHP.CriterioMatriz.Consistencia;
 
             List<AlternativaMatriz> listaAlternativas =
                 _fachada.matrizAlternativa(_proyectoSeleccionado, _experto).ToList();
@@ -123,7 +123,7 @@ namespace sisExperto
 
         private void buttonValorarCriterio_Click(object sender, EventArgs e)
         {
-            var frmComparar = new CompararCriterios(_expertoEnProyecto.CriterioMatriz, _fachada, _proyectoSeleccionado);
+            var frmComparar = new CompararCriterios(_expertoEnProyecto.ValoracionAHP.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
             cargarMatricesAHP();
         }
