@@ -13,6 +13,13 @@ namespace sisexperto.UI
 {
     public partial class AsignarExpertosAHP : Form
     {
+        #region Delegates and Events
+
+        public delegate void EdicionProyecto();
+        public event EdicionProyecto ProyectoModificado;
+
+        #endregion
+
         private Experto _experto;
         private FachadaProyectosExpertos _fachada;
         private List<Proyecto> _proyectosAHP;
@@ -150,6 +157,7 @@ namespace sisexperto.UI
         private void Guardar()
         {
             _fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
+            ProyectoModificado();
             MessageBox.Show("Cambios guardados con éxito");
         }
 

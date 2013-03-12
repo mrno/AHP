@@ -52,7 +52,8 @@ namespace sisexperto.UI
                 Tipo = comboBoxTipoModelo.Text,
                 Nombre = textBoxNombreProyecto.Text,
                 Objetivo = textBoxObjetivoProyecto.Text,
-                Creador = _experto
+                Creador = _experto,
+                Estado = "Creado"
             });
             ProyectoCreado();
             LimpiarCampos();

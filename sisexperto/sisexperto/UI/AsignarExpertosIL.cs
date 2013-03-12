@@ -15,6 +15,13 @@ namespace sisexperto.UI
 {
     public partial class AsignarExpertosIL : Form
     {
+        #region Delegates and Events
+
+        public delegate void EdicionProyecto();
+        public event EdicionProyecto ProyectoModificado;
+
+        #endregion
+
         private Experto _experto;
         private FachadaProyectosExpertos _fachada;
         private List<Proyecto> _proyectosIL;
@@ -58,7 +65,13 @@ namespace sisexperto.UI
             }
             catch (Exception) { }
 
-            var conjuntoEtiquetas = (ConjuntoEtiquetas)dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
+            ConjuntoEtiquetas conjuntoEtiquetas = null; 
+
+            try
+            {
+                conjuntoEtiquetas = (ConjuntoEtiquetas)dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
+            }
+            catch (Exception) { }
 
             _expertosDelProyecto.Add(new ExpertoEnProyectoViewModel(_experto, conjuntoEtiquetas));
 
@@ -154,8 +167,36 @@ namespace sisexperto.UI
 
         private void Guardar()
         {
+
             //_fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
+            ProyectoModificado();
             MessageBox.Show("Cambios guardados con éxito");
+        }
+
+        private void btnNuevoConjuntoEtiquetas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAgregarConjunto_Click(object sender, EventArgs e)
+        {
+            ConjuntoEtiquetas conjuntoEtiquetas = null;
+            ExpertoEnProyectoViewModel expertoEnProyecto;
+
+            try
+            {
+                conjuntoEtiquetas = (ConjuntoEtiquetas)dataGridConjuntoEtiquetas.CurrentRow.DataBoundItem;
+            }
+            catch (Exception) { }
+
+            try
+            {
+                expertoEnProyecto = (ExpertoEnProyectoViewModel)dataGridExpertosEnProyecto.CurrentRow.DataBoundItem;
+                expertoEnProyecto.ConjuntoEtiquetas = conjuntoEtiquetas;
+            }
+            catch (Exception) { }
+
+            ActualizarListasYGrids();
         }
     }
 }

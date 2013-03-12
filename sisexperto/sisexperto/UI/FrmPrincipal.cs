@@ -65,7 +65,7 @@ namespace sisExperto
 
         private void ModoDeAdministracion(bool esAdministrador)
         {
-            buttonProyectoNuevo.Visible = esAdministrador;
+            nuevoToolStripMenuItem.Visible = esAdministrador;
             expertosToolStripMenuItem.Visible = esAdministrador;
             crearConjuntoDeEtiquetsToolStripMenuItem.Visible = esAdministrador;
             aHPNoPonderadoToolStripMenuItem.Visible = esAdministrador;
@@ -100,8 +100,8 @@ namespace sisExperto
         #endregion
 
         #region NuevoProyecto
-
-        private void buttonProyectoNuevo_Click(object sender, EventArgs e)
+        
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             NuevoProyecto();
         }
@@ -109,11 +109,11 @@ namespace sisExperto
         private void NuevoProyecto()
         {
             var ventanaNuevoProyecto = new CrearProyecto(_fachadaProyectosExpertos, _experto);
-            ventanaNuevoProyecto.ProyectoCreado += (ActualizarGridPorProyectoNuevo);
+            ventanaNuevoProyecto.ProyectoCreado += (ActualizarGridPorProyecto);
             ventanaNuevoProyecto.ShowDialog();
         }
         
-        private void ActualizarGridPorProyectoNuevo()
+        private void ActualizarGridPorProyecto()
         {
             ActualizarProyectos(_experto);
             if (filtroProyecto.Text == "Ingrese los filtros de búsqueda aquí")
@@ -232,12 +232,27 @@ namespace sisExperto
         #endregion
 
         #region EditarProyecto y Valoraciones
-        private void buttonProyectoEdicion_Click(object sender, EventArgs e)
-        {
-            //var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
 
-            var _ventanaCargarProyecto = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-            //_ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
+        private void buttonProyectoEdicionExpertos_Click(object sender, EventArgs e)
+        {
+            Form ventanaEditarExpertos = null;
+            if (_proyectoSeleccionado.Tipo == "AHP")
+            {
+                ventanaEditarExpertos = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+                (ventanaEditarExpertos as AsignarExpertosAHP).ProyectoModificado += (ActualizarGridPorProyecto);
+            }
+            else
+            {
+                ventanaEditarExpertos = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+                (ventanaEditarExpertos as AsignarExpertosIL).ProyectoModificado += (ActualizarGridPorProyecto);
+            }
+            ventanaEditarExpertos.ShowDialog();
+        }
+
+        private void alternativasYCriteriosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+            _ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyecto);
             _ventanaCargarProyecto.ShowDialog();
         }
 
@@ -289,7 +304,7 @@ namespace sisExperto
             if (_proyectoSeleccionado != null)
             {
                 var ventanaEdicion = new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-                ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyectoNuevo);
+                ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyecto);
                 ventanaEdicion.ShowDialog();
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
@@ -388,5 +403,8 @@ namespace sisExperto
         }
 
         #endregion
+
+        
+
     }
 }

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsignarExpertosIL));
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
-            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnNuevoExperto = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -53,8 +53,8 @@
             this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.conjuntoEtiquetasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAgregarConjunto = new System.Windows.Forms.Button();
+            this.btnNuevoConjuntoEtiquetas = new System.Windows.Forms.Button();
             this.groupBoxAsignados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosEnProyecto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).BeginInit();
@@ -77,15 +77,15 @@
             this.comboBoxProyectos.Size = new System.Drawing.Size(582, 28);
             this.comboBoxProyectos.TabIndex = 40;
             // 
-            // btnNuevo
+            // btnNuevoExperto
             // 
-            this.btnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevo.Image")));
-            this.btnNuevo.Location = new System.Drawing.Point(318, 65);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(50, 50);
-            this.btnNuevo.TabIndex = 32;
-            this.btnNuevo.UseVisualStyleBackColor = true;
-            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            this.btnNuevoExperto.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoExperto.Image")));
+            this.btnNuevoExperto.Location = new System.Drawing.Point(318, 65);
+            this.btnNuevoExperto.Name = "btnNuevoExperto";
+            this.btnNuevoExperto.Size = new System.Drawing.Size(50, 50);
+            this.btnNuevoExperto.TabIndex = 32;
+            this.btnNuevoExperto.UseVisualStyleBackColor = true;
+            this.btnNuevoExperto.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // label1
             // 
@@ -298,34 +298,36 @@
             // 
             this.conjuntoEtiquetasBindingSource.DataSource = typeof(sisexperto.Entidades.ConjuntoEtiquetas);
             // 
-            // button1
+            // btnAgregarConjunto
             // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(318, 407);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 50);
-            this.button1.TabIndex = 42;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnAgregarConjunto.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarConjunto.Image")));
+            this.btnAgregarConjunto.Location = new System.Drawing.Point(318, 407);
+            this.btnAgregarConjunto.Name = "btnAgregarConjunto";
+            this.btnAgregarConjunto.Size = new System.Drawing.Size(50, 50);
+            this.btnAgregarConjunto.TabIndex = 42;
+            this.btnAgregarConjunto.UseVisualStyleBackColor = true;
+            this.btnAgregarConjunto.Click += new System.EventHandler(this.btnAgregarConjunto_Click);
             // 
-            // button2
+            // btnNuevoConjuntoEtiquetas
             // 
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(318, 351);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 43;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnNuevoConjuntoEtiquetas.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoConjuntoEtiquetas.Image")));
+            this.btnNuevoConjuntoEtiquetas.Location = new System.Drawing.Point(318, 351);
+            this.btnNuevoConjuntoEtiquetas.Name = "btnNuevoConjuntoEtiquetas";
+            this.btnNuevoConjuntoEtiquetas.Size = new System.Drawing.Size(50, 50);
+            this.btnNuevoConjuntoEtiquetas.TabIndex = 43;
+            this.btnNuevoConjuntoEtiquetas.UseVisualStyleBackColor = true;
+            this.btnNuevoConjuntoEtiquetas.Click += new System.EventHandler(this.btnNuevoConjuntoEtiquetas_Click);
             // 
             // AsignarExpertosIL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(687, 661);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNuevoConjuntoEtiquetas);
+            this.Controls.Add(this.btnAgregarConjunto);
             this.Controls.Add(this.groupBoxConjuntosEtiquetas);
             this.Controls.Add(this.comboBoxProyectos);
-            this.Controls.Add(this.btnNuevo);
+            this.Controls.Add(this.btnNuevoExperto);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonGuardar);
             this.Controls.Add(this.btnCancelar);
@@ -354,7 +356,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox comboBoxProyectos;
-        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnNuevoExperto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonGuardar;
         private System.Windows.Forms.Button btnCancelar;
@@ -370,8 +372,8 @@
         private System.Windows.Forms.DataGridView dataGridConjuntoEtiquetas;
         private System.Windows.Forms.BindingSource expertoEnProyectoViewModelBindingSource;
         private System.Windows.Forms.BindingSource conjuntoEtiquetasBindingSource;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAgregarConjunto;
+        private System.Windows.Forms.Button btnNuevoConjuntoEtiquetas;
         private System.Windows.Forms.DataGridViewTextBoxColumn ApellidoNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn conjuntoEtiquetasNombreDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoYNombreDataGridViewTextBoxColumn;
