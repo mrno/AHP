@@ -181,12 +181,17 @@ namespace sisExperto.UI
             _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
             _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
 
-            var dialog = MessageBox.Show("Criterios y Alternativas guardados con éxito", "Información", MessageBoxButtons.YesNo);
-            if (dialog.ToString() == "Yes")
+            var mensaje = "Criterios y Alternativas guardados con éxito.";
+            if (_fachada.PosiblePublicar(_proyectoSeleccionado))
             {
-                //dialog y eventos para eliminar el proyecto de la lista
+                var dialog = MessageBox.Show(mensaje + " Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
+                if (dialog.ToString() == "Yes")
+                {
+                    //dialog y eventos para eliminar el proyecto de la lista
+                    _fachada.PublicarProyecto(_proyectoSeleccionado);
+                }
             }
-            
+            else MessageBox.Show(mensaje + _fachada.RequerimientoParaPublicar(_proyectoSeleccionado));            
         }
     }
 }
