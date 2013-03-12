@@ -95,7 +95,7 @@ namespace sisExperto
 
         public IEnumerable<AlternativaIL> SolicitarAlternativasIL(ExpertoEnProyecto exp)
         {
-            return exp.ValoracionIl.AlternativasIL;
+            return exp.ValoracionIL.AlternativasIL;
         }
 
         public IEnumerable<Criterio> SolicitarCriterios(Proyecto p)
@@ -132,11 +132,11 @@ namespace sisExperto
             //TODO hay que ver todo esto, se descajeto todo con el tema del cambio de las matrices.
 
 
-     IQueryable<CriterioMatriz> matriz = (from expenproy in _context.ExpertosEnProyectos
+            IQueryable<CriterioMatriz> matriz = (from expenproy in _context.ExpertosEnProyectos
                                                  where
                                                      expenproy.Proyecto.ProyectoId == proy.ProyectoId &&
                                                      expenproy.Experto.ExpertoId == exp.ExpertoId
-                                                 select expenproy.CriterioMatriz);
+                                                 select expenproy.ValoracionAHP.CriterioMatriz);
             return matriz.ToList();
         }
 
@@ -149,7 +149,7 @@ namespace sisExperto
                                             expenproy.Proyecto.ProyectoId == proy.ProyectoId &&
                                             expenproy.Experto.ExpertoId == exp.ExpertoId
                                         select expenproy).FirstOrDefault();
-            return matriz.AlternativasMatrices;
+            return matriz.ValoracionAHP.AlternativasMatrices;
         }
 
         public void AsignarExpertosAlProyecto(Proyecto Proyecto, IEnumerable<Experto> Expertos, IEnumerable<ConjuntoEtiquetas> Etiquetas)
@@ -162,7 +162,7 @@ namespace sisExperto
                                     {
                                         Proyecto = Proyecto,
                                         Experto = Expertos.ElementAt(i),
-                                        ValoracionIl = new ValoracionIL
+                                        ValoracionIL = new ValoracionIL
                                         {
                                             ConjuntoEtiquetas = Etiquetas.ElementAt(i)
                                         },
@@ -278,8 +278,8 @@ namespace sisExperto
         public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasSinAsignar()
         {
             List<ConjuntoEtiquetas> listaProyectosConCE = (from c in _context.ExpertosEnProyectos
-                                       where c.ValoracionIl.ConjuntoEtiquetas != null
-                                       select c.ValoracionIl.ConjuntoEtiquetas).ToList();
+                                       where c.ValoracionIL.ConjuntoEtiquetas != null
+                                       select c.ValoracionIL.ConjuntoEtiquetas).ToList();
 
             List<ConjuntoEtiquetas> listaCompletaCE = _context.ConjuntoEtiquetas.ToList();
 
@@ -305,18 +305,18 @@ namespace sisExperto
 
             try
             {
-                matrizAlternativa = (from mat in ExpertoEP.AlternativasMatrices
+                matrizAlternativa = (from mat in ExpertoEP.ValoracionAHP.AlternativasMatrices
                                      where mat.CriterioId == Criterio.CriterioId
                                      select mat).FirstOrDefault();
             }
             catch (Exception)
             {
-                ExpertoEP.AlternativasMatrices = new List<AlternativaMatriz>();
+                ExpertoEP.ValoracionAHP.AlternativasMatrices = new List<AlternativaMatriz>();
             }
 
             if (matrizAlternativa == null)
             {
-                ExpertoEP.AlternativasMatrices.Add(
+                ExpertoEP.ValoracionAHP.AlternativasMatrices.Add(
                     new AlternativaMatriz
                         {
                             Criterio = Criterio,
@@ -357,7 +357,7 @@ namespace sisExperto
 
             foreach (var expertoEnProyecto in ProyectoSeleccionado.ExpertosAsignados)
             {
-                ValoracionIL valoracionIl = expertoEnProyecto.ValoracionIl;
+                ValoracionIL valoracionIl = expertoEnProyecto.ValoracionIL;
  
                 List<AlternativaIL> listaAlternativaIL = new List<AlternativaIL>();
                
@@ -376,8 +376,8 @@ namespace sisExperto
                         ValorCriterio valorCriterio = new ValorCriterio();
                         valorCriterio.Nombre = criterio.Nombre;
                         valorCriterio.Descripcion = criterio.Descripcion;
-                        valorCriterio.ValorILNumerico = (expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2;
-                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas[(expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre;
+                        valorCriterio.ValorILNumerico = (expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2;
+                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas[(expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre;
                         listValorCriterioIL.Add(valorCriterio);
                     }
 

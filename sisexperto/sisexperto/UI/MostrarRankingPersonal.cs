@@ -51,7 +51,7 @@ namespace sisexperto.UI
                 
                 int posicion = 0;
              
-                foreach (AlternativaIL alt in _experto.ValoracionIl.AlternativasIL)
+                foreach (AlternativaIL alt in _experto.ValoracionIL.AlternativasIL)
                 {
 
                     //para obtener el vector de pesos en IL, quedo obsoleto 

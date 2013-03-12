@@ -303,9 +303,9 @@ namespace sisExperto
         {
             if (_proyectoSeleccionado != null)
             {
-                var ventanaEdicion = new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-                ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyecto);
-                ventanaEdicion.ShowDialog();
+                //var ventanaEdicion = new EditarExpertosEnProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+                //ventanaEdicion.ProyectoModificado += (ActualizarGridPorProyecto);
+                //ventanaEdicion.ShowDialog();
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
         }
@@ -352,7 +352,7 @@ namespace sisExperto
             {
                 var expertoEnProyecto = _fachadaProyectosExpertos.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
 
-                if (!expertoEnProyecto.TodasMisValoracionesConsistentes())
+                if (!expertoEnProyecto.ValoracionAHP.TodasMisValoracionesConsistentes())
                 {
                     MessageBox.Show("No se puede realizar esta operación porque las todas sus valoraciones no son consistentes.");
 

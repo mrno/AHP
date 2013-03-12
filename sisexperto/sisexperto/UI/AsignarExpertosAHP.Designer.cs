@@ -32,8 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsignarExpertosAHP));
             this.groupBoxAsignados = new System.Windows.Forms.GroupBox();
             this.dataGridExpertosEnProyecto = new System.Windows.Forms.DataGridView();
+            this.expertoEnProyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxDisponible = new System.Windows.Forms.GroupBox();
             this.dataGridExpertosDisponibles = new System.Windows.Forms.DataGridView();
+            this.apellidoYNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -42,16 +45,12 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.expertoEnProyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.apellidoYNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ApellidoNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Creador = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBoxAsignados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosEnProyecto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).BeginInit();
             this.groupBoxDisponible.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,8 +74,7 @@
             this.dataGridExpertosEnProyecto.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridExpertosEnProyecto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridExpertosEnProyecto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ApellidoNombre,
-            this.Creador});
+            this.ApellidoNombre});
             this.dataGridExpertosEnProyecto.DataSource = this.expertoEnProyectoBindingSource;
             this.dataGridExpertosEnProyecto.Location = new System.Drawing.Point(6, 25);
             this.dataGridExpertosEnProyecto.MultiSelect = false;
@@ -86,6 +84,10 @@
             this.dataGridExpertosEnProyecto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpertosEnProyecto.Size = new System.Drawing.Size(288, 535);
             this.dataGridExpertosEnProyecto.TabIndex = 1;
+            // 
+            // expertoEnProyectoBindingSource
+            // 
+            this.expertoEnProyectoBindingSource.DataSource = typeof(sisExperto.Entidades.ExpertoEnProyecto);
             // 
             // groupBoxDisponible
             // 
@@ -117,6 +119,17 @@
             this.dataGridExpertosDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpertosDisponibles.Size = new System.Drawing.Size(288, 535);
             this.dataGridExpertosDisponibles.TabIndex = 0;
+            // 
+            // apellidoYNombreDataGridViewTextBoxColumn
+            // 
+            this.apellidoYNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoYNombre";
+            this.apellidoYNombreDataGridViewTextBoxColumn.HeaderText = "ApellidoYNombre";
+            this.apellidoYNombreDataGridViewTextBoxColumn.Name = "apellidoYNombreDataGridViewTextBoxColumn";
+            this.apellidoYNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // expertoBindingSource
+            // 
+            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
             // btnNuevo
             // 
@@ -203,21 +216,6 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "Proyecto:";
             // 
-            // expertoEnProyectoBindingSource
-            // 
-            this.expertoEnProyectoBindingSource.DataSource = typeof(sisExperto.Entidades.ExpertoEnProyecto);
-            // 
-            // apellidoYNombreDataGridViewTextBoxColumn
-            // 
-            this.apellidoYNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoYNombre";
-            this.apellidoYNombreDataGridViewTextBoxColumn.HeaderText = "ApellidoYNombre";
-            this.apellidoYNombreDataGridViewTextBoxColumn.Name = "apellidoYNombreDataGridViewTextBoxColumn";
-            this.apellidoYNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expertoBindingSource
-            // 
-            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
-            // 
             // ApellidoNombre
             // 
             this.ApellidoNombre.DataPropertyName = "ApellidoNombre";
@@ -225,14 +223,6 @@
             this.ApellidoNombre.HeaderText = "ApellidoNombre";
             this.ApellidoNombre.Name = "ApellidoNombre";
             this.ApellidoNombre.ReadOnly = true;
-            // 
-            // Creador
-            // 
-            this.Creador.DataPropertyName = "Creador";
-            this.Creador.FillWeight = 50.76142F;
-            this.Creador.HeaderText = "Creador";
-            this.Creador.Name = "Creador";
-            this.Creador.ReadOnly = true;
             // 
             // AsignarExpertosAHP
             // 
@@ -254,9 +244,9 @@
             this.Load += new System.EventHandler(this.AsignarExpertosAHP_Load);
             this.groupBoxAsignados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosEnProyecto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).EndInit();
             this.groupBoxDisponible.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -281,6 +271,5 @@
         private System.Windows.Forms.DataGridView dataGridExpertosEnProyecto;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoYNombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ApellidoNombre;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Creador;
     }
 }

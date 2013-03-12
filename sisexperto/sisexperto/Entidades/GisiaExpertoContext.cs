@@ -48,7 +48,7 @@ namespace sisExperto.Entidades
 
             modelBuilder.Entity<CriterioMatriz>()
                 .HasRequired(x => x.ExpertoEnProyecto)
-                .WithRequiredDependent(x => x.CriterioMatriz);
+                .WithRequiredDependent(x => x.ValoracionAHP.CriterioMatriz);
 
 
             base.OnModelCreating(modelBuilder);

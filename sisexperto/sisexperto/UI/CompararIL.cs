@@ -30,7 +30,7 @@ namespace sisexperto.UI
 
         protected int valorarDoble(double valor)
         {
-            foreach (var item in _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas)
+            foreach (var item in _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas)
             {
                 if (valor == item.b)
                     return item.Indice;
@@ -52,7 +52,7 @@ namespace sisexperto.UI
                         string[] posicion = track.Name.Split('x');
                         Label l = (Label) miLabel;
 
-                        List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Etiquetas;
+                        List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas;
 
                         var etiqueta = listaEtiquetas[(track.Value )];
                         l.Text = etiqueta.Nombre;
@@ -100,7 +100,7 @@ namespace sisexperto.UI
                     var track = new TrackBar();
                     track.SetBounds(75, y, 400, 45);
                     track.Name = fila.Nombre;
-                    track.SetRange(0, _expertoEnProyecto.ValoracionIl.ConjuntoEtiquetas.Cantidad-1);
+                    track.SetRange(0, _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Cantidad-1);
 
                     //track.Value = valorarDoble(fila.ValorILNumerico);
                     //if (fila.ValorILNumerico == 0)
