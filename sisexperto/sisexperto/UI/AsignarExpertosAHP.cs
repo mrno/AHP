@@ -100,13 +100,8 @@ namespace sisexperto.UI
 
         private void ActivacionBotones()
         {
-            if (_expertosDisponibles.Count == 0)
-                btnAgregar.Enabled = false;
-            else btnAgregar.Enabled = true;
-
-            if (_expertosDelProyecto.Count == 0)
-                btnQuitar.Enabled = false;
-            else btnQuitar.Enabled = true;
+            btnAgregar.Enabled = _expertosDisponibles.Any();
+            btnQuitar.Enabled = _expertosDelProyecto.Any();
         }
 
         private void ActualizarListasYGrids()

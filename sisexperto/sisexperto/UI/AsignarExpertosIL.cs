@@ -2,6 +2,7 @@
 using sisexperto.UI.Clases;
 using sisExperto;
 using sisExperto.Entidades;
+using sisExperto.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,7 @@ namespace sisexperto.UI
 
         private List<Experto> _expertosDisponibles;
         private List<ExpertoEnProyectoViewModel> _expertosDelProyecto;
+        private List<ConjuntoEtiquetas> _conjuntoDeEtiquetas;
 
         public AsignarExpertosIL(Proyecto proyecto, Experto experto, FachadaProyectosExpertos fachada)
         {
@@ -46,6 +48,7 @@ namespace sisexperto.UI
             comboBoxProyectos.SelectedIndexChanged += new EventHandler(comboBoxProyectos_SelectedIndexChanged);
 
             ActualizarListasYGrids();
+            ActualizarGridConjuntoEtiquetas();
             ActivacionBotones();
         }
         
@@ -73,7 +76,7 @@ namespace sisexperto.UI
             }
             catch (Exception) { }
 
-            _expertosDelProyecto.Add(new ExpertoEnProyectoViewModel(_experto, conjuntoEtiquetas));
+            _expertosDelProyecto.Add(new ExpertoEnProyectoViewModel(_experto, _proyectoSeleccionado, conjuntoEtiquetas, true));
 
             expertoBindingSource.DataSource = null;
             expertoEnProyectoViewModelBindingSource.DataSource = null;
@@ -110,25 +113,37 @@ namespace sisexperto.UI
 
         private void ActivacionBotones()
         {
-            if (_expertosDisponibles.Count == 0)
-                btnAgregar.Enabled = false;
-            else btnAgregar.Enabled = true;
+            btnAgregar.Enabled = _expertosDisponibles.Any();
+            btnQuitar.Enabled = _expertosDelProyecto.Any();
+            btnAgregarConjunto.Enabled = _conjuntoDeEtiquetas.Any();
 
-            if (_expertosDelProyecto.Count == 0)
-                btnQuitar.Enabled = false;
-            else btnQuitar.Enabled = true;
+            //if (_expertosDisponibles.Count == 0)
+            //    btnAgregar.Enabled = false;
+            //else btnAgregar.Enabled = true;
+
+            //if (_expertosDelProyecto.Count == 0)
+            //    btnQuitar.Enabled = false;
+            //else btnQuitar.Enabled = true;
+
         }
 
         private void ActualizarListasYGrids()
         {
             _expertosDisponibles = _fachada.ObtenerExpertosFueraDelProyecto(_proyectoSeleccionado).ToList();
-            
-            //_expertosDelProyecto = _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado).ToList();
 
+            _expertosDelProyecto = (from c in _fachada.ObtenerExpertosActivosEnProyecto(_proyectoSeleccionado)
+                                    select new ExpertoEnProyectoViewModel(c.Experto, c.Proyecto, c.ValoracionIl != null ? c.ValoracionIl.ConjuntoEtiquetas : null, c.Activo)).ToList();
+                                   
             expertoBindingSource.DataSource = _expertosDisponibles;
             expertoEnProyectoViewModelBindingSource.DataSource = _expertosDelProyecto;
         }
 
+        private void ActualizarGridConjuntoEtiquetas()
+        {
+            _conjuntoDeEtiquetas = _fachada.SolicitarConjuntoEtiquetasToken(1);
+            conjuntoEtiquetasBindingSource.DataSource = _conjuntoDeEtiquetas;
+        }
+         
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (_expertosDisponibles.Count > 0)
@@ -143,7 +158,7 @@ namespace sisexperto.UI
         {
             if (_expertosDelProyecto.Count > 0)
             {
-                var experto = (dataGridExpertosEnProyecto.CurrentRow.DataBoundItem as ExpertoEnProyecto).Experto;
+                var experto = (dataGridExpertosEnProyecto.CurrentRow.DataBoundItem as ExpertoEnProyectoViewModel).Experto;
                 DesasignarExperto(experto);
             }
             ActivacionBotones();
@@ -154,7 +169,7 @@ namespace sisexperto.UI
             Guardar();
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnGuardarContinuar_Click(object sender, EventArgs e)
         {
             Guardar();
             this.Close();
@@ -167,15 +182,29 @@ namespace sisexperto.UI
 
         private void Guardar()
         {
+            var expertosParaProyecto = from c in _expertosDelProyecto
+                                       select new ExpertoEnProyecto
+                                       {
+                                           Experto = c.Experto,
+                                           Proyecto = c.Proyecto,
+                                           Activo = c.Activo,
+                                           ValoracionIl = new ValoracionIL
+                                           {
+                                               ConjuntoEtiquetas = c.ConjuntoEtiquetas
+                                           }
+                                       };
 
-            //_fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
+            _fachada.GuardarExpertos(_proyectoSeleccionado, expertosParaProyecto);
             ProyectoModificado();
             MessageBox.Show("Cambios guardados con éxito");
         }
 
         private void btnNuevoConjuntoEtiquetas_Click(object sender, EventArgs e)
         {
+            var ventanaCreacionLabels = new CrearEtiquetas(1);
+            ventanaCreacionLabels.ShowDialog();
 
+            ActualizarGridConjuntoEtiquetas();
         }
 
         private void btnAgregarConjunto_Click(object sender, EventArgs e)

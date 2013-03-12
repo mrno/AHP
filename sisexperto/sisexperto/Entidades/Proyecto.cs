@@ -25,6 +25,7 @@ namespace sisExperto.Entidades
         public virtual ICollection<ExpertoEnProyecto> ExpertosAsignados { get; set; }
         public virtual ICollection<Criterio> Criterios { get; set; }
         public virtual ICollection<Alternativa> Alternativas { get; set; }
+        public virtual ICollection<ConjuntoEtiquetas> ConjuntosDeEtiquetas { get; set; }
 
         #endregion
 
@@ -96,16 +97,13 @@ namespace sisExperto.Entidades
             var matrizCriterio = new double[Criterios.Count,Criterios.Count];
             utils.Unar(matrizCriterio, Criterios.Count);
 
-
             for (int i = 0; i < Criterios.Count; i++)
             {
                 var AlternativasAgregada = new double[Alternativas.Count,Alternativas.Count];
                 utils.Unar(AlternativasAgregada, Alternativas.Count);
                 listaAlternativas.Add(AlternativasAgregada);
             }
-
-
-
+            
             foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
             {
                 if (expertoEnProyecto.TodasMisValoracionesConsistentes())
@@ -134,14 +132,9 @@ namespace sisExperto.Entidades
                     for (int j = 0; j < doublese.GetLength(0); j++)
                     {
                         doublese[i, j] = Math.Pow(doublese[i, j], exponente);
-                    }
-                    
-                }
-                
+                    }                    
+                }                
             }
-
-
-
 
             double[,] ranking = FachadaCalculos.Instance.calcularRanking(listaCompleta);
 
@@ -247,9 +240,6 @@ namespace sisExperto.Entidades
             }
         }
 
-
-
-
         public  int ArmarConjuntoEtiquetasNormalizado()
         {
             Utils utils = new Utils();
@@ -260,11 +250,6 @@ namespace sisExperto.Entidades
             }
             Int32 cardinalidadCEN = utils.Mcm(listaCardinalidadEtiquetasK.ToArray());
             return cardinalidadCEN;
-        }
-
-
-
-
-        
+        }        
     }
 }

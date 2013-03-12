@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using sisExperto.Entidades;
+using System.Collections.Generic;
 
 namespace sisexperto.Entidades
 {
@@ -15,6 +16,9 @@ namespace sisexperto.Entidades
         //la virtual es la extrapolada y normalizada que se usa en los calculos de IL.
         public int Tipo { get; set; }
         public virtual List<Etiqueta> Etiquetas { get; set; }
+
+        public int? ProyectoId { get; set; }
+        public virtual Proyecto Proyecto { get; set; }
 
     }
 }

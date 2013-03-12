@@ -39,31 +39,31 @@
             this.groupBoxAsignados = new System.Windows.Forms.GroupBox();
             this.dataGridExpertosEnProyecto = new System.Windows.Forms.DataGridView();
             this.ApellidoNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expertoEnProyectoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnQuitar = new System.Windows.Forms.Button();
             this.groupBoxDisponible = new System.Windows.Forms.GroupBox();
             this.dataGridExpertosDisponibles = new System.Windows.Forms.DataGridView();
-            this.apellidoYNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnAgregar = new System.Windows.Forms.Button();
             this.groupBoxConjuntosEtiquetas = new System.Windows.Forms.GroupBox();
             this.dataGridConjuntoEtiquetas = new System.Windows.Forms.DataGridView();
+            this.btnAgregarConjunto = new System.Windows.Forms.Button();
+            this.btnNuevoConjuntoEtiquetas = new System.Windows.Forms.Button();
             this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.conjuntoEtiquetasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnAgregarConjunto = new System.Windows.Forms.Button();
-            this.btnNuevoConjuntoEtiquetas = new System.Windows.Forms.Button();
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expertoEnProyectoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.apellidoYNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBoxAsignados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosEnProyecto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).BeginInit();
             this.groupBoxDisponible.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
             this.groupBoxConjuntosEtiquetas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conjuntoEtiquetasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxProyectos
@@ -106,6 +106,7 @@
             this.buttonGuardar.TabIndex = 37;
             this.buttonGuardar.Text = "Guardar";
             this.buttonGuardar.UseVisualStyleBackColor = true;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
             // btnCancelar
             // 
@@ -116,6 +117,7 @@
             this.btnCancelar.TabIndex = 39;
             this.btnCancelar.Text = "Salir";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnGuardar
             // 
@@ -126,6 +128,7 @@
             this.btnGuardar.TabIndex = 38;
             this.btnGuardar.Text = "Guardar y Salir";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardarContinuar_Click);
             // 
             // groupBoxAsignados
             // 
@@ -165,17 +168,6 @@
             this.ApellidoNombre.HeaderText = "ApellidoNombre";
             this.ApellidoNombre.Name = "ApellidoNombre";
             this.ApellidoNombre.ReadOnly = true;
-            // 
-            // conjuntoEtiquetasNombreDataGridViewTextBoxColumn1
-            // 
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.DataPropertyName = "ConjuntoEtiquetasNombre";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.HeaderText = "ConjuntoEtiquetasNombre";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.Name = "conjuntoEtiquetasNombreDataGridViewTextBoxColumn1";
-            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // expertoEnProyectoViewModelBindingSource
-            // 
-            this.expertoEnProyectoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ExpertoEnProyectoViewModel);
             // 
             // btnQuitar
             // 
@@ -218,17 +210,6 @@
             this.dataGridExpertosDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpertosDisponibles.Size = new System.Drawing.Size(288, 249);
             this.dataGridExpertosDisponibles.TabIndex = 0;
-            // 
-            // apellidoYNombreDataGridViewTextBoxColumn
-            // 
-            this.apellidoYNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoYNombre";
-            this.apellidoYNombreDataGridViewTextBoxColumn.HeaderText = "ApellidoYNombre";
-            this.apellidoYNombreDataGridViewTextBoxColumn.Name = "apellidoYNombreDataGridViewTextBoxColumn";
-            this.apellidoYNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expertoBindingSource
-            // 
-            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
             // btnAgregar
             // 
@@ -273,6 +254,26 @@
             this.dataGridConjuntoEtiquetas.Size = new System.Drawing.Size(288, 249);
             this.dataGridConjuntoEtiquetas.TabIndex = 0;
             // 
+            // btnAgregarConjunto
+            // 
+            this.btnAgregarConjunto.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarConjunto.Image")));
+            this.btnAgregarConjunto.Location = new System.Drawing.Point(318, 407);
+            this.btnAgregarConjunto.Name = "btnAgregarConjunto";
+            this.btnAgregarConjunto.Size = new System.Drawing.Size(50, 50);
+            this.btnAgregarConjunto.TabIndex = 42;
+            this.btnAgregarConjunto.UseVisualStyleBackColor = true;
+            this.btnAgregarConjunto.Click += new System.EventHandler(this.btnAgregarConjunto_Click);
+            // 
+            // btnNuevoConjuntoEtiquetas
+            // 
+            this.btnNuevoConjuntoEtiquetas.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoConjuntoEtiquetas.Image")));
+            this.btnNuevoConjuntoEtiquetas.Location = new System.Drawing.Point(318, 351);
+            this.btnNuevoConjuntoEtiquetas.Name = "btnNuevoConjuntoEtiquetas";
+            this.btnNuevoConjuntoEtiquetas.Size = new System.Drawing.Size(50, 50);
+            this.btnNuevoConjuntoEtiquetas.TabIndex = 43;
+            this.btnNuevoConjuntoEtiquetas.UseVisualStyleBackColor = true;
+            this.btnNuevoConjuntoEtiquetas.Click += new System.EventHandler(this.btnNuevoConjuntoEtiquetas_Click);
+            // 
             // nombreDataGridViewTextBoxColumn1
             // 
             this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
@@ -298,25 +299,27 @@
             // 
             this.conjuntoEtiquetasBindingSource.DataSource = typeof(sisexperto.Entidades.ConjuntoEtiquetas);
             // 
-            // btnAgregarConjunto
+            // conjuntoEtiquetasNombreDataGridViewTextBoxColumn1
             // 
-            this.btnAgregarConjunto.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregarConjunto.Image")));
-            this.btnAgregarConjunto.Location = new System.Drawing.Point(318, 407);
-            this.btnAgregarConjunto.Name = "btnAgregarConjunto";
-            this.btnAgregarConjunto.Size = new System.Drawing.Size(50, 50);
-            this.btnAgregarConjunto.TabIndex = 42;
-            this.btnAgregarConjunto.UseVisualStyleBackColor = true;
-            this.btnAgregarConjunto.Click += new System.EventHandler(this.btnAgregarConjunto_Click);
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.DataPropertyName = "ConjuntoEtiquetasNombre";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.HeaderText = "ConjuntoEtiquetasNombre";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.Name = "conjuntoEtiquetasNombreDataGridViewTextBoxColumn1";
+            this.conjuntoEtiquetasNombreDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // btnNuevoConjuntoEtiquetas
+            // expertoEnProyectoViewModelBindingSource
             // 
-            this.btnNuevoConjuntoEtiquetas.Image = ((System.Drawing.Image)(resources.GetObject("btnNuevoConjuntoEtiquetas.Image")));
-            this.btnNuevoConjuntoEtiquetas.Location = new System.Drawing.Point(318, 351);
-            this.btnNuevoConjuntoEtiquetas.Name = "btnNuevoConjuntoEtiquetas";
-            this.btnNuevoConjuntoEtiquetas.Size = new System.Drawing.Size(50, 50);
-            this.btnNuevoConjuntoEtiquetas.TabIndex = 43;
-            this.btnNuevoConjuntoEtiquetas.UseVisualStyleBackColor = true;
-            this.btnNuevoConjuntoEtiquetas.Click += new System.EventHandler(this.btnNuevoConjuntoEtiquetas_Click);
+            this.expertoEnProyectoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ExpertoEnProyectoViewModel);
+            // 
+            // apellidoYNombreDataGridViewTextBoxColumn
+            // 
+            this.apellidoYNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoYNombre";
+            this.apellidoYNombreDataGridViewTextBoxColumn.HeaderText = "ApellidoYNombre";
+            this.apellidoYNombreDataGridViewTextBoxColumn.Name = "apellidoYNombreDataGridViewTextBoxColumn";
+            this.apellidoYNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // expertoBindingSource
+            // 
+            this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
             // AsignarExpertosIL
             // 
@@ -341,13 +344,13 @@
             this.Load += new System.EventHandler(this.AsignarExpertosIL_Load);
             this.groupBoxAsignados.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosEnProyecto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).EndInit();
             this.groupBoxDisponible.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosDisponibles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
             this.groupBoxConjuntosEtiquetas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridConjuntoEtiquetas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.conjuntoEtiquetasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoViewModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

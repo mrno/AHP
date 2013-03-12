@@ -18,11 +18,12 @@ namespace sisexperto.UI.Clases
         public bool Admin { get { return Experto.Administrador; } }
         public string ConjuntoEtiquetasNombre { get { return (ConjuntoEtiquetas != null) ? ConjuntoEtiquetas.Nombre : ""; } }
 
-        public ExpertoEnProyectoViewModel(Experto experto, ConjuntoEtiquetas conjuntoEtiquetas)
+        public ExpertoEnProyectoViewModel(Experto experto, Proyecto proyecto, ConjuntoEtiquetas conjuntoEtiquetas, bool estado)
         {
             Experto = experto;
+            Proyecto = proyecto;
             ConjuntoEtiquetas = conjuntoEtiquetas;
-            Activo = true;
+            Activo = estado;
         }
 
         public ExpertoEnProyectoViewModel(Experto experto)

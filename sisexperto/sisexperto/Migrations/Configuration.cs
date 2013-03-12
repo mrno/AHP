@@ -1,5 +1,6 @@
 namespace sisexperto.Migrations
 {
+    using sisexperto.Entidades;
     using sisExperto.Entidades;
     using System;
     using System.Data.Entity;
@@ -17,12 +18,24 @@ namespace sisexperto.Migrations
         {
             context.Expertos.AddOrUpdate(new Experto()
             {
+                ExpertoId = 1,
                 Usuario = "Admin",
                 Nombre = "Usuario",
                 Apellido = "Super",
                 Administrador = true,
                 Clave = "admin"
             });
+
+            //context.ConjuntoEtiquetas.AddOrUpdate(new ConjuntoEtiquetas
+            //{
+            //    ConjuntoEtiquetasId = 1,
+            //    Cantidad = 3,
+            //    Etiquetas = new System.Collections.Generic.List<Etiqueta>(),
+            //    Nombre = "Estándar3",
+            //    Descripcion = "Conjunto de etiquetas estándar de 3 etiquetas",
+            //    Tipo = 0,
+            //    Token = 0
+            //});
 
             //  This method will be called after migrating to the latest version.
 

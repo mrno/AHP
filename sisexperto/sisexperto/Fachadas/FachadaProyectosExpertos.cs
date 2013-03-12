@@ -263,9 +263,11 @@ namespace sisExperto
 
         //       return algo;
         //}
+
+
+
         public List<ConjuntoEtiquetas> SolicitarConjuntoEtiquetasToken(int val)
         {
-
             IQueryable<ConjuntoEtiquetas> lista = (from c in _context.ConjuntoEtiquetas
                          where c.Token == val
                          select c);
