@@ -152,7 +152,7 @@ namespace sisexperto.UI
         private void Guardar()
         {
             _fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
-            ProyectoModificado();
+            //ProyectoModificado();
             MessageBox.Show("Cambios guardados con éxito");
         }
 

@@ -58,6 +58,7 @@ namespace sisexperto.UI
             ProyectoCreado();
             LimpiarCampos();
             var ventanaNuevoProyecto = new AsignarExpertosAHP(proyectoCreado, _experto, _fachada);
+            
             ventanaNuevoProyecto.ShowDialog();
         }
 
