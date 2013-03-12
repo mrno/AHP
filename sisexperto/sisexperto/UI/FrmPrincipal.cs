@@ -411,7 +411,7 @@ namespace sisExperto
         {
             _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
         }
-        #endregion
 
+        #endregion
     }
 }
