@@ -221,23 +221,46 @@ namespace sisExperto
 
         public string PublicarProyecto(Proyecto proyecto)
         {
-            if (proyecto.Alternativas.Count > 2 && proyecto.Alternativas.Count > 2)
+            switch (proyecto.Tipo)
             {
-                switch (proyecto.Tipo)
-                {
-                    case "AHP":
-                        GuardarAHP(proyecto); break;
-                    case "IL":
-                        GuardarIL(proyecto); break;
-                    case "AMBOS":
-                        {
-                            GuardarIL(proyecto);
-                            GuardarAHP(proyecto);
-                            break;
-                        }
-                }
-            }
+                case "AHP":
+                    GuardarAHP(proyecto); break;
+                case "IL":
+                    GuardarIL(proyecto); break;
+                case "AMBOS":
+                    {
+                        GuardarIL(proyecto);
+                        GuardarAHP(proyecto);
+                        break;
+                    }
+            } 
             return proyecto.Estado;
+        }
+
+        public string RequerimientoParaPublicar(Proyecto proyecto)
+        {
+            var mensaje = "Si desea publicar el proyecto debe:";
+
+            if (ObtenerExpertosActivosEnProyecto(proyecto).Count() > 0)
+            {
+                mensaje += "\n- Agregar al menos un experto.";
+            }
+            if (proyecto.Alternativas.Count < 3)
+            {
+                mensaje += "\n- Agregar al menos " + (3 - proyecto.Alternativas.Count) + " alternativas.";
+            }
+            if (proyecto.Criterios.Count < 3)
+            {
+                mensaje += "\n- Agregar al menos " + (3 - proyecto.Criterios.Count) + " criterios.";     
+            }
+            return mensaje;
+        }
+
+        public bool PosiblePublicar(Proyecto proyecto)
+        {
+            return (ObtenerExpertosActivosEnProyecto(proyecto).Count() > 0
+                        && proyecto.Alternativas.Count > 2
+                        && proyecto.Alternativas.Count > 2);                   
         }
 
         private void GuardarAHP(Proyecto proyecto)
