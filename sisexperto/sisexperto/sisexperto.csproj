@@ -62,7 +62,6 @@
       <HintPath>..\..\Dll\Consistencia.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Mejora">
@@ -106,6 +105,12 @@
     </Compile>
     <Compile Include="UI\AsignarExpertosIL.Designer.cs">
       <DependentUpon>AsignarExpertosIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosProyectoListo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosProyectoListo.Designer.cs">
+      <DependentUpon>AsignarExpertosProyectoListo.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Clases\ExpertoEnProyectoViewModel.cs" />
     <Compile Include="UI\Comparacion.cs">
@@ -228,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AsignarExpertosIL.resx">
       <DependentUpon>AsignarExpertosIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsignarExpertosProyectoListo.resx">
+      <DependentUpon>AsignarExpertosProyectoListo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Comparacion.resx">
       <DependentUpon>Comparacion.cs</DependentUpon>
