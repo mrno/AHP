@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisexperto.UI;
+using System.Drawing;
 
 namespace sisExperto
 {
@@ -15,8 +16,7 @@ namespace sisExperto
         private readonly List<Proyecto> _listaProyectos = new List<Proyecto>();
         private ExpertoEnProyecto _expertoEnProyecto;
        
-        private Proyecto _proyectoSeleccionado;
-        
+        private Proyecto _proyectoSeleccionado;        
 
         public ProyectosAsignados(Experto experto,  Proyecto ProyectoSeleccionado, FachadaProyectosExpertos Fachada)
         {
@@ -32,17 +32,38 @@ namespace sisExperto
         {
             comboBoxProyectos.DataSource = _listaProyectos;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
-            cargarMatricesAHP();
-            cargarMatricesIL();
             comboBoxProyectos.SelectedIndexChanged += (comboBoxProyectos_SelectedIndexChanged);
-            //tabPageAHP.Enabled = false;
-            //tabPageIL.Enabled = false;
+
+            CargarMatricesYPestanias();
+        }
+
+        private void CargarMatricesYPestanias()
+        {
+            switch (_proyectoSeleccionado.Tipo)
+            {
+                case "AHP":
+                    cargarMatricesAHP();
+                    tabPageAHP.Enabled = true;
+                    tabPageIL.Enabled = false;
+                    break;
+                case "IL":
+                    cargarMatricesIL();
+                    tabPageAHP.Enabled = false;
+                    tabPageIL.Enabled = true;
+                    break;
+                case "Ambos":
+                    tabPageAHP.Enabled = true;
+                    tabPageIL.Enabled = true;
+                    cargarMatricesAHP();
+                    cargarMatricesIL();
+                    break;
+            }
         }
 
         private void cargarMatricesAHP()
         {
             _expertoEnProyecto = (from c in _experto.ProyectosAsignados
-                                  where c.ProyectoId == _proyectoSeleccionado.ProyectoId
+                                  where c.Proyecto.ProyectoId == _proyectoSeleccionado.ProyectoId
                                   select c).FirstOrDefault();
             checkBoxConsistencia.Checked = _expertoEnProyecto.ValoracionAHP.CriterioMatriz.Consistencia;
 
@@ -63,7 +84,7 @@ namespace sisExperto
             if (_fachada.SolicitarAlternativasIL(_expertoEnProyecto).ToList() != null)
             {
                 _expertoEnProyecto = (from c in _experto.ProyectosAsignados
-                                      where c.ProyectoId == _proyectoSeleccionado.ProyectoId
+                                      where c.Proyecto.ProyectoId == _proyectoSeleccionado.ProyectoId
                                       select c).FirstOrDefault();
 
                 List<AlternativaIL> listaAlternativas =
@@ -107,18 +128,8 @@ namespace sisExperto
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
             _proyectoSeleccionado = (Proyecto) comboBoxProyectos.SelectedItem;
-            cargarMatricesAHP();
-            if (_proyectoSeleccionado.Tipo == "AHP")
-            {
-                tabPageAHP.Enabled = true;
-                tabPageIL.Enabled = false;
-            }
-            else
-            {
-                tabPageIL.Enabled = true;
-                tabPageAHP.Enabled = true;
-            }
 
+            CargarMatricesYPestanias();
         }
 
         private void buttonValorarCriterio_Click(object sender, EventArgs e)
@@ -126,8 +137,6 @@ namespace sisExperto
             var frmComparar = new CompararCriterios(_expertoEnProyecto.ValoracionAHP.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
             cargarMatricesAHP();
-        }
-
-       
+        }       
     }
 }

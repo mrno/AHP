@@ -1,5 +1,7 @@
-﻿using sisExperto;
+﻿using sisexperto.Entidades.AHP;
+using sisExperto;
 using sisExperto.Entidades;
+using sisExperto.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +18,7 @@ namespace sisexperto.UI
         #region Delegates and Events
 
         public delegate void EdicionProyecto();
-        public event EdicionProyecto ProyectoModificado;
+        public event EdicionProyecto ExpertosAsignados;
 
         #endregion
 
@@ -43,6 +45,8 @@ namespace sisexperto.UI
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
             comboBoxProyectos.SelectedIndexChanged += new EventHandler(comboBoxProyectos_SelectedIndexChanged);
 
+            _fachada.ComenzarEdicion(_proyectoSeleccionado);
+
             ActualizarListasYGrids();
             ActivacionBotones();
         }
@@ -63,7 +67,12 @@ namespace sisexperto.UI
             }
             catch (Exception) { }
 
-            _expertosDelProyecto.Add(new ExpertoEnProyecto() { Experto = experto, Proyecto = _proyectoSeleccionado, Activo = true });
+            _expertosDelProyecto.Add(new ExpertoEnProyecto()
+            {
+                Experto = experto,
+                Proyecto = _proyectoSeleccionado,
+                Activo = true
+            });
 
             expertoBindingSource.DataSource = null;
             expertoEnProyectoBindingSource.DataSource = null;
@@ -152,8 +161,14 @@ namespace sisexperto.UI
         private void Guardar()
         {
             _fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
-            //ProyectoModificado();
-            MessageBox.Show("Cambios guardados con éxito");
+            ExpertosAsignados();
+            var ventana = MessageBox.Show("Cambios guardados con éxito. Desea editar los criterios y alternativas?", "Éxito", MessageBoxButtons.YesNo);
+            if (ventana.ToString() == "Yes")
+            {
+                var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
+                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+                _ventanaCargarProyecto.ShowDialog();
+            }
         }
 
         

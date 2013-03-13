@@ -25,7 +25,7 @@ namespace sisexperto.Migrations
                 Administrador = true,
                 Clave = "admin"
             });
-
+            
             //context.ConjuntoEtiquetas.AddOrUpdate(new ConjuntoEtiquetas
             //{
             //    ConjuntoEtiquetasId = 1,

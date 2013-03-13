@@ -5,6 +5,7 @@ using System.Linq;
 using probaAHP;
 using sisexperto.Entidades;
 using sisexperto.Fachadas;
+using sisexperto.Entidades.AHP;
 
 namespace sisExperto.Entidades
 {
@@ -43,15 +44,126 @@ namespace sisExperto.Entidades
         {
             if (ExpertosAsignados == null) ExpertosAsignados = new List<ExpertoEnProyecto>();
 
-            foreach (var item in ExpertosAsignados)
-            {
-                item.Activo = expertosEnProyecto.Contains(item);
-            }
+            ExpertosAsignados.Clear();
+            //foreach (var item in ExpertosAsignados)
+            //{
+            //    if(!expertosEnProyecto.Any(x => x.ExpertoId == item.ExpertoId))
+            //    {
+            //        ExpertosAsignados.Remove(item);
+            //    }
+            //} 
 
             foreach (var item in (expertosEnProyecto.Except(ExpertosAsignados)))
 	        {
                 ExpertosAsignados.Add(item);
 	        }
+        }
+
+        public void Publicar()
+        {
+            Estado = "Listo";
+            switch (Tipo)
+            {
+                case "AHP": InicializarMatricesAHP(); break;
+                case "IL": InicializarIL(); break;
+                case "Ambos": InicializarMatricesAHP(); InicializarIL(); break;   
+            }
+        }
+
+        private void InicializarMatricesAHP()
+        {
+            int dimensionCriterio = Criterios.Count;
+            int dimensionAlternativa = Alternativas.Count;
+
+            double[,] matrizCriterio = new double[dimensionCriterio, dimensionCriterio];
+            double[,] matrizAlternativa = new double[dimensionAlternativa, dimensionAlternativa];
+
+            foreach (ExpertoEnProyecto expertoEnProyecto in ExpertosAsignados)
+            {
+                expertoEnProyecto.ValoracionAHP = new ValoracionAHP();
+                expertoEnProyecto.ValoracionAHP.CriterioMatriz = new CriterioMatriz() { ExpertoEnProyecto = expertoEnProyecto, Matriz = matrizCriterio, Consistencia = false };
+
+                expertoEnProyecto.ValoracionAHP.AlternativasMatrices = new List<AlternativaMatriz>();
+                foreach (Criterio criterio in Criterios)
+                {
+                    expertoEnProyecto.ValoracionAHP.AlternativasMatrices.Add(new AlternativaMatriz()
+                    {
+                        ExpertoEnProyecto = expertoEnProyecto,
+                        Criterio = criterio,
+                        Matriz = matrizAlternativa,
+                        Consistencia = false
+                    });
+                }
+            }
+        }
+
+        public void InicializarIL()
+        {
+            foreach (var expertoEnProyecto in ExpertosAsignados)
+            {
+                expertoEnProyecto.ValoracionIL.AlternativasIL = new List<AlternativaIL>();
+
+                foreach (Alternativa Alternativa in Alternativas)
+                {
+                    AlternativaIL alternativaIl = new AlternativaIL()
+                    {
+                        Nombre = Alternativa.Nombre,
+                        Descripcion = Alternativa.Descripcion
+                    };
+                    expertoEnProyecto.ValoracionIL.AlternativasIL.Add(alternativaIl);
+
+                    alternativaIl.ValorCriterios = new List<ValorCriterio>(
+                        from c in Criterios
+                        select new ValorCriterio
+                        {
+                            Nombre = c.Nombre,
+                            Descripcion = c.Descripcion,
+                            ValorILNumerico = (expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2,
+                            ValorILLinguistico = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas
+                                    .Etiquetas[(expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre
+                        }
+                    );
+                }
+            }
+        }
+
+        public string RequerimientoParaPublicar()
+        {
+            var mensaje = "Si desea publicar el proyecto debe:";
+            
+            if (ExpertosAsignados.Count() == 0)
+            {
+                mensaje += "\n- Agregar al menos un experto.";
+            }
+            if (Tipo != "AHP")
+            {
+                var todosConConjuntoEtiquetas = (from c in ExpertosAsignados
+                                                 select c).All(x => x.ValoracionIL != null
+                                                     && x.ValoracionIL.ConjuntoEtiquetas != null);
+
+                mensaje += "\n- Todos los expertos deben tener un conjunto de etiquetas asignado.";
+            }
+            if (Alternativas.Count < 3)
+            {
+                mensaje += "\n- Agregar al menos " + (3 - Alternativas.Count) + " alternativas.";
+            }
+            if (Criterios.Count < 3)
+            {
+                mensaje += "\n- Agregar al menos " + (3 - Criterios.Count) + " criterios.";
+            }
+            return mensaje;
+        }
+
+        public bool PosiblePublicar()
+        {
+            var todosConConjuntoEtiquetas = (from c in ExpertosAsignados
+                                             select c).All(x => x.ValoracionIL != null
+                                                    && x.ValoracionIL.ConjuntoEtiquetas != null);
+
+            return (ExpertosAsignados.Count() > 0
+                        && (todosConConjuntoEtiquetas || Tipo == "AHP")
+                        && Alternativas.Count > 2
+                        && Alternativas.Count > 2);
         }
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteAHP()
