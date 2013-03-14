@@ -64,7 +64,7 @@ namespace sisexperto.Entidades
                                                                       Fila = i,
                                                                       Columna = ++k,
                                                                       Alternativa = listaC.ElementAt(k - j - 1),
-                                                                      ValorAHP = 1.0,
+                                                                      ValorAHP = 0.0,
                                                                       ValorILNumerico = 0
                                                                   });
 

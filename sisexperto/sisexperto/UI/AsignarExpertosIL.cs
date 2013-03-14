@@ -1,4 +1,5 @@
 ﻿using sisexperto.Entidades;
+using sisexperto.Entidades.AHP;
 using sisexperto.UI.Clases;
 using sisExperto;
 using sisExperto.Entidades;
@@ -19,7 +20,7 @@ namespace sisexperto.UI
         #region Delegates and Events
 
         public delegate void EdicionProyecto();
-        public event EdicionProyecto ProyectoModificado;
+        public event EdicionProyecto ExpertosAsignados;        
 
         #endregion
 
@@ -49,6 +50,8 @@ namespace sisexperto.UI
             comboBoxProyectos.DataSource = _proyectosIL;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
             comboBoxProyectos.SelectedIndexChanged += new EventHandler(comboBoxProyectos_SelectedIndexChanged);
+            
+            _fachada.ComenzarEdicion(_proyectoSeleccionado);
 
             ActualizarListasYGrids();
             ActualizarGridConjuntoEtiquetas();
@@ -79,7 +82,7 @@ namespace sisexperto.UI
             }
             catch (Exception) { }
 
-            _expertosDelProyecto.Add(new ExpertoEnProyectoViewModel(_experto, _proyectoSeleccionado, conjuntoEtiquetas, true));
+            _expertosDelProyecto.Add(new ExpertoEnProyectoViewModel(experto, _proyectoSeleccionado, conjuntoEtiquetas, true));
 
             expertoBindingSource.DataSource = null;
             expertoEnProyectoViewModelBindingSource.DataSource = null;
@@ -119,15 +122,6 @@ namespace sisexperto.UI
             btnAgregar.Enabled = _expertosDisponibles.Any();
             btnQuitar.Enabled = _expertosDelProyecto.Any();
             btnAgregarConjunto.Enabled = _conjuntoDeEtiquetas.Any();
-
-            //if (_expertosDisponibles.Count == 0)
-            //    btnAgregar.Enabled = false;
-            //else btnAgregar.Enabled = true;
-
-            //if (_expertosDelProyecto.Count == 0)
-            //    btnQuitar.Enabled = false;
-            //else btnQuitar.Enabled = true;
-
         }
 
         private void ActualizarListasYGrids()
@@ -190,7 +184,7 @@ namespace sisexperto.UI
                                        {
                                            Experto = c.Experto,
                                            Proyecto = c.Proyecto,
-                                           Activo = c.Activo,
+                                           Activo = true,
                                            ValoracionIL = new ValoracionIL
                                            {
                                                ConjuntoEtiquetas = c.ConjuntoEtiquetas
@@ -198,8 +192,14 @@ namespace sisexperto.UI
                                        };
 
             _fachada.GuardarExpertos(_proyectoSeleccionado, expertosParaProyecto);
-            ProyectoModificado();
-            MessageBox.Show("Cambios guardados con éxito");
+            ExpertosAsignados();
+            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
+            if (ventana.ToString() == "Yes")
+            {
+                var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
+                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+                _ventanaCargarProyecto.ShowDialog();
+            }
         }
 
         private void btnNuevoConjuntoEtiquetas_Click(object sender, EventArgs e)

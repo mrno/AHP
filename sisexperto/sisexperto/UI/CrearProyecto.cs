@@ -1,4 +1,5 @@
-﻿using sisExperto;
+﻿using sisexperto.Entidades;
+using sisExperto;
 using sisExperto.Entidades;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace sisexperto.UI
 
         public delegate void Proyectos();
         public event Proyectos ProyectoCreado;
+        public event Proyectos ProyectoModificado;
 
         #endregion
 
@@ -53,13 +55,31 @@ namespace sisexperto.UI
                 Nombre = textBoxNombreProyecto.Text,
                 Objetivo = textBoxObjetivoProyecto.Text,
                 Creador = _experto,
-                Estado = "Creado"
+                Estado = "Creado",
+                Criterios = new List<Criterio>(),
+                Alternativas = new List<Alternativa>(),
+                ConjuntosDeEtiquetas = new List<ConjuntoEtiquetas>(),
+                ExpertosAsignados = new List<ExpertoEnProyecto>()
             });
             ProyectoCreado();
-            LimpiarCampos();
-            var ventanaNuevoProyecto = new AsignarExpertosAHP(proyectoCreado, _experto, _fachada);
-            
-            ventanaNuevoProyecto.ShowDialog();
+
+            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los expertos del proyecto?", "Información", MessageBoxButtons.YesNo);
+            if (ventana.ToString() == "Yes")
+            {
+                Form ventanaEditarExpertos = null;
+                if (proyectoCreado.Tipo == "AHP")
+                {
+                    ventanaEditarExpertos = new AsignarExpertosAHP(proyectoCreado, _experto, _fachada);
+                    (ventanaEditarExpertos as AsignarExpertosAHP).ExpertosAsignados += (ExpertosAsignados);
+                }
+                else
+                {
+                    ventanaEditarExpertos = new AsignarExpertosIL(proyectoCreado, _experto, _fachada);
+                    (ventanaEditarExpertos as AsignarExpertosIL).ExpertosAsignados += (ExpertosAsignados);
+                }
+                ventanaEditarExpertos.ShowDialog();
+            }
+            LimpiarCampos();            
         }
 
         private void LimpiarCampos()
@@ -68,5 +88,11 @@ namespace sisexperto.UI
             textBoxObjetivoProyecto.Text = "";
             comboBoxTipoModelo.SelectedIndex = 0;
         }
+
+        private void ExpertosAsignados()
+        {
+            ProyectoModificado();
+        }
+
     }
 }

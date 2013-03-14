@@ -24,8 +24,8 @@ namespace sisExperto.Fachadas
             {
                 ExpertoEnProyecto expEnProyecto = (from ex in _context.ExpertosEnProyectos
                                                    where
-                                                       ex.ProyectoId == _proyecto.ProyectoId &&
-                                                       ex.ExpertoId == item.Experto.ExpertoId
+                                                       ex.Proyecto.ProyectoId == _proyecto.ProyectoId &&
+                                                       ex.Experto.ExpertoId == item.Experto.ExpertoId
                                                    select ex).FirstOrDefault();
                 if (expEnProyecto == null)
                     _proyecto.ExpertosAsignados.Add(item);

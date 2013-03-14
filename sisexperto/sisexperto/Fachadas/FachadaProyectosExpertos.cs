@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
+using sisexperto.Entidades.AHP;
 
 namespace sisExperto
 {
@@ -38,7 +39,7 @@ namespace sisExperto
             {
                 expertosDelProyecto.AddRange(from c in proyecto.ExpertosAsignados
                                              where c.Activo
-                                             select c.ExpertoId);
+                                             select c.Experto.ExpertoId);
             }
             catch (Exception) { }
 
@@ -79,9 +80,8 @@ namespace sisExperto
             }
         }
 
-        public ExpertoEnProyecto SolicitarExpertoProyectoActual (Proyecto _proyecto, Experto _experto)
+        public ExpertoEnProyecto SolicitarExpertoProyectoActual(Proyecto _proyecto, Experto _experto)
         {
-
             return (from expEnProyecto in _experto.ProyectosAsignados
                     where expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
                     select expEnProyecto
@@ -168,16 +168,18 @@ namespace sisExperto
                                     {
                                         Proyecto = Proyecto,
                                         Experto = Expertos.ElementAt(i),
-                                        ValoracionIL = new ValoracionIL
+                                        ValoracionIL = (Proyecto.Tipo != "AHP")
+                                        ? new ValoracionIL
                                         {
                                             ConjuntoEtiquetas = Etiquetas.ElementAt(i)
-                                        },
+                                        }
+                                        : null,
+                                        ValoracionAHP = (Proyecto.Tipo != "IL")
+                                        ? new ValoracionAHP()
+                                        : null,
                                         Peso = 1
                                     });
-            }
-                       
-
-            Proyecto.ExpertosAsignados = listaExpertos.ToList();
+            }            Proyecto.ExpertosAsignados = listaExpertos.ToList();
             _context.SaveChanges();
         }
         
@@ -203,7 +205,12 @@ namespace sisExperto
                               where c.Experto == item.Experto
                               select c).FirstOrDefault().Activo;
             }
+                   _context.SaveChanges();
+        }
 
+        public void ComenzarEdicion(Proyecto proyecto)
+        {
+            proyecto.Estado = "En Edicion";
             _context.SaveChanges();
         }
 
@@ -214,91 +221,41 @@ namespace sisExperto
                     select p);
         }
 
-        public void GuardarAlternativas(Proyecto Proyecto, List<Alternativa> Alternativas)
+        public void GuardarAlternativas(Proyecto proyecto, List<Alternativa> alternativas)
         {
-            if (Proyecto.Alternativas == null) Proyecto.Alternativas = new List<Alternativa>();
+            if (proyecto.Alternativas == null)
+                proyecto.Alternativas = new List<Alternativa>();
+            else proyecto.Alternativas.Clear();
 
-            foreach (Alternativa item in Alternativas)
+            foreach (Alternativa item in alternativas)
             {
-                Proyecto.Alternativas.Add(item);
+                proyecto.Alternativas.Add(item);
             }
             //Proyecto.Alternativas = Alternativas;
             _context.SaveChanges();
         }
 
-        public void GuardarCriterios(Proyecto Proyecto, List<Criterio> Criterios)
+        public void GuardarCriterios(Proyecto proyecto, List<Criterio> criterios)
         {
-            if (Proyecto.Criterios == null) Proyecto.Criterios = new List<Criterio>();
-            foreach (Criterio item in Criterios)
+            if (proyecto.Criterios == null)
+                proyecto.Criterios = new List<Criterio>();
+            else proyecto.Criterios.Clear();
+            
+            foreach (Criterio item in criterios)
             {
-                Proyecto.Criterios.Add(item);
+                proyecto.Criterios.Add(item);
             }
-            Proyecto.Criterios = Criterios;
+            proyecto.Criterios = criterios;
             _context.SaveChanges();
         }
 
         public string PublicarProyecto(Proyecto proyecto)
         {
-            switch (proyecto.Tipo)
-            {
-                case "AHP":
-                    GuardarAHP(proyecto); break;
-                case "IL":
-                    GuardarIL(proyecto); break;
-                case "AMBOS":
-                    {
-                        GuardarIL(proyecto);
-                        GuardarAHP(proyecto);
-                        break;
-                    }
-            } 
+            proyecto.Publicar();
+            _context.SaveChanges();
             return proyecto.Estado;
         }
-
-        public string RequerimientoParaPublicar(Proyecto proyecto)
-        {
-            var mensaje = "Si desea publicar el proyecto debe:";
-
-            if (ObtenerExpertosActivosEnProyecto(proyecto).Count() > 0)
-            {
-                mensaje += "\n- Agregar al menos un experto.";
-            }
-            if (proyecto.Alternativas.Count < 3)
-            {
-                mensaje += "\n- Agregar al menos " + (3 - proyecto.Alternativas.Count) + " alternativas.";
-            }
-            if (proyecto.Criterios.Count < 3)
-            {
-                mensaje += "\n- Agregar al menos " + (3 - proyecto.Criterios.Count) + " criterios.";     
-            }
-            return mensaje;
-        }
-
-        public bool PosiblePublicar(Proyecto proyecto)
-        {
-            return (ObtenerExpertosActivosEnProyecto(proyecto).Count() > 0
-                        && proyecto.Alternativas.Count > 2
-                        && proyecto.Alternativas.Count > 2);                   
-        }
-
-        private void GuardarAHP(Proyecto proyecto)
-        {
-            InicializarMatricesExpertos(proyecto);
-            CerrarEdicionProyecto(proyecto);
-        }
-
-        private void GuardarIL(Proyecto proyecto)
-        {
-            InicializarILExpertos(proyecto);
-            CerrarEdicionProyecto(proyecto);
-        }
-
-        public void CerrarEdicionProyecto(Proyecto P)
-        {
-            P.Estado = "Listo";
-            _context.SaveChanges();
-        }
-
+        
         public void GuardarConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
         {
             
@@ -366,113 +323,5 @@ namespace sisExperto
             List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
             return lista;
         }
-
-        public void CargarMatrizCriterios(ExpertoEnProyecto ExpertoEP, double[,] MatrizCriterio)
-        {
-            _context.CriteriosMatrices.Add(new CriterioMatriz { ExpertoEnProyecto = ExpertoEP, Matriz = MatrizCriterio });
-            _context.SaveChanges();
-        }
-
-        public void CargarMatrizAlterntivas(ExpertoEnProyecto ExpertoEP, Criterio Criterio, double[,] MatrizAlternativa)
-        {
-            AlternativaMatriz matrizAlternativa = null;
-
-            try
-            {
-                matrizAlternativa = (from mat in ExpertoEP.ValoracionAHP.AlternativasMatrices
-                                     where mat.CriterioId == Criterio.CriterioId
-                                     select mat).FirstOrDefault();
-            }
-            catch (Exception)
-            {
-                ExpertoEP.ValoracionAHP.AlternativasMatrices = new List<AlternativaMatriz>();
-            }
-
-            if (matrizAlternativa == null)
-            {
-                ExpertoEP.ValoracionAHP.AlternativasMatrices.Add(
-                    new AlternativaMatriz
-                        {
-                            Criterio = Criterio,
-                            ExpertoEnProyecto = ExpertoEP,
-                            Matriz = MatrizAlternativa,
-                            Consistencia = false
-                        });
-            }
-            else matrizAlternativa.Matriz = MatrizAlternativa;
-            _context.SaveChanges();
-        }
-
-        public void InicializarMatricesExpertos(Proyecto proyecto)
-        {
-            int dimensionCriterio = proyecto.Criterios.Count;
-            int dimensionAlternativa = proyecto.Alternativas.Count;
-
-            double[,] matrizCriterio = GenerarMatriz(dimensionCriterio);
-            double[,] matrizAlternativa = GenerarMatriz(dimensionAlternativa);
-
-            foreach (ExpertoEnProyecto expertoEnProyecto in proyecto.ExpertosAsignados)
-            {
-                CargarMatrizCriterios(expertoEnProyecto, matrizCriterio);
-
-                foreach (Criterio criterio in proyecto.Criterios)
-                {
-                    CargarMatrizAlterntivas(expertoEnProyecto, criterio, matrizAlternativa);
-                }
-            }
-        }
-
-        //TODO ver todo esto
-        public void InicializarILExpertos(Proyecto proyecto)
-        {
-            foreach (var expertoEnProyecto in proyecto.ExpertosAsignados)
-            {
-                ValoracionIL valoracionIl = expertoEnProyecto.ValoracionIL;
- 
-                List<AlternativaIL> listaAlternativaIL = new List<AlternativaIL>();
-               
-                foreach (Alternativa Alternativa in proyecto.Alternativas)
-                {
-                    AlternativaIL alternativaIl = new AlternativaIL();
-                    alternativaIl.Nombre = Alternativa.Nombre;
-                    alternativaIl.Descripcion = Alternativa.Descripcion;
-                   
-                   
-                    
-                    List<ValorCriterio> listValorCriterioIL = new List<ValorCriterio>();
-                    foreach (Criterio criterio in proyecto.Criterios)
-                    {
-                        ValorCriterio valorCriterio = new ValorCriterio();
-                        valorCriterio.Nombre = criterio.Nombre;
-                        valorCriterio.Descripcion = criterio.Descripcion;
-                        valorCriterio.ValorILNumerico = (expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2;
-                        valorCriterio.ValorILLinguistico = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas[(expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre;
-                        listValorCriterioIL.Add(valorCriterio);
-                    }
-
-                    alternativaIl.ValorCriterios = listValorCriterioIL;
-
-                    listaAlternativaIL.Add(alternativaIl);
-                }
-
-                valoracionIl.AlternativasIL = listaAlternativaIL;
-
-            }
-            _context.SaveChanges();
-        }
-
-        private double[,] GenerarMatriz(int Dimension)
-        {
-            var matriz = new double[Dimension,Dimension];
-            for (int i = 0; i < Dimension; i++)
-            {
-                for (int j = 0; j < Dimension; j++)
-                {
-                    matriz[i, j] = 1;
-                }
-            }
-            return matriz;
-        }
-
     }
 }

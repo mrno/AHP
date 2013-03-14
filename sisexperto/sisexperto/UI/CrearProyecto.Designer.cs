@@ -57,7 +57,7 @@
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(432, 200);
-            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos de proyecto";
             // 
@@ -81,7 +81,7 @@
             this.comboBoxTipoModelo.Location = new System.Drawing.Point(159, 19);
             this.comboBoxTipoModelo.Name = "comboBoxTipoModelo";
             this.comboBoxTipoModelo.Size = new System.Drawing.Size(267, 24);
-            this.comboBoxTipoModelo.TabIndex = 3;
+            this.comboBoxTipoModelo.TabIndex = 0;
             // 
             // labelNombreExperto
             // 
@@ -141,7 +141,7 @@
             this.buttonCrearYContinuar.Location = new System.Drawing.Point(12, 218);
             this.buttonCrearYContinuar.Name = "buttonCrearYContinuar";
             this.buttonCrearYContinuar.Size = new System.Drawing.Size(140, 30);
-            this.buttonCrearYContinuar.TabIndex = 4;
+            this.buttonCrearYContinuar.TabIndex = 1;
             this.buttonCrearYContinuar.Text = "Crear Proyecto";
             this.buttonCrearYContinuar.UseVisualStyleBackColor = true;
             this.buttonCrearYContinuar.Click += new System.EventHandler(this.buttonCrearYContinuar_Click);
@@ -152,7 +152,7 @@
             this.buttonLimpiar.Location = new System.Drawing.Point(158, 218);
             this.buttonLimpiar.Name = "buttonLimpiar";
             this.buttonLimpiar.Size = new System.Drawing.Size(140, 30);
-            this.buttonLimpiar.TabIndex = 6;
+            this.buttonLimpiar.TabIndex = 2;
             this.buttonLimpiar.Text = "Limpiar Campos";
             this.buttonLimpiar.UseVisualStyleBackColor = true;
             this.buttonLimpiar.Click += new System.EventHandler(this.buttonLimpiar_Click);
@@ -163,7 +163,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(304, 218);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(140, 30);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Salir";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -178,7 +178,8 @@
             this.Controls.Add(this.buttonCrearYContinuar);
             this.Controls.Add(this.groupBox3);
             this.Name = "CrearProyecto";
-            this.Text = "Crear Proyecto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Proyecto Nuevo";
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);

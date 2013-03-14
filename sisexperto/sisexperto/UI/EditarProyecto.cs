@@ -12,7 +12,7 @@ namespace sisExperto.UI
         #region Delegates and Events
 
         public delegate void EdicionProyecto();
-        public event EdicionProyecto ProyectoModificado;
+        public event EdicionProyecto ProyectoEditado;
 
         #endregion
 
@@ -170,7 +170,7 @@ namespace sisExperto.UI
                                          MessageBoxButtons.YesNoCancel);
             switch (dialog.ToString())
             {
-                case "Yes": GuardarCambios(); break;
+                case "Yes": GuardarCambios(); Close(); break;
                 case "No": Close(); break;
                 default: break;
             }            
@@ -180,18 +180,22 @@ namespace sisExperto.UI
         {
             _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
             _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
+            ProyectoEditado();
 
             var mensaje = "Criterios y Alternativas guardados con éxito.";
-            if (_fachada.PosiblePublicar(_proyectoSeleccionado))
+            if (_proyectoSeleccionado.PosiblePublicar())
             {
-                var dialog = MessageBox.Show(mensaje + " Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
+                var dialog = MessageBox.Show(mensaje + " ¿Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
                 if (dialog.ToString() == "Yes")
                 {
                     //dialog y eventos para eliminar el proyecto de la lista
                     _fachada.PublicarProyecto(_proyectoSeleccionado);
+                    MessageBox.Show("Proyecto publicado");
+                    ProyectoEditado();
+                    PosPublicacion();
                 }
             }
-            else MessageBox.Show(mensaje + _fachada.RequerimientoParaPublicar(_proyectoSeleccionado));            
+            else MessageBox.Show(mensaje + _proyectoSeleccionado.RequerimientoParaPublicar());            
         }
     }
 }

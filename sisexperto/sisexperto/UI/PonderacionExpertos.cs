@@ -79,7 +79,7 @@ namespace sisExperto.UI
             var datosMostrados = (from expPond in _expertosConPonderacion
                                   select new
                                              {
-                                                 IdExperto = expPond.ExpertoId,
+                                                 IdExperto = expPond.Experto.ExpertoId,
                                                  Experto = expPond.Experto.Apellido + ", " + expPond.Experto.Nombre,
                                                  expPond.Peso
                                              });

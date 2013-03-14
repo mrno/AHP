@@ -16,6 +16,11 @@ namespace sisExperto.Entidades
         public virtual ICollection<Proyecto> ProyectosCreados { get; set; }
         public virtual ICollection<ExpertoEnProyecto> ProyectosAsignados { get; set; }
 
-        public string ApellidoYNombre { get { return Apellido.ToUpper() + ", " + Nombre; } }
+        public string ApellidoYNombre { get { return Apellido + ", " + Nombre; } }
+
+        public override string ToString()
+        {
+            return ApellidoYNombre;
+        }
     }
 }

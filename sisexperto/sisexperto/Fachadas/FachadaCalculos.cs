@@ -15,7 +15,6 @@ namespace sisexperto.Fachadas
         private CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
         private MatlabUtils matlabUtils = new MatlabUtils();
 
-
         private FachadaCalculos()
         {
         }

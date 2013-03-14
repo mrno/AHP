@@ -16,10 +16,10 @@ namespace sisExperto.Entidades
         public int ExpertoEnProyectoId { get; set; }
         public bool Activo { get; set; }
 
-        public int ProyectoId { get; set; }
+        //public int? ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
 
-        public int ExpertoId { get; set; }
+        //public int? ExpertoId { get; set; }
         public virtual Experto Experto { get; set; }
 
         public double Ponderacion { get; set; }
@@ -29,9 +29,11 @@ namespace sisExperto.Entidades
         public virtual ValoracionIL ValoracionIL { get; set; }
 
         #endregion
-
-        public string ApellidoNombre { get { return Experto.ApellidoYNombre; } }
-        public bool Creador { get { return ExpertoId == Proyecto.CreadorId; } }
+        [NotMapped]
+        public string ApellidoNombre { get { return Experto.ApellidoYNombre; } set { } }
+        [NotMapped]
+        public bool Creador { get { return Experto.ExpertoId == Proyecto.CreadorId; } }
+        [NotMapped]
         public bool Administrador { get { return Experto.Administrador; } }
                 
         public double[,] CalcularMiRankingAHP()
@@ -88,7 +90,7 @@ namespace sisExperto.Entidades
             }
            
         }
-        
+
         
     }
 }

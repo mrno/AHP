@@ -16,6 +16,13 @@ namespace sisexperto.UI
 {
     public partial class AsignarExpertosProyectoListo : Form
     {
+        #region Delegates and Events
+
+        public delegate void EdicionProyecto();
+        public event EdicionProyecto ExpertosAsignados;
+
+        #endregion
+
         private Proyecto _proyectoSeleccionado;
         private FachadaProyectosExpertos _fachada;
 
@@ -56,6 +63,7 @@ namespace sisexperto.UI
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
             _fachada.ActivarDesactivarExpertos(_proyectoSeleccionado, _listaExpertosDelProyecto);
+            ExpertosAsignados();
             MessageBox.Show("Sus cambios han sido guardados correctamente.");
         }
 

@@ -15,7 +15,7 @@ namespace sisExperto
         private readonly FachadaProyectosExpertos _fachadaProyectosExpertos = new FachadaProyectosExpertos();
 
         private Experto _experto;
-        private IEnumerable<Proyecto> _proyectosExperto;
+        private List<Proyecto> _proyectosExperto = new List<Proyecto>();
 
         private Proyecto _proyectoSeleccionado;
 
@@ -74,19 +74,18 @@ namespace sisExperto
 
         private void ActualizarProyectos(Experto expert)
         {
-            var lista = new List<Proyecto>();
+            _proyectosExperto.Clear();
             try
             {
-                lista.AddRange(_fachadaProyectosExpertos.SolicitarProyectosAsignados(expert).ToList());
+                _proyectosExperto.AddRange(_fachadaProyectosExpertos.SolicitarProyectosAsignados(expert).ToList());
             }
             catch (Exception){}
             try
             {
-                lista.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(expert).ToList());
+                _proyectosExperto.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(expert).ToList());
             }
             catch (Exception){}
-
-            _proyectosExperto = lista.Distinct();
+            _proyectosExperto = _proyectosExperto.Distinct().ToList();
         }
 
         private void HabilitarPanelTrabajo(bool bandera)
@@ -109,42 +108,77 @@ namespace sisExperto
         private void NuevoProyecto()
         {
             var ventanaNuevoProyecto = new CrearProyecto(_fachadaProyectosExpertos, _experto);
-            ventanaNuevoProyecto.ProyectoCreado += (ActualizarGridPorProyecto);
+            ventanaNuevoProyecto.ProyectoCreado += (SeleccionarProyectoCreado);
+            ventanaNuevoProyecto.ProyectoModificado += (ActualizarGridYDetalleProyectoModificado);
             ventanaNuevoProyecto.ShowDialog();
+
+            ActualizarDetalle(null, null);
         }
-        
-        private void ActualizarGridPorProyecto()
+
+        private void SeleccionarProyectoCreado()
         {
             ActualizarProyectos(_experto);
-            if (filtroProyecto.Text == "Ingrese los filtros de búsqueda aquí")
-                FiltrarProyectos("");
-            else
-                FiltrarProyectos(filtroProyecto.Text);
+            _proyectoSeleccionado = _proyectosExperto.Last();
+            FiltrarProyectos("", _proyectoSeleccionado.ProyectoId);
+            ActualizarDetalle(null, null);
         }
+
+        private void ActualizarGridYDetalleProyectoModificado()
+        {
+            int idProyecto = 0;
+            try
+            {
+                idProyecto = _proyectoSeleccionado.ProyectoId;
+            }
+            catch (Exception) { }
+            ActualizarProyectos(_experto);
+            FiltrarProyectos(filtroProyecto.Text, idProyecto);
+            ActualizarDetalle(null, null);
+        }
+        
         #endregion
 
         #region FiltroProyectos y Detalles
-        private void FiltrarProyectos(string filtro)
+        private void FiltrarProyectos(string filtro, int selected = 0)
         {
+            if (filtro == "Ingrese los filtros de búsqueda aquí")
+                filtro = "";
+
             // buscar por nombre y objetivo
+            
             List<Proyecto> lista1 = (from p in _proyectosExperto
-                                     where p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
+                                     where p != null && p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
                                      select p).ToList();
 
             // buscar por objetivo
             List<Proyecto> lista2 = (from p in _proyectosExperto
-                                     where p.Nombre.Contains(filtro) && !p.Objetivo.Contains(filtro)
+                                     where p != null && p.Nombre.Contains(filtro) && !p.Objetivo.Contains(filtro)
                                      select p).ToList();
 
             //buscar por objetivo
             List<Proyecto> lista3 = (from p in _proyectosExperto
-                                     where !p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
+                                     where p != null && !p.Nombre.Contains(filtro) && p.Objetivo.Contains(filtro)
                                      select p).ToList();
-
+            
             List<Proyecto> lista = lista1;
+
+            var indice = 0;
+            try
+            {
+                indice = lista.IndexOf(_proyectosExperto.Where(x => x.ProyectoId == selected).FirstOrDefault());
+            }
+            catch
+            {
+            }
+
             lista.AddRange(lista2);
             lista.AddRange(lista3);
             dataGridProyectos.DataSource = lista;
+            try
+            {
+                dataGridProyectos.Rows[indice].Selected = true;
+            }
+            catch (Exception) { }
         }
 
         private void filtroProyecto_Leave(object sender, EventArgs e)
@@ -176,23 +210,26 @@ namespace sisExperto
 
         private void ActualizarDetalle(object sender, DataGridViewCellEventArgs e)
         {
-            //int proyecto = 0;
             try
             {
-                _proyectoSeleccionado = (Proyecto)dataGridProyectos.Rows[e.RowIndex].DataBoundItem;
+                _proyectoSeleccionado = (Proyecto)dataGridProyectos.SelectedRows[0].DataBoundItem;
                 labelEstadoProyecto.Text = _proyectoSeleccionado.Estado;
+                buttonPublicar.Visible = _proyectoSeleccionado.Estado != "Listo";
             }
-            catch (Exception) { labelEstadoProyecto.Text = "- ningun proyecto seleccionado -"; }
-            
-            //dataGridAlternativas.DataSource =
-            //        (from a in _fachadaProyectosExpertos.SolicitarAlternativas(_proyectoSeleccionado)
-            //         select a).ToList();
-            //dataGridCriterios.DataSource =
-            //        (from c in _fachadaProyectosExpertos.SolicitarCriterios(_proyectoSeleccionado)
-            //         select c).ToList();
-            //dataGridExpertosAsignados.DataSource =
-            //        (from ex in _fachadaProyectosExpertos.ExpertosAsignados(_proyectoSeleccionado)
-            //         select ex).ToList();
+            catch (Exception) { labelEstadoProyecto.Text = " - "; }
+
+            if (_proyectoSeleccionado != null)
+            {
+                dataGridAlternativas.DataSource =
+                        (from a in _fachadaProyectosExpertos.SolicitarAlternativas(_proyectoSeleccionado).ToList()
+                         select a).ToList();
+                dataGridCriterios.DataSource =
+                        (from c in _fachadaProyectosExpertos.SolicitarCriterios(_proyectoSeleccionado).ToList()
+                         select c).ToList();
+                dataGridExpertosAsignados.DataSource =
+                        (from ex in _proyectoSeleccionado.ExpertosAsignados
+                         select ex).ToList();
+            }
         }
 
         #endregion
@@ -213,7 +250,7 @@ namespace sisExperto
 
                 //verifico si el experto esta asignado y permito la valacion
                 var expertoAsignado = (from e in _proyectoSeleccionado.ExpertosAsignados ?? new List<ExpertoEnProyecto>()
-                                       where e.ExpertoId == _experto.ExpertoId
+                                       where e.Experto.ExpertoId == _experto.ExpertoId
                                        select e).Count() == 1;
                 if (expertoAsignado)
                 {
@@ -241,7 +278,7 @@ namespace sisExperto
         private void alternativasYCriteriosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-            _ventanaCargarProyecto.ProyectoModificado += (ActualizarGridPorProyecto);
+            _ventanaCargarProyecto.ProyectoEditado += (ActualizarGridYDetalleProyectoModificado);
             _ventanaCargarProyecto.ShowDialog();
         }
 
@@ -290,25 +327,35 @@ namespace sisExperto
 
         private void editarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (_proyectoSeleccionado != null)
-            //{
-                Form ventanaEditarExpertos = null;
-            //    if (_proyectoSeleccionado.Tipo == "AHP")
-            //    {
-            //        ventanaEditarExpertos = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-            //        (ventanaEditarExpertos as AsignarExpertosAHP).ProyectoModificado += (ActualizarGridPorProyecto);
-            //    }
-            //    else
-            //    {
-            //        ventanaEditarExpertos = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
-            //        (ventanaEditarExpertos as AsignarExpertosIL).ProyectoModificado += (ActualizarGridPorProyecto);
-            //    }
-            //    ventanaEditarExpertos.ShowDialog();
-            //}
-            //else MessageBox.Show("No seleccionó ningún proyecto.");
-                ventanaEditarExpertos = new AsignarExpertosProyectoListo(_proyectoSeleccionado, _fachadaProyectosExpertos);
-                ventanaEditarExpertos.ShowDialog();
+            if (_proyectoSeleccionado != null)
+            {
+                if (_proyectoSeleccionado.Estado != "Listo")
+                {
+                    //ActualizarGridPorProyecto();
+
+                    Form ventanaEditarExpertos = null;
+                    if (_proyectoSeleccionado.Tipo == "AHP")
+                    {
+                        ventanaEditarExpertos = new AsignarExpertosAHP(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+                        (ventanaEditarExpertos as AsignarExpertosAHP).ExpertosAsignados += (ActualizarGridYDetalleProyectoModificado);
+                    }
+                    else
+                    {
+                        ventanaEditarExpertos = new AsignarExpertosIL(_proyectoSeleccionado, _experto, _fachadaProyectosExpertos);
+                        (ventanaEditarExpertos as AsignarExpertosIL).ExpertosAsignados += (ActualizarGridYDetalleProyectoModificado);
+                    }
+                    ventanaEditarExpertos.ShowDialog();
+                }
+                else
+                {
+                    var ventanaEditarExpertosListo = new AsignarExpertosProyectoListo(_proyectoSeleccionado, _fachadaProyectosExpertos);
+                    ventanaEditarExpertosListo.ExpertosAsignados += (ActualizarGridYDetalleProyectoModificado);
+                    ventanaEditarExpertosListo.ShowDialog();
+                }
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }
+
         #endregion
         
         #region Ejecutar AHP
@@ -409,7 +456,12 @@ namespace sisExperto
 
         private void buttonPublicar_Click(object sender, EventArgs e)
         {
-            _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
+            if (_proyectoSeleccionado.PosiblePublicar())
+            {
+                _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
+                ActualizarGridYDetalleProyectoModificado();
+            }
+            else MessageBox.Show(_proyectoSeleccionado.RequerimientoParaPublicar()); 
         }
 
         #endregion

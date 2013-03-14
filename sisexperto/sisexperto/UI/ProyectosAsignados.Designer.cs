@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gridAlternativa = new System.Windows.Forms.DataGridView();
+            this.Criterio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.valorarAlt = new System.Windows.Forms.DataGridViewButtonColumn();
             this.alternativaMatrizBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -44,14 +47,10 @@
             this.tabPageIL = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridCriterios = new System.Windows.Forms.DataGridView();
+            this.alternativaILBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alternativaILIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valorCriteriosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alternativaILBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Criterio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.valorarAlt = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlternativa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaMatrizBindingSource)).BeginInit();
@@ -96,6 +95,25 @@
             this.gridAlternativa.Size = new System.Drawing.Size(488, 232);
             this.gridAlternativa.TabIndex = 5;
             this.gridAlternativa.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modificarAlternativa);
+            // 
+            // Criterio
+            // 
+            this.Criterio.HeaderText = "Según Criterio";
+            this.Criterio.Name = "Criterio";
+            this.Criterio.ReadOnly = true;
+            // 
+            // consistenciaDataGridViewCheckBoxColumn
+            // 
+            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
+            this.consistenciaDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // valorarAlt
+            // 
+            this.valorarAlt.HeaderText = "Compararacion entre Alternativas";
+            this.valorarAlt.Name = "valorarAlt";
+            this.valorarAlt.ReadOnly = true;
             // 
             // alternativaMatrizBindingSource
             // 
@@ -147,6 +165,7 @@
             this.buttonVerMatrizCriterio.TabIndex = 35;
             this.buttonVerMatrizCriterio.Text = "Ver Matriz";
             this.buttonVerMatrizCriterio.UseVisualStyleBackColor = true;
+            this.buttonVerMatrizCriterio.Click += new System.EventHandler(this.buttonVerMatrizCriterio_Click);
             // 
             // groupBox1
             // 
@@ -182,6 +201,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(528, 401);
             this.tabControl1.TabIndex = 37;
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // tabPageAHP
             // 
@@ -227,8 +247,7 @@
             this.gridCriterios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewButtonColumn2,
             this.dataGridViewTextBoxColumn1,
-            this.alternativaILIdDataGridViewTextBoxColumn,
-            this.valorCriteriosDataGridViewTextBoxColumn});
+            this.alternativaILIdDataGridViewTextBoxColumn});
             this.gridCriterios.DataSource = this.alternativaILBindingSource;
             this.gridCriterios.Location = new System.Drawing.Point(6, 25);
             this.gridCriterios.Name = "gridCriterios";
@@ -237,6 +256,10 @@
             this.gridCriterios.Size = new System.Drawing.Size(488, 318);
             this.gridCriterios.TabIndex = 5;
             this.gridCriterios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.modificarAlternativasIL);
+            // 
+            // alternativaILBindingSource
+            // 
+            this.alternativaILBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaIL);
             // 
             // dataGridViewButtonColumn2
             // 
@@ -248,6 +271,7 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
             this.dataGridViewTextBoxColumn1.HeaderText = "Alternativa";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -260,36 +284,6 @@
             this.alternativaILIdDataGridViewTextBoxColumn.HeaderText = "AlternativaILId";
             this.alternativaILIdDataGridViewTextBoxColumn.Name = "alternativaILIdDataGridViewTextBoxColumn";
             this.alternativaILIdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valorCriteriosDataGridViewTextBoxColumn
-            // 
-            this.valorCriteriosDataGridViewTextBoxColumn.DataPropertyName = "ValorCriterios";
-            this.valorCriteriosDataGridViewTextBoxColumn.HeaderText = "ValorCriterios";
-            this.valorCriteriosDataGridViewTextBoxColumn.Name = "valorCriteriosDataGridViewTextBoxColumn";
-            this.valorCriteriosDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // alternativaILBindingSource
-            // 
-            this.alternativaILBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaIL);
-            // 
-            // Criterio
-            // 
-            this.Criterio.HeaderText = "Según Criterio";
-            this.Criterio.Name = "Criterio";
-            this.Criterio.ReadOnly = true;
-            // 
-            // consistenciaDataGridViewCheckBoxColumn
-            // 
-            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
-            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistencia";
-            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
-            this.consistenciaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // valorarAlt
-            // 
-            this.valorarAlt.HeaderText = "Compararacion entre Alternativas";
-            this.valorarAlt.Name = "valorarAlt";
-            this.valorarAlt.ReadOnly = true;
             // 
             // ProyectosAsignados
             // 
@@ -348,14 +342,14 @@
         private System.Windows.Forms.TabPage tabPageIL;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView gridCriterios;
-        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaILIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorCriteriosDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource alternativaILBindingSource;
         private System.Windows.Forms.BindingSource alternativaMatrizBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn Criterio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn valorarAlt;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaILIdDataGridViewTextBoxColumn;
     }
 }

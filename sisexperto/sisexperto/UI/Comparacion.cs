@@ -128,6 +128,9 @@ namespace sisexperto.UI
 
         protected int valorarDoble(double valor)
         {
+            if (valor == 0)
+                return 9;
+
             if (valor >= 1)
                 return 10 - (int)valor;
             else
