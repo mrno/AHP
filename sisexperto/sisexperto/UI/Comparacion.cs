@@ -28,6 +28,7 @@ namespace sisexperto.UI
             _matriz = Matriz;
             _fachada = Fachada;
             _proyecto = Proyecto;
+            buttonListo.Enabled = Matriz.Completa;
         }
         
         protected float valorarNumero(int valor)

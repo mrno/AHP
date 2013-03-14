@@ -2,6 +2,7 @@
 using System.Linq;
 using sisExperto.Entidades;
 using sisexperto.Entidades.AHP;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sisexperto.Entidades
 {
@@ -9,6 +10,16 @@ namespace sisexperto.Entidades
     {
         public int AlternativaMatrizId { get; set; }
         public bool Consistencia { get; set; }
+        [NotMapped]
+        public bool Completa 
+        {
+            get
+            {
+                return !(from c in FilasAlternativa
+                         where c.CeldasAlternativas.Any(x => x.ValorAHP == 0)
+                         select c).Any();
+            }
+        }
 
         public int CriterioId { get; set; }
         public virtual Criterio Criterio { get; set; }

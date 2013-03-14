@@ -9,5 +9,6 @@ namespace sisexperto.Entidades.AHP
     {
         bool Consistencia { get; set; }
         double[,] Matriz { get; set; }
+        bool Completa { get; }
     }
 }
