@@ -24,6 +24,12 @@ namespace sisExperto
                    select c;
         }
 
+        public IEnumerable<Proyecto> ObtenerTodosLosProyectos()
+        {
+            return from c in _context.Proyectos 
+                   select c;
+        }
+
         public IEnumerable<Experto> ObtenerExpertosFueraDelProyecto(Proyecto proyecto)
         {
             var expertosDelProyecto = new List<int>();
@@ -187,6 +193,18 @@ namespace sisExperto
             {
                 return new List<Experto>();
             }
+        }
+
+        public void ActivarDesactivarExpertos(Proyecto proyecto, List<ExpertoEnProyecto> listaExpertoProyecto)
+        {
+            foreach (var item in proyecto.ExpertosAsignados)
+            {
+                item.Activo = (from c in listaExpertoProyecto
+                              where c.Experto == item.Experto
+                              select c).FirstOrDefault().Activo;
+            }
+
+            _context.SaveChanges();
         }
 
         public IEnumerable<Proyecto> ProyectosParaEditar(Experto _experto)

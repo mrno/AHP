@@ -306,7 +306,8 @@ namespace sisExperto
             //    ventanaEditarExpertos.ShowDialog();
             //}
             //else MessageBox.Show("No seleccionó ningún proyecto.");
-                ventanaEditarExpertos = new AsignarExpertosProyectoListo(_proyectoSeleccionado);
+                ventanaEditarExpertos = new AsignarExpertosProyectoListo(_proyectoSeleccionado, _fachadaProyectosExpertos);
+                ventanaEditarExpertos.ShowDialog();
         }
         #endregion
         
