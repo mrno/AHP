@@ -63,7 +63,7 @@ namespace sisexperto.UI
             });
             ProyectoCreado();
 
-            var ventana = MessageBox.Show("Cambios guardados con éxito. Desea editar los expertos?", "Éxito", MessageBoxButtons.YesNo);
+            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los expertos del proyecto?", "Información", MessageBoxButtons.YesNo);
             if (ventana.ToString() == "Yes")
             {
                 Form ventanaEditarExpertos = null;

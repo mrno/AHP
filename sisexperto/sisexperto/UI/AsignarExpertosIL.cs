@@ -193,10 +193,12 @@ namespace sisexperto.UI
 
             _fachada.GuardarExpertos(_proyectoSeleccionado, expertosParaProyecto);
             ExpertosAsignados();
-            var ventana = MessageBox.Show("Cambios guardados con éxito", "Éxito", MessageBoxButtons.YesNo);
+            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
             if (ventana.ToString() == "Yes")
             {
-
+                var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
+                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+                _ventanaCargarProyecto.ShowDialog();
             }
         }
 

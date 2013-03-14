@@ -74,9 +74,8 @@ namespace sisExperto
             }
         }
 
-        public ExpertoEnProyecto SolicitarExpertoProyectoActual (Proyecto _proyecto, Experto _experto)
+        public ExpertoEnProyecto SolicitarExpertoProyectoActual(Proyecto _proyecto, Experto _experto)
         {
-
             return (from expEnProyecto in _experto.ProyectosAsignados
                     where expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
                     select expEnProyecto

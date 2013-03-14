@@ -340,6 +340,7 @@
             this.Controls.Add(this.groupBoxDisponible);
             this.Controls.Add(this.btnAgregar);
             this.Name = "AsignarExpertosIL";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Asignar Expertos - Proyectos: ";
             this.Load += new System.EventHandler(this.AsignarExpertosIL_Load);
             this.groupBoxAsignados.ResumeLayout(false);

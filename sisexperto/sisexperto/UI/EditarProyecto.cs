@@ -170,7 +170,7 @@ namespace sisExperto.UI
                                          MessageBoxButtons.YesNoCancel);
             switch (dialog.ToString())
             {
-                case "Yes": GuardarCambios(); break;
+                case "Yes": GuardarCambios(); Close(); break;
                 case "No": Close(); break;
                 default: break;
             }            
@@ -185,7 +185,7 @@ namespace sisExperto.UI
             var mensaje = "Criterios y Alternativas guardados con éxito.";
             if (_proyectoSeleccionado.PosiblePublicar())
             {
-                var dialog = MessageBox.Show(mensaje + " Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
+                var dialog = MessageBox.Show(mensaje + " ¿Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
                 if (dialog.ToString() == "Yes")
                 {
                     //dialog y eventos para eliminar el proyecto de la lista

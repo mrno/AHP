@@ -24,7 +24,7 @@ namespace sisExperto
             _proyectoSeleccionado = ProyectoSeleccionado;
             _experto = experto;
             _fachada = Fachada;
-            //_expertoEnProyecto = _fachada.SolicitarExpertoEnProyecto(_experto,_proyectoSeleccionado)
+            _expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
             _listaProyectos = _fachada.SolicitarProyectosAsignados(_experto).ToList();
         }
 
@@ -45,11 +45,13 @@ namespace sisExperto
                     cargarMatricesAHP();
                     tabPageAHP.Enabled = true;
                     tabPageIL.Enabled = false;
+                    tabControl1.SelectedTab = tabPageAHP;                    
                     break;
                 case "IL":
                     cargarMatricesIL();
                     tabPageAHP.Enabled = false;
                     tabPageIL.Enabled = true;
+                    tabControl1.SelectedTab = tabPageIL;
                     break;
                 case "Ambos":
                     tabPageAHP.Enabled = true;
@@ -59,6 +61,8 @@ namespace sisExperto
                     break;
             }
         }
+
+
 
         private void cargarMatricesAHP()
         {
@@ -128,7 +132,7 @@ namespace sisExperto
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
             _proyectoSeleccionado = (Proyecto) comboBoxProyectos.SelectedItem;
-
+            _expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
             CargarMatricesYPestanias();
         }
 
@@ -137,6 +141,23 @@ namespace sisExperto
             var frmComparar = new CompararCriterios(_expertoEnProyecto.ValoracionAHP.CriterioMatriz, _fachada, _proyectoSeleccionado);
             frmComparar.ShowDialog();
             cargarMatricesAHP();
+        }
+
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (_proyectoSeleccionado.Tipo == "AHP" && tabControl1.SelectedIndex == 1)
+            {
+                e.Cancel = true;
+            }
+            if (_proyectoSeleccionado.Tipo == "IL" && tabControl1.SelectedIndex == 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void buttonVerMatrizCriterio_Click(object sender, EventArgs e)
+        {
+            
         }       
     }
 }
