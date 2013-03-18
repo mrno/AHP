@@ -34,54 +34,38 @@ namespace sisexperto.UI
         protected float valorarNumero(int valor)
         {
             if (valor == 1) //corresponde a 1/9
-                //return (float)1 / (float)9;
                 return 9;
             if (valor == 2) //corresponde a 1/8
-                //return (float)1 / (float)8;
                 return 8;
             if (valor == 3) //corresponde a 1/7
-                //return (float)1 / (float)7;
                 return 7;
             if (valor == 4) //corresponde a 1/6
-                //return (float)1 / (float)6;
                 return 6;
             if (valor == 5) //corresponde a 1/5
-                //return (float)1 / (float)5;
                 return 5;
             if (valor == 6) //corresponde a 1/4
-                //return (float)1 / (float)4;
                 return 4;
             if (valor == 7) //corresponde a 1/3
-                //return (float)1 / (float)3;
                 return 3;
             if (valor == 8) //corresponde a 1/2
-                //return (float)1 / (float)2;
                 return 2;
             if (valor == 9) //corresponde a 1
                 return 1;
             if (valor == 10) //corresponde a 2
-                //return 2;
                 return 1 / (float)2;
             if (valor == 11) //corresponde a 3
-                //return 3;
                 return 1 / (float)3;
             if (valor == 12) //corresponde a 4
-                //return 4;
                 return 1 / (float)4;
             if (valor == 13) //corresponde a 5
-                //return 5;
                 return 1 / (float)5;
             if (valor == 14) //corresponde a 6
-                //return 6;
                 return 1 / (float)6;
             if (valor == 15) //corresponde a 7
-                //return 7;
                 return 1 / (float)7;
             if (valor == 16) //corresponde a 8
-                //return 8;
                 return 1 / (float)8;
             if (valor == 17) //corresponde a 9
-                //return 9;
                 return 1 / (float)9;
 
             return 0;

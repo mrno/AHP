@@ -24,7 +24,7 @@ namespace sisExperto
         {
             InitializeComponent();
             HabilitarPanelTrabajo(false);
-            buttonProyectoEdicion.Enabled = false;
+            buttonProyectoEdicion.Enabled = true;
             buttonProyectoValoraciones.Enabled = false;
         }
 
@@ -241,12 +241,12 @@ namespace sisExperto
             if (_proyectoSeleccionado != null)
             {
                 //verifico si el experto es creador y permito la edicion
-                if (_proyectoSeleccionado.CreadorId == _experto.ExpertoId)
-                {
-                    if (_proyectoSeleccionado.Estado == "Creado") buttonProyectoEdicion.Enabled = true;
-                    else buttonProyectoEdicion.Enabled = false;
-                }
-                else buttonProyectoEdicion.Enabled = false;
+                //if (_proyectoSeleccionado.CreadorId == _experto.ExpertoId)
+                //{
+                //    if (_proyectoSeleccionado.Estado == "Creado") buttonProyectoEdicion.Enabled = true;
+                //    else buttonProyectoEdicion.Enabled = false;
+                //}
+                //else buttonProyectoEdicion.Enabled = false;
 
                 //verifico si el experto esta asignado y permito la valacion
                 var expertoAsignado = (from e in _proyectoSeleccionado.ExpertosAsignados ?? new List<ExpertoEnProyecto>()
@@ -262,7 +262,7 @@ namespace sisExperto
             }
             else
             {
-                buttonProyectoEdicion.Enabled = false;
+                //buttonProyectoEdicion.Enabled = false;
                 buttonProyectoValoraciones.Enabled = false;
             }
         }
@@ -273,6 +273,8 @@ namespace sisExperto
         private void buttonProyectoEdicionExpertos_Click(object sender, EventArgs e)
         {
             
+            var ventana = new ValorarProyectos(_experto, _proyectoSeleccionado, _fachadaProyectosExpertos);
+            ventana.ShowDialog();
         }
 
         private void alternativasYCriteriosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -465,5 +467,9 @@ namespace sisExperto
         }
 
         #endregion
+
+       
+
+        
     }
 }

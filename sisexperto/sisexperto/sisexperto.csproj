@@ -222,6 +222,12 @@
     <Compile Include="UI\ProyectosAsignados.Designer.cs">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ValorarProyectos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ValorarProyectos.Designer.cs">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="UI\AsignarExpertosAHP.resx">
       <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
@@ -288,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProyectosAsignados.resx">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ValorarProyectos.resx">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config">
       <SubType>Designer</SubType>

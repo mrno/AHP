@@ -72,6 +72,7 @@ namespace sisExperto
             try
             {
                 return (from expEnProyecto in e.ProyectosAsignados
+                        where expEnProyecto.Proyecto.Estado == "Listo"
                         select expEnProyecto.Proyecto);
             }
             catch (Exception)
