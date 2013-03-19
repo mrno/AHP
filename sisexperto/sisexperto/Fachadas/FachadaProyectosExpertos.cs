@@ -324,5 +324,10 @@ namespace sisExperto
             List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
             return lista;
         }
+
+        public void GuardarCambios()
+        {
+            _context.SaveChanges();
+        }
     }
 }
