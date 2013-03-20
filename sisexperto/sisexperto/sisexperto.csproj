@@ -67,6 +67,8 @@
     <Reference Include="Mejora">
       <HintPath>..\..\Dll\Mejora.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MWArray">
       <HintPath>..\..\Dll\MWArray.dll</HintPath>
     </Reference>
@@ -114,6 +116,8 @@
       <DependentUpon>AsignarExpertosProyectoListo.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Clases\ExpertoEnProyectoViewModel.cs" />
+    <Compile Include="UI\Clases\SugerenciaViewModel.cs" />
+    <Compile Include="UI\Clases\Utilidades.cs" />
     <Compile Include="UI\Comparacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +226,12 @@
     <Compile Include="UI\ProyectosAsignados.Designer.cs">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ValorarProyectos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ValorarProyectos.Designer.cs">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="UI\AsignarExpertosAHP.resx">
       <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
@@ -288,6 +298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ProyectosAsignados.resx">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ValorarProyectos.resx">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.Config">
       <SubType>Designer</SubType>

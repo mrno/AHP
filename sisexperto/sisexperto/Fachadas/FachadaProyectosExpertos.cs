@@ -72,6 +72,7 @@ namespace sisExperto
             try
             {
                 return (from expEnProyecto in e.ProyectosAsignados
+                        where expEnProyecto.Proyecto.Estado == "Listo"
                         select expEnProyecto.Proyecto);
             }
             catch (Exception)
@@ -322,6 +323,11 @@ namespace sisExperto
         {
             List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
             return lista;
+        }
+
+        public void GuardarCambios()
+        {
+            _context.SaveChanges();
         }
     }
 }
