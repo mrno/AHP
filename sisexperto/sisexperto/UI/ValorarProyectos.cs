@@ -1,5 +1,6 @@
 ﻿using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
+using sisexperto.Fachadas;
 using sisexperto.UI.Clases;
 using sisExperto;
 using sisExperto.Entidades;
@@ -22,7 +23,7 @@ namespace sisexperto.UI
         private List<Proyecto> _listaProyectos = new List<Proyecto>();
         private ExpertoEnProyecto _expertoEnProyecto;
 
-        private Proyecto _proyectoSeleccionado; 
+        private Proyecto _proyectoSeleccionado;
 
         private CriterioMatriz _matrizCriterio;
         private AlternativaMatriz _matrizAlternativa;
@@ -197,8 +198,8 @@ namespace sisexperto.UI
                         textBox.TextChanged -= (ActualizarTrackBarYLabels);
                         textBox.TextChanged -= (Validated); //keyup
 
-                        textBox.Text = ParseValue(matriz[fila, columna]);
-                        panelMatriz.Controls.Find("I" + fila + "x" + columna, true).First().Text = ParseValue(1.0 / matriz[fila, columna]);
+                        textBox.Text = Utilidades.ParseValue(matriz[fila, columna]);
+                        panelMatriz.Controls.Find("I" + fila + "x" + columna, true).First().Text = Utilidades.ParseValue(1.0 / matriz[fila, columna]);
                     }
                     /* subscribe los eventos que no permiten que se reactualice la matriz */
                     textBox.TextChanged += (Validated); //keyup originalmente
@@ -263,7 +264,7 @@ namespace sisexperto.UI
                 label.TextAlign = ContentAlignment.TopLeft;
                 label.Width = panel.Width;
                 label.Top = (panel.Height - label.Height) / 2;
-                label.Text = ParseValue(1);
+                label.Text = Utilidades.ParseValue(1);
                 label.TextAlign = ContentAlignment.MiddleCenter;
 
                 panelMatriz.Controls.Add(label);
@@ -288,7 +289,7 @@ namespace sisexperto.UI
             textBox.BorderStyle = BorderStyle.None;
             textBox.Width = panel.Width;
             textBox.Top = (panel.Height - textBox.Height) / 2 - 3;
-            textBox.Text = ParseValue(valor);
+            textBox.Text = Utilidades.ParseValue(valor);
             textBox.TextAlign = HorizontalAlignment.Center;
             textBox.Leave += (Validated);
             //textBox.Leave += (LeaveTextBox);
@@ -337,7 +338,7 @@ namespace sisexperto.UI
             label.Name = "I" + fila + "x" + columna;
             label.Width = panel.Width;
             label.Top = (panel.Height - label.Height) / 2;
-            label.Text = ParseValue(1.0 / valor);
+            label.Text = Utilidades.ParseValue(1.0 / valor);
             label.TextAlign = ContentAlignment.MiddleCenter;
 
             label.Enabled = false;
@@ -345,58 +346,17 @@ namespace sisexperto.UI
             panel.Controls.Add(label);
         }
 
-        private string ParseValue(double valor)
-        {
-            if (valor > 0 && valor <= 9) 
-            {
-                if (valor >= 1) return ((int)valor).ToString();
-                else return "1/" + (int)Math.Ceiling(1.0 / valor);
-            }
-            return "0";            
-        }
-
-        private double ParseValue(string texto)
-        {
-            if (texto.Contains("/"))
-            {
-                var ladoDerecho = texto.Split('/').ElementAt(1);
-                if (ladoDerecho == "" || ladoDerecho == "0")
-                {
-                    return 1.0;
-                }
-                else
-                {
-                    return 1.0 / int.Parse(ladoDerecho);
-                }
-            }
-            else
-            {
-                if (texto == "0")
-                    return 1;
-                return int.Parse(texto);
-            } 
-        }
-
-        protected int IndiceEscalaFundamental(double valor)
-        {
-            if (valor == 0)
-                return 9;
-
-            if (valor >= 1)
-                return 10 - (int)valor;
-            else
-                return 8 + (int)Math.Ceiling(1.0 / valor);
-        }
+        
 
         private void LeaveTextBox(object sender, EventArgs e)
         {
             var textbox = (sender as TextBox);
             var inverso = panelMatriz.Controls.Find("I" + textbox.Name, true).First();
             var texto = textbox.Text;
-            var valor = ParseValue(texto);
+            var valor = Utilidades.ParseValue(texto);
 
-            textbox.Text = ParseValue(valor);
-            inverso.Text = ParseValue(1 / valor);                      
+            textbox.Text = Utilidades.ParseValue(valor);
+            inverso.Text = Utilidades.ParseValue(1 / valor);                      
         }
 
         private void PrepararLabelsYTrackbar(object sender, EventArgs e)
@@ -424,17 +384,17 @@ namespace sisexperto.UI
             int columna = int.Parse(_selectedTextBox.Name.Split('x').ElementAt(1));
 
             /* Cargar TrackBar */
-            var valor = ParseValue(_selectedTextBox.Text);
-            trackBarComparacion.Value = IndiceDelValorEnEscalaFundamental(valor);
+            var valor = Utilidades.ParseValue(_selectedTextBox.Text);
+            trackBarComparacion.Value = Utilidades.IndiceDelValorEnEscalaFundamental(valor);
 
             /* Actualizar el label inferior */
             if (_selectedTextBox.Text == "0") labelComparacionTrack.Text = "Valoración: Los elementos aún no fueron comparados";
             else
                 labelComparacionTrack.Text = string.Format("Valoración: {0} es {1} que {2}.",
-                    _headers[fila], IndiceEscalaFundamentalEnTexto(trackBarComparacion.Value), _headers[columna]); 
+                    _headers[fila], Utilidades.IndiceEscalaFundamentalEnTexto(trackBarComparacion.Value), _headers[columna]); 
         }
 
-        private void Validated(object sender, EventArgs e)
+        protected void Validated(object sender, EventArgs e)
         {
             var textBox = (sender as TextBox);
             var reg = new Regex("^[1-9]$|^1/$|^1/[1-9]$");
@@ -446,71 +406,15 @@ namespace sisexperto.UI
 
             var inverso = panelMatriz.Controls.Find("I" + textBox.Name, true).First();
             var texto = textBox.Text;
-            var valor = ParseValue(texto);
+            var valor = Utilidades.ParseValue(texto);
 
-            inverso.Text = ParseValue(1 / valor); 
+            inverso.Text = Utilidades.ParseValue(1 / valor); 
         }
-
-        protected int IndiceDelValorEnEscalaFundamental(double valor)
-        {
-            if (valor == 0)
-                return 9;
-
-            if (valor >= 1)
-                return 10 - (int)valor;
-            else
-                return 8 + (int)Math.Ceiling(1.0 / valor);
-        }
-
-        protected double ValorDelIndiceEnEscalaFundamental(int valor)
-        {
-            if (valor <= 9)
-                return 10 - valor;
-            else return 1.0 / (valor - 8);
-        }
-
-        protected string IndiceEscalaFundamentalEnTexto(double valor)
-        {            
-            if (valor == 1) //corresponde a 9
-                return "[9] es extremadamente más importante que ";
-            if (valor == 2) //corresponde a 8
-                return "[8] ";
-            if (valor == 3) //corresponde a 7
-                return "[7] es muy fuertemente más importante que ";
-            if (valor == 4) //corresponde a 6
-                return "[6] ";
-            if (valor == 5) //corresponde a 5
-                return "[5] es fuertemente más importante que ";
-            if (valor == 6) //corresponde a 4
-                return "[4] ";
-            if (valor == 7) //corresponde a 3
-                return "[3] es moderadamente más importante que ";
-            if (valor == 8) //corresponde a 2
-                return "[2] ";
-            if (valor == 9) //corresponde a 1
-                return "[1] es igual de importante que ";
-            if (valor == 10) //corresponde a 1/2
-                return "[1/2] ";
-            if (valor == 11) //corresponde a 1/3
-                return "[1/3]es moderadamente menos importante que ";
-            if (valor == 12) //corresponde a 1/4
-                return "[1/4] ";
-            if (valor == 13) //corresponde a 1/5
-                return "[1/5] es fuertemente menos importante que ";
-            if (valor == 14) //corresponde a 1/6
-                return "[1/6] ";
-            if (valor == 15) //corresponde a 1/7
-                return "[1/7] es muy fuertemente menos importante que ";
-            if (valor == 16) //corresponde a 1/8
-                return "[1/8] ";
-            if (valor == 17) //corresponde a 1/9
-                return "[1/9] es extremadamente menos importante que ";
-            return "";
-        }
+                
 
         private void ScrollTrackBar(object sender, EventArgs e)
         {
-             _selectedTextBox.Text = ParseValue(ValorDelIndiceEnEscalaFundamental(trackBarComparacion.Value));
+            _selectedTextBox.Text = Utilidades.ParseValue(Utilidades.ValorDelIndiceEnEscalaFundamental(trackBarComparacion.Value));
         }
 
         private void GuardarValor(object sender, EventArgs e)
@@ -530,14 +434,14 @@ namespace sisexperto.UI
             if (_viendoMatrizCriterio)
             {
                 var matriz = _matrizCriterio.Matriz;
-                matriz[fila, columna] = ParseValue(_selectedTextBox.Text);
+                matriz[fila, columna] = Utilidades.ParseValue(_selectedTextBox.Text);
 
                 _matrizCriterio.Matriz = matriz;
             }
             else 
             {
                 var matriz = _matrizAlternativa.Matriz;
-                matriz[fila, columna] = ParseValue(_selectedTextBox.Text);
+                matriz[fila, columna] = Utilidades.ParseValue(_selectedTextBox.Text);
                 _matrizAlternativa.Matriz = matriz;
             }
             _fachada.GuardarCambios();
@@ -545,6 +449,59 @@ namespace sisexperto.UI
 
         #endregion
 
-                     
+
+        #region Consistencia AHP
+
+        private void buttonConsistencia_Click(object sender, EventArgs e)
+        {
+            if (_viendoMatrizCriterio)
+            {
+                GuardarConsistencia(_matrizCriterio);
+            }
+            else GuardarConsistencia(_matrizAlternativa);
+        }
+
+        protected void GuardarConsistencia(IAHPMatrizComparable matriz)
+        {
+            matriz.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matriz.Matriz);
+            _fachada.GuardarValoracion();
+            if (matriz.Consistencia)
+                MessageBox.Show("Matriz consistente");
+            else
+            {
+                var sugerencias = GenerarSugerencias(matriz);
+                if (sugerencias.Count() > 0)
+                {
+                    
+                }
+                else { MessageBox.Show("No hay sugerencias"); }
+            }
+        }
+        
+        private List<SugerenciaViewModel> GenerarSugerencias(IAHPMatrizComparable matriz)
+        {
+            var listaSugerencias = new List<SugerenciaViewModel>();
+
+            var sugerencias = FachadaCalculos.Instance.BuscarSugerencias(matriz.Matriz);
+            for (int i = 0; i < sugerencias.Count(); i+= 3)
+            {
+                var fila = (int)(sugerencias.ElementAt(i).ElementAt(0));
+                var columna = (int)(sugerencias.ElementAt(i).ElementAt(1));
+                var valor = sugerencias.ElementAt(i).ElementAt(2);
+
+                listaSugerencias.Add(new SugerenciaViewModel
+                {
+                    Fila = fila,
+                    FilaTitulo = _headers.ElementAt(fila),
+                    Columna = columna,
+                    ColumnaTitulo = _headers.ElementAt(columna),
+                    Valor = valor
+                });
+            }
+            return listaSugerencias;
+        }
+        
+
+        #endregion
     }
 }

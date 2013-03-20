@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageAHP = new System.Windows.Forms.TabPage();
             this.groupBoxMatrizComparacion = new System.Windows.Forms.GroupBox();
+            this.buttonConsistencia = new System.Windows.Forms.Button();
             this.labelComparacion = new System.Windows.Forms.Label();
             this.panelTrackBar = new System.Windows.Forms.Panel();
             this.labelComparacionTrack = new System.Windows.Forms.Label();
@@ -42,6 +43,9 @@
             this.buttonVerMatrizCriterio = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gridAlternativa = new System.Windows.Forms.DataGridView();
+            this.Criterio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.completaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.alternativaMatrizBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPageIL = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -50,10 +54,6 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Criterio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.completaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.buttonConsistencia = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPageAHP.SuspendLayout();
             this.groupBoxMatrizComparacion.SuspendLayout();
@@ -105,6 +105,17 @@
             this.groupBoxMatrizComparacion.TabIndex = 37;
             this.groupBoxMatrizComparacion.TabStop = false;
             this.groupBoxMatrizComparacion.Text = "Matriz de Comparacion:";
+            // 
+            // buttonConsistencia
+            // 
+            this.buttonConsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonConsistencia.Location = new System.Drawing.Point(6, 21);
+            this.buttonConsistencia.Name = "buttonConsistencia";
+            this.buttonConsistencia.Size = new System.Drawing.Size(140, 30);
+            this.buttonConsistencia.TabIndex = 37;
+            this.buttonConsistencia.Text = "Ver Consistencia";
+            this.buttonConsistencia.UseVisualStyleBackColor = true;
+            this.buttonConsistencia.Click += new System.EventHandler(this.buttonConsistencia_Click);
             // 
             // labelComparacion
             // 
@@ -222,6 +233,30 @@
             this.gridAlternativa.Size = new System.Drawing.Size(362, 467);
             this.gridAlternativa.TabIndex = 5;
             // 
+            // Criterio
+            // 
+            this.Criterio.DataPropertyName = "Criterio.Nombre";
+            this.Criterio.FillWeight = 45F;
+            this.Criterio.HeaderText = "Criterio";
+            this.Criterio.Name = "Criterio";
+            this.Criterio.ReadOnly = true;
+            // 
+            // consistenciaDataGridViewCheckBoxColumn
+            // 
+            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.FillWeight = 30F;
+            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistente";
+            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
+            this.consistenciaDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // completaDataGridViewCheckBoxColumn
+            // 
+            this.completaDataGridViewCheckBoxColumn.DataPropertyName = "Completa";
+            this.completaDataGridViewCheckBoxColumn.FillWeight = 25F;
+            this.completaDataGridViewCheckBoxColumn.HeaderText = "Completa";
+            this.completaDataGridViewCheckBoxColumn.Name = "completaDataGridViewCheckBoxColumn";
+            this.completaDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
             // alternativaMatrizBindingSource
             // 
             this.alternativaMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaMatriz);
@@ -301,40 +336,6 @@
             this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.TabIndex = 38;
             this.label2.Text = "Proyecto:";
-            // 
-            // Criterio
-            // 
-            this.Criterio.DataPropertyName = "Criterio.Nombre";
-            this.Criterio.FillWeight = 45F;
-            this.Criterio.HeaderText = "Criterio";
-            this.Criterio.Name = "Criterio";
-            this.Criterio.ReadOnly = true;
-            // 
-            // consistenciaDataGridViewCheckBoxColumn
-            // 
-            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
-            this.consistenciaDataGridViewCheckBoxColumn.FillWeight = 30F;
-            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistente";
-            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
-            this.consistenciaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // completaDataGridViewCheckBoxColumn
-            // 
-            this.completaDataGridViewCheckBoxColumn.DataPropertyName = "Completa";
-            this.completaDataGridViewCheckBoxColumn.FillWeight = 25F;
-            this.completaDataGridViewCheckBoxColumn.HeaderText = "Completa";
-            this.completaDataGridViewCheckBoxColumn.Name = "completaDataGridViewCheckBoxColumn";
-            this.completaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // buttonConsistencia
-            // 
-            this.buttonConsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConsistencia.Location = new System.Drawing.Point(6, 21);
-            this.buttonConsistencia.Name = "buttonConsistencia";
-            this.buttonConsistencia.Size = new System.Drawing.Size(140, 30);
-            this.buttonConsistencia.TabIndex = 37;
-            this.buttonConsistencia.Text = "Ver Consistencia";
-            this.buttonConsistencia.UseVisualStyleBackColor = true;
             // 
             // ValorarProyectos
             // 
