@@ -72,8 +72,6 @@ namespace sisexperto.UI
             }
         }
 
-        #region Inicializar AHP
-
         private void CargarMatricesYPestanias()
         {
             panelMatriz.Controls.Clear();
@@ -101,6 +99,10 @@ namespace sisexperto.UI
             }
         }
 
+
+        #region Inicializar AHP
+
+        
         private void cargarMatricesAHP()
         {
             _expertoEnProyecto = (from c in _experto.ProyectosAsignados
