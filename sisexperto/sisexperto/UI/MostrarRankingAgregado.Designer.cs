@@ -91,12 +91,15 @@
             // 
             // dataGridResultados
             // 
+            this.dataGridResultados.AllowUserToAddRows = false;
+            this.dataGridResultados.AllowUserToDeleteRows = false;
             this.dataGridResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridResultados.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridResultados.Location = new System.Drawing.Point(6, 25);
             this.dataGridResultados.Name = "dataGridResultados";
             this.dataGridResultados.RowHeadersVisible = false;
+            this.dataGridResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridResultados.Size = new System.Drawing.Size(350, 350);
             this.dataGridResultados.TabIndex = 5;
             // 
@@ -137,6 +140,8 @@
             // 
             // dataGridExpertos
             // 
+            this.dataGridExpertos.AllowUserToAddRows = false;
+            this.dataGridExpertos.AllowUserToDeleteRows = false;
             this.dataGridExpertos.AutoGenerateColumns = false;
             this.dataGridExpertos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridExpertos.BackgroundColor = System.Drawing.Color.LightGray;
@@ -149,6 +154,7 @@
             this.dataGridExpertos.Location = new System.Drawing.Point(6, 25);
             this.dataGridExpertos.Name = "dataGridExpertos";
             this.dataGridExpertos.RowHeadersVisible = false;
+            this.dataGridExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridExpertos.Size = new System.Drawing.Size(350, 310);
             this.dataGridExpertos.TabIndex = 5;
             // 
@@ -187,7 +193,6 @@
             this.Controls.Add(this.labelTitulo);
             this.Name = "MostrarRankingAgregado";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            //this.Text = "C A M B I A R";
             this.Load += new System.EventHandler(this.CalcularAgregacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).EndInit();
             this.groupBox1.ResumeLayout(false);

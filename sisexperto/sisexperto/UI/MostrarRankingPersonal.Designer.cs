@@ -51,12 +51,15 @@
             // 
             // dataGridResultados
             // 
+            this.dataGridResultados.AllowUserToAddRows = false;
+            this.dataGridResultados.AllowUserToDeleteRows = false;
             this.dataGridResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridResultados.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridResultados.Location = new System.Drawing.Point(6, 25);
             this.dataGridResultados.Name = "dataGridResultados";
             this.dataGridResultados.RowHeadersVisible = false;
+            this.dataGridResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridResultados.Size = new System.Drawing.Size(448, 350);
             this.dataGridResultados.TabIndex = 5;
             // 

@@ -228,7 +228,9 @@ namespace sisexperto.UI
             }
             catch (Exception) { }
 
-            ActualizarListasYGrids();
+            dataGridExpertosEnProyecto.Refresh();
+
+            //ActualizarListasYGrids();
         }
     }
 }
