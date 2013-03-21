@@ -54,6 +54,13 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPageAHP.SuspendLayout();
             this.groupBoxMatrizComparacion.SuspendLayout();
@@ -66,6 +73,9 @@
             this.tabPageIL.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterios)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -75,7 +85,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 40);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(967, 609);
+            this.tabControl1.Size = new System.Drawing.Size(967, 597);
             this.tabControl1.TabIndex = 40;
             this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
@@ -87,7 +97,7 @@
             this.tabPageAHP.Location = new System.Drawing.Point(4, 22);
             this.tabPageAHP.Name = "tabPageAHP";
             this.tabPageAHP.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAHP.Size = new System.Drawing.Size(959, 583);
+            this.tabPageAHP.Size = new System.Drawing.Size(959, 571);
             this.tabPageAHP.TabIndex = 0;
             this.tabPageAHP.Text = "AHP";
             this.tabPageAHP.UseVisualStyleBackColor = true;
@@ -99,7 +109,7 @@
             this.groupBoxMatrizComparacion.Controls.Add(this.panelTrackBar);
             this.groupBoxMatrizComparacion.Controls.Add(this.panelMatriz);
             this.groupBoxMatrizComparacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxMatrizComparacion.Location = new System.Drawing.Point(387, 16);
+            this.groupBoxMatrizComparacion.Location = new System.Drawing.Point(387, 6);
             this.groupBoxMatrizComparacion.Name = "groupBoxMatrizComparacion";
             this.groupBoxMatrizComparacion.Size = new System.Drawing.Size(566, 561);
             this.groupBoxMatrizComparacion.TabIndex = 37;
@@ -170,9 +180,9 @@
             this.groupBox1.Controls.Add(this.checkBoxConsistencia);
             this.groupBox1.Controls.Add(this.buttonVerMatrizCriterio);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(6, 16);
+            this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(354, 57);
+            this.groupBox1.Size = new System.Drawing.Size(373, 57);
             this.groupBox1.TabIndex = 36;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Comparacion de Criterios:";
@@ -192,7 +202,7 @@
             // buttonVerMatrizCriterio
             // 
             this.buttonVerMatrizCriterio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonVerMatrizCriterio.Location = new System.Drawing.Point(208, 21);
+            this.buttonVerMatrizCriterio.Location = new System.Drawing.Point(227, 21);
             this.buttonVerMatrizCriterio.Name = "buttonVerMatrizCriterio";
             this.buttonVerMatrizCriterio.Size = new System.Drawing.Size(140, 30);
             this.buttonVerMatrizCriterio.TabIndex = 35;
@@ -204,7 +214,7 @@
             // 
             this.groupBox3.Controls.Add(this.gridAlternativa);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(6, 79);
+            this.groupBox3.Location = new System.Drawing.Point(6, 69);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(374, 498);
             this.groupBox3.TabIndex = 3;
@@ -263,11 +273,12 @@
             // 
             // tabPageIL
             // 
+            this.tabPageIL.Controls.Add(this.groupBox4);
             this.tabPageIL.Controls.Add(this.groupBox2);
             this.tabPageIL.Location = new System.Drawing.Point(4, 22);
             this.tabPageIL.Name = "tabPageIL";
             this.tabPageIL.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageIL.Size = new System.Drawing.Size(959, 583);
+            this.tabPageIL.Size = new System.Drawing.Size(959, 571);
             this.tabPageIL.TabIndex = 1;
             this.tabPageIL.Text = "IL";
             this.tabPageIL.UseVisualStyleBackColor = true;
@@ -276,9 +287,9 @@
             // 
             this.groupBox2.Controls.Add(this.gridCriterios);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(10, 20);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(500, 349);
+            this.groupBox2.Size = new System.Drawing.Size(378, 559);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Valoraciones";
@@ -296,7 +307,7 @@
             this.gridCriterios.Name = "gridCriterios";
             this.gridCriterios.ReadOnly = true;
             this.gridCriterios.RowHeadersVisible = false;
-            this.gridCriterios.Size = new System.Drawing.Size(488, 318);
+            this.gridCriterios.Size = new System.Drawing.Size(366, 528);
             this.gridCriterios.TabIndex = 5;
             // 
             // dataGridViewButtonColumn2
@@ -337,11 +348,83 @@
             this.label2.TabIndex = 38;
             this.label2.Text = "Proyecto:";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.label1);
+            this.groupBox4.Controls.Add(this.panel1);
+            this.groupBox4.Controls.Add(this.panel2);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(390, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(566, 561);
+            this.groupBox4.TabIndex = 38;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Matriz de Comparacion:";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(6, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 30);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "Ver Consistencia";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(169, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(251, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "- seleccione una celda de la matriz";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.trackBar1);
+            this.panel1.Location = new System.Drawing.Point(6, 475);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(554, 80);
+            this.panel1.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(3, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(548, 20);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "- seleccione una celda de la matriz";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.BackColor = System.Drawing.Color.White;
+            this.trackBar1.Enabled = false;
+            this.trackBar1.Location = new System.Drawing.Point(3, 32);
+            this.trackBar1.Maximum = 17;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(548, 45);
+            this.trackBar1.TabIndex = 0;
+            this.trackBar1.TabStop = false;
+            this.trackBar1.Value = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Location = new System.Drawing.Point(6, 56);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(554, 413);
+            this.panel2.TabIndex = 0;
+            // 
             // ValorarProyectos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 661);
+            this.ClientSize = new System.Drawing.Size(976, 642);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.comboBoxProyectos);
             this.Controls.Add(this.label2);
@@ -363,6 +446,11 @@
             this.tabPageIL.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridCriterios)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -396,5 +484,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Criterio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn completaDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
