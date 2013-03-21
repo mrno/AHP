@@ -20,6 +20,8 @@ namespace sisexperto.Entidades
                          select c).Any();
             }
         }
+        [NotMapped]
+        public string CriterioNombre { get { return Criterio.Nombre; } }
 
         public int CriterioId { get; set; }
         public virtual Criterio Criterio { get; set; }
@@ -27,6 +29,8 @@ namespace sisexperto.Entidades
         public virtual ExpertoEnProyecto ExpertoEnProyecto { get; set; }
 
         public virtual ICollection<AlternativaFila> FilasAlternativa { get; set; }
+
+
 
         public double[,] Matriz
         {

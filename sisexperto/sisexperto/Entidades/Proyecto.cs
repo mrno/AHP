@@ -166,10 +166,15 @@ namespace sisExperto.Entidades
                         && Alternativas.Count > 2);
         }
 
+        public bool TodosLosExpertosPonderados()
+        {
+            return ExpertosAsignados.Any(x => x.Activo && x.Peso != 0);
+        }
+
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteAHP()
         {
             IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
-                                                   where p.ValoracionAHP.TodasMisValoracionesConsistentes()
+                                                   where p.Activo && p.ValoracionAHP.TodasMisValoracionesConsistentes()
                                                    select p;
              
            PonderarExpertos(lista);

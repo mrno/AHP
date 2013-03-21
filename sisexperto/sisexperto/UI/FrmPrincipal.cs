@@ -24,8 +24,7 @@ namespace sisExperto
         {
             InitializeComponent();
             HabilitarPanelTrabajo(false);
-            buttonProyectoEdicion.Enabled = true;
-            buttonProyectoValoraciones.Enabled = false;
+            buttonProyectoEdicion.Enabled = false;
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -249,15 +248,15 @@ namespace sisExperto
                 if (expertoAsignado)
                 {
                     //acá tiene que ir "listo" posteriormente
-                    if (_proyectoSeleccionado.Estado == "Listo") buttonProyectoValoraciones.Enabled = true;
-                    else buttonProyectoValoraciones.Enabled = false;
+                    if (_proyectoSeleccionado.Estado == "Listo") buttonProyectoEdicion.Enabled = true;
+                    else buttonProyectoEdicion.Enabled = false;
                 }
-                else buttonProyectoValoraciones.Enabled = false;
+                else buttonProyectoEdicion.Enabled = false;
             }
             else
             {
                 //buttonProyectoEdicion.Enabled = false;
-                buttonProyectoValoraciones.Enabled = false;
+                buttonProyectoEdicion.Enabled = false;
             }
         }
         #endregion
@@ -363,12 +362,16 @@ namespace sisExperto
 
             if (_proyectoSeleccionado != null)
             {
-                if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistenteAHP().Count() > 0)
+                if (_proyectoSeleccionado.TodosLosExpertosPonderados())
                 {
-                    var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2, 0);
-                    ventanaAHPPonderado.Show();
+                    if (_proyectoSeleccionado.ObtenerExpertosProyectoConsistenteAHP().Count() > 0)
+                    {
+                        var ventanaAHPPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2, 0);
+                        ventanaAHPPonderado.Show();
+                    }
+                    else MessageBox.Show("No existen expertos activos con valoraciones consistentes.");
                 }
-                else MessageBox.Show("No existen expertos con valoraciones consistentes.");
+                else MessageBox.Show("Existen expertos activos que no están ponderados. Pondérelos antes de continuar.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
             //_proyectoSeleccionado.CalcularRankinAHPPonderado();
@@ -461,6 +464,8 @@ namespace sisExperto
         }
 
         #endregion
+
+        
 
        
 

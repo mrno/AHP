@@ -40,7 +40,6 @@
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filtroProyecto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.buttonProyectoValoraciones = new System.Windows.Forms.Button();
             this.buttonPublicar = new System.Windows.Forms.Button();
             this.groupBoxDetalleProyecto = new System.Windows.Forms.GroupBox();
             this.dataGridExpertosAsignados = new System.Windows.Forms.DataGridView();
@@ -62,6 +61,12 @@
             this.labelEstadoProyecto = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.proyectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expertosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ponderarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alternativasYCriteriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ejecutarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aHPPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aHPNoPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,19 +78,10 @@
             this.valorarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expertosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.crearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.delProyectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ponderarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proyectoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.expertosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ponderarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alternativasYCriteriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxProyectos.SuspendLayout();
@@ -114,7 +110,6 @@
             this.groupBoxProyectos.Controls.Add(this.dataGridProyectos);
             this.groupBoxProyectos.Controls.Add(this.filtroProyecto);
             this.groupBoxProyectos.Controls.Add(this.label1);
-            this.groupBoxProyectos.Controls.Add(this.buttonProyectoValoraciones);
             this.groupBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxProyectos.Location = new System.Drawing.Point(12, 30);
             this.groupBoxProyectos.Name = "groupBoxProyectos";
@@ -134,11 +129,11 @@
             // 
             // buttonProyectoEdicion
             // 
-            this.buttonProyectoEdicion.Location = new System.Drawing.Point(173, 635);
+            this.buttonProyectoEdicion.Location = new System.Drawing.Point(336, 643);
             this.buttonProyectoEdicion.Name = "buttonProyectoEdicion";
             this.buttonProyectoEdicion.Size = new System.Drawing.Size(140, 30);
             this.buttonProyectoEdicion.TabIndex = 4;
-            this.buttonProyectoEdicion.Text = "Editar";
+            this.buttonProyectoEdicion.Text = "Valorar Proyecto";
             this.buttonProyectoEdicion.UseVisualStyleBackColor = true;
             this.buttonProyectoEdicion.Click += new System.EventHandler(this.buttonProyectoEdicionExpertos_Click);
             // 
@@ -162,7 +157,7 @@
             this.dataGridProyectos.ReadOnly = true;
             this.dataGridProyectos.RowHeadersVisible = false;
             this.dataGridProyectos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridProyectos.Size = new System.Drawing.Size(469, 480);
+            this.dataGridProyectos.Size = new System.Drawing.Size(469, 523);
             this.dataGridProyectos.TabIndex = 2;
             // 
             // nombreDataGridViewTextBoxColumn
@@ -211,16 +206,6 @@
             this.label1.Size = new System.Drawing.Size(137, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar Proyectos:";
-            // 
-            // buttonProyectoValoraciones
-            // 
-            this.buttonProyectoValoraciones.Location = new System.Drawing.Point(336, 644);
-            this.buttonProyectoValoraciones.Name = "buttonProyectoValoraciones";
-            this.buttonProyectoValoraciones.Size = new System.Drawing.Size(140, 30);
-            this.buttonProyectoValoraciones.TabIndex = 5;
-            this.buttonProyectoValoraciones.Text = "Valoraciones";
-            this.buttonProyectoValoraciones.UseVisualStyleBackColor = true;
-            this.buttonProyectoValoraciones.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonPublicar
             // 
@@ -425,17 +410,64 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.proyectoToolStripMenuItem,
             this.ejecutarToolStripMenuItem,
             this.iLToolStripMenuItem,
             this.expertosToolStripMenuItem,
             this.sesionToolStripMenuItem,
-            this.ayudaToolStripMenuItem,
-            this.proyectoToolStripMenuItem});
+            this.ayudaToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // proyectoToolStripMenuItem
+            // 
+            this.proyectoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoToolStripMenuItem,
+            this.expertosToolStripMenuItem1,
+            this.alternativasYCriteriosToolStripMenuItem});
+            this.proyectoToolStripMenuItem.Name = "proyectoToolStripMenuItem";
+            this.proyectoToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.proyectoToolStripMenuItem.Text = "Proyecto";
+            // 
+            // nuevoToolStripMenuItem
+            // 
+            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.nuevoToolStripMenuItem.Text = "Nuevo";
+            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
+            // 
+            // expertosToolStripMenuItem1
+            // 
+            this.expertosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editarToolStripMenuItem1,
+            this.ponderarToolStripMenuItem});
+            this.expertosToolStripMenuItem1.Name = "expertosToolStripMenuItem1";
+            this.expertosToolStripMenuItem1.Size = new System.Drawing.Size(192, 22);
+            this.expertosToolStripMenuItem1.Text = "Expertos";
+            // 
+            // editarToolStripMenuItem1
+            // 
+            this.editarToolStripMenuItem1.Name = "editarToolStripMenuItem1";
+            this.editarToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.editarToolStripMenuItem1.Text = "Editar";
+            this.editarToolStripMenuItem1.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
+            // 
+            // ponderarToolStripMenuItem
+            // 
+            this.ponderarToolStripMenuItem.Name = "ponderarToolStripMenuItem";
+            this.ponderarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ponderarToolStripMenuItem.Text = "Ponderar";
+            this.ponderarToolStripMenuItem.Click += new System.EventHandler(this.ponderarToolStripMenuItem_Click);
+            // 
+            // alternativasYCriteriosToolStripMenuItem
+            // 
+            this.alternativasYCriteriosToolStripMenuItem.Name = "alternativasYCriteriosToolStripMenuItem";
+            this.alternativasYCriteriosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.alternativasYCriteriosToolStripMenuItem.Text = "Alternativas y Criterios";
+            this.alternativasYCriteriosToolStripMenuItem.Click += new System.EventHandler(this.alternativasYCriteriosToolStripMenuItem_Click);
             // 
             // ejecutarToolStripMenuItem
             // 
@@ -509,8 +541,7 @@
             // expertosToolStripMenuItem
             // 
             this.expertosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.crearToolStripMenuItem,
-            this.delProyectoToolStripMenuItem});
+            this.crearToolStripMenuItem});
             this.expertosToolStripMenuItem.Name = "expertosToolStripMenuItem";
             this.expertosToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.expertosToolStripMenuItem.Text = "Expertos";
@@ -518,32 +549,9 @@
             // crearToolStripMenuItem
             // 
             this.crearToolStripMenuItem.Name = "crearToolStripMenuItem";
-            this.crearToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.crearToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.crearToolStripMenuItem.Text = "Crear";
             this.crearToolStripMenuItem.Click += new System.EventHandler(this.crearToolStripMenuItem_Click);
-            // 
-            // delProyectoToolStripMenuItem
-            // 
-            this.delProyectoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editarToolStripMenuItem,
-            this.ponderarToolStripMenuItem1});
-            this.delProyectoToolStripMenuItem.Name = "delProyectoToolStripMenuItem";
-            this.delProyectoToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.delProyectoToolStripMenuItem.Text = "Del Proyecto";
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.editarToolStripMenuItem.Text = "Editar";
-            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
-            // 
-            // ponderarToolStripMenuItem1
-            // 
-            this.ponderarToolStripMenuItem1.Name = "ponderarToolStripMenuItem1";
-            this.ponderarToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
-            this.ponderarToolStripMenuItem1.Text = "Ponderar";
-            this.ponderarToolStripMenuItem1.Click += new System.EventHandler(this.ponderarToolStripMenuItem_Click);
             // 
             // sesionToolStripMenuItem
             // 
@@ -574,52 +582,6 @@
             this.ayudaToolStripMenuItem.Name = "ayudaToolStripMenuItem";
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
-            // 
-            // proyectoToolStripMenuItem
-            // 
-            this.proyectoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nuevoToolStripMenuItem,
-            this.expertosToolStripMenuItem1,
-            this.alternativasYCriteriosToolStripMenuItem});
-            this.proyectoToolStripMenuItem.Name = "proyectoToolStripMenuItem";
-            this.proyectoToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.proyectoToolStripMenuItem.Text = "Proyecto";
-            // 
-            // nuevoToolStripMenuItem
-            // 
-            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
-            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.nuevoToolStripMenuItem.Text = "Nuevo";
-            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
-            // 
-            // expertosToolStripMenuItem1
-            // 
-            this.expertosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editarToolStripMenuItem1,
-            this.ponderarToolStripMenuItem});
-            this.expertosToolStripMenuItem1.Name = "expertosToolStripMenuItem1";
-            this.expertosToolStripMenuItem1.Size = new System.Drawing.Size(192, 22);
-            this.expertosToolStripMenuItem1.Text = "Expertos";
-            // 
-            // editarToolStripMenuItem1
-            // 
-            this.editarToolStripMenuItem1.Name = "editarToolStripMenuItem1";
-            this.editarToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
-            this.editarToolStripMenuItem1.Text = "Editar";
-            this.editarToolStripMenuItem1.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
-            // 
-            // ponderarToolStripMenuItem
-            // 
-            this.ponderarToolStripMenuItem.Name = "ponderarToolStripMenuItem";
-            this.ponderarToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
-            this.ponderarToolStripMenuItem.Text = "Ponderar";
-            // 
-            // alternativasYCriteriosToolStripMenuItem
-            // 
-            this.alternativasYCriteriosToolStripMenuItem.Name = "alternativasYCriteriosToolStripMenuItem";
-            this.alternativasYCriteriosToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.alternativasYCriteriosToolStripMenuItem.Text = "Alternativas y Criterios";
-            this.alternativasYCriteriosToolStripMenuItem.Click += new System.EventHandler(this.alternativasYCriteriosToolStripMenuItem_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -681,7 +643,6 @@
         private System.Windows.Forms.DataGridView dataGridProyectos;
         private System.Windows.Forms.TextBox filtroProyecto;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button buttonProyectoValoraciones;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem sesionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iniciarSesionToolStripMenuItem;
@@ -710,9 +671,6 @@
         private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem valorarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aHPPersonalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem delProyectoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ponderarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem iLAgregadoConMediaGeometricaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iLAgregadoConPonderacionToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;

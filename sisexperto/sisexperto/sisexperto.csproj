@@ -226,6 +226,12 @@
     <Compile Include="UI\ProyectosAsignados.Designer.cs">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Sugerencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Sugerencias.Designer.cs">
+      <DependentUpon>Sugerencias.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ValorarProyectos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +305,9 @@
     <EmbeddedResource Include="UI\ProyectosAsignados.resx">
       <DependentUpon>ProyectosAsignados.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Sugerencias.resx">
+      <DependentUpon>Sugerencias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ValorarProyectos.resx">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +343,7 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.ExpertoEnProyectoViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.SugerenciaViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

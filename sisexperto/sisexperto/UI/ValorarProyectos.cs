@@ -25,13 +25,27 @@ namespace sisexperto.UI
 
         private Proyecto _proyectoSeleccionado;
 
+        #region Propiedades para AHP
+
         private CriterioMatriz _matrizCriterio;
         private AlternativaMatriz _matrizAlternativa;
         private bool _viendoMatrizCriterio = true;
 
+        private Sugerencias _ventanaSugerencias;
+
         private bool _generada = false;
         private List<string> _headers;
         private TextBox _selectedTextBox;
+
+        #endregion
+
+        #region Propiedades para IL
+        private List<AlternativaIL> _alternativasIL;
+        private AlternativaIL _alternativaILSeleccionada;
+        private ConjuntoEtiquetas _conjuntoEtiquetas;
+        private ValorCriterio _valorCriterio;
+
+        #endregion
 
         public ValorarProyectos(Experto experto,  Proyecto ProyectoSeleccionado, FachadaProyectosExpertos Fachada)
         {
@@ -75,7 +89,14 @@ namespace sisexperto.UI
         private void CargarMatricesYPestanias()
         {
             panelMatriz.Controls.Clear();
+            panelComparacionIL.Controls.Clear();
+
             _generada = false;
+
+            _expertoEnProyecto = (from c in _experto.ProyectosAsignados
+                                  where c.Proyecto.ProyectoId == _proyectoSeleccionado.ProyectoId
+                                  select c).FirstOrDefault();
+
             switch (_proyectoSeleccionado.Tipo)
             {
                 case "AHP":
@@ -85,7 +106,7 @@ namespace sisexperto.UI
                     tabControl1.SelectedTab = tabPageAHP;
                     break;
                 case "IL":
-                    //cargarMatricesIL();
+                    cargarMatricesIL();
                     tabPageAHP.Enabled = false;
                     tabPageIL.Enabled = true;
                     tabControl1.SelectedTab = tabPageIL;
@@ -94,7 +115,7 @@ namespace sisexperto.UI
                     tabPageAHP.Enabled = true;
                     tabPageIL.Enabled = true;
                     cargarMatricesAHP();
-                    //cargarMatricesIL();
+                    cargarMatricesIL();
                     break;
             }
         }
@@ -105,9 +126,10 @@ namespace sisexperto.UI
         
         private void cargarMatricesAHP()
         {
-            _expertoEnProyecto = (from c in _experto.ProyectosAsignados
-                                  where c.Proyecto.ProyectoId == _proyectoSeleccionado.ProyectoId
-                                  select c).FirstOrDefault();
+
+            //_expertoEnProyecto = (from c in _experto.ProyectosAsignados
+            //                      where c.Proyecto.ProyectoId == _proyectoSeleccionado.ProyectoId
+            //                      select c).FirstOrDefault();
 
             _matrizCriterio = _expertoEnProyecto.ValoracionAHP.CriterioMatriz;
             checkBoxConsistencia.Checked = _matrizCriterio.Consistencia;
@@ -145,6 +167,7 @@ namespace sisexperto.UI
             try
             {   
                 _matrizAlternativa = gridAlternativa.SelectedRows[0].DataBoundItem as AlternativaMatriz;
+                
                 if (_viendoMatrizCriterio)
                 {
                     trackBarComparacion.Enabled = false;
@@ -294,6 +317,7 @@ namespace sisexperto.UI
             textBox.Text = Utilidades.ParseValue(valor);
             textBox.TextAlign = HorizontalAlignment.Center;
             textBox.Leave += (Validated);
+
             //textBox.Leave += (LeaveTextBox);
 
             panel.Controls.Add(textBox);
@@ -352,13 +376,15 @@ namespace sisexperto.UI
 
         private void LeaveTextBox(object sender, EventArgs e)
         {
-            var textbox = (sender as TextBox);
-            var inverso = panelMatriz.Controls.Find("I" + textbox.Name, true).First();
-            var texto = textbox.Text;
-            var valor = Utilidades.ParseValue(texto);
+            //var textbox = (sender as TextBox);
+            //var inverso = panelMatriz.Controls.Find("I" + textbox.Name, true).First();
+            //var texto = textbox.Text;
+            //var valor = Utilidades.ParseValue(texto);
 
-            textbox.Text = Utilidades.ParseValue(valor);
-            inverso.Text = Utilidades.ParseValue(1 / valor);                      
+            //textbox.Text = Utilidades.ParseValue(valor);
+            //inverso.Text = Utilidades.ParseValue(1 / valor);
+
+                        
         }
 
         private void PrepararLabelsYTrackbar(object sender, EventArgs e)
@@ -437,20 +463,24 @@ namespace sisexperto.UI
             {
                 var matriz = _matrizCriterio.Matriz;
                 matriz[fila, columna] = Utilidades.ParseValue(_selectedTextBox.Text);
-
                 _matrizCriterio.Matriz = matriz;
+                _matrizCriterio.Consistencia = false;
+                checkBoxConsistencia.Checked = _matrizCriterio.Consistencia;
             }
             else 
             {
                 var matriz = _matrizAlternativa.Matriz;
                 matriz[fila, columna] = Utilidades.ParseValue(_selectedTextBox.Text);
                 _matrizAlternativa.Matriz = matriz;
+                _matrizAlternativa.Consistencia = false;
+
+                if(_matrizAlternativa.Completa)
+                    gridAlternativa.Refresh();
             }
             _fachada.GuardarCambios();
         }
 
         #endregion
-
 
         #region Consistencia AHP
 
@@ -459,25 +489,97 @@ namespace sisexperto.UI
             if (_viendoMatrizCriterio)
             {
                 GuardarConsistencia(_matrizCriterio);
+                checkBoxConsistencia.Checked = _matrizCriterio.Consistencia;
             }
-            else GuardarConsistencia(_matrizAlternativa);
+            else
+            {
+                GuardarConsistencia(_matrizAlternativa);
+                gridAlternativa.Refresh();
+            }
         }
 
         protected void GuardarConsistencia(IAHPMatrizComparable matriz)
         {
-            matriz.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matriz.Matriz);
-            _fachada.GuardarValoracion();
-            if (matriz.Consistencia)
-                MessageBox.Show("Matriz consistente");
+            if (matriz.Completa)
+            {
+                matriz.Consistencia = FachadaCalculos.Instance.CalcularConsistencia(matriz.Matriz);
+                _fachada.GuardarValoracion();
+                if (matriz.Consistencia)
+                    MessageBox.Show("Matriz consistente.");
+                else
+                {
+                    MessageBox.Show("Matriz inconsistente.");
+                    EjecutarSugerencias(matriz);
+                }
+            }
+            else MessageBox.Show("La matriz debe estar completa para evaluar su consistencia (por ahora)");
+        }
+        
+        private void EjecutarSugerencias(IAHPMatrizComparable matriz)
+        {
+            var sugerencias = GenerarSugerencias(matriz);
+            if (sugerencias.Count() > 0)
+            {
+                var preguntarPorSugerencias = MessageBox.Show("¿Desea ver las sugerencias?", "Información", MessageBoxButtons.YesNo);
+
+                if (preguntarPorSugerencias.ToString() == "Yes")
+                {
+                    if (_ventanaSugerencias == null || _ventanaSugerencias.IsDisposed)
+                    {
+                        _ventanaSugerencias = new Sugerencias(sugerencias);
+                        _ventanaSugerencias.ComunicarSugerencia += (ventanaSugerencias_ComunicarSugerencia);
+                        _ventanaSugerencias.Show();
+                    }
+                    else
+                    {
+                        _ventanaSugerencias.ActualizarSugerencias(GenerarSugerencias(matriz));   
+                    }
+                }
+            }
+            else { MessageBox.Show("No hay sugerencias para mostrar."); }
+        }
+
+        private void ventanaSugerencias_ComunicarSugerencia(IEnumerable<SugerenciaViewModel> sugerenciasSeleccionadas)
+        {
+            IAHPMatrizComparable objetoMatriz;
+
+            if (_viendoMatrizCriterio)
+            {
+                objetoMatriz = _matrizCriterio;
+            }
             else
             {
-                var sugerencias = GenerarSugerencias(matriz);
-                if (sugerencias.Count() > 0)
-                {
-                    
-                }
-                else { MessageBox.Show("No hay sugerencias"); }
+                objetoMatriz = _matrizAlternativa;
             }
+
+            if (sugerenciasSeleccionadas.Count() > 0)
+            {
+                _ventanaSugerencias.Close();
+
+                var matriz = objetoMatriz.Matriz;
+                foreach (var item in sugerenciasSeleccionadas)
+                {
+                    matriz[item.Fila, item.Columna] = item.Valor;
+                }
+                objetoMatriz.Matriz = matriz;
+
+                _fachada.GuardarValoracion();
+
+                DibujarMatriz(objetoMatriz);
+
+                GuardarConsistencia(objetoMatriz);
+
+                if (_viendoMatrizCriterio)
+                {
+                    checkBoxConsistencia.Checked = _matrizCriterio.Consistencia;
+                }
+                else
+                {
+                    gridAlternativa.Refresh();
+                }
+
+            }            
+            else _ventanaSugerencias.ActualizarSugerencias(GenerarSugerencias(objetoMatriz));           
         }
         
         private List<SugerenciaViewModel> GenerarSugerencias(IAHPMatrizComparable matriz)
@@ -503,6 +605,125 @@ namespace sisexperto.UI
             return listaSugerencias;
         }
         
+
+        #endregion
+
+        #region Inicializar IL
+
+        private void cargarMatricesIL()
+        {
+            _conjuntoEtiquetas = _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas;
+
+            _alternativasIL = _expertoEnProyecto.ValoracionIL.AlternativasIL.ToList();
+            alternativaILBindingSource.DataSource = null;
+            alternativaILBindingSource.DataSource = _alternativasIL;
+
+            DibujarTracksIL(_alternativasIL.First().ValorCriterios.Count);
+
+            labelAlternativa.Text = "-seleccione una alternativa";
+            
+            gridAlternativasIL.Refresh();
+            gridAlternativasIL.RowEnter += (gridAlternativaIL_RowEnter);
+
+            gridAlternativasIL.Rows[0].Selected = true;
+        }
+
+        private void gridAlternativaIL_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                _alternativaILSeleccionada = gridAlternativasIL.SelectedRows[0].DataBoundItem as AlternativaIL;
+                labelAlternativa.Text = _alternativaILSeleccionada.Nombre;
+
+                foreach (var item in panelComparacionIL.Controls)
+                {
+                    if (item is TrackBar)
+                    {
+                        var track = (item as TrackBar);
+                        track.Enabled = true;
+                        track.BackColor = Color.White;
+                    }
+                }
+
+                for (int i = 0; i < _alternativaILSeleccionada.ValorCriterios.Count; i++)
+                {
+                    var criterio = _alternativaILSeleccionada.ValorCriterios.ElementAt(i);
+
+                    var track = panelComparacionIL.Controls.Find(i + "Track", true).First() as TrackBar;
+                    var labelCriterio = panelComparacionIL.Controls.Find(i + "Criterio", true).First() as Label;
+                    var labelDescripcion = panelComparacionIL.Controls.Find(i + "Descripcion", true).First() as Label;
+
+                    track.Value = (int)criterio.ValorILNumerico;
+                    labelCriterio.Text = criterio.Nombre;
+                    labelDescripcion.Text = criterio.ValorILLinguistico;
+                }                
+            }
+            catch (Exception) { }
+        }
+
+        private void DibujarTracksIL(int cantidad)
+        {
+            var y = 50;
+
+            for (int i = 0; i < cantidad; i++)
+            {
+                var criterio = new Label();
+                criterio.SetBounds(5, y, 75, 50);
+                criterio.Name = i + "Criterio";
+                panelComparacionIL.Controls.Add(criterio);
+
+                var track = new TrackBar();
+                track.SetBounds(150, y, 400, 45);
+                track.Name = i + "Track";
+                track.SetRange(0, _conjuntoEtiquetas.Cantidad - 1);
+                track.Enter += (EnterTrackBarIL);
+                track.Scroll += (ScrollTrackBarIL);
+                track.Leave += (LeaveTrackBarIL);
+                track.Enabled = true;
+                track.BackColor = SystemColors.Control;
+                panelComparacionIL.Controls.Add(track);               
+
+                //track.Scroll += mostrar;
+                //Controls.Add(track);
+
+                var descripcion = new Label();
+                descripcion.SetBounds(150, y + 45, 400, 30);
+                descripcion.TextAlign = ContentAlignment.MiddleCenter;
+                //miLabel.Text = fila.ValorILLinguistico;
+                descripcion.Name = i + "Descripcion";
+                panelComparacionIL.Controls.Add(descripcion);
+
+                y += 90;
+            }            
+        }
+
+        private void EnterTrackBarIL(object sender, EventArgs e)
+        { 
+            var track = sender as TrackBar;
+            var indice = int.Parse(track.Name.Split('T').ElementAt(0));
+            _valorCriterio = _alternativaILSeleccionada.ValorCriterios.ElementAt(indice);
+        }
+
+        private void LeaveTrackBarIL(object sender, EventArgs e)
+        {
+            _fachada.GuardarValoracion();
+        }
+
+        private void ScrollTrackBarIL(object sender, EventArgs e)
+        {
+            var track = sender as TrackBar;
+            var indice = int.Parse(track.Name.Split('T').ElementAt(0));
+
+            var label = panelComparacionIL.Controls.Find(indice + "Descripcion", true).First() as Label;
+
+            var etiqueta = _conjuntoEtiquetas.Etiquetas.ElementAt(track.Value);
+
+            label.Text = etiqueta.Nombre;
+
+            _valorCriterio.ValorILLinguistico = etiqueta.Nombre;
+            _valorCriterio.ValorILNumerico = etiqueta.Indice;
+            
+        }
 
         #endregion
     }
