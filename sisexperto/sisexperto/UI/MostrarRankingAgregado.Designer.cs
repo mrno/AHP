@@ -38,6 +38,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonMostrar = new System.Windows.Forms.Button();
             this.dataGridExpertos = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridRankingPersonal = new System.Windows.Forms.DataGridView();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.administradorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -46,6 +48,8 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertos)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRankingPersonal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,11 +116,10 @@
             this.groupBox1.Size = new System.Drawing.Size(364, 381);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Ranking de Alternativas:";
+            this.groupBox1.Text = "Ranking de Alternativas Agregado:";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.buttonMostrar);
             this.groupBox2.Controls.Add(this.dataGridExpertos);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(382, 68);
@@ -124,12 +127,12 @@
             this.groupBox2.Size = new System.Drawing.Size(364, 381);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Expertos Agregados:";
+            this.groupBox2.Text = "Expertos en la Agregación:";
             // 
             // buttonMostrar
             // 
             this.buttonMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMostrar.Location = new System.Drawing.Point(90, 343);
+            this.buttonMostrar.Location = new System.Drawing.Point(1023, 9);
             this.buttonMostrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonMostrar.Name = "buttonMostrar";
             this.buttonMostrar.Size = new System.Drawing.Size(180, 30);
@@ -155,8 +158,34 @@
             this.dataGridExpertos.Name = "dataGridExpertos";
             this.dataGridExpertos.RowHeadersVisible = false;
             this.dataGridExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridExpertos.Size = new System.Drawing.Size(350, 310);
+            this.dataGridExpertos.Size = new System.Drawing.Size(350, 350);
             this.dataGridExpertos.TabIndex = 5;
+            this.dataGridExpertos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mostrarRankingPersonal);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridRankingPersonal);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(752, 68);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(408, 381);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Ranking Personal:";
+            // 
+            // dataGridRankingPersonal
+            // 
+            this.dataGridRankingPersonal.AllowUserToAddRows = false;
+            this.dataGridRankingPersonal.AllowUserToDeleteRows = false;
+            this.dataGridRankingPersonal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridRankingPersonal.BackgroundColor = System.Drawing.Color.LightGray;
+            this.dataGridRankingPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridRankingPersonal.Location = new System.Drawing.Point(6, 25);
+            this.dataGridRankingPersonal.Name = "dataGridRankingPersonal";
+            this.dataGridRankingPersonal.RowHeadersVisible = false;
+            this.dataGridRankingPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridRankingPersonal.Size = new System.Drawing.Size(394, 350);
+            this.dataGridRankingPersonal.TabIndex = 6;
             // 
             // apellidoDataGridViewTextBoxColumn
             // 
@@ -184,7 +213,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(759, 461);
+            this.ClientSize = new System.Drawing.Size(1240, 461);
+            this.Controls.Add(this.buttonMostrar);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -198,6 +229,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertos)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridRankingPersonal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -219,5 +252,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource expertoBindingSource;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dataGridRankingPersonal;
     }
 }
