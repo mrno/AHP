@@ -197,10 +197,14 @@ namespace sisExperto.Entidades
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyectoConsistenteIL()
         {
-            IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
-                                                   where p.ValoracionIL.valorada()
-                                                   select p;
+            //IEnumerable<ExpertoEnProyecto> lista = from p in ExpertosAsignados
+            //                                       where p.ValoracionIL.valorada()
+            //                                       select p;
+
+            IEnumerable<ExpertoEnProyecto> lista = ExpertosAsignados;
+           
             PonderarExpertos(lista);
+
             return lista;
         }
 

@@ -162,14 +162,8 @@ namespace sisExperto
             List<Proyecto> lista = lista1;
 
             var indice = 0;
-            try
-            {
-                indice = lista.IndexOf(_proyectosExperto.Where(x => x.ProyectoId == selected).FirstOrDefault());
-            }
-            catch
-            {
-            }
-
+            indice = lista.IndexOf(_proyectosExperto.Where(x => x.ProyectoId == selected).FirstOrDefault());
+            
             lista.AddRange(lista2);
             lista.AddRange(lista3);
             dataGridProyectos.DataSource = lista;
