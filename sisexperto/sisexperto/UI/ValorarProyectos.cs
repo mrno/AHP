@@ -154,6 +154,7 @@ namespace sisexperto.UI
         {
             try
             {
+                groupBoxMatrizComparacion.Text = "Comparando criterios";
                 panelMatriz.Controls.Clear();
                 _viendoMatrizCriterio = true;
                 _generada = false;
@@ -170,6 +171,7 @@ namespace sisexperto.UI
                 
                 if (_viendoMatrizCriterio)
                 {
+                    groupBoxMatrizComparacion.Text = "Comparando alternativas";
                     trackBarComparacion.Enabled = false;
                     trackBarComparacion.BackColor = SystemColors.Control;
                     panelMatriz.Controls.Clear();
@@ -399,11 +401,11 @@ namespace sisexperto.UI
             }
 
             /* Suscripción para guardar */
-                        
+            int fila = int.Parse(_selectedTextBox.Name.Split('x').ElementAt(0));
             int columna = int.Parse(_selectedTextBox.Name.Split('x').ElementAt(1));
 
             /* Actualizar label superior */
-            labelComparacion.Text = string.Format("Comparado con: {0}", _headers[columna]);
+            labelComparacion.Text = string.Format("Comparando: {0} respecto a {1}", _headers[fila], _headers[columna]);
         }
         
         private void ActualizarTrackBarYLabels(object sender, EventArgs e)
