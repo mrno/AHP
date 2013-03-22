@@ -25,12 +25,17 @@ namespace sisExperto.UI
         private List<Criterio> _listaCriterios = new List<Criterio>();
         private Proyecto _proyectoSeleccionado;
 
+        private bool _cambiosNoGuardados = false;
+
         public EditarProyecto(Proyecto Proyecto, Experto Experto, FachadaProyectosExpertos Fachada)
         {
             InitializeComponent();
             _proyectoSeleccionado = Proyecto;
             _fachada = Fachada;
             _experto = Experto;
+            
+            _listaAlternativas = _proyectoSeleccionado.Alternativas.ToList();
+            _listaCriterios = _proyectoSeleccionado.Criterios.ToList();
 
             _proyectosEnEdicion = _fachada.ProyectosParaEditar(_experto).ToList();
         }
@@ -41,18 +46,34 @@ namespace sisExperto.UI
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
             comboBoxProyectos.SelectedIndexChanged += comboBoxProyectos_SelectedIndexChanged;
 
+            
+
+            RefrescarGrids();
         }
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
             _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
 
             _listaAlternativas = _proyectoSeleccionado.Alternativas.ToList();
-            _listaCriterios = _proyectoSeleccionado.Criterios.ToList();            
-            
+            _listaCriterios = _proyectoSeleccionado.Criterios.ToList();
+
+            RefrescarGrids();
+
             buttonQuitarAlternativa.Enabled = _listaAlternativas.Any();
             buttonQuitarCriterio.Enabled = _listaCriterios.Any();
         }
 
+        private void RefrescarGrids()
+        {
+            alternativaBindingSource.DataSource = null;
+            alternativaBindingSource.DataSource = _listaAlternativas;
+
+            criterioBindingSource.DataSource = null;
+            criterioBindingSource.DataSource = _listaCriterios;
+
+            dataGridAlternativas.Refresh();
+            dataGridCriterios.Refresh();
+        }
 
         #region Botones Alternativas
 
@@ -66,12 +87,15 @@ namespace sisExperto.UI
                     Descripcion = textBoxDescripcionAlternativa.Text,
                     Proyecto = _proyectoSeleccionado
                 };
+                
+                
                 _listaAlternativas.Add(alternativa);
-                dataGridAlternativas.DataSource = null;
-                dataGridAlternativas.DataSource = _listaAlternativas;
+
+                RefrescarGrids();
 
                 buttonQuitarAlternativa.Enabled = true;
 
+                _cambiosNoGuardados = true;
             }
             else MessageBox.Show("El Nombre y la Descripción de la alternativa no pueden estar vacíos.");
         }
@@ -80,10 +104,12 @@ namespace sisExperto.UI
         {
             var alt = (Alternativa)dataGridAlternativas.CurrentRow.DataBoundItem;
             _listaAlternativas.Remove(alt);
-            dataGridAlternativas.DataSource = null;
-            dataGridAlternativas.DataSource = _listaAlternativas;
+
+            RefrescarGrids();
 
             buttonQuitarAlternativa.Enabled = _listaAlternativas.Any();
+
+            _cambiosNoGuardados = true;
         }
 
         #endregion
@@ -101,11 +127,12 @@ namespace sisExperto.UI
                     Proyecto = _proyectoSeleccionado
                 };
                 _listaCriterios.Add(criterio);
-                dataGridCriterios.DataSource = null;
-                dataGridCriterios.DataSource = _listaCriterios;
+
+                RefrescarGrids();
 
                 buttonQuitarCriterio.Enabled = true;
 
+                _cambiosNoGuardados = true;
             }
             else MessageBox.Show("El Nombre y la Descripción del criterio no pueden estar vacíos.");
         }
@@ -113,16 +140,19 @@ namespace sisExperto.UI
         private void buttonQuitarCriterio_Click(object sender, EventArgs e)
         {
             _listaCriterios.Remove((Criterio)dataGridCriterios.CurrentRow.DataBoundItem);
-            dataGridCriterios.DataSource = null;
-            dataGridCriterios.DataSource = _listaCriterios;
+
+            RefrescarGrids();
 
             buttonQuitarCriterio.Enabled = _listaCriterios.Any();
+
+            _cambiosNoGuardados = true;
         }
         
         #endregion
 
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
+            _cambiosNoGuardados = false;
             GuardarCambios();          
         }
 
@@ -165,19 +195,22 @@ namespace sisExperto.UI
 
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            var dialog = MessageBox.Show("Los cambios no guardados se descartarán. ¿Desea guardar los cambios y salir?",
-                                         "Atención",
-                                         MessageBoxButtons.YesNoCancel);
-            switch (dialog.ToString())
+            if (_cambiosNoGuardados)
             {
-                case "Yes": GuardarCambios(); Close(); break;
-                case "No": Close(); break;
-                default: break;
-            }            
+                var dialog = MessageBox.Show("Los cambios no guardados se descartarán. ¿Desea salir sin guardar los cambios?",
+                                             "Atención",
+                                             MessageBoxButtons.YesNoCancel);
+                switch (dialog.ToString())
+                {
+                    case "Yes": Close(); break;
+                    default: break;
+                }
+            }
         }
 
         private void GuardarCambios()
         {
+            _fachada.ComenzarEdicion(_proyectoSeleccionado);
             _fachada.GuardarAlternativas(_proyectoSeleccionado, _listaAlternativas);
             _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
             ProyectoEditado();

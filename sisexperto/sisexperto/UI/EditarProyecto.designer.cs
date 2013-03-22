@@ -69,6 +69,8 @@
             // 
             // dataGridAlternativas
             // 
+            this.dataGridAlternativas.AllowUserToAddRows = false;
+            this.dataGridAlternativas.AllowUserToDeleteRows = false;
             this.dataGridAlternativas.AutoGenerateColumns = false;
             this.dataGridAlternativas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridAlternativas.BackgroundColor = System.Drawing.Color.LightGray;
@@ -266,6 +268,8 @@
             // 
             // dataGridCriterios
             // 
+            this.dataGridCriterios.AllowUserToAddRows = false;
+            this.dataGridCriterios.AllowUserToDeleteRows = false;
             this.dataGridCriterios.AutoGenerateColumns = false;
             this.dataGridCriterios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridCriterios.BackgroundColor = System.Drawing.Color.LightGray;

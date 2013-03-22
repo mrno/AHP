@@ -64,11 +64,23 @@ namespace sisExperto
 
         private void ModoDeAdministracion(bool esAdministrador)
         {
+            /* Menu Proyecto */
             nuevoToolStripMenuItem.Visible = esAdministrador;
+            alternativasYCriteriosToolStripMenuItem.Visible = esAdministrador;
+            expertosToolStripMenuItem1.Visible = esAdministrador;
+            conjuntosDeEtiquetasToolStripMenuItem.Visible = esAdministrador;
+
+            /* Sub-menu Ejecutar */
+            ahp_ponderadoToolStripMenuItem.Visible = esAdministrador;
+            ahp_mediaGeométricaToolStripMenuItem.Visible = esAdministrador;
+            il_ponderadoToolStripMenuItem1.Visible = esAdministrador;
+            il_mediaGeométricaToolStripMenuItem1.Visible = esAdministrador;
+
+            /* Menu Expertos */
             expertosToolStripMenuItem.Visible = esAdministrador;
-            crearConjuntoDeEtiquetsToolStripMenuItem.Visible = esAdministrador;
-            aHPNoPonderadoToolStripMenuItem.Visible = esAdministrador;
-            aHPPonderadoToolStripMenuItem.Visible = esAdministrador;
+
+            /* Boton Publicar */
+            buttonPublicar.Visible = esAdministrador;
         }
 
         private void ActualizarProyectos(Experto expert)
@@ -91,6 +103,7 @@ namespace sisExperto
         {
             groupBoxProyectos.Visible = bandera;
             groupBoxDetalleProyecto.Visible = bandera;
+            proyectoToolStripMenuItem.Visible = bandera;
             ejecutarToolStripMenuItem.Visible = bandera;
             expertosToolStripMenuItem.Visible = bandera;
             iLToolStripMenuItem.Visible = bandera;
@@ -207,9 +220,20 @@ namespace sisExperto
             {
                 _proyectoSeleccionado = (Proyecto)dataGridProyectos.SelectedRows[0].DataBoundItem;
                 labelEstadoProyecto.Text = _proyectoSeleccionado.Estado;
-                buttonPublicar.Visible = _proyectoSeleccionado.Estado != "Listo";
+                buttonPublicar.Enabled = true;
+                buttonPublicar.Enabled = _proyectoSeleccionado.Estado != "Listo";
+
+                ActualizarEstadoMenues();
             }
-            catch (Exception) { labelEstadoProyecto.Text = " - "; }
+            catch (Exception) 
+            {
+                alternativasYCriteriosToolStripMenuItem.Enabled = false;
+                expertosToolStripMenuItem1.Enabled = false;
+                conjuntosDeEtiquetasToolStripMenuItem.Enabled = false;
+                ejecutarToolStripMenuItem1.Enabled = false;
+
+                labelEstadoProyecto.Text = " - ";
+            }
 
             if (_proyectoSeleccionado != null)
             {
@@ -222,6 +246,61 @@ namespace sisExperto
                 dataGridExpertosAsignados.DataSource =
                         (from ex in _proyectoSeleccionado.ExpertosAsignados
                          select ex).ToList();
+            }
+        }
+
+        /* Habilita o deshabilita los menúes correspondiente evitando al experto o administrador acceder a funciones que no le corresponden */
+        private void ActualizarEstadoMenues()
+        {
+            /* Solo el creador puede modificar alternativas, criterios y expertos */
+            if (_proyectoSeleccionado.Creador == _experto)
+            {
+                alternativasYCriteriosToolStripMenuItem.Enabled = true;
+                expertosToolStripMenuItem1.Enabled = true;
+                conjuntosDeEtiquetasToolStripMenuItem.Enabled = true;
+            }
+            else
+            {
+                alternativasYCriteriosToolStripMenuItem.Enabled = false;
+                expertosToolStripMenuItem1.Enabled = false;
+                conjuntosDeEtiquetasToolStripMenuItem.Enabled = false;
+            }
+
+            /* Si el proyecto está listo puedo ejecutarlo pero no modificar alternativas ni conjunto de etiquetas*/
+            if (_proyectoSeleccionado.Estado == "Listo")
+            {
+                ejecutarToolStripMenuItem1.Enabled = true;
+                alternativasYCriteriosToolStripMenuItem.Enabled = false;
+                conjuntosDeEtiquetasToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                ejecutarToolStripMenuItem1.Enabled = false;
+                alternativasYCriteriosToolStripMenuItem.Enabled = true;
+                conjuntosDeEtiquetasToolStripMenuItem.Enabled = true;
+            }
+
+            /* Por tipo de proyecto deshabilito la ejecución y el conjunto de etiquetas */
+            switch (_proyectoSeleccionado.Tipo)
+            {
+                case "IL":
+                    {
+                        aHPToolStripMenuItem.Enabled = false;
+                        iLToolStripMenuItem1.Enabled = true;
+                        break;
+                    }
+                case "AHP":
+                    {
+                        aHPToolStripMenuItem.Enabled = true;
+                        iLToolStripMenuItem1.Enabled = false;
+                        break;
+                    }
+                case "Ambos":
+                    {
+                        aHPToolStripMenuItem.Enabled = true;
+                        iLToolStripMenuItem1.Enabled = true;
+                        break;
+                    }
             }
         }
 

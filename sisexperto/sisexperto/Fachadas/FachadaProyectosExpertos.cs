@@ -246,7 +246,7 @@ namespace sisExperto
             {
                 proyecto.Criterios.Add(item);
             }
-            proyecto.Criterios = criterios;
+            //proyecto.Criterios = criterios;
             _context.SaveChanges();
         }
 
