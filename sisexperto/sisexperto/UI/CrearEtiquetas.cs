@@ -18,10 +18,10 @@ namespace sisExperto.UI
         private ConjuntoEtiquetas _conjuntoEtiquetas = new ConjuntoEtiquetas();
         private List<Etiqueta> _etiquetas = new List<Etiqueta>();
 
-        public CrearEtiquetas(int Token)
+        public CrearEtiquetas() //int Token)
         {
             InitializeComponent();
-            _token = Token;
+            _token = 0; // Token;
             //_proyectoSeleccionado = Proyecto;
             _fachada = new FachadaProyectosExpertos();
         }

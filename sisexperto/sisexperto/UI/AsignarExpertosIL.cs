@@ -204,7 +204,7 @@ namespace sisexperto.UI
 
         private void btnNuevoConjuntoEtiquetas_Click(object sender, EventArgs e)
         {
-            var ventanaCreacionLabels = new CrearEtiquetas(1);
+            var ventanaCreacionLabels = new CrearEtiquetas();
             ventanaCreacionLabels.ShowDialog();
 
             ActualizarGridConjuntoEtiquetas();

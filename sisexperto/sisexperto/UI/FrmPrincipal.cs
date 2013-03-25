@@ -104,9 +104,9 @@ namespace sisExperto
             groupBoxProyectos.Visible = bandera;
             groupBoxDetalleProyecto.Visible = bandera;
             proyectoToolStripMenuItem.Visible = bandera;
-            ejecutarToolStripMenuItem.Visible = bandera;
+            //ejecutarToolStripMenuItem.Visible = bandera;
             expertosToolStripMenuItem.Visible = bandera;
-            iLToolStripMenuItem.Visible = bandera;
+            //iLToolStripMenuItem.Visible = bandera;
         }
         #endregion
 
@@ -380,13 +380,7 @@ namespace sisExperto
         }
         #endregion
 
-        #region Gestionar Expertos
-
-        private void crearToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var ventanaCreacion = new CrearExperto(_fachadaProyectosExpertos);
-            ventanaCreacion.ShowDialog();
-        }
+        #region Gestionar Expertos del Proyecto
 
         private void ponderarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -431,10 +425,23 @@ namespace sisExperto
         }
 
         #endregion
-        
-        #region Ejecutar AHP
+       
+        #region Publicar Proyecto
 
-        private void aHPPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonPublicar_Click(object sender, EventArgs e)
+        {
+            if (_proyectoSeleccionado.PosiblePublicar())
+            {
+                _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
+                ActualizarGridYDetalleProyectoModificado();
+            }
+            else MessageBox.Show(_proyectoSeleccionado.RequerimientoParaPublicar()); 
+        }
+
+        #endregion
+
+        #region Ejecutar
+        private void ahp_ponderadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
@@ -453,10 +460,9 @@ namespace sisExperto
                 else MessageBox.Show("Existen expertos activos que no están ponderados. Pondérelos antes de continuar.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
-            //_proyectoSeleccionado.CalcularRankinAHPPonderado();
         }
 
-        private void aHPNoPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ahp_mediaGeométricaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_proyectoSeleccionado != null)
             {
@@ -468,10 +474,9 @@ namespace sisExperto
                 else MessageBox.Show("No existen expertos con valoraciones consistentes.");
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
-            //_proyectoSeleccionado.CalcularRankingAHPNoPonderado();
         }
 
-        private void aHPPersonalToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ahp_individualToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (_proyectoSeleccionado != null)
             {
@@ -491,31 +496,7 @@ namespace sisExperto
             else MessageBox.Show("No seleccionó ningún proyecto.");
         }
 
-        #endregion
-
-        #region IL
-
-        private void crearConjuntoDeEtiquetsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var ventanaCreacionLabels = new CrearEtiquetas(new Random(0).Next(0));
-            ventanaCreacionLabels.Show();
-        }
-
-        
-
-        private void iLAgregadoConMediaGeometricaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (_proyectoSeleccionado != null)
-            {
-               
-                    var ventanaILNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1, 1);
-                    ventanaILNoPonderado.Show();
-               
-            }
-            else MessageBox.Show("No seleccionó ningún proyecto.");
-        }
-
-        private void iLAgregadoConPonderacionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void il_ponderadoToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (_proyectoSeleccionado != null)
             {
@@ -527,27 +508,36 @@ namespace sisExperto
             else MessageBox.Show("No seleccionó ningún proyecto.");
         }
 
-        #endregion
-
-
-        #region Publicar Proyecto
-
-        private void buttonPublicar_Click(object sender, EventArgs e)
+        private void il_mediaGeométricaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (_proyectoSeleccionado.PosiblePublicar())
+            if (_proyectoSeleccionado != null)
             {
-                _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
-                ActualizarGridYDetalleProyectoModificado();
+                var ventanaILNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 1, 1);
+                ventanaILNoPonderado.Show();
             }
-            else MessageBox.Show(_proyectoSeleccionado.RequerimientoParaPublicar()); 
+            else MessageBox.Show("No seleccionó ningún proyecto.");
         }
 
+        private void crearToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            var ventanaCreacionLabels = new CrearEtiquetas();
+            ventanaCreacionLabels.Show();
+        }
         #endregion
 
-        
 
-       
+        #region Expertos
 
-        
+        private void crearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ventanaCreacion = new CrearExperto(_fachadaProyectosExpertos);
+            ventanaCreacion.ShowDialog();
+        }
+
+        private void expertosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

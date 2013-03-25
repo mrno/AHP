@@ -268,7 +268,7 @@ namespace sisExperto
         {
             var random = new Random();
             token = random.Next(0, 100);
-            var ventanaCreacionLabels = new CrearEtiquetas(token);
+            var ventanaCreacionLabels = new CrearEtiquetas(); //token);
             ventanaCreacionLabels.ShowDialog();
 
 
