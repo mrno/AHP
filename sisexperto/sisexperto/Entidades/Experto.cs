@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using sisexperto.Entidades;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sisExperto.Entidades
@@ -12,6 +13,7 @@ namespace sisExperto.Entidades
         public string Usuario { get; set; }
         public string Clave { get; set; }
         public bool Administrador { get; set; }
+        public bool Activo { get; set; }
 
         public virtual ICollection<Proyecto> ProyectosCreados { get; set; }
         public virtual ICollection<ExpertoEnProyecto> ProyectosAsignados { get; set; }

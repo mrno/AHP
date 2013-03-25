@@ -15,7 +15,7 @@ namespace sisexperto.Entidades
         //la base son aquellas que reflejan las valoraciones reales de los expertos.
         //la virtual es la extrapolada y normalizada que se usa en los calculos de IL.
         public int Tipo { get; set; }
-        public virtual List<Etiqueta> Etiquetas { get; set; }
+        public virtual ICollection<Etiqueta> Etiquetas { get; set; }
 
         public int? ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }

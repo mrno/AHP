@@ -10,5 +10,6 @@ namespace sisexperto.Entidades
     {
         public int Id { get; set; }
         public ExpertoEnProyecto ExpertoEnProyecto { get; set; }
+
     }
 }

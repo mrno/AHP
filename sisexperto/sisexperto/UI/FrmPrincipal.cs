@@ -536,7 +536,9 @@ namespace sisExperto
 
         private void expertosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var ventanaExpertos = new ExpertosDelSistema();
+            ventanaExpertos.ShowDialog();
+            ActualizarDetalle(null, null);
         }
         #endregion
     }

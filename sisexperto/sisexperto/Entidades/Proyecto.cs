@@ -120,7 +120,7 @@ namespace sisExperto.Entidades
                             Descripcion = c.Descripcion,
                             ValorILNumerico = (expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2,
                             ValorILLinguistico = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas
-                                    .Etiquetas[(expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2].Nombre
+                                    .Etiquetas.ElementAt((expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.Count - 1) / 2).Nombre // []
                         }
                     );
                 }

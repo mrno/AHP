@@ -1,6 +1,7 @@
 ﻿using sisExperto.Entidades;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -15,6 +16,8 @@ namespace sisexperto.Entidades.AHP
         {
             int dimension = ExpertoEnProyecto.Proyecto.Alternativas.Count;
             var matriz = new double[dimension, dimension];
+
+            
             /*
             List<ValoracionAlternativasPorCriterioExperto> listaValoracion = 
                 (from c in ValoracionAlternativasPorCriterioExperto

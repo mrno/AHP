@@ -6,6 +6,7 @@ using probaAHP;
 using sisexperto.Entidades;
 using sisexperto.Fachadas;
 using sisexperto.Entidades.AHP;
+using System.ComponentModel.DataAnnotations;
 
 namespace sisExperto.Entidades
 {
@@ -20,6 +21,7 @@ namespace sisExperto.Entidades
         public virtual Proyecto Proyecto { get; set; }
 
         //public int? ExpertoId { get; set; }
+        [Required]
         public virtual Experto Experto { get; set; }
 
         public double Ponderacion { get; set; }
@@ -56,34 +58,32 @@ namespace sisExperto.Entidades
             foreach (var alt in ValoracionIL.AlternativasIL)
             {
                 j = 0;
-
                 foreach (var cri in alt.ValorCriterios)
                 {
-
-
                     var param1 = Convert.ToInt32(cri.ValorILNumerico);
                     var param3 = ValoracionIL.ConjuntoEtiquetas.Cantidad - 1;
                     var param2 = cardinalidadCEN;
 
-
                     int variable = util.ExtrapoladoAConjuntoNormalizado(param1,
                                                                         param2,
                                                                         param3);
-                    
+
+                    var alternativa = resultado.AlternativasIL.ElementAt(i);
+                    var valorCriterio = alternativa.ValorCriterios.ElementAt(j);
+
                     if (!ConPeso)
                     {
                         var final = variable;
-                    resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico *= final; 
+                        //alternativas[i].ValorCriterios[j].ValorILNumerico *= final; 
+                        valorCriterio.ValorILNumerico *= final; 
                    
                     }else
                     {
                         var final = variable * Ponderacion;
-                        resultado.AlternativasIL[i].ValorCriterios[j].ValorILNumerico += final; 
+                        //alternativas[i].ValorCriterios[j].ValorILNumerico += final; 
+                        valorCriterio.ValorILNumerico += final; 
 
                     }
-                   
-
-
                     j++;
                 }
                 i++;

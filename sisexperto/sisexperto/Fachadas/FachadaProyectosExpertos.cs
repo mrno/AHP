@@ -324,9 +324,35 @@ namespace sisExperto
             List<ConjuntoEtiquetas> lista = _context.ConjuntoEtiquetas.ToList();
             return lista;
         }
-
+        
         public void GuardarCambios()
         {
+            _context.SaveChanges();
+        }
+
+        public void EliminarExperto(Experto experto)
+        {
+            _context.Expertos
+                .Include("ProyectosAsignados")
+                .Include("ProyectosCreados")
+
+                .Include("ProyectosAsignados.ValoracionAHP")
+                .Include("ProyectosAsignados.ValoracionAHP.CriterioMatriz")
+                .Include("ProyectosAsignados.ValoracionAHP.CriterioMatriz.FilasCriterio")
+                .Include("ProyectosAsignados.ValoracionAHP.CriterioMatriz.FilasCriterio.CeldasCriterios")
+                
+                .Include("ProyectosAsignados.ValoracionAHP.AlternativasMatrices")
+                .Include("ProyectosAsignados.ValoracionAHP.AlternativasMatrices.FilasAlternativa")
+                .Include("ProyectosAsignados.ValoracionAHP.AlternativasMatrices.FilasAlternativa.CeldasAlternativas")
+
+                .Include("ProyectosAsignados.ValoracionIL")
+                .Include("ProyectosAsignados.ValoracionIL.AlternativasIL")
+                .Include("ProyectosAsignados.ValoracionIL.AlternativasIL.ValorCriterios")
+
+                .ToList();
+
+            _context.Expertos.Remove(experto);
+
             _context.SaveChanges();
         }
     }

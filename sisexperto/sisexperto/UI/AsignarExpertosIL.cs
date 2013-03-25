@@ -63,6 +63,7 @@ namespace sisexperto.UI
             _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
 
             ActualizarListasYGrids();
+            ActualizarGridConjuntoEtiquetas();
             ActivacionBotones();
         }
         
@@ -137,7 +138,7 @@ namespace sisexperto.UI
 
         private void ActualizarGridConjuntoEtiquetas()
         {
-            _conjuntoDeEtiquetas = _fachada.SolicitarConjuntoEtiquetasToken(1);
+            _conjuntoDeEtiquetas = _proyectoSeleccionado.ConjuntosDeEtiquetas.ToList(); //_fachada.SolicitarConjuntoEtiquetasToken(1);
             conjuntoEtiquetasBindingSource.DataSource = _conjuntoDeEtiquetas;
         }
          

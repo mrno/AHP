@@ -11,7 +11,7 @@ namespace sisExperto.Entidades
     {
         public GisiaExpertoContext() : base("DataContext")
         {
-         
+            
         }
 
         public DbSet<Proyecto> Proyectos { get; set; }
@@ -40,7 +40,7 @@ namespace sisExperto.Entidades
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
          
-            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();           
 
             modelBuilder.Entity<Proyecto>()
                 .HasRequired(x => x.Creador)
@@ -52,6 +52,17 @@ namespace sisExperto.Entidades
             modelBuilder.Entity<ValoracionIL>()
                 .HasRequired(x => x.ExpertoEnProyecto);
 
+            //modelBuilder.Entity<Experto>()
+            //    .HasMany(x => x.ProyectosAsignados)
+            //    .WithRequired(x => x.Experto).WillCascadeOnDelete(true);
+
+            //modelBuilder.Entity<ExpertoEnProyecto>()
+            //    .HasOptional(x => x.ValoracionAHP)
+            //    .WithRequired(x => x.ExpertoEnProyecto).WillCascadeOnDelete(true);
+
+            //modelBuilder.Entity<ExpertoEnProyecto>()
+            //    .HasOptional(x => x.ValoracionIL)
+            //    .WithRequired(x => x.ExpertoEnProyecto).WillCascadeOnDelete(true);
 
             base.OnModelCreating(modelBuilder);
         }

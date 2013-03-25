@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Linq;
 using sisExperto;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
@@ -52,7 +53,7 @@ namespace sisexperto.UI
                         string[] posicion = track.Name.Split('x');
                         Label l = (Label) miLabel;
 
-                        List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas;
+                        List<Etiqueta> listaEtiquetas = _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas.ToList();
 
                         var etiqueta = listaEtiquetas[(track.Value )];
                         l.Text = etiqueta.Nombre;

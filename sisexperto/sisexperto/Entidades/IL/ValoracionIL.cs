@@ -8,7 +8,7 @@ namespace sisexperto.Entidades
     public class ValoracionIL : Valoracion
     {
         public virtual ConjuntoEtiquetas ConjuntoEtiquetas { get; set; }
-        public virtual List<AlternativaIL> AlternativasIL { get; set; }
+        public virtual ICollection<AlternativaIL> AlternativasIL { get; set; }
 
         public bool valorada()
         {

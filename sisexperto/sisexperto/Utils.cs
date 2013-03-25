@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using sisExperto;
 using sisexperto.Entidades;
 
@@ -10,7 +11,10 @@ namespace probaAHP
         public void AgregacionCriterios(ValoracionIL resultado, double[,] rankAgregado)
         {
             int iAlternativa = 0;
-            int denominador = resultado.AlternativasIL[0].ValorCriterios.Count;
+
+            var alternativas = resultado.AlternativasIL.ToList();
+
+            int denominador = alternativas[0].ValorCriterios.Count;
             foreach (var VARIABLE in resultado.AlternativasIL)
             {
 
