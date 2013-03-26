@@ -4,6 +4,7 @@ using System.Linq;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
+using System.Windows.Forms;
 
 namespace sisExperto
 {
@@ -328,7 +329,15 @@ namespace sisExperto
         
         public void GuardarCambios()
         {
-            _context.SaveChanges();
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error temporal de acceso a la base de datos.");
+            }
+
         }
 
         public void EliminarValoracion(Experto experto)
