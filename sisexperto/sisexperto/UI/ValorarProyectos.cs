@@ -4,6 +4,7 @@ using sisexperto.Fachadas;
 using sisexperto.UI.Clases;
 using sisExperto;
 using sisExperto.Entidades;
+using sisExperto.Fachadas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -510,7 +511,6 @@ namespace sisexperto.UI
                     MessageBox.Show("Matriz consistente.");
                 else
                 {
-                    MessageBox.Show("Matriz inconsistente.");
                     EjecutarSugerencias(matriz);
                 }
             }
@@ -522,7 +522,7 @@ namespace sisexperto.UI
             var sugerencias = GenerarSugerencias(matriz);
             if (sugerencias.Count() > 0)
             {
-                var preguntarPorSugerencias = MessageBox.Show("¿Desea ver las sugerencias?", "Información", MessageBoxButtons.YesNo);
+                var preguntarPorSugerencias = MessageBox.Show("Matriz inconsistente. ¿Desea ver las sugerencias?", "Información", MessageBoxButtons.YesNo);
 
                 if (preguntarPorSugerencias.ToString() == "Yes")
                 {
@@ -728,5 +728,22 @@ namespace sisexperto.UI
         }
 
         #endregion
+
+        private void buttonCalcular_Click(object sender, EventArgs e)
+        {
+            if (_proyectoSeleccionado != null)
+            {
+                if (!_expertoEnProyecto.ValoracionAHP.TodasMisValoracionesConsistentes())
+                {
+                    MessageBox.Show("No se puede realizar esta operación hasta que todas sus valoraciones sean consistentes.");
+                }
+                else
+                {
+                    var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, new FachadaEjecucionProyecto(), _expertoEnProyecto, 1);
+                    ventanaAHPPersonal.Show();
+                }
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
+        }
     }
 }

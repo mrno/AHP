@@ -21,6 +21,9 @@ namespace sisExperto.Entidades
         public DbSet<Criterio> Criterios { get; set; }
         public DbSet<Alternativa> Alternativas { get; set; }
 
+        public DbSet<ValoracionAHP> ValoracionesAHP { get; set; }
+        public DbSet<ValoracionIL> ValoracionesIL { get; set; }
+
         public DbSet<CriterioMatriz> CriteriosMatrices { get; set; }
         public DbSet<CriterioFila> CriteriosFilas { get; set; }
         public DbSet<CriterioCelda> CriteriosCeldas { get; set; }

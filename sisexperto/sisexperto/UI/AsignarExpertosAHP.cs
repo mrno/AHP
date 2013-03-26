@@ -162,16 +162,47 @@ namespace sisexperto.UI
         {
             _fachada.GuardarExpertos(_proyectoSeleccionado, _expertosDelProyecto);
             ExpertosAsignados();
-            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
-            if (ventana.ToString() == "Yes")
-            {
-                var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
-                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
-                _ventanaCargarProyecto.ShowDialog();
+
+            MessageBox.Show("Expertos guardados con éxito. " + _proyectoSeleccionado.RequerimientoParaPublicar());
+
+            if (_proyectoSeleccionado.PosiblePublicar())
+            { 
+                var ventana = MessageBox.Show("¿Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
+                if (ventana.ToString() == "Yes")
+                {
+                    _fachada.PublicarProyecto(_proyectoSeleccionado);
+                    MessageBox.Show("Proyecto publicado.");
+                    ExpertosAsignados();
+                    PosPublicacion();
+                }
             }
+
+            //var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
+            //if (ventana.ToString() == "Yes")
+            //{
+            //    var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
+            //    _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+            //    _ventanaCargarProyecto.ShowDialog();
+            //}
         }
 
-        
+        private void PosPublicacion()
+        {
+            //elimina los datos del combobox y la lista de proyectos que están para modificar
+            _proyectosAHP.Remove(_proyectoSeleccionado);
+
+            if (_proyectosAHP.Count == 0)
+            {
+                comboBoxProyectos.Text = "";
+                MessageBox.Show("No existen proyectos no publicados para asignar expertos.");
+                Close();
+            }
+            else
+            {
+                _proyectoSeleccionado = _proyectosAHP[0];
+                comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
+            }
+        }
 
     }
 }

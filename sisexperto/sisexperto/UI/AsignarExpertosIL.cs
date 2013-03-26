@@ -122,7 +122,7 @@ namespace sisexperto.UI
         {
             btnAgregar.Enabled = _expertosDisponibles.Any();
             btnQuitar.Enabled = _expertosDelProyecto.Any();
-            btnAgregarConjunto.Enabled = _conjuntoDeEtiquetas.Any();
+            btnAsignarConjunto.Enabled = _conjuntoDeEtiquetas.Any();
         }
 
         private void ActualizarListasYGrids()
@@ -194,21 +194,55 @@ namespace sisexperto.UI
 
             _fachada.GuardarExpertos(_proyectoSeleccionado, expertosParaProyecto);
             ExpertosAsignados();
-            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
-            if (ventana.ToString() == "Yes")
+
+            MessageBox.Show("Expertos guardados con éxito. " + _proyectoSeleccionado.RequerimientoParaPublicar());
+
+            if (_proyectoSeleccionado.PosiblePublicar())
             {
-                var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
-                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
-                _ventanaCargarProyecto.ShowDialog();
+                var ventana = MessageBox.Show("¿Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
+                if (ventana.ToString() == "Yes")
+                {
+                    _fachada.PublicarProyecto(_proyectoSeleccionado);
+                    MessageBox.Show("Proyecto publicado.");
+                    ExpertosAsignados();
+                    PosPublicacion();
+                }
+            }
+
+            //var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
+            //if (ventana.ToString() == "Yes")
+            //{
+            //    var _ventanaCargarProyecto = new EditarProyecto(_proyectoSeleccionado, _experto, _fachada);
+            //    _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+            //    _ventanaCargarProyecto.ShowDialog();
+            //}
+        }
+
+        private void PosPublicacion()
+        {
+            //elimina los datos del combobox y la lista de proyectos que están para modificar
+            _proyectosIL.Remove(_proyectoSeleccionado);
+
+            if (_proyectosIL.Count == 0)
+            {
+                comboBoxProyectos.Text = "";
+                MessageBox.Show("No existen proyectos no publicados para asignar expertos.");
+                Close();
+            }
+            else
+            {
+                _proyectoSeleccionado = _proyectosIL[0];
+                comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
             }
         }
 
         private void btnNuevoConjuntoEtiquetas_Click(object sender, EventArgs e)
         {
-            var ventanaCreacionLabels = new CrearEtiquetas();
+            var ventanaCreacionLabels = new CrearEtiquetas(_proyectoSeleccionado);
             ventanaCreacionLabels.ShowDialog();
 
             ActualizarGridConjuntoEtiquetas();
+            btnAsignarConjunto.Enabled = _conjuntoDeEtiquetas.Any();
         }
 
         private void btnAgregarConjunto_Click(object sender, EventArgs e)

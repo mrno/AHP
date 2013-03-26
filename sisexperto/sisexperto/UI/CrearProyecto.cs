@@ -1,6 +1,7 @@
 ﻿using sisexperto.Entidades;
 using sisExperto;
 using sisExperto.Entidades;
+using sisExperto.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -63,7 +64,10 @@ namespace sisexperto.UI
             });
             ProyectoCreado();
 
-            var ventana = MessageBox.Show("Cambios guardados con éxito. ¿Desea editar los expertos del proyecto?", "Información", MessageBoxButtons.YesNo);
+            MessageBox.Show("Proyecto creado con éxito. " + proyectoCreado.RequerimientoParaPublicar());
+
+            //permitimos al usuario cargar los expertos
+            var ventana = MessageBox.Show("¿Desea editar los expertos del proyecto?", "Información", MessageBoxButtons.YesNo);
             if (ventana.ToString() == "Yes")
             {
                 Form ventanaEditarExpertos = null;
@@ -78,8 +82,18 @@ namespace sisexperto.UI
                     (ventanaEditarExpertos as AsignarExpertosIL).ExpertosAsignados += (ExpertosAsignados);
                 }
                 ventanaEditarExpertos.ShowDialog();
+            }    
+
+            //permitimos al usuario cargar los criterios y alternativas
+            var ventana1 = MessageBox.Show("¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
+            if (ventana1.ToString() == "Yes")
+            {
+                var _ventanaCargarProyecto = new EditarProyecto(proyectoCreado, _experto, _fachada);
+                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+                _ventanaCargarProyecto.ShowDialog();
             }
-            LimpiarCampos();            
+
+            this.Close();
         }
 
         private void LimpiarCampos()
@@ -93,6 +107,5 @@ namespace sisexperto.UI
         {
             ProyectoModificado();
         }
-
     }
 }

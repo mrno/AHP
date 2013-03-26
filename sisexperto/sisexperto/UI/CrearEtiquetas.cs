@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using sisexperto.Entidades;
+using sisExperto.Entidades;
 
 namespace sisExperto.UI
 {
@@ -15,14 +16,16 @@ namespace sisExperto.UI
 
         private readonly FachadaProyectosExpertos _fachada;
         private readonly int _token;
-        private ConjuntoEtiquetas _conjuntoEtiquetas = new ConjuntoEtiquetas();
+        //private ConjuntoEtiquetas _conjuntoEtiquetas = new ConjuntoEtiquetas();
         private List<Etiqueta> _etiquetas = new List<Etiqueta>();
 
-        public CrearEtiquetas() //int Token)
+        private Proyecto _proyecto;
+
+        public CrearEtiquetas(Proyecto proyecto) //int Token)
         {
             InitializeComponent();
             _token = 0; // Token;
-            //_proyectoSeleccionado = Proyecto;
+            _proyecto = proyecto;
             _fachada = new FachadaProyectosExpertos();
         }
 
@@ -68,14 +71,25 @@ namespace sisExperto.UI
             if ((_etiquetas.Count >= 3 && _etiquetas.Count <= 13) && ((_etiquetas.Count & 1) != 0))
             {
                 PrepararGuardado();
-                _conjuntoEtiquetas.Descripcion = textBoxDescripcionConjunto.Text;
-                _conjuntoEtiquetas.Nombre = textBoxNombreConjunto.Text;
-                _conjuntoEtiquetas.Token = _token;
-                _conjuntoEtiquetas.Etiquetas = _etiquetas;
-                _conjuntoEtiquetas.Tipo = 1;
-                _conjuntoEtiquetas.Cantidad = _etiquetas.Count;
-                _fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
-              
+                var conjunto = new ConjuntoEtiquetas()
+                {
+                    Descripcion = textBoxDescripcionConjunto.Text,
+                    Nombre = textBoxNombreConjunto.Text,
+                    Token = _token,
+                    Etiquetas = _etiquetas,
+                    Tipo = 1,
+                    Cantidad = _etiquetas.Count
+                };
+                _fachada.GuardarConjuntoEtiquetas(_proyecto, conjunto);
+
+                //_conjuntoEtiquetas.Descripcion = textBoxDescripcionConjunto.Text;
+                //_conjuntoEtiquetas.Nombre = textBoxNombreConjunto.Text;
+                //_conjuntoEtiquetas.Token = _token;
+                //_conjuntoEtiquetas.Etiquetas = _etiquetas;
+                //_conjuntoEtiquetas.Tipo = 1;
+                //_conjuntoEtiquetas.Cantidad = _etiquetas.Count;
+                //_fachada.GuardarConjuntoEtiquetas(_conjuntoEtiquetas);
+
                 MessageBox.Show("Se creo el conjunto de etiquetas satisfactoriamente.");
                 Limpiar();
                 Close();
@@ -100,7 +114,7 @@ namespace sisExperto.UI
 
             _etiquetas = new List<Etiqueta>();
 
-            _conjuntoEtiquetas = new ConjuntoEtiquetas();
+            //_conjuntoEtiquetas = new ConjuntoEtiquetas();
         }
 
         private void buttonLimpiarAsignaciones_Click(object sender, EventArgs e)

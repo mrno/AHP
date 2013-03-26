@@ -28,14 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridResultados = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelSubtitulo = new System.Windows.Forms.Label();
             this.labelTitulo = new System.Windows.Forms.Label();
+            this.resultadoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentajeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultadoViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -53,11 +58,17 @@
             // 
             this.dataGridResultados.AllowUserToAddRows = false;
             this.dataGridResultados.AllowUserToDeleteRows = false;
+            this.dataGridResultados.AutoGenerateColumns = false;
             this.dataGridResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridResultados.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridResultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.alternativaDataGridViewTextBoxColumn,
+            this.porcentajeDataGridViewTextBoxColumn});
+            this.dataGridResultados.DataSource = this.resultadoViewModelBindingSource;
             this.dataGridResultados.Location = new System.Drawing.Point(6, 25);
             this.dataGridResultados.Name = "dataGridResultados";
+            this.dataGridResultados.ReadOnly = true;
             this.dataGridResultados.RowHeadersVisible = false;
             this.dataGridResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridResultados.Size = new System.Drawing.Size(448, 350);
@@ -103,6 +114,24 @@
             this.labelTitulo.TabIndex = 7;
             this.labelTitulo.Text = "Nombre";
             // 
+            // resultadoViewModelBindingSource
+            // 
+            this.resultadoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ResultadoViewModel);
+            // 
+            // alternativaDataGridViewTextBoxColumn
+            // 
+            this.alternativaDataGridViewTextBoxColumn.DataPropertyName = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn.HeaderText = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn.Name = "alternativaDataGridViewTextBoxColumn";
+            this.alternativaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // porcentajeDataGridViewTextBoxColumn
+            // 
+            this.porcentajeDataGridViewTextBoxColumn.DataPropertyName = "Porcentaje";
+            this.porcentajeDataGridViewTextBoxColumn.HeaderText = "Porcentaje";
+            this.porcentajeDataGridViewTextBoxColumn.Name = "porcentajeDataGridViewTextBoxColumn";
+            this.porcentajeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // MostrarRankingPersonal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -114,10 +143,12 @@
             this.Controls.Add(this.labelSubtitulo);
             this.Controls.Add(this.labelTitulo);
             this.Name = "MostrarRankingPersonal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MostrarRankingPersonal";
             this.Load += new System.EventHandler(this.MostrarRankingPersonal_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultadoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,6 +162,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelSubtitulo;
         private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource resultadoViewModelBindingSource;
 
     }
 }

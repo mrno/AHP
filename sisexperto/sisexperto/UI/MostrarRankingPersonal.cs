@@ -11,6 +11,7 @@ using sisExperto.Fachadas;
 using sisExperto.Entidades;
 using sisExperto;
 using sisexperto.Entidades;
+using sisexperto.UI.Clases;
 
 namespace sisexperto.UI
 {
@@ -79,31 +80,19 @@ namespace sisexperto.UI
 
             int cont = 0;
 
-            var listaResultado = new List<Resultado>();
+            var listaResultado = new List<ResultadoViewModel>();
             foreach (Alternativa alternativa in listaAlt)
             {
-                var resultado = new Resultado();
+                var resultado = new ResultadoViewModel();
                 resultado.Alternativa = alternativa.Nombre;
-                resultado.Porcentaje = rankingFinal[cont, 0];
+                resultado.ValorPorcentaje = rankingFinal[cont, 0];
                 cont++;
                 listaResultado.Add(resultado);
             }
 
-            dataGridResultados.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
-
-            
+            resultadoViewModelBindingSource.DataSource = listaResultado.OrderByDescending(x => x.ValorPorcentaje).ToList();
+            //dataGridResultados.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();            
         }
-
-        #region Nested type: Resultado
-
-        internal class Resultado
-        {
-            public String Alternativa { get; set; }
-            public double Porcentaje { get; set; }
-        }
-
-        #endregion
-
         
     }
 }

@@ -277,7 +277,14 @@ namespace sisExperto
             {
                 ejecutarToolStripMenuItem1.Enabled = false;
                 alternativasYCriteriosToolStripMenuItem.Enabled = true;
-                conjuntosDeEtiquetasToolStripMenuItem.Enabled = true;
+                if (_proyectoSeleccionado.Tipo == "AHP")
+                {
+                    conjuntosDeEtiquetasToolStripMenuItem.Enabled = false;                
+                }
+                else
+                {
+                    conjuntosDeEtiquetasToolStripMenuItem.Enabled = true;                
+                }
             }
 
             /* Por tipo de proyecto deshabilito la ejecución y el conjunto de etiquetas */
@@ -434,6 +441,7 @@ namespace sisExperto
             {
                 _fachadaProyectosExpertos.PublicarProyecto(_proyectoSeleccionado);
                 ActualizarGridYDetalleProyectoModificado();
+                MessageBox.Show("Proyecto publicado.");
             }
             else MessageBox.Show(_proyectoSeleccionado.RequerimientoParaPublicar()); 
         }
@@ -484,8 +492,7 @@ namespace sisExperto
 
                 if (!expertoEnProyecto.ValoracionAHP.TodasMisValoracionesConsistentes())
                 {
-                    MessageBox.Show("No se puede realizar esta operación porque las todas sus valoraciones no son consistentes.");
-
+                    MessageBox.Show("No se puede realizar esta operación hasta que todas sus valoraciones sean consistentes.");
                 }
                 else
                 {
@@ -520,12 +527,15 @@ namespace sisExperto
 
         private void crearToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var ventanaCreacionLabels = new CrearEtiquetas();
-            ventanaCreacionLabels.Show();
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaCreacionLabels = new CrearEtiquetas(_proyectoSeleccionado);
+                ventanaCreacionLabels.Show();
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");            
         }
         #endregion
-
-
+        
         #region Expertos
 
         private void crearToolStripMenuItem_Click(object sender, EventArgs e)
@@ -536,9 +546,9 @@ namespace sisExperto
 
         private void expertosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaExpertos = new ExpertosDelSistema();
+            var ventanaExpertos = new ExpertosDelSistema(_experto);
+            ventanaExpertos.ProyectoModificado += (ActualizarGridYDetalleProyectoModificado);
             ventanaExpertos.ShowDialog();
-            ActualizarDetalle(null, null);
         }
         #endregion
     }

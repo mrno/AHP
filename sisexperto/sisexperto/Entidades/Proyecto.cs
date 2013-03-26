@@ -129,7 +129,7 @@ namespace sisExperto.Entidades
 
         public string RequerimientoParaPublicar()
         {
-            var mensaje = "Si desea publicar el proyecto debe:";
+            var mensaje = "";
             
             if (ExpertosAsignados.Count() == 0)
             {
@@ -143,15 +143,19 @@ namespace sisExperto.Entidades
 
                 mensaje += "\n- Todos los expertos deben tener un conjunto de etiquetas asignado.";
             }
-            if (Alternativas.Count < 3)
+            if (Alternativas.Count < 4)
             {
-                mensaje += "\n- Agregar al menos " + (3 - Alternativas.Count) + " alternativas.";
+                mensaje += "\n- Agregar al menos " + (4 - Alternativas.Count) + " alternativas.";
             }
-            if (Criterios.Count < 3)
+            if (Criterios.Count < 4)
             {
-                mensaje += "\n- Agregar al menos " + (3 - Criterios.Count) + " criterios.";
+                mensaje += "\n- Agregar al menos " + (4 - Criterios.Count) + " criterios.";
             }
-            return mensaje;
+
+            if (mensaje.Length > 0)
+                return "Si desea publicar el proyecto debe:" + mensaje;
+            else
+                return "El proyecto está en condiciones de publicarse.";
         }
 
         public bool PosiblePublicar()
@@ -162,8 +166,8 @@ namespace sisExperto.Entidades
 
             return (ExpertosAsignados.Count() > 0
                         && (todosConConjuntoEtiquetas || Tipo == "AHP")
-                        && Alternativas.Count > 2
-                        && Alternativas.Count > 2);
+                        && Alternativas.Count >= 4
+                        && Alternativas.Count >= 4);
         }
 
         public bool TodosLosExpertosPonderados()

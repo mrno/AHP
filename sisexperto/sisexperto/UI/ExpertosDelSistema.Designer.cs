@@ -34,6 +34,7 @@
             this.buttonEliminar = new System.Windows.Forms.Button();
             this.buttonCancelar = new System.Windows.Forms.Button();
             this.buttonCrear = new System.Windows.Forms.Button();
+            this.buttonEliminarValoraciones = new System.Windows.Forms.Button();
             this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usuarioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,7 +51,7 @@
             this.groupBoxListadoExpertos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxListadoExpertos.Location = new System.Drawing.Point(12, 12);
             this.groupBoxListadoExpertos.Name = "groupBoxListadoExpertos";
-            this.groupBoxListadoExpertos.Size = new System.Drawing.Size(560, 501);
+            this.groupBoxListadoExpertos.Size = new System.Drawing.Size(580, 501);
             this.groupBoxListadoExpertos.TabIndex = 3;
             this.groupBoxListadoExpertos.TabStop = false;
             this.groupBoxListadoExpertos.Text = "Listado de Expertos";
@@ -75,13 +76,13 @@
             this.dataGridExpertos.ReadOnly = true;
             this.dataGridExpertos.RowHeadersVisible = false;
             this.dataGridExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridExpertos.Size = new System.Drawing.Size(548, 470);
+            this.dataGridExpertos.Size = new System.Drawing.Size(568, 470);
             this.dataGridExpertos.TabIndex = 2;
             // 
             // buttonEliminar
             // 
             this.buttonEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEliminar.Location = new System.Drawing.Point(286, 519);
+            this.buttonEliminar.Location = new System.Drawing.Point(304, 519);
             this.buttonEliminar.Name = "buttonEliminar";
             this.buttonEliminar.Size = new System.Drawing.Size(140, 30);
             this.buttonEliminar.TabIndex = 5;
@@ -92,7 +93,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCancelar.Location = new System.Drawing.Point(432, 519);
+            this.buttonCancelar.Location = new System.Drawing.Point(450, 519);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(140, 30);
             this.buttonCancelar.TabIndex = 6;
@@ -103,13 +104,24 @@
             // buttonCrear
             // 
             this.buttonCrear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCrear.Location = new System.Drawing.Point(140, 519);
+            this.buttonCrear.Location = new System.Drawing.Point(12, 519);
             this.buttonCrear.Name = "buttonCrear";
             this.buttonCrear.Size = new System.Drawing.Size(140, 30);
             this.buttonCrear.TabIndex = 4;
             this.buttonCrear.Text = "Crear Experto";
             this.buttonCrear.UseVisualStyleBackColor = true;
             this.buttonCrear.Click += new System.EventHandler(this.buttonCrear_Click);
+            // 
+            // buttonEliminarValoraciones
+            // 
+            this.buttonEliminarValoraciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEliminarValoraciones.Location = new System.Drawing.Point(158, 519);
+            this.buttonEliminarValoraciones.Name = "buttonEliminarValoraciones";
+            this.buttonEliminarValoraciones.Size = new System.Drawing.Size(140, 30);
+            this.buttonEliminarValoraciones.TabIndex = 7;
+            this.buttonEliminarValoraciones.Text = "Elim. Valoraciones";
+            this.buttonEliminarValoraciones.UseVisualStyleBackColor = true;
+            this.buttonEliminarValoraciones.Click += new System.EventHandler(this.buttonEliminarValoraciones_Click);
             // 
             // apellidoDataGridViewTextBoxColumn
             // 
@@ -147,7 +159,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.ClientSize = new System.Drawing.Size(604, 561);
+            this.Controls.Add(this.buttonEliminarValoraciones);
             this.Controls.Add(this.buttonEliminar);
             this.Controls.Add(this.buttonCancelar);
             this.Controls.Add(this.buttonCrear);
@@ -175,5 +188,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn usuarioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource expertoBindingSource;
+        private System.Windows.Forms.Button buttonEliminarValoraciones;
     }
 }

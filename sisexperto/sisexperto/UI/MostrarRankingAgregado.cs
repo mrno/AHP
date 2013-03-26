@@ -7,6 +7,7 @@ using sisexperto.Entidades;
 using sisExperto.Fachadas;
 using sisexperto.UI;
 using probaAHP;
+using sisexperto.UI.Clases;
 
 namespace sisExperto
 {
@@ -83,53 +84,35 @@ namespace sisExperto
 
             int cont = 0;
 
-            var listaResultado = new List<Resultado>();
+            var listaResultado = new List<ResultadoViewModel>();
             foreach (Alternativa alternativa in listaAlt)
             {
-                var resultado = new Resultado();
+                var resultado = new ResultadoViewModel();
                 resultado.Alternativa = alternativa.Nombre;
-                resultado.Porcentaje = rankingFinal[cont, 0];
+                resultado.ValorPorcentaje = rankingFinal[cont, 0];
                 cont++;
                 listaResultado.Add(resultado);
             }
-
-            dataGridResultados.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
+            resultadoViewModelBindingSource.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
+            //dataGridResultados.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
         }
-
-        #region Nested type: Resultado
-
-        internal class Resultado
-        {
-            public String Alternativa { get; set; }
-            public double Porcentaje { get; set; }
-        }
-
-        #endregion
-
-        private void buttonMostrar_Click(object sender, EventArgs e)
-        {
-            var exp = (Experto)dataGridExpertos.CurrentRow.DataBoundItem;
-            var expEnProyecto = _fachadaExpertos.SolicitarExpertoProyectoActual(_proyecto, exp);
-            MostrarRankingPersonal ventanaRankingPersonal;
-            if (_modelo==0)//AHP
-               {
-                    ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 1);
-               }
-               else
-               {
-                    ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 2);       
-               }
+        
+        //private void buttonMostrar_Click(object sender, EventArgs e)
+        //{
+        //    var exp = (Experto)dataGridExpertos.CurrentRow.DataBoundItem;
+        //    var expEnProyecto = _fachadaExpertos.SolicitarExpertoProyectoActual(_proyecto, exp);
+        //    MostrarRankingPersonal ventanaRankingPersonal;
+        //    if (_modelo==0)//AHP
+        //       {
+        //            ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 1);
+        //       }
+        //       else
+        //       {
+        //            ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 2);       
+        //       }
             
-            ventanaRankingPersonal.Show();
-        }
-
-
-
-
-
-
-
-
+        //    ventanaRankingPersonal.Show();
+        //}
 
         public double[,] CalcularRankingPersonal(Proyecto _proyecto, FachadaEjecucionProyecto _fachada, ExpertoEnProyecto _experto, int _tipo)
         {
@@ -178,8 +161,7 @@ namespace sisExperto
 
 
         private void mostrarRankingPersonal(object sender, DataGridViewCellEventArgs e)
-        {
-            
+        {            
             ExpertoEnProyecto miExpertoProyecto = new ExpertoEnProyecto();
             var exp = (Experto)dataGridExpertos.CurrentRow.DataBoundItem;
             var expProy = _fachadaExpertos.ObtenerExpertosActivosEnProyecto(_proyecto);
@@ -207,17 +189,17 @@ namespace sisExperto
 
             int cont = 0;
 
-            var listaResultado = new List<Resultado>();
+            var listaResultado = new List<ResultadoViewModel>();
             foreach (Alternativa alternativa in listaAlt)
             {
-                var resultado = new Resultado();
+                var resultado = new ResultadoViewModel();
                 resultado.Alternativa = alternativa.Nombre;
-                resultado.Porcentaje = rankingPersonal[cont, 0];
+                resultado.ValorPorcentaje = rankingPersonal[cont, 0];
                 cont++;
                 listaResultado.Add(resultado);
             }
-
-            dataGridRankingPersonal.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
+            resultadoViewModelBindingSourceIndividual.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
+            //dataGridRankingPersonal.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
         }
     }
 }

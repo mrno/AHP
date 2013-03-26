@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridSugerencias = new System.Windows.Forms.DataGridView();
             this.buttonAplicar = new System.Windows.Forms.Button();
             this.buttonOtraSugerencia = new System.Windows.Forms.Button();
@@ -50,6 +52,14 @@
             this.dataGridSugerencias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.descripcionDataGridViewTextBoxColumn});
             this.dataGridSugerencias.DataSource = this.sugerenciaViewModelBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridSugerencias.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridSugerencias.Location = new System.Drawing.Point(13, 18);
             this.dataGridSugerencias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridSugerencias.MultiSelect = false;
@@ -99,9 +109,12 @@
             // descripcionDataGridViewTextBoxColumn
             // 
             this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.descripcionDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
             this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
             this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.descripcionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // sugerenciaViewModelBindingSource
             // 
@@ -119,7 +132,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Sugerencias";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sugerencias";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridSugerencias)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sugerenciaViewModelBindingSource)).EndInit();
@@ -133,8 +146,8 @@
         private System.Windows.Forms.Button buttonAplicar;
         private System.Windows.Forms.Button buttonOtraSugerencia;
         private System.Windows.Forms.Button buttonSalir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource sugerenciaViewModelBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
 
     }
 }

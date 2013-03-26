@@ -257,14 +257,15 @@ namespace sisExperto
             return proyecto.Estado;
         }
         
-        public void GuardarConjuntoEtiquetas(ConjuntoEtiquetas ConjuntoEtiquetas)
+        public void GuardarConjuntoEtiquetas(Proyecto proyecto, ConjuntoEtiquetas conjuntoEtiquetas)
         {
-            
-            _context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
-            foreach (var item in ConjuntoEtiquetas.Etiquetas)
-            {
-                _context.Etiqueta.Add(item);
-            }
+            proyecto.ConjuntosDeEtiquetas.Add(conjuntoEtiquetas);
+
+            //_context.ConjuntoEtiquetas.Add(ConjuntoEtiquetas);
+            //foreach (var item in ConjuntoEtiquetas.Etiquetas)
+            //{
+            //    _context.Etiqueta.Add(item);
+            //}
             
             _context.SaveChanges();
         }
@@ -330,11 +331,10 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-        public void EliminarExperto(Experto experto)
+        public void EliminarValoracion(Experto experto)
         {
             _context.Expertos
                 .Include("ProyectosAsignados")
-                .Include("ProyectosCreados")
 
                 .Include("ProyectosAsignados.ValoracionAHP")
                 .Include("ProyectosAsignados.ValoracionAHP.CriterioMatriz")
@@ -351,8 +351,30 @@ namespace sisExperto
 
                 .ToList();
 
-            _context.Expertos.Remove(experto);
+            var proyectos = experto.ProyectosAsignados.Count;
+            
+            for (int i = 0; i < proyectos; i++)
+	        {
+                var item = experto.ProyectosAsignados.First();
+                                
+                _context.ExpertosEnProyectos.Remove(item);
+                experto.ProyectosAsignados.Remove(item);
+                _context.SaveChanges();
+	        }
+        }
 
+        public void EliminarExperto(Experto experto)
+        {
+            _context.Expertos.Remove(experto);
+            _context.SaveChanges();
+        }
+
+        public void TransferirProyectos(Experto origen, Experto destino)
+        {
+            foreach (var item in origen.ProyectosCreados)
+            {
+                destino.ProyectosCreados.Add(item);
+            }
             _context.SaveChanges();
         }
     }

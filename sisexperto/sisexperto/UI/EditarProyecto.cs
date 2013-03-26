@@ -44,11 +44,12 @@ namespace sisExperto.UI
         {
             comboBoxProyectos.DataSource = _proyectosEnEdicion;
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
-            comboBoxProyectos.SelectedIndexChanged += comboBoxProyectos_SelectedIndexChanged;
-
-            
+            comboBoxProyectos.SelectedIndexChanged += comboBoxProyectos_SelectedIndexChanged;           
 
             RefrescarGrids();
+
+            buttonQuitarAlternativa.Enabled = _listaAlternativas.Any();
+            buttonQuitarCriterio.Enabled = _listaCriterios.Any();
         }
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -87,14 +88,15 @@ namespace sisExperto.UI
                     Descripcion = textBoxDescripcionAlternativa.Text,
                     Proyecto = _proyectoSeleccionado
                 };
-                
-                
+                                
                 _listaAlternativas.Add(alternativa);
-
-                RefrescarGrids();
-
+                if (_listaAlternativas.Count == 9)
+                {
+                    buttonAgregarAlternativa.Enabled = false;
+                }
                 buttonQuitarAlternativa.Enabled = true;
 
+                RefrescarGrids();
                 _cambiosNoGuardados = true;
             }
             else MessageBox.Show("El Nombre y la Descripción de la alternativa no pueden estar vacíos.");
@@ -107,6 +109,7 @@ namespace sisExperto.UI
 
             RefrescarGrids();
 
+            buttonAgregarAlternativa.Enabled = true;
             buttonQuitarAlternativa.Enabled = _listaAlternativas.Any();
 
             _cambiosNoGuardados = true;
@@ -126,12 +129,15 @@ namespace sisExperto.UI
                     Descripcion = textBoxDescripcionCriterio.Text,
                     Proyecto = _proyectoSeleccionado
                 };
+
                 _listaCriterios.Add(criterio);
-
-                RefrescarGrids();
-
+                if (_listaCriterios.Count == 9)
+                {
+                    buttonAgregarCriterio.Enabled = false;
+                }
                 buttonQuitarCriterio.Enabled = true;
 
+                RefrescarGrids();
                 _cambiosNoGuardados = true;
             }
             else MessageBox.Show("El Nombre y la Descripción del criterio no pueden estar vacíos.");
@@ -143,6 +149,7 @@ namespace sisExperto.UI
 
             RefrescarGrids();
 
+            buttonAgregarCriterio.Enabled = true;
             buttonQuitarCriterio.Enabled = _listaCriterios.Any();
 
             _cambiosNoGuardados = true;
@@ -167,7 +174,7 @@ namespace sisExperto.UI
                 comboBoxProyectos.Text = "";
                 buttonGuardar.Enabled = false;
                 buttonLimpiarAsignaciones.Enabled = false;
-                MessageBox.Show("No existen más proyectos por valorar.");
+                MessageBox.Show("No existen más proyectos para editar.");
                 Close();
             }
             else
@@ -215,20 +222,19 @@ namespace sisExperto.UI
             _fachada.GuardarCriterios(_proyectoSeleccionado, _listaCriterios);
             ProyectoEditado();
 
-            var mensaje = "Criterios y Alternativas guardados con éxito.";
+            MessageBox.Show("Criterios y Alternativas guardados con éxito. " + _proyectoSeleccionado.RequerimientoParaPublicar());
+
             if (_proyectoSeleccionado.PosiblePublicar())
             {
-                var dialog = MessageBox.Show(mensaje + " ¿Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
-                if (dialog.ToString() == "Yes")
+                var ventana = MessageBox.Show("¿Desea publicar el proyecto?", "Información", MessageBoxButtons.YesNo);
+                if (ventana.ToString() == "Yes")
                 {
-                    //dialog y eventos para eliminar el proyecto de la lista
                     _fachada.PublicarProyecto(_proyectoSeleccionado);
-                    MessageBox.Show("Proyecto publicado");
+                    MessageBox.Show("Proyecto publicado.");
                     ProyectoEditado();
                     PosPublicacion();
                 }
-            }
-            else MessageBox.Show(mensaje + _proyectoSeleccionado.RequerimientoParaPublicar());            
+            }       
         }
     }
 }

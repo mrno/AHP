@@ -36,21 +36,27 @@
             this.dataGridResultados = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonMostrar = new System.Windows.Forms.Button();
             this.dataGridExpertos = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridRankingPersonal = new System.Windows.Forms.DataGridView();
-            this.apellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.administradorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.alternativaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentajeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultadoViewModelBindingSourceIndividual = new System.Windows.Forms.BindingSource(this.components);
             this.expertoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentajeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resultadoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ApellidoYNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.administradorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertos)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRankingPersonal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultadoViewModelBindingSourceIndividual)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultadoViewModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -97,14 +103,20 @@
             // 
             this.dataGridResultados.AllowUserToAddRows = false;
             this.dataGridResultados.AllowUserToDeleteRows = false;
+            this.dataGridResultados.AutoGenerateColumns = false;
             this.dataGridResultados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridResultados.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridResultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.alternativaDataGridViewTextBoxColumn,
+            this.porcentajeDataGridViewTextBoxColumn});
+            this.dataGridResultados.DataSource = this.resultadoViewModelBindingSource;
             this.dataGridResultados.Location = new System.Drawing.Point(6, 25);
             this.dataGridResultados.Name = "dataGridResultados";
+            this.dataGridResultados.ReadOnly = true;
             this.dataGridResultados.RowHeadersVisible = false;
             this.dataGridResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridResultados.Size = new System.Drawing.Size(350, 350);
+            this.dataGridResultados.Size = new System.Drawing.Size(288, 350);
             this.dataGridResultados.TabIndex = 5;
             // 
             // groupBox1
@@ -113,7 +125,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(364, 381);
+            this.groupBox1.Size = new System.Drawing.Size(300, 381);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ranking de Alternativas Agregado:";
@@ -122,24 +134,12 @@
             // 
             this.groupBox2.Controls.Add(this.dataGridExpertos);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(382, 68);
+            this.groupBox2.Location = new System.Drawing.Point(318, 68);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(364, 381);
+            this.groupBox2.Size = new System.Drawing.Size(350, 381);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Expertos en la Agregación:";
-            // 
-            // buttonMostrar
-            // 
-            this.buttonMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonMostrar.Location = new System.Drawing.Point(1023, 9);
-            this.buttonMostrar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonMostrar.Name = "buttonMostrar";
-            this.buttonMostrar.Size = new System.Drawing.Size(180, 30);
-            this.buttonMostrar.TabIndex = 36;
-            this.buttonMostrar.Text = "Ver Ranking Personal";
-            this.buttonMostrar.UseVisualStyleBackColor = true;
-            this.buttonMostrar.Click += new System.EventHandler(this.buttonMostrar_Click);
             // 
             // dataGridExpertos
             // 
@@ -150,15 +150,15 @@
             this.dataGridExpertos.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridExpertos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridExpertos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.apellidoDataGridViewTextBoxColumn,
-            this.nombreDataGridViewTextBoxColumn,
+            this.ApellidoYNombre,
             this.administradorDataGridViewCheckBoxColumn});
             this.dataGridExpertos.DataSource = this.expertoBindingSource;
             this.dataGridExpertos.Location = new System.Drawing.Point(6, 25);
             this.dataGridExpertos.Name = "dataGridExpertos";
+            this.dataGridExpertos.ReadOnly = true;
             this.dataGridExpertos.RowHeadersVisible = false;
             this.dataGridExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridExpertos.Size = new System.Drawing.Size(350, 350);
+            this.dataGridExpertos.Size = new System.Drawing.Size(338, 350);
             this.dataGridExpertos.TabIndex = 5;
             this.dataGridExpertos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mostrarRankingPersonal);
             // 
@@ -166,9 +166,9 @@
             // 
             this.groupBox3.Controls.Add(this.dataGridRankingPersonal);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(752, 68);
+            this.groupBox3.Location = new System.Drawing.Point(674, 68);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(408, 381);
+            this.groupBox3.Size = new System.Drawing.Size(300, 381);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranking Personal:";
@@ -177,44 +177,87 @@
             // 
             this.dataGridRankingPersonal.AllowUserToAddRows = false;
             this.dataGridRankingPersonal.AllowUserToDeleteRows = false;
+            this.dataGridRankingPersonal.AutoGenerateColumns = false;
             this.dataGridRankingPersonal.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridRankingPersonal.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridRankingPersonal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridRankingPersonal.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.alternativaDataGridViewTextBoxColumn1,
+            this.porcentajeDataGridViewTextBoxColumn1});
+            this.dataGridRankingPersonal.DataSource = this.resultadoViewModelBindingSourceIndividual;
             this.dataGridRankingPersonal.Location = new System.Drawing.Point(6, 25);
             this.dataGridRankingPersonal.Name = "dataGridRankingPersonal";
+            this.dataGridRankingPersonal.ReadOnly = true;
             this.dataGridRankingPersonal.RowHeadersVisible = false;
             this.dataGridRankingPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridRankingPersonal.Size = new System.Drawing.Size(394, 350);
+            this.dataGridRankingPersonal.Size = new System.Drawing.Size(288, 350);
             this.dataGridRankingPersonal.TabIndex = 6;
             // 
-            // apellidoDataGridViewTextBoxColumn
+            // alternativaDataGridViewTextBoxColumn1
             // 
-            this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
-            this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            this.alternativaDataGridViewTextBoxColumn1.DataPropertyName = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn1.FillWeight = 65F;
+            this.alternativaDataGridViewTextBoxColumn1.HeaderText = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn1.Name = "alternativaDataGridViewTextBoxColumn1";
+            this.alternativaDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // nombreDataGridViewTextBoxColumn
+            // porcentajeDataGridViewTextBoxColumn1
             // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.porcentajeDataGridViewTextBoxColumn1.DataPropertyName = "Porcentaje";
+            this.porcentajeDataGridViewTextBoxColumn1.FillWeight = 35F;
+            this.porcentajeDataGridViewTextBoxColumn1.HeaderText = "Porcentaje";
+            this.porcentajeDataGridViewTextBoxColumn1.Name = "porcentajeDataGridViewTextBoxColumn1";
+            this.porcentajeDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // administradorDataGridViewCheckBoxColumn
+            // resultadoViewModelBindingSourceIndividual
             // 
-            this.administradorDataGridViewCheckBoxColumn.DataPropertyName = "Administrador";
-            this.administradorDataGridViewCheckBoxColumn.HeaderText = "Administrador";
-            this.administradorDataGridViewCheckBoxColumn.Name = "administradorDataGridViewCheckBoxColumn";
+            this.resultadoViewModelBindingSourceIndividual.DataSource = typeof(sisexperto.UI.Clases.ResultadoViewModel);
             // 
             // expertoBindingSource
             // 
             this.expertoBindingSource.DataSource = typeof(sisExperto.Entidades.Experto);
             // 
+            // alternativaDataGridViewTextBoxColumn
+            // 
+            this.alternativaDataGridViewTextBoxColumn.DataPropertyName = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn.FillWeight = 65F;
+            this.alternativaDataGridViewTextBoxColumn.HeaderText = "Alternativa";
+            this.alternativaDataGridViewTextBoxColumn.Name = "alternativaDataGridViewTextBoxColumn";
+            this.alternativaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // porcentajeDataGridViewTextBoxColumn
+            // 
+            this.porcentajeDataGridViewTextBoxColumn.DataPropertyName = "Porcentaje";
+            this.porcentajeDataGridViewTextBoxColumn.FillWeight = 35F;
+            this.porcentajeDataGridViewTextBoxColumn.HeaderText = "Porcentaje";
+            this.porcentajeDataGridViewTextBoxColumn.Name = "porcentajeDataGridViewTextBoxColumn";
+            this.porcentajeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // resultadoViewModelBindingSource
+            // 
+            this.resultadoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ResultadoViewModel);
+            // 
+            // ApellidoYNombre
+            // 
+            this.ApellidoYNombre.DataPropertyName = "ApellidoYNombre";
+            this.ApellidoYNombre.FillWeight = 65F;
+            this.ApellidoYNombre.HeaderText = "Apellido y Nombre";
+            this.ApellidoYNombre.Name = "ApellidoYNombre";
+            this.ApellidoYNombre.ReadOnly = true;
+            // 
+            // administradorDataGridViewCheckBoxColumn
+            // 
+            this.administradorDataGridViewCheckBoxColumn.DataPropertyName = "Administrador";
+            this.administradorDataGridViewCheckBoxColumn.FillWeight = 35F;
+            this.administradorDataGridViewCheckBoxColumn.HeaderText = "Administrador";
+            this.administradorDataGridViewCheckBoxColumn.Name = "administradorDataGridViewCheckBoxColumn";
+            this.administradorDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
             // MostrarRankingAgregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1240, 461);
-            this.Controls.Add(this.buttonMostrar);
+            this.ClientSize = new System.Drawing.Size(984, 461);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -231,7 +274,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertos)).EndInit();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRankingPersonal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultadoViewModelBindingSourceIndividual)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.expertoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.resultadoViewModelBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -247,12 +292,16 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridExpertos;
-        private System.Windows.Forms.Button buttonMostrar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource expertoBindingSource;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridRankingPersonal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource resultadoViewModelBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.BindingSource resultadoViewModelBindingSourceIndividual;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ApellidoYNombre;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
     }
 }
