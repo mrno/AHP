@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
 using System.Windows.Forms;
+using sisexperto.UI.Clases;
 
 namespace sisExperto
 {
@@ -340,6 +342,18 @@ namespace sisExperto
 
         }
 
+        public void DesactivarValoracion(Experto experto)
+        {
+            if (experto.ProyectosAsignados != null)
+            {
+                foreach (var e in experto.ProyectosAsignados)
+                {
+                    e.Activo = false;
+                }
+                _context.SaveChanges();
+            }
+        }
+
         public void EliminarValoracion(Experto experto)
         {
             _context.Expertos
@@ -374,6 +388,8 @@ namespace sisExperto
 
         public void EliminarExperto(Experto experto)
         {
+            EliminarValoracion(experto);
+
             _context.Expertos.Remove(experto);
             _context.SaveChanges();
         }
@@ -386,6 +402,19 @@ namespace sisExperto
                 destino.ProyectosCreados.Add(item);
             }
             origen.ProyectosCreados.Clear();
+            _context.SaveChanges();
+        }
+
+        public void TransferirProyectos(Experto origen, Experto destino, IEnumerable<Proyecto> proyectos)
+        {
+            if (destino.ProyectosCreados == null) destino.ProyectosCreados = new Collection<Proyecto>();
+
+            foreach (var item in proyectos)
+            {
+                item.Creador = destino;
+                destino.ProyectosCreados.Add(item);
+                origen.ProyectosCreados.Remove(item);
+            }
             _context.SaveChanges();
         }
     }

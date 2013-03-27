@@ -71,9 +71,6 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.creadorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.administradorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.expertoEnProyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nombreDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,6 +81,9 @@
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.objetivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.apellidoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Activo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.creadorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             this.groupBoxDetalleProyecto.SuspendLayout();
@@ -230,8 +230,8 @@
             this.dataGridExpertosAsignados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridExpertosAsignados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.apellidoNombreDataGridViewTextBoxColumn,
-            this.creadorDataGridViewCheckBoxColumn,
-            this.administradorDataGridViewCheckBoxColumn});
+            this.Activo,
+            this.creadorDataGridViewCheckBoxColumn});
             this.dataGridExpertosAsignados.DataSource = this.expertoEnProyectoBindingSource;
             this.dataGridExpertosAsignados.Location = new System.Drawing.Point(10, 473);
             this.dataGridExpertosAsignados.Name = "dataGridExpertosAsignados";
@@ -524,27 +524,6 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 463;
             // 
-            // apellidoNombreDataGridViewTextBoxColumn
-            // 
-            this.apellidoNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoNombre";
-            this.apellidoNombreDataGridViewTextBoxColumn.HeaderText = "ApellidoNombre";
-            this.apellidoNombreDataGridViewTextBoxColumn.Name = "apellidoNombreDataGridViewTextBoxColumn";
-            this.apellidoNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // creadorDataGridViewCheckBoxColumn
-            // 
-            this.creadorDataGridViewCheckBoxColumn.DataPropertyName = "Creador";
-            this.creadorDataGridViewCheckBoxColumn.HeaderText = "Creador";
-            this.creadorDataGridViewCheckBoxColumn.Name = "creadorDataGridViewCheckBoxColumn";
-            this.creadorDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // administradorDataGridViewCheckBoxColumn
-            // 
-            this.administradorDataGridViewCheckBoxColumn.DataPropertyName = "Administrador";
-            this.administradorDataGridViewCheckBoxColumn.HeaderText = "Administrador";
-            this.administradorDataGridViewCheckBoxColumn.Name = "administradorDataGridViewCheckBoxColumn";
-            this.administradorDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
             // expertoEnProyectoBindingSource
             // 
             this.expertoEnProyectoBindingSource.DataSource = typeof(sisExperto.Entidades.ExpertoEnProyecto);
@@ -602,6 +581,30 @@
             // proyectoBindingSource
             // 
             this.proyectoBindingSource.DataSource = typeof(sisExperto.Entidades.Proyecto);
+            // 
+            // apellidoNombreDataGridViewTextBoxColumn
+            // 
+            this.apellidoNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoNombre";
+            this.apellidoNombreDataGridViewTextBoxColumn.FillWeight = 65F;
+            this.apellidoNombreDataGridViewTextBoxColumn.HeaderText = "Apellido y Nombre";
+            this.apellidoNombreDataGridViewTextBoxColumn.Name = "apellidoNombreDataGridViewTextBoxColumn";
+            this.apellidoNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Activo
+            // 
+            this.Activo.DataPropertyName = "Activo";
+            this.Activo.FillWeight = 15F;
+            this.Activo.HeaderText = "Activo";
+            this.Activo.Name = "Activo";
+            this.Activo.ReadOnly = true;
+            // 
+            // creadorDataGridViewCheckBoxColumn
+            // 
+            this.creadorDataGridViewCheckBoxColumn.DataPropertyName = "Creador";
+            this.creadorDataGridViewCheckBoxColumn.FillWeight = 20F;
+            this.creadorDataGridViewCheckBoxColumn.HeaderText = "Creador";
+            this.creadorDataGridViewCheckBoxColumn.Name = "creadorDataGridViewCheckBoxColumn";
+            this.creadorDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // FrmPrincipal
             // 
@@ -683,9 +686,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.BindingSource expertoEnProyectoBindingSource;
         private System.Windows.Forms.DataGridView dataGridExpertosAsignados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoNombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn creadorDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.ToolStripMenuItem conjuntosDeEtiquetasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ejecutarToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aHPToolStripMenuItem;
@@ -696,6 +696,9 @@
         private System.Windows.Forms.ToolStripMenuItem il_ponderadoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem il_mediaGeométricaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem crearToolStripMenuItem1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoNombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Activo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn creadorDataGridViewCheckBoxColumn;
 
 
 

@@ -116,6 +116,7 @@
       <DependentUpon>AsignarExpertosProyectoListo.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Clases\ExpertoEnProyectoViewModel.cs" />
+    <Compile Include="UI\Clases\ProyectoTransferibleViewModel.cs" />
     <Compile Include="UI\Clases\ResultadoViewModel.cs" />
     <Compile Include="UI\Clases\SugerenciaViewModel.cs" />
     <Compile Include="UI\Clases\Utilidades.cs" />
@@ -352,6 +353,7 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.ExpertoEnProyectoViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ProyectoTransferibleViewModel.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.ResultadoViewModel.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.SugerenciaViewModel.datasource" />
     <None Include="Properties\Settings.settings">

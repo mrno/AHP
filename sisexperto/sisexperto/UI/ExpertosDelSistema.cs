@@ -72,7 +72,7 @@ namespace sisexperto.UI
                         MessageBoxButtons.YesNo);
                 if (mensaje.ToString() == "Yes")
                 {
-                    if (experto.Administrador || (experto.Administrador && experto.ProyectosCreados.Count == 0))
+                    if (experto.Administrador && experto.ProyectosCreados.Count != 0)
                     {
                         var mensaje2 =
                             MessageBox.Show(
@@ -83,14 +83,22 @@ namespace sisexperto.UI
                             case "Yes":
                                 {
                                     // transfiere los proyectos al experto actual
-                                    _fachada.TransferirProyectos(experto, _experto);
+                                    var ventanaTransferencia = new TransferirProyectos(experto, _experto, _fachada);
+                                    ventanaTransferencia.ProyectosTransferidos += () => ProyectosModificado();
+                                    ventanaTransferencia.ShowDialog();
+
+                                    //_fachada.TransferirProyectos(experto, _experto);
                                     if (experto.ProyectosCreados.Count == 0)
                                     {
                                         _expertos.Remove(experto);
-                                        _fachada.EliminarValoracion(experto);
                                         _fachada.EliminarExperto(experto);
-                                        ProyectosModificado();
+                                        MessageBox.Show("Experto eliminado con éxito.");
                                         CargarGrid();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(
+                                            "No se puede eliminar el experto mientras tenga proyectos creados a su cargo.");
                                     }
                                     break;
                                 }
@@ -103,7 +111,6 @@ namespace sisexperto.UI
                     else
                     {
                         _expertos.Remove(experto);
-                        _fachada.EliminarValoracion(experto);
                         _fachada.EliminarExperto(experto);
                         ProyectosModificado();
                         CargarGrid();
@@ -118,15 +125,33 @@ namespace sisexperto.UI
             this.Close();
         }
 
-        private void buttonEliminarValoraciones_Click(object sender, EventArgs e)
+        private void buttonDesactivarValoraciones_Click(object sender, EventArgs e)
         {
             var mensaje = MessageBox.Show("¿Está seguro que desea eliminar todas las valoraciones del experto seleccionado?", "Atención", MessageBoxButtons.YesNo);
             if (mensaje.ToString() == "Yes")
             {
                 var experto = dataGridExpertos.SelectedRows[0].DataBoundItem as Experto;
-                _fachada.EliminarValoracion(experto);
+                _fachada.DesactivarValoracion(experto);
                 ProyectosModificado();
             }
+        }
+
+        private void buttonTranferir_Click(object sender, EventArgs e)
+        {
+            var experto = dataGridExpertos.SelectedRows[0].DataBoundItem as Experto;
+
+            if(!experto.Administrador)
+            {
+                MessageBox.Show("No se pueden tranferir proyectos a un experto que no sea administrador.");
+            }
+            else
+            {
+                // transfiere los proyectos al experto actual
+                var ventanaTransferencia = new TransferirProyectos(_experto, experto, _fachada);
+                ventanaTransferencia.ProyectosTransferidos += () => ProyectosModificado();
+                ventanaTransferencia.ShowDialog();
+            }
+            
         }
     }
 }
