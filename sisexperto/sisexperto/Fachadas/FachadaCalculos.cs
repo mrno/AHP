@@ -19,6 +19,11 @@ namespace sisexperto.Fachadas
         {
         }
 
+        public void DoWork()
+        {
+            var instanciaInicial = Instance;
+        }
+
         public static FachadaCalculos Instance
         {
             get

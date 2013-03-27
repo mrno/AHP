@@ -6,6 +6,8 @@ using sisExperto.Entidades;
 using sisExperto.Fachadas;
 using sisExperto.UI;
 using sisexperto.UI;
+using System.Threading;
+using sisexperto.Fachadas;
 
 namespace sisExperto
 {
@@ -25,6 +27,8 @@ namespace sisExperto
             InitializeComponent();
             HabilitarPanelTrabajo(false);
             buttonProyectoEdicion.Enabled = false;
+
+            LevantarLibreriaMathLab();
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
@@ -34,6 +38,7 @@ namespace sisExperto
             dataGridCriterios.DataSource = new List<Criterio>();
             dataGridProyectos.RowEnter += (ActualizarDetalle);
             dataGridProyectos.RowEnter += (HabilitarBotones);
+
         }
 
         private void EjecutarLogin()
@@ -530,7 +535,7 @@ namespace sisExperto
             if (_proyectoSeleccionado != null)
             {
                 var ventanaCreacionLabels = new CrearEtiquetas(_proyectoSeleccionado);
-                ventanaCreacionLabels.Show();
+                ventanaCreacionLabels.Show();               
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");            
         }
@@ -550,6 +555,16 @@ namespace sisExperto
             ventanaExpertos.ProyectoModificado += (ActualizarGridYDetalleProyectoModificado);
             ventanaExpertos.ShowDialog();
         }
+        #endregion
+
+        #region MathLab Start
+
+        private void LevantarLibreriaMathLab()
+        {
+            Thread hiloFachada = new Thread(FachadaCalculos.Instance.DoWork);
+            hiloFachada.Start();
+        }
+
         #endregion
     }
 }
