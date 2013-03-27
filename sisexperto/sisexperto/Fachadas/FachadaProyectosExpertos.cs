@@ -382,8 +382,10 @@ namespace sisExperto
         {
             foreach (var item in origen.ProyectosCreados)
             {
+                item.Creador = destino;
                 destino.ProyectosCreados.Add(item);
             }
+            origen.ProyectosCreados.Clear();
             _context.SaveChanges();
         }
     }

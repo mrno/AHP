@@ -61,7 +61,7 @@ namespace sisExperto
             iniciarSesionToolStripMenuItem.Enabled = false;
             cerrarSesionToolStripMenuItem.Enabled = true;
 
-            ActualizarProyectos(expert);
+            ActualizarProyectos();
             FiltrarProyectos("");
 
             ModoDeAdministracion(expert.Administrador);
@@ -88,17 +88,17 @@ namespace sisExperto
             buttonPublicar.Visible = esAdministrador;
         }
 
-        private void ActualizarProyectos(Experto expert)
+        private void ActualizarProyectos()
         {
             _proyectosExperto.Clear();
             try
             {
-                _proyectosExperto.AddRange(_fachadaProyectosExpertos.SolicitarProyectosAsignados(expert).ToList());
+                _proyectosExperto.AddRange(_fachadaProyectosExpertos.SolicitarProyectosAsignados(_experto).ToList());
             }
             catch (Exception){}
             try
             {
-                _proyectosExperto.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(expert).ToList());
+                _proyectosExperto.AddRange(_fachadaProyectosExpertos.SolicitarProyectosCreados(_experto).ToList());
             }
             catch (Exception){}
             _proyectosExperto = _proyectosExperto.Distinct().ToList();
@@ -134,7 +134,7 @@ namespace sisExperto
 
         private void SeleccionarProyectoCreado()
         {
-            ActualizarProyectos(_experto);
+            ActualizarProyectos();
             _proyectoSeleccionado = _proyectosExperto.Last();
             FiltrarProyectos("", _proyectoSeleccionado.ProyectoId);
             ActualizarDetalle(null, null);
@@ -148,7 +148,7 @@ namespace sisExperto
                 idProyecto = _proyectoSeleccionado.ProyectoId;
             }
             catch (Exception) { }
-            ActualizarProyectos(_experto);
+            ActualizarProyectos();
             FiltrarProyectos(filtroProyecto.Text, idProyecto);
             ActualizarDetalle(null, null);
         }
@@ -551,10 +551,17 @@ namespace sisExperto
 
         private void expertosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ventanaExpertos = new ExpertosDelSistema(_experto);
-            ventanaExpertos.ProyectoModificado += (ActualizarGridYDetalleProyectoModificado);
+            var ventanaExpertos = new ExpertosDelSistema(_experto, _fachadaProyectosExpertos);
+            ventanaExpertos.ProyectosModificado += (ActualizarProyectosPorAdministradorEliminado);
             ventanaExpertos.ShowDialog();
         }
+
+        private void ActualizarProyectosPorAdministradorEliminado()
+        {
+            ActualizarProyectos();
+            FiltrarProyectos("");
+        }
+
         #endregion
 
         #region MathLab Start

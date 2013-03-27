@@ -16,18 +16,19 @@ namespace sisexperto.UI
         #region Delegados y Eventos
 
         public delegate void Proyectos();
-        public event Proyectos ProyectoModificado;
+        public event Proyectos ProyectosModificado;
 
         #endregion
 
-        FachadaProyectosExpertos _fachada = new FachadaProyectosExpertos();
-        Experto _experto;
-        List<Experto> _expertos;
+        private FachadaProyectosExpertos _fachada;
+        private Experto _experto;
+        private List<Experto> _expertos;
 
-        public ExpertosDelSistema(Experto experto)
+        public ExpertosDelSistema(Experto experto, FachadaProyectosExpertos fachada)
         {
             InitializeComponent();
             _experto = experto;
+            _fachada = fachada;
         }
 
         private void ExpertosDelSistema_Load(object sender, EventArgs e)
@@ -62,41 +63,54 @@ namespace sisexperto.UI
         private void buttonEliminar_Click(object sender, EventArgs e)
         {
             var experto = dataGridExpertos.SelectedRows[0].DataBoundItem as Experto;
-            
-            
-            var mensaje = MessageBox.Show("¿Está seguro que desea eliminar el experto seleccionado y todas sus valoraciones?", "Atención", MessageBoxButtons.YesNo);
-            if (mensaje.ToString() == "Yes")
+
+            if (_experto != experto)
             {
-                if(experto.Administrador || experto.ProyectosCreados.Count == 0)
-                {                
-                    var mensaje2 = MessageBox.Show("Está a punto de eliminar un administrador y sus proyectos deben estar a cargo de otro administrador. ¿Desea transferir los proyectos y continuar?", "Atención", MessageBoxButtons.YesNo);
-                    switch(mensaje2.ToString())
-                    {
-                        case "Yes":
-                            {
-                                // transfiere los proyectos al experto actual
-                                _fachada.TransferirProyectos(experto, _experto);
-                                if (experto.ProyectosCreados.Count == 0)
-                                {
-                                    _expertos.Remove(experto);
-                                    _fachada.EliminarValoracion(experto);
-                                }
-                                break; 
-                            }
-                        case "No": break;
-                    }
-                    //_expertos.Remove(experto);
-                    //_fachada.EliminarValoracion(experto);                    
-                }
-                else
+                var mensaje =
+                    MessageBox.Show(
+                        "¿Está seguro que desea eliminar el experto seleccionado y todas sus valoraciones?", "Atención",
+                        MessageBoxButtons.YesNo);
+                if (mensaje.ToString() == "Yes")
                 {
-                    _expertos.Remove(experto);
-                    _fachada.EliminarValoracion(experto);
-                    _fachada.EliminarExperto(experto);
-                    ProyectoModificado();
-                    CargarGrid();
+                    if (experto.Administrador || (experto.Administrador && experto.ProyectosCreados.Count == 0))
+                    {
+                        var mensaje2 =
+                            MessageBox.Show(
+                                "Está a punto de eliminar un administrador y sus proyectos deben estar a cargo de otro administrador. ¿Desea transferir los proyectos y continuar?",
+                                "Atención", MessageBoxButtons.YesNo);
+                        switch (mensaje2.ToString())
+                        {
+                            case "Yes":
+                                {
+                                    // transfiere los proyectos al experto actual
+                                    _fachada.TransferirProyectos(experto, _experto);
+                                    if (experto.ProyectosCreados.Count == 0)
+                                    {
+                                        _expertos.Remove(experto);
+                                        _fachada.EliminarValoracion(experto);
+                                        _fachada.EliminarExperto(experto);
+                                        ProyectosModificado();
+                                        CargarGrid();
+                                    }
+                                    break;
+                                }
+                            case "No":
+                                break;
+                        }
+                        //_expertos.Remove(experto);
+                        //_fachada.EliminarValoracion(experto);                    
+                    }
+                    else
+                    {
+                        _expertos.Remove(experto);
+                        _fachada.EliminarValoracion(experto);
+                        _fachada.EliminarExperto(experto);
+                        ProyectosModificado();
+                        CargarGrid();
+                    }
                 }
-            }           
+            }
+            else MessageBox.Show("Un administrador no puede ser eliminado por él mismo.");
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -111,7 +125,7 @@ namespace sisexperto.UI
             {
                 var experto = dataGridExpertos.SelectedRows[0].DataBoundItem as Experto;
                 _fachada.EliminarValoracion(experto);
-                ProyectoModificado();
+                ProyectosModificado();
             }
         }
     }
