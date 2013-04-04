@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GALibrary", "GALibrary\GALibrary.csproj", "{940C3CD7-CB24-4EA0-99AF-D7BF942C4748}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoritmoGenetico", "AlgoritmoGenetico\AlgoritmoGenetico.csproj", "{03682DE9-FE57-4886-917E-F3BF2CACD5E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{940C3CD7-CB24-4EA0-99AF-D7BF942C4748}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940C3CD7-CB24-4EA0-99AF-D7BF942C4748}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940C3CD7-CB24-4EA0-99AF-D7BF942C4748}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940C3CD7-CB24-4EA0-99AF-D7BF942C4748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03682DE9-FE57-4886-917E-F3BF2CACD5E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03682DE9-FE57-4886-917E-F3BF2CACD5E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03682DE9-FE57-4886-917E-F3BF2CACD5E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03682DE9-FE57-4886-917E-F3BF2CACD5E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
