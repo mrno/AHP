@@ -700,15 +700,20 @@ namespace sisexperto.UI
         }
 
         private void EnterTrackBarIL(object sender, EventArgs e)
-        { 
-            var track = sender as TrackBar;
-            var indice = int.Parse(track.Name.Split('T').ElementAt(0));
-            _valorCriterio = _alternativaILSeleccionada.ValorCriterios.ElementAt(indice);
+        {
+            if (_alternativaILSeleccionada != null)
+            {
+                var track = sender as TrackBar;
+                var indice = int.Parse(track.Name.Split('T').ElementAt(0));
+                _valorCriterio = _alternativaILSeleccionada.ValorCriterios.ElementAt(indice); 
+            }
         }
 
         private void LeaveTrackBarIL(object sender, EventArgs e)
         {
-            _fachada.GuardarValoracion();
+            var criterio = _valorCriterio;
+
+            _fachada.GuardarValoracion(criterio);
         }
 
         private void ScrollTrackBarIL(object sender, EventArgs e)

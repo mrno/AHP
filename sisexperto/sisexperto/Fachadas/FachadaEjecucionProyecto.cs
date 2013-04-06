@@ -6,7 +6,7 @@ namespace sisExperto.Fachadas
 {
     public class FachadaEjecucionProyecto
     {
-        private readonly GisiaExpertoContext _context = new GisiaExpertoContext();
+        private readonly GisiaExpertoContext _context = GisiaExpertoContext.Instance;
 
         public IEnumerable<ExpertoEnProyecto> ObtenerExpertosProyecto(Proyecto _proyecto)
         {

@@ -40,6 +40,15 @@ namespace sisExperto.Entidades
         public DbSet<AlternativaIL> AlternativasIL { get; set; }
         public DbSet<ValorCriterio> ValoresCriterios { get; set; }
 
+        
+        public static GisiaExpertoContext Instance { get {return Lock._context; }}
+
+        private class Lock
+        {
+            static Lock() { }
+            internal static readonly GisiaExpertoContext _context = new GisiaExpertoContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
          

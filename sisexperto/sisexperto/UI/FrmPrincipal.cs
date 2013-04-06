@@ -335,11 +335,12 @@ namespace sisExperto
                 //verifico si el experto esta asignado y permito la valacion
                 var expertoAsignado = (from e in _proyectoSeleccionado.ExpertosAsignados ?? new List<ExpertoEnProyecto>()
                                        where e.Experto.ExpertoId == _experto.ExpertoId
-                                       select e).Count() == 1;
+                                       select e).Count() >= 1;
                 if (expertoAsignado)
                 {
                     //acá tiene que ir "listo" posteriormente
-                    if (_proyectoSeleccionado.Estado == "Listo") buttonProyectoEdicion.Enabled = true;
+                    if (_proyectoSeleccionado.Estado == "Listo") 
+                        buttonProyectoEdicion.Enabled = true;
                     else buttonProyectoEdicion.Enabled = false;
                 }
                 else buttonProyectoEdicion.Enabled = false;

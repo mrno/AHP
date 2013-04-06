@@ -12,7 +12,7 @@ namespace sisExperto
 {
     public class FachadaProyectosExpertos
     {
-        private readonly GisiaExpertoContext _context = new GisiaExpertoContext();
+        private readonly GisiaExpertoContext _context = GisiaExpertoContext.Instance;
 
         public Experto Experto { get; set; }
 
@@ -21,11 +21,23 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
+        public void GuardarValoracion(ValorCriterio criterio)
+        {
+            var valorCriterio = _context.ValoresCriterios.First(x => x.ValorCriterioId == criterio.ValorCriterioId);
+            
+            valorCriterio.ValorILLinguistico = criterio.ValorILLinguistico;
+            valorCriterio.ValorILNumerico = criterio.ValorILNumerico;
+            
+            _context.SaveChanges();
+
+        }
+
         public IEnumerable<Proyecto> ObtenerProyectosPorTipo(string tipo)
         {
             return from c in _context.Proyectos
                    where c.Tipo == tipo
                    select c;
+
         }
 
         public IEnumerable<Proyecto> ObtenerTodosLosProyectos()
