@@ -10,6 +10,7 @@ namespace GALibrary.Persistencia
             
         }
 
+        public DbSet<ConjuntoOrdenN> ConjuntosOrdenN { get; set; }
         public DbSet<ConjuntoMatriz> ConjuntoMatrices { get; set; }
         public DbSet<ObjetoMatriz> Matrices { get; set; }
 

@@ -1,9 +1,9 @@
 ﻿using GALibrary.Complementos;
 using GALibrary.Persistencia;
 
-namespace GALibrary.ProcesoGenetico
+namespace GALibrary.ProcesoGenetico.Entidades
 {
-    public class Individuo
+    public class Estructura
     {
         #region Propiedades
 
@@ -11,12 +11,24 @@ namespace GALibrary.ProcesoGenetico
         public double[,] Matriz { get { return Utilidades.ConvertirVectorEnMatriz(Vector); } }
         public double? Inconsistencia { get; set; }
 
+        public double[] Faltantes 
+        { 
+            get { return Vector.ValoresFaltantes(); }
+        }
+
+        public double[] Completos
+        {
+            get { return Vector.ValoresCompletos(); }
+        }
+
         #endregion
 
-        public Individuo(ObjetoMatriz objetoMatriz)
+        public Estructura(ObjetoMatriz objetoMatriz)
         {
             Vector = objetoMatriz.Vector;
             Inconsistencia = objetoMatriz.Inconsistencia;
         }
+
+
     }
 }

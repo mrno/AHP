@@ -1,12 +1,21 @@
 ﻿using System;
 using System.Linq;
+using ConsistenciaCR;
 using GALibrary.Persistencia;
+using MathWorks.MATLAB.NET.Arrays;
 
 namespace GALibrary.Complementos
 {
     public static class Utilidades
     {
         public static readonly Random Random = new Random();
+
+        public static readonly double[] EscalaSaaty = new double[]
+                                                          {
+                                                              1.0/9, 1.0/8, 1.0/7, 1.0/6, 
+                                                              1.0/5, 1.0/4, 1.0/3, 1.0/2, 
+                                                              1, 2, 3, 4, 5, 6, 7, 8, 9
+                                                          };
 
         public static double[] ConvertirMatrizEnVector(double[,] matriz)
         {
@@ -113,37 +122,37 @@ namespace GALibrary.Complementos
 
         public static double AproximarSaaty(double valor)
         {
-            var fraccionario = false;
             var proximo = 1.0;
+
             if (valor < 1)
             {
-                fraccionario = true;
-                valor = 1.0 / valor;
-            }
-
-            for (int i = 2; i <= 9; i++)
-            {
-                if (valor.Distancia(i) < valor.Distancia(proximo))
+                for (int i = 0; i < 9; i++)
                 {
-                    proximo = i;
+                    if (valor.Distancia(EscalaSaaty[i]) < valor.Distancia(proximo))
+                    {
+                        proximo = EscalaSaaty[i];
+                    }
                 }
             }
-
-            if (fraccionario)
+            else
             {
-                return 1 / proximo;
+                for (int i = 9; i < 17; i++)
+                {
+                    if (valor.Distancia(EscalaSaaty[i]) < valor.Distancia(proximo))
+                    {
+                        proximo = EscalaSaaty[i];
+                    }
+                }
             }
+            
             return proximo;
         }
 
 
         public static double ValorAleatorioEscalaFundamental()
         {
-            var valor = Random.Next(1, 18);
-            if (valor < 10)
-                return valor;
-
-            return 1.0 / (valor - 8);
+            var indice = Random.Next(0, 17);
+            return EscalaSaaty[indice];
         }
 
         public static double[,] GenerarMatrizConsistente(int dimension)
@@ -159,6 +168,35 @@ namespace GALibrary.Complementos
                 vector[Random.Next(0, vector.Length)] = CeldaMatriz.Incompleto;
             }
             return ConvertirVectorEnMatriz(vector);
+        }
+
+        public static double CalcularConsistencia(double[,] matriz)
+        {
+            MWNumericArray matlabNumericArray = matriz;
+            var c = new calcConsistenciaCR();
+            var mwNumericArray = c.calcConsistCR(matlabNumericArray) as MWNumericArray;
+            if (mwNumericArray != null)
+                return mwNumericArray.ToScalarDouble();
+            return Double.MaxValue;
+        }
+
+        public static double[] CombinarEstructuraConIndividuo(double[] estructura, double[] individuo)
+        {
+            var longitudBase = estructura.Length;
+            var longitudIndividuo = individuo.Length;
+
+            var resultado = estructura.Clone() as double[];
+
+            var posicion = 0;
+            for (int i = 0; i < longitudBase; i++)
+            {
+                if (estructura[i].Equals(CeldaMatriz.Incompleto))
+                {
+                    resultado[i] = individuo[posicion];
+                    posicion++;
+                }
+            }
+            return resultado;
         }
     }
 }
