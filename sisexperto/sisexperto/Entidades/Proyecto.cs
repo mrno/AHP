@@ -129,29 +129,61 @@ namespace sisExperto.Entidades
 
         public string RequerimientoParaPublicar()
         {
+            var cantidadAlternativas = Alternativas.Count;
+            var cantidadCriterios = Criterios.Count;
+            var cantidadExpertos = ExpertosAsignados.Count;
+            var todosConConjuntoEtiquetas = (from c in ExpertosAsignados
+                                             select c).All(x => x.ValoracionIL != null
+                                                    && x.ValoracionIL.ConjuntoEtiquetas != null);
+
             var mensaje = "";
             
-            if (ExpertosAsignados.Count() == 0)
+            if(cantidadExpertos == 0)
             {
                 mensaje += "\n- Agregar al menos un experto.";
             }
-            if (Tipo != "AHP")
+            if (Tipo == "AHP")
             {
-                var todosConConjuntoEtiquetas = (from c in ExpertosAsignados
-                                                 select c).All(x => x.ValoracionIL != null
-                                                     && x.ValoracionIL.ConjuntoEtiquetas != null);
+                if (cantidadAlternativas < 4)
+                {
+                    mensaje += "\n- Agregar al menos " + (4 - cantidadAlternativas) + " alternativas.";
+                }
+                if (cantidadCriterios < 4)
+                {
+                    mensaje += "\n- Agregar al menos " + (4 - cantidadCriterios) + " criterios.";
+                }
+            }
+            else
+            if (Tipo == "IL")
+            {
+                if (!todosConConjuntoEtiquetas)
+                    mensaje += "\n- Todos los expertos deben tener un conjunto de etiquetas asignado.";
 
-                mensaje += "\n- Todos los expertos deben tener un conjunto de etiquetas asignado.";
+                if (cantidadAlternativas < 2)
+                {
+                    mensaje += "\n- Agregar al menos " + (2 - cantidadAlternativas) + " alternativas.";
+                }
+                if (cantidadCriterios < 1)
+                {
+                    mensaje += "\n- Agregar al menos " + (1 - cantidadCriterios) + " criterios.";
+                }
             }
-            if (Alternativas.Count < 4)
+            else
+            if (Tipo == "Ambos")
             {
-                mensaje += "\n- Agregar al menos " + (4 - Alternativas.Count) + " alternativas.";
-            }
-            if (Criterios.Count < 4)
-            {
-                mensaje += "\n- Agregar al menos " + (4 - Criterios.Count) + " criterios.";
-            }
+                if (!todosConConjuntoEtiquetas)
+                    mensaje += "\n- Todos los expertos deben tener un conjunto de etiquetas asignado.";
 
+                if (cantidadAlternativas < 4)
+                {
+                    mensaje += "\n- Agregar al menos " + (4 - cantidadAlternativas) + " alternativas.";
+                }
+                if (cantidadCriterios < 4)
+                {
+                    mensaje += "\n- Agregar al menos " + (4 - cantidadCriterios) + " criterios.";
+                }
+            }
+            
             if (mensaje.Length > 0)
                 return "Si desea publicar el proyecto debe:" + mensaje;
             else
@@ -160,14 +192,28 @@ namespace sisExperto.Entidades
 
         public bool PosiblePublicar()
         {
+            var cantidadAlternativas = Alternativas.Count;
+            var cantidadCriterios = Criterios.Count;
+            var cantidadExpertos = ExpertosAsignados.Count;
             var todosConConjuntoEtiquetas = (from c in ExpertosAsignados
                                              select c).All(x => x.ValoracionIL != null
                                                     && x.ValoracionIL.ConjuntoEtiquetas != null);
-
-            return (ExpertosAsignados.Count() > 0
-                        && (todosConConjuntoEtiquetas || Tipo == "AHP")
-                        && Alternativas.Count >= 4
-                        && Alternativas.Count >= 4);
+            switch (Tipo)
+            {
+                case "AHP": 
+                    {
+                        return cantidadAlternativas > 3 && cantidadCriterios > 3 && cantidadExpertos > 0;
+                    }
+                case "IL":
+                    {
+                        return cantidadAlternativas > 1 && cantidadCriterios > 0 && cantidadExpertos > 0 && todosConConjuntoEtiquetas;
+                    }
+                case "Ambos":
+                    {
+                        return cantidadAlternativas > 3 && cantidadCriterios > 3 && cantidadExpertos > 0 && todosConConjuntoEtiquetas;
+                    }
+                default: return false;
+            }
         }
 
         public bool TodosLosExpertosPonderados()
