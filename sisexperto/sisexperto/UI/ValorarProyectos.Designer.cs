@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageAHP = new System.Windows.Forms.TabPage();
+            this.buttonCalcular = new System.Windows.Forms.Button();
             this.groupBoxMatrizComparacion = new System.Windows.Forms.GroupBox();
             this.buttonConsistencia = new System.Windows.Forms.Button();
             this.labelComparacion = new System.Windows.Forms.Label();
@@ -43,9 +44,6 @@
             this.buttonVerMatrizCriterio = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.gridAlternativa = new System.Windows.Forms.DataGridView();
-            this.CriterioNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.completaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.alternativaMatrizBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPageIL = new System.Windows.Forms.TabPage();
             this.groupBoxComparacionIL = new System.Windows.Forms.GroupBox();
@@ -59,7 +57,9 @@
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonCalcular = new System.Windows.Forms.Button();
+            this.CriterioNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.completaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPageAHP.SuspendLayout();
             this.groupBoxMatrizComparacion.SuspendLayout();
@@ -100,6 +100,18 @@
             this.tabPageAHP.TabIndex = 0;
             this.tabPageAHP.Text = "AHP";
             this.tabPageAHP.UseVisualStyleBackColor = true;
+            // 
+            // buttonCalcular
+            // 
+            this.buttonCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCalcular.Location = new System.Drawing.Point(113, 533);
+            this.buttonCalcular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCalcular.Name = "buttonCalcular";
+            this.buttonCalcular.Size = new System.Drawing.Size(160, 30);
+            this.buttonCalcular.TabIndex = 39;
+            this.buttonCalcular.Text = "Ver Ranking Individual";
+            this.buttonCalcular.UseVisualStyleBackColor = true;
+            this.buttonCalcular.Click += new System.EventHandler(this.buttonCalcular_Click);
             // 
             // groupBoxMatrizComparacion
             // 
@@ -242,27 +254,6 @@
             this.gridAlternativa.Size = new System.Drawing.Size(362, 425);
             this.gridAlternativa.TabIndex = 5;
             // 
-            // CriterioNombre
-            // 
-            this.CriterioNombre.DataPropertyName = "CriterioNombre";
-            this.CriterioNombre.HeaderText = "CriterioNombre";
-            this.CriterioNombre.Name = "CriterioNombre";
-            this.CriterioNombre.ReadOnly = true;
-            // 
-            // consistenciaDataGridViewCheckBoxColumn
-            // 
-            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
-            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistencia";
-            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
-            this.consistenciaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // completaDataGridViewCheckBoxColumn
-            // 
-            this.completaDataGridViewCheckBoxColumn.DataPropertyName = "Completa";
-            this.completaDataGridViewCheckBoxColumn.HeaderText = "Completa";
-            this.completaDataGridViewCheckBoxColumn.Name = "completaDataGridViewCheckBoxColumn";
-            this.completaDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
             // alternativaMatrizBindingSource
             // 
             this.alternativaMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaMatriz);
@@ -387,17 +378,26 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 359;
             // 
-            // buttonCalcular
+            // CriterioNombre
             // 
-            this.buttonCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCalcular.Location = new System.Drawing.Point(113, 533);
-            this.buttonCalcular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonCalcular.Name = "buttonCalcular";
-            this.buttonCalcular.Size = new System.Drawing.Size(160, 30);
-            this.buttonCalcular.TabIndex = 39;
-            this.buttonCalcular.Text = "Ver Ranking Individual";
-            this.buttonCalcular.UseVisualStyleBackColor = true;
-            this.buttonCalcular.Click += new System.EventHandler(this.buttonCalcular_Click);
+            this.CriterioNombre.DataPropertyName = "CriterioNombre";
+            this.CriterioNombre.HeaderText = "Criterio";
+            this.CriterioNombre.Name = "CriterioNombre";
+            this.CriterioNombre.ReadOnly = true;
+            // 
+            // consistenciaDataGridViewCheckBoxColumn
+            // 
+            this.consistenciaDataGridViewCheckBoxColumn.DataPropertyName = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.HeaderText = "Consistencia";
+            this.consistenciaDataGridViewCheckBoxColumn.Name = "consistenciaDataGridViewCheckBoxColumn";
+            this.consistenciaDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // completaDataGridViewCheckBoxColumn
+            // 
+            this.completaDataGridViewCheckBoxColumn.DataPropertyName = "Completa";
+            this.completaDataGridViewCheckBoxColumn.HeaderText = "Completa";
+            this.completaDataGridViewCheckBoxColumn.Name = "completaDataGridViewCheckBoxColumn";
+            this.completaDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // ValorarProyectos
             // 
@@ -464,9 +464,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn valoradaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource alternativaILBindingSource;
         private System.Windows.Forms.BindingSource alternativaMatrizBindingSource;
+        private System.Windows.Forms.Button buttonCalcular;
         private System.Windows.Forms.DataGridViewTextBoxColumn CriterioNombre;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn completaDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.Button buttonCalcular;
     }
 }
