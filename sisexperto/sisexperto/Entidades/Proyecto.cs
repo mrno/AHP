@@ -344,12 +344,14 @@ namespace sisExperto.Entidades
 
             int dimension = Alternativas.Count;
             var rankAgregado = new double[dimension, 1];
+
             utils.Cerar(rankAgregado, 1);
+
             Utils util = new Utils();
+
             ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIL, ConPeso);
+            
             int k = 0;
-
-
 
             int cardinalidadCEN = ObtenerCardinalidadCEN();
 
@@ -357,19 +359,12 @@ namespace sisExperto.Entidades
             {
                 if (ConPeso)
                 {
-
                     exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
-
-
                 }
                 else
                 {
                     exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
-
-
                 }
-
-
 
                 k++;
             }
@@ -384,6 +379,81 @@ namespace sisExperto.Entidades
 
             return utils.NormalizarIlFinal((rankAgregado));
         }
+
+        public ValoracionIL CalcularTuplasExperto(ExpertoEnProyecto expertoEnProyecto, bool ConPeso)
+        {
+            var utils = new Utils();
+
+            int dimension = Alternativas.Count;
+            var rankAgregado = new double[dimension, 1];
+
+            utils.Cerar(rankAgregado, 1);
+
+            Utils util = new Utils();
+
+            ValoracionIL resultado = util.ObtenerEstructuraRdoTuplas(ExpertosAsignados.First().ValoracionIL, ConPeso);
+
+            int k = 0;
+
+            int cardinalidadCEN = ObtenerCardinalidadCEN();
+
+            foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
+            {
+                if (ConPeso)
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+                }
+                else
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
+                }
+
+                k++;
+            }
+
+            if (!ConPeso)
+            {
+                util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
+            }
+
+            int cardinalidadEtiquetasExperto = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Cantidad - 1;
+
+            foreach (var item in resultado.AlternativasIL)
+            {
+                foreach (var cri in item.ValorCriterios)
+                {
+                    cri.ValorILNumerico = util.VirtualAPersonal(cri.ValorILNumerico, cardinalidadCEN, cardinalidadEtiquetasExperto);
+                }
+            }
+
+
+            foreach (var item in resultado.AlternativasIL)
+            {
+                foreach (var cri in item.ValorCriterios)
+                {
+                    cri.ValorILNumerico = util.VirtualAPersonal(cri.ValorILNumerico, cardinalidadCEN, cardinalidadEtiquetasExperto);
+                    var valorCriterio = cri.ValorILNumerico;
+                    int redondeoCriterio = (int)Math.Round(valorCriterio, 0);
+
+                    foreach (var etiqueta in expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas)
+                    {
+                        if (etiqueta.Indice == redondeoCriterio)
+                        {
+                            cri.ValorILLinguistico = etiqueta.Nombre;
+                            cri.ValorILNumerico = cri.ValorILNumerico - (double)redondeoCriterio;
+                        }
+                    }
+                }
+            }
+
+            return resultado;
+
+            //utils.AgregacionCriterios(resultado, rankAgregado);
+
+            //return rankAgregado;
+        }
+
+        //Calcula y devuelve el mínimo común múltiplo de los conjuntos de etiquetas.
         public int ObtenerCardinalidadCEN()
         {
             Utils util = new Utils();
@@ -398,12 +468,8 @@ namespace sisExperto.Entidades
 
         public void MultiplicarPorExpPesos(ValoracionIL resultado)
         {
-
-
             foreach (ExpertoEnProyecto expertoEnProyecto    in ExpertosAsignados   )
             {
-
-
                 foreach (AlternativaIL alternativaIl in resultado.AlternativasIL)
                 {
                     

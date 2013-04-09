@@ -201,5 +201,22 @@ namespace sisExperto
             resultadoViewModelBindingSourceIndividual.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
             //dataGridRankingPersonal.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var expertos = _fachadaExpertos.ObtenerExpertosActivosEnProyecto(_proyecto);
+            ExpertoEnProyecto unExpProy = new ExpertoEnProyecto();
+            ExpertoEnProyecto miExpertoProyecto = new ExpertoEnProyecto();
+            var exp = (Experto)dataGridExpertos.CurrentRow.DataBoundItem;
+
+            foreach (var item in expertos)
+            {
+                if (item.Experto.ExpertoId == exp.ExpertoId)
+                    unExpProy = item;
+            }
+            
+            var frmMostrarTuplas = new MostrarResultadoTuplas(unExpProy, _proyecto, false);
+            frmMostrarTuplas.ShowDialog();
+        }
     }
 }
