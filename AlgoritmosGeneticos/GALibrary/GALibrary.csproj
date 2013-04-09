@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
@@ -69,11 +70,26 @@
     <Compile Include="Persistencia\GAContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistencia\ObjetoMatriz.cs" />
-    <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistencia.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\ParadaAptitudMejorIndividuo.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\ParadaConvergencia.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\ParadaIteraciones.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\CondicionParadaCreationException.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\CondicionParadaFactory.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\ParadaCompuesta.cs" />
+    <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaPoblacionCreationException.cs" />
+    <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaPoblacionFactory.cs" />
+    <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaAptitud.cs" />
+    <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaEstructura.cs" />
+    <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\IConvergenciaPoblacion.cs" />
+    <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistenciaExponencial.cs" />
+    <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistenciaResta.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\IFuncionAptitud.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudCreationException.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudFactory.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\ICondicionParada.cs" />
+    <Compile Include="ProcesoGenetico\ModeloEvolutivo\IModeloEvolutivo.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Abstracto\IOperador.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Cruzadores\CruzadorMultipuntoBinomial.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Cruzadores\CruzadorSimple.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Cruzadores\CruzadorAbstracto.cs" />
     <Compile Include="ProcesoGenetico\Entidades\Individuo.cs" />
@@ -89,10 +105,13 @@
     <Compile Include="ProcesoGenetico\ModeloEvolutivo\ModeloEvolutivoFactory.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Mutadores\MutadorSimple.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Mutadores\MutadorAbstracto.cs" />
-    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\IMutadorProbabilidad.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\ProbabilidadConvergencia.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\IProbabilidadMutacion.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\ProbabilidadMutacionCreationException.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\ProbabilidadMutacionFactory.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\ProbabilidadConstante.cs" />
-    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\TemperaturaAscendente.cs" />
-    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\TemperaturaDescendente.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\ProbabilidadTemperaturaAscendente.cs" />
+    <Compile Include="ProcesoGenetico\Operadores\Mutadores\Probabilidad\ProbabilidadTemperaturaDescendente.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Abstracto\OperadorAbstractoSimple.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Selectores\SelectorAbstracto.cs" />
     <Compile Include="ProcesoGenetico\Operadores\Selectores\SelectorElitista.cs" />
@@ -106,7 +125,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

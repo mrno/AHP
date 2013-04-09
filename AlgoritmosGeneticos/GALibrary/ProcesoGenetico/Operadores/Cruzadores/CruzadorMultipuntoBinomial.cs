@@ -5,7 +5,7 @@ using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
 {
-    public class CruzadorSimple : CruzadorAbstracto
+    public class CruzadorMultipuntoBinomial : CruzadorAbstracto
     {
         public override IEnumerable<Individuo> Operar(Poblacion poblacion, int cantidadHijos)
         {
@@ -26,21 +26,29 @@ namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
         {
             var hijo1 = padre.Clone() as Individuo;
             var hijo2 = padre.Clone() as Individuo;
+            
+            var probabilidadPadre = 0.5;
 
             var cantidadCaracteristicas = padre.Estructura.Length;
 
-            var corte = Random.Next(1, cantidadCaracteristicas);
-
-            for (var i = 0; i < corte; i++)
+            do
             {
-                hijo1.Estructura[i] = madre.Estructura[i];
-            }
-
-            for (var i = corte; i < cantidadCaracteristicas; i++)
-            {
-                hijo2.Estructura[i] = madre.Estructura[i];
-            }
-
+                for (var i = 0; i < cantidadCaracteristicas; i++)
+                {
+                    var aleatorio = Random.NextDouble();
+                    if (aleatorio < probabilidadPadre)
+                    {
+                        hijo1.Estructura[i] = padre.Estructura[i];
+                        hijo2.Estructura[i] = madre.Estructura[i];
+                    }
+                    else
+                    {
+                        hijo1.Estructura[i] = madre.Estructura[i];
+                        hijo2.Estructura[i] = padre.Estructura[i];
+                    }
+                }
+            } while (padre.Equals(hijo1) || padre.Equals(hijo2));
+            
             return new List<Individuo>() {hijo1, hijo2};
         }
     }

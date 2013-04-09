@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad;
 
-namespace GALibrary.ProcesoGenetico.Operadores.Abstracto
+namespace GALibrary.ProcesoGenetico.CondicionParada
 {
-    public class OperadorFactory
+    public class CondicionParadaFactory
     {
         private Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
-        public OperadorFactory()
+        public CondicionParadaFactory()
         {
             LoadTypes();
         }
@@ -18,14 +20,14 @@ namespace GALibrary.ProcesoGenetico.Operadores.Abstracto
             var assembly = Assembly.GetExecutingAssembly();
             foreach (var type in assembly.GetTypes())
             {
-                if(type.GetInterface(typeof(IOperador).ToString()) != null)
+                if(type.GetInterface(typeof(ICondicionParada).ToString()) != null)
                 {
                     _types.Add(type.Name.ToLower(), type);
                 }
             }
         }
 
-        public IOperador CreateInstance(string instanceName)
+        public ICondicionParada CreateInstance(string instanceName, object[] instanceParameters)
         {
             var name = instanceName.ToLower();
             Type t = null;
@@ -37,11 +39,15 @@ namespace GALibrary.ProcesoGenetico.Operadores.Abstracto
                     break;
                 }
             }
-
-            if (t == null)
-                throw new OperadorCreationException("error - no se pudo crear el operador especificado");
-
-            return Activator.CreateInstance(t) as IOperador;
+            
+            try
+            {
+                return Activator.CreateInstance(t, instanceParameters) as ICondicionParada;
+            }
+            catch (Exception)
+            {
+                throw new CondicionParadaCreationException("error - no se pudo crear la estrategia");
+            }
         }
     }
 }

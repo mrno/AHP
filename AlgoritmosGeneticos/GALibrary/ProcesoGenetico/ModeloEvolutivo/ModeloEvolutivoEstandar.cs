@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GALibrary.ProcesoGenetico.Mutadores;
-using GALibrary.ProcesoGenetico.Entidades;
-using GALibrary.ProcesoGenetico.Operadores.Abstracto;
+﻿using GALibrary.ProcesoGenetico.Entidades;
+using GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad;
+using GALibrary.ProcesoGenetico.CondicionParada;
 
 namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 {
@@ -13,34 +8,51 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
     {
         public ModeloEvolutivoEstandar()
         {
+            //var config = ConfigurationManager.AppSettings[0];
             CrearOperador(x => Selector, new string[] {"SelectorElitista"});
             CrearOperador(x => Cruzador, new string[] {"SelectorRuleta", "CruzadorSimple"});
             CrearOperador(x => Mutador, new string[] {"SelectorUniforme", "MutadorSimple"});
+
+            ProbabilidadMutacion =
+                (new ProbabilidadMutacionFactory().CreateInstance("ProbabilidadConvergencia", new object[] { 0.1, 0.25 }));
+
+            var parada = new ParadaCompuesta();
+            parada.AgregarCondicion(new ParadaIteraciones(100));
+            parada.AgregarCondicion(new ParadaConvergencia(0.9));
+
+            CondicionParada = parada;
         }
 
         public override Poblacion ObtenerSiguienteGeneracion(Poblacion poblacion)
         {
-            //calcular aptitud
-            //poblacion.ActualizarAptitudIndividuos();
+            //cantidades
+            var cantidadIndividuos = poblacion.Individuos.Count;
+
+            var individuosSeleccion = (int) (cantidadIndividuos*0.1);
+
+            var individuosMutacion =
+                (int) (cantidadIndividuos*ProbabilidadMutacion.CalcularProbabilidad(poblacion));
+
+            var individuosCruza = cantidadIndividuos - individuosMutacion - individuosSeleccion;
 
             //crear poblacion siguiente vacia
-            var nuevaPoblacion = new Poblacion(poblacion.Generacion + 1);
+            UltimaPoblacion = new Poblacion(poblacion.Generacion + 1);
             
             //seleccionamos individuos
-            nuevaPoblacion.Individuos.AddRange(Selector.Operar(poblacion, 20));
+            UltimaPoblacion.Individuos.AddRange(Selector.Operar(poblacion, individuosSeleccion));
 
             //cruzamos individuos
-            nuevaPoblacion.Individuos.AddRange(Cruzador.Operar(poblacion, 60));
+            UltimaPoblacion.Individuos.AddRange(Cruzador.Operar(poblacion, individuosCruza));
 
             //mutamos individuos
-            nuevaPoblacion.Individuos.AddRange(Mutador.Operar(poblacion, 20));
+            UltimaPoblacion.Individuos.AddRange(Mutador.Operar(poblacion, individuosMutacion));
 
-            return nuevaPoblacion;
+            return UltimaPoblacion;
         }
 
         public override bool Parada
         {
-            get { throw new NotImplementedException(); }
+            get { return CondicionParada.Parar(UltimaPoblacion); }
         }
     }
 }

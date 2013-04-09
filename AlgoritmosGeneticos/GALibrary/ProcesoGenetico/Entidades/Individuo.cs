@@ -12,6 +12,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
     {
         public double[] Estructura { get; set; }
         private IFuncionAptitud _funcionAptitud;
+
         public double Aptitud
         {
             get { return _funcionAptitud.Aptitud(this); }
@@ -67,9 +68,10 @@ namespace GALibrary.ProcesoGenetico.Entidades
             return vector;
         }
 
-        //public void CalcularAptitudIndividuo()
-        //{
-        //    Aptitud = _funcionAptitud.Aptitud(this);
-        //}
+        public override bool Equals(object obj)
+        {
+            var individuo = obj as Individuo;
+            return individuo != null && Estructura.Equals(individuo.Estructura);
+        }
     }
 }

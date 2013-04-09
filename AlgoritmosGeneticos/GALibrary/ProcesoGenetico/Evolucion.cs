@@ -26,24 +26,20 @@ namespace GALibrary.ProcesoGenetico
                 (cantidadIndividuos, _estructuraBase, _estructuraObjetivo, "FuncionAptitudConsistencia");
         }
 
-        public void Evolucionar(string nombreModeloEvolutivo)
+        public Individuo Evolucionar(string nombreModeloEvolutivo)
         {
             _modeloEvolutivo = (new ModeloEvolutivoFactory()).CreateInstance(nombreModeloEvolutivo);
             var poblaciones = new List<Poblacion>();
             var poblacion = _poblacionInicial;
             poblaciones.Add(poblacion);
 
-            for (int i = 0; i < 100; i++)
+            do
             {
                 poblacion = _modeloEvolutivo.ObtenerSiguienteGeneracion(poblacion);
                 poblaciones.Add(poblacion);
-            }
+            } while (!_modeloEvolutivo.Parada);
 
-            //while (modeloEvolutivo.Parada)
-            //{
-
-            //}
-                       
+            return poblacion.MejorIndividuo;
         }
     }
 }

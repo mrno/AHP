@@ -2,6 +2,8 @@
 using System.Linq;
 using System;
 using GALibrary.Complementos;
+using GALibrary.ProcesoGenetico.ConvergenciaPoblacion;
+using GALibrary.ProcesoGenetico.FuncionesAptitud;
 
 namespace GALibrary.ProcesoGenetico.Entidades
 {
@@ -11,6 +13,12 @@ namespace GALibrary.ProcesoGenetico.Entidades
 
         public int Generacion { get; set; }
         public List<Individuo> Individuos { get; set; }
+        private IConvergenciaPoblacion _convergenciaPoblacion;
+
+        public double Convergencia
+        {
+            get { return _convergenciaPoblacion.CalcularConvergencia(this); }
+        }
 
         public double AptitudMedia
         {
@@ -47,53 +55,50 @@ namespace GALibrary.ProcesoGenetico.Entidades
 
         public Poblacion()
         {
-            Individuos = new List<Individuo>();
+            var factoryConvergencia = new ConvergenciaPoblacionFactory();
+            _convergenciaPoblacion = factoryConvergencia.CreateInstance("ConvergenciaEstructura");
         }
 
-        public Poblacion(int generacion)
+        public Poblacion(int generacion) : this()
         {
             Generacion = generacion;
             Individuos = new List<Individuo>();
         }
 
-        public Poblacion(int generacion, List<Individuo> individuos)
+        public Poblacion(int generacion, List<Individuo> individuos) : this(generacion)
         {
-            Generacion = generacion;
             Individuos = individuos;
         }
 
         public static Poblacion GenerarPoblacionInicial(int cantidadIndividuos, Estructura estructuraBase, Estructura estructuraObjetivo, string funcionAptitud)
         {
             var cantidadCaracteristicasIndividuo = estructuraBase.Vector.CantidadValoresFaltantes();
-
-            var factory = new FuncionesAptitud.FuncionAptitudFactory();
+            
+            var factoryAptitud = new FuncionAptitudFactory();
 
             var individuos = new List<Individuo>();
             for (int i = 0; i < cantidadIndividuos; i++)
             {
-                var funcion = factory.CreateInstance(funcionAptitud);
+                var funcion = factoryAptitud.CreateInstance(funcionAptitud);
                 funcion.EstructuraBase = estructuraBase;
                 funcion.EstructuraObjetivo = estructuraObjetivo;
                 individuos.Add(Individuo.GenerarIndividuoAleatorio(cantidadCaracteristicasIndividuo, funcion));
             }
             return new Poblacion(0, individuos);
         }
-
-        //public void ActualizarAptitudIndividuos()
-        //{
-        //    foreach (var individuo in Individuos)
-        //    {
-        //        individuo.CalcularAptitudIndividuo();
-        //    }
-        //}
-
+        
         #endregion
         
         public object Clone()
         {
             var individuos = (from c in Individuos
                               select (Individuo) c.Clone()).ToList();
-            return new Poblacion() {Generacion = Generacion, Individuos = individuos};
+            return new Poblacion
+                       {
+                           Generacion = Generacion,
+                           Individuos = individuos,
+                           _convergenciaPoblacion = _convergenciaPoblacion
+                       };
         }
     }
 }

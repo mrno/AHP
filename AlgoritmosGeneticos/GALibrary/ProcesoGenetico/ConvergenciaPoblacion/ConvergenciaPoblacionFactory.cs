@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using GALibrary.ProcesoGenetico.CondicionParada;
 
-namespace GALibrary.ProcesoGenetico.Operadores.Abstracto
+namespace GALibrary.ProcesoGenetico.ConvergenciaPoblacion
 {
-    public class OperadorFactory
+    public class ConvergenciaPoblacionFactory
     {
         private Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
-        public OperadorFactory()
+        public ConvergenciaPoblacionFactory()
         {
             LoadTypes();
         }
@@ -18,14 +19,14 @@ namespace GALibrary.ProcesoGenetico.Operadores.Abstracto
             var assembly = Assembly.GetExecutingAssembly();
             foreach (var type in assembly.GetTypes())
             {
-                if(type.GetInterface(typeof(IOperador).ToString()) != null)
+                if(type.GetInterface(typeof(IConvergenciaPoblacion).ToString()) != null)
                 {
                     _types.Add(type.Name.ToLower(), type);
                 }
             }
         }
 
-        public IOperador CreateInstance(string instanceName)
+        public IConvergenciaPoblacion CreateInstance(string instanceName)
         {
             var name = instanceName.ToLower();
             Type t = null;
@@ -37,11 +38,15 @@ namespace GALibrary.ProcesoGenetico.Operadores.Abstracto
                     break;
                 }
             }
-
-            if (t == null)
-                throw new OperadorCreationException("error - no se pudo crear el operador especificado");
-
-            return Activator.CreateInstance(t) as IOperador;
+            
+            try
+            {
+                return Activator.CreateInstance(t) as IConvergenciaPoblacion;
+            }
+            catch (Exception)
+            {
+                throw new ConvergenciaPoblacionCreationException("error - no se pudo crear la estrategia");
+            }
         }
     }
 }

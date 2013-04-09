@@ -12,7 +12,7 @@ namespace GALibrary.Persistencia
 
         public virtual int Id { get; set; }
         public virtual ConjuntoMatriz ConjuntoMatriz { get; set; }
-        public virtual ICollection<FilaMatriz> Filas { get; set; }
+        public ICollection<FilaMatriz> Filas { get; set; }
         public virtual double? Inconsistencia { get; set; }
         public virtual bool Completa { get; set; }
         public virtual int Dimension { get; set; }
@@ -244,7 +244,7 @@ namespace GALibrary.Persistencia
 
         public virtual int Id { get; set; }
         public virtual ObjetoMatriz ObjetoMatriz { get; set; }
-        public virtual ICollection<CeldaMatriz> Celdas { get; set; }
+        public ICollection<CeldaMatriz> Celdas { get; set; }
 
         #endregion
     }

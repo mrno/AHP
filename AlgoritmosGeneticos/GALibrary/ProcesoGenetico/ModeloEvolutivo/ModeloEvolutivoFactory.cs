@@ -1,40 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using GALibrary.ProcesoGenetico.Mutadores;
 
 namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 {
     public class ModeloEvolutivoFactory
     {
-        private Dictionary<string, Type> _evolutionModelTypes = new Dictionary<string, Type>();
+        private Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
         public ModeloEvolutivoFactory()
         {
-            LoadEvolutionModelTypes();
+            LoadTypes();
         }
 
-        public void LoadEvolutionModelTypes()
+        public void LoadTypes()
         {
             var assembly = Assembly.GetExecutingAssembly();
             foreach (var type in assembly.GetTypes())
             {
                 if(type.GetInterface(typeof(IModeloEvolutivo).ToString()) != null)
                 {
-                    _evolutionModelTypes.Add(type.Name.ToLower(), type);
+                    _types.Add(type.Name.ToLower(), type);
                 }
             }
         }
 
-        public IModeloEvolutivo CreateInstance(string evolutionModelTypeName)
+        public IModeloEvolutivo CreateInstance(string instanceName)
         {
-            var name = evolutionModelTypeName.ToLower();
+            var name = instanceName.ToLower();
             Type t = null;
-            foreach (var modelType in _evolutionModelTypes)
+            foreach (var type in _types)
             {
-                if (modelType.Key.Contains(name))
+                if (type.Key.Contains(name))
                 {
-                    t = modelType.Value;
+                    t = type.Value;
                     break;
                 }
             }

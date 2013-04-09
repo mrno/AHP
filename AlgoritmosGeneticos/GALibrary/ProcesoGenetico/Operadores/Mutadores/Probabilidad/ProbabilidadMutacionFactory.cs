@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using GALibrary.ProcesoGenetico.ModeloEvolutivo;
+using GALibrary.ProcesoGenetico.Operadores.Abstracto;
 
-namespace GALibrary.ProcesoGenetico.FuncionesAptitud
+namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
 {
-    public class FuncionAptitudFactory
+    public class ProbabilidadMutacionFactory
     {
         private Dictionary<string, Type> _types = new Dictionary<string, Type>();
 
-        public FuncionAptitudFactory()
+        public ProbabilidadMutacionFactory()
         {
             LoadTypes();
         }
@@ -19,14 +22,14 @@ namespace GALibrary.ProcesoGenetico.FuncionesAptitud
             var assembly = Assembly.GetExecutingAssembly();
             foreach (var type in assembly.GetTypes())
             {
-                if(type.GetInterface(typeof(IFuncionAptitud).ToString()) != null)
+                if(type.GetInterface(typeof(IProbabilidadMutacion).ToString()) != null)
                 {
                     _types.Add(type.Name.ToLower(), type);
                 }
             }
         }
 
-        public IFuncionAptitud CreateInstance(string instanceName)
+        public IProbabilidadMutacion CreateInstance(string instanceName, object[] instanceParameters)
         {
             var name = instanceName.ToLower();
             Type t = null;
@@ -39,10 +42,15 @@ namespace GALibrary.ProcesoGenetico.FuncionesAptitud
                 }
             }
 
-            if (t == null)
-                throw new FuncionAptitudCreationException("error - no se pudo crear la estrategia");
-
-            return Activator.CreateInstance(t) as IFuncionAptitud;
+            try
+            {
+                return Activator.CreateInstance(t, instanceParameters) as IProbabilidadMutacion;
+            }
+            catch (Exception)
+            {
+                throw new ProbabilidadMutacionException(
+                    "error - no se pudo crear la estrategia de probabilidad de mutación especificada");
+            }
         }
     }
 }

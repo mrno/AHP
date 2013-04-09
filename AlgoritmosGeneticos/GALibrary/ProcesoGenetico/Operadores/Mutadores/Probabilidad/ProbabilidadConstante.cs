@@ -1,14 +1,16 @@
-﻿namespace GALibrary.ProcesoGenetico.Mutadores.Probabilidad
+﻿using GALibrary.ProcesoGenetico.Entidades;
+
+namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
 {
-    public class ProbabilidadConstante : IMutadorProbabilidad
+    public class ProbabilidadConstante : IProbabilidadMutacion
     {
-        private double _probabilidad;
+        private readonly double _probabilidad;
         public ProbabilidadConstante(double probabilidad)
         {
             _probabilidad = probabilidad;
         }
 
-        public double CalcularProbabilidad(int generacion)
+        public double CalcularProbabilidad(Poblacion poblacion)
         {
             return _probabilidad;
         }

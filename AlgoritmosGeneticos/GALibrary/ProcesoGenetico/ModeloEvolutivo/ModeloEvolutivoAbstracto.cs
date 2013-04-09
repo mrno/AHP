@@ -9,15 +9,22 @@ using GALibrary.ProcesoGenetico.Operadores;
 using GALibrary.ProcesoGenetico.Operadores.Abstracto;
 using GALibrary.ProcesoGenetico.Operadores.Cruzadores;
 using GALibrary.ProcesoGenetico.Operadores.Selectores;
+using GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad;
+using GALibrary.ProcesoGenetico.CondicionParada;
 
 namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 {
     public abstract class ModeloEvolutivoAbstracto : IModeloEvolutivo
     {
+        protected Poblacion UltimaPoblacion;
+        protected ICondicionParada CondicionParada { get; set; }
+
         public IOperador Selector { get; set; }
         public IOperador Cruzador { get; set; }
         public IOperador Mutador { get; set; }
 
+        protected IProbabilidadMutacion ProbabilidadMutacion { get; set; }
+        
         /// <summary>
         /// Permite crear un operador, o una serie de operados aplicados sucesivamente.
         /// </summary>
@@ -48,14 +55,5 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 
         public abstract Poblacion ObtenerSiguienteGeneracion(Poblacion poblacion);
         public abstract bool Parada { get; }
-
-    }
-
-    public interface IModeloEvolutivo
-    {
-        IOperador Selector { get; set; }
-        IOperador Cruzador { get; set; }
-        IOperador Mutador { get; set; }
-        Poblacion ObtenerSiguienteGeneracion(Poblacion poblacion);
     }
 }

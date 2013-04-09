@@ -9,7 +9,7 @@ using GALibrary.Persistencia;
 
 namespace GALibrary.ProcesoGenetico.FuncionesAptitud
 {
-    public class FuncionAptitudConsistencia : IFuncionAptitud
+    public class FuncionAptitudConsistenciaResta : IFuncionAptitud
     {
         public Estructura EstructuraBase { get; set; }
         public Estructura EstructuraObjetivo { get; set; }
@@ -21,13 +21,21 @@ namespace GALibrary.ProcesoGenetico.FuncionesAptitud
 
         public double AptitudObjetivo
         {
-            get { return 1.0 - Utilidades.CalcularConsistencia
-                (Utilidades.ConvertirVectorEnMatriz(EstructuraObjetivo.Vector)); }
+            get { return 1.0 - InconsistenciaObjetivo; }
         }
 
-        public object Clone()
+        public double InconsistenciaObjetivo
         {
-            return new FuncionAptitudConsistencia();
+            get
+            {
+                return Utilidades.CalcularConsistencia
+                    (Utilidades.ConvertirVectorEnMatriz(EstructuraObjetivo.Vector));
+            }
         }
+
+        //public object Clone()
+        //{
+        //    return new FuncionAptitudConsistenciaResta{ EstructuraBase = EstructuraBase, EstructuraObjetivo = EstructuraObjetivo};
+        //}
     }
 }
