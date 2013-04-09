@@ -64,9 +64,8 @@ namespace sisExperto.Entidades
                     var param3 = ValoracionIL.ConjuntoEtiquetas.Cantidad - 1;
                     var param2 = cardinalidadCEN;
 
-                    int variable = util.ExtrapoladoAConjuntoNormalizado(param1,
-                                                                        param2,
-                                                                        param3);
+                    //En variable se guarda el valor de ValorILNumerico cuando se lo transforma en su valor equivalente en el conjunto de etiquetas virtuales.
+                    int variable = util.ExtrapoladoAConjuntoNormalizado(param1, param2, param3);
 
                     var alternativa = resultado.AlternativasIL.ElementAt(i);
                     var valorCriterio = alternativa.ValorCriterios.ElementAt(j);
@@ -77,7 +76,8 @@ namespace sisExperto.Entidades
                         //alternativas[i].ValorCriterios[j].ValorILNumerico *= final; 
                         valorCriterio.ValorILNumerico *= final; 
                    
-                    }else
+                    }
+                    else
                     {
                         var final = variable * Ponderacion;
                         //alternativas[i].ValorCriterios[j].ValorILNumerico += final; 

@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="UI\Clases\ExpertoEnProyectoViewModel.cs" />
     <Compile Include="UI\Clases\ProyectoTransferibleViewModel.cs" />
+    <Compile Include="UI\Clases\ResultadoPersonalTuplasViewModel.cs" />
     <Compile Include="UI\Clases\ResultadoViewModel.cs" />
     <Compile Include="UI\Clases\SugerenciaViewModel.cs" />
     <Compile Include="UI\Clases\Utilidades.cs" />
@@ -216,6 +217,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MostrarResultadoTuplas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarResultadoTuplas.Designer.cs">
+      <DependentUpon>MostrarResultadoTuplas.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\PonderacionExpertos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +313,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\MostrarResultadoTuplas.resx">
+      <DependentUpon>MostrarResultadoTuplas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\PonderacionExpertos.resx">
       <DependentUpon>PonderacionExpertos.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,8 +362,10 @@
     <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
     <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.ValorCriterio.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.ExpertoEnProyectoViewModel.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.ProyectoTransferibleViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ResultadoPersonalTuplasViewModel.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.ResultadoViewModel.datasource" />
     <None Include="Properties\DataSources\sisexperto.UI.Clases.SugerenciaViewModel.datasource" />
     <None Include="Properties\Settings.settings">

@@ -28,7 +28,6 @@ namespace probaAHP
             }
         }
 
-
         public void MultiplicarWCriterios(List<ValorCriterio> listCriterio )
         {
             
@@ -46,7 +45,6 @@ namespace probaAHP
             }
 
         }
-
 
         public double[,] GenerarMatrizDesdeLista(List<ValorCriterio> list )
         {
@@ -152,6 +150,11 @@ namespace probaAHP
         return (valoracion*CardinalidadCEN)/CardinalidadCEExpertoK;
     }
 
+    public double VirtualAPersonal(double valoracion, Int32 CardinalidadCEN, Int32 CardinalidadCEExpertoK)
+    {
+        return (valoracion * (double)CardinalidadCEExpertoK) / (double)CardinalidadCEN;
+    }
+
     public double InversaExtrapoladoAConjuntoNormalizado(Int32 valoracionNormalizada, Int32 CardinalidadCEN, Int32 CardinalidadCEExpertoK)
     {
         return (double)(valoracionNormalizada * CardinalidadCEExpertoK) / CardinalidadCEN;
@@ -171,7 +174,8 @@ namespace probaAHP
     }
 
 
-
+        //Este método simplemente devuelve la misma estructura que se le pasa como parámetro, en este caso valoracionIlingreso,
+        //con los valores en preparados para realizar cálculos. Si es con peso todos los ValorILNumerico son 0 y si no son 1.
         public ValoracionIL ObtenerEstructuraRdo(ValoracionIL valoracionIlingreso, bool ConPeso)
         {
 
@@ -207,5 +211,44 @@ namespace probaAHP
             return valoracionIlSalida;
         }
 
+        public ValoracionIL ObtenerEstructuraRdoTuplas(ValoracionIL valoracionIlingreso, bool ConPeso)
+        {
+
+            ValoracionIL valoracionIlSalida = new ValoracionIL();
+
+
+            List<AlternativaIL> listAlternativaIls = new List<AlternativaIL>();
+            foreach (AlternativaIL alternativaIl in valoracionIlingreso.AlternativasIL)
+            {
+                AlternativaIL alternativaIls = new AlternativaIL();
+                alternativaIls.Nombre = alternativaIl.Nombre;
+
+                List<ValorCriterio> listaValorCriterio = new List<ValorCriterio>();
+
+                foreach (ValorCriterio valorCriterio in alternativaIl.ValorCriterios)
+                {
+                    ValorCriterio valorCriterios = new ValorCriterio();
+                    valorCriterios.Nombre = valorCriterio.Nombre;
+
+                    if (ConPeso)
+                    {
+                        valorCriterios.ValorILNumerico = 0;    
+                    }
+                    else
+                    {
+                        valorCriterios.ValorILNumerico = 1;
+
+                    }
+                    
+                    listaValorCriterio.Add(valorCriterios); 
+                }
+                alternativaIls.ValorCriterios = listaValorCriterio;
+                listAlternativaIls.Add(alternativaIls);
+            }
+            valoracionIlSalida.AlternativasIL = listAlternativaIls;
+            return valoracionIlSalida;
+        }
+
     }
-}
+
+    }
