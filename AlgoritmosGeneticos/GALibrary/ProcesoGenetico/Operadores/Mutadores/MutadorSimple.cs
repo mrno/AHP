@@ -17,6 +17,7 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores
             {
                 var mutaciones = Random.Next(0, cantidadCaracteristicas);
                 var individuo = individuos[i].Clone() as Individuo;
+                individuo.GeneracionNacimiento = poblacion.Generacion;
 
                 for (int j = 0; j < mutaciones; j++)
                 {

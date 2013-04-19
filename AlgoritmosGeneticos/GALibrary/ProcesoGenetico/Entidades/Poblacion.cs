@@ -52,25 +52,31 @@ namespace GALibrary.ProcesoGenetico.Entidades
         #endregion
 
         #region métodos
-
+        
         public Poblacion()
         {
-            var factoryConvergencia = new ConvergenciaPoblacionFactory();
-            _convergenciaPoblacion = factoryConvergencia.CreateInstance("ConvergenciaEstructura");
         }
 
-        public Poblacion(int generacion) : this()
+        public Poblacion(string tipoConvergencia)
+        {
+            var factoryConvergencia = new ConvergenciaPoblacionFactory();
+            _convergenciaPoblacion = factoryConvergencia.CreateInstance(tipoConvergencia);
+        }
+
+        public Poblacion(int generacion, string tipoConvergencia)
+            : this(tipoConvergencia)
         {
             Generacion = generacion;
             Individuos = new List<Individuo>();
         }
 
-        public Poblacion(int generacion, List<Individuo> individuos) : this(generacion)
+        public Poblacion(int generacion, List<Individuo> individuos, string tipoConvergencia)
+            : this(generacion, tipoConvergencia)
         {
             Individuos = individuos;
         }
 
-        public static Poblacion GenerarPoblacionInicial(int cantidadIndividuos, Estructura estructuraBase, Estructura estructuraObjetivo, string funcionAptitud)
+        public static Poblacion GenerarPoblacionInicial(int cantidadIndividuos, Estructura estructuraBase, string funcionAptitud, string tipoConvergencia)
         {
             var cantidadCaracteristicasIndividuo = estructuraBase.Vector.CantidadValoresFaltantes();
             
@@ -81,10 +87,9 @@ namespace GALibrary.ProcesoGenetico.Entidades
             {
                 var funcion = factoryAptitud.CreateInstance(funcionAptitud);
                 funcion.EstructuraBase = estructuraBase;
-                funcion.EstructuraObjetivo = estructuraObjetivo;
                 individuos.Add(Individuo.GenerarIndividuoAleatorio(cantidadCaracteristicasIndividuo, funcion));
             }
-            return new Poblacion(0, individuos);
+            return new Poblacion(0, individuos, tipoConvergencia);
         }
         
         #endregion

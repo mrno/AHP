@@ -7,6 +7,7 @@ using GALibrary;
 using GALibrary.Persistencia;
 using GALibrary.ProcesoGenetico;
 using GALibrary.ProcesoGenetico.Entidades;
+using GALibrary.Complementos;
 
 namespace AlgoritmoGenetico
 {
@@ -14,10 +15,11 @@ namespace AlgoritmoGenetico
     {
         static void Main(string[] args)
         {
+            Utilidades.CalcularConsistencia(new double[3, 3]);
+            
             const int cantidadSubConjuntosDe100Matrices = 5;
             //GenerarMatrices(cantidadSubConjuntosDe100Matrices);
-            var a = EvolucionarSecuencial(0);
-            //var b = EvolucionarParalelo(0);
+            Evolucionar(150);
         }
         
         private static void GenerarMatrices(int cantidadSubConjuntosDe100)
@@ -56,81 +58,106 @@ namespace AlgoritmoGenetico
             }
         }
 
-        private static TimeSpan EvolucionarParalelo(int iteraciones)
+        private static void Evolucionar(int individuos)
         {
-            //Estructura estructuraBase;
-            //Estructura estructuraObjetivo;
+            int cantidad;
+            int sesionId;
 
-            var context = new GAContext();
-
-            //var matriz = context.Matrices.First(x => x.Id == 11798);
-
-            //estructuraBase = new Estructura(matriz);
-            //estructuraObjetivo = new Estructura(matriz.MatrizCompleta);
-
-            var conjunto4 = context.ConjuntosOrdenN
-                .Include("ConjuntosMatrices.Matrices.Filas.Celdas")
-                .Include("ConjuntosMatrices.Matrices.MatricesIncompletas.Filas.Celdas")
-                .First(x => x.Id == 6).ConjuntosMatrices.First(x => x.Id == 101).Matrices.Take(1).ToList();
-
-            var resultado = new List<Individuo>();
-
-            var inicio = DateTime.Now;
-
-            Parallel.ForEach(conjunto4, (matriz) =>
-                                            {
-                                                var estructuraBase =
-                                                    new Estructura(matriz.MatricesIncompletas.ElementAt(2));
-                                                var estructuraObjetivo = new Estructura(matriz);
-
-                                                var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 100);
-                                                var individuo = evolucion.Evolucionar("ModeloEvolutivoEstandar");
-
-                                                resultado.Add(individuo);
-                                            });
-
-            context.Dispose();
-            GC.Collect();
-            return DateTime.Now - inicio;
-
-
-            //var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 100);
-            //evolucion.Evolucionar("ModeloEvolutivoEstandar");
-        }
-
-        private static TimeSpan EvolucionarSecuencial(int iteraciones)
-        {
-            //Estructura estructuraBase;
-            //Estructura estructuraObjetivo;
-
-            var context = new GAContext();
-            
-            var conjunto4 = context.ConjuntosOrdenN
-                .Include("ConjuntosMatrices.Matrices.Filas.Celdas")
-                .Include("ConjuntosMatrices.Matrices.MatricesIncompletas.Filas.Celdas")
-                .First(x => x.Id == 6).ConjuntosMatrices.First(x => x.Id == 101).Matrices.Take(1).ToList();
-
-            var resultado = new List<Individuo>();
-
-            var inicio = DateTime.Now;
-
-            foreach (var matriz in conjunto4)
+            using (var context = new GAContext())
             {
-                var estructuraBase = new Estructura(matriz.MatricesIncompletas.ElementAt(2));
-                var estructuraObjetivo = new Estructura(matriz);
+                cantidad = context.Matrices.Include("MatrizCompleta").Count(x => x.MatrizCompleta != null);
 
-                var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 500);
-                var individuo = evolucion.Evolucionar("ModeloEvolutivoEstandar");
+                var sesion = new SesionExperimentacion
+                                 {
+                                     ModeloEvolutivo = "ModeloEvolutivoEstandar",
+                                     Individuos = individuos,
 
-                resultado.Add(individuo);
+                                     Seleccion = "SelectorElitista",
+                                     PorcentajeSeleccion = 0.1,
+
+                                     Cruza = "SelectorRuleta>CruzadorSimple",
+                                     PorcentajeCruza = 0,
+
+                                     Mutacion = "SelectorUniforme>MutadorSimple",
+                                     ProbabilidadMutacion = "ProbabilidadConvergencia",
+                                     PorcentajeMinimoMutacion = 0.0,
+                                     PorcentajeMaximoMutacion = 0.05,
+                                     CrecimientoPorcentajeMutacion = 0.001,
+
+                                     CondicionParada = "ParadaIteraciones:100&ParadaConvergencia:0.98",
+                                     ConvergenciaPoblacion = "ConvergenciaEstructura",
+                                     FuncionAptitud = "FuncionAptitudConsistenciaExponencial",
+                                 };
+
+                context.Sesiones.Add(sesion);
+                context.SaveChanges();
+
+                sesionId = sesion.Id;
             }
-            
-            context.Dispose();
-            GC.Collect();
-            return DateTime.Now - inicio;
 
-            //var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 100);
-            //evolucion.Evolucionar("ModeloEvolutivoEstandar");
+            for (int i = 0; i < cantidad / 10; i++)
+            {
+                Utilidades.CalcularConsistencia(new double[3, 3]);
+
+                using (var context = new GAContext())
+                {
+                    var conjuntoIncompletas = context.Matrices
+                        .Include("MatrizCompleta.Filas.Celdas")
+                        .Include("Filas.Celdas")
+                        .Include("MatricesIncompletas.Filas.Celdas")
+                        .Include("Experimentos.MatrizMejorada.Filas.Celdas")
+                        .Where(x => x.MatrizCompleta != null)
+                        .OrderBy(x => x.Id)
+                        .Skip(i*10).Take(10).ToList();
+
+                    var sesionExperimento = context.Sesiones.Include("Experimentos").First(x => x.Id == sesionId);
+                    
+                    if (sesionExperimento.Experimentos == null)
+                        sesionExperimento.Experimentos = new List<ResultadoExperimento>();
+                    
+                    //var matriz = conjuntoIncompletas.First();
+                    foreach (var matriz in conjuntoIncompletas)
+                    {
+                        var evolucion =
+                            new Evolucion(matriz,
+                                          sesionExperimento);
+
+                        var experimento =
+                            evolucion.Evolucionar();
+
+                        if (matriz.Experimentos == null)
+                            matriz.Experimentos =
+                                new List<ResultadoExperimento>();
+
+                        matriz.Experimentos.Add(experimento);
+                        experimento.MatrizOriginal = matriz;
+
+                        sesionExperimento.Experimentos.Add(experimento);
+                        GC.Collect();
+                    }
+                    //Parallel.ForEach(conjuntoIncompletas, (matriz) =>
+                    //                               {
+                    //                                   var evolucion =
+                    //                                       new Evolucion(matriz, 
+                    //                                                     sesionExperimento);
+
+                    //                                   var experimento =
+                    //                                       evolucion.Evolucionar();
+
+                    //                                   if (matriz.Experimentos == null)
+                    //                                       matriz.Experimentos =
+                    //                                           new List<ResultadoExperimento>();
+
+                    //                                   matriz.Experimentos.Add(experimento);
+                    //                                   experimento.MatrizOriginal = matriz;
+                                                       
+                    //                                   sesionExperimento.Experimentos.Add(experimento);
+                    //                                   GC.Collect();
+                    //                               });
+                    context.SaveChanges();
+                }
+                GC.Collect();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using GALibrary.Complementos;
+using GALibrary.Persistencia;
 using GALibrary.ProcesoGenetico.Entidades;
 using GALibrary.ProcesoGenetico.ModeloEvolutivo;
 using System;
@@ -11,35 +12,45 @@ namespace GALibrary.ProcesoGenetico
 {
     public class Evolucion
     {
-        private Poblacion _poblacionInicial;
         private IModeloEvolutivo _modeloEvolutivo;
 
         private Estructura _estructuraBase;
-        private Estructura _estructuraObjetivo;
 
-        public Evolucion(Estructura estructuraBase, Estructura estructuraObjetivo, int cantidadIndividuos)
+        private SesionExperimentacion _sesionExperimentacion;
+
+        public Evolucion(ObjetoMatriz matrizIncompleta, SesionExperimentacion sesionExperimentacion)
         {
-            _estructuraBase = estructuraBase;
-            _estructuraObjetivo = estructuraObjetivo;
-
-            _poblacionInicial = Poblacion.GenerarPoblacionInicial
-                (cantidadIndividuos, _estructuraBase, _estructuraObjetivo, "FuncionAptitudConsistencia");
+            _estructuraBase = new Estructura(matrizIncompleta);
+            _sesionExperimentacion = sesionExperimentacion;
         }
 
-        public Individuo Evolucionar(string nombreModeloEvolutivo)
+        public ResultadoExperimento Evolucionar()
         {
-            _modeloEvolutivo = (new ModeloEvolutivoFactory()).CreateInstance(nombreModeloEvolutivo);
-            var poblaciones = new List<Poblacion>();
-            var poblacion = _poblacionInicial;
-            poblaciones.Add(poblacion);
-
+            var poblacion = Poblacion.GenerarPoblacionInicial
+                (_sesionExperimentacion.Individuos,
+                 _estructuraBase,
+                 _sesionExperimentacion.FuncionAptitud,
+                 _sesionExperimentacion.ConvergenciaPoblacion);
+            
+            _modeloEvolutivo = (new ModeloEvolutivoFactory()).CreateInstance(_sesionExperimentacion.ModeloEvolutivo);
+            _modeloEvolutivo.ConfigurarModelo(_sesionExperimentacion);
+            _modeloEvolutivo.RegistrarInicioExperimento();
+            //Utilidades.CalcularConsistencia(new double[3, 3]);
             do
             {
                 poblacion = _modeloEvolutivo.ObtenerSiguienteGeneracion(poblacion);
-                poblaciones.Add(poblacion);
             } while (!_modeloEvolutivo.Parada);
 
-            return poblacion.MejorIndividuo;
+            _modeloEvolutivo.RegistrarFinExperimento();
+
+            _sesionExperimentacion.Experimentos.Add(_modeloEvolutivo.ExperimentoResultado);
+
+            if(poblacion.Generacion < 3)
+            {
+                var asd = 9;
+            }
+
+            return _modeloEvolutivo.ExperimentoResultado;
         }
     }
 }

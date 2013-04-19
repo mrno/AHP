@@ -3,13 +3,9 @@ using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.FuncionesAptitud
 {
-    public interface IFuncionAptitud// : ICloneable
+    public interface IFuncionAptitud
     {
         Estructura EstructuraBase { get; set; }
-        Estructura EstructuraObjetivo { get; set; }
-
         double Aptitud(Individuo individuo);
-        double AptitudObjetivo { get; }
-        double InconsistenciaObjetivo { get; }
     }
 }

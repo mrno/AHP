@@ -17,11 +17,10 @@ namespace GALibrary.Persistencia
         public virtual bool Completa { get; set; }
         public virtual int Dimension { get; set; }
         
-
         public virtual ObjetoMatriz MatrizCompleta { get; set; }
         public virtual ICollection<ObjetoMatriz> MatricesIncompletas { get; set; }
 
-        public virtual ObjetoMatriz MatrizMejorada { get; set; }
+        public virtual ICollection<ResultadoExperimento> Experimentos { get; set; }
         
         #endregion
 
