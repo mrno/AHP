@@ -34,14 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridResultados = new System.Windows.Forms.DataGridView();
-            this.ValorPorcentaje = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridExpertos = new System.Windows.Forms.DataGridView();
             this.ApellidoYNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridRankingPersonal = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
             this.alternativaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultadoViewModelBindingSourceIndividual = new System.Windows.Forms.BindingSource(this.components);
@@ -50,6 +48,7 @@
             this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultadoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -111,8 +110,7 @@
             this.dataGridResultados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridResultados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.alternativaDataGridViewTextBoxColumn,
-            this.porcentajeDataGridViewTextBoxColumn,
-            this.ValorPorcentaje});
+            this.porcentajeDataGridViewTextBoxColumn});
             this.dataGridResultados.DataSource = this.resultadoViewModelBindingSource;
             this.dataGridResultados.Location = new System.Drawing.Point(6, 25);
             this.dataGridResultados.Name = "dataGridResultados";
@@ -121,14 +119,6 @@
             this.dataGridResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridResultados.Size = new System.Drawing.Size(288, 350);
             this.dataGridResultados.TabIndex = 5;
-            // 
-            // ValorPorcentaje
-            // 
-            this.ValorPorcentaje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ValorPorcentaje.DataPropertyName = "ValorPorcentaje";
-            this.ValorPorcentaje.HeaderText = "ValorPorcentaje";
-            this.ValorPorcentaje.Name = "ValorPorcentaje";
-            this.ValorPorcentaje.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -212,16 +202,6 @@
             this.dataGridRankingPersonal.Size = new System.Drawing.Size(288, 350);
             this.dataGridRankingPersonal.TabIndex = 6;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(404, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // alternativaDataGridViewTextBoxColumn1
             // 
             this.alternativaDataGridViewTextBoxColumn1.DataPropertyName = "Alternativa";
@@ -264,6 +244,7 @@
             // 
             // porcentajeDataGridViewTextBoxColumn
             // 
+            this.porcentajeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.porcentajeDataGridViewTextBoxColumn.DataPropertyName = "Porcentaje";
             this.porcentajeDataGridViewTextBoxColumn.FillWeight = 35F;
             this.porcentajeDataGridViewTextBoxColumn.HeaderText = "Porcentaje";
@@ -274,11 +255,21 @@
             // 
             this.resultadoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ResultadoViewModel);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(828, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 30);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Resultado en 2 tuplas";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MostrarRankingAgregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 461);
+            this.ClientSize = new System.Drawing.Size(984, 491);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -325,7 +316,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn administradorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentajeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValorPorcentaje;
         private System.Windows.Forms.Button button1;
     }
 }

@@ -98,6 +98,9 @@ namespace sisExperto.UI
 
                 RefrescarGrids();
                 _cambiosNoGuardados = true;
+
+                textBoxNombreAlternativa.Text = "";
+                textBoxDescripcionAlternativa.Text = "";
             }
             else MessageBox.Show("El Nombre y la Descripción de la alternativa no pueden estar vacíos.");
         }
@@ -139,6 +142,9 @@ namespace sisExperto.UI
 
                 RefrescarGrids();
                 _cambiosNoGuardados = true;
+
+                textBoxNombreCriterio.Text = "";
+                textBoxDescripcionCriterio.Text = "";
             }
             else MessageBox.Show("El Nombre y la Descripción del criterio no pueden estar vacíos.");
         }
@@ -173,7 +179,7 @@ namespace sisExperto.UI
             {
                 comboBoxProyectos.Text = "";
                 buttonGuardar.Enabled = false;
-                buttonLimpiarAsignaciones.Enabled = false;
+                buttonGuardarYSalir.Enabled = false;
                 MessageBox.Show("No existen más proyectos para editar.");
                 Close();
             }
@@ -197,7 +203,9 @@ namespace sisExperto.UI
 
         private void buttonLimpiarAsignaciones_Click(object sender, EventArgs e)
         {
-            Limpiar();
+            //Limpiar();
+            GuardarCambios();
+            this.Close();
         }
 
         private void buttonCancelar_Click(object sender, EventArgs e)

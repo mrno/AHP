@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageAHP = new System.Windows.Forms.TabPage();
+            this.buttonCalcular = new System.Windows.Forms.Button();
             this.groupBoxMatrizComparacion = new System.Windows.Forms.GroupBox();
             this.buttonConsistencia = new System.Windows.Forms.Button();
             this.labelComparacion = new System.Windows.Forms.Label();
@@ -53,13 +54,11 @@
             this.panelComparacionIL = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.gridAlternativasIL = new System.Windows.Forms.DataGridView();
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valoradaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.alternativaILBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonCalcular = new System.Windows.Forms.Button();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPageAHP.SuspendLayout();
             this.groupBoxMatrizComparacion.SuspendLayout();
@@ -100,6 +99,18 @@
             this.tabPageAHP.TabIndex = 0;
             this.tabPageAHP.Text = "AHP";
             this.tabPageAHP.UseVisualStyleBackColor = true;
+            // 
+            // buttonCalcular
+            // 
+            this.buttonCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCalcular.Location = new System.Drawing.Point(113, 533);
+            this.buttonCalcular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCalcular.Name = "buttonCalcular";
+            this.buttonCalcular.Size = new System.Drawing.Size(160, 30);
+            this.buttonCalcular.TabIndex = 39;
+            this.buttonCalcular.Text = "Ver Ranking Individual";
+            this.buttonCalcular.UseVisualStyleBackColor = true;
+            this.buttonCalcular.Click += new System.EventHandler(this.buttonCalcular_Click);
             // 
             // groupBoxMatrizComparacion
             // 
@@ -284,9 +295,9 @@
             this.groupBoxComparacionIL.Controls.Add(this.labelAlternativa);
             this.groupBoxComparacionIL.Controls.Add(this.panelComparacionIL);
             this.groupBoxComparacionIL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxComparacionIL.Location = new System.Drawing.Point(390, 6);
+            this.groupBoxComparacionIL.Location = new System.Drawing.Point(332, 6);
             this.groupBoxComparacionIL.Name = "groupBoxComparacionIL";
-            this.groupBoxComparacionIL.Size = new System.Drawing.Size(566, 559);
+            this.groupBoxComparacionIL.Size = new System.Drawing.Size(624, 559);
             this.groupBoxComparacionIL.TabIndex = 38;
             this.groupBoxComparacionIL.TabStop = false;
             this.groupBoxComparacionIL.Text = "Matriz de Comparacion:";
@@ -305,7 +316,7 @@
             this.panelComparacionIL.BackColor = System.Drawing.Color.Transparent;
             this.panelComparacionIL.Location = new System.Drawing.Point(6, 56);
             this.panelComparacionIL.Name = "panelComparacionIL";
-            this.panelComparacionIL.Size = new System.Drawing.Size(554, 497);
+            this.panelComparacionIL.Size = new System.Drawing.Size(612, 497);
             this.panelComparacionIL.TabIndex = 0;
             // 
             // groupBox2
@@ -314,7 +325,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(378, 559);
+            this.groupBox2.Size = new System.Drawing.Size(320, 559);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Valoraciones";
@@ -328,30 +339,15 @@
             this.gridAlternativasIL.BackgroundColor = System.Drawing.Color.LightGray;
             this.gridAlternativasIL.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridAlternativasIL.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombreDataGridViewTextBoxColumn,
-            this.valoradaDataGridViewCheckBoxColumn});
+            this.nombreDataGridViewTextBoxColumn});
             this.gridAlternativasIL.DataSource = this.alternativaILBindingSource;
             this.gridAlternativasIL.Location = new System.Drawing.Point(6, 25);
             this.gridAlternativasIL.Name = "gridAlternativasIL";
             this.gridAlternativasIL.ReadOnly = true;
             this.gridAlternativasIL.RowHeadersVisible = false;
             this.gridAlternativasIL.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridAlternativasIL.Size = new System.Drawing.Size(366, 528);
+            this.gridAlternativasIL.Size = new System.Drawing.Size(307, 528);
             this.gridAlternativasIL.TabIndex = 5;
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valoradaDataGridViewCheckBoxColumn
-            // 
-            this.valoradaDataGridViewCheckBoxColumn.DataPropertyName = "Valorada";
-            this.valoradaDataGridViewCheckBoxColumn.HeaderText = "Valorada";
-            this.valoradaDataGridViewCheckBoxColumn.Name = "valoradaDataGridViewCheckBoxColumn";
-            this.valoradaDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // alternativaILBindingSource
             // 
@@ -387,17 +383,13 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 359;
             // 
-            // buttonCalcular
+            // nombreDataGridViewTextBoxColumn
             // 
-            this.buttonCalcular.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCalcular.Location = new System.Drawing.Point(113, 533);
-            this.buttonCalcular.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonCalcular.Name = "buttonCalcular";
-            this.buttonCalcular.Size = new System.Drawing.Size(160, 30);
-            this.buttonCalcular.TabIndex = 39;
-            this.buttonCalcular.Text = "Ver Ranking Individual";
-            this.buttonCalcular.UseVisualStyleBackColor = true;
-            this.buttonCalcular.Click += new System.EventHandler(this.buttonCalcular_Click);
+            this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Alternativa";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ValorarProyectos
             // 
@@ -460,13 +452,12 @@
         private System.Windows.Forms.Label labelComparacionTrack;
         private System.Windows.Forms.TrackBar trackBarComparacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn valoradaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.BindingSource alternativaILBindingSource;
         private System.Windows.Forms.BindingSource alternativaMatrizBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn CriterioNombre;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn completaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Button buttonCalcular;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
     }
 }

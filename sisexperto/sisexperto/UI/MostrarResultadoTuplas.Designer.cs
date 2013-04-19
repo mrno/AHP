@@ -30,13 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingTuplas = new System.Windows.Forms.BindingSource(this.components);
             this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.criterioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.etiquetaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alphaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingTuplas = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingTuplas)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -51,15 +53,11 @@
             this.etiquetaDataGridViewTextBoxColumn,
             this.alphaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.bindingTuplas;
-            this.dataGridView1.Location = new System.Drawing.Point(24, 21);
+            this.dataGridView1.Location = new System.Drawing.Point(21, 37);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(495, 344);
+            this.dataGridView1.Size = new System.Drawing.Size(677, 344);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // bindingTuplas
-            // 
-            this.bindingTuplas.DataSource = typeof(sisexperto.UI.Clases.ResultadoPersonalTuplasViewModel);
             // 
             // alternativaDataGridViewTextBoxColumn
             // 
@@ -93,17 +91,34 @@
             this.alphaDataGridViewTextBoxColumn.Name = "alphaDataGridViewTextBoxColumn";
             this.alphaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // bindingTuplas
+            // 
+            this.bindingTuplas.DataSource = typeof(sisexperto.UI.Clases.ResultadoPersonalTuplasViewModel);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(23, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(721, 397);
+            this.groupBox1.TabIndex = 43;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Representación en dos tuplas:";
+            // 
             // MostrarResultadoTuplas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 385);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(775, 420);
+            this.Controls.Add(this.groupBox1);
             this.Name = "MostrarResultadoTuplas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MostrarResultadoTuplas";
             this.Load += new System.EventHandler(this.MostrarResultadoTuplas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingTuplas)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -116,5 +131,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn criterioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn etiquetaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn alphaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

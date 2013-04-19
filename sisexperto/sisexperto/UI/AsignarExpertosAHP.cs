@@ -71,6 +71,7 @@ namespace sisexperto.UI
             {
                 Experto = experto,
                 Proyecto = _proyectoSeleccionado,
+                Peso = 1,
                 Activo = true
             });
 
