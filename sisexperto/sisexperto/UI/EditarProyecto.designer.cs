@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarProyecto));
             this.dataGridAlternativas = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.criterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.buttonGuardar = new System.Windows.Forms.Button();
@@ -45,19 +47,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonLimpiarAsignaciones = new System.Windows.Forms.Button();
+            this.buttonGuardarYSalir = new System.Windows.Forms.Button();
             this.textBoxDescripcionCriterio = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxNombreCriterio = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataGridCriterios = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonAgregarCriterio = new System.Windows.Forms.Button();
             this.buttonQuitarCriterio = new System.Windows.Forms.Button();
             this.groupBoxCriterio = new System.Windows.Forms.GroupBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).BeginInit();
@@ -85,6 +85,20 @@
             this.dataGridAlternativas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridAlternativas.Size = new System.Drawing.Size(463, 250);
             this.dataGridAlternativas.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
+            this.dataGridViewTextBoxColumn1.FillWeight = 35F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Descripcion";
+            this.dataGridViewTextBoxColumn2.FillWeight = 65F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Descripcion";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
             // alternativaBindingSource
             // 
@@ -211,16 +225,16 @@
             // 
             this.proyectoBindingSource.DataSource = typeof(sisExperto.Entidades.Proyecto);
             // 
-            // buttonLimpiarAsignaciones
+            // buttonGuardarYSalir
             // 
-            this.buttonLimpiarAsignaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLimpiarAsignaciones.Location = new System.Drawing.Point(681, 399);
-            this.buttonLimpiarAsignaciones.Name = "buttonLimpiarAsignaciones";
-            this.buttonLimpiarAsignaciones.Size = new System.Drawing.Size(140, 30);
-            this.buttonLimpiarAsignaciones.TabIndex = 4;
-            this.buttonLimpiarAsignaciones.Text = "Limpiar";
-            this.buttonLimpiarAsignaciones.UseVisualStyleBackColor = true;
-            this.buttonLimpiarAsignaciones.Click += new System.EventHandler(this.buttonLimpiarAsignaciones_Click);
+            this.buttonGuardarYSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGuardarYSalir.Location = new System.Drawing.Point(681, 399);
+            this.buttonGuardarYSalir.Name = "buttonGuardarYSalir";
+            this.buttonGuardarYSalir.Size = new System.Drawing.Size(140, 30);
+            this.buttonGuardarYSalir.TabIndex = 4;
+            this.buttonGuardarYSalir.Text = "Guardar y Salir";
+            this.buttonGuardarYSalir.UseVisualStyleBackColor = true;
+            this.buttonGuardarYSalir.Click += new System.EventHandler(this.buttonLimpiarAsignaciones_Click);
             // 
             // textBoxDescripcionCriterio
             // 
@@ -273,6 +287,20 @@
             this.dataGridCriterios.Size = new System.Drawing.Size(463, 250);
             this.dataGridCriterios.TabIndex = 4;
             // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Nombre";
+            this.dataGridViewTextBoxColumn5.FillWeight = 35F;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Descripcion";
+            this.dataGridViewTextBoxColumn6.FillWeight = 65F;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Descripcion";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
             // buttonAgregarCriterio
             // 
             this.buttonAgregarCriterio.Image = ((System.Drawing.Image)(resources.GetObject("buttonAgregarCriterio.Image")));
@@ -310,40 +338,12 @@
             this.groupBoxCriterio.TabStop = false;
             this.groupBoxCriterio.Text = "Criterios";
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn1.FillWeight = 35F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Descripcion";
-            this.dataGridViewTextBoxColumn2.FillWeight = 65F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Descripcion";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Nombre";
-            this.dataGridViewTextBoxColumn5.FillWeight = 35F;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Descripcion";
-            this.dataGridViewTextBoxColumn6.FillWeight = 65F;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Descripcion";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
             // EditarProyecto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(979, 441);
-            this.Controls.Add(this.buttonLimpiarAsignaciones);
+            this.Controls.Add(this.buttonGuardarYSalir);
             this.Controls.Add(this.comboBoxProyectos);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonCancelar);
@@ -388,7 +388,7 @@
         private System.Windows.Forms.Button buttonCancelar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxProyectos;
-        private System.Windows.Forms.Button buttonLimpiarAsignaciones;
+        private System.Windows.Forms.Button buttonGuardarYSalir;
         private System.Windows.Forms.BindingSource proyectoBindingSource;
         private System.Windows.Forms.TextBox textBoxDescripcionCriterio;
         private System.Windows.Forms.Label label8;

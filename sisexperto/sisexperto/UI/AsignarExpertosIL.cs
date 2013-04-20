@@ -185,6 +185,7 @@ namespace sisexperto.UI
                                        {
                                            Experto = c.Experto,
                                            Proyecto = c.Proyecto,
+                                           Peso = 1,
                                            Activo = true,
                                            ValoracionIL = new ValoracionIL
                                            {

@@ -670,7 +670,7 @@ namespace sisexperto.UI
             for (int i = 0; i < cantidad; i++)
             {
                 var criterio = new Label();
-                criterio.SetBounds(5, y, 75, 50);
+                criterio.SetBounds(5, y, 110, 50);
                 criterio.Name = i + "Criterio";
                 panelComparacionIL.Controls.Add(criterio);
 
