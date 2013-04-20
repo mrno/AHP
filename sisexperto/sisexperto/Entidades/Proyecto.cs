@@ -144,13 +144,13 @@ namespace sisExperto.Entidades
             }
             if (Tipo == "AHP")
             {
-                if (cantidadAlternativas < 4)
+                if (cantidadAlternativas < 3)
                 {
-                    mensaje += "\n- Agregar al menos " + (4 - cantidadAlternativas) + " alternativas.";
+                    mensaje += "\n- Agregar al menos " + (3 - cantidadAlternativas) + " alternativas.";
                 }
-                if (cantidadCriterios < 4)
+                if (cantidadCriterios < 3)
                 {
-                    mensaje += "\n- Agregar al menos " + (4 - cantidadCriterios) + " criterios.";
+                    mensaje += "\n- Agregar al menos " + (3 - cantidadCriterios) + " criterios.";
                 }
             }
             else
@@ -174,13 +174,13 @@ namespace sisExperto.Entidades
                 if (!todosConConjuntoEtiquetas)
                     mensaje += "\n- Todos los expertos deben tener un conjunto de etiquetas asignado.";
 
-                if (cantidadAlternativas < 4)
+                if (cantidadAlternativas < 3)
                 {
-                    mensaje += "\n- Agregar al menos " + (4 - cantidadAlternativas) + " alternativas.";
+                    mensaje += "\n- Agregar al menos " + (3 - cantidadAlternativas) + " alternativas.";
                 }
-                if (cantidadCriterios < 4)
+                if (cantidadCriterios < 3)
                 {
-                    mensaje += "\n- Agregar al menos " + (4 - cantidadCriterios) + " criterios.";
+                    mensaje += "\n- Agregar al menos " + (3 - cantidadCriterios) + " criterios.";
                 }
             }
             
@@ -202,7 +202,7 @@ namespace sisExperto.Entidades
             {
                 case "AHP": 
                     {
-                        return cantidadAlternativas > 3 && cantidadCriterios > 3 && cantidadExpertos > 0;
+                        return cantidadAlternativas > 2 && cantidadCriterios > 2 && cantidadExpertos > 0;
                     }
                 case "IL":
                     {
@@ -210,7 +210,7 @@ namespace sisExperto.Entidades
                     }
                 case "Ambos":
                     {
-                        return cantidadAlternativas > 3 && cantidadCriterios > 3 && cantidadExpertos > 0 && todosConConjuntoEtiquetas;
+                        return cantidadAlternativas > 2 && cantidadCriterios > 2 && cantidadExpertos > 0 && todosConConjuntoEtiquetas;
                     }
                 default: return false;
             }

@@ -514,7 +514,7 @@ namespace sisexperto.UI
                     EjecutarSugerencias(matriz);
                 }
             }
-            else MessageBox.Show("La matriz debe estar completa para evaluar su consistencia (por ahora)");
+            else MessageBox.Show("La matriz debe estar completa para evaluar su consistencia.");
         }
         
         private void EjecutarSugerencias(IAHPMatrizComparable matriz)
