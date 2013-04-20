@@ -61,7 +61,7 @@ namespace sisExperto
                 {
                     labelSubtitulo.Text = "Agregacion Ponderada";
                 }
-
+                button1.Visible = false;
             }
             else
             {

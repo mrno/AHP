@@ -67,13 +67,13 @@
             this.dataGridSugerencias.ReadOnly = true;
             this.dataGridSugerencias.RowHeadersVisible = false;
             this.dataGridSugerencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridSugerencias.Size = new System.Drawing.Size(435, 400);
+            this.dataGridSugerencias.Size = new System.Drawing.Size(637, 400);
             this.dataGridSugerencias.TabIndex = 1;
             // 
             // buttonAplicar
             // 
             this.buttonAplicar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAplicar.Location = new System.Drawing.Point(13, 428);
+            this.buttonAplicar.Location = new System.Drawing.Point(214, 428);
             this.buttonAplicar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonAplicar.Name = "buttonAplicar";
             this.buttonAplicar.Size = new System.Drawing.Size(140, 30);
@@ -85,7 +85,7 @@
             // buttonOtraSugerencia
             // 
             this.buttonOtraSugerencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonOtraSugerencia.Location = new System.Drawing.Point(161, 428);
+            this.buttonOtraSugerencia.Location = new System.Drawing.Point(362, 428);
             this.buttonOtraSugerencia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonOtraSugerencia.Name = "buttonOtraSugerencia";
             this.buttonOtraSugerencia.Size = new System.Drawing.Size(140, 30);
@@ -97,7 +97,7 @@
             // buttonSalir
             // 
             this.buttonSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSalir.Location = new System.Drawing.Point(309, 428);
+            this.buttonSalir.Location = new System.Drawing.Point(510, 428);
             this.buttonSalir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSalir.Name = "buttonSalir";
             this.buttonSalir.Size = new System.Drawing.Size(140, 30);
@@ -124,7 +124,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 464);
+            this.ClientSize = new System.Drawing.Size(663, 464);
             this.Controls.Add(this.buttonSalir);
             this.Controls.Add(this.buttonOtraSugerencia);
             this.Controls.Add(this.buttonAplicar);

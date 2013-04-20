@@ -494,16 +494,27 @@ namespace sisExperto
         {
             if (_proyectoSeleccionado != null)
             {
-                var expertoEnProyecto = _fachadaProyectosExpertos.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
+                var expertoEnProyecto = _fachadaProyectosExpertos.SolicitarExpertoProyectoActual(_proyectoSeleccionado,
+                                                                                                 _experto);
 
-                if (!expertoEnProyecto.ValoracionAHP.TodasMisValoracionesConsistentes())
+                if (expertoEnProyecto != null && expertoEnProyecto.ValoracionAHP.TodasMisValoracionesConsistentes())
                 {
-                    MessageBox.Show("No se puede realizar esta operación hasta que todas sus valoraciones sean consistentes.");
+                    var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado,
+                                                                        _fachadaEjecucionProyectos, expertoEnProyecto, 1);
+                    ventanaAHPPersonal.Show();
+
                 }
                 else
                 {
-                    var ventanaAHPPersonal = new MostrarRankingPersonal(_proyectoSeleccionado, _fachadaEjecucionProyectos, expertoEnProyecto, 1);
-                    ventanaAHPPersonal.Show();
+                    if(expertoEnProyecto == null)
+                    {
+                        MessageBox.Show(
+                        "Ud. no tiene valoraciones en el proyecto seleccionado.");
+                    }
+                    else
+                    MessageBox.Show(
+                        "No se puede realizar esta operación hasta que todas sus valoraciones sean consistentes.");
+
                 }
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");

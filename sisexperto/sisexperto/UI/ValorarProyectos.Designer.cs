@@ -55,13 +55,13 @@
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-<<<<<<< HEAD
+
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-=======
+
             this.CriterioNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.consistenciaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.completaDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
->>>>>>> 1b58b3bd1b59d07e92a088b5ef7807929ef98ab8
+
             this.tabControl1.SuspendLayout();
             this.tabPageAHP.SuspendLayout();
             this.groupBoxMatrizComparacion.SuspendLayout();
@@ -365,7 +365,6 @@
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 359;
             // 
-<<<<<<< HEAD
             // nombreDataGridViewTextBoxColumn
             // 
             this.nombreDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -373,7 +372,7 @@
             this.nombreDataGridViewTextBoxColumn.HeaderText = "Alternativa";
             this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
             this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-=======
+
             // CriterioNombre
             // 
             this.CriterioNombre.DataPropertyName = "CriterioNombre";
@@ -394,7 +393,6 @@
             this.completaDataGridViewCheckBoxColumn.HeaderText = "Completa";
             this.completaDataGridViewCheckBoxColumn.Name = "completaDataGridViewCheckBoxColumn";
             this.completaDataGridViewCheckBoxColumn.ReadOnly = true;
->>>>>>> 1b58b3bd1b59d07e92a088b5ef7807929ef98ab8
             // 
             // ValorarProyectos
             // 
@@ -463,10 +461,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CriterioNombre;
         private System.Windows.Forms.DataGridViewCheckBoxColumn consistenciaDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn completaDataGridViewCheckBoxColumn;
-<<<<<<< HEAD
-        private System.Windows.Forms.Button buttonCalcular;
+
+       // private System.Windows.Forms.Button buttonCalcular;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
-=======
->>>>>>> 1b58b3bd1b59d07e92a088b5ef7807929ef98ab8
+
     }
 }
