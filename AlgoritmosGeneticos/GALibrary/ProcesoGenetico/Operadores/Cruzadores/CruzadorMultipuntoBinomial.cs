@@ -17,15 +17,18 @@ namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
                 var padre = poblacion.Individuos.ElementAt(i % total);
                 var madre = poblacion.Individuos.ElementAt((i + 1) % total);
 
-                resultado.AddRange(ObtenerHijos(padre, madre).ToList());
+                resultado.AddRange(ObtenerHijos(padre, madre, poblacion.Generacion).ToList());
             }
             return resultado.Take(cantidadHijos);
         }
 
-        private IEnumerable<Individuo> ObtenerHijos(Individuo padre, Individuo madre)
+        private IEnumerable<Individuo> ObtenerHijos(Individuo padre, Individuo madre, int generacion)
         {
             var hijo1 = padre.Clone() as Individuo;
             var hijo2 = padre.Clone() as Individuo;
+
+            hijo1.GeneracionNacimiento = generacion;
+            hijo2.GeneracionNacimiento = generacion;
             
             var probabilidadPadre = 0.5;
 

@@ -11,9 +11,9 @@ namespace GALibrary.ProcesoGenetico.CondicionParada
     {
         private int _iteraciones;
 
-        public ParadaIteraciones(int cantidad)
+        public ParadaIteraciones(string cantidad)
         {
-            _iteraciones = cantidad;
+            _iteraciones = int.Parse(cantidad);
         }
 
         public bool Parar(Poblacion poblacion)

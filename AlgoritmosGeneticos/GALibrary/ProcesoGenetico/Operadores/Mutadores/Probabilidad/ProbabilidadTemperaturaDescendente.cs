@@ -3,19 +3,21 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
 {
     public class ProbabilidadTemperaturaDescendente : IProbabilidadMutacion
     {
-        private readonly double _probabilidadMenor;
-        private readonly double _probabilidadMayor;
-        private readonly double _pendiente;
-        public ProbabilidadTemperaturaDescendente(double probabilidadMenor, double probabilidadMayor, double pendiente)
-        {
-            _probabilidadMenor = probabilidadMenor;
-            _probabilidadMayor = probabilidadMayor;
-            _pendiente = pendiente;
-        }
+        private double _probabilidadMenor;
+        private double _probabilidadMayor;
+        private double _pendiente;
+        
         public double CalcularProbabilidad(Poblacion poblacion)
         {
             var resultado = _probabilidadMayor - _pendiente * poblacion.Generacion;
             return resultado < _probabilidadMenor ? _probabilidadMenor : resultado;
+        }
+
+        public void AsignarPorcentajes(double probabilidadMenor, double probabilidadMayor, double pendiente)
+        {
+            _probabilidadMenor = probabilidadMenor;
+            _probabilidadMayor = probabilidadMayor;
+            _pendiente = pendiente;
         }
     }
 }

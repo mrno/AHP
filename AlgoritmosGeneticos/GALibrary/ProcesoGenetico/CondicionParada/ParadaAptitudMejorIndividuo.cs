@@ -9,11 +9,11 @@ namespace GALibrary.ProcesoGenetico.CondicionParada
 {
     public class ParadaAptitudMejorIndividuo : ICondicionParada
     {
-        private int _aptitud;
+        private double _aptitud;
 
-        public ParadaAptitudMejorIndividuo(int aptitudNecesaria)
+        public ParadaAptitudMejorIndividuo(string aptitudNecesaria)
         {
-            _aptitud = aptitudNecesaria;
+            _aptitud = double.Parse(aptitudNecesaria);
         }
 
         public bool Parar(Poblacion poblacion)

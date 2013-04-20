@@ -1,4 +1,5 @@
-﻿using GALibrary.ProcesoGenetico.Entidades;
+﻿using System.Collections.Generic;
+using GALibrary.ProcesoGenetico.Entidades;
 using GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad;
 using GALibrary.ProcesoGenetico.CondicionParada;
 
@@ -6,29 +7,29 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 {
     public class ModeloEvolutivoEstandar : ModeloEvolutivoAbstracto
     {
-        public ModeloEvolutivoEstandar()
-        {
-            //var config = ConfigurationManager.AppSettings[0];
-            CrearOperador(x => Selector, new string[] {"SelectorElitista"});
-            CrearOperador(x => Cruzador, new string[] {"SelectorRuleta", "CruzadorSimple"});
-            CrearOperador(x => Mutador, new string[] {"SelectorUniforme", "MutadorSimple"});
+        //public ModeloEvolutivoEstandar()
+        //{
+        //    //var config = ConfigurationManager.AppSettings[0];
+        //    CrearOperador(x => Selector, new string[] {"SelectorElitista"});
+        //    CrearOperador(x => Cruzador, new string[] {"SelectorRuleta", "CruzadorSimple"});
+        //    CrearOperador(x => Mutador, new string[] {"SelectorUniforme", "MutadorSimple"});
 
-            ProbabilidadMutacion =
-                (new ProbabilidadMutacionFactory().CreateInstance("ProbabilidadConvergencia", new object[] { 0.1, 0.25 }));
+        //    ProbabilidadMutacion =
+        //        (new ProbabilidadMutacionFactory().CreateInstance("ProbabilidadConvergencia", new object[] { 0.0, 0.05 }));
 
-            var parada = new ParadaCompuesta();
-            parada.AgregarCondicion(new ParadaIteraciones(100));
-            parada.AgregarCondicion(new ParadaConvergencia(0.9));
+        //    var parada = new ParadaCompuesta();
+        //    parada.AgregarCondicion(new ParadaIteraciones(250));
+        //    parada.AgregarCondicion(new ParadaConvergencia(0.95));
 
-            CondicionParada = parada;
-        }
-
+        //    CondicionParada = parada;
+        //}
+        
         public override Poblacion ObtenerSiguienteGeneracion(Poblacion poblacion)
         {
             //cantidades
             var cantidadIndividuos = poblacion.Individuos.Count;
 
-            var individuosSeleccion = (int) (cantidadIndividuos*0.1);
+            var individuosSeleccion = (int) (cantidadIndividuos*SesionExperimentacion.PorcentajeSeleccion);
 
             var individuosMutacion =
                 (int) (cantidadIndividuos*ProbabilidadMutacion.CalcularProbabilidad(poblacion));
@@ -36,23 +37,26 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
             var individuosCruza = cantidadIndividuos - individuosMutacion - individuosSeleccion;
 
             //crear poblacion siguiente vacia
-            UltimaPoblacion = new Poblacion(poblacion.Generacion + 1);
+            UltimaPoblacion = poblacion.Clone() as Poblacion;
+            UltimaPoblacion.Generacion += 1;
+            UltimaPoblacion.Individuos.Clear();
             
             //seleccionamos individuos
-            UltimaPoblacion.Individuos.AddRange(Selector.Operar(poblacion, individuosSeleccion));
-
+            if (individuosSeleccion > 0)
+            {
+                UltimaPoblacion.Individuos.AddRange(Selector.Operar(poblacion, individuosSeleccion));
+            }
             //cruzamos individuos
-            UltimaPoblacion.Individuos.AddRange(Cruzador.Operar(poblacion, individuosCruza));
-
+            if (individuosCruza > 0)
+            {
+                UltimaPoblacion.Individuos.AddRange(Cruzador.Operar(poblacion, individuosCruza));
+            }
             //mutamos individuos
-            UltimaPoblacion.Individuos.AddRange(Mutador.Operar(poblacion, individuosMutacion));
-
+            if (individuosMutacion > 0)
+            {
+                UltimaPoblacion.Individuos.AddRange(Mutador.Operar(poblacion, individuosMutacion));
+            }
             return UltimaPoblacion;
-        }
-
-        public override bool Parada
-        {
-            get { return CondicionParada.Parar(UltimaPoblacion); }
         }
     }
 }

@@ -70,6 +70,7 @@
     <Compile Include="Persistencia\GAContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistencia\ObjetoMatriz.cs" />
+    <Compile Include="Persistencia\ResultadoExperimento.cs" />
     <Compile Include="ProcesoGenetico\CondicionParada\ParadaAptitudMejorIndividuo.cs" />
     <Compile Include="ProcesoGenetico\CondicionParada\ParadaConvergencia.cs" />
     <Compile Include="ProcesoGenetico\CondicionParada\ParadaIteraciones.cs" />

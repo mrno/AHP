@@ -6,16 +6,16 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
     {
         protected double ProbabilidadMayor;
         protected double ProbabilidadMenor;
-
-        public ProbabilidadConvergencia(double probabilidadMenor, double probabilidadMayor)
-        {
-            ProbabilidadMayor = probabilidadMayor;
-            ProbabilidadMenor = probabilidadMenor;
-        }
-
+        
         public double CalcularProbabilidad(Poblacion poblacion)
         {
             return (ProbabilidadMayor - ProbabilidadMenor) * poblacion.Convergencia + ProbabilidadMenor;
+        }
+        
+        public void AsignarPorcentajes(double probabilidadMenor, double probabilidadMayor, double crecimiento)
+        {
+            ProbabilidadMayor = probabilidadMayor;
+            ProbabilidadMenor = probabilidadMenor;
         }
     }
 }

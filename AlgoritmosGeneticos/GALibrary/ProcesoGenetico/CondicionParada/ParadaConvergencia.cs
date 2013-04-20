@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,14 +12,15 @@ namespace GALibrary.ProcesoGenetico.CondicionParada
     {
         private double _convergencia;
 
-        public ParadaConvergencia(double convergencia)
+        public ParadaConvergencia(string convergencia)
         {
-            _convergencia = convergencia;
+            _convergencia = double.Parse(convergencia, CultureInfo.InvariantCulture);
         }
 
         public bool Parar(Poblacion poblacion)
         {
             return poblacion.Convergencia >= _convergencia;
         }
+
     }
 }

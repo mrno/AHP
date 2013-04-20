@@ -11,6 +11,8 @@ namespace GALibrary.ProcesoGenetico.Entidades
     public class Individuo : ICloneable
     {
         public double[] Estructura { get; set; }
+        public int GeneracionNacimiento { get; set; }
+
         private IFuncionAptitud _funcionAptitud;
 
         public double Aptitud
@@ -18,13 +20,21 @@ namespace GALibrary.ProcesoGenetico.Entidades
             get { return _funcionAptitud.Aptitud(this); }
         }
 
+        public double[] Vector
+        {
+            get { return Utilidades.CombinarEstructuraConIndividuo(_funcionAptitud.EstructuraBase.Vector, Estructura); }
+        }
+
+        public double[,] Matriz
+        {
+            get { return Utilidades.ConvertirVectorEnMatriz(Vector); }
+        }
+
         public double Inconsistencia
         {
             get
             {
-                var vector = Utilidades.CombinarEstructuraConIndividuo(_funcionAptitud.EstructuraBase.Vector, Estructura);
-                var matriz = Utilidades.ConvertirVectorEnMatriz(vector);
-                return Utilidades.CalcularConsistencia(matriz);
+                return Utilidades.CalcularConsistencia(Matriz);
             }
         }
 
@@ -32,6 +42,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
         {
             return new Individuo
                        {
+                           GeneracionNacimiento = GeneracionNacimiento,
                            Estructura = (Estructura.Clone() as double[]),
                            _funcionAptitud = _funcionAptitud
                        };

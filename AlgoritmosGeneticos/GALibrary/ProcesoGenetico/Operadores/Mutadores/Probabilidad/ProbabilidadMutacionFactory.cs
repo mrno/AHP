@@ -29,7 +29,7 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
             }
         }
 
-        public IProbabilidadMutacion CreateInstance(string instanceName, object[] instanceParameters)
+        public IProbabilidadMutacion CreateInstance(string instanceName)
         {
             var name = instanceName.ToLower();
             Type t = null;
@@ -44,7 +44,7 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
 
             try
             {
-                return Activator.CreateInstance(t, instanceParameters) as IProbabilidadMutacion;
+                return Activator.CreateInstance(t) as IProbabilidadMutacion;
             }
             catch (Exception)
             {
