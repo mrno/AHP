@@ -7,9 +7,11 @@ namespace GALibrary.Persistencia
         public GAContext()
             : base("DataContext")
         {
-            
+            Configuration.LazyLoadingEnabled = true;
+            Configuration.ProxyCreationEnabled = false;
         }
 
+        public DbSet<ConjuntoOrdenN> ConjuntosOrdenN { get; set; }
         public DbSet<ConjuntoMatriz> ConjuntoMatrices { get; set; }
         public DbSet<ObjetoMatriz> Matrices { get; set; }
 

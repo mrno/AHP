@@ -57,7 +57,6 @@
     <None Include="..\GALibrary\App.config">
       <Link>App.config</Link>
     </None>
-    <None Include="App2.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

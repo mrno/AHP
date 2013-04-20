@@ -12,16 +12,16 @@ namespace GALibrary.Persistencia
 
         public virtual int Id { get; set; }
         public virtual ConjuntoMatriz ConjuntoMatriz { get; set; }
-        public virtual ICollection<FilaMatriz> Filas { get; set; }
+        public ICollection<FilaMatriz> Filas { get; set; }
         public virtual double? Inconsistencia { get; set; }
+        public virtual bool Completa { get; set; }
+        public virtual int Dimension { get; set; }
+        
 
         public virtual ObjetoMatriz MatrizCompleta { get; set; }
         public virtual ICollection<ObjetoMatriz> MatricesIncompletas { get; set; }
 
         public virtual ObjetoMatriz MatrizMejorada { get; set; }
-
-        [NotMapped]
-        public int Dimension { get { return ConjuntoMatriz.Dimension; } }
         
         #endregion
 
@@ -29,10 +29,9 @@ namespace GALibrary.Persistencia
         {
         }
 
-        public ObjetoMatriz(ConjuntoMatriz conjuntoMatriz, bool autogenerarMatriz = true, bool consistente = true, int matricesConFaltantes = 3)
+        public ObjetoMatriz(int dimension, bool autogenerarMatriz = true, bool consistente = true, int matricesConFaltantes = 3)
         {
-            ConjuntoMatriz = conjuntoMatriz;
-
+            Dimension = dimension;
             if (autogenerarMatriz)
             {
                 if (consistente)
@@ -43,12 +42,27 @@ namespace GALibrary.Persistencia
                 {
                     AutoGenerarMatrizInconsistente();
                 }
-                Inconsistencia = CalcularConsistencia(Matriz);
+                Completa = true;
+                Inconsistencia = Utilidades.CalcularConsistencia(Matriz);
 
                 if (matricesConFaltantes > 0)
                 {
                     GenerarMatricesConValoresFaltantes(matricesConFaltantes);
                 }
+            }
+        }
+
+        public NivelInconsistencia NivelDeInconsistencia 
+        { 
+            get
+            {
+                if(Inconsistencia == null)
+                    return NivelInconsistencia.NoTiene;
+                if(Inconsistencia.Entre(0.0,0.1))
+                    return NivelInconsistencia.Consistente;
+                if (Inconsistencia.Entre(0.1, 0.3))
+                    return NivelInconsistencia.Bajo;
+                return Inconsistencia.Entre(0.3, 0.5) ? NivelInconsistencia.Medio : NivelInconsistencia.Alto;
             }
         }
 
@@ -58,17 +72,7 @@ namespace GALibrary.Persistencia
         {
             get { return Vector.PorcentajeCompleto(); }
         }
-
-        public double CalcularConsistencia(double[,] matriz)
-        {
-            //MWNumericArray matlabNumericArray = matriz;
-            //var c = new Consistencia.Consistencia();
-            //return 0.1;
-            //var salida = c.calcConsist(matlabNumericArray);
-
-            return Utilidades.Random.NextDouble();
-        }
-
+        
         public double[,] Matriz
         {
             get
@@ -206,7 +210,7 @@ namespace GALibrary.Persistencia
 
                 var matrizObjeto = (ObjetoMatriz)Clone();
                 MatricesIncompletas.Add(matrizObjeto);
-
+                matrizObjeto.Completa = false;
                 matrizObjeto.Matriz = Utilidades.GenerarMatrizConValoresFaltantes(matrizObjeto.Vector, eliminar);
 
                 //var vector = matrizObjeto.Vector;
@@ -225,7 +229,7 @@ namespace GALibrary.Persistencia
         {
             var objetoMatriz = new ObjetoMatriz
                                    {
-                                       ConjuntoMatriz = ConjuntoMatriz,
+                                       Dimension = Dimension,
                                        Vector = (double[]) Vector.Clone(),
                                        Inconsistencia = null,
                                        MatrizCompleta = this,
@@ -240,7 +244,7 @@ namespace GALibrary.Persistencia
 
         public virtual int Id { get; set; }
         public virtual ObjetoMatriz ObjetoMatriz { get; set; }
-        public virtual ICollection<CeldaMatriz> Celdas { get; set; }
+        public ICollection<CeldaMatriz> Celdas { get; set; }
 
         #endregion
     }

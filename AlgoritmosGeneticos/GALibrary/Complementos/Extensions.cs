@@ -28,5 +28,24 @@ namespace GALibrary.Complementos
 
             return (double)(longitud - incompletos)/longitud;
         }
+
+        public static int CantidadValoresFaltantes(this double[] vector)
+        {
+            return vector.Count(x => x.Equals(CeldaMatriz.Incompleto));
+        }
+
+        public static double[] ValoresFaltantes(this double[] vector)
+        {
+            return (from c in vector
+                    where c.Equals(CeldaMatriz.Incompleto)
+                    select c).ToArray();
+        }
+
+        public static double[] ValoresCompletos(this double[] vector)
+        {
+            return (from c in vector
+                    where !c.Equals(CeldaMatriz.Incompleto)
+                    select c).ToArray();
+        }
     }
 }

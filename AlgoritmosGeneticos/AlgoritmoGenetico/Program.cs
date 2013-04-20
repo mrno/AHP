@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GALibrary;
 using GALibrary.Persistencia;
+using GALibrary.ProcesoGenetico;
+using GALibrary.ProcesoGenetico.Entidades;
 
 namespace AlgoritmoGenetico
 {
@@ -12,76 +14,123 @@ namespace AlgoritmoGenetico
     {
         static void Main(string[] args)
         {
-            const int cantidad = 500;
-            //GenerarMatrices(cantidad);
-            Evolucionar(0);
+            const int cantidadSubConjuntosDe100Matrices = 5;
+            //GenerarMatrices(cantidadSubConjuntosDe100Matrices);
+            var a = EvolucionarSecuencial(0);
+            //var b = EvolucionarParalelo(0);
         }
-
-        private static void GenerarMatrices(int cantidad)
+        
+        private static void GenerarMatrices(int cantidadSubConjuntosDe100)
         {
-            for (int i = 4; i < 10; i++)
+            for (int dimension = 4; dimension < 10; dimension++) 
             {
+                var nuevoConjuntoId = 0;
                 using (var context = new GAContext())
                 {
-                    var conjunto = new ConjuntoMatriz(cantidad, i);
-                    context.ConjuntoMatrices.Add(conjunto);
-
+                    var conjunto = new ConjuntoOrdenN(dimension);
+                    context.ConjuntosOrdenN.Add(conjunto);
                     context.SaveChanges();
+                    nuevoConjuntoId = conjunto.Id;
+                }
+                GC.Collect();
+
+                for (int j = 0; j < cantidadSubConjuntosDe100; j++)
+                {
+                    var conjuntos = ConjuntoOrdenN.GenerarConjuntosDiferenciadosPorNivelDeInconsistencia(100, dimension);
+                    GC.Collect();
+
+                    foreach (var conjuntoMatriz in conjuntos)
+                    {
+                        using (var context = new GAContext())
+                        {
+                            var conjuntoN = context.ConjuntosOrdenN.First(x => x.Id == nuevoConjuntoId);
+
+                            if(conjuntoN.ConjuntosMatrices == null) conjuntoN.ConjuntosMatrices = new List<ConjuntoMatriz>();
+                            
+                            conjuntoN.ConjuntosMatrices.Add(conjuntoMatriz);
+                            context.SaveChanges();
+                        }
+                        GC.Collect();
+                    }
                 }
             }
         }
 
-        private static void Evolucionar(int iteraciones)
+        private static TimeSpan EvolucionarParalelo(int iteraciones)
         {
-            var consistencia1 = 0.0;
-            var t1 = new TimeSpan();
+            //Estructura estructuraBase;
+            //Estructura estructuraObjetivo;
 
-            var consistencia2 = 0.0;
-            var t2 = new TimeSpan();
+            var context = new GAContext();
 
-            var consistencia3 = 0.0;
-            var t3 = new TimeSpan();
+            //var matriz = context.Matrices.First(x => x.Id == 11798);
 
-            using (var context = new GAContext())
-            {
-                var numero = context.Matrices.Count();
-            }
+            //estructuraBase = new Estructura(matriz);
+            //estructuraObjetivo = new Estructura(matriz.MatrizCompleta);
 
-            using (var context = new GAContext())
-            {
-                var inicio = DateTime.Now;
+            var conjunto4 = context.ConjuntosOrdenN
+                .Include("ConjuntosMatrices.Matrices.Filas.Celdas")
+                .Include("ConjuntosMatrices.Matrices.MatricesIncompletas.Filas.Celdas")
+                .First(x => x.Id == 6).ConjuntosMatrices.First(x => x.Id == 101).Matrices.Take(1).ToList();
 
-                consistencia2 = (from c in context.Matrices
-                                 where c.Inconsistencia != null
-                                 select (double)c.Inconsistencia).Sum();
-                t2 = DateTime.Now - inicio;
-            }
+            var resultado = new List<Individuo>();
 
-            using (var context = new GAContext())
-            {
-                var inicio = DateTime.Now;
-                var lista = context.Matrices.Where(x => x.Inconsistencia != null);
-                Parallel.ForEach(lista, (x) =>
-                                                                                            {
-                                                                                                consistencia1 +=
-                                                                                                    (double)
-                                                                                                    x.Inconsistencia;
-                                                                                            });
-                t1 = DateTime.Now - inicio;
-            }
+            var inicio = DateTime.Now;
 
+            Parallel.ForEach(conjunto4, (matriz) =>
+                                            {
+                                                var estructuraBase =
+                                                    new Estructura(matriz.MatricesIncompletas.ElementAt(2));
+                                                var estructuraObjetivo = new Estructura(matriz);
+
+                                                var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 100);
+                                                var individuo = evolucion.Evolucionar("ModeloEvolutivoEstandar");
+
+                                                resultado.Add(individuo);
+                                            });
+
+            context.Dispose();
+            GC.Collect();
+            return DateTime.Now - inicio;
+
+
+            //var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 100);
+            //evolucion.Evolucionar("ModeloEvolutivoEstandar");
+        }
+
+        private static TimeSpan EvolucionarSecuencial(int iteraciones)
+        {
+            //Estructura estructuraBase;
+            //Estructura estructuraObjetivo;
+
+            var context = new GAContext();
             
+            var conjunto4 = context.ConjuntosOrdenN
+                .Include("ConjuntosMatrices.Matrices.Filas.Celdas")
+                .Include("ConjuntosMatrices.Matrices.MatricesIncompletas.Filas.Celdas")
+                .First(x => x.Id == 6).ConjuntosMatrices.First(x => x.Id == 101).Matrices.Take(1).ToList();
 
-            using (var context = new GAContext())
+            var resultado = new List<Individuo>();
+
+            var inicio = DateTime.Now;
+
+            foreach (var matriz in conjunto4)
             {
-                var inicio = DateTime.Now;
+                var estructuraBase = new Estructura(matriz.MatricesIncompletas.ElementAt(2));
+                var estructuraObjetivo = new Estructura(matriz);
 
-                foreach (var objetoMatriz in context.Matrices.Where(x => x.Inconsistencia != null))
-                {
-                    consistencia3 += (double) objetoMatriz.Inconsistencia;
-                }
-                t3 = DateTime.Now - inicio;
+                var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 500);
+                var individuo = evolucion.Evolucionar("ModeloEvolutivoEstandar");
+
+                resultado.Add(individuo);
             }
+            
+            context.Dispose();
+            GC.Collect();
+            return DateTime.Now - inicio;
+
+            //var evolucion = new Evolucion(estructuraBase, estructuraObjetivo, 100);
+            //evolucion.Evolucionar("ModeloEvolutivoEstandar");
         }
     }
 }
