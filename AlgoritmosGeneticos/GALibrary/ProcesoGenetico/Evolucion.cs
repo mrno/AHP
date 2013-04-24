@@ -43,12 +43,7 @@ namespace GALibrary.ProcesoGenetico
 
             _modeloEvolutivo.RegistrarFinExperimento();
 
-            _sesionExperimentacion.Experimentos.Add(_modeloEvolutivo.ExperimentoResultado);
-
-            if(poblacion.Generacion < 3)
-            {
-                var asd = 9;
-            }
+            //_sesionExperimentacion.Experimentos.Add(_modeloEvolutivo.ExperimentoResultado);
 
             return _modeloEvolutivo.ExperimentoResultado;
         }

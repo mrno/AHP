@@ -8,41 +8,41 @@ namespace GALibrary.Persistencia
 {
     public class ResultadoExperimento
     {
-        public int Id { get; set; }
-        public SesionExperimentacion SesionExperimentacion { get; set; }
+        public virtual int Id { get; set; }
+        public virtual SesionExperimentacion SesionExperimentacion { get; set; }
 
-        public ObjetoMatriz MatrizOriginal { get; set; }
-        public ObjetoMatriz MatrizMejorada { get; set; }
+        public virtual ObjetoMatriz MatrizOriginal { get; set; }
+        public virtual ObjetoMatriz MatrizMejorada { get; set; }
 
-        public DateTime Inicio { get; set; }
-        public DateTime Fin { get; set; }
+        public virtual DateTime Inicio { get; set; }
+        public virtual DateTime Fin { get; set; }
 
-        public int IteracionesRealizadas { get; set; }
-        public int IteracionNacimientoMejor { get; set; }
+        public virtual int IteracionesRealizadas { get; set; }
+        public virtual int IteracionNacimientoMejor { get; set; }
     }
 
     public class SesionExperimentacion
     {
-        public int Id { get; set; }
-        public ICollection<ResultadoExperimento> Experimentos { get; set; }
+        public virtual int Id { get; set; }
+        public virtual ICollection<ResultadoExperimento> Experimentos { get; set; }
 
-        public string ModeloEvolutivo { get; set; }
-        public int Individuos { get; set; }
+        public virtual string ModeloEvolutivo { get; set; }
+        public virtual int Individuos { get; set; }
 
-        public string Seleccion { get; set; }
-        public double PorcentajeSeleccion { get; set; }
+        public virtual string Seleccion { get; set; }
+        public virtual double PorcentajeSeleccion { get; set; }
 
-        public string Cruza { get; set; }
-        public double PorcentajeCruza { get; set; }
+        public virtual string Cruza { get; set; }
+        public virtual double PorcentajeCruza { get; set; }
 
-        public string Mutacion { get; set; }
-        public string ProbabilidadMutacion { get; set; }
-        public double PorcentajeMaximoMutacion { get; set; }
-        public double PorcentajeMinimoMutacion { get; set; }
-        public double CrecimientoPorcentajeMutacion { get; set; }
+        public virtual string Mutacion { get; set; }
+        public virtual string ProbabilidadMutacion { get; set; }
+        public virtual double PorcentajeMaximoMutacion { get; set; }
+        public virtual double PorcentajeMinimoMutacion { get; set; }
+        public virtual double CrecimientoPorcentajeMutacion { get; set; }
 
-        public string CondicionParada { get; set; }
-        public string ConvergenciaPoblacion { get; set; }
-        public string FuncionAptitud { get; set; }
+        public virtual string CondicionParada { get; set; }
+        public virtual string ConvergenciaPoblacion { get; set; }
+        public virtual string FuncionAptitud { get; set; }
     }
 }

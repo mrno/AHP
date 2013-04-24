@@ -60,60 +60,62 @@ namespace AlgoritmoGenetico
 
         private static void Evolucionar(int individuos)
         {
-            int cantidad;
-            int sesionId;
+            int cantidad = 36000;
+            int sesionId = 3;
 
-            using (var context = new GAContext())
-            {
-                cantidad = context.Matrices.Include("MatrizCompleta").Count(x => x.MatrizCompleta != null);
+            //using (var context = new GAContext())
+            //{
+            //    cantidad = context.Matrices.Include("MatrizCompleta").Count(x => x.MatrizCompleta != null);
 
-                var sesion = new SesionExperimentacion
-                                 {
-                                     ModeloEvolutivo = "ModeloEvolutivoEstandar",
-                                     Individuos = individuos,
+            //    var sesion = new SesionExperimentacion
+            //                     {
+            //                         ModeloEvolutivo = "ModeloEvolutivoEstandar",
+            //                         Individuos = individuos,
 
-                                     Seleccion = "SelectorElitista",
-                                     PorcentajeSeleccion = 0.1,
+            //                         Seleccion = "SelectorElitista",
+            //                         PorcentajeSeleccion = 0.1,
 
-                                     Cruza = "SelectorRuleta>CruzadorSimple",
-                                     PorcentajeCruza = 0,
+            //                         Cruza = "SelectorRuleta>CruzadorSimple",
+            //                         PorcentajeCruza = 0,
 
-                                     Mutacion = "SelectorUniforme>MutadorSimple",
-                                     ProbabilidadMutacion = "ProbabilidadConvergencia",
-                                     PorcentajeMinimoMutacion = 0.0,
-                                     PorcentajeMaximoMutacion = 0.05,
-                                     CrecimientoPorcentajeMutacion = 0.001,
+            //                         Mutacion = "SelectorUniforme>MutadorSimple",
+            //                         ProbabilidadMutacion = "ProbabilidadConvergencia",
+            //                         PorcentajeMinimoMutacion = 0.0,
+            //                         PorcentajeMaximoMutacion = 0.05,
+            //                         CrecimientoPorcentajeMutacion = 0.001,
 
-                                     CondicionParada = "ParadaIteraciones:100&ParadaConvergencia:0.98",
-                                     ConvergenciaPoblacion = "ConvergenciaEstructura",
-                                     FuncionAptitud = "FuncionAptitudConsistenciaExponencial",
-                                 };
+            //                         CondicionParada = "ParadaIteraciones:100&ParadaConvergencia:0.98",
+            //                         ConvergenciaPoblacion = "ConvergenciaEstructura",
+            //                         FuncionAptitud = "FuncionAptitudConsistenciaExponencial",
+            //                     };
 
-                context.Sesiones.Add(sesion);
-                context.SaveChanges();
+            //    context.Sesiones.Add(sesion);
+            //    context.SaveChanges();
 
-                sesionId = sesion.Id;
-            }
+            //    sesionId = sesion.Id;
+            //}
 
-            for (int i = 0; i < cantidad / 10; i++)
+            //for (int i = 0; i < cantidad / 10; i++)
+                for (int i = 29220; i < cantidad; i+=100)
             {
                 Utilidades.CalcularConsistencia(new double[3, 3]);
 
                 using (var context = new GAContext())
                 {
                     var conjuntoIncompletas = context.Matrices
-                        .Include("MatrizCompleta.Filas.Celdas")
+                        //.Include("MatrizCompleta.Filas.Celdas")
                         .Include("Filas.Celdas")
-                        .Include("MatricesIncompletas.Filas.Celdas")
+                        //.Include("MatricesIncompletas.Filas.Celdas")
                         .Include("Experimentos.MatrizMejorada.Filas.Celdas")
                         .Where(x => x.MatrizCompleta != null)
                         .OrderBy(x => x.Id)
-                        .Skip(i*10).Take(10).ToList();
-
-                    var sesionExperimento = context.Sesiones.Include("Experimentos").First(x => x.Id == sesionId);
+                        //.Skip(i*10).Take(10).ToList();
+                        .Skip(i).Take(100).ToList();
+                    //Include("Experimentos").
+                    var sesionExperimento = context.Sesiones.First(x => x.Id == sesionId);
                     
-                    if (sesionExperimento.Experimentos == null)
-                        sesionExperimento.Experimentos = new List<ResultadoExperimento>();
+                    //if (sesionExperimento.Experimentos == null)
+                    //    sesionExperimento.Experimentos = new List<ResultadoExperimento>();
                     
                     //var matriz = conjuntoIncompletas.First();
                     foreach (var matriz in conjuntoIncompletas)
@@ -132,7 +134,8 @@ namespace AlgoritmoGenetico
                         matriz.Experimentos.Add(experimento);
                         experimento.MatrizOriginal = matriz;
 
-                        sesionExperimento.Experimentos.Add(experimento);
+                        //sesionExperimento.Experimentos.Add(experimento);
+                        experimento.SesionExperimentacion = sesionExperimento;
                         GC.Collect();
                     }
                     //Parallel.ForEach(conjuntoIncompletas, (matriz) =>

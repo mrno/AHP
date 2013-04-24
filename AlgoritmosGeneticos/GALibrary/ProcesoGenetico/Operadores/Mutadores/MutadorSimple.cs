@@ -25,8 +25,11 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores
                     individuo.Estructura[posicion] = Utilidades.ValorAleatorioEscalaFundamental();
                 }
 
+                individuo.ActualizarAptitud();
+
                 resultado.Add(individuo);
             }
+
             return resultado;
         }
     }

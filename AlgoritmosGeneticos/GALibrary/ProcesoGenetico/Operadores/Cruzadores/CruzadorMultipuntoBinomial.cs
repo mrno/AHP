@@ -52,6 +52,9 @@ namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
                 }
             } while (padre.Equals(hijo1) || padre.Equals(hijo2));
             
+            hijo1.ActualizarAptitud();
+            hijo2.ActualizarAptitud();
+            
             return new List<Individuo>() {hijo1, hijo2};
         }
     }

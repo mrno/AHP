@@ -44,6 +44,9 @@ namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
                 hijo2.Estructura[i] = madre.Estructura[i];
             }
 
+            hijo1.ActualizarAptitud();
+            hijo2.ActualizarAptitud();
+
             return new List<Individuo>() {hijo1, hijo2};
         }
     }
