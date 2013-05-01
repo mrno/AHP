@@ -54,8 +54,9 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 
         protected ResultadoExperimento Experimento;
 
-        public void RegistrarInicioExperimento()
+        public void RegistrarInicioExperimento(Poblacion poblacionInicial)
         {
+            UltimaPoblacion = poblacionInicial;
             Experimento = new ResultadoExperimento
                               {
                                   Inicio = DateTime.Now,
@@ -72,6 +73,7 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
                                              {
                                                  Matriz = matriz,
                                                  Completa = true,
+                                                 Completitud = 1,
                                                  Inconsistencia = UltimaPoblacion.MejorIndividuo.Inconsistencia
                                              };
            

@@ -36,6 +36,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -53,7 +55,79 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Utilidades\Utilidades.cs" />
+    <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Common\VirtualToggleButton.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\GeneticCrossoverViewModel.cs" />
+    <Compile Include="ExperimentWizard\Views\ExperimentWizardView.xaml.cs">
+      <DependentUpon>ExperimentWizardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\GeneticCrossoverView.xaml.cs">
+      <DependentUpon>GeneticCrossoverView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\GeneticMutationView.xaml.cs">
+      <DependentUpon>GeneticMutationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\GeneticSelectionView.xaml.cs">
+      <DependentUpon>GeneticSelectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\GeneticTestSetView.xaml.cs">
+      <DependentUpon>GeneticTestSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\StartView.xaml.cs">
+      <DependentUpon>StartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\SummaryView.xaml.cs">
+      <DependentUpon>SummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NewExperimentWindow.xaml.cs">
+      <DependentUpon>NewExperimentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SesionExperimentacion.cs" />
+    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\ExperimentWizardPageViewModelBase.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\ExperimentWizardViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\SummaryViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\GeneticTestSetViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\GeneticMutationViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\GeneticSelectionViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\StartViewModel.cs" />
+    <Compile Include="ViewModels\IConjuntoMatrizViewModel.cs" />
+    <Compile Include="ViewModels\ConjuntoMatrizViewModel.cs" />
+    <Compile Include="ViewModels\OperadorControlViewModel.cs" />
+    <Compile Include="Views\ConjuntoMatrizView.xaml.cs">
+      <DependentUpon>ConjuntoMatrizView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OperadorControlView.xaml.cs">
+      <DependentUpon>OperadorControlView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ExperimentWizard\Views\ExperimentWizardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\GeneticCrossoverView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\GeneticMutationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\GeneticSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\GeneticTestSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\SummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -62,11 +136,22 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FachadaDatos\FachadaDatos.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewExperimentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConjuntoMatrizView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OperadorControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -94,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

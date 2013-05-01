@@ -17,6 +17,8 @@ namespace GALibrary.Complementos
                                                               1, 2, 3, 4, 5, 6, 7, 8, 9
                                                           };
 
+        //public static int Llamadas { get; set; }
+
         public static double[] ConvertirMatrizEnVector(double[,] matriz)
         {
             var dimension = matriz.GetLength(0);
@@ -172,11 +174,17 @@ namespace GALibrary.Complementos
 
         public static double CalcularConsistencia(double[,] matriz)
         {
+            //Llamadas++;
+            //return .5;
+
             MWNumericArray matlabNumericArray = matriz;
             var c = new calcConsistenciaCR();
             var mwNumericArray = c.calcConsistCR(matlabNumericArray) as MWNumericArray;
             if (mwNumericArray != null)
-                return mwNumericArray.ToScalarDouble();
+            {
+                var cr = mwNumericArray.ToScalarDouble();
+                return (cr > 0) ? cr : 0;
+            }
             return Double.MaxValue;
         }
 

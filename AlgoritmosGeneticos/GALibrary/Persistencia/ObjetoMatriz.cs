@@ -15,6 +15,7 @@ namespace GALibrary.Persistencia
         public ICollection<FilaMatriz> Filas { get; set; }
         public virtual double? Inconsistencia { get; set; }
         public virtual bool Completa { get; set; }
+        public virtual double? Completitud { get; set; }
         public virtual int Dimension { get; set; }
         
         public virtual ObjetoMatriz MatrizCompleta { get; set; }
@@ -69,7 +70,12 @@ namespace GALibrary.Persistencia
         
         public double PorcentajeCompleta
         {
-            get { return Vector.PorcentajeCompleto(); }
+            get
+            {
+                if (Completitud == null)
+                    Completitud = Vector.PorcentajeCompleto();
+                return (double)Completitud;
+            }
         }
         
         public double[,] Matriz

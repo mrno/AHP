@@ -71,6 +71,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistencia\ObjetoMatriz.cs" />
     <Compile Include="Persistencia\ResultadoExperimento.cs" />
+    <Compile Include="ProcesoGenetico\CondicionParada\ParadaConsistencia.cs" />
     <Compile Include="ProcesoGenetico\CondicionParada\ParadaAptitudMejorIndividuo.cs" />
     <Compile Include="ProcesoGenetico\CondicionParada\ParadaConvergencia.cs" />
     <Compile Include="ProcesoGenetico\CondicionParada\ParadaIteraciones.cs" />

@@ -11,43 +11,42 @@ namespace GALibrary.ProcesoGenetico.Operadores.Selectores
         {
             var seleccionados = new List<Individuo>();
 
-            //TODO: ver como hacer el tema de la cantidad de ranuras
-            int nroRanuras = 1000;
-            
-            var ranurasAcumuladas = CalcularRanurasAcumulada(poblacion, nroRanuras);
-            var ultimaRanura = ranurasAcumuladas.Last();
+            var ranuras = GenerarRanuras(poblacion);
+
             for (int i = 0; i < nroSeleccionados; i++)
             {
-                var aux = Random.Next(0, ultimaRanura + 1);
-                for (int j = 0; j < ranurasAcumuladas.Count(); j++)
-                {
-                    if (ranurasAcumuladas[j] >= aux)
-                    {
-                        seleccionados.Add(poblacion.Individuos.ElementAt(i).Clone() as Individuo);
-                        break;
-                    }
-                }
+                var aux = Random.Next(0, ranuras.Count);
+                seleccionados.Add(ranuras.ElementAt(aux));
             }
             return seleccionados;
         }
 
-        private int[] CalcularRanurasAcumulada(Poblacion poblacion, int ranuras)
+        private List<Individuo> GenerarRanuras(Poblacion poblacion)
         {
-            var cantidad = poblacion.Individuos.Count();
+            var aptitudMinima = poblacion.Individuos.Min(x => x.Aptitud);
+            var aptitudMaxima = poblacion.Individuos.Max(x => x.Aptitud);
 
-            var aptitudTotal = (from c in poblacion.Individuos
-                                   select c.Aptitud).Sum();
-
-            var ranurasAcumuladas = new int[cantidad];
-
-            for (var i = 0; i < cantidad; i++)
+            if (Math.Round(aptitudMaxima/aptitudMinima) == 1.0)
             {
-                ranurasAcumuladas[i] = (int) Math.Round(ranuras * poblacion.Individuos.ElementAt(i).Aptitud / aptitudTotal);
-
-                if (i > 0) ranurasAcumuladas[i] += ranurasAcumuladas[i - 1];
+                return poblacion.Individuos;
             }
 
-            return ranurasAcumuladas;
+            var resultado = new List<Individuo>();
+
+            foreach (var individuo in poblacion.Individuos)
+            {
+                var ranurasAsignadas = Math.Round(individuo.Aptitud/aptitudMinima);
+                if(ranurasAsignadas != 1)
+                {
+                    var asd = 0;
+                }
+                for (int i = 0; i < ranurasAsignadas; i++)
+                {
+                    resultado.Add(individuo);
+                }
+            }
+
+            return resultado;
         }
     }
 }

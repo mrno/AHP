@@ -12,6 +12,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
     {
         public double[] Estructura { get; set; }
         private double? _aptitud;
+        private double? _inconsistencia;
         public int GeneracionNacimiento { get; set; }
 
         private IFuncionAptitud _funcionAptitud;
@@ -22,14 +23,15 @@ namespace GALibrary.ProcesoGenetico.Entidades
             {
                 if(_aptitud == null)
                 {
-                    ActualizarAptitud();
+                    ActualizarInconsistenciaAptitud();
                 }
                 return (double)_aptitud; 
             }
         }
 
-        public void ActualizarAptitud()
+        public void ActualizarInconsistenciaAptitud()
         {
+            _inconsistencia = Utilidades.CalcularConsistencia(Matriz);
             _aptitud = _funcionAptitud.Aptitud(this);
         }
 
@@ -47,7 +49,9 @@ namespace GALibrary.ProcesoGenetico.Entidades
         {
             get
             {
-                return Utilidades.CalcularConsistencia(Matriz);
+                if(_inconsistencia == null)
+                    _inconsistencia = Utilidades.CalcularConsistencia(Matriz);
+                return (double)_inconsistencia;
             }
         }
 
@@ -58,6 +62,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
                            GeneracionNacimiento = GeneracionNacimiento,
                            Estructura = (Estructura.Clone() as double[]),
                            _funcionAptitud = _funcionAptitud,
+                           _inconsistencia = _inconsistencia,
                            _aptitud = _aptitud
                        };
         }

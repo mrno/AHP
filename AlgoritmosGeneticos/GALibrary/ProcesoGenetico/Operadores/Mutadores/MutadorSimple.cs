@@ -15,18 +15,13 @@ namespace GALibrary.ProcesoGenetico.Operadores.Mutadores
 
             for (int i = 0; i < numeroMutados; i++)
             {
-                var mutaciones = Random.Next(0, cantidadCaracteristicas);
                 var individuo = individuos[i].Clone() as Individuo;
                 individuo.GeneracionNacimiento = poblacion.Generacion;
 
-                for (int j = 0; j < mutaciones; j++)
-                {
-                    var posicion = Random.Next(0, cantidadCaracteristicas);
-                    individuo.Estructura[posicion] = Utilidades.ValorAleatorioEscalaFundamental();
-                }
-
-                individuo.ActualizarAptitud();
-
+                var posicion = Random.Next(0, cantidadCaracteristicas);
+                individuo.Estructura[posicion] = Utilidades.ValorAleatorioEscalaFundamental();
+                
+                individuo.ActualizarInconsistenciaAptitud();
                 resultado.Add(individuo);
             }
 

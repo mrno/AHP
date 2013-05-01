@@ -1,121 +1,28 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="GeneticResearcher.MainWindow"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Views="clr-namespace:GeneticResearcher.Views" 
+        mc:Ignorable="d" x:Class="GeneticResearcher.MainWindow"
         Title="Genetic Researcher" Height="600" Width="800">
+    <DockPanel VerticalAlignment="Stretch">
+        <ToolBar DockPanel.Dock="Top" Height="20"/>
+        
+        <StatusBar DockPanel.Dock="Bottom" Height="20"/>
+        <Button
+              Padding="7,3.5"
+              Margin="11"
+              Grid.Row="1"
+              Content="Abrir"
+              Click="StartExperimentWizard"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Center"
+            />
+    </DockPanel>
 
-    <Grid>
-        <DockPanel>
-            <Menu Name="menuPrincipal" DockPanel.Dock="Top" Height="20"/>
-            <StatusBar Name="barraEstado" DockPanel.Dock="Bottom" Height="10"/>
-            <StackPanel Name="asistenteCarga" DockPanel.Dock="Bottom" Orientation="Horizontal">
-                <Button Name="limpiar" Content="Limpiar Seleccion" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Name="anterior" Content="Anterior" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button Name="siguiente" Content="Siguiente" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </StackPanel>
-            <StackPanel Name="panelTrabajo">
-                <TabControl>
-                    <TabItem Header="Conjunto de Datos">
-                        <StackPanel>
-                            <Expander Header="Conjuntos de Matrices" Expanded="ConjuntoMatricesExpanded">
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel>
-                                        <GroupBox Header="Orden">
-                                            <ListBox Name="ordenMatrices">
-                                            </ListBox>
-                                        </GroupBox>
-                                        <GroupBox Header="Nivel de Inconsistencia">
-                                            <ListBox Name="nivelInconsistencia">
-                                            </ListBox>
-                                        </GroupBox>
-                                    </StackPanel>
-                                    <GroupBox Header="Conjuntos Disponibles">
-                                        <ListBox Name="conjuntosDisponibles">
-                                        </ListBox>
-                                    </GroupBox>
-                                    <StackPanel>
-                                        <Button Content="Agregar"/>
-                                        <Button Content="Quitar"/>
-                                    </StackPanel>
-                                    <GroupBox Header="Conjuntos Seleccionados">
-                                        <DataGrid Name="conjuntosSeleccionados">
-                                        </DataGrid>
-                                    </GroupBox>
-                                </StackPanel>
-                            </Expander>
-                            <Expander Header="Matriz Individual" Expanded="MatrizIndividualExpanded">
-                                <StackPanel Orientation="Horizontal">
-                                    <GroupBox Header="Matriz">
-                                        <StackPanel>
-                                            <ComboBox Name="dimensionMatriz" Height="20" SelectionChanged="ComboBoxDimensionMatrizChanged">
-                                            </ComboBox>
-                                            <StackPanel Name="panelMatrizIndividual" Width="200">
-                                            
-                                            </StackPanel>   
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <StackPanel>
-                                        <CheckBox Content="Agregar a conjunto personalizado" Click="AgregarAConjuntoPersonalizado"/>
-                                        <GroupBox Name="conjuntoPersonalizado" Header="Conjunto Personalizado">
-                                            <ListBox Name="conjuntosPersonalizados">
-                                            </ListBox>
-                                        </GroupBox>
-                                    </StackPanel>
-                                </StackPanel>
-                            </Expander>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Configuracion Proceso AG">
-                        <StackPanel>
-                            <Expander Header="Seleccion">
-                                <StackPanel>                                
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="Porcentaje de Seleccion"/>
-                                        <Slider Name="porcentajeSeleccion" Minimum="0" Maximum="100" TickFrequency="1" IsSnapToTickEnabled="True" Width="300"/>
-                                        <Label Content="{Binding ElementName=porcentajeSeleccion, Path=Value}"/>
-                                        <Label Content="%"/>
-                                    </StackPanel>
-                                    <StackPanel>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
 
-                                            <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                                                <ListBoxItem Content="a"/>
-                                                <ListBoxItem Content="b"/>
-                                                <ListBoxItem Content="c"/>
-                                                <ListBoxItem Content="d"/>
-                                                <ListBoxItem Content="e"/>
-                                                <ListBoxItem Content="f"/>
-                                            </ListBox>
-                                            <Button Grid.Row="1" Grid.Column="0" Content="Agregar Operador" HorizontalAlignment="Center" />
-                                            <Button Grid.Row="1" Grid.Column="1" Content="Quitar Operador" HorizontalAlignment="Center"/>
-
-                                        </Grid>
-
-                                    </StackPanel>
-                                </StackPanel>
-
-                            </Expander>
-                            <Expander Header="Cruza">
-
-                            </Expander>
-                            <Expander Header="Mutacion">
-
-                            </Expander>
-                        </StackPanel>
-                    </TabItem>
-                    <TabItem Header="Resultado Proceso">
-                        
-                    </TabItem>
-                </TabControl>
-            </StackPanel>
-        </DockPanel>
-    </Grid>
+    <!--<Views:Operadores/> 
+              Click="btnRunWizard_Click"-->
+    
 </Window>

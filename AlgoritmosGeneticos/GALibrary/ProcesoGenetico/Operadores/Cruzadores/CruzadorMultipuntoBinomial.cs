@@ -19,7 +19,13 @@ namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
 
                 resultado.AddRange(ObtenerHijos(padre, madre, poblacion.Generacion).ToList());
             }
-            return resultado.Take(cantidadHijos);
+            var hijos = resultado.Take(cantidadHijos).ToList();
+
+            foreach (var hijo in hijos)
+            {
+                hijo.ActualizarInconsistenciaAptitud();
+            }
+            return hijos;
         }
 
         private IEnumerable<Individuo> ObtenerHijos(Individuo padre, Individuo madre, int generacion)
@@ -51,9 +57,6 @@ namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
                     }
                 }
             } while (padre.Equals(hijo1) || padre.Equals(hijo2));
-            
-            hijo1.ActualizarAptitud();
-            hijo2.ActualizarAptitud();
             
             return new List<Individuo>() {hijo1, hijo2};
         }

@@ -19,7 +19,7 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
         ResultadoExperimento ExperimentoResultado { get; }
 
         void ConfigurarModelo(SesionExperimentacion sesionExperimentacion);
-        void RegistrarInicioExperimento();
+        void RegistrarInicioExperimento(Poblacion poblacionInicial);
         void RegistrarFinExperimento();
     }
 }
