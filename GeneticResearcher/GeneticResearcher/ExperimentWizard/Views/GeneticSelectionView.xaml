@@ -12,7 +12,5 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <WrapPanel Orientation="Horizontal" MinWidth="100" MinHeight="100" Background="AliceBlue">
-        <ContentPresenter Content="{Binding Operador}"/>
-    </WrapPanel>
+    <ContentPresenter Content="{Binding Operador}"/>
 </UserControl>

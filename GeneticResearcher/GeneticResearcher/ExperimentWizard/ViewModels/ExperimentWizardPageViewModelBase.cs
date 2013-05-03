@@ -47,6 +47,8 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
             }
         }
 
+        public abstract string Description { get; }
+
         #endregion // Properties
 
         #region Methods

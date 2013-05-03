@@ -33,6 +33,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
             return true;
         }
 
+        public override string Description
+        {
+            get { return "Total debe ser 100 y debe elegir algún modelo"; }
+        }
+
         #endregion
     }
 }

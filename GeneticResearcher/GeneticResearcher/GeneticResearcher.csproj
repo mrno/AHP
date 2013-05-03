@@ -94,6 +94,8 @@
     <Compile Include="ViewModels\IConjuntoMatrizViewModel.cs" />
     <Compile Include="ViewModels\ConjuntoMatrizViewModel.cs" />
     <Compile Include="ViewModels\OperadorControlViewModel.cs" />
+    <Compile Include="ViewModels\OperadorViewModel.cs" />
+    <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="Views\ConjuntoMatrizView.xaml.cs">
       <DependentUpon>ConjuntoMatrizView.xaml</DependentUpon>
     </Compile>

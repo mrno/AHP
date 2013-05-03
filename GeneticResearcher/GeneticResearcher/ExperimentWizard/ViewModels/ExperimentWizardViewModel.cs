@@ -183,6 +183,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
             }
         }
 
+        public string RequirementToNext
+        {
+            get { return CurrentPage.Description; }
+        }
+
         #endregion // Properties
 
         #region Events

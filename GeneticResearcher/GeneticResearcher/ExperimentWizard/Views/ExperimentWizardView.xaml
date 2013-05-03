@@ -5,7 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:view="clr-namespace:GeneticResearcher.ExperimentWizard.Views"
              xmlns:viewModel="clr-namespace:GeneticResearcher.ExperimentWizard.ViewModels" 
-             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Stretch">
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
 
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type viewModel:StartViewModel}">
@@ -55,8 +57,12 @@
                     <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
                         <StackPanel>
                             <Grid>
-                                <ContentPresenter ContentSource="Header" TextBlock.FontSize="22"
-                                                  TextBlock.FontWeight="DemiBold" TextBlock.Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <ContentPresenter ContentSource="Header" 
+                                                  TextBlock.FontSize="22"
+                                                  TextBlock.FontWeight="Light" 
+                                                  TextBlock.Foreground="Black" 
+                                                  HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center" />
                             </Grid>
                             <Grid>
                                 <Rectangle Fill="{TemplateBinding Background}" />
@@ -70,14 +76,19 @@
 
         <!-- WIZARD STEP TEMPLATE -->
         <DataTemplate x:Key="wizardStepTemplate">
-            <Border x:Name="bdOuter">
-                <!-- BorderBrush="Black" BorderThickness="0,0,1,1" CornerRadius="12"
-                    Margin="1,1,1,12" Opacity="0.25" SnapsToDevicePixels="True"-->
-                <Border x:Name="bdInner">
-                    <!-- Background="#FFFEFEFE" BorderBrush="Brown" BorderThickness="2,2,1,1"
-                        CornerRadius="12" Padding="2"-->
-                    <TextBlock x:Name="txt" Text="{Binding Path=DisplayName}" />
-                    <!--Margin="4,0,0,0" -->
+            <Border x:Name="bdOuter" 
+                    BorderBrush="Black" 
+                    BorderThickness="2,0,2,2"
+                    Margin="5,5,5,15" 
+                    Opacity="0.25">
+                <Border x:Name="bdInner" 
+                        Background="#FFFEFEFE" 
+                        BorderBrush="Brown" 
+                        BorderThickness="2,2,1,1"
+                        CornerRadius="12" Padding="2">
+                    <TextBlock x:Name="txt" 
+                               Text="{Binding Path=DisplayName}" 
+                               Margin="4,0,0,0"/>
                 </Border>
             </Border>
 
@@ -91,16 +102,16 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Background="#11000000" Margin="1">
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-
+        
         <!-- WIZARD STEP LISTING -->
         <HeaderedContentControl Header="Pasos">
             <ItemsControl ItemsSource="{Binding Path=Pages}" 
@@ -112,8 +123,12 @@
             <HeaderedContentControl Content="{Binding Path=CurrentPage}"
                                     Header="{Binding Path=CurrentPage.DisplayName}" />
         </Border>
-
-        <Border Grid.Column="0" Grid.Row="1" Background="OrangeRed" Grid.ColumnSpan="2">
+        
+        <!-- PROGRESS BUTTONS -->
+        <Border Grid.Column="0" 
+                Grid.Row="1" 
+                Background="Gray" 
+                Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -132,7 +147,7 @@
                     <Button Grid.Column="0" Grid.Row="0" Command="{Binding Path=MovePreviousCommand}"
                             Content="Atras" />
                     <Button Grid.Column="1" Grid.Row="0" Command="{Binding Path=MoveNextCommand}"
-                            Style="{StaticResource moveNextButtonStyle}" />
+                            Style="{StaticResource moveNextButtonStyle}"/>
                     <Button Grid.Column="3" Grid.Row="0" Command="{Binding Path=CancelCommand}" Content="Cancelar" />
                 </Grid>
             </Grid>
