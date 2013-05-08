@@ -7,7 +7,8 @@
              xmlns:viewModel="clr-namespace:GeneticResearcher.ExperimentWizard.ViewModels" 
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300" 
              HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch">
+             VerticalAlignment="Stretch"
+             Background="GhostWhite" >
 
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type viewModel:StartViewModel}">
@@ -30,18 +31,21 @@
             <view:GeneticMutationView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:FitnessViewModel}">
+            <view:FitnessView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:StopViewModel}">
+            <view:StopView />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:SummaryViewModel}">
             <view:SummaryView />
         </DataTemplate>
 
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Padding" Value="3.5,0" />
-            <Setter Property="Margin" Value="3.5" />
-            <Setter Property="MinWidth" Value="80" />
-        </Style>
-
+        
         <!-- This Style inherits from the Button style seen above. -->
-        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}" x:Key="moveNextButtonStyle">
+        <Style BasedOn="{StaticResource ResourceKey=normalButton }" TargetType="{x:Type Button}" x:Key="moveNextButtonStyle">
             <Setter Property="Content" Value="Siguiente" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=IsOnLastPage}" Value="True">
@@ -52,51 +56,47 @@
 
         <!-- HEADERED CONTENT CONTROL STYLE -->
         <Style TargetType="{x:Type HeaderedContentControl}">
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
-                        <StackPanel>
-                            <Grid>
-                                <ContentPresenter ContentSource="Header" 
-                                                  TextBlock.FontSize="22"
-                                                  TextBlock.FontWeight="Light" 
-                                                  TextBlock.Foreground="Black" 
-                                                  HorizontalAlignment="Center" 
-                                                  VerticalAlignment="Center" />
-                            </Grid>
-                            <Grid>
-                                <Rectangle Fill="{TemplateBinding Background}" />
-                                <ContentPresenter ContentSource="Content" />
-                            </Grid>
-                        </StackPanel>
+                        <DockPanel Background="{TemplateBinding Background}">
+                            <ContentPresenter DockPanel.Dock="Top" 
+                                              ContentSource="Header" 
+                                              TextBlock.FontSize="22"
+                                              TextBlock.FontWeight="Medium" 
+                                              TextBlock.Foreground="#FF00618F" 
+                                              HorizontalAlignment="Left" 
+                                              VerticalAlignment="Center" />
+                            
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              ContentSource="Content" />
+                        </DockPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
+        
+        
         <!-- WIZARD STEP TEMPLATE -->
         <DataTemplate x:Key="wizardStepTemplate">
             <Border x:Name="bdOuter" 
-                    BorderBrush="Black" 
-                    BorderThickness="2,0,2,2"
-                    Margin="5,5,5,15" 
-                    Opacity="0.25">
-                <Border x:Name="bdInner" 
-                        Background="#FFFEFEFE" 
-                        BorderBrush="Brown" 
-                        BorderThickness="2,2,1,1"
-                        CornerRadius="12" Padding="2">
-                    <TextBlock x:Name="txt" 
-                               Text="{Binding Path=DisplayName}" 
-                               Margin="4,0,0,0"/>
-                </Border>
+                    BorderBrush="#25A0DA"
+                    Margin="0,3"
+                    Height="35"
+                    Width="140"
+                    HorizontalAlignment="Left">
+                <TextBlock x:Name="txt" 
+                           Text="{Binding Path=DisplayName}" 
+                           Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
 
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=IsCurrentPage}" Value="True">
                     <Setter TargetName="txt" Property="FontWeight" Value="Bold" />
-                    <!--<Setter TargetName="bdInner" Property="Background" Value="BurlyWood" />-->
-                    <!--<Setter TargetName="bdOuter" Property="Opacity" Value="1" />-->
+                    <Setter TargetName="txt" Property="Foreground" Value="White" />
+                    <Setter TargetName="bdOuter" Property="Background" Value="#25A0DA" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -104,30 +104,37 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="150" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         
         <!-- WIZARD STEP LISTING -->
-        <HeaderedContentControl Header="Pasos">
-            <ItemsControl ItemsSource="{Binding Path=Pages}" 
+        <Border Grid.Column="0" Grid.Row="0" 
+                Padding="5"  
+                BorderBrush="#25A0DA" 
+                BorderThickness="0,0,1,0">
+            <HeaderedContentControl Header="Pasos">
+                <ItemsControl ItemsSource="{Binding Path=Pages}"
                           ItemTemplate="{StaticResource wizardStepTemplate}" />
-        </HeaderedContentControl>
+            </HeaderedContentControl>
+        </Border>
+        
 
-        <!-- CURRENT PAGE AREA -->
-        <Border Background="White" Grid.Column="1" Grid.Row="0">
+        <!-- CURRENT PAGE AREA-->
+        <Border Grid.Column="1" Grid.Row="0"
+                Padding="5">
             <HeaderedContentControl Content="{Binding Path=CurrentPage}"
                                     Header="{Binding Path=CurrentPage.DisplayName}" />
         </Border>
-        
+
         <!-- PROGRESS BUTTONS -->
         <Border Grid.Column="0" 
                 Grid.Row="1" 
-                Background="Gray" 
+                Background="White" 
                 Grid.ColumnSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -145,10 +152,13 @@
                         <ColumnDefinition SharedSizeGroup="Buttons" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Grid.Row="0" Command="{Binding Path=MovePreviousCommand}"
+                            Style="{StaticResource ResourceKey=normalButton}"
                             Content="Atras" />
                     <Button Grid.Column="1" Grid.Row="0" Command="{Binding Path=MoveNextCommand}"
                             Style="{StaticResource moveNextButtonStyle}"/>
-                    <Button Grid.Column="3" Grid.Row="0" Command="{Binding Path=CancelCommand}" Content="Cancelar" />
+                    <Button Grid.Column="3" Grid.Row="0" Command="{Binding Path=CancelCommand}" 
+                            Style="{StaticResource ResourceKey=normalButton}"
+                            Content="Cancelar" />
                 </Grid>
             </Grid>
         </Border>

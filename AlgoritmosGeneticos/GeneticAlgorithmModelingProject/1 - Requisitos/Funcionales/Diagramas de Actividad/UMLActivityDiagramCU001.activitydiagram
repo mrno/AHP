@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="4dde6baf-2a06-4989-b73f-05c358de92d7" name="ActivityCU001" linkedPackageId="d22a1c7b-4013-40b5-ade7-f3d964e77fae" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="33a2ca32-efbb-4eb1-88ff-c671da3fc326">
+      <elementDefinition Id="8e6bc11f-1c93-4f70-8503-2a8d561dd417" />
+      <body>Porcentaje Completo &gt;= 
+Parámetro de Completitud</body>
+      <annotatedElements>
+        <decisionNodeMoniker Id="6a60c6c0-71a4-4fd7-99af-7c6e7f065bd7" LastKnownName="Decision1" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="9761ed1d-0d72-4b38-930c-29f425e836c5">
+      <profileInstance Id="e29b6644-4afb-42a5-9cb6-28cc934c7648" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="eb56ffa5-a66c-4391-b625-0a780182e393">
+      <profileInstance Id="541907e6-1247-44da-8f75-4773fd56bc8f" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="755a2426-d6a1-4153-9bad-0cd5d8b87772" name="ActivityCU001" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="70a037dc-5569-4f11-b672-88167d8f3ece" />
+        <nodes>
+          <initialNode Id="1d3edaa0-05d3-47e7-84b8-8503d3b6b1af" name="Initial1" isLeaf="false">
+            <elementDefinition Id="4d539952-ecb2-4591-80ca-18731976ae07" />
+            <flowNodeTargets>
+              <controlFlow Id="d4a95a3b-4bc0-438b-a8d3-cb54d267474c" isLeaf="false">
+                <opaqueActionMoniker Id="0ad89d0f-14f9-4c62-989f-9e75a468df08" LastKnownName="Guardar Valores de la Matriz" />
+                <elementDefinition Id="9589176d-1726-4487-a81d-92138db6fd43" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="0ad89d0f-14f9-4c62-989f-9e75a468df08" name="Guardar Valores de la Matriz" isLeaf="false">
+            <elementDefinition Id="7deb1275-b7f9-4bb4-becc-5d6673bddb7e" />
+            <flowNodeTargets>
+              <controlFlow Id="ad314a26-1172-454e-a957-4ee64915a265" isLeaf="false">
+                <opaqueActionMoniker Id="824d323a-7012-47e3-b5dd-b340acac5efe" LastKnownName="Calcular Porcentaje Completo de la Matriz" />
+                <elementDefinition Id="94ab2b34-9edb-40f7-908c-4ca7f5ffdcaa" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <objectNode Id="fd1a8aba-df37-4ae8-886f-aec2b928125a" name="SisExperto" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="fa4dcba9-adac-4958-8df4-4b75230f0823" />
+            <upperBound>
+              <literalInteger Id="ae0ac5f3-e397-473a-999a-23fcaa1409e0" name="2147483647" value="2147483647">
+                <elementDefinition Id="4df0dc31-b457-4359-a983-46236709884a" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <decisionNode Id="6a60c6c0-71a4-4fd7-99af-7c6e7f065bd7" name="Decision1" isLeaf="false">
+            <elementDefinition Id="30e48bf4-91f7-47f4-8ff6-c74fffb703fd" />
+            <flowNodeTargets>
+              <controlFlow Id="4f9c2751-30e2-4df6-9706-0e997bb69ae4" guard="%Completo &gt;= Parámetro" isLeaf="false">
+                <sendSignalActionMoniker Id="5e57b47b-8027-435f-a664-df69ad3ce11c" LastKnownName="Optimizar Matriz" />
+                <elementDefinition Id="ccc65252-a646-4418-b76f-cf5bd624aee1" />
+              </controlFlow>
+              <controlFlow Id="1270cb61-c76c-4fe4-bef7-9b1b3c5816b2" isLeaf="false">
+                <activityFinalNodeMoniker Id="1b158cd8-313c-4266-b6ec-ad5b2e946821" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="153b7942-7fc0-4abf-b322-8e1bedcc266a" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <objectNode Id="29ebedcf-a5a0-4328-aa51-52c282c3ba01" name="Subsistema AG" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="c3943337-9d00-49af-9825-da9e49e4c8da" />
+            <upperBound>
+              <literalInteger Id="f203d72f-43dd-4365-a684-1ca8ee522370" name="2147483647" value="2147483647">
+                <elementDefinition Id="aed4ec32-2b7f-409a-8db7-70f42f0e3adc" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <opaqueAction Id="824d323a-7012-47e3-b5dd-b340acac5efe" name="Calcular Porcentaje Completo de la Matriz" isLeaf="false">
+            <elementDefinition Id="e52e7f0c-bbf1-42e7-8bae-92bd5074f4bc" />
+            <flowNodeTargets>
+              <controlFlow Id="630d8de4-881f-4786-8cab-bb3b3f08254f" isLeaf="false">
+                <decisionNodeMoniker Id="6a60c6c0-71a4-4fd7-99af-7c6e7f065bd7" LastKnownName="Decision1" />
+                <elementDefinition Id="b8eaa87b-2b73-4f5b-b7cd-ee831ec60139" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <objectNode Id="f3e57eda-1ca2-4b0e-b26f-b57347fcfa96" name="Módulo AG" isLeaf="false" ordering="Unordered" isControlType="false">
+            <elementDefinition Id="0c773bd8-8cde-4c39-9b66-874b17a01650" />
+            <upperBound>
+              <literalInteger Id="f1cf9d64-7b3d-4f06-84a7-e1a7f742a4c7" name="2147483647" value="2147483647">
+                <elementDefinition Id="1219a7e7-e1ad-4321-ae18-f45a7a1fe633" />
+              </literalInteger>
+            </upperBound>
+          </objectNode>
+          <sendSignalAction Id="5e57b47b-8027-435f-a664-df69ad3ce11c" name="Optimizar Matriz" isLeaf="false">
+            <elementDefinition Id="7e771c0c-a7b6-425b-a4de-1f7b3bffa458" />
+            <flowNodeTargets>
+              <controlFlow Id="4e3534f7-e3be-4ba0-9a78-31b9890313a5" isLeaf="false">
+                <acceptEventActionMoniker Id="a860ad35-71e7-4a80-b031-53c7a3a89c66" LastKnownName="Matriz Optimizada" />
+                <elementDefinition Id="ea9f4106-5849-45f1-b222-cb80107449d8" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction Id="a860ad35-71e7-4a80-b031-53c7a3a89c66" name="Matriz Optimizada" isLeaf="false" isUnmarshall="false">
+            <elementDefinition Id="3416e148-2e8d-49d9-a4ff-d086b5707f39" />
+            <flowNodeTargets>
+              <controlFlow Id="8347534e-0124-42d7-8ecb-385e5b0a7b77" isLeaf="false">
+                <opaqueActionMoniker Id="f8a90acd-1baf-47ec-8084-bd65c2c2ba92" LastKnownName="Sugerencia al Usuario" />
+                <elementDefinition Id="80ac51a9-c95c-437f-9c7f-f8ac8f3c4dc7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction Id="f8a90acd-1baf-47ec-8084-bd65c2c2ba92" name="Sugerencia al Usuario" isLeaf="false">
+            <elementDefinition Id="78bb8505-197c-48d0-ade5-dab79ea475fa" />
+            <flowNodeTargets>
+              <controlFlow Id="0bd1aef1-bfb7-47b7-83f0-3996b858c10d" isLeaf="false">
+                <activityFinalNodeMoniker Id="92a01216-7410-4cb0-a5e1-f413069306e2" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="e3e01b69-9af3-485d-82c7-17591ebcd5a4" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="92a01216-7410-4cb0-a5e1-f413069306e2" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="63990347-b071-4032-b264-84fc5068a0b9" />
+          </activityFinalNode>
+          <activityFinalNode Id="1b158cd8-313c-4266-b6ec-ad5b2e946821" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="ff4917b7-db75-4aa1-8600-8dc9beda277f" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="d22a1c7b-4013-40b5-ade7-f3d964e77fae" name="GeneticAlgorithmModelingProject">
+    <elementDefinition Id="9c5d8e28-3807-46a8-a2b0-bb35a9e3a3b6" />
+  </package>
+</activityRootModel>

@@ -12,9 +12,21 @@
             <Views:ConjuntoMatrizView/>
         </DataTemplate>
     </UserControl.Resources>
-    
-    <WrapPanel Orientation="Horizontal">
-        <ContentPresenter Content="{Binding Path=ConjuntoMatriz}"/>
-    </WrapPanel>
-             
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Margin="5"
+                   Text="{Binding Description}"/>
+
+        <GroupBox Header="Conjuntos a Probar" Grid.Row="1"
+              Template="{StaticResource ResourceKey=groupBoxTemplate}">
+            <ContentPresenter Content="{Binding Path=ConjuntoMatriz}"/>
+        </GroupBox>
+    </Grid>
+
 </UserControl>

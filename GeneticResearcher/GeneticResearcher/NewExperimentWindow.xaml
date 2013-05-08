@@ -6,7 +6,8 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Normal"
         Title="New Experiment"
-        Width="600" Height="400">
+        MinWidth="640" MinHeight="480"
+        Width="600" Height="500">
     
     <View:ExperimentWizardView/>
 </Window>

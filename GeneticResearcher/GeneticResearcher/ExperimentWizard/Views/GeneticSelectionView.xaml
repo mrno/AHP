@@ -12,5 +12,22 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <ContentPresenter Content="{Binding Operador}"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Margin="5"
+                   Text="{Binding Description}">
+
+        </TextBlock>
+
+        <GroupBox Header="Operadores de Selección" Grid.Row="1"
+              Template="{StaticResource ResourceKey=groupBoxTemplate}">
+            <ContentPresenter Content="{Binding Operador}" Margin="3"/>
+        </GroupBox>
+    </Grid>
+
 </UserControl>

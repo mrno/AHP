@@ -210,6 +210,8 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
                                 new GeneticSelectionViewModel(Sesion),
                                 new GeneticCrossoverViewModel(Sesion),
                                 new GeneticMutationViewModel(Sesion),
+                                new FitnessViewModel(Sesion),
+                                new StopViewModel(Sesion),
                                 new SummaryViewModel(Sesion)
                             };
             _pages = new ReadOnlyCollection<ExperimentWizardPageViewModelBase>(pages);

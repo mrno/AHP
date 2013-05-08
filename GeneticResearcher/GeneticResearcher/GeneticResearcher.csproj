@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>5.0.31017.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -57,9 +58,14 @@
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Common\VirtualToggleButton.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\FitnessViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\GeneticCrossoverViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\StopViewModel.cs" />
     <Compile Include="ExperimentWizard\Views\ExperimentWizardView.xaml.cs">
       <DependentUpon>ExperimentWizardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\FitnessView.xaml.cs">
+      <DependentUpon>FitnessView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExperimentWizard\Views\GeneticCrossoverView.xaml.cs">
       <DependentUpon>GeneticCrossoverView.xaml</DependentUpon>
@@ -75,6 +81,9 @@
     </Compile>
     <Compile Include="ExperimentWizard\Views\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\StopView.xaml.cs">
+      <DependentUpon>StopView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExperimentWizard\Views\SummaryView.xaml.cs">
       <DependentUpon>SummaryView.xaml</DependentUpon>
@@ -96,6 +105,7 @@
     <Compile Include="ViewModels\OperadorControlViewModel.cs" />
     <Compile Include="ViewModels\OperadorViewModel.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
+    <Compile Include="ViewModels\StopConditionViewModel.cs" />
     <Compile Include="Views\ConjuntoMatrizView.xaml.cs">
       <DependentUpon>ConjuntoMatrizView.xaml</DependentUpon>
     </Compile>
@@ -103,6 +113,10 @@
       <DependentUpon>OperadorControlView.xaml</DependentUpon>
     </Compile>
     <Page Include="ExperimentWizard\Views\ExperimentWizardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\FitnessView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -123,6 +137,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ExperimentWizard\Views\StartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\StopView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

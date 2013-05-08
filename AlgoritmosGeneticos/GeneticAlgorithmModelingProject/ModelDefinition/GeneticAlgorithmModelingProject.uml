@@ -1,0 +1,698 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="9c5d8e28-3807-46a8-a2b0-bb35a9e3a3b6"
+  name="GeneticAlgorithmModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="bc37f07b-39e7-4eca-a5d4-9bced35b6b1e">
+      <body>Sistema Experto (DSS) desarrollado en el GISIA</body>
+      <annotatedElements>
+        <actorMoniker
+          Id="f56b756e-c4d9-4ade-9619-f9eb8adfcbf5"
+          LastKnownName="SisExperto"
+          LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="a3e85ff1-aece-4ac2-a05d-9b65f1e3e826">
+      <body>Investigador que realiza Pruebas y Configura el Módulo de AG</body>
+      <annotatedElements>
+        <actorMoniker
+          Id="95452a6c-0679-4924-8ccb-aaf01f83c3f3"
+          LastKnownName="Investigador"
+          LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="8e6bc11f-1c93-4f70-8503-2a8d561dd417">
+      <body>Porcentaje Completo &gt;= 
+Parámetro de Completitud</body>
+      <annotatedElements>
+        <decisionNodeMoniker
+          Id="30e48bf4-91f7-47f4-8ff6-c74fffb703fd"
+          LastKnownName="Decision1"
+          LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <subsystem
+        Id="37d8f47b-0ffc-4ffb-bbd8-d352d6fb3b20"
+        name="Subsistema de Sugerencia"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="f56b756e-c4d9-4ade-9619-f9eb8adfcbf5"
+        name="SisExperto"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="eaee2df9-eaac-471f-b4e6-356d4adad8f2"
+            isDerived="false"
+            sourceEndRoleName="SisExperto"
+            targetEndRoleName="UseCase1"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9e5eabfd-67c7-4e73-8fbf-551d04b28bcd"
+              LastKnownName="CU01: Optimizar Matriz por Porcentaje Completo"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d91d1eb7-7de2-4a32-a28e-5da2e43be87e"
+                  name="SisExperto"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7c119ecc-c570-46cb-922b-fa71601bcf4a"
+                  name="UseCase1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ae37a20e-de48-4440-b34f-ebf4219a7233"
+            isDerived="false"
+            sourceEndRoleName="SisExperto"
+            targetEndRoleName="CU02: Optimizar Matriz por Demanda de Usuario"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="e4575776-b9bb-44c0-a299-b148a431a95f"
+              LastKnownName="CU02: Optimizar Matriz por Demanda de Usuario"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f022523c-0954-446f-8d92-82517eff5f66"
+                  name="SisExperto"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d4791f4f-0b93-4952-9185-2581a293c668"
+                  name="CU02: Optimizar Matriz por Demanda de Usuario"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9e5eabfd-67c7-4e73-8fbf-551d04b28bcd"
+        name="CU01: Optimizar Matriz por Porcentaje Completo"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="16ee6d11-cb0a-40f1-94f7-a3d28d4f7593">
+            <useCaseMoniker
+              Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
+              LastKnownName="CU03: Optimizar Matriz"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="37d8f47b-0ffc-4ffb-bbd8-d352d6fb3b20"
+            LastKnownName="Subsistema de Sugerencia"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="e4575776-b9bb-44c0-a299-b148a431a95f"
+        name="CU02: Optimizar Matriz por Demanda de Usuario"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="4a1f622d-86c6-46f3-abf1-b80ed3419b48">
+            <useCaseMoniker
+              Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
+              LastKnownName="CU03: Optimizar Matriz"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="37d8f47b-0ffc-4ffb-bbd8-d352d6fb3b20"
+            LastKnownName="Subsistema de Sugerencia"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+        name="Módulo AG"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
+        name="CU03: Optimizar Matriz"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="5343e6e6-48ba-49c6-a9cd-924607a1f0b7"
+        name="Subsistema de Prueba y Configuración"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="95452a6c-0679-4924-8ccb-aaf01f83c3f3"
+        name="Investigador"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="ae7f6b7f-113c-4dd3-a05f-dcf57e7b712d"
+            isDerived="false"
+            sourceEndRoleName="Investigador"
+            targetEndRoleName="CU04: Crear Conjunto de Prueba"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="7f2c005d-67b4-48fc-97a6-b66507aa6869"
+              LastKnownName="CU04: Crear Conjunto de Prueba"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e4e659f9-7070-4940-9857-98a0e7ff417b"
+                  name="Investigador"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d34b9942-18d1-4e64-a91f-7a95ba384f33"
+                  name="CU04: Crear Conjunto de Prueba"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="4ac514c4-1b6b-483e-ac63-67b590511a1b"
+            isDerived="false"
+            sourceEndRoleName="Investigador"
+            targetEndRoleName="CU04: Ejecutar una Prueba"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="11c20b94-b48e-4c3a-95d2-68dec65e9d37"
+              LastKnownName="CU05: Ejecutar una Prueba"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="831554e9-f0f6-49c9-9f8d-23277c31576a"
+                  name="Investigador"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="867bede5-0e2f-423e-b972-26e0f8cdd001"
+                  name="CU04: Ejecutar una Prueba"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="2a299a35-2236-4927-a4eb-dabed5c70349"
+            isDerived="false"
+            sourceEndRoleName="Investigador"
+            targetEndRoleName="CU05: Configurar Parámetros del Módulo AG"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9b25c0f4-1855-4373-b883-ebc3fbe22c30"
+              LastKnownName="CU06: Configurar Parámetros del Módulo AG"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7c81c3cb-0539-45c4-8418-4525da7bf664"
+                  name="Investigador"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="555bc689-1a0b-4418-be06-a2ede3deff0f"
+                  name="CU05: Configurar Parámetros del Módulo AG"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="0ea48ede-c01a-4d74-980f-a3d94cf427f8"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="7f2c005d-67b4-48fc-97a6-b66507aa6869"
+        name="CU04: Crear Conjunto de Prueba"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="24002996-9980-4751-ac01-6c5e46db28ba">
+            <useCaseMoniker
+              Id="9ab23577-b34e-4035-8bf6-7b921b67d6d6"
+              LastKnownName="CU07: Crear un Conjunto de Matrices"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="5343e6e6-48ba-49c6-a9cd-924607a1f0b7"
+            LastKnownName="Subsistema de Prueba y Configuración"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="11c20b94-b48e-4c3a-95d2-68dec65e9d37"
+        name="CU05: Ejecutar una Prueba"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="520a912a-5dec-44b8-b4ad-335b10bd23e3">
+            <useCaseMoniker
+              Id="6f8e9258-e576-4fcc-a15f-388ab732c766"
+              LastKnownName="CU08: Optimizar Conjunto de Matrices"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="5343e6e6-48ba-49c6-a9cd-924607a1f0b7"
+            LastKnownName="Subsistema de Prueba y Configuración"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9b25c0f4-1855-4373-b883-ebc3fbe22c30"
+        name="CU06: Configurar Parámetros del Módulo AG"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="9aa97c84-ef32-4a42-bbd9-1ca5ca01f3ef">
+            <useCaseMoniker
+              Id="79199f68-1512-4708-a3b5-d11d3ba7c0a5"
+              LastKnownName="CU09: Guardar Configuración para Ejecución de AG"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="5343e6e6-48ba-49c6-a9cd-924607a1f0b7"
+            LastKnownName="Subsistema de Prueba y Configuración"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="50599922-8aea-49e7-baff-b949e1e4ba0a"
+        name="UseCase2"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="6f8e9258-e576-4fcc-a15f-388ab732c766"
+        name="CU08: Optimizar Conjunto de Matrices"
+        isAbstract="false"
+        isLeaf="false">
+        <additions>
+          <include
+            Id="204f50d8-3b18-40cf-a0a5-0e0e2b0a60e3">
+            <useCaseMoniker
+              Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
+              LastKnownName="CU03: Optimizar Matriz"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9ab23577-b34e-4035-8bf6-7b921b67d6d6"
+        name="CU07: Crear un Conjunto de Matrices"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="79199f68-1512-4708-a3b5-d11d3ba7c0a5"
+        name="CU09: Guardar Configuración para Ejecución de AG"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="aa14deab-871c-4115-8674-bda2aed9c378"
+        name="SisExperto"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="8f5671c9-e0d7-48a0-83b4-b8e766140ac4"
+        name="Investigador"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <activity
+        Id="70a037dc-5569-4f11-b672-88167d8f3ece"
+        name="ActivityCU001"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false"
+        isReentrant="false"
+        isReadOnly="false"
+        isSingleExecution="false">
+        <nodes>
+          <initialNode
+            Id="4d539952-ecb2-4591-80ca-18731976ae07"
+            name="Initial1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="9589176d-1726-4487-a81d-92138db6fd43"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="7deb1275-b7f9-4bb4-becc-5d6673bddb7e"
+                  LastKnownName="Guardar Valores de la Matriz"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction
+            Id="7deb1275-b7f9-4bb4-becc-5d6673bddb7e"
+            name="Guardar Valores de la Matriz"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="94ab2b34-9edb-40f7-908c-4ca7f5ffdcaa"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="e52e7f0c-bbf1-42e7-8bae-92bd5074f4bc"
+                  LastKnownName="Calcular Porcentaje Completo de la Matriz"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <objectNode
+            Id="fa4dcba9-adac-4958-8df4-4b75230f0823"
+            name="SisExperto"
+            isLeaf="false"
+            ordering="Unordered"
+            isControlType="false">
+            <upperBound>
+              <literalInteger
+                Id="4df0dc31-b457-4359-a983-46236709884a"
+                name="2147483647"
+                value="2147483647" />
+            </upperBound>
+          </objectNode>
+          <decisionNode
+            Id="30e48bf4-91f7-47f4-8ff6-c74fffb703fd"
+            name="Decision1"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ccc65252-a646-4418-b76f-cf5bd624aee1"
+                guard="%Completo &gt;= Parámetro"
+                isLeaf="false">
+                <sendSignalActionMoniker
+                  Id="7e771c0c-a7b6-425b-a4de-1f7b3bffa458"
+                  LastKnownName="Optimizar Matriz"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+              <controlFlow
+                Id="153b7942-7fc0-4abf-b322-8e1bedcc266a"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="ff4917b7-db75-4aa1-8600-8dc9beda277f"
+                  LastKnownName="ActivityFinal2"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <objectNode
+            Id="c3943337-9d00-49af-9825-da9e49e4c8da"
+            name="Subsistema AG"
+            isLeaf="false"
+            ordering="Unordered"
+            isControlType="false">
+            <upperBound>
+              <literalInteger
+                Id="aed4ec32-2b7f-409a-8db7-70f42f0e3adc"
+                name="2147483647"
+                value="2147483647" />
+            </upperBound>
+          </objectNode>
+          <opaqueAction
+            Id="e52e7f0c-bbf1-42e7-8bae-92bd5074f4bc"
+            name="Calcular Porcentaje Completo de la Matriz"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="b8eaa87b-2b73-4f5b-b7cd-ee831ec60139"
+                isLeaf="false">
+                <decisionNodeMoniker
+                  Id="30e48bf4-91f7-47f4-8ff6-c74fffb703fd"
+                  LastKnownName="Decision1"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <objectNode
+            Id="0c773bd8-8cde-4c39-9b66-874b17a01650"
+            name="Módulo AG"
+            isLeaf="false"
+            ordering="Unordered"
+            isControlType="false">
+            <upperBound>
+              <literalInteger
+                Id="1219a7e7-e1ad-4321-ae18-f45a7a1fe633"
+                name="2147483647"
+                value="2147483647" />
+            </upperBound>
+          </objectNode>
+          <sendSignalAction
+            Id="7e771c0c-a7b6-425b-a4de-1f7b3bffa458"
+            name="Optimizar Matriz"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="ea9f4106-5849-45f1-b222-cb80107449d8"
+                isLeaf="false">
+                <acceptEventActionMoniker
+                  Id="3416e148-2e8d-49d9-a4ff-d086b5707f39"
+                  LastKnownName="Matriz Optimizada"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </sendSignalAction>
+          <acceptEventAction
+            Id="3416e148-2e8d-49d9-a4ff-d086b5707f39"
+            name="Matriz Optimizada"
+            isLeaf="false"
+            isUnmarshall="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="80ac51a9-c95c-437f-9c7f-f8ac8f3c4dc7"
+                isLeaf="false">
+                <opaqueActionMoniker
+                  Id="78bb8505-197c-48d0-ade5-dab79ea475fa"
+                  LastKnownName="Sugerencia al Usuario"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </acceptEventAction>
+          <opaqueAction
+            Id="78bb8505-197c-48d0-ade5-dab79ea475fa"
+            name="Sugerencia al Usuario"
+            isLeaf="false">
+            <flowNodeTargets>
+              <controlFlow
+                Id="e3e01b69-9af3-485d-82c7-17591ebcd5a4"
+                isLeaf="false">
+                <activityFinalNodeMoniker
+                  Id="63990347-b071-4032-b264-84fc5068a0b9"
+                  LastKnownName="ActivityFinal1"
+                  LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode
+            Id="63990347-b071-4032-b264-84fc5068a0b9"
+            name="ActivityFinal1"
+            isLeaf="false" />
+          <activityFinalNode
+            Id="ff4917b7-db75-4aa1-8600-8dc9beda277f"
+            name="ActivityFinal2"
+            isLeaf="false" />
+        </nodes>
+      </activity>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

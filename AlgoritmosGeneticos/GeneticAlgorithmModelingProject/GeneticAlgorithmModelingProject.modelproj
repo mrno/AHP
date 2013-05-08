@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ee6bf100-a0a2-4897-8a5e-cf1687dbe639}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>GeneticAlgorithmModelingProject</Name>
+    <RootNamespace>GeneticAlgorithmModelingProject</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Folder Include="1 - Requisitos\Funcionales" />
+    <Folder Include="1 - Requisitos\Funcionales\Descripciones" />
+    <Folder Include="1 - Requisitos\Funcionales\Diagramas de Actividad" />
+    <Folder Include="1 - Requisitos\Funcionales\Modelos Dominio - Negocio" />
+    <Folder Include="1 - Requisitos\No Funcionales\UI Prototipo" />
+    <Folder Include="1 - Requisitos\No Funcionales" />
+    <Folder Include="2 - Análisis\Clases y Paquetes\" />
+    <Folder Include="2 - Análisis\Realizaciones de Casos de Uso" />
+    <Folder Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase" />
+    <Folder Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción" />
+    <Folder Include="3 - Diseño\Clases, Subsistemas e Interfaces" />
+    <Folder Include="3 - Diseño\Realizaciones de Casos de Uso\" />
+    <Folder Include="3 - Diseño\Realizaciones de Casos de Uso\Diagramas de Clase\" />
+    <Folder Include="3 - Diseño\Realizaciones de Casos de Uso\Diagramas de Interacción\" />
+    <Folder Include="ModelDefinition\" />
+    <Content Include="1 - Requisitos\Funcionales\Actores.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU001.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU002.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU003.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU004.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU005.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU006.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU007.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU008.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU009.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Diagramas de Actividad\UMLActivityDiagramCU001.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Diagramas de Actividad\UMLActivityDiagramCU001.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>1 - Requisitos\Funcionales\Diagramas de Actividad\UMLActivityDiagramCU001.activitydiagram</DependentUpon>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\Documento de Requisitos de Funcionales.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\UMLModeloDeCasosDeUso.usecasediagram">
+      <SubType>Content</SubType>
+      <CustomToolNamespace>
+      </CustomToolNamespace>
+    </Content>
+    <Content Include="1 - Requisitos\Funcionales\UMLModeloDeCasosDeUso.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>1 - Requisitos\Funcionales\UMLModeloDeCasosDeUso.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="1 - Requisitos\Glosario.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\No Funcionales\Documento de Requisitos Adicionales.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\GeneticAlgorithmModelingProject.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="1 - Requisitos" />
+    <Folder Include="2 - Análisis" />
+    <Folder Include="3 - Diseño" />
+    <Folder Include="4 - Implemtación" />
+    <Folder Include="5 - Prueba" />
+  </ItemGroup>
+</Project>

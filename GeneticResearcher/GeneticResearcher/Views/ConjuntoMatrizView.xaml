@@ -36,6 +36,8 @@
     </UserControl.Resources>
 
     <TreeView x:Name="tree" 
+            BorderThickness="0"
+            Padding="5"
             ItemContainerStyle="{StaticResource TreeViewItemStyle}"
             ItemsSource="{Binding Children, Mode=OneTime}" 
             ItemTemplate="{StaticResource CheckBoxItemTemplate}" />

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Views="clr-namespace:GeneticResearcher.Views" 
         mc:Ignorable="d" x:Class="GeneticResearcher.MainWindow"
-        Title="Genetic Researcher" Height="600" Width="800">
+        Title="Genetic Researcher" Height="600" Width="800"
+    WindowStartupLocation="CenterScreen">
     <DockPanel VerticalAlignment="Stretch">
         <ToolBar DockPanel.Dock="Top" Height="20"/>
         
