@@ -58,14 +58,12 @@
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Common\VirtualToggleButton.cs" />
-    <Compile Include="ExperimentWizard\ViewModels\FitnessViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\IndividualViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\GeneticCrossoverViewModel.cs" />
+    <Compile Include="ExperimentWizard\ViewModels\PopulationViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\StopViewModel.cs" />
     <Compile Include="ExperimentWizard\Views\ExperimentWizardView.xaml.cs">
       <DependentUpon>ExperimentWizardView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ExperimentWizard\Views\FitnessView.xaml.cs">
-      <DependentUpon>FitnessView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExperimentWizard\Views\GeneticCrossoverView.xaml.cs">
       <DependentUpon>GeneticCrossoverView.xaml</DependentUpon>
@@ -78,6 +76,12 @@
     </Compile>
     <Compile Include="ExperimentWizard\Views\GeneticTestSetView.xaml.cs">
       <DependentUpon>GeneticTestSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\IndividualView.xaml.cs">
+      <DependentUpon>IndividualView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\Views\PopulationView.xaml.cs">
+      <DependentUpon>PopulationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExperimentWizard\Views\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
@@ -116,10 +120,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ExperimentWizard\Views\FitnessView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="ExperimentWizard\Views\GeneticCrossoverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +133,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ExperimentWizard\Views\GeneticTestSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\IndividualView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExperimentWizard\Views\PopulationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

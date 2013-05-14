@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GeneticResearcher.ExperimentWizard.Views
 {
     /// <summary>
-    /// Lógica de interacción para FitnessView.xaml
+    /// Lógica de interacción para PopulationView.xaml
     /// </summary>
-    public partial class FitnessView : UserControl
+    public partial class PopulationView : UserControl
     {
-        public FitnessView()
+        public PopulationView()
         {
             InitializeComponent();
         }

@@ -206,12 +206,13 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
             var pages = new List<ExperimentWizardPageViewModelBase>
                             {
                                 new StartViewModel(Sesion),
-                                new GeneticTestSetViewModel(Sesion),
                                 new GeneticSelectionViewModel(Sesion),
                                 new GeneticCrossoverViewModel(Sesion),
                                 new GeneticMutationViewModel(Sesion),
-                                new FitnessViewModel(Sesion),
+                                new PopulationViewModel(Sesion),
+                                new IndividualViewModel(Sesion),
                                 new StopViewModel(Sesion),
+                                new GeneticTestSetViewModel(Sesion),
                                 new SummaryViewModel(Sesion)
                             };
             _pages = new ReadOnlyCollection<ExperimentWizardPageViewModelBase>(pages);

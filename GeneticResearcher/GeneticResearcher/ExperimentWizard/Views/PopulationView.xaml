@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="GeneticResearcher.ExperimentWizard.Views.PopulationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" 
+                   Grid.ColumnSpan="2"
+                   Margin="5"
+                   TextWrapping="Wrap"
+                   Text="{Binding Description}"/>
+
+        <GroupBox Header="Tamaño" Grid.Row="1" Grid.Column="0"
+              Template="{StaticResource ResourceKey=groupBoxTemplate}">
+            <StackPanel>
+
+                <ItemsControl FontWeight="Normal"
+                              ItemsSource="{Binding Path=SizeOptions}"
+                              Margin="3">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="sizeOptions" 
+                                     Content="{Binding DisplayName}" 
+                                     IsChecked="{Binding IsSelected}"
+                                     Margin="2,3.5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBox Height="20"
+                         Width="50" 
+                         Margin="30,0"
+                         VerticalAlignment="Bottom"
+                         HorizontalAlignment="Left"
+                         Text="{Binding CustomSize, Mode=TwoWay}">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsCustom, Mode=OneWay}"
+                                             Value="True">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Convergencia" Grid.Row="1" Grid.Column="1"
+              Template="{StaticResource ResourceKey=groupBoxTemplate}">
+            <ItemsControl FontWeight="Normal"
+                          ItemsSource="{Binding Path=ConvergenceMethods}"
+                          Margin="3">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton GroupName="convergence" 
+                                     Content="{Binding DisplayName}" 
+                                     IsChecked="{Binding IsSelected}"
+                                     Margin="2,3.5">
+                        </RadioButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </GroupBox>
+
+    </Grid>
+</UserControl>

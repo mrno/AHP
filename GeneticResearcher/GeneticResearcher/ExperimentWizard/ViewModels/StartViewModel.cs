@@ -94,6 +94,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         internal override bool IsValid()
         {
+            return true;
             return Is100Percent && EvolutiveModels.Any(x => x.IsSelected);
         }
 

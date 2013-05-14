@@ -13,25 +13,15 @@ namespace GeneticResearcher.ViewModels
         private string _name;
         private bool _isSelected;
         private double _parameter;
+        private string _parameterDescription;
 
-        public StopConditionViewModel(string name, string displayName)
+        public StopConditionViewModel(string name, string displayName, double parameter, string parameterDescription)
         {
             _name = name;
             _displayName = displayName;
             _isSelected = false;
-        }
-
-        public double Parameter
-        {
-            get { return _parameter; }
-            set
-            {
-                if (value == _parameter)
-                    return;
-
-                _parameter = value;
-                OnPropertyChanged("Parameter");
-            }
+            _parameter = parameter;
+            _parameterDescription = parameterDescription;
         }
 
         public string Name
@@ -55,6 +45,24 @@ namespace GeneticResearcher.ViewModels
                 _isSelected = value;
                 OnPropertyChanged("IsSelected");
             }
+        }
+
+        public double Parameter
+        {
+            get { return _parameter; }
+            set
+            {
+                if (value == _parameter)
+                    return;
+
+                _parameter = value;
+                OnPropertyChanged("Parameter");
+            }
+        }
+
+        public string ParameterDescription
+        {
+            get { return _parameterDescription; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

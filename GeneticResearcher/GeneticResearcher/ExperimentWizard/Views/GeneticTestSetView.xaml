@@ -21,6 +21,7 @@
 
         <TextBlock Grid.Row="0" 
                    Margin="5"
+                   TextWrapping="Wrap"
                    Text="{Binding Description}"/>
 
         <GroupBox Header="Conjuntos a Probar" Grid.Row="1"

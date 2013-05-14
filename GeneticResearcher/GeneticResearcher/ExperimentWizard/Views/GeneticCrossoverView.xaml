@@ -20,6 +20,7 @@
 
         <TextBlock Grid.Row="0" 
                    Margin="5"
+                   TextWrapping="Wrap"
                    Text="{Binding Description}"/>
 
         <GroupBox Header="Operadores de Cruza" Grid.Row="1"

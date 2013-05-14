@@ -15,10 +15,6 @@
             <view:StartView />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:GeneticTestSetViewModel}">
-            <view:GeneticTestSetView />
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModel:GeneticSelectionViewModel}">
             <view:GeneticSelectionView />
         </DataTemplate>
@@ -31,14 +27,22 @@
             <view:GeneticMutationView />
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:FitnessViewModel}">
-            <view:FitnessView />
+        <DataTemplate DataType="{x:Type viewModel:PopulationViewModel}">
+            <view:PopulationView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:IndividualViewModel}">
+            <view:IndividualView />
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:StopViewModel}">
             <view:StopView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:GeneticTestSetViewModel}">
+            <view:GeneticTestSetView />
+        </DataTemplate>
+        
         <DataTemplate DataType="{x:Type viewModel:SummaryViewModel}">
             <view:SummaryView />
         </DataTemplate>
@@ -89,7 +93,7 @@
                     HorizontalAlignment="Left">
                 <TextBlock x:Name="txt" 
                            Text="{Binding Path=DisplayName}" 
-                           Foreground="#25A0DA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                           Foreground="#25A0DA" HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Center"/>
             </Border>
 
             <DataTemplate.Triggers>
