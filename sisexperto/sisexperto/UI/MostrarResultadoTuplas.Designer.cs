@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.criterioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.etiquetaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.indiceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.alphaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingTuplas = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -49,14 +49,14 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.alternativaDataGridViewTextBoxColumn,
-            this.criterioDataGridViewTextBoxColumn,
             this.etiquetaDataGridViewTextBoxColumn,
+            this.indiceDataGridViewTextBoxColumn,
             this.alphaDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.bindingTuplas;
-            this.dataGridView1.Location = new System.Drawing.Point(21, 37);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 31);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(677, 344);
+            this.dataGridView1.Size = new System.Drawing.Size(506, 153);
             this.dataGridView1.TabIndex = 0;
             // 
             // alternativaDataGridViewTextBoxColumn
@@ -67,14 +67,6 @@
             this.alternativaDataGridViewTextBoxColumn.Name = "alternativaDataGridViewTextBoxColumn";
             this.alternativaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // criterioDataGridViewTextBoxColumn
-            // 
-            this.criterioDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.criterioDataGridViewTextBoxColumn.DataPropertyName = "Criterio";
-            this.criterioDataGridViewTextBoxColumn.HeaderText = "Criterio";
-            this.criterioDataGridViewTextBoxColumn.Name = "criterioDataGridViewTextBoxColumn";
-            this.criterioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // etiquetaDataGridViewTextBoxColumn
             // 
             this.etiquetaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -83,9 +75,16 @@
             this.etiquetaDataGridViewTextBoxColumn.Name = "etiquetaDataGridViewTextBoxColumn";
             this.etiquetaDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // indiceDataGridViewTextBoxColumn
+            // 
+            this.indiceDataGridViewTextBoxColumn.DataPropertyName = "Indice";
+            this.indiceDataGridViewTextBoxColumn.HeaderText = "Indice";
+            this.indiceDataGridViewTextBoxColumn.Name = "indiceDataGridViewTextBoxColumn";
+            this.indiceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.indiceDataGridViewTextBoxColumn.Width = 80;
+            // 
             // alphaDataGridViewTextBoxColumn
             // 
-            this.alphaDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.alphaDataGridViewTextBoxColumn.DataPropertyName = "Alpha";
             this.alphaDataGridViewTextBoxColumn.HeaderText = "Alpha";
             this.alphaDataGridViewTextBoxColumn.Name = "alphaDataGridViewTextBoxColumn";
@@ -99,9 +98,9 @@
             // 
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 12);
+            this.groupBox1.Location = new System.Drawing.Point(9, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(721, 397);
+            this.groupBox1.Size = new System.Drawing.Size(532, 193);
             this.groupBox1.TabIndex = 43;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Representación en dos tuplas:";
@@ -110,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 420);
+            this.ClientSize = new System.Drawing.Size(550, 214);
             this.Controls.Add(this.groupBox1);
             this.Name = "MostrarResultadoTuplas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -127,10 +126,10 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource bindingTuplas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn criterioDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn etiquetaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn alphaDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alternativaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn etiquetaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn indiceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn alphaDataGridViewTextBoxColumn;
     }
 }

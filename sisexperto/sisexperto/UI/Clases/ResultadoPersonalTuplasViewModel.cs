@@ -9,6 +9,7 @@ namespace sisexperto.UI.Clases
     {
         public string Alternativa { get; set; }
         public string Criterio { get; set; }
+        public string Indice { get; set; }
         public string Etiqueta { get; set; }
         public double Alpha { get; set; }
     }
