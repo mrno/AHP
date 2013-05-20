@@ -20,13 +20,14 @@ namespace sisExperto
         private readonly Proyecto _proyecto;
         private IEnumerable<Experto> _expertosAgregados;
         private readonly double[,] rankingFinal;
+        private int _tipoAgregacion;
 
         public MostrarRankingAgregado(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion, int modelo)
         {
             InitializeComponent();
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
-
+            _tipoAgregacion = tipoAgregacion;
             _fachada = Fachada;
             _proyecto = Proyecto;
             _modelo = modelo;
@@ -215,9 +216,17 @@ namespace sisExperto
                 if (item.Experto.ExpertoId == exp.ExpertoId)
                     unExpProy = item;
             }
-            
-            var frmMostrarTuplas = new MostrarResultadoTuplas(unExpProy, _proyecto, false);
-            frmMostrarTuplas.ShowDialog();
+
+            if (this._tipoAgregacion == 2)
+            {
+                var frmMostrarTuplas = new MostrarResultadoTuplas(unExpProy, _proyecto, true);
+                frmMostrarTuplas.ShowDialog();
+            }
+            else
+            {
+                var frmMostrarTuplas = new MostrarResultadoTuplas(unExpProy, _proyecto, false);
+                frmMostrarTuplas.ShowDialog();
+            }
         }
     }
 }

@@ -48,7 +48,7 @@ namespace sisexperto.UI
             //}
             //bindingTuplas.DataSource = lista;
 
-            double[,] ranking = _proyecto.CalcularRankingILTuplas(_expertoProyecto, true);//acá era _conPeso
+            double[,] ranking = _proyecto.CalcularRankingILTuplas(_expertoProyecto, _conPeso);//acá era _conPeso
             List<ResultadoPersonalTuplasViewModel> lista = new List<ResultadoPersonalTuplasViewModel>();
             int i = 0;
             foreach (var item in _proyecto.Alternativas)
