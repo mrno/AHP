@@ -12,7 +12,7 @@ namespace sisExperto.Entidades
     {
         public GisiaExpertoContext() : base("DataContext")
         {
-            
+
         }
 
         public DbSet<Proyecto> Proyectos { get; set; }
