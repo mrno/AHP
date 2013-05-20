@@ -25,7 +25,7 @@ namespace sisexperto.UI
 
 
         private FachadaProyectosExpertos _fachada;
-
+        private IEnumerable<Proyecto> _proyectosDisponibles; 
         private Experto _experto;
 
         public CrearProyecto(FachadaProyectosExpertos fachada, Experto experto)
@@ -35,6 +35,10 @@ namespace sisexperto.UI
 
             _fachada = fachada;
             _experto = experto;
+            _proyectosDisponibles = _fachada.ObtenerProyectosListos();
+
+            proyectoBindingSource.DataSource = _proyectosDisponibles.ToList();
+            comboBoxProyectos.Refresh();
             labelNombreExperto.Text = _experto.ApellidoYNombre;
         }
 
@@ -50,49 +54,66 @@ namespace sisexperto.UI
 
         private void buttonCrearYContinuar_Click(object sender, EventArgs e)
         {
-            var proyectoCreado = _fachada.AltaProyecto(new Proyecto()
+            if (checkBoxClonacion.Checked)
             {
-                Tipo = comboBoxTipoModelo.Text,
-                Nombre = textBoxNombreProyecto.Text,
-                Objetivo = textBoxObjetivoProyecto.Text,
-                Creador = _experto,
-                Estado = "Creado",
-                Criterios = new List<Criterio>(),
-                Alternativas = new List<Alternativa>(),
-                ConjuntosDeEtiquetas = new List<ConjuntoEtiquetas>(),
-                ExpertosAsignados = new List<ExpertoEnProyecto>()
-            });
-            ProyectoCreado();
-
-            MessageBox.Show("Proyecto creado con éxito. " + proyectoCreado.RequerimientoParaPublicar());
-
-            //permitimos al usuario cargar los expertos
-            var ventana = MessageBox.Show("¿Desea editar los expertos del proyecto?", "Información", MessageBoxButtons.YesNo);
-            if (ventana.ToString() == "Yes")
-            {
-                Form ventanaEditarExpertos = null;
-                if (proyectoCreado.Tipo == "AHP")
+                var proyectoSeleccionado = comboBoxProyectos.SelectedItem as Proyecto;
+                if (proyectoSeleccionado != null)
                 {
-                    ventanaEditarExpertos = new AsignarExpertosAHP(proyectoCreado, _experto, _fachada);
-                    (ventanaEditarExpertos as AsignarExpertosAHP).ExpertosAsignados += (ExpertosAsignados);
-                }
-                else
-                {
-                    ventanaEditarExpertos = new AsignarExpertosIL(proyectoCreado, _experto, _fachada);
-                    (ventanaEditarExpertos as AsignarExpertosIL).ExpertosAsignados += (ExpertosAsignados);
-                }
-                ventanaEditarExpertos.ShowDialog();
-            }    
+                    var proyecto = proyectoSeleccionado.Clone() as Proyecto;
+                    proyecto.Nombre = textBoxNombreProyecto.Text;
+                    proyecto.Objetivo = textBoxObjetivoProyecto.Text;
 
-            //permitimos al usuario cargar los criterios y alternativas
-            var ventana1 = MessageBox.Show("¿Desea editar los criterios y alternativas?", "Información", MessageBoxButtons.YesNo);
-            if (ventana1.ToString() == "Yes")
-            {
-                var _ventanaCargarProyecto = new EditarProyecto(proyectoCreado, _experto, _fachada);
-                _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
-                _ventanaCargarProyecto.ShowDialog();
+                    var proyectoCreado = _fachada.AltaProyecto(proyecto);
+                    MessageBox.Show("proyecto clonado con éxito");
+                }
             }
+            else
+            {
+                var proyectoCreado = _fachada.AltaProyecto(new Proyecto()
+                                                               {
+                                                                   Tipo = comboBoxTipoModelo.Text,
+                                                                   Nombre = textBoxNombreProyecto.Text,
+                                                                   Objetivo = textBoxObjetivoProyecto.Text,
+                                                                   Creador = _experto,
+                                                                   Estado = "Creado",
+                                                                   Criterios = new List<Criterio>(),
+                                                                   Alternativas = new List<Alternativa>(),
+                                                                   ConjuntosDeEtiquetas = new List<ConjuntoEtiquetas>(),
+                                                                   ExpertosAsignados = new List<ExpertoEnProyecto>()
+                                                               });
+                ProyectoCreado();
 
+                MessageBox.Show("Proyecto creado con éxito. " + proyectoCreado.RequerimientoParaPublicar());
+
+                //permitimos al usuario cargar los expertos
+                var ventana = MessageBox.Show("¿Desea editar los expertos del proyecto?", "Información",
+                                              MessageBoxButtons.YesNo);
+                if (ventana.ToString() == "Yes")
+                {
+                    Form ventanaEditarExpertos = null;
+                    if (proyectoCreado.Tipo == "AHP")
+                    {
+                        ventanaEditarExpertos = new AsignarExpertosAHP(proyectoCreado, _experto, _fachada);
+                        (ventanaEditarExpertos as AsignarExpertosAHP).ExpertosAsignados += (ExpertosAsignados);
+                    }
+                    else
+                    {
+                        ventanaEditarExpertos = new AsignarExpertosIL(proyectoCreado, _experto, _fachada);
+                        (ventanaEditarExpertos as AsignarExpertosIL).ExpertosAsignados += (ExpertosAsignados);
+                    }
+                    ventanaEditarExpertos.ShowDialog();
+                }
+
+                //permitimos al usuario cargar los criterios y alternativas
+                var ventana1 = MessageBox.Show("¿Desea editar los criterios y alternativas?", "Información",
+                                               MessageBoxButtons.YesNo);
+                if (ventana1.ToString() == "Yes")
+                {
+                    var _ventanaCargarProyecto = new EditarProyecto(proyectoCreado, _experto, _fachada);
+                    _ventanaCargarProyecto.ProyectoEditado += (delegate { ExpertosAsignados(); });
+                    _ventanaCargarProyecto.ShowDialog();
+                }
+            }
             this.Close();
         }
 
@@ -106,6 +127,13 @@ namespace sisexperto.UI
         private void ExpertosAsignados()
         {
             ProyectoModificado();
+        }
+
+        private void checkBoxClonacion_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = (CheckBox) sender;
+            comboBoxProyectos.Enabled = checkBox.Checked;
+            comboBoxTipoModelo.Enabled = !checkBox.Checked;
         }
     }
 }

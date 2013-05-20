@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 namespace sisExperto.Entidades
 {
     [Table("ExpertosEnProyecto")]
-    public class ExpertoEnProyecto
+    public class ExpertoEnProyecto : ICloneable
     {
         #region Propiedades
         public int ExpertoEnProyectoId { get; set; }
@@ -91,6 +91,22 @@ namespace sisExperto.Entidades
            
         }
 
-        
+        #region Implementation of ICloneable
+
+        public object Clone()
+        {
+            var expertoEnProyecto = new ExpertoEnProyecto
+                                        {
+                                            Activo = Activo,
+                                            Experto = Experto,
+                                            Peso = Peso,
+                                            Ponderacion = Ponderacion,
+                                            ValoracionAHP = ValoracionAHP == null ? null : new ValoracionAHP { AlternativasMatrices = new List<AlternativaMatriz>() }
+                                        };
+
+            return expertoEnProyecto;
+        }
+
+        #endregion
     }
 }

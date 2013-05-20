@@ -63,7 +63,7 @@ namespace sisExperto.Entidades
                 .HasRequired(x => x.ExpertoEnProyecto);
             modelBuilder.Entity<ValoracionIL>()
                 .HasRequired(x => x.ExpertoEnProyecto);
-
+            
             //modelBuilder.Entity<Experto>()
             //    .HasMany(x => x.ProyectosAsignados)
             //    .WithRequired(x => x.Experto).WillCascadeOnDelete(true);
