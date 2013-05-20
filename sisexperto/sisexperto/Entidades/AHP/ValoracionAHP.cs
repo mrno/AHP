@@ -7,7 +7,7 @@ using System.Text;
 
 namespace sisexperto.Entidades.AHP
 {
-    public class ValoracionAHP : Valoracion //, ICloneable
+    public class ValoracionAHP : Valoracion, ICloneable
     {
         public virtual CriterioMatriz CriterioMatriz { get; set; }
         public virtual ICollection<AlternativaMatriz> AlternativasMatrices { get; set; }
@@ -107,5 +107,17 @@ namespace sisexperto.Entidades.AHP
         //}
 
         //#endregion
+
+        #region Implementation of ICloneable
+
+        public object Clone()
+        {
+            return new ValoracionAHP
+                       {
+                           AlternativasMatrices = new List<AlternativaMatriz>()
+                       };
+        }
+
+        #endregion
     }
 }

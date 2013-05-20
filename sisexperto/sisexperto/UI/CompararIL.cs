@@ -5,6 +5,7 @@ using System.Linq;
 using sisExperto;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
+using sisexperto.Entidades.IL;
 
 
 namespace sisexperto.UI
@@ -33,7 +34,7 @@ namespace sisexperto.UI
         {
             foreach (var item in _expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Etiquetas)
             {
-                if (valor == item.b)
+                if (valor == item.PuntoB)
                     return item.Indice;
                 return 1;
             }

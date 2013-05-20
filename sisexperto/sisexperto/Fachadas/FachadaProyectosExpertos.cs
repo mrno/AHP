@@ -6,6 +6,7 @@ using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
 using System.Windows.Forms;
+using sisexperto.Entidades.IL;
 using sisexperto.UI.Clases;
 
 namespace sisExperto

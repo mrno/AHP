@@ -1,9 +1,11 @@
-﻿using sisExperto.Entidades;
+﻿using System.Linq;
+using sisExperto.Entidades;
+using System;
 using System.Collections.Generic;
 
-namespace sisexperto.Entidades
+namespace sisexperto.Entidades.IL
 {
-    public class ConjuntoEtiquetas
+    public class ConjuntoEtiquetas : ICloneable
     {
         public int ConjuntoEtiquetasId { get; set; }
         public string Nombre { get; set; }
@@ -20,5 +22,21 @@ namespace sisexperto.Entidades
         public int? ProyectoId { get; set; }
         public virtual Proyecto Proyecto { get; set; }
 
+        #region Implementation of ICloneable
+
+        public object Clone()
+        {
+            return new ConjuntoEtiquetas
+                       {
+                           Nombre = Nombre,
+                           Descripcion = Descripcion,
+                           Cantidad = Cantidad,
+                           Etiquetas = (from c in Etiquetas
+                                        select c.Clone() as Etiqueta).ToList()
+
+                       };
+        }
+
+        #endregion
     }
 }

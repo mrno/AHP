@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using probaAHP;
 using sisexperto.Entidades;
+using sisexperto.Entidades.IL;
 using sisexperto.Fachadas;
 using sisexperto.Entidades.AHP;
 using System.ComponentModel.DataAnnotations;
@@ -101,7 +102,14 @@ namespace sisExperto.Entidades
                                             Experto = Experto,
                                             Peso = Peso,
                                             Ponderacion = Ponderacion,
-                                            ValoracionAHP = ValoracionAHP == null ? null : new ValoracionAHP { AlternativasMatrices = new List<AlternativaMatriz>() }
+                                            ValoracionAHP =
+                                                ValoracionAHP == null
+                                                    ? null
+                                                    : ValoracionAHP.Clone() as ValoracionAHP,
+                                            ValoracionIL =
+                                                ValoracionIL == null
+                                                    ? null
+                                                    : ValoracionIL.Clone() as ValoracionIL
                                         };
 
             return expertoEnProyecto;

@@ -1,4 +1,7 @@
-﻿namespace sisexperto.UI
+﻿using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
+
+namespace sisexperto.UI
 {
     partial class ValorarProyectos
     {
@@ -276,7 +279,7 @@
             // 
             // alternativaMatrizBindingSource
             // 
-            this.alternativaMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaMatriz);
+            this.alternativaMatrizBindingSource.DataSource = typeof(AlternativaMatriz);
             // 
             // tabPageIL
             // 
@@ -359,7 +362,7 @@
             // 
             // alternativaILBindingSource
             // 
-            this.alternativaILBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaIL);
+            this.alternativaILBindingSource.DataSource = typeof(AlternativaIL);
             // 
             // comboBoxProyectos
             // 

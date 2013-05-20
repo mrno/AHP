@@ -1,5 +1,6 @@
 ﻿using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
 using sisexperto.UI.Clases;
 using sisExperto;
 using sisExperto.Entidades;

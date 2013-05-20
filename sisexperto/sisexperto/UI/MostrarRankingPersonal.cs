@@ -11,6 +11,7 @@ using sisExperto.Fachadas;
 using sisExperto.Entidades;
 using sisExperto;
 using sisexperto.Entidades;
+using sisexperto.Entidades.IL;
 using sisexperto.UI.Clases;
 
 namespace sisexperto.UI

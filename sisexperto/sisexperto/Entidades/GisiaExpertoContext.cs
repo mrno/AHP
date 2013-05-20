@@ -3,6 +3,7 @@
 using System.Data.Entity;
 using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
 
 
 namespace sisExperto.Entidades

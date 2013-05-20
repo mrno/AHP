@@ -1,5 +1,6 @@
 ﻿using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
 using sisexperto.Fachadas;
 using sisexperto.UI.Clases;
 using sisExperto;
@@ -684,7 +685,7 @@ namespace sisexperto.UI
                 track.Enter += (EnterTrackBarIL);
                 track.Scroll += (ScrollTrackBarIL);
                 track.Leave += (LeaveTrackBarIL);
-                track.Enabled = true;
+                track.Enabled = false;
                 track.BackColor = SystemColors.Control;
                 panelComparacionIL.Controls.Add(track);               
 

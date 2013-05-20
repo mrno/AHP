@@ -1,4 +1,6 @@
-﻿namespace sisexperto.UI
+﻿using sisexperto.Entidades.IL;
+
+namespace sisexperto.UI
 {
     partial class AsignarExpertosIL
     {
@@ -278,7 +280,7 @@
             // 
             // conjuntoEtiquetasBindingSource
             // 
-            this.conjuntoEtiquetasBindingSource.DataSource = typeof(sisexperto.Entidades.ConjuntoEtiquetas);
+            this.conjuntoEtiquetasBindingSource.DataSource = typeof(ConjuntoEtiquetas);
             // 
             // btnAsignarConjunto
             // 

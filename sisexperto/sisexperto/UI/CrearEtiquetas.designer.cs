@@ -1,4 +1,6 @@
-﻿namespace sisExperto.UI
+﻿using sisexperto.Entidades.IL;
+
+namespace sisExperto.UI
 {
     partial class CrearEtiquetas
     {
@@ -203,7 +205,7 @@
             // 
             // etiquetaBindingSource
             // 
-            this.etiquetaBindingSource.DataSource = typeof(sisexperto.Entidades.Etiqueta);
+            this.etiquetaBindingSource.DataSource = typeof(Etiqueta);
             // 
             // groupBox1
             // 

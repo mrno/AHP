@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using sisExperto.Entidades;
-using sisexperto.Entidades.AHP;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace sisexperto.Entidades
+namespace sisexperto.Entidades.AHP
 {
     public class CriterioMatriz : IAHPMatrizComparable
     {

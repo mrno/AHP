@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using probaAHP;
 using sisexperto.Entidades;
+using sisexperto.Entidades.IL;
 using sisexperto.Fachadas;
 using sisexperto.Entidades.AHP;
 
@@ -556,6 +557,14 @@ namespace sisExperto.Entidades
             var criterios = (from c in Criterios
                              select c.Clone() as Criterio);
 
+            List<ConjuntoEtiquetas> conjuntosDeEtiquetas = null;
+            if(ConjuntosDeEtiquetas != null)
+            {
+                conjuntosDeEtiquetas =  (from c in ConjuntosDeEtiquetas
+                                        select c.Clone() as ConjuntoEtiquetas).ToList();
+            }
+           
+
             var proyecto = new Proyecto
                                {
                                    Tipo = Tipo,
@@ -563,7 +572,7 @@ namespace sisExperto.Entidades
                                    Creador = Creador,
                                    ProyectoClonadoId = ProyectoId,
                                    Alternativas = alternativas.ToList(),
-                                   //ConjuntosDeEtiquetas = ConjuntosDeEtiquetas,
+                                   ConjuntosDeEtiquetas = conjuntosDeEtiquetas,
                                    Criterios = criterios.ToList(),
                                    ExpertosAsignados = new List<ExpertoEnProyecto>()
                                };
@@ -605,7 +614,12 @@ namespace sisExperto.Entidades
 
                 if(expertoEnProyecto.ValoracionIL != null)
                 {
-                    //TODO: código del código de IL necesario para la clonación
+                    var conjuntoDeEtiquetas = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas;
+                    var posicionDelConjunto = expertoEnProyecto.Proyecto.ConjuntosDeEtiquetas
+                        .ToList().IndexOf(conjuntoDeEtiquetas);
+
+                    nuevoExpertoEnProyecto.ValoracionIL.ConjuntoEtiquetas =
+                        proyecto.ConjuntosDeEtiquetas.ElementAt(posicionDelConjunto);
                 }
             }
 

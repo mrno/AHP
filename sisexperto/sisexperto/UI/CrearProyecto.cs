@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using sisexperto.Entidades.IL;
 
 namespace sisexperto.UI
 {
@@ -36,6 +37,8 @@ namespace sisexperto.UI
             _fachada = fachada;
             _experto = experto;
             _proyectosDisponibles = _fachada.ObtenerProyectosListos();
+            checkBoxClonacion.Enabled = _proyectosDisponibles.Any();
+            comboBoxProyectos.Enabled = false;
 
             proyectoBindingSource.DataSource = _proyectosDisponibles.ToList();
             comboBoxProyectos.Refresh();
@@ -65,6 +68,8 @@ namespace sisexperto.UI
 
                     var proyectoCreado = _fachada.AltaProyecto(proyecto);
                     MessageBox.Show("proyecto clonado con éxito");
+                    ProyectoCreado();
+                    //ProyectoModificado();
                 }
             }
             else
@@ -134,6 +139,14 @@ namespace sisexperto.UI
             var checkBox = (CheckBox) sender;
             comboBoxProyectos.Enabled = checkBox.Checked;
             comboBoxTipoModelo.Enabled = !checkBox.Checked;
+            if(checkBox.Enabled)
+            {
+                comboBoxTipoModelo.SelectedItem = (comboBoxProyectos.SelectedItem as Proyecto).Tipo;
+            }
+            else
+            {
+                comboBoxTipoModelo.SelectedIndex = 0;
+            }
         }
     }
 }
