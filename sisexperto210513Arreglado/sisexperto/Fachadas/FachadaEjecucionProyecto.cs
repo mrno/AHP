@@ -64,7 +64,7 @@ namespace sisExperto.Fachadas
                 }
             }
         }
-
+        
         internal double[,] CalcularRankingIL(Proyecto proyecto, int tipoAgregacion)
         {
             using (var context = new GisiaExpertoContext())
@@ -79,6 +79,17 @@ namespace sisExperto.Fachadas
                 {
                     return _proyecto.CalcularRankingIL(true);
                 }
+            }
+        }
+
+        internal double[,] CalcularRankingILTuplas(ExpertoEnProyecto expertoEnProyecto, bool ponderado)
+        {
+            using (var context = new GisiaExpertoContext())
+            {
+                var _proyecto = context.Proyectos
+                    .First(x => x.ProyectoId == expertoEnProyecto.Proyecto.ProyectoId);
+
+                return _proyecto.CalcularRankingILTuplas(expertoEnProyecto, ponderado);
             }
         }
     }

@@ -10,6 +10,7 @@ using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisexperto.UI.Clases;
 using System.Globalization;
+using sisExperto.Fachadas;
 
 
 namespace sisexperto.UI
@@ -17,14 +18,16 @@ namespace sisexperto.UI
     public partial class MostrarResultadoTuplas : Form
     {
         private ExpertoEnProyecto _expertoProyecto;
+        private FachadaEjecucionProyecto _fachada;
         private bool _conPeso;
         private Proyecto _proyecto;
 
-        public MostrarResultadoTuplas(ExpertoEnProyecto exp, Proyecto proy, bool conPeso)
+        public MostrarResultadoTuplas(FachadaEjecucionProyecto fachada, ExpertoEnProyecto exp, Proyecto proy, bool conPeso)
         {
             _expertoProyecto = exp;
             _conPeso = conPeso;
             _proyecto = proy;
+            _fachada = fachada;
             InitializeComponent();
         }
 
@@ -48,7 +51,7 @@ namespace sisexperto.UI
             //}
             //bindingTuplas.DataSource = lista;
 
-            double[,] ranking = _proyecto.CalcularRankingILTuplas(_expertoProyecto, _conPeso);//acá era _conPeso
+            double[,] ranking = _fachada.CalcularRankingILTuplas(_expertoProyecto, _conPeso);
             List<ResultadoPersonalTuplasViewModel> lista = new List<ResultadoPersonalTuplasViewModel>();
             int i = 0;
             foreach (var item in _proyecto.Alternativas)

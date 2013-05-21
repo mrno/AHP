@@ -118,8 +118,8 @@ namespace sisExperto
 
         public double[,] CalcularRankingPersonal(Proyecto _proyecto, FachadaEjecucionProyecto _fachada, ExpertoEnProyecto _expertoEnProyecto, int _tipo)
         {
-            //tipoAgregacion=1 -> NO Ponderado
-            //tipoAgregacion=2 -> Ponderado
+            //_tipo=1 -> AHP
+            //_tipo=2 -> IL
 
             double[,] rankingFinal;
 
@@ -219,12 +219,12 @@ namespace sisExperto
 
             if (this._tipoAgregacion == 2)
             {
-                var frmMostrarTuplas = new MostrarResultadoTuplas(unExpProy, _proyecto, true);
+                var frmMostrarTuplas = new MostrarResultadoTuplas(_fachada, unExpProy, _proyecto, true);
                 frmMostrarTuplas.ShowDialog();
             }
             else
             {
-                var frmMostrarTuplas = new MostrarResultadoTuplas(unExpProy, _proyecto, false);
+                var frmMostrarTuplas = new MostrarResultadoTuplas(_fachada, unExpProy, _proyecto, false);
                 frmMostrarTuplas.ShowDialog();
             }
         }
