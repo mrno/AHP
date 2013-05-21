@@ -7,6 +7,7 @@ using sisexperto.Entidades;
 using sisexperto.Fachadas;
 using sisexperto.Entidades.AHP;
 
+
 namespace sisExperto.Entidades
 {
     [Table("Proyectos")]
@@ -378,6 +379,58 @@ namespace sisExperto.Entidades
             utils.AgregacionCriterios(resultado, rankAgregado);
 
             return utils.NormalizarIlFinal((rankAgregado));
+        }
+
+        public double[,] CalcularRankingILTuplas(ExpertoEnProyecto expertoEnProyecto, bool ConPeso)
+        {
+
+            var utils = new Utils();
+
+            int dimension = Alternativas.Count;
+            var rankAgregado = new double[dimension, 1];
+
+            utils.Cerar(rankAgregado, 1);
+
+            Utils util = new Utils();
+
+            ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIL, ConPeso);
+            int cardinalidadEtiquetasExperto = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas.Cantidad - 1;
+
+            int k = 0;
+
+            int cardinalidadCEN = ObtenerCardinalidadCEN();
+
+            foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
+            {
+                if (ConPeso)
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+                }
+                else
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
+                }
+
+                k++;
+            }
+
+            if (!ConPeso)
+            {
+                util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
+            }
+
+
+            utils.AgregacionCriterios(resultado, rankAgregado);
+
+            for (int i = 0; i < rankAgregado.Length; i++)
+            {
+                rankAgregado[i,0] = util.VirtualAPersonal(rankAgregado[i,0], cardinalidadCEN, cardinalidadEtiquetasExperto);
+            }
+            double[,] a = rankAgregado;
+            return rankAgregado;
+
+
+            //return utils.NormalizarIlFinal((rankAgregado));
         }
 
         public ValoracionIL CalcularTuplasExperto(ExpertoEnProyecto expertoEnProyecto, bool ConPeso)

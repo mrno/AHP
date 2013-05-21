@@ -40,6 +40,7 @@
             this.ApellidoYNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridRankingPersonal = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.alternativaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultadoViewModelBindingSourceIndividual = new System.Windows.Forms.BindingSource(this.components);
@@ -48,7 +49,6 @@
             this.alternativaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.resultadoViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResultados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -117,7 +117,7 @@
             this.dataGridResultados.ReadOnly = true;
             this.dataGridResultados.RowHeadersVisible = false;
             this.dataGridResultados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridResultados.Size = new System.Drawing.Size(288, 350);
+            this.dataGridResultados.Size = new System.Drawing.Size(288, 159);
             this.dataGridResultados.TabIndex = 5;
             // 
             // groupBox1
@@ -126,7 +126,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 68);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(300, 381);
+            this.groupBox1.Size = new System.Drawing.Size(300, 198);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ranking de Alternativas Agregado:";
@@ -137,7 +137,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(318, 68);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(350, 381);
+            this.groupBox2.Size = new System.Drawing.Size(350, 198);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Expertos en la Agregación:";
@@ -159,7 +159,7 @@
             this.dataGridExpertos.ReadOnly = true;
             this.dataGridExpertos.RowHeadersVisible = false;
             this.dataGridExpertos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridExpertos.Size = new System.Drawing.Size(338, 350);
+            this.dataGridExpertos.Size = new System.Drawing.Size(338, 159);
             this.dataGridExpertos.TabIndex = 5;
             this.dataGridExpertos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mostrarRankingPersonal);
             // 
@@ -177,7 +177,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(674, 68);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(300, 381);
+            this.groupBox3.Size = new System.Drawing.Size(300, 198);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Ranking Personal:";
@@ -199,8 +199,18 @@
             this.dataGridRankingPersonal.ReadOnly = true;
             this.dataGridRankingPersonal.RowHeadersVisible = false;
             this.dataGridRankingPersonal.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridRankingPersonal.Size = new System.Drawing.Size(288, 350);
+            this.dataGridRankingPersonal.Size = new System.Drawing.Size(288, 159);
             this.dataGridRankingPersonal.TabIndex = 6;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(828, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 30);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Resultado en 2 tuplas";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // alternativaDataGridViewTextBoxColumn1
             // 
@@ -255,21 +265,11 @@
             // 
             this.resultadoViewModelBindingSource.DataSource = typeof(sisexperto.UI.Clases.ResultadoViewModel);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(828, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 30);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Resultado en 2 tuplas";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MostrarRankingAgregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 491);
+            this.ClientSize = new System.Drawing.Size(984, 328);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
