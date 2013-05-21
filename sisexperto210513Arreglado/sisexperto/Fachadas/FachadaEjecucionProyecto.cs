@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using probaAHP;
 using sisExperto.Entidades;
+using sisexperto.Entidades.IL;
 
 namespace sisExperto.Fachadas
 {
@@ -62,6 +64,44 @@ namespace sisExperto.Fachadas
                     default:
                         return new double[_proyecto.Alternativas.Count, 1];
                 }
+            }
+        }
+
+        public double[,] CalcularRankingIL(ExpertoEnProyecto expertoEnProyecto)
+        {
+            using (var context = new GisiaExpertoContext())
+            {
+                var _expertoEnProyecto = context.ExpertosEnProyectos
+                    .First(x => x.ExpertoEnProyectoId == expertoEnProyecto.ExpertoEnProyectoId);
+
+                var util = new Utils();
+                var dimension = _expertoEnProyecto.Proyecto.Alternativas.Count;
+                var rankingFinal = new double[dimension,1];
+                util.Cerar(rankingFinal, 1);
+
+                double acumulador;
+                double promedio;
+
+                int posicion = 0;
+
+                foreach (AlternativaIL alt in _expertoEnProyecto.ValoracionIL.AlternativasIL)
+                {
+
+                    //para obtener el vector de pesos en IL, quedo obsoleto 
+                    //util.MultiplicarWCriterios(alt.ValorCriterios);
+                    promedio = 0;
+                    acumulador = 0;
+                    foreach (var cri in alt.ValorCriterios)
+                    {
+                        acumulador += cri.ValorILNumerico;
+                    }
+                    promedio = acumulador/alt.ValorCriterios.Count;
+                    rankingFinal[posicion, 0] = promedio;
+                    posicion++;
+                }
+                util.NormalizarIlFinal(rankingFinal);
+
+                return rankingFinal;
             }
         }
         

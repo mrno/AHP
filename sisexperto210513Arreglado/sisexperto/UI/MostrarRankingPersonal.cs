@@ -42,33 +42,7 @@ namespace sisexperto.UI
             }
             else
             {
-               Utils util = new Utils();
-               int dimension = Proyecto.Alternativas.Count;
-                rankingFinal = new double[dimension, 1];
-               util.Cerar(rankingFinal, 1);
-               
-         
-                double acumulador;
-                double promedio;
-                
-                int posicion = 0;
-             
-                foreach (AlternativaIL alt in _expertoEnProyecto.ValoracionIL.AlternativasIL)
-                {
-
-                    //para obtener el vector de pesos en IL, quedo obsoleto 
-                    //util.MultiplicarWCriterios(alt.ValorCriterios);
-                    promedio = 0;
-                    acumulador = 0;
-                    foreach (var cri in alt.ValorCriterios)
-                    {
-                        acumulador += cri.ValorILNumerico;
-                    }
-                    promedio = acumulador/alt.ValorCriterios.Count;
-                    rankingFinal[posicion, 0] = promedio;
-                    posicion++;
-                }
-                util.NormalizarIlFinal(rankingFinal);
+                rankingFinal = _fachada.CalcularRankingIL(_expertoEnProyecto);
             }
             
             labelTitulo.Text = _proyecto.Nombre;

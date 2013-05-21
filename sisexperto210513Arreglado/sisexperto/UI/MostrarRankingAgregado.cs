@@ -129,33 +129,7 @@ namespace sisExperto
             }
             else
             {
-               Utils util = new Utils();
-               int dimension = _proyecto.Alternativas.Count;
-                rankingFinal = new double[dimension, 1];
-               util.Cerar(rankingFinal, 1);
-               
-         
-                double acumulador;
-                double promedio;
-                
-                int posicion = 0;
-             
-                foreach (AlternativaIL alt in _expertoEnProyecto.ValoracionIL.AlternativasIL)
-                {
-
-                    //para obtener el vector de pesos en IL, quedo obsoleto 
-                    //util.MultiplicarWCriterios(alt.ValorCriterios);
-                    promedio = 0;
-                    acumulador = 0;
-                    foreach (var cri in alt.ValorCriterios)
-                    {
-                        acumulador += cri.ValorILNumerico;
-                    }
-                    promedio = acumulador/alt.ValorCriterios.Count;
-                    rankingFinal[posicion, 0] = promedio;
-                    posicion++;
-                }
-                util.NormalizarIlFinal(rankingFinal);
+                rankingFinal = _fachada.CalcularRankingIL(_expertoEnProyecto);
             }
 
             return rankingFinal;
@@ -178,13 +152,13 @@ namespace sisExperto
             }
 
             if (_modelo==0)//AHP
-               {
-                   rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 1);
-               }
-               else
-               {
-                   rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2);
-               }
+            {
+                rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 1);
+            }
+            else
+            {
+                rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2);
+            }
             //double[,] rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2);
 
             ICollection<Alternativa> listaAlt = _proyecto.Alternativas;
