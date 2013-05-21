@@ -21,7 +21,7 @@ namespace sisexperto.UI
         private FachadaEjecucionProyecto _fachada;
 
         private Proyecto _proyecto;
-        private ExpertoEnProyecto _experto;
+        private ExpertoEnProyecto _expertoEnProyecto;
         private double[,] rankingFinal;
         private int _tipo;
 
@@ -33,12 +33,12 @@ namespace sisexperto.UI
 
             _fachada = Fachada;
             _proyecto = Proyecto;
-            _experto = ExpertoEnProyecto;
+            _expertoEnProyecto = ExpertoEnProyecto;
             _tipo = TipoProyecto;
 
             if (_tipo==1)
             {
-                rankingFinal = _experto.CalcularMiRankingAHP();
+                rankingFinal = _fachada.CalcularRankingAHP(_expertoEnProyecto);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace sisexperto.UI
                 
                 int posicion = 0;
              
-                foreach (AlternativaIL alt in _experto.ValoracionIL.AlternativasIL)
+                foreach (AlternativaIL alt in _expertoEnProyecto.ValoracionIL.AlternativasIL)
                 {
 
                     //para obtener el vector de pesos en IL, quedo obsoleto 
@@ -72,7 +72,7 @@ namespace sisexperto.UI
             }
             
             labelTitulo.Text = _proyecto.Nombre;
-            labelSubtitulo.Text = string.Format("{0}, {1}", _experto.Experto.Apellido.ToUpper(), _experto.Experto.Nombre);
+            labelSubtitulo.Text = string.Format("{0}, {1}", _expertoEnProyecto.Experto.Apellido.ToUpper(), _expertoEnProyecto.Experto.Nombre);
         }
 
         private void MostrarRankingPersonal_Load(object sender, EventArgs e)

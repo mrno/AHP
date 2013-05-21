@@ -116,7 +116,7 @@ namespace sisExperto
         //    ventanaRankingPersonal.Show();
         //}
 
-        public double[,] CalcularRankingPersonal(Proyecto _proyecto, FachadaEjecucionProyecto _fachada, ExpertoEnProyecto _experto, int _tipo)
+        public double[,] CalcularRankingPersonal(Proyecto _proyecto, FachadaEjecucionProyecto _fachada, ExpertoEnProyecto _expertoEnProyecto, int _tipo)
         {
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
@@ -125,7 +125,7 @@ namespace sisExperto
 
             if (_tipo==1)
             {
-                rankingFinal = _experto.CalcularMiRankingAHP();
+                rankingFinal = _fachada.CalcularRankingAHP(_expertoEnProyecto);
             }
             else
             {
@@ -140,7 +140,7 @@ namespace sisExperto
                 
                 int posicion = 0;
              
-                foreach (AlternativaIL alt in _experto.ValoracionIL.AlternativasIL)
+                foreach (AlternativaIL alt in _expertoEnProyecto.ValoracionIL.AlternativasIL)
                 {
 
                     //para obtener el vector de pesos en IL, quedo obsoleto 

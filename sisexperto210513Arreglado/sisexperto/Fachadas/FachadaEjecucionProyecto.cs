@@ -36,34 +36,50 @@ namespace sisExperto.Fachadas
             }
             _context.SaveChanges();
         }
-
-        internal double[,] CalcularRankingAHP(Proyecto _proyecto, int tipoAgregacion)
+        
+        internal double[,] CalcularRankingAHP(ExpertoEnProyecto expertoEnProyecto)
         {
-            switch (tipoAgregacion)
+            using (var context = new GisiaExpertoContext())
             {
-                case 1:
-                    return _proyecto.CalcularRankingAHPNoPonderado();
-                case 2:
-                    return _proyecto.CalcularRankinAHPPonderado();
-                default:
-                    return new double[_proyecto.Alternativas.Count,1];
+                var expertoEnProy = context.ExpertosEnProyectos
+                    .First(x => x.ExpertoEnProyectoId == expertoEnProyecto.ExpertoEnProyectoId);
+                return expertoEnProy.CalcularMiRankingAHP();
             }
         }
 
-        internal double[,] CalcularRankingIL(Proyecto _proyecto, int tipoAgregacion)
+        internal double[,] CalcularRankingAHP(Proyecto proyecto, int tipoAgregacion)
         {
-            if (tipoAgregacion == 1)
+            using (var context = new GisiaExpertoContext())
             {
-                return _proyecto.CalcularRankingIL(false);
+                var _proyecto = context.Proyectos.First(x => x.ProyectoId == proyecto.ProyectoId);
 
+                switch (tipoAgregacion)
+                {
+                    case 1:
+                        return _proyecto.CalcularRankingAHPNoPonderado();
+                    case 2:
+                        return _proyecto.CalcularRankinAHPPonderado();
+                    default:
+                        return new double[_proyecto.Alternativas.Count, 1];
+                }
             }
-            else
+        }
+
+        internal double[,] CalcularRankingIL(Proyecto proyecto, int tipoAgregacion)
+        {
+            using (var context = new GisiaExpertoContext())
             {
-                return _proyecto.CalcularRankingIL(true);
+                var _proyecto = context.Proyectos.First(x => x.ProyectoId == proyecto.ProyectoId);
+
+                if (tipoAgregacion == 1)
+                {
+                    return _proyecto.CalcularRankingIL(false);
+                }
+                else
+                {
+                    return _proyecto.CalcularRankingIL(true);
+                }
             }
-                   
-               
-               
         }
     }
 }
