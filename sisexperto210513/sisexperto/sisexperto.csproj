@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F3B1FF25-2839-42C4-B80A-1D35F88680DC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sisexperto</RootNamespace>
+    <AssemblyName>sisexperto</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CalcularAHP">
+      <HintPath>..\..\Dll\CalcularAHP.dll</HintPath>
+    </Reference>
+    <Reference Include="Consistencia, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Dll\Consistencia.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Mejora">
+      <HintPath>..\..\Dll\Mejora.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="MWArray">
+      <HintPath>..\..\Dll\MWArray.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="VectCalc">
+      <HintPath>..\..\Dll\VectCalc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entidades\AHP\IAHPComparable.cs" />
+    <Compile Include="Entidades\AHP\IAHPMatrizComparable.cs" />
+    <Compile Include="Entidades\AHP\ValoracionAHP.cs" />
+    <Compile Include="Entidades\IL\AlternativaIL.cs" />
+    <Compile Include="Entidades\Combinada.cs" />
+    <Compile Include="Entidades\AHP\AlternativaMatriz.cs" />
+    <Compile Include="Entidades\AHP\CriterioMatriz.cs" />
+    <Compile Include="Entidades\IL\ValoracionIL.cs" />
+    <Compile Include="Entidades\IL\ValorCriterio.cs" />
+    <Compile Include="Entidades\Valoracion.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="UI\AsignarExpertosAHP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosAHP.Designer.cs">
+      <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosIL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosIL.Designer.cs">
+      <DependentUpon>AsignarExpertosIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosProyectoListo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AsignarExpertosProyectoListo.Designer.cs">
+      <DependentUpon>AsignarExpertosProyectoListo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Clases\ExpertoEnProyectoViewModel.cs" />
+    <Compile Include="UI\Clases\ProyectoTransferibleViewModel.cs" />
+    <Compile Include="UI\Clases\ResultadoPersonalTuplasViewModel.cs" />
+    <Compile Include="UI\Clases\ResultadoViewModel.cs" />
+    <Compile Include="UI\Clases\SugerenciaViewModel.cs" />
+    <Compile Include="UI\Clases\Utilidades.cs" />
+    <Compile Include="UI\Comparacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Comparacion.Designer.cs">
+      <DependentUpon>Comparacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ComparacionAlternativas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ComparacionAlternativas.Designer.cs">
+      <DependentUpon>ComparacionAlternativas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CompararCriterios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CompararCriterios.Designer.cs">
+      <DependentUpon>CompararCriterios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\IL\ConjuntoEtiquetas.cs" />
+    <Compile Include="Entidades\IL\Etiqueta.cs" />
+    <Compile Include="Fachadas\FachadaCalculos.cs" />
+    <Compile Include="UI\CompararIL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CompararIL.Designer.cs">
+      <DependentUpon>CompararIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CrearEtiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CrearEtiquetas.designer.cs">
+      <DependentUpon>CrearEtiquetas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CrearProyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CrearProyecto.Designer.cs">
+      <DependentUpon>CrearProyecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EditarProyecto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EditarProyecto.designer.cs">
+      <DependentUpon>EditarProyecto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CrearExperto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CrearExperto.Designer.cs">
+      <DependentUpon>CrearExperto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entidades\Alternativa.cs" />
+    <Compile Include="Entidades\AHP\AlternativaCelda.cs" />
+    <Compile Include="Entidades\AHP\CriterioCelda.cs" />
+    <Compile Include="Entidades\Criterio.cs" />
+    <Compile Include="Entidades\Experto.cs" />
+    <Compile Include="Entidades\ExpertoEnProyecto.cs" />
+    <Compile Include="Entidades\GisiaExpertoContext.cs" />
+    <Compile Include="Entidades\Proyecto.cs" />
+    <Compile Include="Entidades\AHP\AlternativaFila.cs" />
+    <Compile Include="Entidades\AHP\CriterioFila.cs" />
+    <Compile Include="Fachadas\FachadaEjecucionProyecto.cs" />
+    <Compile Include="Fachadas\FachadaProyectosExpertos.cs" />
+    <Compile Include="UI\ExpertosDelSistema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExpertosDelSistema.Designer.cs">
+      <DependentUpon>ExpertosDelSistema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LogExperto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LogExperto.Designer.cs">
+      <DependentUpon>LogExperto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MatlabUtils.cs" />
+    <Compile Include="UI\MostrarRankingAgregado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarRankingAgregado.Designer.cs">
+      <DependentUpon>MostrarRankingAgregado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MostrarRankingPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarRankingPersonal.Designer.cs">
+      <DependentUpon>MostrarRankingPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\MostrarResultadoTuplas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MostrarResultadoTuplas.Designer.cs">
+      <DependentUpon>MostrarResultadoTuplas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PonderacionExpertos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PonderacionExpertos.Designer.cs">
+      <DependentUpon>PonderacionExpertos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProyectosAsignados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ProyectosAsignados.Designer.cs">
+      <DependentUpon>ProyectosAsignados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Sugerencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Sugerencias.Designer.cs">
+      <DependentUpon>Sugerencias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TransferirProyectos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TransferirProyectos.Designer.cs">
+      <DependentUpon>TransferirProyectos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ValorarProyectos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ValorarProyectos.Designer.cs">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="UI\AsignarExpertosAHP.resx">
+      <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsignarExpertosIL.resx">
+      <DependentUpon>AsignarExpertosIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AsignarExpertosProyectoListo.resx">
+      <DependentUpon>AsignarExpertosProyectoListo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Comparacion.resx">
+      <DependentUpon>Comparacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ComparacionAlternativas.resx">
+      <DependentUpon>ComparacionAlternativas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CompararCriterios.resx">
+      <DependentUpon>CompararCriterios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CompararIL.resx">
+      <DependentUpon>CompararIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CrearEtiquetas.resx">
+      <DependentUpon>CrearEtiquetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CrearProyecto.resx">
+      <DependentUpon>CrearProyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EditarProyecto.resx">
+      <DependentUpon>EditarProyecto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CrearExperto.resx">
+      <DependentUpon>CrearExperto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExpertosDelSistema.resx">
+      <DependentUpon>ExpertosDelSistema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LogExperto.resx">
+      <DependentUpon>LogExperto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MostrarRankingAgregado.resx">
+      <DependentUpon>MostrarRankingAgregado.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MostrarRankingPersonal.resx">
+      <DependentUpon>MostrarRankingPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\MostrarResultadoTuplas.resx">
+      <DependentUpon>MostrarResultadoTuplas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PonderacionExpertos.resx">
+      <DependentUpon>PonderacionExpertos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ProyectosAsignados.resx">
+      <DependentUpon>ProyectosAsignados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Sugerencias.resx">
+      <DependentUpon>Sugerencias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\TransferirProyectos.resx">
+      <DependentUpon>TransferirProyectos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ValorarProyectos.resx">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="App1.config" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\alternativa.datasource" />
+    <None Include="Properties\DataSources\alternativa1.datasource" />
+    <None Include="Properties\DataSources\criterio.datasource" />
+    <None Include="Properties\DataSources\criterio1.datasource" />
+    <None Include="Properties\DataSources\experto.datasource" />
+    <None Include="Properties\DataSources\experto_proyecto.datasource" />
+    <None Include="Properties\DataSources\gisiabaseEntities1.datasource" />
+    <None Include="Properties\DataSources\gisiabaseEntities21.datasource" />
+    <None Include="Properties\DataSources\matriz_alternativa.datasource" />
+    <None Include="Properties\DataSources\matriz_criterio.datasource" />
+    <None Include="Properties\DataSources\proyecto.datasource" />
+    <None Include="Properties\DataSources\proyecto1.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.Alternativa.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.AlternativaIL.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.AlternativaMatriz.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.Combinada.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.ConjuntoEtiquetas.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.Criterio.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.CriterioMatriz.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.Etiqueta.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.Experto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ExpertoEnProyecto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.Proyecto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionAlternativasPorCriterioExperto.datasource" />
+    <None Include="Properties\DataSources\sisExperto.Entidades.ValoracionCriteriosPorExperto.datasource" />
+    <None Include="Properties\DataSources\sisexperto.Entidades.ValorCriterio.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ExpertoEnProyectoViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ProyectoTransferibleViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ResultadoPersonalTuplasViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.ResultadoViewModel.datasource" />
+    <None Include="Properties\DataSources\sisexperto.UI.Clases.SugerenciaViewModel.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
