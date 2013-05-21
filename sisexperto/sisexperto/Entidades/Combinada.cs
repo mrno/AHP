@@ -1,4 +1,5 @@
 ﻿using sisExperto.Entidades;
+using sisexperto.Entidades.IL;
 
 namespace sisexperto.Entidades
 {

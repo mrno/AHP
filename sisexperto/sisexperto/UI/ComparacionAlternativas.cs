@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
+using sisexperto.Entidades.AHP;
 using sisexperto.Fachadas;
 using sisexperto.UI;
 

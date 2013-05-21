@@ -5,7 +5,7 @@ using System.Text;
 
 namespace sisexperto.Entidades.AHP
 {
-    public interface IAHPComparable
+    public interface IAHPComparable : ICloneable
     {
         string Nombre { get; set; }
     }

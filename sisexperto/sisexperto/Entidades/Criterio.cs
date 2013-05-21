@@ -13,5 +13,14 @@ namespace sisExperto.Entidades
         public string Descripcion { get; set; }
 
         public virtual Proyecto Proyecto { get; set; }
+
+        #region Implementation of ICloneable
+
+        public object Clone()
+        {
+            return new Criterio{ Descripcion = Descripcion, Nombre = Nombre };
+        }
+
+        #endregion
     }
 }

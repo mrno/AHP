@@ -1,4 +1,7 @@
-﻿namespace sisExperto
+﻿using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
+
+namespace sisExperto
 {
     partial class ProyectosAsignados
     {
@@ -117,7 +120,7 @@
             // 
             // alternativaMatrizBindingSource
             // 
-            this.alternativaMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaMatriz);
+            this.alternativaMatrizBindingSource.DataSource = typeof(AlternativaMatriz);
             // 
             // comboBoxProyectos
             // 
@@ -259,7 +262,7 @@
             // 
             // alternativaILBindingSource
             // 
-            this.alternativaILBindingSource.DataSource = typeof(sisexperto.Entidades.AlternativaIL);
+            this.alternativaILBindingSource.DataSource = typeof(AlternativaIL);
             // 
             // dataGridViewButtonColumn2
             // 

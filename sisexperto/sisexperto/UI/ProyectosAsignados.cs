@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
+using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
 using sisexperto.UI;
 using System.Drawing;
 

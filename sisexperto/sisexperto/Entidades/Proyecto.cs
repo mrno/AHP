@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using probaAHP;
 using sisexperto.Entidades;
+using sisexperto.Entidades.IL;
 using sisexperto.Fachadas;
 using sisexperto.Entidades.AHP;
 
@@ -11,7 +12,7 @@ using sisexperto.Entidades.AHP;
 namespace sisExperto.Entidades
 {
     [Table("Proyectos")]
-    public class Proyecto
+    public class Proyecto : ICloneable
     {
         #region Propiedades
 
@@ -20,6 +21,8 @@ namespace sisExperto.Entidades
         public string Objetivo { get; set; }
         public string Estado { get; set; }
         public string Tipo { get; set; } //1=AHP, 2=IL, 3=AMBOS
+
+        public int? ProyectoClonadoId { get; set; }
 
         public int CreadorId { get; set; }
         public virtual Experto Creador { get; set; }
@@ -542,6 +545,87 @@ namespace sisExperto.Entidades
             }
             Int32 cardinalidadCEN = utils.Mcm(listaCardinalidadEtiquetasK.ToArray());
             return cardinalidadCEN;
-        }        
+        }
+
+        #region Implementation of ICloneable
+
+        public object Clone()
+        {
+            var alternativas = (from c in Alternativas
+                                select c.Clone() as Alternativa);
+
+            var criterios = (from c in Criterios
+                             select c.Clone() as Criterio);
+
+            List<ConjuntoEtiquetas> conjuntosDeEtiquetas = null;
+            if(ConjuntosDeEtiquetas != null)
+            {
+                conjuntosDeEtiquetas =  (from c in ConjuntosDeEtiquetas
+                                        select c.Clone() as ConjuntoEtiquetas).ToList();
+            }
+           
+
+            var proyecto = new Proyecto
+                               {
+                                   Tipo = Tipo,
+                                   Estado = Estado,
+                                   Creador = Creador,
+                                   ProyectoClonadoId = ProyectoId,
+                                   Alternativas = alternativas.ToList(),
+                                   ConjuntosDeEtiquetas = conjuntosDeEtiquetas,
+                                   Criterios = criterios.ToList(),
+                                   ExpertosAsignados = new List<ExpertoEnProyecto>()
+                               };
+
+            foreach (var expertoEnProyecto in ExpertosAsignados)
+            {
+                var nuevoExpertoEnProyecto = expertoEnProyecto.Clone() as ExpertoEnProyecto;
+
+                nuevoExpertoEnProyecto.Proyecto = proyecto;
+                proyecto.ExpertosAsignados.Add(nuevoExpertoEnProyecto);
+                
+                if (expertoEnProyecto.ValoracionAHP != null)
+                {
+                    int dimensionCriterios = expertoEnProyecto.ValoracionAHP.CriterioMatriz.Matriz.GetLength(0);
+
+                    nuevoExpertoEnProyecto.ValoracionAHP.CriterioMatriz =
+                        new CriterioMatriz
+                            {
+                                ExpertoEnProyecto = nuevoExpertoEnProyecto,
+                                Matriz = new double[dimensionCriterios,dimensionCriterios]
+                            };
+                    
+                    foreach (var alternativaMatriz in expertoEnProyecto.ValoracionAHP.AlternativasMatrices)
+                    {
+                        var alternativa = new AlternativaMatriz
+                                              {
+                                                  ExpertoEnProyecto = nuevoExpertoEnProyecto,
+                                                  Criterio =
+                                                      nuevoExpertoEnProyecto.Proyecto.
+                                                      Criterios.First(
+                                                          x =>
+                                                          x.Nombre == alternativaMatriz.Criterio.Nombre),
+                                                  Consistencia = alternativaMatriz.Consistencia,
+                                                  Matriz = alternativaMatriz.Matriz
+                                              };
+                        nuevoExpertoEnProyecto.ValoracionAHP.AlternativasMatrices.Add(alternativa);
+                    }
+                }
+
+                if(expertoEnProyecto.ValoracionIL != null)
+                {
+                    var conjuntoDeEtiquetas = expertoEnProyecto.ValoracionIL.ConjuntoEtiquetas;
+                    var posicionDelConjunto = expertoEnProyecto.Proyecto.ConjuntosDeEtiquetas
+                        .ToList().IndexOf(conjuntoDeEtiquetas);
+
+                    nuevoExpertoEnProyecto.ValoracionIL.ConjuntoEtiquetas =
+                        proyecto.ConjuntosDeEtiquetas.ElementAt(posicionDelConjunto);
+                }
+            }
+
+            return proyecto;
+        }
+
+        #endregion
     }
 }

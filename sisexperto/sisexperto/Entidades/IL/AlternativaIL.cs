@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 
-namespace sisexperto.Entidades
+namespace sisexperto.Entidades.IL
 {
-    public class AlternativaIL
+    public class AlternativaIL : ICloneable
     {
         public int AlternativaILId { get; set; }
         public string Nombre { get; set; }
@@ -15,5 +14,21 @@ namespace sisexperto.Entidades
         [Required]
         public virtual ValoracionIL ValoracionIL { get; set; }
         public virtual ICollection<ValorCriterio> ValorCriterios { get; set; }
+
+        #region Implementation of ICloneable
+
+        public object Clone()
+        {
+            return new AlternativaIL
+                       {
+                           Nombre = Nombre,
+                           Descripcion = Descripcion,
+                           Valorada = Valorada,
+                           ValorCriterios = (from c in ValorCriterios
+                                             select c.Clone() as ValorCriterio).ToList()
+                       };
+        }
+
+        #endregion
     }
 }

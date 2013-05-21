@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using sisexperto.Entidades;
+using sisExperto.Entidades;
 
-namespace sisExperto.Entidades
+namespace sisexperto.Entidades.AHP
 {
     public class CriterioFila
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using sisExperto.Entidades;
 
-namespace sisExperto.Entidades
+namespace sisexperto.Entidades.AHP
 {
     public class AlternativaFila
     {
@@ -11,5 +12,5 @@ namespace sisExperto.Entidades
 
         public virtual ICollection<AlternativaCelda> CeldasAlternativas { get; set; }
 
-       }
+    }
 }

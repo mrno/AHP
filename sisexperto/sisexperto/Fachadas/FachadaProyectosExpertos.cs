@@ -6,6 +6,7 @@ using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
 using System.Windows.Forms;
+using sisexperto.Entidades.IL;
 using sisexperto.UI.Clases;
 
 namespace sisExperto
@@ -38,6 +39,40 @@ namespace sisExperto
                    where c.Tipo == tipo
                    select c;
 
+        }
+
+        public IEnumerable<Proyecto> ObtenerProyectosClones(Proyecto proyecto)
+        {
+            var baseId = proyecto.ProyectoClonadoId ?? proyecto.ProyectoId;
+
+            return _context.Proyectos
+                .Where(x => x.ProyectoClonadoId == baseId || x.ProyectoId == baseId);
+        }
+
+        public void ActualizarAlternativasProyectosClonesAhp(ExpertoEnProyecto expertoEnProyecto)
+        {
+            var proyectos = ObtenerProyectosClones(expertoEnProyecto.Proyecto);
+
+            foreach (var proyectoClon in proyectos)
+            {
+                var expertoEnProyectoClon = SolicitarExpertoProyectoActual(proyectoClon, expertoEnProyecto.Experto);
+                var cantidadAltenativasMatriz = expertoEnProyecto.ValoracionAHP.AlternativasMatrices.Count;
+                
+                for (int i = 0; i < cantidadAltenativasMatriz; i++)
+                {
+                    expertoEnProyectoClon.ValoracionAHP.AlternativasMatrices.ElementAt(i).Matriz =
+                        expertoEnProyecto.ValoracionAHP.AlternativasMatrices.ElementAt(i).Matriz;
+
+                    expertoEnProyectoClon.ValoracionAHP.AlternativasMatrices.ElementAt(i).Consistencia =
+                        expertoEnProyecto.ValoracionAHP.AlternativasMatrices.ElementAt(i).Consistencia;
+                }
+            }
+            _context.SaveChanges();
+        }
+
+        public IEnumerable<Proyecto> ObtenerProyectosListos()
+        {
+            return _context.Proyectos.Where(x => x.Estado == "Listo");
         }
 
         public IEnumerable<Proyecto> ObtenerTodosLosProyectos()
@@ -128,6 +163,13 @@ namespace sisExperto
         public Proyecto AltaProyecto(Proyecto proyecto)
         {
             _context.Proyectos.Add(proyecto);
+            _context.SaveChanges();
+            return proyecto;
+        }
+
+        public Proyecto ClonarEscenarioDelProyecto(Proyecto proyecto)
+        {
+            _context.Proyectos.Add(proyecto.Clone() as Proyecto);
             _context.SaveChanges();
             return proyecto;
         }

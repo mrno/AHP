@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using sisExperto.Entidades;
 using sisexperto.Entidades;
 using sisExperto.Fachadas;
+using sisexperto.Entidades.IL;
 using sisexperto.UI;
 using probaAHP;
 using sisexperto.UI.Clases;

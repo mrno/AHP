@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using sisexperto.Entidades;
 using sisExperto.Entidades;
+using sisexperto.Entidades.IL;
 
 namespace sisExperto.UI
 {
@@ -40,9 +41,9 @@ namespace sisExperto.UI
                                        Nombre = textBoxNombreEtiqueta.Text,
                                        Descripcion = textBoxDescripcionEtiqueta.Text,
                                        Indice = _etiquetas.Count,
-                                       a = 0,
-                                       b = 0,
-                                       c = 0,
+                                       PuntoA = 0,
+                                       PuntoB = 0,
+                                       PuntoC = 0,
                                    };
                 _etiquetas.Add(etiqueta);
                 textBoxDescripcionEtiqueta.Text = "";
@@ -141,9 +142,9 @@ namespace sisExperto.UI
         {
             foreach (Etiqueta etiqueta in _etiquetas)
             {
-                etiqueta.a = (double) etiqueta.Indice/_etiquetas.Count;
-                etiqueta.b = 1;
-                etiqueta.c = 0;
+                etiqueta.PuntoA = (double) etiqueta.Indice/_etiquetas.Count;
+                etiqueta.PuntoB = 1;
+                etiqueta.PuntoC = 0;
             }
         }
 

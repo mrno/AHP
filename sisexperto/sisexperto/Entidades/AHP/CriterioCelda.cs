@@ -1,4 +1,6 @@
-﻿namespace sisExperto.Entidades
+﻿using sisExperto.Entidades;
+
+namespace sisexperto.Entidades.AHP
 {
     public class CriterioCelda
     {

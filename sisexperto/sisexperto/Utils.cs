@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using sisExperto;
 using sisexperto.Entidades;
+using sisexperto.Entidades.IL;
 
 namespace probaAHP
 {

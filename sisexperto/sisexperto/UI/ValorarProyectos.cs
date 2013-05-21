@@ -1,5 +1,6 @@
 ﻿using sisexperto.Entidades;
 using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
 using sisexperto.Fachadas;
 using sisexperto.UI.Clases;
 using sisExperto;
@@ -70,6 +71,9 @@ namespace sisexperto.UI
 
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(_proyectoSeleccionado.Tipo == "AHP" || _proyectoSeleccionado.Tipo == "Ambos")
+                ActualizarMatricesAlternativasEnTodosLosProyectos();
+            
             _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
             _expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
             CargarMatricesYPestanias();
@@ -681,7 +685,7 @@ namespace sisexperto.UI
                 track.Enter += (EnterTrackBarIL);
                 track.Scroll += (ScrollTrackBarIL);
                 track.Leave += (LeaveTrackBarIL);
-                track.Enabled = true;
+                track.Enabled = false;
                 track.BackColor = SystemColors.Control;
                 panelComparacionIL.Controls.Add(track);               
 
@@ -749,6 +753,17 @@ namespace sisexperto.UI
                 }
             }
             else MessageBox.Show("No seleccionó ningún proyecto.");
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            ActualizarMatricesAlternativasEnTodosLosProyectos();
+            base.OnFormClosing(e);
+        }
+        
+        private void ActualizarMatricesAlternativasEnTodosLosProyectos()
+        {
+            _fachada.ActualizarAlternativasProyectosClonesAhp(_expertoEnProyecto);
         }
     }
 }
