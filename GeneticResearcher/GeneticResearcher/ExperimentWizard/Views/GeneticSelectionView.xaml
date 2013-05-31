@@ -25,10 +25,12 @@
 
         </TextBlock>
 
-        <GroupBox Header="Operadores de Selección" Grid.Row="1"
+        <ContentPresenter Content="{Binding Operador}" Grid.Row="1"/>
+        <!--<GroupBox Header="Operadores de Selección" Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
               Template="{StaticResource ResourceKey=groupBoxTemplate}">
-            <ContentPresenter Content="{Binding Operador}" Margin="3"/>
-        </GroupBox>
+        </GroupBox>-->
     </Grid>
 
 </UserControl>

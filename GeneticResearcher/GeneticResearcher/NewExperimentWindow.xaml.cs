@@ -20,7 +20,7 @@ namespace GeneticResearcher
     /// </summary>
     public partial class NewExperimentWindow : Window
     {
-        private readonly ExperimentWizardViewModel _experimentWizardViewModel;
+        private ExperimentWizardViewModel _experimentWizardViewModel;
 
         public NewExperimentWindow()
         {
@@ -30,7 +30,16 @@ namespace GeneticResearcher
             _experimentWizardViewModel.RequestClose += OnViewModelRequestClose;
             base.DataContext = _experimentWizardViewModel;
         }
-        
+
+        public NewExperimentWindow(SesionExperimentacion sesion)
+        {
+            InitializeComponent();
+
+            _experimentWizardViewModel = new ExperimentWizardViewModel();
+            _experimentWizardViewModel.RequestClose += OnViewModelRequestClose;
+            base.DataContext = _experimentWizardViewModel;
+        }
+
         /// <summary>
         /// Returns the cup of coffee ordered by the user, 
         /// or null if the user cancelled the order.

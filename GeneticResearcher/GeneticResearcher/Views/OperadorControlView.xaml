@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" MinHeight="100">
+             mc:Ignorable="d" MinHeight="80">
     <UserControl.Resources>
         <DataTemplate x:Key="operatorListBoxItem">
             <TextBlock Text="{Binding DisplayName}"/>
@@ -18,54 +18,55 @@
             <Setter Property="ItemTemplate" Value="{StaticResource ResourceKey=operatorListBoxItem}"/>
         </Style>
         
-    </UserControl.Resources>    
-        
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="40"/>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
+    </UserControl.Resources>
 
-        <ListBox Grid.Column="0"
+    <GroupBox Header="Operadores"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+              Template="{StaticResource ResourceKey=groupBoxTemplate}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.Column="0"
                  ItemsSource="{Binding Path=AvailableOperators}"
                  Style="{StaticResource ResourceKey=operatorListBox}"/>
 
-        <Grid Grid.Column="1" 
+            <Grid Grid.Column="1" 
                     VerticalAlignment="Stretch" 
                     HorizontalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="5"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <StackPanel Grid.Row="0"
-                    VerticalAlignment="Bottom" 
-                    HorizontalAlignment="Stretch" 
-                    Orientation="Vertical">
-                <Button Style="{StaticResource ResourceKey=tinyButton}">→</Button>
-                <Button Style="{StaticResource ResourceKey=tinyButton}">←</Button>
-            </StackPanel>
-            
-            <StackPanel Grid.Row="2" 
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="Stretch" 
-                    Orientation="Vertical">
-                <Button Style="{StaticResource ResourceKey=tinyButton}">↑</Button>
-                <Button Style="{StaticResource ResourceKey=tinyButton}">↓</Button>
-                </StackPanel>
-        </Grid>
-        
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Column="2"
+                <StackPanel Grid.Column="0"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Orientation="Vertical">
+                    <Button Style="{StaticResource ResourceKey=tinyButtonAdd}"/>
+                    <Button Style="{StaticResource ResourceKey=tinyButtonRem}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Orientation="Vertical">
+                    <Button Style="{StaticResource ResourceKey=tinyButtonUp}"/>
+                    <Button Style="{StaticResource ResourceKey=tinyButtonDown}"/>
+                </StackPanel>
+            </Grid>
+
+            <ListBox Grid.Column="2"
                  ItemsSource="{Binding Path=SelectedOperators}"
                  Style="{StaticResource ResourceKey=operatorListBox}"/>
 
-        
-    </Grid>
+        </Grid>
+    </GroupBox>
+
+    
 </UserControl>
 

@@ -58,6 +58,27 @@
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Common\VirtualToggleButton.cs" />
+    <Compile Include="ComparisonTestWindow.xaml.cs">
+      <DependentUpon>ComparisonTestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComparisonTest\ViewModels\ComparisonTestViewModel.cs" />
+    <Compile Include="ComparisonTest\ViewModels\DetailedMatrixViewModel.cs" />
+    <Compile Include="ComparisonTest\ViewModels\FitnessFuncionDetailViewModel.cs" />
+    <Compile Include="ComparisonTest\ViewModels\FitnessViewModel.cs" />
+    <Compile Include="ComparisonTest\ViewModels\MatrixViewModel.cs" />
+    <Compile Include="ComparisonTest\Views\ComparisonTestView.xaml.cs">
+      <DependentUpon>ComparisonTestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComparisonTest\Views\DetailedMatrixView.xaml.cs">
+      <DependentUpon>DetailedMatrixView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComparisonTest\Views\FitnessFuncionDetailView.xaml.cs">
+      <DependentUpon>FitnessFuncionDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ComparisonTest\Views\MatrixView.xaml.cs">
+      <DependentUpon>MatrixView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExperimentWizard\ViewModels\ExperimentWizardUnitMatrixFitnessFuncionComparisonViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\IndividualViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\GeneticCrossoverViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\PopulationViewModel.cs" />
@@ -92,6 +113,7 @@
     <Compile Include="ExperimentWizard\Views\SummaryView.xaml.cs">
       <DependentUpon>SummaryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="NewExperimentWindow.xaml.cs">
       <DependentUpon>NewExperimentWindow.xaml</DependentUpon>
     </Compile>
@@ -104,6 +126,8 @@
     <Compile Include="ExperimentWizard\ViewModels\GeneticMutationViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\GeneticSelectionViewModel.cs" />
     <Compile Include="ExperimentWizard\ViewModels\StartViewModel.cs" />
+    <Compile Include="ViewModels\ExperimentResultsViewModel.cs" />
+    <Compile Include="ViewModels\ExperimentViewModel.cs" />
     <Compile Include="ViewModels\IConjuntoMatrizViewModel.cs" />
     <Compile Include="ViewModels\ConjuntoMatrizViewModel.cs" />
     <Compile Include="ViewModels\OperadorControlViewModel.cs" />
@@ -113,9 +137,32 @@
     <Compile Include="Views\ConjuntoMatrizView.xaml.cs">
       <DependentUpon>ConjuntoMatrizView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ExperimentResultsView.xaml.cs">
+      <DependentUpon>ExperimentResultsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OperadorControlView.xaml.cs">
       <DependentUpon>OperadorControlView.xaml</DependentUpon>
     </Compile>
+    <Page Include="ComparisonTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComparisonTest\Views\ComparisonTestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComparisonTest\Views\DetailedMatrixView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComparisonTest\Views\FitnessFuncionDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ComparisonTest\Views\MatrixView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ExperimentWizard\Views\ExperimentWizardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConjuntoMatrizView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ExperimentResultsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

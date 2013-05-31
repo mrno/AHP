@@ -43,7 +43,7 @@ namespace GeneticResearcher.ViewModels
         {
             get { return _displayName; }
         }
-
+        
         /// <summary>
         /// Gets/sets whether this option is in the selected state.
         /// When this property is set to a new value, this object's

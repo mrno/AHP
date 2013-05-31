@@ -11,7 +11,7 @@ using GeneticResearcher.Command;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
-    public class ExperimentWizardViewModel : INotifyPropertyChanged
+    public class ExperimentWizardUnitMatrixFitnessFuncionComparisonViewModel : INotifyPropertyChanged
     {
         #region Fields
 
@@ -26,7 +26,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         #region Constructor
 
-        public ExperimentWizardViewModel()
+        public ExperimentWizardUnitMatrixFitnessFuncionComparisonViewModel()
         {
             _sesion = new SesionExperimentacion();
             CurrentPage = Pages[0];
