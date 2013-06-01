@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using GALibrary.Persistencia;
 using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ComparisonTest.ViewModels
@@ -29,6 +30,7 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
             _inputMatrix = new DetailedMatrixViewModel(4);
             FitnessFuncionFirst = new FitnessFuncionDetailViewModel(4);
             FitnessFuncionSecond = new FitnessFuncionDetailViewModel(4);
+            //ExperimentSummary = new ExperimentViewModel(new SesionExperimentacion());
         }
 
         #endregion // Constructor
@@ -87,7 +89,8 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
         public FitnessFuncionDetailViewModel FitnessFuncionFirst { get; set; }
         public FitnessFuncionDetailViewModel FitnessFuncionSecond { get; set; }
 
-        
+        public ExperimentViewModel ExperimentSummary { get; private set; }
+
         #endregion // Properties
 
         #region Methods

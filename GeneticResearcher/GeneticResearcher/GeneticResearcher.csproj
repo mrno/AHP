@@ -117,7 +117,6 @@
     <Compile Include="NewExperimentWindow.xaml.cs">
       <DependentUpon>NewExperimentWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SesionExperimentacion.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ExperimentWizard\ViewModels\ExperimentWizardPageViewModelBase.cs" />
     <Compile Include="ExperimentWizard\ViewModels\ExperimentWizardViewModel.cs" />
@@ -139,6 +138,9 @@
     </Compile>
     <Compile Include="Views\ExperimentResultsView.xaml.cs">
       <DependentUpon>ExperimentResultsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ExperimentView.xaml.cs">
+      <DependentUpon>ExperimentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OperadorControlView.xaml.cs">
       <DependentUpon>OperadorControlView.xaml</DependentUpon>
@@ -227,6 +229,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ExperimentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OperadorControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -261,6 +267,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AlgoritmosGeneticos\GALibrary\GALibrary.csproj">
+      <Project>{940c3cd7-cb24-4ea0-99af-d7bf942c4748}</Project>
+      <Name>GALibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

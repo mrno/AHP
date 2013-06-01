@@ -13,13 +13,13 @@
     </UserControl.Resources>
     <Grid Height="Auto">
 
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         
-        <ContentPresenter Grid.Row="0" Content="{Binding Matrix}" VerticalAlignment="Center"/>
-        <Expander Grid.Row="1" Header="Detalles">
+        <ContentPresenter Grid.Column="0" Content="{Binding Matrix}" VerticalAlignment="Center"/>
+        <Expander Grid.Column="1" Header="Detalles">
             <Grid VerticalAlignment="Center">
                 <Grid.Resources>
                     <Style TargetType="{x:Type TextBlock}">
@@ -31,38 +31,35 @@
                     </Style>
                 </Grid.Resources>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-            
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Border  Grid.Row="0" Grid.Column="0">
+                <Border  Grid.Row="0">
                     <StackPanel>                
                         <TextBlock Text="Ratio de Consistencia"/>
                         <TextBlock Text="0.01541651" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="1">
+                <Border Grid.Row="1">
                     <StackPanel>
                         <TextBlock Text="Magnitud del Cambio"/>
                         <TextBlock Text="0.12345648" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="0">
+                <Border Grid.Row="2">
                     <StackPanel>
                         <TextBlock Text="Cantidad de Cambios"/>
                         <TextBlock Text="0.12444546" Margin="15,0,0,0"/>
                     </StackPanel>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="1">
+                <Border Grid.Row="3">
                     <StackPanel>
                         <TextBlock Text="Tiempo de Búsqueda (s)"/>
                         <TextBlock Text="120" Margin="15,0,0,0"/>

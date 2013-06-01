@@ -28,11 +28,9 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
                 foreach (var row in Rows)
                 {
                     var rowIndex = Rows.IndexOf(row);
-
                     foreach (var cell in row.Cells)
                     {
                         var cellIndex = row.Cells.IndexOf(cell);
-
                         matrix[rowIndex, cellIndex] = cell.Value;
                     }
                 }
@@ -75,13 +73,14 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
                 {
                     if (dimension < Rows.Count)
                     {
-                        for (int i = dimension; i < Rows.Count; i++)
+                        var oldOrder = Rows.Count;
+                        for (int i = dimension; i < oldOrder; i++)
                         {
                             Rows.RemoveAt(dimension);
                         }
                         foreach (var row in Rows)
                         {
-                            for (int i = dimension; i < row.Cells.Count; i++)
+                            for (int i = dimension; i < oldOrder; i++)
                             {
                                 row.Cells.RemoveAt(dimension);   
                             }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GALibrary.Persistencia;
 using GeneticResearcher.Command;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
@@ -139,7 +140,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         public ExperimentWizardPageViewModelBase CurrentPage
         {
             get { return _currentPage; }
-            private set
+            protected set
             {
                 if (value == _currentPage)
                     return;

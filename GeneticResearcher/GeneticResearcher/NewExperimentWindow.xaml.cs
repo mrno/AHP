@@ -1,4 +1,5 @@
-﻿using GeneticResearcher.ExperimentWizard.ViewModels;
+﻿using GALibrary.Persistencia;
+using GeneticResearcher.ExperimentWizard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace GeneticResearcher
         {
             InitializeComponent();
 
-            _experimentWizardViewModel = new ExperimentWizardViewModel();
+            _experimentWizardViewModel = new ExperimentWizardUnitMatrixFitnessFuncionComparisonViewModel();
             _experimentWizardViewModel.RequestClose += OnViewModelRequestClose;
             base.DataContext = _experimentWizardViewModel;
         }
