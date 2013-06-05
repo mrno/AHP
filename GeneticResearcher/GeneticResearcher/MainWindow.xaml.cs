@@ -97,7 +97,7 @@ namespace GeneticResearcher
         private void StartExperimentWizard(object sender, RoutedEventArgs e)
         {
             var wizard = new NewExperimentWindow();
-            wizard.Show();
+            wizard.ShowDialog();
         }
 
         private void StartComparisonTest(object sender, RoutedEventArgs e)

@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeneticResearcher.ViewModels
+namespace GeneticResearcher.Graphs.ViewModels
 {
-    interface IConjuntoMatrizViewModel : INotifyPropertyChanged
+    public interface ICheckBoxTreeViewModel : INotifyPropertyChanged
     {
-        List<ConjuntoMatrizViewModel> Children { get; }
+        List<CheckBoxTreeViewModel> Children { get; }
         bool? IsChecked { get; set; }
         bool IsInitiallySelected { get; }
         string Name { get; }

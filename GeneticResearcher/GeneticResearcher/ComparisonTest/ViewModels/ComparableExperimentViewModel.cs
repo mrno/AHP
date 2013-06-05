@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary.Persistencia;
+using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ComparisonTest.ViewModels
 {
-    public class FitnessFuncionDetailViewModel
+    public class ComparableExperimentViewModel
     {
         #region Fields
 
@@ -18,14 +20,18 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
 
         #region Constructors
 
-        public FitnessFuncionDetailViewModel(int dimension)
+        public ComparableExperimentViewModel(int dimension, string displayName)
         {
             _dimension = dimension;
+            DisplayName = displayName;
+            ExperimentSummary = new ExperimentViewModel(new SesionExperimentacion());
         }
 
         #endregion
 
         #region Properties
+
+        public string DisplayName { get; set; }
 
         public DetailedMatrixViewModel Matrix
         {
@@ -37,6 +43,7 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
             get { return _distance ?? (_distance = new MatrixViewModel(_dimension)); }
             private set { _distance = value; }
         }
+        public ExperimentViewModel ExperimentSummary { get; private set; }
 
         #endregion
     }

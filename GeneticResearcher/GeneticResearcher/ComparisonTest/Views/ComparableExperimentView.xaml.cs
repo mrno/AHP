@@ -16,13 +16,15 @@ using System.Windows.Shapes;
 namespace GeneticResearcher.ComparisonTest.Views
 {
     /// <summary>
-    /// Lógica de interacción para FitnessFuncionDetailView.xaml
+    /// Lógica de interacción para ComparableExperimentView.xaml
     /// </summary>
-    public partial class FitnessFuncionDetailView : UserControl
+    public partial class ComparableExperimentView : UserControl
     {
-        public FitnessFuncionDetailView()
+        public ComparableExperimentView()
         {
             InitializeComponent();
         }
+
+
     }
 }

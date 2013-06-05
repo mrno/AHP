@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary.Persistencia;
 
 namespace GeneticResearcher.ViewModels
 {
@@ -22,6 +23,7 @@ namespace GeneticResearcher.ViewModels
         public ExperimentResultsViewModel()
         {
             //TODO: buscar en BD
+            SelectedExperiment = new ExperimentViewModel(new SesionExperimentacion());
         }
 
         #endregion // Constructor
@@ -53,6 +55,8 @@ namespace GeneticResearcher.ViewModels
                 return _experimentOptionList;
             }
         }
+
+        public ExperimentViewModel SelectedExperiment { get; private set; }
 
         #endregion // Properties
 

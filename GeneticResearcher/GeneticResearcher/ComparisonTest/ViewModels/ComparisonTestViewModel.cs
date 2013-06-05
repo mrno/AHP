@@ -10,12 +10,7 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
     {
         #region Fields
 
-        private ReadOnlyCollection<FitnessViewModel> _fitnessFunctions;
-
-        private ReadOnlyCollection<OptionViewModel<string>> _firstFitnessFunctionOptionList;
-        private ReadOnlyCollection<OptionViewModel<string>> _secondFitnessFunctionOptionList;
-
-        private DetailedMatrixViewModel _inputMatrix;
+        private MatrixViewModel _inputMatrix;
 
         private ReadOnlyCollection<OptionViewModel<int>> _dimensions;
         private int _dimension;
@@ -27,15 +22,16 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
 
         public ComparisonTestViewModel()
         {
-            _inputMatrix = new DetailedMatrixViewModel(4);
-            FitnessFuncionFirst = new FitnessFuncionDetailViewModel(4);
-            FitnessFuncionSecond = new FitnessFuncionDetailViewModel(4);
-            //ExperimentSummary = new ExperimentViewModel(new SesionExperimentacion());
+            _inputMatrix = new MatrixViewModel(4);
+            ComparableExperimentFirst = new ComparableExperimentViewModel(4, "Experimento 1");
+            ComparableExperimentSecond = new ComparableExperimentViewModel(4, "Experimento 2");
+            CommonExperimentSummary = new ExperimentViewModel(new SesionExperimentacion());
         }
 
         #endregion // Constructor
 
         #region Properties
+
 
         public IEnumerable<OptionViewModel<int>> Dimensions
         {
@@ -68,12 +64,12 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
                 if (_dimension != selectedDimension)
                 {
                     _dimension = selectedDimension;
-                    Matrix.Matrix.Matrix = new double[_dimension,_dimension];
-                    FitnessFuncionFirst.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
-                    FitnessFuncionSecond.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
+                    Matrix.Matrix = new double[_dimension,_dimension];
+                    ComparableExperimentFirst.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
+                    ComparableExperimentSecond.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
 
-                    FitnessFuncionFirst.Distance.Matrix = new double[_dimension, _dimension];
-                    FitnessFuncionSecond.Distance.Matrix = new double[_dimension, _dimension];
+                    ComparableExperimentFirst.Distance.Matrix = new double[_dimension, _dimension];
+                    ComparableExperimentSecond.Distance.Matrix = new double[_dimension, _dimension];
                     //Matrix = new double[_dimension, _dimension];
                     //OnPropertyChanged("Matriz");
                     //OnPropertyChanged("Rows");
@@ -81,15 +77,15 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
             }
         }
 
-        public DetailedMatrixViewModel Matrix
+        public MatrixViewModel Matrix
         {
-            get { return _inputMatrix ?? (_inputMatrix = new DetailedMatrixViewModel(4)); }
+            get { return _inputMatrix ?? (_inputMatrix = new MatrixViewModel(4)); }
         }
 
-        public FitnessFuncionDetailViewModel FitnessFuncionFirst { get; set; }
-        public FitnessFuncionDetailViewModel FitnessFuncionSecond { get; set; }
+        public ComparableExperimentViewModel ComparableExperimentFirst { get; set; }
+        public ComparableExperimentViewModel ComparableExperimentSecond { get; set; }
 
-        public ExperimentViewModel ExperimentSummary { get; private set; }
+        public ExperimentViewModel CommonExperimentSummary { get; private set; }
 
         #endregion // Properties
 
@@ -103,7 +99,7 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }

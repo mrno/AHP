@@ -61,19 +61,18 @@
     <Compile Include="ComparisonTestWindow.xaml.cs">
       <DependentUpon>ComparisonTestWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ComparisonTest\ViewModels\ComparableExperimentViewModel.cs" />
     <Compile Include="ComparisonTest\ViewModels\ComparisonTestViewModel.cs" />
     <Compile Include="ComparisonTest\ViewModels\DetailedMatrixViewModel.cs" />
-    <Compile Include="ComparisonTest\ViewModels\FitnessFuncionDetailViewModel.cs" />
-    <Compile Include="ComparisonTest\ViewModels\FitnessViewModel.cs" />
     <Compile Include="ComparisonTest\ViewModels\MatrixViewModel.cs" />
+    <Compile Include="ComparisonTest\Views\ComparableExperimentView.xaml.cs">
+      <DependentUpon>ComparableExperimentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ComparisonTest\Views\ComparisonTestView.xaml.cs">
       <DependentUpon>ComparisonTestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComparisonTest\Views\DetailedMatrixView.xaml.cs">
       <DependentUpon>DetailedMatrixView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ComparisonTest\Views\FitnessFuncionDetailView.xaml.cs">
-      <DependentUpon>FitnessFuncionDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ComparisonTest\Views\MatrixView.xaml.cs">
       <DependentUpon>MatrixView.xaml</DependentUpon>
@@ -113,6 +112,20 @@
     <Compile Include="ExperimentWizard\Views\SummaryView.xaml.cs">
       <DependentUpon>SummaryView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Graphs\ViewModels\CheckBoxTreeViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\DisplayDataViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\GroupDataViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\ICheckBoxTreeViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\OrderDataViewModel.cs" />
+    <Compile Include="Graphs\Views\DisplayDataView.xaml.cs">
+      <DependentUpon>DisplayDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Graphs\Views\GroupDataView.xaml.cs">
+      <DependentUpon>GroupDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Graphs\Views\OrderDataView.xaml.cs">
+      <DependentUpon>OrderDataView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="NewExperimentWindow.xaml.cs">
       <DependentUpon>NewExperimentWindow.xaml</DependentUpon>
@@ -149,15 +162,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ComparisonTest\Views\ComparableExperimentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ComparisonTest\Views\ComparisonTestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ComparisonTest\Views\DetailedMatrixView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ComparisonTest\Views\FitnessFuncionDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +215,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ExperimentWizard\Views\SummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Graphs\Views\DisplayDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Graphs\Views\GroupDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Graphs\Views\OrderDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

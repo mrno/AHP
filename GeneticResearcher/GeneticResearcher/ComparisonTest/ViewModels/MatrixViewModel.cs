@@ -12,6 +12,7 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
 {
     public class MatrixViewModel : INotifyPropertyChanged
     {
+        private double? _cr;
         public ObservableCollection<RowViewModel> Rows { get; set; }
 
         public double[,] Matrix
@@ -100,6 +101,11 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
                 }
                 OnPropertyChanged("Rows");
             }
+        }
+
+        public string CR
+        {
+            get { return _cr != null ? _cr.ToString() : " - "; }
         }
 
         public MatrixViewModel(int dimension)

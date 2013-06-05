@@ -6,10 +6,15 @@
              xmlns:ViewModels="clr-namespace:GeneticResearcher.ViewModels"
              xmlns:view="clr-namespace:GeneticResearcher.Views" mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:ExperimentViewModel}">
+            <view:ExperimentView />
+        </DataTemplate>
+    </UserControl.Resources>
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -40,9 +45,8 @@
         <GroupBox Header="Detalle del Experimento" 
                   Grid.Column="0" Grid.Row="1"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Template="{StaticResource ResourceKey=groupBoxTemplate}">
-            
+            <ContentPresenter Content="{Binding SelectedExperiment}"/>
         </GroupBox>
 
         <GroupBox Header="Resultados del Experimento" 

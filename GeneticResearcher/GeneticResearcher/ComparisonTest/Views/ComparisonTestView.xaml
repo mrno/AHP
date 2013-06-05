@@ -3,144 +3,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:ViewModels="clr-namespace:GeneticResearcher.ComparisonTest.ViewModels"
-             xmlns:view="clr-namespace:GeneticResearcher.ComparisonTest.Views"
              xmlns:ViewModelsProject="clr-namespace:GeneticResearcher.ViewModels"
-             xmlns:viewsProject="clr-namespace:GeneticResearcher.Views" mc:Ignorable="d" 
+             xmlns:viewsProject="clr-namespace:GeneticResearcher.Views"
+             xmlns:ViewModels="clr-namespace:GeneticResearcher.ComparisonTest.ViewModels"
+             xmlns:view="clr-namespace:GeneticResearcher.ComparisonTest.Views" mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="800">
     
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModels:DetailedMatrixViewModel}">
-            <view:DetailedMatrixView />
+        <DataTemplate DataType="{x:Type ViewModels:MatrixViewModel}">
+            <view:MatrixView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type ViewModels:FitnessFuncionDetailViewModel}">
-            <view:FitnessFuncionDetailView />
+        <DataTemplate DataType="{x:Type ViewModels:ComparableExperimentViewModel}">
+            <view:ComparableExperimentView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type ViewModelsProject:ExperimentViewModel}">
             <viewsProject:ExperimentView />
         </DataTemplate>
     </UserControl.Resources>
     
-    <Grid>
+    <Grid VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Height="{Binding ElementName=Comparables, Path=ActualHeight}" MinHeight="350">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-            <GroupBox Header="Matriz de Prueba" 
-                      Grid.Column="0" Grid.Row="0"
+                <GroupBox Header="Matriz de Prueba" 
+                          Grid.Column="0" Grid.Row="0"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          Template="{StaticResource ResourceKey=groupBoxTemplate}">
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition MinHeight="100"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Dimension" Margin="3"/>
+                    
+                        <ComboBox Grid.Column="1" SelectedIndex="0" 
+                          ItemsSource="{Binding Dimensions}"
+                          SelectedItem="{Binding SelectedDimension}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DisplayName}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding Matrix}"/>
+                    </Grid>
+            
+                </GroupBox>
+
+                <GroupBox Header="Configuración General del AG" 
+                      Grid.Column="0" Grid.Row="1"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                      Template="{StaticResource ResourceKey=groupBoxTemplate}">
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
+                      Template="{StaticResource ResourceKey=groupBoxTemplate}" >
+                    <ContentPresenter Content="{Binding CommonExperimentSummary}"/>
+                </GroupBox>
+            </Grid>
+        </ScrollViewer>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition MinHeight="100"/>
-                    </Grid.RowDefinitions>
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" Name="Comparables">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Column="0" Text="Dimension" Margin="3"/>
-                    
-                    <ComboBox Grid.Column="1" SelectedIndex="0" 
-                      ItemsSource="{Binding Dimensions}"
-                      SelectedItem="{Binding SelectedDimension}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding DisplayName}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
+                <ContentPresenter Grid.Row="0" 
+                                  Content="{Binding ComparableExperimentFirst}"/>
 
-                    <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding Matrix}"/>
-                </Grid>
-            
-            </GroupBox>
-
-            <GroupBox Header="Configuración General del AG" 
-                  Grid.Column="0" Grid.Row="1"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Template="{StaticResource ResourceKey=groupBoxTemplate}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    
-                    <ContentPresenter Grid.Row="0"
-                                      Content="{Binding ExperimentSummary}"/>
-                    
-                    <Button Grid.Row="1"
-                            Content="Configurar" Click="ButtonClick1">
-                        <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource normalButton}">
-
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </Grid>
-            </GroupBox>
-        </Grid>
-
-        <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <GroupBox 
-                  Grid.Column="0" 
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Template="{StaticResource ResourceKey=groupBoxTemplate}">
-                <ContentPresenter Content="{Binding FitnessFuncionFirst}"/>
-                <GroupBox.Header>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Funcion de Aptitud 1" Foreground="{StaticResource ResourceKey=appColorHeaderForegroundText}"/>
-                        <ComboBox Grid.Column="1" Margin="5,-5,-5,-5" SelectedIndex="0">
-                            <ComboBoxItem Content="asd">
-                                
-                            </ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </GroupBox.Header>
-            </GroupBox>
-
-            <GroupBox 
-                  Grid.Column="1"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  Template="{StaticResource ResourceKey=groupBoxTemplate}">
-                <ContentPresenter Content="{Binding FitnessFuncionFirst}"/>
-                <GroupBox.Header>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Funcion de Aptitud 2" Foreground="{StaticResource ResourceKey=appColorHeaderForegroundText}"/>
-                        <ComboBox Grid.Column="1" Margin="5,-5,-5,-5" SelectedIndex="0">
-                            <ComboBoxItem Content="asd">
-
-                            </ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </GroupBox.Header>
-            </GroupBox>
-        </Grid>
+                <ContentPresenter Grid.Row="1" 
+                                  Content="{Binding ComparableExperimentSecond}"/>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </UserControl>
