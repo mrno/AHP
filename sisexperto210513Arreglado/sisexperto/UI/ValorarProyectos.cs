@@ -669,7 +669,7 @@ namespace sisexperto.UI
 
         private void DibujarTracksIL(int cantidad)
         {
-            var y = 50;
+            var y = 00;
 
             for (int i = 0; i < cantidad; i++)
             {
@@ -693,13 +693,13 @@ namespace sisexperto.UI
                 //Controls.Add(track);
 
                 var descripcion = new Label();
-                descripcion.SetBounds(150, y + 45, 400, 30);
+                descripcion.SetBounds(150, y + 40, 400, 30);
                 descripcion.TextAlign = ContentAlignment.MiddleCenter;
                 //miLabel.Text = fila.ValorILLinguistico;
                 descripcion.Name = i + "Descripcion";
                 panelComparacionIL.Controls.Add(descripcion);
 
-                y += 90;
+                y += 85;
             }            
         }
 
