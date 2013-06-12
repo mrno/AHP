@@ -8,9 +8,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewModels:TrackILViewModel}">
-            <views:TrackIL/>
+        <DataTemplate DataType="{x:Type viewModels:ValoracionAHPViewModel}">
+            <views:ValoracionAHPView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ValoracionILViewModel}">
+            <views:ValoracionILView/>
         </DataTemplate>
     </UserControl.Resources>
-    <ContentPresenter Content="{Binding TrackILViewModel}"/>
+    
+    <TabControl>
+        <TabItem Header="Valoración AHP">
+            <ContentPresenter Content="{Binding ValoracionAHP}"/>
+        </TabItem>
+        <TabItem Header="Valoración IL">
+            <ContentPresenter Content="{Binding ValoracionIL}"/>
+        </TabItem>
+    </TabControl>
+    
+    <!--<ContentPresenter Content="{Binding TrackILViewModel}"/>-->
 </UserControl>
