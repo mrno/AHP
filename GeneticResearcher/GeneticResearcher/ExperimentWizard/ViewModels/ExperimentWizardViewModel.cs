@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GALibrary.Persistencia;
 using GeneticResearcher.Command;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
     public class ExperimentWizardViewModel : INotifyPropertyChanged
     {
-        
         #region Fields
 
         RelayCommand _cancelCommand;
@@ -21,7 +21,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         ExperimentWizardPageViewModelBase _currentPage;
         RelayCommand _moveNextCommand;
         RelayCommand _movePreviousCommand;
-        ReadOnlyCollection<ExperimentWizardPageViewModelBase> _pages;
+        protected ReadOnlyCollection<ExperimentWizardPageViewModelBase> _pages;
 
         #endregion // Fields
 
@@ -140,7 +140,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         public ExperimentWizardPageViewModelBase CurrentPage
         {
             get { return _currentPage; }
-            private set
+            protected set
             {
                 if (value == _currentPage)
                     return;
@@ -201,7 +201,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         #region Private Helpers
 
-        private void CreatePages()
+        void CreatePages()
         {
             var pages = new List<ExperimentWizardPageViewModelBase>
                             {

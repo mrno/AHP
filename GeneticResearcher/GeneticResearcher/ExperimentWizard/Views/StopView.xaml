@@ -17,18 +17,21 @@
                    Text="{Binding Description}"/>
         <GroupBox Header="Condiciones de Parada" 
                   Grid.Column="0" Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   Template="{StaticResource ResourceKey=groupBoxTemplate}">
             <DataGrid Grid.Row="1" 
-                  ItemsSource="{Binding StopConditions, 
-                                        Mode=TwoWay, 
-                                        UpdateSourceTrigger=PropertyChanged}" 
-                  AutoGenerateColumns="False"
-                  CanUserResizeColumns="True" 
-                  CanUserResizeRows="False"
-                  CanUserReorderColumns="False" 
-                  RowHeaderWidth="0"
-                  SelectionUnit="FullRow"
-                  SelectionMode="Single"
+                      ItemsSource="{Binding StopConditions, 
+                                            Mode=TwoWay, 
+                                            UpdateSourceTrigger=PropertyChanged}" 
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="True" 
+                      CanUserResizeRows="False"
+                      CanUserReorderColumns="False" 
+                      RowHeaderWidth="0"
+                      SelectionUnit="FullRow"
+                      SelectionMode="Single"
+                      HorizontalAlignment="Stretch"
                   >
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn IsReadOnly="False"
@@ -40,6 +43,19 @@
                             </Style>
                         </DataGridCheckBoxColumn.CellStyle>
                     </DataGridCheckBoxColumn>
+                    
+                    <DataGridTextColumn Header="Valor" 
+                                    IsReadOnly="False"
+                                    Binding="{Binding Parameter}"
+                                    Width="65">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="ToolTip" Value="{Binding ParameterDescription}" />
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    
                     <DataGridTextColumn Header="Nombre" 
                                     IsReadOnly="True"
                                     Binding="{Binding DisplayName}"
@@ -50,18 +66,7 @@
                             </Style>
                         </DataGridTextColumn.CellStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Parámetro" 
-                                    IsReadOnly="False"
-                                    Binding="{Binding Parameter}"
-                                    Width="65">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="ToolTip" Value="{Binding ParameterDescription}" />
-                                <Setter Property="BorderThickness" Value="0"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-
-                    </DataGridTextColumn>
+                    
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

@@ -432,6 +432,7 @@ namespace sisexperto.UI
         protected void Validated(object sender, EventArgs e)
         {
             var textBox = (sender as TextBox);
+           
             var reg = new Regex("^[1-9]$|^1/$|^1/[1-9]$");
             if (!reg.IsMatch(textBox.Text))
             {

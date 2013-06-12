@@ -18,6 +18,8 @@
 
             <GroupBox Header="Función de Aptitud" 
                   Grid.Column="0" Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Template="{StaticResource ResourceKey=groupBoxTemplate}">
                 <ItemsControl FontWeight="Normal"
                           ItemsSource="{Binding Path=FitnessFunctions}"

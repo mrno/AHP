@@ -12,7 +12,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -24,14 +24,8 @@
                    TextWrapping="Wrap"
                    Text="{Binding Description}"/>
 
-        <GroupBox Header="Operadores de Selección" Grid.Row="1" 
-              Template="{StaticResource ResourceKey=groupBoxTemplate}">
-            <ContentPresenter Content="{Binding Operador}" Margin="3"/>
-        </GroupBox>
-        
-        <GroupBox Header="Operadores de Selección" Grid.Row="2" 
-              Template="{StaticResource ResourceKey=groupBoxTemplate}">
-            <ContentPresenter Content="{Binding Operador}" Margin="3"/>
-        </GroupBox>
+        <ContentPresenter Content="{Binding Operador}" Grid.Row="1"/>
+
+        <ContentPresenter Content="{Binding Operador}" Grid.Row="2"/>
     </Grid>
 </UserControl>

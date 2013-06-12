@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GeneticResearcher
+namespace GeneticResearcher.ComparisonTest.ViewModels
 {
-    public class SesionExperimentacion
+    public class FitnessViewModel
     {
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaAptitud.cs" />
     <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaEstructura.cs" />
     <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\IConvergenciaPoblacion.cs" />
+    <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudModificarValores.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistenciaExponencial.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistenciaResta.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\IFuncionAptitud.cs" />

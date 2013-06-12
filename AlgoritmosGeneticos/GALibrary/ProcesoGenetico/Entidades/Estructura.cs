@@ -27,8 +27,25 @@ namespace GALibrary.ProcesoGenetico.Entidades
         {
             Vector = objetoMatriz.Vector;
             Inconsistencia = objetoMatriz.Inconsistencia;
+            _cantidadCaracteristicas = 0;
         }
 
+        private int _cantidadCaracteristicas;
 
+        public int CantidadCaracteristicas 
+        {
+            get
+            {
+                if(_cantidadCaracteristicas == 0)
+                {
+                    _cantidadCaracteristicas = Faltantes.Length;
+                    if(_cantidadCaracteristicas == 0)
+                    {
+                        _cantidadCaracteristicas = Vector.Length;
+                    }
+                }
+                return _cantidadCaracteristicas;
+            }
+        }
     }
 }

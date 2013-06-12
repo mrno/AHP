@@ -1,4 +1,5 @@
-﻿using GeneticResearcher.ViewModels;
+﻿using GALibrary.Persistencia;
+using GeneticResearcher.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

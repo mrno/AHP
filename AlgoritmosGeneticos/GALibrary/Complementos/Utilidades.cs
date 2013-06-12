@@ -190,11 +190,13 @@ namespace GALibrary.Complementos
 
         public static double[] CombinarEstructuraConIndividuo(double[] estructura, double[] individuo)
         {
+            if(!estructura.Any(x => x.Equals(CeldaMatriz.Incompleto)))
+            {
+                return individuo;
+            }
+
             var longitudBase = estructura.Length;
-            var longitudIndividuo = individuo.Length;
-
             var resultado = estructura.Clone() as double[];
-
             var posicion = 0;
             for (int i = 0; i < longitudBase; i++)
             {
