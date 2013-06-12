@@ -21,13 +21,12 @@ namespace sisexperto.UI.WPFUserControls
     /// </summary>
     public partial class ValoracionControl : UserControl
     {
-        public ValorarProyectosViewModel ValorarProyectosViewModel { get; private set; }
-
+        private ValorarProyectosViewModel _valorarProyectosViewModel;
         public ValoracionControl()
         {
             InitializeComponent();
-            ValorarProyectosViewModel = new ValorarProyectosViewModel();
-            DataContext = ValorarProyectosViewModel;
+            _valorarProyectosViewModel = new ValorarProyectosViewModel();
+            this.DataContext = _valorarProyectosViewModel;
         }
     }
 }

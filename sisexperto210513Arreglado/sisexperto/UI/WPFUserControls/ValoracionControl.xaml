@@ -7,5 +7,6 @@
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <views:ValorarProyectosView/>
+    
+    <views:ValorarProyectosView/>  
 </UserControl>

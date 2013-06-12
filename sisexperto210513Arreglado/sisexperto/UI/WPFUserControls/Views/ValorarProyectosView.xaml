@@ -12,5 +12,5 @@
             <views:TrackIL/>
         </DataTemplate>
     </UserControl.Resources>
-    <ContentPresenter Content="{Binding}"/>
+    <ContentPresenter Content="{Binding TrackILViewModel}"/>
 </UserControl>

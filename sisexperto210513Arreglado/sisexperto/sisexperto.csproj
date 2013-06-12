@@ -259,6 +259,7 @@
     <Compile Include="UI\ValorarProyectos.Designer.cs">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\WPFUserControls\Custom\CustomTickBar.cs" />
     <Compile Include="UI\WPFUserControls\ValoracionControl.xaml.cs">
       <DependentUpon>ValoracionControl.xaml</DependentUpon>
     </Compile>
