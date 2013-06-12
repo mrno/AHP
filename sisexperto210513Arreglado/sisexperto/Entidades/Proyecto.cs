@@ -605,9 +605,10 @@ namespace sisExperto.Entidades
                                                       Criterios.First(
                                                           x =>
                                                           x.Nombre == alternativaMatriz.Criterio.Nombre),
-                                                  Consistencia = alternativaMatriz.Consistencia,
-                                                  Matriz = alternativaMatriz.Matriz
+                                                  Consistencia = alternativaMatriz.Consistencia
                                               };
+                        alternativa.Matriz = alternativaMatriz.Matriz;
+
                         nuevoExpertoEnProyecto.ValoracionAHP.AlternativasMatrices.Add(alternativa);
                     }
                 }
