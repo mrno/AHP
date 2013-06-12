@@ -35,11 +35,31 @@
         
     </UserControl.Resources>
 
-    <TreeView x:Name="tree" 
-            BorderThickness="0"
-            Padding="5"
-            ItemContainerStyle="{StaticResource TreeViewItemStyle}"
-            ItemsSource="{Binding Children, Mode=OneTime}" 
-            ItemTemplate="{StaticResource CheckBoxItemTemplate}" />
-    
+    <Grid>
+        <TreeView x:Name="tree" 
+                BorderThickness="0"
+                Padding="5"
+                ItemContainerStyle="{StaticResource TreeViewItemStyle}"
+                ItemsSource="{Binding Children, Mode=OneWay}" 
+                ItemTemplate="{StaticResource CheckBoxItemTemplate}">
+        </TreeView>
+
+        <ProgressBar Name="Progress" 
+                     Background="{StaticResource appColorActiveForegroundText}"
+                     Foreground="{StaticResource appColorActiveBackground}"
+                     Width="100" 
+                     Height="20" 
+                     VerticalAlignment="Center" 
+                     IsIndeterminate="True">
+            <ProgressBar.Style>
+                <Style TargetType="ProgressBar">
+                    <Style.Triggers>
+                    <DataTrigger Binding="{Binding ChildrenLoaded}" Value="True">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ProgressBar.Style>
+        </ProgressBar>
+    </Grid>
 </UserControl>

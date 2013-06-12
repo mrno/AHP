@@ -208,5 +208,15 @@ namespace GALibrary.Complementos
             }
             return resultado;
         }
+
+        public static string ConcatenarCadenasConFlechas(string[] cadenas)
+        {
+            var resultado = "";
+            for (int i = 0; i < cadenas.Length; i++)
+            {
+                resultado += cadenas[0] + " -> ";
+            }
+            return resultado.Remove(0, resultado.Length - 4);
+        }
     }
 }

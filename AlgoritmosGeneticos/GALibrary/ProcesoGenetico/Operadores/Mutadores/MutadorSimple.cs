@@ -4,6 +4,7 @@ using GALibrary.Complementos;
 
 namespace GALibrary.ProcesoGenetico.Operadores.Mutadores
 {
+    [ElementoAG(TipoElementoAG.Operador, "MutadorSimple")]
     public class MutadorSimple : MutadorAbstracto
     {
         public override IEnumerable<Individuo> Operar(Poblacion poblacion, int numeroMutados)

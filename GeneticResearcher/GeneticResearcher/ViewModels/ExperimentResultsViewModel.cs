@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GALibrary.Persistencia;
+using GeneticResearcher.Common;
+using GeneticResearcher.Graphs.ViewModels;
 
 namespace GeneticResearcher.ViewModels
 {
@@ -24,6 +26,7 @@ namespace GeneticResearcher.ViewModels
         {
             //TODO: buscar en BD
             SelectedExperiment = new ExperimentViewModel(new SesionExperimentacion());
+            Graphic = new GraphicViewModel();
         }
 
         #endregion // Constructor
@@ -57,6 +60,8 @@ namespace GeneticResearcher.ViewModels
         }
 
         public ExperimentViewModel SelectedExperiment { get; private set; }
+
+        public GraphicViewModel Graphic { get; private set; }
 
         #endregion // Properties
 

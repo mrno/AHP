@@ -29,10 +29,26 @@
 
     </UserControl.Resources>
 
-    <TreeView x:Name="tree" 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!--<TreeView 
+            Grid.Row="0"
             BorderThickness="0"
             Padding="5"
             ItemContainerStyle="{StaticResource TreeViewItemStyle}"
-            ItemsSource="{Binding Children, Mode=OneTime}" 
+            ItemsSource="{Binding Orders.Children, Mode=OneWay}" 
             ItemTemplate="{StaticResource CheckBoxItemTemplate}" />
+
+        <TreeView 
+            Grid.Row="1"
+            BorderThickness="0"
+            Padding="5"
+            ItemContainerStyle="{StaticResource TreeViewItemStyle}"
+            ItemsSource="{Binding Inconsistencies.Children, Mode=OneWay}" 
+            ItemTemplate="{StaticResource CheckBoxItemTemplate}" />-->
+    </Grid>
 </UserControl>

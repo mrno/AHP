@@ -1,4 +1,5 @@
 ﻿using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
     {
         private ConjuntoMatrizViewModel _conjuntoMatriz;
 
-        public GeneticTestSetViewModel(SesionExperimentacion sesion) : base(sesion)
+        public GeneticTestSetViewModel(SesionExperimentacion session)
+            : base(session)
         {
         }
 
@@ -32,6 +34,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            //throw new NotImplementedException();
         }
 
         public override string Description

@@ -12,25 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using GALibrary.Persistencia;
-using GeneticResearcher.Common;
 
-namespace GeneticResearcher.ComparisonTest.Views
+namespace GeneticResearcher.Views
 {
     /// <summary>
-    /// Lógica de interacción para ComparisonTestView.xaml
+    /// Lógica de interacción para OperatorControlView.xaml
     /// </summary>
-    public partial class ComparisonTestView : UserControl
+    public partial class OperatorControlView : UserControl
     {
-        public ComparisonTestView()
+        public OperatorControlView()
         {
             InitializeComponent();
-        }
-
-        private void ButtonClick1(object sender, RoutedEventArgs e)
-        {
-            var wizard = new NewExperimentWindow(new SesionExperimentacion());
-            wizard.Show();
         }
     }
 }

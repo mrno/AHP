@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GeneticResearcher.Common;
 
 namespace GeneticResearcher.ViewModels
 {
@@ -11,15 +12,15 @@ namespace GeneticResearcher.ViewModels
     {
         #region Fields
 
-        private SesionExperimentacion _sesion;
+        private readonly SesionExperimentacion _session;
 
         #endregion
 
         #region Constructors
 
-        public ExperimentViewModel(SesionExperimentacion sesion)
+        public ExperimentViewModel(SesionExperimentacion session)
         {
-            _sesion = sesion;
+            _session = session;
         }
 
         #endregion
@@ -28,15 +29,15 @@ namespace GeneticResearcher.ViewModels
 
         public string EvolutiveModel
         {
-            get { return "Modelo Evolutivo: " + _sesion.ModeloEvolutivo; }
+            get { return "Modelo Evolutivo: " + _session.ModeloEvolutivo; }
         }
 
         public string Selection
         {
             get
             {
-                return "Operadores: " + _sesion.Seleccion
-                       + "\nPorcentaje: " + _sesion.PorcentajeSeleccion.ToString("0.0%");
+                return "Operadores: " + _session.Seleccion
+                       + "\nPorcentaje: " + _session.PorcentajeSeleccion.ToString("0.0%");
             }
         }
 
@@ -44,8 +45,8 @@ namespace GeneticResearcher.ViewModels
         {
             get
             {
-                return "Operadores: " + _sesion.Cruza
-                       + "\nPorcentaje: " + _sesion.PorcentajeCruza.ToString("0.0%");
+                return "Operadores: " + _session.Cruza
+                       + "\nPorcentaje: " + _session.PorcentajeCruza.ToString("0.0%");
             }
         }
 
@@ -53,37 +54,37 @@ namespace GeneticResearcher.ViewModels
         {
             get
             {
-                return "Operadores: " + _sesion.Mutacion
-                       + "\nProbabilidad por:" + _sesion.ProbabilidadMutacion
-                       + "\nPorcentaje Máximo: " + _sesion.PorcentajeMaximoMutacion.ToString("0.0%")
-                       + "\nPorcentaje Mínimo: " + _sesion.PorcentajeMinimoMutacion.ToString("0.0%")
-                       + "\nIncremento Porcentaje: " + _sesion.CrecimientoPorcentajeMutacion.ToString("0.0000%");
+                return "Operadores: " + _session.Mutacion
+                       + "\nProbabilidad por:" + _session.ProbabilidadMutacion
+                       + "\nPorcentaje Máximo: " + _session.PorcentajeMaximoMutacion.ToString("0.0%")
+                       + "\nPorcentaje Mínimo: " + _session.PorcentajeMinimoMutacion.ToString("0.0%")
+                       + "\nIncremento Porcentaje: " + _session.CrecimientoPorcentajeMutacion.ToString("0.0000%");
             }
         }
 
         public string StopCondition
         {
-            get { return _sesion.CondicionParada; }
+            get { return _session.CondicionParada; }
         }
 
         public string Individuals
         {
-            get { return _sesion.Individuos.ToString(); }
+            get { return _session.Individuos.ToString(); }
         }
 
         public string Convergence
         {
-            get { return _sesion.ConvergenciaPoblacion; }
+            get { return _session.ConvergenciaPoblacion; }
         }
 
         public string FitnessFunction
         {
-            get { return _sesion.FuncionAptitud; }
+            get { return _session.FuncionAptitud; }
         }
 
         public bool HasFitnessFunction
         {
-            get { return _sesion.FuncionAptitud != null; }
+            get { return _session.FuncionAptitud != null; }
         }
 
         #endregion

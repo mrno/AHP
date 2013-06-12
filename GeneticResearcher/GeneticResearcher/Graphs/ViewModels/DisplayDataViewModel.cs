@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.Graphs.ViewModels
 {
@@ -16,7 +17,8 @@ namespace GeneticResearcher.Graphs.ViewModels
 
         public DisplayDataViewModel()
         {
-            Orders = new CheckBoxTreeViewModel {}
+            Orders = new OrderCheckBoxTreeViewModel();
+            Inconsistencies = new InconsistenciesCheckBoxTreeViewModel();
         }
 
         #endregion

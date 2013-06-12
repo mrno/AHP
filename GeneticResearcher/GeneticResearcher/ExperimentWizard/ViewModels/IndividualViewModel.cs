@@ -4,14 +4,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary;
+using GALibrary.Complementos;
 using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
     public class IndividualViewModel : ExperimentWizardPageViewModelBase
     {
-        public IndividualViewModel(SesionExperimentacion sesion) : base(sesion)
+        public IndividualViewModel(SesionExperimentacion session)
+            : base(session)
         {
         }
 
@@ -19,20 +23,16 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         public IEnumerable<OptionViewModel<string>> FitnessFunctions
         {
-            get
-            {
-                if (_fitnessFuncions == null)
-                {
-                    var models = new List<OptionViewModel<string>>
-                                     {
-                                         new OptionViewModel<string>("Función Lineal", "asd"),
-                                         new OptionViewModel<string>("Función Exponencial", "asdf")
-                                     };
+            get { return _fitnessFuncions ?? (_fitnessFuncions = GetAssemblyFitnessFunctions()); }
+        }
 
-                    _fitnessFuncions = new ReadOnlyCollection<OptionViewModel<string>>(models);
-                }
-                return _fitnessFuncions;
-            }
+        private static ReadOnlyCollection<OptionViewModel<string>> GetAssemblyFitnessFunctions()
+        {
+            var operators = FacadeGAModule.ObtenerElementosAG(TipoElementoAG.FuncionAptitud);
+            var lista = from op in operators
+                        select new OptionViewModel<string>(op, op);
+
+            return new ReadOnlyCollection<OptionViewModel<string>>(lista.OrderBy(x => x.DisplayName).ToList());
         }
 
         #region Overrides of ExperimentWizardPageViewModelBase
@@ -50,6 +50,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            //throw new NotImplementedException();
         }
 
         #endregion

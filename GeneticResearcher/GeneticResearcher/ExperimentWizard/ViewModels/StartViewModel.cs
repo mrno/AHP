@@ -4,7 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary;
+using GALibrary.Complementos;
 using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
@@ -66,23 +69,20 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         public IEnumerable<OptionViewModel<string>> EvolutiveModels
         {
-            get
-            {
-                if (_evolutiveModels == null)
-                {
-                    var models = new List<OptionViewModel<string>>
-                                     {
-                                         new OptionViewModel<string>("ModeloEvolutivoEstandar", "asd"),
-                                         new OptionViewModel<string>("ModeloEvolutivoAlternativo", "asdf")
-                                     };
-
-                    _evolutiveModels = new ReadOnlyCollection<OptionViewModel<string>>(models);
-                }
-                return _evolutiveModels;
-            }
+            get { return _evolutiveModels ?? (_evolutiveModels = GetAssemblyEvolutiveModels()); }
         }
 
-        public StartViewModel(SesionExperimentacion sesion) : base(sesion)
+        private static ReadOnlyCollection<OptionViewModel<string>> GetAssemblyEvolutiveModels()
+        {
+            var operators = FacadeGAModule.ObtenerElementosAG(TipoElementoAG.ModeloEvolutivo);
+            var lista = from op in operators
+                        select new OptionViewModel<string>(op, op);
+
+            return new ReadOnlyCollection<OptionViewModel<string>>(lista.OrderBy(x => x.DisplayName).ToList());
+        }
+
+        public StartViewModel(SesionExperimentacion session)
+            : base(session)
         {
         }
 
@@ -95,8 +95,17 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         internal override bool IsValid()
         {
-            return true;
             return Is100Percent && EvolutiveModels.Any(x => x.IsSelected);
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            //Session.PorcentajeSeleccion = SelectionPercentage;
+            //Session.PorcentajeCruza = CrossoverPercentage;
+            //Session.PorcentajeMaximoMutacion = MutationPercentage;
+
+            //var model = EvolutiveModels.FirstOrDefault(x => x.IsSelected);
+            //Session.ModeloEvolutivo = model != null ? model.GetValue() : "";
         }
 
         public override string Description 

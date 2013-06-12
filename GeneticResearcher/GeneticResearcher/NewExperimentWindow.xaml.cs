@@ -1,4 +1,5 @@
 ﻿using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ExperimentWizard.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace GeneticResearcher
             base.DataContext = _experimentWizardViewModel;
         }
 
-        public NewExperimentWindow(SesionExperimentacion sesion)
+        public NewExperimentWindow(SesionExperimentacion session)
         {
             InitializeComponent();
 
@@ -47,7 +48,7 @@ namespace GeneticResearcher
         /// </summary>
         public SesionExperimentacion Result
         {
-            get { return _experimentWizardViewModel.Sesion; }
+            get { return _experimentWizardViewModel.Session; }
         }
 
         void OnViewModelRequestClose(object sender, EventArgs e)

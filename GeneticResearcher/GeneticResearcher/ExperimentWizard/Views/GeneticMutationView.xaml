@@ -7,8 +7,8 @@
              xmlns:ViewModels="clr-namespace:GeneticResearcher.ViewModels" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModels:OperadorControlViewModel}">
-            <Views:OperadorControlView/>
+        <DataTemplate DataType="{x:Type ViewModels:OperatorControlViewModel}">
+            <Views:OperatorControlView/>
         </DataTemplate>
     </UserControl.Resources>
 
@@ -24,8 +24,8 @@
                    TextWrapping="Wrap"
                    Text="{Binding Description}"/>
 
-        <ContentPresenter Content="{Binding Operador}" Grid.Row="1"/>
+        <ContentPresenter Content="{Binding Operator}" Grid.Row="1"/>
 
-        <ContentPresenter Content="{Binding Operador}" Grid.Row="2"/>
+        <ContentPresenter Content="{Binding Operator}" Grid.Row="2"/>
     </Grid>
 </UserControl>

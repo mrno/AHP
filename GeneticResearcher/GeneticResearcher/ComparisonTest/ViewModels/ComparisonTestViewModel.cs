@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ComparisonTest.ViewModels
@@ -25,6 +26,7 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
             _inputMatrix = new MatrixViewModel(4);
             ComparableExperimentFirst = new ComparableExperimentViewModel(4, "Experimento 1");
             ComparableExperimentSecond = new ComparableExperimentViewModel(4, "Experimento 2");
+            ComparableExperimentThird = new ComparableExperimentViewModel(4, "Experimento 3");
             CommonExperimentSummary = new ExperimentViewModel(new SesionExperimentacion());
         }
 
@@ -67,9 +69,11 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
                     Matrix.Matrix = new double[_dimension,_dimension];
                     ComparableExperimentFirst.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
                     ComparableExperimentSecond.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
+                    ComparableExperimentThird.Matrix.Matrix.Matrix = new double[_dimension, _dimension];
 
                     ComparableExperimentFirst.Distance.Matrix = new double[_dimension, _dimension];
                     ComparableExperimentSecond.Distance.Matrix = new double[_dimension, _dimension];
+                    ComparableExperimentThird.Distance.Matrix = new double[_dimension, _dimension];
                     //Matrix = new double[_dimension, _dimension];
                     //OnPropertyChanged("Matriz");
                     //OnPropertyChanged("Rows");
@@ -84,6 +88,8 @@ namespace GeneticResearcher.ComparisonTest.ViewModels
 
         public ComparableExperimentViewModel ComparableExperimentFirst { get; set; }
         public ComparableExperimentViewModel ComparableExperimentSecond { get; set; }
+        public ComparableExperimentViewModel ComparableExperimentThird { get; set; }
+        
 
         public ExperimentViewModel CommonExperimentSummary { get; private set; }
 

@@ -64,6 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complementos\ElementoAG.cs" />
+    <Compile Include="FacadeGAModule.cs" />
     <Compile Include="Persistencia\ConjuntoMatriz.cs" />
     <Compile Include="Complementos\Extensions.cs" />
     <Compile Include="Persistencia\ConjuntoOrdenN.cs" />

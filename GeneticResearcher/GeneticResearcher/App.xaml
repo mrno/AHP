@@ -306,8 +306,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <ToggleButton Grid.Row="0"
-                                                  IsChecked="{Binding Path=IsExpanded,Mode=TwoWay,
-                                        RelativeSource={RelativeSource TemplatedParent}}"
+                                                  IsChecked="{Binding Path=IsExpanded,Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                                                   OverridesDefaultStyle="True" Template="{StaticResource ExpanderToggleButtonRL}" />
                                     <ContentPresenter Grid.Row="1" Margin="4" 
                                                       ContentSource="Header"
@@ -316,11 +315,8 @@
                             </Border>
                             <Border Name="Content" Grid.Column="1" Background="{StaticResource appColorContentBackground}"
                                     BorderBrush="{StaticResource appColorContentBorderBrush}" 
-                                    BorderThickness="0,1,1,1" VerticalAlignment="Stretch" >
-                                <!-- 
-                                    MaxHeight="{Binding ElementName=Content, Path=ActualHeight}" -->
-
-                                <ContentPresenter  Margin="4" ContentSource="Content" VerticalAlignment="Center" />
+                                    BorderThickness="0,1,1,1" >
+                                <ContentPresenter  Margin="4" ContentSource="Content" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" />
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>

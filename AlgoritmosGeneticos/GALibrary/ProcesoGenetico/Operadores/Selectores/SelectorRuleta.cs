@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GALibrary.Complementos;
 using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.Operadores.Selectores
 {
+    [ElementoAG(TipoElementoAG.Operador, "SelectorRuleta")]
     public class SelectorRuleta : SelectorAbstracto
     {
         public override IEnumerable<Individuo> Operar(Poblacion poblacion, int nroSeleccionados)

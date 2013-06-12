@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
@@ -12,25 +13,25 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
     {
         #region Fields
 
-        readonly SesionExperimentacion _sesion;
+        readonly SesionExperimentacion _session;
         bool _isCurrentPage;
 
         #endregion // Fields
 
         #region Constructor
 
-        protected ExperimentWizardPageViewModelBase(SesionExperimentacion sesion)
+        protected ExperimentWizardPageViewModelBase(SesionExperimentacion session)
         {
-            _sesion = sesion;
+            _session = session;
         }
 
         #endregion // Constructor
 
         #region Properties
 
-        public SesionExperimentacion Sesion
+        public SesionExperimentacion Session
         {
-            get { return _sesion; }
+            get { return _session; }
         } 
 
         public abstract string DisplayName { get; }
@@ -60,6 +61,8 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         /// next page in the workflow.
         /// </summary>
         internal abstract bool IsValid();
+
+        internal abstract void SaveChangesInExperimentSession();
 
         #endregion // Methods
 

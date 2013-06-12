@@ -20,7 +20,7 @@
 
         <ContentPresenter Grid.Column="0" Content="{Binding Matrix}" VerticalAlignment="Center" />
 
-        <Expander Grid.Column="1" ExpandDirection="Right" Style="{StaticResource expanderVerticalStyle}">
+        <Expander Grid.Column="1" ExpandDirection="Right" IsExpanded="True" Style="{StaticResource expanderVerticalStyle}">
             <Expander.Header>
                 <TextBlock Margin="5"
                            Foreground="{StaticResource appColorHeaderForegroundText}"

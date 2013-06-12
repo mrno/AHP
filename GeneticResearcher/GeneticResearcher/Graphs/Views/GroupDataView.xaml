@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ComboBoxItemTemplate">
+            <ContentPresenter Content="{Binding DisplayName}"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -19,16 +25,17 @@
         <TextBlock Grid.Column="0" Grid.Row="0" Margin="10" Text="Orden" VerticalAlignment="Center" />
         <TextBlock Grid.Column="0" Grid.Row="1" Margin="10" Text="Nivel de Inconsistencia" VerticalAlignment="Center" />
 
-        <ComboBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" SelectedIndex="0">
-            <ComboBoxItem Content="No"/>
-            <ComboBoxItem Content="1º"/>
-            <ComboBoxItem Content="2º"/>
-        </ComboBox>
+        <ComboBox Grid.Column="1" 
+                  Grid.Row="0" 
+                  VerticalAlignment="Center" 
+                  SelectedItem="{Binding FirstOption}"
+                  ItemsSource="{Binding OrderOptions}"
+                  ItemTemplate="{StaticResource ComboBoxItemTemplate}"/>
 
-        <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" SelectedIndex="0">
-            <ComboBoxItem Content="No"/>
-            <ComboBoxItem Content="1º"/>
-            <ComboBoxItem Content="2º"/>
-        </ComboBox>
+        <ComboBox Grid.Column="1" Grid.Row="1" 
+                  VerticalAlignment="Center" 
+                  SelectedItem="{Binding SecondOption}"
+                  ItemsSource="{Binding OrderOptions}"
+                  ItemTemplate="{StaticResource ComboBoxItemTemplate}"/>
     </Grid>
 </UserControl>

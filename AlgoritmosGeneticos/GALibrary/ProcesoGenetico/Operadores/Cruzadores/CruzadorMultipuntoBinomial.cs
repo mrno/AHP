@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using GALibrary.Complementos;
 using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.Operadores.Cruzadores
 {
+    [ElementoAG(TipoElementoAG.Operador, "CruzadorMultipuntoBinomial")]
     public class CruzadorMultipuntoBinomial : CruzadorAbstracto
     {
         public override IEnumerable<Individuo> Operar(Poblacion poblacion, int cantidadHijos)

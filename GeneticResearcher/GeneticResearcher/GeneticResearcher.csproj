@@ -39,6 +39,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Common\SorteableObservableCollection.cs" />
     <Compile Include="Common\VirtualToggleButton.cs" />
     <Compile Include="ComparisonTestWindow.xaml.cs">
       <DependentUpon>ComparisonTestWindow.xaml</DependentUpon>
@@ -112,10 +114,20 @@
     <Compile Include="ExperimentWizard\Views\SummaryView.xaml.cs">
       <DependentUpon>SummaryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Graphs\ViewModels\CheckBoxTreeViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\GraphicConfigurationViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\GraphicViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\InconsistenciesCheckBoxTreeViewModel.cs" />
+    <Compile Include="Graphs\ViewModels\OrderCheckBoxTreeViewModel.cs" />
+    <Compile Include="Graphs\Views\GraphicConfigurationView.xaml.cs">
+      <DependentUpon>GraphicConfigurationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Graphs\Views\GraphicView.xaml.cs">
+      <DependentUpon>GraphicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\CheckBoxTreeViewModel.cs" />
     <Compile Include="Graphs\ViewModels\DisplayDataViewModel.cs" />
     <Compile Include="Graphs\ViewModels\GroupDataViewModel.cs" />
-    <Compile Include="Graphs\ViewModels\ICheckBoxTreeViewModel.cs" />
+    <Compile Include="ViewModels\ICheckBoxTreeViewModel.cs" />
     <Compile Include="Graphs\ViewModels\OrderDataViewModel.cs" />
     <Compile Include="Graphs\Views\DisplayDataView.xaml.cs">
       <DependentUpon>DisplayDataView.xaml</DependentUpon>
@@ -140,10 +152,9 @@
     <Compile Include="ExperimentWizard\ViewModels\StartViewModel.cs" />
     <Compile Include="ViewModels\ExperimentResultsViewModel.cs" />
     <Compile Include="ViewModels\ExperimentViewModel.cs" />
-    <Compile Include="ViewModels\IConjuntoMatrizViewModel.cs" />
     <Compile Include="ViewModels\ConjuntoMatrizViewModel.cs" />
-    <Compile Include="ViewModels\OperadorControlViewModel.cs" />
-    <Compile Include="ViewModels\OperadorViewModel.cs" />
+    <Compile Include="ViewModels\OperatorControlViewModel.cs" />
+    <Compile Include="ViewModels\OperatorViewModel.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\StopConditionViewModel.cs" />
     <Compile Include="Views\ConjuntoMatrizView.xaml.cs">
@@ -155,8 +166,8 @@
     <Compile Include="Views\ExperimentView.xaml.cs">
       <DependentUpon>ExperimentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OperadorControlView.xaml.cs">
-      <DependentUpon>OperadorControlView.xaml</DependentUpon>
+    <Compile Include="Views\OperatorControlView.xaml.cs">
+      <DependentUpon>OperatorControlView.xaml</DependentUpon>
     </Compile>
     <Page Include="ComparisonTestWindow.xaml">
       <SubType>Designer</SubType>
@@ -222,6 +233,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Graphs\Views\GraphicConfigurationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Graphs\Views\GraphicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Graphs\Views\GroupDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -258,7 +277,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OperadorControlView.xaml">
+    <Page Include="Views\OperatorControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -290,9 +309,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\AlgoritmosGeneticos\GALibrary\GALibrary.csproj">
       <Project>{940c3cd7-cb24-4ea0-99af-d7bf942c4748}</Project>

@@ -11,7 +11,7 @@ namespace GeneticResearcher.Command
     /// default return value for the CanExecute
     /// method is 'true'.
     /// </summary>
-    internal class RelayCommand<T> : ICommand
+    public class RelayCommand<T> : ICommand
     {
         #region Fields
 
@@ -80,7 +80,7 @@ namespace GeneticResearcher.Command
     /// default return value for the CanExecute
     /// method is 'true'.
     /// </summary>
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         #region Fields
 

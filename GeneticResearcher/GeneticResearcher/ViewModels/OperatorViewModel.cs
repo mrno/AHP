@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GeneticResearcher.ViewModels
 {
-    public class OperadorViewModel : INotifyPropertyChanged
+    public class OperatorViewModel : INotifyPropertyChanged
     {
         #region Fields
         
@@ -18,13 +18,13 @@ namespace GeneticResearcher.ViewModels
 
         #region Constructor
 
-        public OperadorViewModel(string displayName)
+        public OperatorViewModel(string displayName)
         {
             _displayName = displayName;
             _name = displayName;
         }
 
-        public OperadorViewModel(string displayName, string name)
+        public OperatorViewModel(string displayName, string name)
         {
             _displayName = displayName;
             _name = name;
@@ -41,7 +41,7 @@ namespace GeneticResearcher.ViewModels
         {
             get { return _displayName; }
         }
-
+        
         /// <summary>
         /// Returns the name of the operator.
         /// </summary>

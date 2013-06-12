@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GeneticResearcher.Graphs.ViewModels
 {
-    class OrderDataViewModel
+    public class OrderDataViewModel
     {
     }
 }

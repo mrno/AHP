@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GeneticResearcher.ViewModels;
+using GeneticResearcher.Graphs.ViewModels;
 
-namespace GeneticResearcher.Graphs.ViewModels
+namespace GeneticResearcher.ViewModels
 {
     public abstract class CheckBoxTreeViewModel : ICheckBoxTreeViewModel
     {
@@ -17,7 +13,7 @@ namespace GeneticResearcher.Graphs.ViewModels
 
         #endregion // Data
 
-        #region CreateFoos
+        #region Constructors & Initialization
         
         protected CheckBoxTreeViewModel(string name)
         {
@@ -25,7 +21,7 @@ namespace GeneticResearcher.Graphs.ViewModels
             Children = new List<CheckBoxTreeViewModel>();
         }
 
-        public abstract List<CheckBoxTreeViewModel> CreateChildren();
+        public abstract void LoadChildren();
     
         protected void Initialize()
         {
@@ -36,15 +32,17 @@ namespace GeneticResearcher.Graphs.ViewModels
             }
         }
 
-        #endregion // CreateFoos
+        #endregion
 
         #region Properties
 
-        public List<CheckBoxTreeViewModel> Children { get; private set; }
+        public List<CheckBoxTreeViewModel> Children { get; protected set; }
 
-        public bool IsInitiallySelected { get; private set; }
+        public bool ChildrenLoaded { get; protected set; }
 
-        public string Name { get; private set; }
+        public bool IsInitiallySelected { get; protected set; }
+
+        public string Name { get; protected set; }
         
         #region IsChecked
 
@@ -106,7 +104,7 @@ namespace GeneticResearcher.Graphs.ViewModels
 
         #endregion
 
-        private void OnPropertyChanged(string prop)
+        protected void OnPropertyChanged(string prop)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));

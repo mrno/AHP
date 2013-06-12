@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="GeneticResearcher.Graphs.Views.GraphicConfigurationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:graphicView="clr-namespace:GeneticResearcher.Graphs.Views"
+             xmlns:ViewModels="clr-namespace:GeneticResearcher.Graphs.ViewModels" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="700">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:DisplayDataViewModel}">
+            <graphicView:DisplayDataView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:GroupDataViewModel}">
+            <graphicView:GroupDataView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:OrderDataViewModel}">
+            <graphicView:OrderDataView />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Expander Name="Configuracion" Grid.Column="0" IsExpanded="True"
+                      Style="{StaticResource expanderVerticalStyle}" >
+        <Expander.Header>
+            <TextBlock Margin="5"
+                           Foreground="{StaticResource appColorHeaderForegroundText}"
+                           Text="Configuración" 
+                           RenderTransformOrigin="0.5,0.5" 
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
+                <TextBlock.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform CenterX="0" CenterY="0" Angle="-90" />
+                    </TransformGroup>
+                </TextBlock.LayoutTransform>
+            </TextBlock>
+        </Expander.Header>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Conjuntos a Mostrar" 
+                      Grid.Row="0"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      Template="{StaticResource ResourceKey=groupBoxTemplate}" >
+                <ContentPresenter Content="{Binding DisplayData}"/>
+            </GroupBox>
+
+            <GroupBox Header="Agrupación de Matrices" 
+                      Grid.Row="1"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      Template="{StaticResource ResourceKey=groupBoxTemplate}" >
+                <ContentPresenter Content="{Binding GroupData}"/>
+            </GroupBox>
+
+            <GroupBox Header="Orden de Matrices" 
+                      Grid.Row="2"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      Template="{StaticResource ResourceKey=groupBoxTemplate}" >
+                <ContentPresenter Grid.Column="2" Content="{Binding OrderData}"/>
+            </GroupBox>
+            
+        </Grid>
+
+    </Expander>
+
+</UserControl>

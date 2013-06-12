@@ -4,16 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GALibrary.Persistencia;
+using GeneticResearcher.Common;
+using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
     public class SummaryViewModel : ExperimentWizardPageViewModelBase
     {
-        public SummaryViewModel(SesionExperimentacion sesion) : base(sesion)
+        public SummaryViewModel(SesionExperimentacion session)
+            : base(session)
         {
+            Experiment = new ExperimentViewModel(session);
         }
 
         #region Overrides of ExperimentWizardPageViewModelBase
+
+        public ExperimentViewModel Experiment { get; private set; }
 
         public override string DisplayName
         {
@@ -23,6 +29,10 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
         }
 
         public override string Description

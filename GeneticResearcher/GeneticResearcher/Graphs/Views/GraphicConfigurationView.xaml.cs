@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GeneticResearcher.Views
+namespace GeneticResearcher.Graphs.Views
 {
     /// <summary>
-    /// Lógica de interacción para OperadorControlView.xaml
+    /// Lógica de interacción para GraphicConfigurationView.xaml
     /// </summary>
-    public partial class OperadorControlView : UserControl
+    public partial class GraphicConfigurationView : UserControl
     {
-        public OperadorControlView()
+        public GraphicConfigurationView()
         {
             InitializeComponent();
         }

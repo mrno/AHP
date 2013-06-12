@@ -4,11 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:ViewModels="clr-namespace:GeneticResearcher.ViewModels"
-             xmlns:view="clr-namespace:GeneticResearcher.Views" mc:Ignorable="d" 
+             xmlns:view="clr-namespace:GeneticResearcher.Views"
+             xmlns:ViewModels1="clr-namespace:GeneticResearcher.Graphs.ViewModels"
+             xmlns:graphicView="clr-namespace:GeneticResearcher.Graphs.Views" mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:ExperimentViewModel}">
             <view:ExperimentView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels1:GraphicViewModel}">
+            <graphicView:GraphicView />
         </DataTemplate>
     </UserControl.Resources>
     
@@ -51,10 +56,22 @@
 
         <GroupBox Header="Resultados del Experimento" 
                   Grid.Column="1" Grid.Row="0" Grid.RowSpan="2"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Template="{StaticResource ResourceKey=groupBoxTemplate}">
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <ContentPresenter Grid.Column="0" Content="{Binding Graphic}" VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
+                <GroupBox Header="Grafico" HorizontalAlignment="Stretch" 
+                          Grid.Column="1"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                          Template="{StaticResource ResourceKey=groupBoxTemplate}">
+                </GroupBox>
+            </Grid>
         </GroupBox>
 
     </Grid>

@@ -4,10 +4,12 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary.Complementos;
 using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.CondicionParada
 {
+    [ElementoAG(TipoElementoAG.CondicionParada, "ParadaConvergencia")]
     public class ParadaConvergencia: ICondicionParada
     {
         private double _convergencia;

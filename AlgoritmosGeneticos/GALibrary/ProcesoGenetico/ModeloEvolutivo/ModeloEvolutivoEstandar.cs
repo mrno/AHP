@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using GALibrary.Complementos;
 using GALibrary.ProcesoGenetico.Entidades;
 using GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad;
 using GALibrary.ProcesoGenetico.CondicionParada;
 
 namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 {
+    [ElementoAG(TipoElementoAG.ModeloEvolutivo, "ModeloEvolutivoEstandar")]
     public class ModeloEvolutivoEstandar : ModeloEvolutivoAbstracto
     {
         //public ModeloEvolutivoEstandar()
