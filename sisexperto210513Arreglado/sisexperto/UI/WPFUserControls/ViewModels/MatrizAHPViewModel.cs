@@ -15,6 +15,18 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             Nombre = nombre;
             ElementosAComparar = new ReadOnlyCollection<string>(elementos);
             ImportanciaDeElementos = new OrdenImportanciaAHPViewModel(elementos);
+
+            var filas = new List<FilaAHPViewModel>();
+            foreach (var elemento in elementos)
+            {
+                var celdas = new List<CeldaAHPViewModel>();
+                foreach (var elem in elementos)
+                {
+                    celdas.Add(new CeldaAHPViewModel());
+                }
+                filas.Add(new FilaAHPViewModel() {Celdas = new ObservableCollection<CeldaAHPViewModel>(celdas)});
+            }
+            Filas = new ObservableCollection<FilaAHPViewModel>(filas);
         }
 
         #endregion
@@ -39,7 +51,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
     
     public class CeldaAHPViewModel
     {
-        public int Valor { get; set; }
+        public string Valor { get; set; }
     }
 
 }

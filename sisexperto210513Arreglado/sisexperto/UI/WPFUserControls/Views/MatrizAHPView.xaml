@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
-             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
+             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:OrdenImportanciaAHPViewModel}">
@@ -13,69 +14,128 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Título de la matriz -->
-        <ContentPresenter Grid.Column="0" 
-                          Grid.Row="0" 
-                          Grid.ColumnSpan="2" 
+        <ContentPresenter Grid.Row="0" 
                           Margin="5"
                           Content="{Binding Nombre}"
                           HorizontalAlignment="Stretch"/>
 
         <!-- Comparador de Importancia de Elementos Comparados -->
-        <ContentPresenter Grid.Column="0" 
-                          Grid.Row="1" 
-                          Grid.ColumnSpan="2" 
+        <ContentPresenter Grid.Row="1"  
                           Margin="5"
                           Content="{Binding ImportanciaDeElementos}"/>
         
-        <!-- Headers elementos de las columnas -->
-        <ListBox Grid.Column="1" 
-                      Grid.Row="2" 
-                      HorizontalContentAlignment="Stretch" 
+        <GroupBox Grid.Row="2" Header="Matriz" Padding="5">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <!-- Headers elementos de las columnas -->
+                <ItemsControl 
+                      Margin="20,0,-20,0"  
+                      Grid.Column="1" 
+                      Grid.Row="0" 
+                      HorizontalContentAlignment="Center" 
                       HorizontalAlignment="Stretch"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Stretch"
                       ItemsSource="{Binding ElementosAComparar}">
 
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{TemplateBinding Content}">
-                        <TextBlock.RenderTransform>
-                            <RotateTransform Angle="-30"/>
-                        </TextBlock.RenderTransform>
-                    </TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-                    </StackPanel>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock.RenderTransform>
+                                    <RotateTransform Angle="-45"/>
+                                </TextBlock.RenderTransform>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
 
-        </ListBox>
+                </ItemsControl>
 
-        <!-- Headers elementos de las filas -->
-        <ListBox Grid.Column="0" Background="Red"
-                      Grid.Row="3" 
-                        VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" 
+                <!-- Headers elementos de las filas -->
+                <ItemsControl Grid.Column="0"
+                      Grid.Row="1" 
+                      HorizontalContentAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Stretch"
                       ItemsSource="{Binding ElementosAComparar}">
-            
-        </ListBox>
 
-        <!-- Matriz -->
-        <ItemsControl Grid.Column="1" 
-                      Grid.Row="3" Background="Black">
-            
-        </ItemsControl>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                </ItemsControl>
+
+                <!-- Matriz -->
+                <ItemsControl Grid.Column="1" 
+                      Grid.Row="1" 
+                      HorizontalContentAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Stretch"
+                      ItemsSource="{Binding Filas}">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ItemsControl 
+                      HorizontalContentAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Stretch"
+                      ItemsSource="{Binding Celdas}">
+
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Valor}" MinWidth="30" MinHeight="30" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Rows="1"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Grid>
+        </GroupBox>
     </Grid>
 </UserControl>

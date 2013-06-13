@@ -39,7 +39,15 @@
         <GroupBox Grid.Column="0" 
                   Grid.Row="1" 
                   Header="Comparación de Alternativas">
-            <DataGrid>
+            <DataGrid CanUserReorderColumns="False" 
+                      CanUserResizeColumns="False" 
+                      CanUserResizeRows="False" 
+                      CanUserSortColumns="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Criterio" Width="Auto" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Completo" Width="Auto" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Consistente" Width="Auto" IsReadOnly="True"/>
+                </DataGrid.Columns>
             </DataGrid>
         </GroupBox>
         

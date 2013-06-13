@@ -58,7 +58,14 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             get { return _matricesAHPAlternativas; }
         }
 
-        public MatrizAHPViewModel MatrizSeleccionada { get { return new MatrizAHPViewModel("Prueba", new List<string>() {"uno", "dos", "tres"}); } }
+        public MatrizAHPViewModel MatrizSeleccionada
+        {
+            get
+            {
+                return new MatrizAHPViewModel("Prueba", new List<string>() { "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Alternativa 5", 
+            "Alternativa 6", "Alternativa 7", "Alternativa 8", "Alternativa 9" });
+        }
+        }
 
         #endregion
     }
