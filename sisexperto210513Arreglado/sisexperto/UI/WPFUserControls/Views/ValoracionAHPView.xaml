@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
-             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
+             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MatrizAHPViewModel}">
@@ -30,31 +31,56 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <CheckBox Grid.Row="0" Margin="5" Content="Valoracion Completa" IsHitTestVisible="False"/>
-                <CheckBox Grid.Row="1" Margin="5,0,5,5" Content="Valoracion Consistente" IsHitTestVisible="False"/>
+                <CheckBox Grid.Row="0" 
+                          Margin="5" 
+                          Content="Valoracion Completa" 
+                          IsHitTestVisible="False"
+                          IsChecked="{Binding MatrizCriterio.Completa}"/>
+                <CheckBox Grid.Row="1" 
+                          Margin="5,0,5,5" 
+                          Content="Valoracion Consistente" 
+                          IsHitTestVisible="False"
+                          IsChecked="{Binding MatrizCriterio.Consistente}"/>
                 <Button Grid.Row="2" 
                         Margin="5" 
                         Content="Ver Matriz" 
                         HorizontalAlignment="Center" 
-                        Command="{Binding MostrarMatrizCriterio}"/>
+                        Command="{Binding MostrarMatrizComando}" CommandParameter="{Binding MatrizCriterio}"/>
             </Grid>
         </GroupBox>
         
         <GroupBox Grid.Column="0" 
                   Grid.Row="1" 
                   Header="Comparación de Alternativas">
-            <DataGrid CanUserReorderColumns="False" 
+            
+            <DataGrid Name="GridAlternativas"
+                      CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
                       CanUserResizeRows="False" 
                       CanUserSortColumns="True"
                       AutoGenerateColumns="False"
-                      ItemsSource="{Binding MatricesPorCriterio}"
-                      SelectedItem="{Binding MatrizSeleccionada, Mode=OneWayToSource}">
+                      ItemsSource="{Binding MatricesPorCriterio, Mode=OneWay}"
+                      SelectedItem="{Binding MatrizSeleccionada, Mode=OneTime}">
+                
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Criterio" Binding="{Binding Nombre}" Width="Auto" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Completo" Binding="{Binding Completa}" Width="Auto" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Consistente" Binding="{Binding Consistente}" Width="Auto" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Criterio" 
+                                        Binding="{Binding Nombre}" 
+                                        Width="Auto" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Completo" 
+                                            Binding="{Binding Completa}" 
+                                            Width="Auto" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Consistente" 
+                                            Binding="{Binding Consistente}" 
+                                            Width="Auto" IsReadOnly="True"/>
                 </DataGrid.Columns>
+                
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding MostrarMatrizComando}" 
+                                               CommandParameter="{Binding ElementName=GridAlternativas, Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
             </DataGrid>
         </GroupBox>
         

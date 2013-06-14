@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using GeneticResearcher.Command;
 using sisExperto.Entidades;
 using sisexperto.Entidades.AHP;
+using System.ComponentModel;
 
 namespace sisexperto.UI.WPFUserControls.ViewModels
 {
-    public class ValoracionAHPViewModel
+    public class ValoracionAHPViewModel : INotifyPropertyChanged
     {
         #region Atributos
-        
-        private MatrizAHPViewModel _matrizAHPCriterio;
+
         private ReadOnlyCollection<MatrizAHPViewModel> _matricesAHPAlternativas;
 
         #endregion
@@ -21,13 +22,25 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         public ValoracionAHPViewModel()
         {
+            MatrizCriterio = new MatrizAHPViewModel("Criterios", new List<string>() { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"})
+                {Completa = true, Consistente = true};
+            
+            _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(new List<MatrizAHPViewModel>()
+                                                                                      {
+                                                                                          new MatrizAHPViewModel("a1", new List<string>() {"uno", "dos", "tres", "cuatro"}),
+                                                                                          new MatrizAHPViewModel("a2", new List<string>() {"uno", "dos", "tres", "cuatro", "cinco"}),
+                                                                                          new MatrizAHPViewModel("a3", new List<string>() {"uno", "dos", "tres", "cuatro", "cinco", "seis"}),
+                                                                                          new MatrizAHPViewModel("a4", new List<string>() {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho"})
+                                                                                      });
+
+            MostrarMatrizComando = new RelayCommand<MatrizAHPViewModel>(MostrarMatriz);
         }
 
         public ValoracionAHPViewModel(IEnumerable<Criterio> criterios, CriterioMatriz matrizCriterio,
                                       IEnumerable<Alternativa> alternativas,
                                       IEnumerable<AlternativaMatriz> matricesAlternativas)
         {
-            _matrizAHPCriterio = new MatrizAHPViewModel("Comparación de Criterios",
+            MatrizCriterio = new MatrizAHPViewModel("Comparación de Criterios",
                                                        criterios.Select(x => x.Nombre).ToList())
             {
                 Matriz = matrizCriterio.Matriz,
@@ -47,37 +60,54 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                                            }).ToList();
 
             _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(matricesAlternativasModels);
+
+            MostrarMatrizComando = new RelayCommand<MatrizAHPViewModel>(MostrarMatriz);
         }
 
         #endregion
 
         #region Propiedades
 
+        public MatrizAHPViewModel MatrizCriterio { get; private set; }
+
         public IEnumerable<MatrizAHPViewModel> MatricesPorCriterio
         {
             get { return _matricesAHPAlternativas; }
         }
+        
+        private MatrizAHPViewModel _matrizSeleccionada;
 
-
-        private MatrizAHPViewModel _matrizAHPViewModel;
         public MatrizAHPViewModel MatrizSeleccionada
         {
-            get
+            get { return _matrizSeleccionada; }
+            set
             {
-                return new MatrizAHPViewModel("Prueba", new List<string>()
-                                                            {
-                                                                "Alternativa 1",
-                                                                "Alternativa 2",
-                                                                "Alternativa 3",
-                                                                "Alternativa 4",
-                                                                "Alternativa 5",
-                                                                "Alternativa 6",
-                                                                "Alternativa 7",
-                                                                "Alternativa 8",
-                                                                "Alternativa 9"
-                                                            });
+                _matrizSeleccionada = value;
+                OnPropertyChanged("MatrizSeleccionada");
             }
-            set { _matrizAHPViewModel = value;  }
+        }
+
+        #endregion
+
+        #region Comandos
+
+        public RelayCommand<MatrizAHPViewModel> MostrarMatrizComando { get; set; }
+        private void MostrarMatriz(MatrizAHPViewModel matrizAHPViewModel)
+        {
+            MatrizSeleccionada = matrizAHPViewModel;
+            OnPropertyChanged("MatrizSeleccionada");
+        }
+
+        #endregion
+
+        #region PropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion

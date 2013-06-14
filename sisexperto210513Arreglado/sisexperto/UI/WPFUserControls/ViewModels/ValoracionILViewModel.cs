@@ -1,4 +1,5 @@
-﻿using sisexperto.Entidades.IL;
+﻿using GeneticResearcher.Command;
+using sisexperto.Entidades.IL;
 using sisExperto.Entidades;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,13 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 {
     public class ValoracionILViewModel : INotifyPropertyChanged
     {
-        public ReadOnlyCollection<ValorarAlternativaILViewModel> AlternativasIL { get; private set; }
-        public ReadOnlyCollection<string> Etiquetas { get; private set; }
-
+        #region Atributos
+        
         private ValorarAlternativaILViewModel _alternativaSeleccionada;
-        public ValorarAlternativaILViewModel AlternativaSeleccionada
-        {
-            get { return _alternativaSeleccionada; }
-            set
-            {
-                _alternativaSeleccionada = value;
-                OnPropertyChanged("AlternativaSeleccionada");
-            }
-        }
+
+        #endregion
+
+        #region Constructores
 
         public ValoracionILViewModel()
         {
@@ -135,6 +130,42 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         }
 
+        #endregion
+
+        #region Propiedades
+
+        public ReadOnlyCollection<ValorarAlternativaILViewModel> AlternativasIL { get; private set; }
+
+        public ReadOnlyCollection<string> Etiquetas { get; private set; }
+
+        public ValorarAlternativaILViewModel AlternativaSeleccionada
+        {
+            get { return _alternativaSeleccionada; }
+            set
+            {
+                _alternativaSeleccionada = value;
+                OnPropertyChanged("AlternativaSeleccionada");
+            }
+        }
+
+        #endregion
+
+        #region Comandos
+
+        //public RelayCommand<OperatorViewModel> AddCommand { get; set; }
+        //private void OnAddOperator(OperatorViewModel selectedOperator)
+        //{
+        //    SelectedOperators.Add(selectedOperator);
+        //    OnPropertyChanged("AvailableOperators");
+
+        //    SelectedOperator = selectedOperator;
+        //    OnPropertyChanged("SelectedOperator");
+        //}
+
+        #endregion
+
+        #region PropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -142,5 +173,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
     }
 }

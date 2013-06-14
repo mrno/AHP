@@ -82,6 +82,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider" />
@@ -259,6 +260,7 @@
     <Compile Include="UI\ValorarProyectos.Designer.cs">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\WPFUserControls\Commands\RelayCommand.cs" />
     <Compile Include="UI\WPFUserControls\Custom\CustomTickBar.cs" />
     <Compile Include="UI\WPFUserControls\ValoracionControl.xaml.cs">
       <DependentUpon>ValoracionControl.xaml</DependentUpon>
