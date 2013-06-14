@@ -84,7 +84,9 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
 
@@ -116,7 +118,14 @@
 
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBox Text="{Binding Valor}" MinWidth="30" MinHeight="30" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                                        <TextBox IsEnabled="{Binding Editable}"
+                                                 Text="{Binding ValorTexto}" 
+                                                 MinWidth="30" 
+                                                 MinHeight="30" 
+                                                 VerticalAlignment="Center" 
+                                                 HorizontalAlignment="Center" 
+                                                 VerticalContentAlignment="Center" 
+                                                 HorizontalContentAlignment="Center"/>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
 

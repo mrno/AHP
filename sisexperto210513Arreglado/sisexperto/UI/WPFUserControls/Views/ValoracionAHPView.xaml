@@ -30,9 +30,13 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <CheckBox Grid.Row="0" Margin="5" Content="Valoracion Completa"/>
-                <CheckBox Grid.Row="1" Margin="5,0,5,5" Content="Valoracion Consistente"/>
-                <Button Grid.Row="2" Margin="5" Content="Ver Matriz" HorizontalAlignment="Center"/>
+                <CheckBox Grid.Row="0" Margin="5" Content="Valoracion Completa" IsHitTestVisible="False"/>
+                <CheckBox Grid.Row="1" Margin="5,0,5,5" Content="Valoracion Consistente" IsHitTestVisible="False"/>
+                <Button Grid.Row="2" 
+                        Margin="5" 
+                        Content="Ver Matriz" 
+                        HorizontalAlignment="Center" 
+                        Command="{Binding MostrarMatrizCriterio}"/>
             </Grid>
         </GroupBox>
         
@@ -42,11 +46,14 @@
             <DataGrid CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
                       CanUserResizeRows="False" 
-                      CanUserSortColumns="True">
+                      CanUserSortColumns="True"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding MatricesPorCriterio}"
+                      SelectedItem="{Binding MatrizSeleccionada, Mode=OneWayToSource}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Criterio" Width="Auto" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Completo" Width="Auto" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Header="Consistente" Width="Auto" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Criterio" Binding="{Binding Nombre}" Width="Auto" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Completo" Binding="{Binding Completa}" Width="Auto" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Header="Consistente" Binding="{Binding Consistente}" Width="Auto" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </GroupBox>

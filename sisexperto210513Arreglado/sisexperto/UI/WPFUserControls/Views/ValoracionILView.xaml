@@ -7,9 +7,89 @@
              xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModels:TrackILViewModel}">
-            <views:TrackIL/>
+        <DataTemplate DataType="{x:Type ViewModels:ValorarAlternativaILViewModel}">
+            <views:ValorarAlternativaILView/>
         </DataTemplate>
     </UserControl.Resources>
-    <ContentPresenter Content="{Binding TrackILViewModel}"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Column="0" 
+                  Header="Alternativas">
+            <DataGrid CanUserReorderColumns="False" 
+                      CanUserResizeColumns="False" 
+                      CanUserResizeRows="False" 
+                      CanUserSortColumns="True"
+                      AutoGenerateColumns="False"
+                      RowHeaderWidth="0"
+                      SelectionUnit="FullRow"
+                      SelectionMode="Single"
+                      HorizontalAlignment="Stretch" BorderThickness="0"
+                      SelectedValue="{Binding AlternativaSeleccionada, 
+                                             Mode=TwoWay}"
+                      ItemsSource="{Binding AlternativasIL}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nombre de Alternativa" Binding="{Binding Nombre}"
+                                        IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+
+        <GroupBox Grid.Column="1"
+                  Header="Valoraciones">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Grid.Column="0" Text="Valorando alternativa: "/>
+                    <TextBlock Grid.Column="1" Text="{Binding AlternativaSeleccionada.Nombre, Mode=OneWay}"/>
+                </Grid>
+                
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Etiquetas ↓ | Criterios →"/>
+                
+                <ItemsControl ItemsSource="{Binding Etiquetas}" 
+                              Grid.Column="0" Grid.Row="2">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Name="textBox" 
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                </ItemsControl>
+
+                <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+                              VerticalScrollBarVisibility="Disabled" 
+                              HorizontalScrollBarVisibility="Auto">
+                    <ContentPresenter Content="{Binding AlternativaSeleccionada, Mode=OneWay}"/>
+                </ScrollViewer>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
 </UserControl>

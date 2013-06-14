@@ -269,12 +269,17 @@
     <Compile Include="UI\WPFUserControls\ValorarProyectos.Designer.cs">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\WPFUserControls\ViewModels\CriterioILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\MatrizAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\OrdenImportanciaAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\TrackILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\ValoracionAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\ValoracionILViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\ValorarAlternativaILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\ValorarProyectosViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\Views\CriterioILView.xaml.cs">
+      <DependentUpon>CriterioILView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\WPFUserControls\Views\MatrizAHPView.xaml.cs">
       <DependentUpon>MatrizAHPView.xaml</DependentUpon>
     </Compile>
@@ -289,6 +294,9 @@
     </Compile>
     <Compile Include="UI\WPFUserControls\Views\ValoracionILView.xaml.cs">
       <DependentUpon>ValoracionILView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\ValorarAlternativaILView.xaml.cs">
+      <DependentUpon>ValorarAlternativaILView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\WPFUserControls\Views\ValorarProyectosView.xaml.cs">
       <DependentUpon>ValorarProyectosView.xaml</DependentUpon>
@@ -453,6 +461,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\WPFUserControls\Views\CriterioILView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\WPFUserControls\Views\MatrizAHPView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -470,6 +482,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\WPFUserControls\Views\ValoracionILView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\ValorarAlternativaILView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

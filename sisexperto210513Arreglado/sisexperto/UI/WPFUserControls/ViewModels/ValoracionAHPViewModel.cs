@@ -53,18 +53,31 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         #region Propiedades
 
-        public IEnumerable<MatrizAHPViewModel> ComparacionAlternativasPorCriterio
+        public IEnumerable<MatrizAHPViewModel> MatricesPorCriterio
         {
             get { return _matricesAHPAlternativas; }
         }
 
+
+        private MatrizAHPViewModel _matrizAHPViewModel;
         public MatrizAHPViewModel MatrizSeleccionada
         {
             get
             {
-                return new MatrizAHPViewModel("Prueba", new List<string>() { "Alternativa 1", "Alternativa 2", "Alternativa 3", "Alternativa 4", "Alternativa 5", 
-            "Alternativa 6", "Alternativa 7", "Alternativa 8", "Alternativa 9" });
-        }
+                return new MatrizAHPViewModel("Prueba", new List<string>()
+                                                            {
+                                                                "Alternativa 1",
+                                                                "Alternativa 2",
+                                                                "Alternativa 3",
+                                                                "Alternativa 4",
+                                                                "Alternativa 5",
+                                                                "Alternativa 6",
+                                                                "Alternativa 7",
+                                                                "Alternativa 8",
+                                                                "Alternativa 9"
+                                                            });
+            }
+            set { _matrizAHPViewModel = value;  }
         }
 
         #endregion
