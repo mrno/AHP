@@ -13,6 +13,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using sisexperto.UI.WPFUserControls.ViewModels;
 using sisexperto.UI.WPFUserControls.Views;
+using sisexperto.Entidades.AHP;
+using sisexperto.Entidades.IL;
 
 namespace sisexperto.UI.WPFUserControls
 {
@@ -27,6 +29,11 @@ namespace sisexperto.UI.WPFUserControls
             InitializeComponent();
             _valorarProyectosViewModel = new ValorarProyectosViewModel();
             this.DataContext = _valorarProyectosViewModel;
+        }
+
+        public void CargarValoraciones(ValoracionAHP valoracionAHP, ValoracionIL valoracionIL)
+        {
+            
         }
     }
 }

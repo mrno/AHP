@@ -22,7 +22,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         public ValoracionAHPViewModel()
         {
-            MatrizCriterio = new MatrizAHPViewModel("Criterios", new List<string>() { "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"})
+            MatrizCriterio = new MatrizAHPViewModel("Criterios", new List<string>() { "uno millon", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"})
                 {Completa = true, Consistente = true};
             
             _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(new List<MatrizAHPViewModel>()
@@ -94,6 +94,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         public RelayCommand<MatrizAHPViewModel> MostrarMatrizComando { get; set; }
         private void MostrarMatriz(MatrizAHPViewModel matrizAHPViewModel)
         {
+            if (MatrizSeleccionada == matrizAHPViewModel) return;
             MatrizSeleccionada = matrizAHPViewModel;
             OnPropertyChanged("MatrizSeleccionada");
         }

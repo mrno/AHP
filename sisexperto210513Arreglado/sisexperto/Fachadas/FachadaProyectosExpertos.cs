@@ -138,9 +138,7 @@ namespace sisExperto
         {
             return (from expEnProyecto in _experto.ProyectosAsignados
                     where expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
-                    select expEnProyecto
-
-                   ).FirstOrDefault();
+                    select expEnProyecto).FirstOrDefault();
         }
 
         public IEnumerable<Proyecto> SolicitarProyectosCreados(Experto e)

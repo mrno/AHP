@@ -17,11 +17,23 @@
     </UserControl.Resources>
     
     <TabControl>
-        <TabItem Header="Valoración AHP">
+        <TabItem Header="Valoración AHP" >
             <ContentPresenter Content="{Binding ValoracionAHP}"/>
+            <TabItem.Style>
+                <Style TargetType="TabItem">
+                    <Setter Property="IsEnabled" Value="{Binding TieneAHP}"/>
+                    <Setter Property="IsSelected" Value="{Binding MostrarAHP}"/>
+                </Style>
+            </TabItem.Style>
         </TabItem>
         <TabItem Header="Valoración IL">
             <ContentPresenter Content="{Binding ValoracionIL}"/>
+            <TabItem.Style>
+                <Style TargetType="TabItem">
+                    <Setter Property="IsEnabled" Value="{Binding TieneIL}"/>
+                    <Setter Property="IsSelected" Value="{Binding MostrarIL}"/>
+                </Style>
+            </TabItem.Style>
         </TabItem>
     </TabControl>
     

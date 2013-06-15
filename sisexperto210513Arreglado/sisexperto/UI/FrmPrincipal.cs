@@ -588,7 +588,7 @@ namespace sisExperto
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            var frmValorarProectos = new sisexperto.UI.WPFUserControls.ValorarProyectos();
+            var frmValorarProectos = new sisexperto.UI.WPFUserControls.ValorarProyectos(_experto, _proyectoSeleccionado, _fachadaProyectosExpertos);
             frmValorarProectos.ShowDialog();
         }
     }

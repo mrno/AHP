@@ -28,17 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.valoracionControl1 = new sisexperto.UI.WPFUserControls.ValoracionControl();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.comboBoxProyectos);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.elementHost1);
+            this.splitContainer1.Size = new System.Drawing.Size(784, 561);
+            this.splitContainer1.SplitterDistance = 40;
+            this.splitContainer1.TabIndex = 43;
+            // 
+            // comboBoxProyectos
+            // 
+            this.comboBoxProyectos.DisplayMember = "Nombre";
+            this.comboBoxProyectos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxProyectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxProyectos.FormattingEnabled = true;
+            this.comboBoxProyectos.Location = new System.Drawing.Point(93, 6);
+            this.comboBoxProyectos.Name = "comboBoxProyectos";
+            this.comboBoxProyectos.Size = new System.Drawing.Size(273, 28);
+            this.comboBoxProyectos.TabIndex = 44;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Proyecto:";
             // 
             // elementHost1
             // 
             this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.elementHost1.Location = new System.Drawing.Point(0, 0);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(647, 439);
-            this.elementHost1.TabIndex = 0;
+            this.elementHost1.Size = new System.Drawing.Size(784, 517);
+            this.elementHost1.TabIndex = 45;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.valoracionControl1;
             // 
@@ -46,17 +93,27 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 439);
-            this.Controls.Add(this.elementHost1);
+            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "ValorarProyectos";
             this.Text = "ValorarProyectos";
+            this.Load += new System.EventHandler(this.ValorarProyectos_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.ComboBox comboBoxProyectos;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Integration.ElementHost elementHost1;
         private ValoracionControl valoracionControl1;
+
     }
 }

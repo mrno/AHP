@@ -45,12 +45,12 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+                
                 <!-- Headers elementos de las columnas -->
                 <ItemsControl 
-                      Margin="20,0,-20,0"  
                       Grid.Column="1" 
                       Grid.Row="0" 
-                      HorizontalContentAlignment="Center" 
+                      HorizontalContentAlignment="Left" 
                       HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Center"
                       VerticalAlignment="Stretch"
@@ -58,7 +58,9 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="{TemplateBinding Content}" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center">
                                 <TextBlock.RenderTransform>
                                     <RotateTransform Angle="-45"/>
                                 </TextBlock.RenderTransform>
@@ -76,7 +78,7 @@
                 <!-- Headers elementos de las filas -->
                 <ItemsControl Grid.Column="0"
                       Grid.Row="1" 
-                      HorizontalContentAlignment="Center" 
+                      HorizontalContentAlignment="Left" 
                       HorizontalAlignment="Stretch"
                       VerticalContentAlignment="Center"
                       VerticalAlignment="Stretch"
@@ -86,7 +88,7 @@
                         <DataTemplate>
                             <TextBlock Text="{TemplateBinding Content}" 
                                        VerticalAlignment="Center" 
-                                       HorizontalAlignment="Center"/>
+                                       HorizontalAlignment="Left"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
 

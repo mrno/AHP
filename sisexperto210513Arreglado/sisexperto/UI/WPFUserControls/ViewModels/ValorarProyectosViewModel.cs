@@ -7,16 +7,29 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 {
     public class ValorarProyectosViewModel
     {
-        //public TrackILViewModel TrackILViewModel { get; set; }
-
         public ValoracionAHPViewModel ValoracionAHP { get; set; }
         public ValoracionILViewModel ValoracionIL { get; set; }
 
+        public bool TieneAHP
+        {
+            get { return ValoracionAHP != null; }
+        }
+
+        public bool TieneIL
+        {
+            get { return ValoracionIL != null; }
+        }
+
+        public bool MostrarAHP { get; set; }
+
+        public bool MostrarIL
+        {
+            get { return !MostrarAHP; }
+        }
+
         public ValorarProyectosViewModel()
         {
-            //TrackILViewModel = new TrackILViewModel();
-            ValoracionAHP = new ValoracionAHPViewModel();
-            ValoracionIL = new ValoracionILViewModel();
+            
         }
     }
 }
