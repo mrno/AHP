@@ -19,23 +19,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         #endregion
 
         #region Constructores
-
-        public ValoracionAHPViewModel()
-        {
-            MatrizCriterio = new MatrizAHPViewModel("Criterios", new List<string>() { "uno millon", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"})
-                {Completa = true, Consistente = true};
-            
-            _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(new List<MatrizAHPViewModel>()
-                                                                                      {
-                                                                                          new MatrizAHPViewModel("a1", new List<string>() {"uno", "dos", "tres", "cuatro"}),
-                                                                                          new MatrizAHPViewModel("a2", new List<string>() {"uno", "dos", "tres", "cuatro", "cinco"}),
-                                                                                          new MatrizAHPViewModel("a3", new List<string>() {"uno", "dos", "tres", "cuatro", "cinco", "seis"}),
-                                                                                          new MatrizAHPViewModel("a4", new List<string>() {"uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho"})
-                                                                                      });
-
-            MostrarMatrizComando = new RelayCommand<MatrizAHPViewModel>(MostrarMatriz);
-        }
-
+        
         public ValoracionAHPViewModel(IEnumerable<Criterio> criterios, CriterioMatriz matrizCriterio,
                                       IEnumerable<Alternativa> alternativas,
                                       IEnumerable<AlternativaMatriz> matricesAlternativas)
@@ -51,7 +35,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             var matricesAlternativasModels =
                 criterios.Select(
                     criterio =>
-                    new MatrizAHPViewModel("Comparando alternativas por criterio: " + criterio.Nombre,
+                    new MatrizAHPViewModel(criterio.Nombre,
                                            alternativas.Select(x => x.Nombre).ToList())
                                            {
                                                Matriz = matricesAlternativas.ElementAt(criterios.ToList().IndexOf(criterio)).Matriz,
@@ -60,6 +44,8 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                                            }).ToList();
 
             _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(matricesAlternativasModels);
+
+            MatrizSeleccionada = MatrizCriterio;
 
             MostrarMatrizComando = new RelayCommand<MatrizAHPViewModel>(MostrarMatriz);
         }

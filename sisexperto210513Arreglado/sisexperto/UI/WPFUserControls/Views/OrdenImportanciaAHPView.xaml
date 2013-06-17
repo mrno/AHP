@@ -9,12 +9,12 @@
     <GroupBox Header="Orden de Importancia de los Elementos" Width="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="90"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Margin="10" Grid.Column="0" 
+            <TextBlock Margin="10" Grid.Column="0"
                        HorizontalAlignment="Left" 
                        Text="Más Importante"
                        TextWrapping="Wrap"
@@ -24,7 +24,7 @@
                        Text="Menos Importante"
                        TextWrapping="Wrap"
                        TextAlignment="Center"/>
-            
+
             <ItemsControl Grid.Column="1"
                           ItemsSource="{Binding ElementosPriorizados}" 
                           HorizontalAlignment="Center"
@@ -32,7 +32,7 @@
                 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ComboBox Margin="5" VerticalContentAlignment="Center"
+                        <ComboBox Margin="5" VerticalContentAlignment="Center"  FontSize="10"
                                   ItemsSource="{Binding ElementosDisponibles}" 
                                   SelectedItem="{Binding ElementoSeleccionado}"/>
                     </DataTemplate>

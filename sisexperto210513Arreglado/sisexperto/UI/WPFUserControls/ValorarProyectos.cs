@@ -35,18 +35,19 @@ namespace sisexperto.UI.WPFUserControls
             comboBoxProyectos.SelectedItem = _proyectoSeleccionado;
             comboBoxProyectos.SelectedIndexChanged += (comboBoxProyectos_SelectedIndexChanged);
             //CargarMatricesYPestanias();
-            (elementHost1.Child as ValoracionControl).CargarValoraciones(_expertoEnProyecto.ValoracionAHP,
+            (elementHost1.Child as ValoracionControl).CargarValoraciones(_proyectoSeleccionado,
+                                                                         _expertoEnProyecto.ValoracionAHP,
                                                                          _expertoEnProyecto.ValoracionIL);
         }
 
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if(_proyectoSeleccionado.Tipo == "AHP" || _proyectoSeleccionado.Tipo == "Ambos")
-                //ActualizarMatricesAlternativasEnTodosLosProyectos();
-            
             _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
-            //_expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
-            //CargarMatricesYPestanias();
+            _expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
+            
+            (elementHost1.Child as ValoracionControl).CargarValoraciones(_proyectoSeleccionado,
+                                                                         _expertoEnProyecto.ValoracionAHP,
+                                                                         _expertoEnProyecto.ValoracionIL);
         }
     }
 }

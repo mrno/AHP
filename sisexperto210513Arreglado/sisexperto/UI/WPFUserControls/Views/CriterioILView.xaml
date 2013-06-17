@@ -5,21 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <UserControl.Resources>
+        <local:SliderILConverter x:Key="SliderILConverter"/>
+    </UserControl.Resources>
+
+    <Grid Name="Slider">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Name="FilaInferior"/>
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0" Text="{Binding Nombre}" HorizontalAlignment="Center"/>
 
         <Slider Grid.Row="1"
-                Padding="10"
                 Minimum="0" 
                 Maximum="{Binding MaximaEtiqueta}" 
                 Orientation="Vertical"
                 HorizontalAlignment="Center"
                 IsSnapToTickEnabled="True" 
+                Height="{Binding Converter={StaticResource SliderILConverter}, 
+                                 ElementName=Slider,
+                                 ConverterParameter=0}"
                 TickFrequency="1" 
                 TickPlacement="TopLeft" Value="{Binding EtiquetaSeleccionada, Mode=TwoWay}">
         </Slider>

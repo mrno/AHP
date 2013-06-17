@@ -16,13 +16,13 @@
         </DataTemplate>
     </UserControl.Resources>
     
-    <TabControl>
-        <TabItem Header="Valoración AHP" >
+    <TabControl FontSize="14">
+        <TabItem Header="Valoración AHP">
             <ContentPresenter Content="{Binding ValoracionAHP}"/>
             <TabItem.Style>
                 <Style TargetType="TabItem">
-                    <Setter Property="IsEnabled" Value="{Binding TieneAHP}"/>
-                    <Setter Property="IsSelected" Value="{Binding MostrarAHP}"/>
+                    <Setter Property="IsEnabled" Value="{Binding TieneAHP, Mode=OneWay}"/>
+                    <Setter Property="IsSelected" Value="{Binding MostrarAHP, Mode=OneWay}"/>
                 </Style>
             </TabItem.Style>
         </TabItem>
@@ -30,8 +30,8 @@
             <ContentPresenter Content="{Binding ValoracionIL}"/>
             <TabItem.Style>
                 <Style TargetType="TabItem">
-                    <Setter Property="IsEnabled" Value="{Binding TieneIL}"/>
-                    <Setter Property="IsSelected" Value="{Binding MostrarIL}"/>
+                    <Setter Property="IsEnabled" Value="{Binding TieneIL, Mode=OneWay}"/>
+                    <Setter Property="IsSelected" Value="{Binding MostrarIL, Mode=OneWay}"/>
                 </Style>
             </TabItem.Style>
         </TabItem>

@@ -15,6 +15,7 @@ using sisexperto.UI.WPFUserControls.ViewModels;
 using sisexperto.UI.WPFUserControls.Views;
 using sisexperto.Entidades.AHP;
 using sisexperto.Entidades.IL;
+using sisExperto.Entidades;
 
 namespace sisexperto.UI.WPFUserControls
 {
@@ -31,9 +32,31 @@ namespace sisexperto.UI.WPFUserControls
             this.DataContext = _valorarProyectosViewModel;
         }
 
-        public void CargarValoraciones(ValoracionAHP valoracionAHP, ValoracionIL valoracionIL)
+        public void CargarValoraciones(Proyecto proyecto, ValoracionAHP valoracionAHP, ValoracionIL valoracionIL)
         {
-            
+            if (valoracionAHP != null)
+            {
+                _valorarProyectosViewModel.ValoracionAHP = new ValoracionAHPViewModel(proyecto.Criterios,
+                                                                                          valoracionAHP.CriterioMatriz,
+                                                                                          proyecto.Alternativas,
+                                                                                          valoracionAHP.AlternativasMatrices); 
+            }
+            else
+            {
+                _valorarProyectosViewModel.ValoracionAHP = null;
+            }
+
+            if (valoracionIL != null)
+            {
+                _valorarProyectosViewModel.ValoracionIL = new ValoracionILViewModel(
+                        valoracionIL.ConjuntoEtiquetas.Etiquetas, valoracionIL.AlternativasIL); 
+            }
+            else
+            {
+                _valorarProyectosViewModel.ValoracionIL = null;
+            }
+
+            _valorarProyectosViewModel.MostrarAHP = valoracionAHP != null;
         }
     }
 }

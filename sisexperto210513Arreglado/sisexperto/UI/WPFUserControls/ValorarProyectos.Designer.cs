@@ -96,6 +96,7 @@
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.splitContainer1);
             this.Name = "ValorarProyectos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ValorarProyectos";
             this.Load += new System.EventHandler(this.ValorarProyectos_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
