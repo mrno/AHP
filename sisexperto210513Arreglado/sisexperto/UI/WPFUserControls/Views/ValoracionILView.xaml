@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
-             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
+             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:ValorarAlternativaILViewModel}">
             <views:ValorarAlternativaILView/>
         </DataTemplate>
+        <local:SlidersILConverter x:Key="SliderILConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -48,13 +50,13 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="37"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     
@@ -62,17 +64,28 @@
                     <TextBlock Grid.Column="1" Text="{Binding AlternativaSeleccionada.Nombre, Mode=OneWay}"/>
                 </Grid>
                 
-                <TextBlock Grid.Column="0" Grid.Row="1" Text="Etiquetas ↓ | Criterios →"/>
+                <TextBlock Grid.Column="0" 
+                           Grid.Row="1"
+                           Text="Etiquetas ↓ | Criterios →" 
+                           VerticalAlignment="Center"/>
                 
-                <ItemsControl ItemsSource="{Binding Etiquetas}" 
-                              Grid.Column="0" Grid.Row="2">
+                <ItemsControl Name="ListaEtiquetas"
+                              ItemsSource="{Binding Etiquetas}" 
+                              Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Name="textBox" 
+                            <Grid>
+                                <TextBlock Name="textBox" 
                                        Text="{TemplateBinding Content}"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left">
-                            </TextBlock>
+                                </TextBlock>
+                                <Line VerticalAlignment="Center"
+                                        X1="0" Y1="0"
+                                        X2="1000" Y2="0"
+                                        Stroke="Red"
+                                        StrokeThickness="4" />
+                            </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
@@ -80,12 +93,12 @@
                             <UniformGrid Columns="1"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-
                 </ItemsControl>
 
                 <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+                              VerticalAlignment="Stretch"
                               VerticalScrollBarVisibility="Disabled" 
-                              HorizontalScrollBarVisibility="Auto">
+                              HorizontalScrollBarVisibility="Visible">
                     <ContentPresenter Content="{Binding AlternativaSeleccionada, Mode=OneWay}"/>
                 </ScrollViewer>
 

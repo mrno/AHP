@@ -4,19 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
-             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
+             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:CriterioILViewModel}">
             <views:CriterioILView/>
         </DataTemplate>
     </UserControl.Resources>
-    <ItemsControl Grid.Row="1" Width="Auto" HorizontalContentAlignment="Center"
+    <local:SlidersItemsControl Grid.Row="1" Width="Auto" HorizontalContentAlignment="Center"
                     ItemsSource="{Binding CriteriosIL}">
-        <ItemsControl.ItemsPanel>
+        <local:SlidersItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
                 <UniformGrid Rows="1"/>
             </ItemsPanelTemplate>
-        </ItemsControl.ItemsPanel>
-    </ItemsControl>
+        </local:SlidersItemsControl.ItemsPanel>
+    </local:SlidersItemsControl>
 </UserControl>

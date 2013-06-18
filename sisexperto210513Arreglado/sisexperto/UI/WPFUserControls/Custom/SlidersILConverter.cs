@@ -7,14 +7,14 @@ using System.Windows.Data;
 
 namespace sisexperto.UI.WPFUserControls.Custom
 {
-    public class SliderILConverter : IValueConverter
+    public class SlidersILConverter : IValueConverter
     {
         public object Convert(object value,
                               Type targetType,
                               object parameter,
                               System.Globalization.CultureInfo culture)
         {
-            var slider = (Grid)value;
+            var slider = (ItemsControl)value;
 
             return slider.ActualHeight * 0.8;
         }
