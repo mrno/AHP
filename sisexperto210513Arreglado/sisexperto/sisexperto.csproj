@@ -334,7 +334,6 @@
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="App1.config" />
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\alternativa.datasource" />
