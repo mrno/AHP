@@ -9,6 +9,7 @@ using GALibrary.Persistencia;
 
 namespace GALibrary.ProcesoGenetico.FuncionesAptitud
 {
+    [ElementoAG(TipoElementoAG.FuncionAptitud, "FuncionAptitudConsistenciaExponencial")]
     public class FuncionAptitudConsistenciaExponencial : IFuncionAptitud
     {
         public Estructura EstructuraBase { get; set; }

@@ -3,27 +3,41 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Views="clr-namespace:GeneticResearcher.Views" 
+        xmlns:Views="clr-namespace:GeneticResearcher.Views"
+        xmlns:ViewModels="clr-namespace:GeneticResearcher.ViewModels"
         mc:Ignorable="d" x:Class="GeneticResearcher.MainWindow"
-        Title="Genetic Researcher" Height="600" Width="800"
-    WindowStartupLocation="CenterScreen">
+        Title="Genetic Researcher" MinHeight="450" MinWidth="600"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+
+        <ViewModels:MainViewModel x:Key="MainViewModel"/>
+
+        <DataTemplate DataType="{x:Type ViewModels:ExperimentResultsViewModel}">
+            <Views:ExperimentResultsView />
+        </DataTemplate>
+
+    </Window.Resources>
+
     <DockPanel VerticalAlignment="Stretch">
-        <ToolBar DockPanel.Dock="Top" Height="20"/>
-        
+        <Menu DockPanel.Dock="Top" Height="20" VerticalAlignment="Center">
+            <MenuItem Header="_Experiments">
+                <MenuItem Header="_New Experiment" Click="StartExperimentWizard"/>
+                <MenuItem Header="_Fitness Comparison Test" Click="StartComparisonTest"/>
+            </MenuItem>
+             <MenuItem Header="_Matrices Sets">
+                <MenuItem Header="_New Set"/>
+                <MenuItem Header="_View Sets"/>
+            </MenuItem>
+        </Menu>
+
         <StatusBar DockPanel.Dock="Bottom" Height="20"/>
-        <Button
-              Padding="7,3.5"
-              Margin="11"
-              Grid.Row="1"
-              Content="Abrir"
-              Click="StartExperimentWizard"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center"
-            />
+        <ScrollViewer 
+                      VerticalScrollBarVisibility="Disabled" 
+                      HorizontalScrollBarVisibility="Auto">
+
+            <ContentControl Content="{Binding 
+                            Source={StaticResource MainViewModel}, 
+                            Path=ExperimentResults}"/>
+        </ScrollViewer>
     </DockPanel>
-
-
-    <!--<Views:Operadores/> 
-              Click="btnRunWizard_Click"-->
-    
 </Window>

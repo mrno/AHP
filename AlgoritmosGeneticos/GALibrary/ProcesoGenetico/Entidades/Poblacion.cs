@@ -78,7 +78,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
 
         public static Poblacion GenerarPoblacionInicial(int cantidadIndividuos, Estructura estructuraBase, string funcionAptitud, string tipoConvergencia)
         {
-            var cantidadCaracteristicasIndividuo = estructuraBase.Vector.CantidadValoresFaltantes();
+            var cantidadCaracteristicasIndividuo = estructuraBase.CantidadCaracteristicas;
             
             var factoryAptitud = new FuncionAptitudFactory();
 

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="sisexperto.UI.WPFUserControls.Views.ValorarProyectosView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
+             xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:ValoracionAHPViewModel}">
+            <views:ValoracionAHPView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ValoracionILViewModel}">
+            <views:ValoracionILView/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <TabControl FontSize="14">
+        <TabItem Header="Valoración AHP">
+            <ContentPresenter Content="{Binding ValoracionAHP}"/>
+            <TabItem.Style>
+                <Style TargetType="TabItem">
+                    <Setter Property="IsEnabled" Value="{Binding TieneAHP, Mode=OneWay}"/>
+                    <Setter Property="IsSelected" Value="{Binding MostrarAHP, Mode=OneWay}"/>
+                </Style>
+            </TabItem.Style>
+        </TabItem>
+        <TabItem Header="Valoración IL">
+            <ContentPresenter Content="{Binding ValoracionIL}"/>
+            <TabItem.Style>
+                <Style TargetType="TabItem">
+                    <Setter Property="IsEnabled" Value="{Binding TieneIL, Mode=OneWay}"/>
+                    <Setter Property="IsSelected" Value="{Binding MostrarIL, Mode=OneWay}"/>
+                </Style>
+            </TabItem.Style>
+        </TabItem>
+    </TabControl>
+    
+    <!--<ContentPresenter Content="{Binding TrackILViewModel}"/>-->
+</UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeneticResearcher.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -96,7 +97,13 @@ namespace GeneticResearcher
         private void StartExperimentWizard(object sender, RoutedEventArgs e)
         {
             var wizard = new NewExperimentWindow();
-            wizard.Show();
+            wizard.ShowDialog();
+        }
+
+        private void StartComparisonTest(object sender, RoutedEventArgs e)
+        {
+            var comparison = new ComparisonTestWindow();
+            comparison.Show();
         }
     }
 }

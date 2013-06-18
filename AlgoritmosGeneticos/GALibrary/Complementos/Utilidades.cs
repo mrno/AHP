@@ -190,11 +190,13 @@ namespace GALibrary.Complementos
 
         public static double[] CombinarEstructuraConIndividuo(double[] estructura, double[] individuo)
         {
+            if(!estructura.Any(x => x.Equals(CeldaMatriz.Incompleto)))
+            {
+                return individuo;
+            }
+
             var longitudBase = estructura.Length;
-            var longitudIndividuo = individuo.Length;
-
             var resultado = estructura.Clone() as double[];
-
             var posicion = 0;
             for (int i = 0; i < longitudBase; i++)
             {
@@ -205,6 +207,16 @@ namespace GALibrary.Complementos
                 }
             }
             return resultado;
+        }
+
+        public static string ConcatenarCadenasConFlechas(string[] cadenas)
+        {
+            var resultado = "";
+            for (int i = 0; i < cadenas.Length; i++)
+            {
+                resultado += cadenas[0] + " -> ";
+            }
+            return resultado.Remove(0, resultado.Length - 4);
         }
     }
 }

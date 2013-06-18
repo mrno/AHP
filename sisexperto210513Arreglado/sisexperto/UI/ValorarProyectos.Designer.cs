@@ -113,6 +113,7 @@ namespace sisexperto.UI
             this.buttonCalcular.TabIndex = 39;
             this.buttonCalcular.Text = "Ver Ranking Individual";
             this.buttonCalcular.UseVisualStyleBackColor = true;
+            this.buttonCalcular.Visible = false;
             this.buttonCalcular.Click += new System.EventHandler(this.buttonCalcular_Click);
             // 
             // groupBoxMatrizComparacion
@@ -279,7 +280,7 @@ namespace sisexperto.UI
             // 
             // alternativaMatrizBindingSource
             // 
-            this.alternativaMatrizBindingSource.DataSource = typeof(AlternativaMatriz);
+            this.alternativaMatrizBindingSource.DataSource = typeof(sisexperto.Entidades.AHP.AlternativaMatriz);
             // 
             // tabPageIL
             // 
@@ -362,7 +363,7 @@ namespace sisexperto.UI
             // 
             // alternativaILBindingSource
             // 
-            this.alternativaILBindingSource.DataSource = typeof(AlternativaIL);
+            this.alternativaILBindingSource.DataSource = typeof(sisexperto.Entidades.IL.AlternativaIL);
             // 
             // comboBoxProyectos
             // 

@@ -51,23 +51,26 @@ namespace sisExperto
 
         public void ActualizarAlternativasProyectosClonesAhp(ExpertoEnProyecto expertoEnProyecto)
         {
-            var proyectos = ObtenerProyectosClones(expertoEnProyecto.Proyecto);
-
-            foreach (var proyectoClon in proyectos)
+            if (expertoEnProyecto.Proyecto.Tipo != "IL")
             {
-                var expertoEnProyectoClon = SolicitarExpertoProyectoActual(proyectoClon, expertoEnProyecto.Experto);
-                var cantidadAltenativasMatriz = expertoEnProyecto.ValoracionAHP.AlternativasMatrices.Count;
-                
-                for (int i = 0; i < cantidadAltenativasMatriz; i++)
-                {
-                    expertoEnProyectoClon.ValoracionAHP.AlternativasMatrices.ElementAt(i).Matriz =
-                        expertoEnProyecto.ValoracionAHP.AlternativasMatrices.ElementAt(i).Matriz;
+                var proyectos = ObtenerProyectosClones(expertoEnProyecto.Proyecto);
 
-                    expertoEnProyectoClon.ValoracionAHP.AlternativasMatrices.ElementAt(i).Consistencia =
-                        expertoEnProyecto.ValoracionAHP.AlternativasMatrices.ElementAt(i).Consistencia;
+                foreach (var proyectoClon in proyectos)
+                {
+                    var expertoEnProyectoClon = SolicitarExpertoProyectoActual(proyectoClon, expertoEnProyecto.Experto);
+                    var cantidadAltenativasMatriz = expertoEnProyecto.ValoracionAHP.AlternativasMatrices.Count;
+
+                    for (int i = 0; i < cantidadAltenativasMatriz; i++)
+                    {
+                        expertoEnProyectoClon.ValoracionAHP.AlternativasMatrices.ElementAt(i).Matriz =
+                            expertoEnProyecto.ValoracionAHP.AlternativasMatrices.ElementAt(i).Matriz;
+
+                        expertoEnProyectoClon.ValoracionAHP.AlternativasMatrices.ElementAt(i).Consistencia =
+                            expertoEnProyecto.ValoracionAHP.AlternativasMatrices.ElementAt(i).Consistencia;
+                    }
                 }
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
         }
 
         public IEnumerable<Proyecto> ObtenerProyectosListos()
@@ -135,9 +138,7 @@ namespace sisExperto
         {
             return (from expEnProyecto in _experto.ProyectosAsignados
                     where expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
-                    select expEnProyecto
-
-                   ).FirstOrDefault();
+                    select expEnProyecto).FirstOrDefault();
         }
 
         public IEnumerable<Proyecto> SolicitarProyectosCreados(Experto e)

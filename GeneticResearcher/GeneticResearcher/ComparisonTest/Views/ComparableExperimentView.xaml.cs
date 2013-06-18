@@ -13,16 +13,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GeneticResearcher.Views
+namespace GeneticResearcher.ComparisonTest.Views
 {
     /// <summary>
-    /// Lógica de interacción para OperadorControlView.xaml
+    /// Lógica de interacción para ComparableExperimentView.xaml
     /// </summary>
-    public partial class OperadorControlView : UserControl
+    public partial class ComparableExperimentView : UserControl
     {
-        public OperadorControlView()
+        public ComparableExperimentView()
         {
             InitializeComponent();
         }
+
+
     }
 }

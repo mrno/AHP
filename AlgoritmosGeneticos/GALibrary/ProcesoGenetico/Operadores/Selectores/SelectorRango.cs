@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GALibrary.Complementos;
 using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.Operadores.Selectores
 {
+    [ElementoAG(TipoElementoAG.Operador, "SelectorRango")]
     public class SelectorRango : SelectorAbstracto
     {
         public override IEnumerable<Individuo> Operar(Poblacion poblacion, int nroSeleccionados)

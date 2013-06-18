@@ -78,7 +78,7 @@ namespace sisexperto.Entidades.AHP
                                                                       Fila = i,
                                                                       Columna = ++k,
                                                                       Alternativa = listaC.ElementAt(k - j - 1),
-                                                                      ValorAHP = 0.0,
+                                                                      ValorAHP = value[i,k],
                                                                       ValorILNumerico = 0
                                                                   });
 

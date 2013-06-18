@@ -1,0 +1,98 @@
+﻿<UserControl x:Class="GeneticResearcher.Views.OperatorControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" MinHeight="80">
+    <UserControl.Resources>
+        <DataTemplate x:Key="operatorListBoxItem">
+            <TextBlock Text="{Binding DisplayName}"/>
+        </DataTemplate>
+
+        <Style x:Key="operatorListBox" TargetType="ListBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ItemTemplate" Value="{StaticResource ResourceKey=operatorListBoxItem}"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <GroupBox Header="Operadores"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+              Template="{StaticResource ResourceKey=groupBoxTemplate}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="65"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListBox Grid.Column="0" Name="AvailableOperators" SelectedIndex="0"
+                 ItemsSource="{Binding Path=AvailableOperators}"
+                 Style="{StaticResource ResourceKey=operatorListBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding AddCommand}"
+                                               CommandParameter="{Binding ElementName=AvailableOperators, 
+                                                                          Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+
+            <Grid Grid.Column="1" 
+                    VerticalAlignment="Stretch" 
+                    HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Orientation="Vertical">
+                    <Button Style="{StaticResource ResourceKey=tinyButtonAdd}"
+                            Command="{Binding AddCommand}"
+                            CommandParameter="{Binding ElementName=AvailableOperators, Path=SelectedItem}"/>
+                    <Button Style="{StaticResource ResourceKey=tinyButtonRem}"
+                            Command="{Binding RemoveCommand}"
+                            CommandParameter="{Binding ElementName=SelectedOperators, Path=SelectedItem}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Center" 
+                    Orientation="Vertical">
+                    <Button Style="{StaticResource ResourceKey=tinyButtonUp}"
+                            Command="{Binding AscendCommand}"
+                            CommandParameter="{Binding ElementName=SelectedOperators, Path=SelectedItem}"/>
+                    <Button Style="{StaticResource ResourceKey=tinyButtonDown}"
+                            Command="{Binding DescendCommand}"
+                            CommandParameter="{Binding ElementName=SelectedOperators, Path=SelectedItem}"/>
+                </StackPanel>
+            </Grid>
+
+            <ListBox Grid.Column="2" Name="SelectedOperators"
+                 ItemsSource="{Binding Path=SelectedOperators}" SelectedItem="{Binding SelectedOperator}"
+                 Style="{StaticResource ResourceKey=operatorListBox}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding RemoveCommand}"
+                                               CommandParameter="{Binding ElementName=SelectedOperators, 
+                                                                          Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+            </ListBox>
+
+        </Grid>
+    </GroupBox>
+
+
+</UserControl>
+

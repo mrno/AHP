@@ -7,21 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GALibrary.Persistencia;
 using GeneticResearcher.Command;
+using GeneticResearcher.Common;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
     public class ExperimentWizardViewModel : INotifyPropertyChanged
     {
-        
         #region Fields
 
         RelayCommand _cancelCommand;
-        SesionExperimentacion _sesion;
+        SesionExperimentacion _session;
         ExperimentWizardPageViewModelBase _currentPage;
         RelayCommand _moveNextCommand;
         RelayCommand _movePreviousCommand;
-        ReadOnlyCollection<ExperimentWizardPageViewModelBase> _pages;
+        protected ReadOnlyCollection<ExperimentWizardPageViewModelBase> _pages;
 
         #endregion // Fields
 
@@ -29,7 +30,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         public ExperimentWizardViewModel()
         {
-            _sesion = new SesionExperimentacion();
+            _session = new SesionExperimentacion();
             CurrentPage = Pages[0];
         }
 
@@ -50,7 +51,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         void CancelOrder()
         {
-            _sesion = null;
+            _session = null;
             OnRequestClose();
         }
 
@@ -80,7 +81,10 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         void MoveToPreviousPage()
         {
             if (CanMoveToPreviousPage)
+            {
+                CurrentPage.SaveChangesInExperimentSession();
                 CurrentPage = Pages[CurrentPageIndex - 1];
+            }
         }
 
         #endregion // MovePreviousCommand
@@ -112,6 +116,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         {
             if (CanMoveToNextPage)
             {
+                CurrentPage.SaveChangesInExperimentSession();
                 if (CurrentPageIndex < Pages.Count - 1)
                     CurrentPage = Pages[CurrentPageIndex + 1];
                 else
@@ -129,9 +134,9 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         /// Returns the cup of coffee ordered by the customer.
         /// If this returns null, the user cancelled the order.
         /// </summary>
-        public SesionExperimentacion Sesion
+        public SesionExperimentacion Session
         {
-            get { return _sesion; }
+            get { return _session; }
         }
 
         /// <summary>
@@ -140,7 +145,7 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         public ExperimentWizardPageViewModelBase CurrentPage
         {
             get { return _currentPage; }
-            private set
+            protected set
             {
                 if (value == _currentPage)
                     return;
@@ -201,19 +206,19 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         #region Private Helpers
 
-        private void CreatePages()
+        void CreatePages()
         {
             var pages = new List<ExperimentWizardPageViewModelBase>
                             {
-                                new StartViewModel(Sesion),
-                                new GeneticSelectionViewModel(Sesion),
-                                new GeneticCrossoverViewModel(Sesion),
-                                new GeneticMutationViewModel(Sesion),
-                                new PopulationViewModel(Sesion),
-                                new IndividualViewModel(Sesion),
-                                new StopViewModel(Sesion),
-                                new GeneticTestSetViewModel(Sesion),
-                                new SummaryViewModel(Sesion)
+                                new StartViewModel(Session),
+                                new GeneticSelectionViewModel(Session),
+                                new GeneticCrossoverViewModel(Session),
+                                new GeneticMutationViewModel(Session),
+                                new PopulationViewModel(Session),
+                                new IndividualViewModel(Session),
+                                new StopViewModel(Session),
+                                new GeneticTestSetViewModel(Session),
+                                new SummaryViewModel(Session)
                             };
             _pages = new ReadOnlyCollection<ExperimentWizardPageViewModelBase>(pages);
         }

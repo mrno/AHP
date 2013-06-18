@@ -1,7 +1,9 @@
-﻿using GALibrary.ProcesoGenetico.Entidades;
+﻿using GALibrary.Complementos;
+using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad
 {
+    [ElementoAG(TipoElementoAG.ProbabilidadMutacion, "ProbabilidadConstante")]
     public class ProbabilidadConstante : IProbabilidadMutacion
     {
         private double _probabilidad;

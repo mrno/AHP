@@ -3,67 +3,430 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-       
+
+        <SolidColorBrush x:Key="appColorBackground" Color="GhostWhite"/>
+        <SolidColorBrush x:Key="appColorForegroundText" Color="Black"/>
+        <SolidColorBrush x:Key="appColorBorderBrush" Color="#25A0DA"/>
+
+        <SolidColorBrush x:Key="appColorSelectingBackground" Color="LightBlue"/>
+        <SolidColorBrush x:Key="appColorSelectingForegroundText" Color="Black"/>
+        <SolidColorBrush x:Key="appColorSelectingBorderBrush" Color="#00618F"/>
         
+        <SolidColorBrush x:Key="appColorActiveBackground" Color="#25A0DA"/>
+        <SolidColorBrush x:Key="appColorActiveForegroundText" Color="GhostWhite"/>
+        <SolidColorBrush x:Key="appColorActiveBorderBrush" Color="#2550FF"/>
+
+        <SolidColorBrush x:Key="appColorDisabledBackground" Color="LightGray"/>
+        <SolidColorBrush x:Key="appColorDisabledForegroundText" Color="Gray"/>
+        <SolidColorBrush x:Key="appColorDisabledBorderBrush" Color="Gray"/>
+
+        <SolidColorBrush x:Key="appColorActionBackground" Color="#A025A0DA"/>
+        <SolidColorBrush x:Key="appColorActionForegroundText" Color="Black"/>
+        <SolidColorBrush x:Key="appColorActionBorderBrush" Color="#A02550FF"/>
+
+        <SolidColorBrush x:Key="appColorHeaderBackground" Color="#25A0DA"/>
+        <SolidColorBrush x:Key="appColorHeaderForegroundText" Color="GhostWhite"/>
+        <SolidColorBrush x:Key="appColorHeaderBorderBrush" Color="#25A0DA"/>
+        
+        <SolidColorBrush x:Key="appColorContentBackground" Color="GhostWhite"/>
+        <SolidColorBrush x:Key="appColorContentForegroundText" Color="Black"/>
+        <SolidColorBrush x:Key="appColorContentBorderBrush" Color="#25A0DA"/>
+
+        <Geometry x:Key="DownArrow">M0,0 L1,0 0.5,1Z</Geometry>
+        <Geometry x:Key="UpArrow">M0,1 L1,1 0.5,0Z</Geometry>
+        <Geometry x:Key="RightArrow">M0,0 L1,0.5 0,1Z</Geometry>
+        <Geometry x:Key="LeftArrow">M0,0.5 L1,1 1,0Z</Geometry>
+        <Geometry x:Key="CloseX">M0,0 L1,1 M0,1 L1,0</Geometry>
+
         <Style x:Key="normalButton" TargetType="{x:Type Button}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <!--<Setter Property="Padding" Value="3.5,0" />-->
-            <Setter Property="Margin" Value="3" />
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="5"/>
             <Setter Property="Width" Value="90" />
             <Setter Property="Height" Value="30" />
-            <Setter Property="BorderBrush" Value="#25A0DA"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ResourceKey=appColorActiveBorderBrush}"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Background" Value="GhostWhite"/>
+            <Setter Property="Background" Value="{StaticResource ResourceKey=appColorActiveBackground}"/>
             <Setter Property="FontWeight" Value="ExtraBold"/>
-            <Setter Property="Foreground" Value="#25A0DA"/>
-            
+            <Setter Property="Foreground" Value="{StaticResource ResourceKey=appColorActiveForegroundText}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
             <Style.Triggers >
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" Value="{StaticResource ResourceKey=appColorDisabledBackground}" />
+                    <Setter Property="Foreground" Value="{StaticResource ResourceKey=appColorDisabledForegroundText}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource ResourceKey=appColorDisabledBorderBrush}" />
+                </Trigger>
                 <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="#FF00618F" />
+                    <Setter Property="Background" Value="{StaticResource ResourceKey=appColorSelectingBackground}" />
+                    <Setter Property="Foreground" Value="{StaticResource ResourceKey=appColorSelectingForegroundText}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource ResourceKey=appColorSelectingBorderBrush}" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" Value="{StaticResource ResourceKey=appColorActionBackground}" />
+                    <Setter Property="Foreground" Value="{StaticResource ResourceKey=appColorActionForegroundText}" />
+                    <Setter Property="BorderBrush" Value="{StaticResource ResourceKey=appColorActionBorderBrush}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="tinyButton" TargetType="{x:Type Button}">
-            <Setter Property="VerticalContentAlignment" Value="Top"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <!--<Setter Property="Padding" Value="3.5,0" />-->
-            <Setter Property="Margin" Value="2" />
+        <Style x:Key="tinyButton" BasedOn="{StaticResource ResourceKey=normalButton}" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="25" />
             <Setter Property="Height" Value="25" />
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="BorderBrush" Value="#25A0DA"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Background" Value="GhostWhite"/>
-            <Setter Property="FontWeight" Value="ExtraBold"/>
-            <Setter Property="Foreground" Value="#25A0DA"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
 
-            <Style.Triggers >
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="#FF00618F" />
-                </Trigger>
-            </Style.Triggers>
+        <Style x:Key="tinyButtonAdd" BasedOn="{StaticResource ResourceKey=tinyButton}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <Polyline Fill="{TemplateBinding Foreground}" Stretch="Uniform">
+                                <Polyline.Points>
+                                    <Point X="0" Y="20" />
+                                    <Point X="20" Y="20" />
+                                    <Point X="20" Y="0" />
+                                    <Point X="30" Y="0" />
+                                    <Point X="30" Y="20" />
+                                    <Point X="50" Y="20" />
+                                    <Point X="50" Y="30" />
+                                    <Point X="30" Y="30" />
+                                    <Point X="30" Y="50" />
+                                    <Point X="20" Y="50" />
+                                    <Point X="20" Y="30" />
+                                    <Point X="0" Y="30" />
+                                </Polyline.Points>
+                            </Polyline>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="tinyButtonRem" BasedOn="{StaticResource ResourceKey=tinyButton}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <Polyline Fill="{TemplateBinding Foreground}" Stretch="Uniform">
+                                <Polyline.Points>
+                                    <Point X="0" Y="20" />
+                                    <Point X="50" Y="20" />
+                                    <Point X="50" Y="30" />
+                                    <Point X="0" Y="30" />
+                                </Polyline.Points>
+                            </Polyline>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="tinyButtonUp" BasedOn="{StaticResource ResourceKey=tinyButton}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <Polyline Fill="{TemplateBinding Foreground}" Stretch="Uniform">
+                                <Polyline.Points>
+                                    <Point X="0" Y="50" />
+                                    <Point X="25" Y="0" />
+                                    <Point X="50" Y="50" />
+                                    <Point X="40" Y="50" />
+                                    <Point X="25" Y="20" />
+                                    <Point X="10" Y="50" />
+                                </Polyline.Points>
+                            </Polyline>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="tinyButtonDown" BasedOn="{StaticResource ResourceKey=tinyButton}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <Polyline Fill="{TemplateBinding Foreground}" Stretch="Uniform">
+                                <Polyline.Points>
+                                    <Point X="0" Y="0" />
+                                    <Point X="25" Y="50" />
+                                    <Point X="50" Y="0" />
+                                    <Point X="40" Y="0" />
+                                    <Point X="25" Y="30" />
+                                    <Point X="10" Y="0" />
+                                </Polyline.Points>
+                            </Polyline>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="tinyButtonGear" BasedOn="{StaticResource ResourceKey=tinyButton}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="{TemplateBinding Background}">
+                            <Polyline Fill="{TemplateBinding Foreground}" Stretch="Uniform">
+                                <Polyline.Points>
+                                    <Point X="0" Y="0" />
+                                    <Point X="25" Y="50" />
+                                    <Point X="50" Y="0" />
+                                    <Point X="40" Y="0" />
+                                    <Point X="25" Y="30" />
+                                    <Point X="10" Y="0" />
+                                </Polyline.Points>
+                            </Polyline>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <ControlTemplate x:Key="groupBoxTemplate" TargetType="GroupBox">
             <Grid Margin="3" VerticalAlignment="Stretch">
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*"/> <!--*-->
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" BorderThickness="1" BorderBrush="#25A0DA" Background="#25A0DA">
-                    <Label Foreground="White">
-                        <ContentPresenter Margin="4" ContentSource="Header" RecognizesAccessKey="True" />
-                    </Label>
-                </Border>
+                <Border Grid.Row="0" Padding="5"
+                        BorderThickness="1" HorizontalAlignment="Stretch"
+                        BorderBrush="{StaticResource ResourceKey=appColorHeaderBorderBrush}" 
+                        Background="{StaticResource ResourceKey=appColorHeaderBackground}">
+                    
 
-                <Border Grid.Row="1" BorderThickness="1,0,1,1" BorderBrush="#25A0DA">
-                    <ContentPresenter Margin="4"/>
-                </Border>
+                    <ContentPresenter Margin="4" ContentSource="Header" RecognizesAccessKey="True" >
+                        <ContentPresenter.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Foreground" Value="{StaticResource ResourceKey=appColorHeaderForegroundText}"/>
+                            </Style>
+                        </ContentPresenter.Resources>
 
+                    </ContentPresenter>
+                    <!--<Label 
+                        Foreground="{StaticResource ResourceKey=appColorHeaderForegroundText}">
+                    </Label>-->
+                </Border>
+                <Border Grid.Row="1" 
+                        BorderThickness="1,0,1,1" 
+                        BorderBrush="{StaticResource ResourceKey=appColorContentBorderBrush}" 
+                        Background="{StaticResource ResourceKey=appColorContentBackground}"
+                        >
+                    <ScrollViewer HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                        <ContentPresenter Margin="4"/>
+                    </ScrollViewer>
+                </Border>
             </Grid>
         </ControlTemplate>
+
+        <ControlTemplate x:Key="ExpanderToggleButtonRL" TargetType="ToggleButton">
+            <Border Name="Border" Background="Transparent" BorderThickness="1">
+                <Path Name="Arrow" Fill="{StaticResource appColorHeaderForegroundText}" HorizontalAlignment="Center"
+                      VerticalAlignment="Center" Data="{StaticResource RightArrow}" Width="10" Height="10" Stretch="UniformToFill"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                    <!--<Setter TargetName="Border" 
+                            Property="Background" 
+                            Value="{StaticResource DarkBrush}" />-->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <!--<Setter TargetName="Border" 
+                            Property="Background" 
+                            Value="{StaticResource PressedBrush}" />-->
+                </Trigger>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter TargetName="Arrow" Property="Data" Value="{StaticResource LeftArrow}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Border" Property="Background"
+                            Value="{StaticResource appColorDisabledBackground}" />
+                    <Setter TargetName="Border" Property="BorderBrush"
+                            Value="{StaticResource appColorDisabledBorderBrush}" />
+                    <Setter Property="Foreground" Value="{StaticResource appColorDisabledForegroundText}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource appColorDisabledForegroundText}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="expanderVerticalStyle" TargetType="Expander">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Expander">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Name="ContentColumn" Width="0" />
+                            </Grid.ColumnDefinitions>
+                            <Border Name="Border" Grid.Column="0" Background="{StaticResource appColorHeaderBackground}"
+                                    BorderBrush="{StaticResource appColorHeaderBorderBrush}" BorderThickness="1" Padding="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <ToggleButton Grid.Row="0"
+                                                  IsChecked="{Binding Path=IsExpanded,Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  OverridesDefaultStyle="True" Template="{StaticResource ExpanderToggleButtonRL}" />
+                                    <ContentPresenter Grid.Row="1" Margin="4" 
+                                                      ContentSource="Header"
+                                                      RecognizesAccessKey="True" />
+                                </Grid>
+                            </Border>
+                            <Border Name="Content" Grid.Column="1" Background="{StaticResource appColorContentBackground}"
+                                    BorderBrush="{StaticResource appColorContentBorderBrush}" 
+                                    BorderThickness="0,1,1,1" >
+                                <ContentPresenter  Margin="4" ContentSource="Content" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="True">
+                                <Setter TargetName="ContentColumn" Property="Width"
+                                        Value="{Binding ElementName=Content,Path=DesiredWidth}" />
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background"
+                                        Value="{StaticResource appColorDisabledBackground}" />
+                                <Setter TargetName="Border" Property="BorderBrush"
+                                        Value="{StaticResource appColorDisabledBorderBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource appColorDisabledForegroundText}" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="ExpanderToggleButtonUD" TargetType="ToggleButton">
+            <Border Name="Border" Background="Transparent" BorderThickness="1">
+                <Path Name="Arrow" Fill="{StaticResource appColorHeaderForegroundText}" HorizontalAlignment="Center"
+                      VerticalAlignment="Center" Data="{StaticResource DownArrow}" Width="10" Height="10" Stretch="UniformToFill"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                    <!--<Setter TargetName="Border" 
+                            Property="Background" 
+                            Value="{StaticResource DarkBrush}" />-->
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <!--<Setter TargetName="Border" 
+                            Property="Background" 
+                            Value="{StaticResource PressedBrush}" />-->
+                </Trigger>
+                <Trigger Property="IsChecked" Value="true">
+                    <Setter TargetName="Arrow" Property="Data" Value="{StaticResource UpArrow}" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="Border" Property="Background"
+                            Value="{StaticResource appColorDisabledBackground}" />
+                    <Setter TargetName="Border" Property="BorderBrush"
+                            Value="{StaticResource appColorDisabledBorderBrush}" />
+                    <Setter Property="Foreground" Value="{StaticResource appColorDisabledForegroundText}" />
+                    <Setter TargetName="Arrow" Property="Fill" Value="{StaticResource appColorDisabledForegroundText}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style x:Key="expanderHorizontalStyle" TargetType="Expander">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Expander">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Name="ContentRow" Height="0" />
+                            </Grid.RowDefinitions>
+                            <Border Name="Border" Grid.Row="0" 
+                                    Background="{StaticResource appColorHeaderBackground}"
+                                    BorderBrush="{StaticResource appColorHeaderBorderBrush}" 
+                                    BorderThickness="1" 
+                                    Padding="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="30" />
+                                    </Grid.ColumnDefinitions>
+                                    <ToggleButton Grid.Column="1"
+                                                  IsChecked="{Binding Path=IsExpanded,Mode=TwoWay,
+                                        RelativeSource={RelativeSource TemplatedParent}}"
+                                                  OverridesDefaultStyle="True" 
+                                                  Template="{StaticResource ExpanderToggleButtonUD}" />
+                                    <ContentPresenter Grid.Column="0" Margin="4" 
+                                                      ContentSource="Header"
+                                                      RecognizesAccessKey="True" />
+                                </Grid>
+                            </Border>
+                            <Border Name="Content" Grid.Row="1" Background="{StaticResource appColorContentBackground}"
+                                    BorderBrush="{StaticResource appColorContentBorderBrush}" 
+                                    BorderThickness="1,0,1,1" VerticalAlignment="Stretch">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                                    <ContentPresenter Margin="4" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                                </ScrollViewer>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="True">
+                                <Setter TargetName="ContentRow" Property="Height"
+                                        Value="{Binding ElementName=Content,Path=DesiredHeight}" />
+                                
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Background"
+                                        Value="{StaticResource appColorDisabledBackground}" />
+                                <Setter TargetName="Border" Property="BorderBrush"
+                                        Value="{StaticResource appColorDisabledBorderBrush}" />
+                                <Setter Property="Foreground" Value="{StaticResource appColorDisabledForegroundText}" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

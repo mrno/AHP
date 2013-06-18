@@ -5,13 +5,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary;
+using GALibrary.Complementos;
+using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
-    class PopulationViewModel : ExperimentWizardPageViewModelBase
+    public class PopulationViewModel : ExperimentWizardPageViewModelBase
     {
-        public PopulationViewModel(SesionExperimentacion sesion) : base(sesion)
+        public PopulationViewModel(SesionExperimentacion session)
+            : base(session)
         {
         }
 
@@ -19,20 +24,16 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         public IEnumerable<OptionViewModel<string>> ConvergenceMethods
         {
-            get
-            {
-                if (_convergenceMethods == null)
-                {
-                    var models = new List<OptionViewModel<string>>
-                                     {
-                                         new OptionViewModel<string>("Estructural", "asd"),
-                                         new OptionViewModel<string>("Aptitud", "asdf")
-                                     };
+            get { return _convergenceMethods ?? (_convergenceMethods = GetAssemblyConvergenceMethods()); }
+        }
 
-                    _convergenceMethods = new ReadOnlyCollection<OptionViewModel<string>>(models);
-                }
-                return _convergenceMethods;
-            }
+        private static ReadOnlyCollection<OptionViewModel<string>> GetAssemblyConvergenceMethods()
+        {
+            var operators = FacadeGAModule.ObtenerElementosAG(TipoElementoAG.ConvergenciaPoblacion);
+            var lista = from op in operators
+                        select new OptionViewModel<string>(op, op);
+
+            return new ReadOnlyCollection<OptionViewModel<string>>(lista.OrderBy(x => x.DisplayName).ToList());
         }
 
         private ReadOnlyCollection<OptionViewModel<string>> _sizeOptions;
@@ -85,6 +86,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            //throw new NotImplementedException();
         }
 
         #endregion

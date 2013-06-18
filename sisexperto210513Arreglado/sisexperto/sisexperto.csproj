@@ -72,6 +72,8 @@
     <Reference Include="MWArray">
       <HintPath>..\..\Dll\MWArray.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -80,10 +82,15 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="VectCalc">
       <HintPath>..\..\Dll\VectCalc.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entidades\AHP\IAHPComparable.cs" />
@@ -253,6 +260,51 @@
     <Compile Include="UI\ValorarProyectos.Designer.cs">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\WPFUserControls\Commands\RelayCommand.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\CustomTickBar.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\SlidersItemsControl.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\SlidersILConverter.cs" />
+    <Compile Include="UI\WPFUserControls\ValoracionControl.xaml.cs">
+      <DependentUpon>ValoracionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\ValorarProyectos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\ValorarProyectos.Designer.cs">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\ViewModels\CriterioILViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\MatrizAHPViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\OrdenImportanciaAHPViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\TrackILViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\ValoracionAHPViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\ValoracionILViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\ValorarAlternativaILViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\ValorarProyectosViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\Views\CriterioILView.xaml.cs">
+      <DependentUpon>CriterioILView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\MatrizAHPView.xaml.cs">
+      <DependentUpon>MatrizAHPView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\OrdenImportanciaAHPView.xaml.cs">
+      <DependentUpon>OrdenImportanciaAHPView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\TrackIL.xaml.cs">
+      <DependentUpon>TrackIL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\ValoracionAHPView.xaml.cs">
+      <DependentUpon>ValoracionAHPView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\ValoracionILView.xaml.cs">
+      <DependentUpon>ValoracionILView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\ValorarAlternativaILView.xaml.cs">
+      <DependentUpon>ValorarAlternativaILView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\ValorarProyectosView.xaml.cs">
+      <DependentUpon>ValorarProyectosView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="UI\AsignarExpertosAHP.resx">
       <DependentUpon>AsignarExpertosAHP.cs</DependentUpon>
@@ -331,6 +383,9 @@
     <EmbeddedResource Include="UI\ValorarProyectos.resx">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\WPFUserControls\ValorarProyectos.resx">
+      <DependentUpon>ValorarProyectos.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
@@ -404,6 +459,44 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UI\WPFUserControls\ValoracionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\CriterioILView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\MatrizAHPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\OrdenImportanciaAHPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\TrackIL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\ValoracionAHPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\ValoracionILView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\ValorarAlternativaILView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\ValorarProyectosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

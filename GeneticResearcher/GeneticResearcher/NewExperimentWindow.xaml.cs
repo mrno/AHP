@@ -1,4 +1,6 @@
-﻿using GeneticResearcher.ExperimentWizard.ViewModels;
+﻿using GALibrary.Persistencia;
+using GeneticResearcher.Common;
+using GeneticResearcher.ExperimentWizard.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace GeneticResearcher
     /// </summary>
     public partial class NewExperimentWindow : Window
     {
-        private readonly ExperimentWizardViewModel _experimentWizardViewModel;
+        private ExperimentWizardViewModel _experimentWizardViewModel;
 
         public NewExperimentWindow()
         {
@@ -30,14 +32,23 @@ namespace GeneticResearcher
             _experimentWizardViewModel.RequestClose += OnViewModelRequestClose;
             base.DataContext = _experimentWizardViewModel;
         }
-        
+
+        public NewExperimentWindow(SesionExperimentacion session)
+        {
+            InitializeComponent();
+
+            _experimentWizardViewModel = new ExperimentWizardUnitMatrixFitnessFuncionComparisonViewModel();
+            _experimentWizardViewModel.RequestClose += OnViewModelRequestClose;
+            base.DataContext = _experimentWizardViewModel;
+        }
+
         /// <summary>
         /// Returns the cup of coffee ordered by the user, 
         /// or null if the user cancelled the order.
         /// </summary>
         public SesionExperimentacion Result
         {
-            get { return _experimentWizardViewModel.Sesion; }
+            get { return _experimentWizardViewModel.Session; }
         }
 
         void OnViewModelRequestClose(object sender, EventArgs e)

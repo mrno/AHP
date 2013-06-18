@@ -4,7 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
+using GALibrary;
+using GALibrary.Complementos;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
@@ -12,7 +16,8 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
     {
         private ObservableCollection<StopConditionViewModel> _stopConditions;
 
-        public StopViewModel(SesionExperimentacion sesion) : base(sesion)
+        public StopViewModel(SesionExperimentacion session)
+            : base(session)
         {
         }
 
@@ -20,20 +25,19 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 
         public ObservableCollection<StopConditionViewModel> StopConditions
         {
-            get { return _stopConditions ?? (_stopConditions = LoadConditions()); }
+            get { return _stopConditions ?? (_stopConditions = GetAssemblyConvergenceMethods()); }
             set { _stopConditions = value; }
         }
 
         #region Methods
-
-        private ObservableCollection<StopConditionViewModel> LoadConditions()
+        
+        private static ObservableCollection<StopConditionViewModel> GetAssemblyConvergenceMethods()
         {
-            var conditions = new List<StopConditionViewModel>
-                                 {
-                                     new StopConditionViewModel("asd", "alto nombre re largo de prueba", 0, "alto parámetro"),
-                                     new StopConditionViewModel("otra", "otro nombre de condicion de prueba", 3, "otro parámetro")
-                                 };
-            return new ObservableCollection<StopConditionViewModel>(conditions);
+            var operators = FacadeGAModule.ObtenerElementosAG(TipoElementoAG.CondicionParada);
+            var lista = from op in operators
+                        select new StopConditionViewModel(op, op, 0, "nada");
+
+            return new ObservableCollection<StopConditionViewModel>(lista.OrderBy(x => x.DisplayName).ToList());
         }
 
         #endregion
@@ -53,6 +57,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            //throw new NotImplementedException();
         }
 
         #endregion

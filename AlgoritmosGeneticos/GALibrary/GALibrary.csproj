@@ -64,6 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complementos\ElementoAG.cs" />
+    <Compile Include="FacadeGAModule.cs" />
     <Compile Include="Persistencia\ConjuntoMatriz.cs" />
     <Compile Include="Complementos\Extensions.cs" />
     <Compile Include="Persistencia\ConjuntoOrdenN.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaAptitud.cs" />
     <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\ConvergenciaEstructura.cs" />
     <Compile Include="ProcesoGenetico\ConvergenciaPoblacion\IConvergenciaPoblacion.cs" />
+    <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudModificarValores.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistenciaExponencial.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\FuncionAptitudConsistenciaResta.cs" />
     <Compile Include="ProcesoGenetico\FuncionesAptitud\IFuncionAptitud.cs" />

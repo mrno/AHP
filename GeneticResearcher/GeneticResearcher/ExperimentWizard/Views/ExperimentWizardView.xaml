@@ -69,7 +69,7 @@
                                               ContentSource="Header" 
                                               TextBlock.FontSize="22"
                                               TextBlock.FontWeight="Medium" 
-                                              TextBlock.Foreground="#FF00618F" 
+                                              TextBlock.Foreground="{StaticResource ResourceKey=appColorForegroundText}" 
                                               HorizontalAlignment="Left" 
                                               VerticalAlignment="Center" />
                             
@@ -86,21 +86,27 @@
         <!-- WIZARD STEP TEMPLATE -->
         <DataTemplate x:Key="wizardStepTemplate">
             <Border x:Name="bdOuter" 
-                    BorderBrush="#25A0DA"
+                    BorderBrush="{StaticResource ResourceKey=appColorActiveBorderBrush}"
                     Margin="0,3"
                     Height="35"
                     Width="140"
                     HorizontalAlignment="Left">
                 <TextBlock x:Name="txt" 
                            Text="{Binding Path=DisplayName}" 
-                           Foreground="#25A0DA" HorizontalAlignment="Left" Margin="5,0" VerticalAlignment="Center"/>
+                           Foreground="{StaticResource ResourceKey=appColorActiveBorderBrush}"
+                           HorizontalAlignment="Left" 
+                           Margin="5,0" VerticalAlignment="Center"/>
             </Border>
 
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=IsCurrentPage}" Value="True">
                     <Setter TargetName="txt" Property="FontWeight" Value="Bold" />
-                    <Setter TargetName="txt" Property="Foreground" Value="White" />
-                    <Setter TargetName="bdOuter" Property="Background" Value="#25A0DA" />
+                    <Setter TargetName="txt" 
+                            Property="Foreground" 
+                            Value="{StaticResource ResourceKey=appColorHeaderForegroundText}"/>
+                    <Setter TargetName="bdOuter" 
+                            Property="Background" 
+                            Value="{StaticResource ResourceKey=appColorHeaderBackground}" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
@@ -118,8 +124,8 @@
         
         <!-- WIZARD STEP LISTING -->
         <Border Grid.Column="0" Grid.Row="0" 
-                Padding="5"  
-                BorderBrush="#25A0DA" 
+                Padding="5" 
+                BorderBrush="{StaticResource ResourceKey=appColorBorderBrush}"
                 BorderThickness="0,0,1,0">
             <HeaderedContentControl Header="Pasos">
                 <ItemsControl ItemsSource="{Binding Path=Pages}"
@@ -138,6 +144,8 @@
         <!-- PROGRESS BUTTONS -->
         <Border Grid.Column="0" 
                 Grid.Row="1" 
+                BorderThickness="0,1,0,0"
+                BorderBrush="{StaticResource ResourceKey=appColorBorderBrush}"
                 Background="White" 
                 Grid.ColumnSpan="2">
             <Grid>

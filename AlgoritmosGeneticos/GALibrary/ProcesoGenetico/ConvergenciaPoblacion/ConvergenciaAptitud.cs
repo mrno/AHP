@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary.Complementos;
 using GALibrary.ProcesoGenetico.Entidades;
 
 namespace GALibrary.ProcesoGenetico.ConvergenciaPoblacion
 {
+    [ElementoAG(TipoElementoAG.ConvergenciaPoblacion, "ConvergenciaAptitud")]
     public class ConvergenciaAptitud : IConvergenciaPoblacion
     {
         public double CalcularConvergencia(Poblacion poblacion)

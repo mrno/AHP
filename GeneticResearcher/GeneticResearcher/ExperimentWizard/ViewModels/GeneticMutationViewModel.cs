@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GALibrary.Persistencia;
+using GeneticResearcher.Common;
 using GeneticResearcher.ViewModels;
 
 namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
     public class GeneticMutationViewModel : ExperimentWizardPageViewModelBase
     {
-        public OperadorControlViewModel Operador { get; private set; }
+        public OperatorControlViewModel Operator { get; private set; }
 
-        public GeneticMutationViewModel(SesionExperimentacion sesion)
-            : base(sesion)
+        public GeneticMutationViewModel(SesionExperimentacion session)
+            : base(session)
         {
-            Operador = new OperadorControlViewModel();
+            Operator = new OperatorControlViewModel();
         }
 
         #region Overrides of ExperimentWizardPageViewModelBase
@@ -27,6 +29,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            Session.Mutacion = Operator.SelectedOperatorsNames;
         }
 
         public override string Description

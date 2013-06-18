@@ -1,4 +1,6 @@
-﻿using GeneticResearcher.ViewModels;
+﻿using GALibrary.Persistencia;
+using GeneticResearcher.Common;
+using GeneticResearcher.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +11,12 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
 {
     public class GeneticSelectionViewModel : ExperimentWizardPageViewModelBase
     {
-        public OperadorControlViewModel Operador { get; private set; }
+        public OperatorControlViewModel Operator { get; private set; }
 
-        public GeneticSelectionViewModel(SesionExperimentacion sesion) : base(sesion)
+        public GeneticSelectionViewModel(SesionExperimentacion session)
+            : base(session)
         {
-            Operador = new OperadorControlViewModel();
+            Operator = new OperatorControlViewModel();
         }
 
         #region Overrides of ExperimentWizardPageViewModelBase
@@ -26,6 +29,11 @@ namespace GeneticResearcher.ExperimentWizard.ViewModels
         internal override bool IsValid()
         {
             return true;
+        }
+
+        internal override void SaveChangesInExperimentSession()
+        {
+            Session.Seleccion = Operator.SelectedOperatorsNames;
         }
 
         public override string Description

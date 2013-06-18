@@ -22,6 +22,8 @@
         
         <GroupBox Header="Modelos Evolutivos" 
                   Grid.Column="0" Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Template="{StaticResource ResourceKey=groupBoxTemplate}">
             <ItemsControl FontWeight="Normal"
                           ItemsSource="{Binding Path=EvolutiveModels}"
@@ -39,6 +41,8 @@
 
         <GroupBox Header="Aplicacion de Operadores" 
                   Grid.Column="1" Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   Template="{StaticResource ResourceKey=groupBoxTemplate}">
             <Grid Margin="3">
                 <Grid.RowDefinitions>
@@ -59,25 +63,25 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Stretch"/>
                     <Slider Name="SelectionSlider"
-                    HorizontalAlignment="Stretch" 
-                    Margin="10,10,10,10" 
-                    VerticalAlignment="Center" 
-                    MinWidth="100"
-                    Grid.Column="1" 
-                    IsSnapToTickEnabled="True" 
-                    TickFrequency="1" 
-                    Minimum="0" 
-                    Maximum="100" 
-                    Value="{Binding SelectionPercentage}" />
+                            HorizontalAlignment="Stretch" 
+                            Margin="10,10,10,10" 
+                            VerticalAlignment="Center" 
+                            MinWidth="100"
+                            Grid.Column="1" 
+                            IsSnapToTickEnabled="True" 
+                            TickFrequency="1" 
+                            Minimum="0" 
+                            Maximum="100" 
+                            Value="{Binding SelectionPercentage}" />
                     <StackPanel Orientation="Horizontal" 
-                        Grid.Column="2">
+                                Grid.Column="2">
                         <Label Content="{Binding ElementName=SelectionSlider, Path=Value}" 
-                       VerticalAlignment="Center" 
-                       Width="30"
-                       HorizontalAlignment="Right" />
+                               VerticalAlignment="Center" 
+                               Width="30"
+                               HorizontalAlignment="Right" />
                         <Label Content="%" 
-                       VerticalAlignment="Center" 
-                       HorizontalAlignment="Right" />
+                               VerticalAlignment="Center" 
+                               HorizontalAlignment="Right" />
                     </StackPanel>
                 </Grid>
 

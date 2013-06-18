@@ -7,8 +7,8 @@
              xmlns:Views="clr-namespace:GeneticResearcher.Views" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type ViewModels:OperadorControlViewModel}">
-            <Views:OperadorControlView/>
+        <DataTemplate DataType="{x:Type ViewModels:OperatorControlViewModel}">
+            <Views:OperatorControlView/>
         </DataTemplate>
     </UserControl.Resources>
 
@@ -25,10 +25,12 @@
 
         </TextBlock>
 
-        <GroupBox Header="Operadores de Selección" Grid.Row="1"
+        <ContentPresenter Content="{Binding Operator}" Grid.Row="1"/>
+        <!--<GroupBox Header="Operadores de Selección" Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
               Template="{StaticResource ResourceKey=groupBoxTemplate}">
-            <ContentPresenter Content="{Binding Operador}" Margin="3"/>
-        </GroupBox>
+        </GroupBox>-->
     </Grid>
 
 </UserControl>
