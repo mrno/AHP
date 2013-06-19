@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using GeneticResearcher.Command;
 
 namespace sisexperto.UI.WPFUserControls.ViewModels
 {
@@ -14,7 +15,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         public MatrizAHPViewModel(string nombre, List<string> elementos)
         {
             Nombre = nombre;
-            ElementosAComparar = new ReadOnlyCollection<string>(elementos);
+            ElementosAComparar = new ObservableCollection<ElementoACompararViewModel>(elementos.Select(x => new ElementoACompararViewModel(x)).ToList());
             ImportanciaDeElementos = new OrdenImportanciaAHPViewModel(elementos);
 
             Matriz = new double[elementos.Count,elementos.Count];
@@ -26,7 +27,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         public string Nombre { get; set; }
         public ObservableCollection<FilaAHPViewModel> Filas { get; set; }
-        public ReadOnlyCollection<string> ElementosAComparar { get; private set; }
+        public ObservableCollection<ElementoACompararViewModel> ElementosAComparar { get; private set; }
         public OrdenImportanciaAHPViewModel ImportanciaDeElementos { get; private set; }
 
         public double[,] Matriz
@@ -119,6 +120,22 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         public bool Completa { get; set; }
         public bool Consistente { get; set; }
 
+        public CeldaAHPViewModel CeldaSeleccionada
+        {
+            get { return Filas.First(x => x.CeldaSeleccionada != null).CeldaSeleccionada; }
+        }
+        
+        #endregion
+
+        #region Comandos
+        
+        private RelayCommand<CeldaAHPViewModel> CambiarSeleccion { get; set; }
+        public void AlCambiarSeleccion(CeldaAHPViewModel celda)
+        {
+            celda.Seleccionada = false;
+            OnPropertyChanged("CeldaSeleccionada");
+        }
+
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -133,6 +150,8 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
     public class FilaAHPViewModel
     {
         public ObservableCollection<CeldaAHPViewModel> Celdas { get; set; }
+
+        public CeldaAHPViewModel CeldaSeleccionada { get { return Celdas.FirstOrDefault(x => x.Seleccionada); } }
     }
 
     public class CeldaAHPViewModel : INotifyPropertyChanged
@@ -186,6 +205,16 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             get { return PosY != PosX; }
         }
 
+        private bool _seleccionada;
+        public bool Seleccionada
+        {
+            get { return _seleccionada; }
+            set
+            {
+                _seleccionada = value;
+                OnPropertyChanged("Seleccionada");
+            }
+        }
 
         #region INotifyPropertyChanged Members
 
@@ -199,5 +228,24 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         }
 
         #endregion
+    }
+
+    public class ElementoACompararViewModel : INotifyPropertyChanged
+    {
+        public string Elemento { get; set; }
+        public bool ElementoComparacionIzquiera { get; set; }
+        public bool ElementoComparacionDerecha { get; set; }
+
+        public ElementoACompararViewModel(string elemento)
+        {
+            Elemento = elemento;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

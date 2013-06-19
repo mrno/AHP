@@ -25,7 +25,7 @@
                 HorizontalAlignment="Center"
                 IsSnapToTickEnabled="True" 
                 TickFrequency="1" 
-                TickPlacement="TopLeft" Value="{Binding EtiquetaSeleccionada, Mode=TwoWay}">
+                Value="{Binding EtiquetaSeleccionada, Mode=TwoWay}">
         </Slider>
     </Grid>
 </UserControl>

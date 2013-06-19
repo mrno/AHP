@@ -273,6 +273,7 @@
     <Compile Include="UI\WPFUserControls\ValorarProyectos.Designer.cs">
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\WPFUserControls\ViewModels\CompararElementosAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\CriterioILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\MatrizAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\OrdenImportanciaAHPViewModel.cs" />
@@ -281,6 +282,9 @@
     <Compile Include="UI\WPFUserControls\ViewModels\ValoracionILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\ValorarAlternativaILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\ValorarProyectosViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\Views\CompararElementosAHPView.xaml.cs">
+      <DependentUpon>CompararElementosAHPView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\WPFUserControls\Views\CriterioILView.xaml.cs">
       <DependentUpon>CriterioILView.xaml</DependentUpon>
     </Compile>
@@ -462,6 +466,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="UI\WPFUserControls\ValoracionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\CompararElementosAHPView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
