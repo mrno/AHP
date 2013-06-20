@@ -82,7 +82,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationProvider" />
@@ -262,6 +262,7 @@
     </Compile>
     <Compile Include="UI\WPFUserControls\Commands\RelayCommand.cs" />
     <Compile Include="UI\WPFUserControls\Custom\CustomTickBar.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\EscalaSaatyConverter.cs" />
     <Compile Include="UI\WPFUserControls\Custom\SlidersItemsControl.cs" />
     <Compile Include="UI\WPFUserControls\Custom\SlidersILConverter.cs" />
     <Compile Include="UI\WPFUserControls\ValoracionControl.xaml.cs">
@@ -276,6 +277,7 @@
     <Compile Include="UI\WPFUserControls\ViewModels\CompararElementosAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\CriterioILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\MatrizAHPViewModel.cs" />
+    <Compile Include="UI\WPFUserControls\ViewModels\MatrizViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\OrdenImportanciaAHPViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\TrackILViewModel.cs" />
     <Compile Include="UI\WPFUserControls\ViewModels\ValoracionAHPViewModel.cs" />
@@ -290,6 +292,9 @@
     </Compile>
     <Compile Include="UI\WPFUserControls\Views\MatrizAHPView.xaml.cs">
       <DependentUpon>MatrizAHPView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\WPFUserControls\Views\MatrizView.xaml.cs">
+      <DependentUpon>MatrizView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\WPFUserControls\Views\OrdenImportanciaAHPView.xaml.cs">
       <DependentUpon>OrdenImportanciaAHPView.xaml</DependentUpon>
@@ -478,6 +483,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\WPFUserControls\Views\MatrizAHPView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\WPFUserControls\Views\MatrizView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

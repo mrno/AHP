@@ -11,7 +11,6 @@
         <DataTemplate DataType="{x:Type ViewModels:ValorarAlternativaILViewModel}">
             <views:ValorarAlternativaILView/>
         </DataTemplate>
-        <local:SlidersILConverter x:Key="SliderILConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

@@ -25,23 +25,20 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                                       IEnumerable<AlternativaMatriz> matricesAlternativas)
         {
             MatrizCriterio = new MatrizAHPViewModel("Comparación de Criterios",
-                                                       criterios.Select(x => x.Nombre).ToList())
-            {
-                Matriz = matrizCriterio.Matriz,
-                Completa = matrizCriterio.Completa,
-                Consistente = matrizCriterio.Consistencia
-            };
+                                                    criterios.Select(x => x.Nombre).ToList(),
+                                                    matrizCriterio.Matriz,
+                                                    matrizCriterio.Completa,
+                                                    matrizCriterio.Consistencia);
+        
 
             var matricesAlternativasModels =
                 criterios.Select(
                     criterio =>
                     new MatrizAHPViewModel(criterio.Nombre,
-                                           alternativas.Select(x => x.Nombre).ToList())
-                                           {
-                                               Matriz = matricesAlternativas.ElementAt(criterios.ToList().IndexOf(criterio)).Matriz,
-                                               Completa = matrizCriterio.Completa,
-                                               Consistente = matrizCriterio.Consistencia
-                                           }).ToList();
+                                           alternativas.Select(x => x.Nombre).ToList(),
+                                           matricesAlternativas.ElementAt(criterios.ToList().IndexOf(criterio)).Matriz,
+                                           matrizCriterio.Completa,
+                                           matrizCriterio.Consistencia)).ToList();
 
             _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(matricesAlternativasModels);
 

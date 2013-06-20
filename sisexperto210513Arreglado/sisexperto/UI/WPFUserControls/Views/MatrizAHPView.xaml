@@ -11,6 +11,9 @@
         <DataTemplate DataType="{x:Type ViewModels:OrdenImportanciaAHPViewModel}">
             <views:OrdenImportanciaAHPView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:MatrizViewModel}">
+            <views:MatrizView/>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -125,51 +128,10 @@
 
                     </ItemsControl>
 
-                    <!-- Matriz -->
-                    <ItemsControl Grid.Column="1" 
-                      Grid.Row="1" 
-                      HorizontalContentAlignment="Center" 
-                      HorizontalAlignment="Stretch"
-                      VerticalContentAlignment="Center"
-                      VerticalAlignment="Stretch"
-                      ItemsSource="{Binding Filas}">
-
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <ItemsControl HorizontalContentAlignment="Center" 
-                                              HorizontalAlignment="Stretch"
-                                              VerticalContentAlignment="Center"
-                                              VerticalAlignment="Stretch"
-                                              ItemsSource="{Binding Celdas}">
-
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBox IsEnabled="{Binding Editable}"
-                                                 Text="{Binding ValorTexto}" 
-                                                 MinWidth="30" 
-                                                 MinHeight="30" 
-                                                 VerticalAlignment="Center" 
-                                                 HorizontalAlignment="Center" 
-                                                 VerticalContentAlignment="Center" 
-                                                 HorizontalContentAlignment="Center"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <UniformGrid Rows="1"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="1"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
+                    <ContentPresenter 
+                        Grid.Column="1" 
+                        Grid.Row="1" 
+                        Content="{Binding Matriz}"/>
                 </Grid>
             </ScrollViewer>
         </GroupBox>
