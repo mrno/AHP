@@ -341,7 +341,7 @@ namespace sisExperto.Entidades
             //mostrarRanking.ShowDialog();
         }
         //1=media geometrica 2=ponderada
-        public double[,] CalcularRankingIL(bool ConPeso)
+        public double[,] CalcularRankingIL(bool ConPeso, double[,] vectorCriteriosAHP)
         {
 
             var utils = new Utils();
@@ -355,6 +355,51 @@ namespace sisExperto.Entidades
 
             ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIL, ConPeso);
             
+            int k = 0;
+
+            int cardinalidadCEN = ObtenerCardinalidadCEN();
+
+            foreach (var exp in ObtenerExpertosProyectoConsistenteIL())
+            {
+                if (ConPeso)
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, true);
+                }
+                else
+                {
+                    exp.CalcularMiRankingIL(resultado, cardinalidadCEN, false);
+                }
+
+                k++;
+            }
+
+            if (!ConPeso)
+            {
+                util.AgregacionMediaGeometricaKExpertos(resultado, ExpertosAsignados.Count);
+            }
+
+
+            //utils.AgregacionCriterios(resultado, rankAgregado);
+
+            utils.AgregacionCriteriosConPesoAHP(resultado, rankAgregado, vectorCriteriosAHP);
+
+            return utils.NormalizarIlFinal((rankAgregado));
+        }
+
+        public double[,] CalcularRankingIL(bool ConPeso)
+        {
+
+            var utils = new Utils();
+
+            int dimension = Alternativas.Count;
+            var rankAgregado = new double[dimension, 1];
+
+            utils.Cerar(rankAgregado, 1);
+
+            Utils util = new Utils();
+
+            ValoracionIL resultado = util.ObtenerEstructuraRdo(ExpertosAsignados.First().ValoracionIL, ConPeso);
+
             int k = 0;
 
             int cardinalidadCEN = ObtenerCardinalidadCEN();

@@ -9,6 +9,7 @@ using sisexperto.Entidades.IL;
 using sisexperto.UI;
 using probaAHP;
 using sisexperto.UI.Clases;
+using sisexperto.Fachadas;
 
 namespace sisExperto
 {
@@ -21,13 +22,20 @@ namespace sisExperto
         private IEnumerable<Experto> _expertosAgregados;
         private readonly double[,] rankingFinal;
         private int _tipoAgregacion;
+        private int _tipoAgregacionCriterio;
 
-        public MostrarRankingAgregado(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion, int modelo)
+        public MostrarRankingAgregado(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion, int tipoAgregacionCriterio, int modelo)
         {
             InitializeComponent();
+
             //tipoAgregacion=1 -> NO Ponderado
             //tipoAgregacion=2 -> Ponderado
             _tipoAgregacion = tipoAgregacion;
+
+            _tipoAgregacionCriterio = tipoAgregacionCriterio;
+            //tipoAgregacionCriterio=1 -> Media Aritmética
+            //tipoAgregacionCriterio=2 -> Con vector de pesos AHP
+
             _fachada = Fachada;
             _proyecto = Proyecto;
             _modelo = modelo;
@@ -45,7 +53,23 @@ namespace sisExperto
                                      select c.Experto;
                 // tipoAgregacion 1 = No ponderado
                 // tipoAgregacion 2 = Ponderado
-                rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion);
+                if (_tipoAgregacionCriterio == 2)
+                {
+                    FachadaCalculos fachadaCalcs = new FachadaCalculos();
+                    List<ExpertoEnProyecto> exps = Proyecto.ObtenerExpertosProyectoConsistenteAHP().ToList<ExpertoEnProyecto>();
+                    List<Double[,]> matriz = new List<Double[,]>();
+                    foreach (var item in exps)
+                    {
+                        matriz.Add(item.ValoracionAHP.CriterioMatriz.Matriz);
+                    }
+
+                    Double[,] vector = fachadaCalcs.obtenerVectorAgregadoCriterioAHP(matriz);
+                    rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion, vector);
+                }
+                else
+                {
+                    rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion);
+                }
             }
 
             dataGridExpertos.DataSource = _expertosAgregados.ToList();
@@ -72,6 +96,65 @@ namespace sisExperto
                 {
                     labelSubtitulo.Text = "Agregacion No Ponderada, media geometrica";
                     
+                }
+                else
+                {
+                    labelSubtitulo.Text = "Agregacion Ponderada";
+                }
+            }
+        }
+
+        public MostrarRankingAgregado(Proyecto Proyecto, FachadaEjecucionProyecto Fachada, int tipoAgregacion, int modelo)
+        {
+            InitializeComponent();
+
+            //tipoAgregacion=1 -> NO Ponderado
+            //tipoAgregacion=2 -> Ponderado
+            _tipoAgregacion = tipoAgregacion;
+            _fachada = Fachada;
+            _proyecto = Proyecto;
+            _modelo = modelo;
+
+
+            if (modelo == 0)//AHP
+            {
+                _expertosAgregados = from c in _proyecto.ObtenerExpertosProyectoConsistenteAHP()
+                                     select c.Experto;
+                rankingFinal = _fachada.CalcularRankingAHP(_proyecto, tipoAgregacion);
+            }
+            else //IL
+            {
+                _expertosAgregados = from c in _proyecto.ObtenerExpertosProyectoConsistenteIL()
+                                     select c.Experto;
+                // tipoAgregacion 1 = No ponderado
+                // tipoAgregacion 2 = Ponderado
+                    rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion);
+            }
+
+            dataGridExpertos.DataSource = _expertosAgregados.ToList();
+
+            labelTitulo.Text = _proyecto.Nombre;
+            if (modelo == 0)
+            {
+                this.Text = "Agregacion AHP";
+                if (tipoAgregacion == 1)
+                {
+                    labelSubtitulo.Text = "Agregacion No Ponderada, media geometrica";
+
+                }
+                else
+                {
+                    labelSubtitulo.Text = "Agregacion Ponderada";
+                }
+                button1.Visible = false;
+            }
+            else
+            {
+                this.Text = "Agregacion IL";
+                if (tipoAgregacion == 1)
+                {
+                    labelSubtitulo.Text = "Agregacion No Ponderada, media geometrica";
+
                 }
                 else
                 {
