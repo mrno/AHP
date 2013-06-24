@@ -11,7 +11,6 @@
         <DataTemplate DataType="{x:Type ViewModels:ValorarAlternativaILViewModel}">
             <views:ValorarAlternativaILView/>
         </DataTemplate>
-        <local:SlidersILConverter x:Key="SliderILConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -69,23 +68,15 @@
                            Text="Etiquetas ↓ | Criterios →" 
                            VerticalAlignment="Center"/>
                 
-                <ItemsControl Name="ListaEtiquetas"
-                              ItemsSource="{Binding Etiquetas}" 
+                <ItemsControl ItemsSource="{Binding Etiquetas}" 
                               Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <TextBlock Name="textBox" 
-                                       Text="{TemplateBinding Content}"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Left">
-                                </TextBlock>
-                                <Line VerticalAlignment="Center"
+                            <Line VerticalAlignment="Center"
                                         X1="0" Y1="0"
                                         X2="1000" Y2="0"
-                                        Stroke="Red"
-                                        StrokeThickness="4" />
-                            </Grid>
+                                        Stroke="LightGray" StrokeDashArray="4, 2"
+                                        StrokeThickness="1" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
@@ -95,6 +86,27 @@
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
 
+                <ItemsControl Name="ListaEtiquetas" BorderBrush="Gray" BorderThickness="1" Padding="10,0"
+                              ItemsSource="{Binding Etiquetas}" 
+                              Grid.Column="0" Grid.Row="2">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                                <TextBlock Name="textBox" 
+                                       Text="{TemplateBinding Content}" 
+                                           Background="GhostWhite"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left">
+                                </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
+                
                 <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
                               VerticalAlignment="Stretch"
                               VerticalScrollBarVisibility="Disabled" 

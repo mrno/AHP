@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="sisexperto.UI.WPFUserControls.Views.MatrizView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
+             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type ViewModels:CompararElementosAHPViewModel}">
+            <views:CompararElementosAHPView/>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <!-- Matriz -->
+    <ItemsControl HorizontalContentAlignment="Center" 
+                      HorizontalAlignment="Stretch"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Stretch"
+                      ItemsSource="{Binding Filas}">
+
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <ItemsControl HorizontalContentAlignment="Center" 
+                                              HorizontalAlignment="Stretch"
+                                              VerticalContentAlignment="Center"
+                                              VerticalAlignment="Stretch"
+                                              ItemsSource="{Binding Celdas}">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBox Name="Text" IsEnabled="{Binding Editable}"
+                                                     Text="{Binding ValorTexto}" 
+                                                     MinWidth="30" 
+                                                     MinHeight="30" 
+                                                     VerticalAlignment="Center" 
+                                                     HorizontalAlignment="Center"
+                                                     VerticalContentAlignment="Center"
+                                                     HorizontalContentAlignment="Center">
+                                </TextBox>
+                                <Popup PlacementTarget="{Binding ElementName=Text}" Margin="-150,0,0,0"
+                                       Width="455" Height="Auto">
+                                    <Popup.Style>
+                                        <Style TargetType="{x:Type Popup}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=Text, Path=IsFocused}" Value="True">
+                                                    <Setter Property="IsOpen" Value="True" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=PopupContent, Path=IsFocused}" Value="True">
+                                                    <Setter Property="IsOpen" Value="True" />
+                                                </DataTrigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="IsOpen" Value="True" />
+                                                </Trigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Popup.Style>
+
+                                    <ContentPresenter Name="PopupContent" Content="{Binding Comparador}"/>
+                                </Popup>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Rows="1"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <UniformGrid Columns="1"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+    </ItemsControl>
+</UserControl>

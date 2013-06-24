@@ -5,11 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
              xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
-             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
+             mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:OrdenImportanciaAHPViewModel}">
             <views:OrdenImportanciaAHPView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:MatrizViewModel}">
+            <views:MatrizView/>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -35,48 +38,63 @@
                           Content="{Binding ImportanciaDeElementos}"/>
         
         <GroupBox Grid.Row="2" Header="Matriz" Padding="5">
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                
-                <!-- Headers elementos de las columnas -->
-                <ItemsControl 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Headers elementos de las columnas -->
+                    <ItemsControl 
                       Grid.Column="1" 
                       Grid.Row="0" 
                       HorizontalContentAlignment="Left" 
                       HorizontalAlignment="Stretch"
-                      VerticalContentAlignment="Center"
-                      VerticalAlignment="Stretch"
+                      VerticalContentAlignment="Bottom"
+                      VerticalAlignment="Bottom"
                       ItemsSource="{Binding ElementosAComparar}">
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{TemplateBinding Content}" 
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid VerticalAlignment="Bottom"
+                                       Height="{Binding ElementName=Texto, Path=ActualWidth}">
+                                    <TextBlock RenderTransformOrigin="0.5,0.5"
+                                       Name="Texto" 
+                                       Text="{Binding Elemento}" 
                                        VerticalAlignment="Center" 
                                        HorizontalAlignment="Center">
-                                <TextBlock.RenderTransform>
-                                    <RotateTransform Angle="-45"/>
-                                </TextBlock.RenderTransform>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Rows="1"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                                        <TextBlock.RenderTransform>
+                                            <RotateTransform Angle="-45"/>
+                                        </TextBlock.RenderTransform>
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementoComparacionIzquiera}" Value="True">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Rows="1"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-                </ItemsControl>
+                    </ItemsControl>
 
-                <!-- Headers elementos de las filas -->
-                <ItemsControl Grid.Column="0"
+                    <!-- Headers elementos de las filas -->
+                    <ItemsControl Grid.Column="0"
                       Grid.Row="1" 
                       HorizontalContentAlignment="Left" 
                       HorizontalAlignment="Stretch"
@@ -84,69 +102,38 @@
                       VerticalAlignment="Stretch"
                       ItemsSource="{Binding ElementosAComparar}">
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{TemplateBinding Content}" 
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Elemento}" 
                                        VerticalAlignment="Center" 
-                                       HorizontalAlignment="Left"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
+                                       HorizontalAlignment="Left">
+                                    <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementoComparacionDerecha}" Value="True">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
 
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="1"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="1"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-                </ItemsControl>
+                    </ItemsControl>
 
-                <!-- Matriz -->
-                <ItemsControl Grid.Column="1" 
-                      Grid.Row="1" 
-                      HorizontalContentAlignment="Center" 
-                      HorizontalAlignment="Stretch"
-                      VerticalContentAlignment="Center"
-                      VerticalAlignment="Stretch"
-                      ItemsSource="{Binding Filas}">
-
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ItemsControl 
-                      HorizontalContentAlignment="Center" 
-                      HorizontalAlignment="Stretch"
-                      VerticalContentAlignment="Center"
-                      VerticalAlignment="Stretch"
-                      ItemsSource="{Binding Celdas}">
-
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBox IsEnabled="{Binding Editable}"
-                                                 Text="{Binding ValorTexto}" 
-                                                 MinWidth="30" 
-                                                 MinHeight="30" 
-                                                 VerticalAlignment="Center" 
-                                                 HorizontalAlignment="Center" 
-                                                 VerticalContentAlignment="Center" 
-                                                 HorizontalContentAlignment="Center"/>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <UniformGrid Rows="1"/>
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                            </ItemsControl>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="1"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-            </Grid>
+                    <ContentPresenter 
+                        Grid.Column="1" 
+                        Grid.Row="1" 
+                        Content="{Binding Matriz}"/>
+                </Grid>
+            </ScrollViewer>
         </GroupBox>
     </Grid>
 </UserControl>

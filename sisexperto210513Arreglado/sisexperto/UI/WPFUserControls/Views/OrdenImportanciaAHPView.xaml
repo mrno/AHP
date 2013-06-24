@@ -10,40 +10,46 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="90"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock Margin="10" Grid.Column="0"
-                       HorizontalAlignment="Left" 
-                       Text="Más Importante"
-                       TextWrapping="Wrap"
-                       TextAlignment="Center"/>
+                    HorizontalAlignment="Left" 
+                    Text="Más Importante"
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"/>
             <TextBlock Margin="10" Grid.Column="2" 
-                       HorizontalAlignment="Right" 
-                       Text="Menos Importante"
-                       TextWrapping="Wrap"
-                       TextAlignment="Center"/>
+                    HorizontalAlignment="Right" 
+                    Text="Menos Importante"
+                    TextWrapping="Wrap"
+                    TextAlignment="Center"/>
 
             <ItemsControl Grid.Column="1"
-                          ItemsSource="{Binding ElementosPriorizados}" 
-                          HorizontalAlignment="Center"
-                          HorizontalContentAlignment="Center">
-                
+                        ItemsSource="{Binding ElementosPriorizados}" 
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center">
+
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <ComboBox Margin="5" VerticalContentAlignment="Center"  FontSize="10"
-                                  ItemsSource="{Binding ElementosDisponibles}" 
-                                  SelectedItem="{Binding ElementoSeleccionado}"/>
+                        <ComboBox Margin="5" VerticalContentAlignment="Center" 
+                                ItemsSource="{Binding ElementosDisponibles}" 
+                                SelectedItem="{Binding ElementoSeleccionado}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{TemplateBinding Content}" TextTrimming="WordEllipsis"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-                
+
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
+                        <UniformGrid Rows="1"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
-                
+
             </ItemsControl>
         </Grid>
     </GroupBox>

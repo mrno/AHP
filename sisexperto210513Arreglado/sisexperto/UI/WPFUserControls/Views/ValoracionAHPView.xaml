@@ -76,18 +76,18 @@
                                             Width="Auto" IsReadOnly="True"/>
                 </DataGrid.Columns>
                 
-                <!--<Interactivity:Interaction.Triggers>
-                    <Interactivity:EventTrigger EventName="SelectionChanged">
-                        <Interactivity:InvokeCommandAction Command="{Binding MostrarMatrizComando}" 
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding MostrarMatrizComando}" 
                                                CommandParameter="{Binding ElementName=GridAlternativas, 
                                                                           Path=SelectedItem}" />
-                    </Interactivity:EventTrigger>
-                    <Interactivity:EventTrigger EventName="GotFocus">
-                        <Interactivity:InvokeCommandAction CommandName="{Binding MostrarMatrizComando}" 
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="GotFocus">
+                        <i:InvokeCommandAction Command="{Binding MostrarMatrizComando}" 
                                                CommandParameter="{Binding ElementName=GridAlternativas, 
                                                                           Path=SelectedItem}" />
-                    </Interactivity:EventTrigger>
-                </Interactivity:Interaction.Triggers>-->
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 
             </DataGrid>
         </GroupBox>
