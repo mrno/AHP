@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
-             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels" mc:Ignorable="d" 
+             xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:CompararElementosAHPViewModel}">
@@ -36,10 +37,30 @@
                                                      MinHeight="30" 
                                                      VerticalAlignment="Center" 
                                                      HorizontalAlignment="Center"
-                                                     VerticalContentAlignment="Center"
+                                                     VerticalContentAlignment="Center" 
                                                      HorizontalContentAlignment="Center">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=Text, Path=IsFocused}" Value="True">
+                                                    <Setter Property="BorderThickness" Value="2"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=SliderValoracion, Path=IsMouseOver}" Value="True">
+                                                    <Setter Property="BorderBrush" Value="#6599D1" />
+                                                    <Setter Property="BorderThickness" Value="2"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="LostFocus">
+                                            <i:InvokeCommandAction Command="{Binding GuardarValorCambiado}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
                                 </TextBox>
-                                <Popup PlacementTarget="{Binding ElementName=Text}" Margin="-150,0,0,0"
+                                <Popup Name="SliderValoracion"
+                                       PlacementTarget="{Binding ElementName=Text}" Placement="RelativePoint" 
+                                       PlacementRectangle="-212,30,0,0" PopupAnimation="Slide"
                                        Width="455" Height="Auto">
                                     <Popup.Style>
                                         <Style TargetType="{x:Type Popup}">
@@ -57,7 +78,13 @@
                                             </Style.Triggers>
                                         </Style>
                                     </Popup.Style>
-
+                                    
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeave">
+                                            <i:InvokeCommandAction Command="{Binding GuardarValorCambiado}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    
                                     <ContentPresenter Name="PopupContent" Content="{Binding Comparador}"/>
                                 </Popup>
                             </Grid>

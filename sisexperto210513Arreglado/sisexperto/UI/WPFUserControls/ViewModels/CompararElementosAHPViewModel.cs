@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeneticResearcher.Command;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             _celdaAHP = celda;
             ElementoIzquierda = elementoIzquierda;
             ElementoDerecha = elementoDerecha;
+            GuardarValorCambiado = new RelayCommand(GuardarCambioDeCelda);
         }
 
         #endregion
@@ -58,6 +60,20 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 _celdaAHP.Valor = value;
                 OnPropertyChanged("ValorImportancia");
             }
+        }
+
+        #endregion
+
+        #region Comandos
+
+        public RelayCommand GuardarValorCambiado { get; set; }
+        private void GuardarCambioDeCelda()
+        {
+            //SelectedOperators.Add(selectedOperator);
+            //OnPropertyChanged("AvailableOperators");
+
+            //SelectedOperator = selectedOperator;
+            //OnPropertyChanged("SelectedOperator");
         }
 
         #endregion

@@ -13,12 +13,15 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
     {
         #region Atributos
 
+        private ValoracionAHPViewModel _valoracionAHPViewModel;
+
         #endregion
 
         #region Constructores
-        
-        public MatrizViewModel(double[,] matriz, IEnumerable<string> elementos)
+
+        public MatrizViewModel(ValoracionAHPViewModel valoracion, double[,] matriz, IEnumerable<string> elementos)
         {
+            _valoracionAHPViewModel = valoracion;
             Elementos = elementos;
             Matriz = matriz;
         }
@@ -59,21 +62,9 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             {
                 var dimension = value.GetLength(0);
 
-                if (Filas == null)// || dimension != Rows.Count)
+                if (Filas == null)
                 {
                     Filas = new ObservableCollection<FilaAHPViewModel>();
-                    //for (int i = 0; i < dimension; i++)
-                    //{
-                    //    var row = new FilaAHPViewModel
-                    //    {
-                    //        Celdas = new ObservableCollection<CeldaAHPViewModel>()
-                    //    };
-                    //    for (int j = 0; j < dimension; j++)
-                    //    {
-                    //        row.Celdas.Add(new CeldaAHPViewModel(Elementos.ElementAt(i), Elementos.ElementAt(j), value[i, j]));
-                    //    }
-                    //    Filas.Add(row);
-                    //}
                 }
 
                 if (dimension > Filas.Count)
@@ -90,7 +81,10 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                         var i = Filas.IndexOf(row);
                         for (int j = row.Celdas.Count; j < dimension; j++)
                         {
-                            row.Celdas.Add(new CeldaAHPViewModel(Elementos.ElementAt(i), Elementos.ElementAt(j), value[i, j]));
+                            var celda = new CeldaAHPViewModel(_valoracionAHPViewModel, Elementos.ElementAt(i),
+                                                              Elementos.ElementAt(j), value[i, j]);
+                            celda.ValorCeldaModificada += () => { _valoracionAHPViewModel.MatrizSeleccionadaEditada(); };
+                            row.Celdas.Add(celda);
                         }
                     }
 
@@ -136,11 +130,9 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 OnPropertyChanged("Rows");
             }
         }
-        //public CeldaAHPViewModel CeldaSeleccionada
-        //{
-        //    get { return Filas.First(x => x.CeldaSeleccionada != null).CeldaSeleccionada; }
-        //}
-        
+
+        public bool Completa { get { return !Filas.Any(x => x.Celdas.Any(y => y.Valor == 0)); } }
+
         #endregion
 
         #region INotifyPropertyChanged Members
@@ -181,19 +173,30 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
     public class CeldaAHPViewModel : INotifyPropertyChanged
     {
+        #region Delegados
+
+        public delegate void CeldaModificada();
+
+        public event CeldaModificada ValorCeldaModificada;
+
+        #endregion
+
         #region Atributos
 
         private bool _seleccionada;
         private double _valor;
+        private ValoracionAHPViewModel _valoracionAHPViewModel;
 
         #endregion
 
         #region Constructores
 
-        public CeldaAHPViewModel(string elementoIzquierda, string elementoDerecha, double valor = 0)
+        public CeldaAHPViewModel(ValoracionAHPViewModel valoracionAHPViewModel, string elementoIzquierda, string elementoDerecha, double valor = 0)
         {
+            _valoracionAHPViewModel = valoracionAHPViewModel;
             Comparador = new CompararElementosAHPViewModel(this, elementoIzquierda, elementoDerecha);
             Valor = valor;
+            GuardarValorCambiado = new RelayCommand(GuardarCambioDeCelda);
         }
 
         #endregion
@@ -230,6 +233,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 OnPropertyChanged("Valor");
                 OnPropertyChanged("ValorTexto");
                 ActualizarOpuesta();
+                
             }
         }
 
@@ -264,13 +268,34 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 OnPropertyChanged("ValorTexto");
                 Comparador.ActualizarValorSlider();
                 ActualizarOpuesta();
+                ValorCeldaModificada();
+            }
+        }
+
+        #endregion
+
+        #region Comandos
+
+        public RelayCommand GuardarValorCambiado { get; set; }
+        private void GuardarCambioDeCelda()
+        {
+            if (PosY > PosX)
+            {
+                //este es el caso en que el número 
+                //de columna sea mayor que el de fila (arriba de la diagonal principal)
+                _valoracionAHPViewModel.MatrizSeleccionadaModificada(PosX, PosY - PosX - 1, Valor);
+            }
+            else
+            {
+                //si está del lado de abajo
+                _valoracionAHPViewModel.MatrizSeleccionadaModificada(PosY, PosX - PosY - 1, 1.0/Valor);
             }
         }
 
         #endregion
 
         #region Metodos
-        
+
         private void ActualizarOpuesta()
         {
             if(CeldaOpuesta != null)

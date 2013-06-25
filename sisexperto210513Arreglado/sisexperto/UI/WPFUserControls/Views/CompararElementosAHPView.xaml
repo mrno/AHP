@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" BorderBrush="Black" BorderThickness="1"
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" BorderBrush="Black" BorderThickness="1"
              d:DesignHeight="100" d:DesignWidth="500">
     <UserControl.Resources>
         <local:EscalaSaatyConverter x:Key="SaatyConverter" /> 
@@ -53,6 +54,12 @@
                     Minimum="0" Maximum="16" TickFrequency="1" IsSnapToTickEnabled="True"
                     Value="{Binding Converter={StaticResource ResourceKey=SaatyConverter}, 
                                     Path=ValorImportancia, Mode=TwoWay}">
+                <!--<i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ValueChanged">
+                        <i:InvokeCommandAction Command="{Binding GuardarValorCambiado}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>-->
+                
             </Slider>
             <TextBlock Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" 
                        HorizontalAlignment="Center"

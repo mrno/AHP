@@ -12,6 +12,19 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 {
     public class ValoracionAHPViewModel : INotifyPropertyChanged
     {
+        #region Delegados
+
+        public delegate void MatrizAHPModificada(int? matriz, int fila, int columna, double valor);
+        public delegate void MatrizAHPConsistente(int? matriz, bool consistencia);
+
+        public event MatrizAHPModificada MatrizCriterioModificada;
+        public event MatrizAHPModificada MatrizAlternativaModificada;
+
+        public event MatrizAHPConsistente MatrizCriterioConsistente;
+        public event MatrizAHPConsistente MatrizAlternativasConsistente;
+
+        #endregion
+
         #region Atributos
 
         private ReadOnlyCollection<MatrizAHPViewModel> _matricesAHPAlternativas;
@@ -24,21 +37,19 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                                       IEnumerable<Alternativa> alternativas,
                                       IEnumerable<AlternativaMatriz> matricesAlternativas)
         {
-            MatrizCriterio = new MatrizAHPViewModel("Comparación de Criterios",
+            MatrizCriterio = new MatrizAHPViewModel(this, "Comparación de Criterios",
                                                     criterios.Select(x => x.Nombre).ToList(),
                                                     matrizCriterio.Matriz,
-                                                    matrizCriterio.Completa,
                                                     matrizCriterio.Consistencia);
         
 
             var matricesAlternativasModels =
                 criterios.Select(
                     criterio =>
-                    new MatrizAHPViewModel(criterio.Nombre,
+                    new MatrizAHPViewModel(this, criterio.Nombre,
                                            alternativas.Select(x => x.Nombre).ToList(),
                                            matricesAlternativas.ElementAt(criterios.ToList().IndexOf(criterio)).Matriz,
-                                           matrizCriterio.Completa,
-                                           matrizCriterio.Consistencia)).ToList();
+                                           matricesAlternativas.ElementAt(criterios.ToList().IndexOf(criterio)).Consistencia)).ToList();
 
             _matricesAHPAlternativas = new ReadOnlyCollection<MatrizAHPViewModel>(matricesAlternativasModels);
 
@@ -68,6 +79,40 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 _matrizSeleccionada = value;
                 OnPropertyChanged("MatrizSeleccionada");
             }
+        }
+
+        #endregion
+
+        #region Metodos
+
+        public void MatrizSeleccionadaModificada(int fila, int columna, double valor)
+        {
+            if(MatrizSeleccionada == MatrizCriterio)
+            {
+                MatrizCriterioModificada(null, fila, columna, valor);
+            }
+            else
+            {
+                MatrizAlternativaModificada(_matricesAHPAlternativas.IndexOf(MatrizSeleccionada), fila, columna, valor);
+            }
+        }
+
+        public void GuardarConsistencia()
+        {
+            if (MatrizSeleccionada == MatrizCriterio)
+            {
+                MatrizCriterioConsistente(null, MatrizSeleccionada.Consistente);
+            }
+            else
+            {
+                MatrizAlternativasConsistente(_matricesAHPAlternativas.IndexOf(MatrizSeleccionada), MatrizSeleccionada.Consistente);
+            }
+        }
+
+        public void MatrizSeleccionadaEditada()
+        {
+            MatrizSeleccionada.Consistente = false;
+            GuardarConsistencia();
         }
 
         #endregion

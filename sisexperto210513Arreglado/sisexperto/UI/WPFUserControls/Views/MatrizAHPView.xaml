@@ -48,7 +48,14 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+
+
+                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="15"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                            Content="Ver Consistencia" Command="{Binding ComprobarConsistencia}"/>
 
                     <!-- Headers elementos de las columnas -->
                     <ItemsControl 

@@ -32,7 +32,7 @@
             this.comboBoxProyectos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
-            this.valoracionControl1 = new sisexperto.UI.WPFUserControls.ValoracionControl();
+            this.valoracionControl1 = new sisexperto.UI.WPFUserControls.ValoracionControl(_fachada);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();

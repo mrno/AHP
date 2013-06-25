@@ -37,12 +37,12 @@
                           Margin="5" 
                           Content="Valoracion Completa" 
                           IsHitTestVisible="False"
-                          IsChecked="{Binding MatrizCriterio.Completa}"/>
+                          IsChecked="{Binding MatrizCriterio.Completa, Mode=OneWay}"/>
                 <CheckBox Grid.Row="1" 
                           Margin="5,0,5,5" 
                           Content="Valoracion Consistente" 
                           IsHitTestVisible="False"
-                          IsChecked="{Binding MatrizCriterio.Consistente}"/>
+                          IsChecked="{Binding MatrizCriterio.Consistente, Mode=OneWay}"/>
                 <Button Grid.Row="2" 
                         Margin="5" 
                         Content="Ver Matriz" 
@@ -69,10 +69,10 @@
                                         Binding="{Binding Nombre}" 
                                         Width="Auto" IsReadOnly="True"/>
                     <DataGridCheckBoxColumn Header="Completo" 
-                                            Binding="{Binding Completa}" 
+                                            Binding="{Binding Completa, Mode=OneWay}" 
                                             Width="Auto" IsReadOnly="True"/>
                     <DataGridCheckBoxColumn Header="Consistente" 
-                                            Binding="{Binding Consistente}" 
+                                            Binding="{Binding Consistente, Mode=OneWay}" 
                                             Width="Auto" IsReadOnly="True"/>
                 </DataGrid.Columns>
                 

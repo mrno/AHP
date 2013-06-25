@@ -21,10 +21,10 @@ namespace sisexperto.UI.WPFUserControls
 
         public ValorarProyectos(Experto experto,  Proyecto proyectoSeleccionado, FachadaProyectosExpertos fachada)
         {
+            _fachada = fachada;
             InitializeComponent();
             _proyectoSeleccionado = proyectoSeleccionado;
             _experto = experto;
-            _fachada = fachada;
             _expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
             _listaProyectos = _fachada.SolicitarProyectosAsignados(_experto).ToList();
         }

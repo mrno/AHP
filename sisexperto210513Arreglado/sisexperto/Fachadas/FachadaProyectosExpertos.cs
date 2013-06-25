@@ -472,5 +472,30 @@ namespace sisExperto
             }
             _context.SaveChanges();
         }
+
+        internal void GuardarValoracion(ValoracionAHP valoracionAHP, int fila, int columna, double valor)
+        {
+            valoracionAHP.CriterioMatriz.FilasCriterio.ElementAt(fila).CeldasCriterios.ElementAt(columna).Valor = valor;
+            _context.SaveChanges();
+        }
+
+        internal void GuardarValoracion(ValoracionAHP valoracionAHP, int? matriz, int fila, int columna, double valor)
+        {
+            valoracionAHP.AlternativasMatrices.ElementAt((int)matriz)
+                .FilasAlternativa.ElementAt(fila).CeldasAlternativas.ElementAt(columna).ValorAHP = valor;
+            _context.SaveChanges();
+        }
+
+        internal void GuardarConsistencia(ValoracionAHP valoracionAHP, int? matriz, bool consistencia)
+        {
+            if(matriz == null)
+            {
+                valoracionAHP.CriterioMatriz.Consistencia = consistencia;
+            }
+            else
+            {
+                valoracionAHP.AlternativasMatrices.ElementAt((int)matriz).Consistencia = consistencia;
+            }
+        }
     }
 }
