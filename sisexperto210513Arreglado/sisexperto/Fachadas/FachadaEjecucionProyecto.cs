@@ -105,6 +105,23 @@ namespace sisExperto.Fachadas
             }
         }
         
+        internal double[,] CalcularRankingIL(Proyecto proyecto, int tipoAgregacion, double[,] vectorCriteriosAHP)
+        {
+            using (var context = new GisiaExpertoContext())
+            {
+                var _proyecto = context.Proyectos.First(x => x.ProyectoId == proyecto.ProyectoId);
+
+                if (tipoAgregacion == 1)
+                {
+                    return _proyecto.CalcularRankingIL(false, vectorCriteriosAHP);
+                }
+                else
+                {
+                    return _proyecto.CalcularRankingIL(true, vectorCriteriosAHP);
+                }
+            }
+        }
+
         internal double[,] CalcularRankingIL(Proyecto proyecto, int tipoAgregacion)
         {
             using (var context = new GisiaExpertoContext())

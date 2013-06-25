@@ -13,7 +13,7 @@ namespace sisExperto
 {
     public class FachadaProyectosExpertos
     {
-        private readonly GisiaExpertoContext _context = GisiaExpertoContext.Instance;
+        private readonly GisiaExpertoContext _context; //= GisiaExpertoContext.Instance;
 
         public Experto Experto { get; set; }
 

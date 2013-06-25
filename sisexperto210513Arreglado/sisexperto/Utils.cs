@@ -18,13 +18,31 @@ namespace probaAHP
             int denominador = alternativas[0].ValorCriterios.Count;
             foreach (var VARIABLE in resultado.AlternativasIL)
             {
-
                 foreach (var valor in VARIABLE.ValorCriterios)
                 {
                     rankAgregado[iAlternativa, 0] += valor.ValorILNumerico;
-
                 }
                 rankAgregado[iAlternativa, 0] /= denominador;
+                iAlternativa++;
+            }
+        }
+
+        public void AgregacionCriteriosConPesoAHP(ValoracionIL resultado, double[,] rankAgregado, double[,] vectorCriteriosAHP)
+        {
+            int iAlternativa = 0;
+
+            var alternativas = resultado.AlternativasIL.ToList();
+
+            
+            foreach (var VARIABLE in resultado.AlternativasIL)
+            {
+                int iCriterio = 0;
+                foreach (var valor in VARIABLE.ValorCriterios)
+                {
+                    rankAgregado[iAlternativa, 0] += valor.ValorILNumerico * vectorCriteriosAHP[iCriterio,0];
+                    iCriterio++;
+                }
+                
                 iAlternativa++;
             }
         }

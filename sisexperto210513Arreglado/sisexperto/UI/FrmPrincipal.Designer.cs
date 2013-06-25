@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.proyectosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxProyectos = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonProyectoEdicion = new System.Windows.Forms.Button();
             this.dataGridProyectos = new System.Windows.Forms.DataGridView();
@@ -77,6 +78,7 @@
             this.iLToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.il_ponderadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.il_mediaGeométricaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.il_ponderadoAHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expertosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iniciarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +86,6 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
@@ -119,6 +120,16 @@
             this.groupBoxProyectos.TabIndex = 1;
             this.groupBoxProyectos.TabStop = false;
             this.groupBoxProyectos.Text = "Proyectos de Usuario";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(243, 643);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label2
             // 
@@ -510,7 +521,7 @@
             this.ahp_mediaGeométricaToolStripMenuItem,
             this.ahp_individualToolStripMenuItem});
             this.aHPToolStripMenuItem.Name = "aHPToolStripMenuItem";
-            this.aHPToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.aHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aHPToolStripMenuItem.Text = "AHP";
             // 
             // ahp_ponderadoToolStripMenuItem
@@ -538,9 +549,10 @@
             // 
             this.iLToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.il_ponderadoToolStripMenuItem1,
-            this.il_mediaGeométricaToolStripMenuItem1});
+            this.il_mediaGeométricaToolStripMenuItem1,
+            this.il_ponderadoAHPToolStripMenuItem});
             this.iLToolStripMenuItem1.Name = "iLToolStripMenuItem1";
-            this.iLToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
+            this.iLToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.iLToolStripMenuItem1.Text = "IL";
             // 
             // il_ponderadoToolStripMenuItem1
@@ -556,6 +568,13 @@
             this.il_mediaGeométricaToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
             this.il_mediaGeométricaToolStripMenuItem1.Text = "Media geométrica";
             this.il_mediaGeométricaToolStripMenuItem1.Click += new System.EventHandler(this.il_mediaGeométricaToolStripMenuItem1_Click);
+            // 
+            // il_ponderadoAHPToolStripMenuItem
+            // 
+            this.il_ponderadoAHPToolStripMenuItem.Name = "il_ponderadoAHPToolStripMenuItem";
+            this.il_ponderadoAHPToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.il_ponderadoAHPToolStripMenuItem.Text = "Ponderado AHP";
+            this.il_ponderadoAHPToolStripMenuItem.Click += new System.EventHandler(this.il_ponderadoAHPToolStripMenuItem_Click);
             // 
             // expertosToolStripMenuItem
             // 
@@ -607,16 +626,6 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Experto";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 463;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(243, 643);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // FrmPrincipal
             // 
@@ -712,6 +721,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn Activo;
         private System.Windows.Forms.DataGridViewCheckBoxColumn creadorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem il_ponderadoAHPToolStripMenuItem;
 
 
 

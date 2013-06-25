@@ -5,7 +5,7 @@ using sisExperto;
 
 namespace sisexperto.Fachadas
 {
-    public sealed class FachadaCalculos
+    public class FachadaCalculos
     {
         private static volatile FachadaCalculos instance;
         private static readonly object syncRoot = new Object();
@@ -15,7 +15,7 @@ namespace sisexperto.Fachadas
         private CalcularAHP.CalcularAHP calcularAhp = new CalcularAHP.CalcularAHP();
         private MatlabUtils matlabUtils = new MatlabUtils();
 
-        private FachadaCalculos()
+        public FachadaCalculos()
         {
         }
 
@@ -52,9 +52,12 @@ namespace sisexperto.Fachadas
             return resultado;
         }
 
-    
-
-
+        public double[,] obtenerVectorAgregadoCriterioAHP(List<Double[,]> listaCriterioAlternativas)
+        {
+            MWNumericArray vectCriterios = matlabUtils.ObtenerVectorCriteriosAHP(listaCriterioAlternativas);
+            double[,] resultado = matlabUtils.NetArrayFromMLArray(vectCriterios);
+            return resultado;
+        }
 
         public bool CalcularConsistencia(double[,] matriz)
         {
