@@ -53,22 +53,31 @@ namespace sisExperto
                                      select c.Experto;
                 // tipoAgregacion 1 = No ponderado
                 // tipoAgregacion 2 = Ponderado
+
                 if (_tipoAgregacionCriterio == 2)
                 {
                     FachadaCalculos fachadaCalcs = new FachadaCalculos();
                     List<ExpertoEnProyecto> exps = Proyecto.ObtenerExpertosProyectoConsistenteAHP().ToList<ExpertoEnProyecto>();
-                    List<Double[,]> matriz = new List<Double[,]>();
-                    foreach (var item in exps)
+                    if (exps.Count == Proyecto.ExpertosAsignados.Count)
                     {
-                        matriz.Add(item.ValoracionAHP.CriterioMatriz.Matriz);
-                    }
+                        List<Double[,]> matriz = new List<Double[,]>();
+                        foreach (var item in exps)
+                        {
+                            matriz.Add(item.ValoracionAHP.CriterioMatriz.Matriz);
+                        }
 
-                    Double[,] vector = fachadaCalcs.obtenerVectorAgregadoCriterioAHP(matriz);
-                    rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion, vector);
+                        Double[,] vector = fachadaCalcs.obtenerVectorAgregadoCriterioAHP(matriz);
+                        rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion, vector);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Todos los expertos deben tener valoraciones consitentes.");
+                    }
                 }
                 else
                 {
                     rankingFinal = _fachada.CalcularRankingIL(_proyecto, tipoAgregacion);
+                    
                 }
             }
 
@@ -218,6 +227,25 @@ namespace sisExperto
             return rankingFinal;
         }
 
+        public double[,] CalcularRankingPersonal(Proyecto _proyecto, FachadaEjecucionProyecto _fachada, ExpertoEnProyecto _expertoEnProyecto, int _tipo, Double[,] matrizCriterioAHP)
+        {
+            //_tipo=1 -> AHP
+            //_tipo=2 -> IL
+
+            double[,] rankingFinal;
+
+            if (_tipo == 1)
+            {
+                rankingFinal = _fachada.CalcularRankingAHP(_expertoEnProyecto);
+            }
+            else
+            {
+                rankingFinal = _fachada.CalcularRankingIL(_expertoEnProyecto,matrizCriterioAHP);
+            }
+
+            return rankingFinal;
+        }
+
 
         private void mostrarRankingPersonal(object sender, DataGridViewCellEventArgs e)
         {            
@@ -240,9 +268,20 @@ namespace sisExperto
             }
             else
             {
-                rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2);
+                if (_tipoAgregacionCriterio == 2)
+                {
+                    FachadaCalculos fachadaCalcs = new FachadaCalculos();
+                    List<Double[,]> matriz = new List<Double[,]>();
+                    matriz.Add(miExpertoProyecto.ValoracionAHP.CriterioMatriz.Matriz);
+
+                    Double[,] vector = fachadaCalcs.obtenerVectorAgregadoCriterioAHP(matriz);
+                    rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2,vector);
+                }
+                else
+                {
+                    rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2);
+                }
             }
-            //double[,] rankingPersonal = CalcularRankingPersonal(_proyecto, _fachada, miExpertoProyecto, 2);
 
             ICollection<Alternativa> listaAlt = _proyecto.Alternativas;
 
