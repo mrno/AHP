@@ -27,6 +27,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         #region Atributos
 
+        private MatrizAHPViewModel _matrizSeleccionada;
         private ReadOnlyCollection<MatrizAHPViewModel> _matricesAHPAlternativas;
 
         #endregion
@@ -37,7 +38,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                                       IEnumerable<Alternativa> alternativas,
                                       IEnumerable<AlternativaMatriz> matricesAlternativas)
         {
-            MatrizCriterio = new MatrizAHPViewModel(this, "Comparación de Criterios",
+            MatrizCriterio = new MatrizAHPViewModel(this, "Criterios",
                                                     criterios.Select(x => x.Nombre).ToList(),
                                                     matrizCriterio.Matriz,
                                                     matrizCriterio.Consistencia);
@@ -69,8 +70,6 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             get { return _matricesAHPAlternativas; }
         }
         
-        private MatrizAHPViewModel _matrizSeleccionada;
-
         public MatrizAHPViewModel MatrizSeleccionada
         {
             get { return _matrizSeleccionada; }

@@ -15,9 +15,15 @@ namespace sisexperto.UI.WPFUserControls.Custom
 {
     public class SlidersItemsControl : ItemsControl
     {
+        protected override void OnItemsSourceChanged(System.Collections.IEnumerable oldValue, System.Collections.IEnumerable newValue)
+        {
+            base.OnItemsSourceChanged(oldValue, newValue);
+            InvalidateVisual();
+        }
+        
         protected override void OnRender(DrawingContext dc)
         {
-            if (Items != null && Items.Count > 1)
+            if (Items != null && Items.Count > 0)
             {
                 var alturaTextos = new FormattedText(Items.GetItemAt(0).ToString(), CultureInfo.GetCultureInfo("en-us"),
                                                     FlowDirection.LeftToRight, new Typeface("Verdana"), 14, Brushes.Black).Height;

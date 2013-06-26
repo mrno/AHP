@@ -171,7 +171,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         #endregion
     }
 
-    public class CeldaAHPViewModel : INotifyPropertyChanged
+    public class CeldaAHPViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         #region Delegados
 
@@ -185,6 +185,8 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         private bool _seleccionada;
         private double _valor;
+        private bool _muestraSugerencia;
+        private double _valorSugerido;
         private ValoracionAHPViewModel _valoracionAHPViewModel;
 
         #endregion
@@ -224,6 +226,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 OnPropertyChanged("Seleccionada");
             }
         }
+        
         public double Valor
         {
             get { return _valor; }
@@ -231,46 +234,68 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             {
                 _valor = value;
                 OnPropertyChanged("Valor");
-                OnPropertyChanged("ValorTexto");
+                Comparador.ActualizarValorSlider();
                 ActualizarOpuesta();
-                
+                //ValorCeldaModificada();
             }
         }
 
-        public string ValorTexto
+        public bool MuestraSugerencia
         {
-            get
-            {
-                //importancia mayor o igual de los elementos
-                if (_valor >= 1 && _valor <= 9)
-                {
-                    return _valor.ToString(CultureInfo.InvariantCulture);
-                }
-                //importancia menor
-                if (_valor < 1 && _valor > 0)
-                {
-                    return "1/" + Math.Ceiling(1.0 / _valor).ToString(CultureInfo.InvariantCulture);
-                }
-                //importancia no asignada
-                return "-";
-            }
-            set
-            {
-                if (value.Contains("/"))
-                {
-                    _valor = 1.0 / int.Parse(value.Split('/').ElementAt(1));
-                }
-                else
-                {
-                    _valor = int.Parse(value);
-                }
-                OnPropertyChanged("Valor");
-                OnPropertyChanged("ValorTexto");
-                Comparador.ActualizarValorSlider();
-                ActualizarOpuesta();
-                ValorCeldaModificada();
+            get { return _muestraSugerencia; }
+            set 
+            { 
+                _muestraSugerencia = value;
+                Comparador.MuestraSugerencia = _muestraSugerencia;
+                OnPropertyChanged("MuestraSugerencia");
             }
         }
+
+        public double ValorSugerido
+        {
+            get { return _valorSugerido; }
+            set
+            {
+                _valorSugerido = value;
+                Comparador.ValorSugerido = _valorSugerido;
+                OnPropertyChanged("ValorSugerido");
+            }
+        }
+
+        //public string ValorTexto
+        //{
+        //    get
+        //    {
+        //        //importancia mayor o igual de los elementos
+        //        if (_valor >= 1 && _valor <= 9)
+        //        {
+        //            return _valor.ToString(CultureInfo.InvariantCulture);
+        //        }
+        //        //importancia menor
+        //        if (_valor < 1 && _valor > 0)
+        //        {
+        //            return "1/" + Math.Ceiling(1.0 / _valor).ToString(CultureInfo.InvariantCulture);
+        //        }
+        //        //importancia no asignada
+        //        return "-";
+        //    }
+        //    set
+        //    {
+        //        if (value.Contains("/"))
+        //        {
+        //            _valor = 1.0 / int.Parse(value.Split('/').ElementAt(1));
+        //        }
+        //        else
+        //        {
+        //            _valor = int.Parse(value);
+        //        }
+        //        OnPropertyChanged("Valor");
+        //        OnPropertyChanged("ValorTexto");
+        //        Comparador.ActualizarValorSlider();
+        //        ActualizarOpuesta();
+        //        ValorCeldaModificada();
+        //    }
+        //}
 
         #endregion
 
@@ -321,6 +346,24 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+
+        #region Implementation of IDataErrorInfo
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                if (propertyName == "Valor")
+                {
+                    //return "asd";
+                }
+                return null;
+            }
+        }
+
+        public string Error { get; private set; }
 
         #endregion
     }

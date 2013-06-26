@@ -93,9 +93,8 @@
         </GroupBox>
         
         <GroupBox Grid.Column="1" 
-                  Grid.Row="0" 
-                  Grid.RowSpan="2" 
-                  Header="Matriz de Seleccionada">
+                  Grid.Row="0"
+                  Grid.RowSpan="2" Header="Comparaciones" >
             <ContentPresenter Content="{Binding MatrizSeleccionada}"/>
         </GroupBox>
         

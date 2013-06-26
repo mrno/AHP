@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
              xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:CompararElementosAHPViewModel}">
             <views:CompararElementosAHPView/>
         </DataTemplate>
+        <local:ValoresSaatyConverter x:Key="valorSaatyConverter"/>
     </UserControl.Resources>
     
     <!-- Matriz -->
@@ -30,9 +32,13 @@
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <TextBox Name="Text" IsEnabled="{Binding Editable}"
-                                                     Text="{Binding ValorTexto}" 
+                            <Grid Margin="5">
+                                <TextBox Name="Text" IsReadOnly="True"
+                                                     Text="{Binding Converter={StaticResource ResourceKey=valorSaatyConverter}, Path=Valor,
+                                                                    UpdateSourceTrigger=PropertyChanged, 
+                                                                    ValidatesOnDataErrors=True}" 
+                                                     ToolTip="{Binding ElementName=Text, Path=(Validation.Errors).CurrentItem}"
+                                                     BorderThickness="1"
                                                      MinWidth="30" 
                                                      MinHeight="30" 
                                                      VerticalAlignment="Center" 
@@ -42,6 +48,19 @@
                                     <TextBox.Style>
                                         <Style TargetType="{x:Type TextBox}">
                                             <Style.Triggers>
+                                                <DataTrigger Binding="{Binding MuestraSugerencia}" Value="True">
+                                                    <Setter Property="BorderBrush" Value="Red"/>
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                    <Setter Property="FontWeight" Value="Bold"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Editable}" Value="False">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                    <Setter Property="Background" Value="Gray"/>
+                                                    <Setter Property="Foreground" Value="White"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Editable}" Value="True">
+                                                    <Setter Property="Background" Value="GhostWhite"/>
+                                                </DataTrigger>
                                                 <DataTrigger Binding="{Binding ElementName=Text, Path=IsFocused}" Value="True">
                                                     <Setter Property="BorderThickness" Value="2"/>
                                                 </DataTrigger>
@@ -59,9 +78,9 @@
                                     </i:Interaction.Triggers>
                                 </TextBox>
                                 <Popup Name="SliderValoracion"
-                                       PlacementTarget="{Binding ElementName=Text}" Placement="RelativePoint" 
-                                       PlacementRectangle="-212,30,0,0" PopupAnimation="Slide"
-                                       Width="455" Height="Auto">
+                                       PlacementTarget="{Binding ElementName=Text}" Placement="Bottom" 
+                                       PlacementRectangle="-225,30,0,0" PopupAnimation="Slide"
+                                       Width="480" Height="Auto">
                                     <Popup.Style>
                                         <Style TargetType="{x:Type Popup}">
                                             <Style.Triggers>

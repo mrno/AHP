@@ -3,8 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:SlidersILConverter x:Key="sliderValueConverter"/>
+    </UserControl.Resources>
 
 
     <Grid Name="Slider">
@@ -18,14 +22,20 @@
                    HorizontalAlignment="Center" 
                    Margin="10"/>
 
-        <Slider Grid.Row="1"
+        <Slider Name="SliderBar" Grid.Row="1"
                 Minimum="0" 
                 Maximum="{Binding MaximaEtiqueta}" 
-                Orientation="Vertical"
+                Orientation="Vertical" FlowDirection="RightToLeft"
                 HorizontalAlignment="Center"
                 IsSnapToTickEnabled="True" 
                 TickFrequency="1" 
-                Value="{Binding EtiquetaSeleccionada, Mode=TwoWay}">
+                Value="{Binding EtiquetaSeleccionada, 
+                                Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <i:InvokeCommandAction Command="{Binding GuardarValorCambiado}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </Slider>
     </Grid>
 </UserControl>

@@ -14,9 +14,9 @@ namespace sisexperto.UI.WPFUserControls.Custom
                               object parameter,
                               System.Globalization.CultureInfo culture)
         {
-            var slider = (ItemsControl)value;
+            var slider = (Slider)value;
 
-            return slider.ActualHeight * 0.8;
+            return slider.Maximum - slider.Value;
         }
 
         public object ConvertBack(object value,
@@ -24,7 +24,9 @@ namespace sisexperto.UI.WPFUserControls.Custom
                                   object parameter,
                                   System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            var slider = (Slider)value;
+
+            return slider.Maximum - slider.Value;
         }
     }
 }

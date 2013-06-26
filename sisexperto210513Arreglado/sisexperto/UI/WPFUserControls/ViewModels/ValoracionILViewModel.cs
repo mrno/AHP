@@ -12,9 +12,18 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 {
     public class ValoracionILViewModel : INotifyPropertyChanged
     {
+        #region Delegados
+
+        public delegate void ValoracionModificada(int alternativa, int criterio, int valor);
+
+        public event ValoracionModificada ValoracionDeCriterioModificada;
+
+        #endregion
+
         #region Atributos
         
         private ValorarAlternativaILViewModel _alternativaSeleccionada;
+        private IEnumerable<ValorarAlternativaILViewModel> _alternativasDisponibles; 
 
         #endregion
 
@@ -24,19 +33,20 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         {
             Etiquetas =
                 new ReadOnlyCollection<string>(
-                    etiquetas.Select(x => etiquetas.ToList().IndexOf(x) + " - " + x.Nombre).ToList());
-            AlternativasIL =
-                new ReadOnlyCollection<ValorarAlternativaILViewModel>(
+                    etiquetas.Select(x => etiquetas.ToList().IndexOf(x) + " - " + x.Nombre).Reverse().ToList());
+            _alternativasDisponibles =
+                new List<ValorarAlternativaILViewModel>(
                     alternativaILs.Select(
-                        x => new ValorarAlternativaILViewModel(x.Nombre, x.ValorCriterios, etiquetas.Count())).ToList());
+                        x => new ValorarAlternativaILViewModel(this, x.Nombre, x.ValorCriterios, etiquetas.Count())));
             AlternativaSeleccionada = AlternativasIL.First();
+            MostrarAlternativa = new RelayCommand<ValorarAlternativaILViewModel>(CambiarAlternativaSeleccionada);
         }
 
         #endregion
 
         #region Propiedades
 
-        public ReadOnlyCollection<ValorarAlternativaILViewModel> AlternativasIL { get; private set; }
+        public IEnumerable<ValorarAlternativaILViewModel> AlternativasIL { get { return _alternativasDisponibles; } }
 
         public ReadOnlyCollection<string> Etiquetas { get; private set; }
 
@@ -54,15 +64,22 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
 
         #region Comandos
 
-        //public RelayCommand<OperatorViewModel> AddCommand { get; set; }
-        //private void OnAddOperator(OperatorViewModel selectedOperator)
-        //{
-        //    SelectedOperators.Add(selectedOperator);
-        //    OnPropertyChanged("AvailableOperators");
+        public RelayCommand<ValorarAlternativaILViewModel> MostrarAlternativa { get; set; }
+        private void CambiarAlternativaSeleccionada(ValorarAlternativaILViewModel alternativaIL)
+        {
+            AlternativaSeleccionada = alternativaIL;
+        }
 
-        //    SelectedOperator = selectedOperator;
-        //    OnPropertyChanged("SelectedOperator");
-        //}
+        #endregion
+
+        #region Metodos
+
+        public void ValoracionTrackModificada(int criterio)
+        {
+            int alternativa = AlternativasIL.ToList().IndexOf(AlternativaSeleccionada);
+            int valor = AlternativaSeleccionada.CriteriosIL.ElementAt(criterio).EtiquetaSeleccionada;
+            ValoracionDeCriterioModificada(alternativa, criterio, valor);
+        }
 
         #endregion
 

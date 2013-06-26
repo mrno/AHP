@@ -72,7 +72,11 @@ namespace sisexperto.UI.WPFUserControls
             if (valoracionIL != null)
             {
                 _valorarProyectosViewModel.ValoracionIL = new ValoracionILViewModel(
-                        valoracionIL.ConjuntoEtiquetas.Etiquetas, valoracionIL.AlternativasIL); 
+                        valoracionIL.ConjuntoEtiquetas.Etiquetas, valoracionIL.AlternativasIL);
+
+                _valorarProyectosViewModel.ValoracionIL.ValoracionDeCriterioModificada +=
+                    (alternativa, criterio, valor) =>
+                    _fachadaProyectosExpertos.GuardarValoracionIL(valoracionIL, alternativa, criterio, valor);
             }
             else
             {

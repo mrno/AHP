@@ -261,10 +261,13 @@
       <DependentUpon>ValorarProyectos.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\WPFUserControls\Commands\RelayCommand.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\NombreAlternativaILConverter.cs" />
     <Compile Include="UI\WPFUserControls\Custom\CustomTickBar.cs" />
     <Compile Include="UI\WPFUserControls\Custom\EscalaSaatyConverter.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\NombreMatrizAHPConverter.cs" />
     <Compile Include="UI\WPFUserControls\Custom\SlidersItemsControl.cs" />
     <Compile Include="UI\WPFUserControls\Custom\SlidersILConverter.cs" />
+    <Compile Include="UI\WPFUserControls\Custom\ValoresSaatyConverter.cs" />
     <Compile Include="UI\WPFUserControls\ValoracionControl.xaml.cs">
       <DependentUpon>ValoracionControl.xaml</DependentUpon>
     </Compile>

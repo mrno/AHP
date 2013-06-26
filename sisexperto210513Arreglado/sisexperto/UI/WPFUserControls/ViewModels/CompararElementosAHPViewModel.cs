@@ -11,6 +11,8 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
     {
         #region Atributos
 
+        private bool _muestraSugerencia;
+        private double _valorSugerido;
         private readonly CeldaAHPViewModel _celdaAHP;
 
         #endregion
@@ -40,17 +42,31 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         public string ElementoIzquierda { get; set; }
         public string ElementoDerecha { get; set; }
 
-        //private double _valorImportancia;
-        //public double ValorImportancia
-        //{
-        //    get { return _valorImportancia; }
-        //    set
-        //    {
-        //        _valorImportancia = value;
-        //        OnPropertyChanged("ValorImportancia");
-        //        _celdaAHP.ActualizarTextoPorSlider();
-        //    }
-        //}
+        public bool MuestraSugerencia
+        {
+            get { return _muestraSugerencia; }
+            set
+            {
+                _muestraSugerencia = value;
+                OnPropertyChanged("MuestraSugerencia");
+            }
+        }
+
+        public bool ValorCoincideConSugerido
+        {
+            get { return ValorImportancia == ValorSugerido; }
+        }
+
+        public double ValorSugerido
+        {
+            get { return _valorSugerido; }
+            set
+            {
+                _valorSugerido = value;
+                OnPropertyChanged("ValorSugerido");
+                OnPropertyChanged("ValorCoincideConSugerido");
+            }
+        }
 
         public double ValorImportancia
         {
@@ -59,6 +75,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             {
                 _celdaAHP.Valor = value;
                 OnPropertyChanged("ValorImportancia");
+                OnPropertyChanged("ValorCoincideConSugerido");
             }
         }
 

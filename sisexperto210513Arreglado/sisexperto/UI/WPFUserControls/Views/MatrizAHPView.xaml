@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
              xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:OrdenImportanciaAHPViewModel}">
@@ -14,6 +14,7 @@
         <DataTemplate DataType="{x:Type ViewModels:MatrizViewModel}">
             <views:MatrizView/>
         </DataTemplate>
+        <local:NombreMatrizAHPConverter x:Key="nombreConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,10 +28,10 @@
         </Grid.RowDefinitions>
 
         <!-- Título de la matriz -->
-        <ContentPresenter Grid.Row="0" 
-                          Margin="5"
-                          Content="{Binding Nombre}"
-                          HorizontalAlignment="Stretch"/>
+        <TextBlock  Grid.Row="0" 
+                    Margin="5" FontWeight="Bold" FontSize="16"
+                    Text="{Binding Nombre, Converter={StaticResource nombreConverter}}"
+                    HorizontalAlignment="Center"/>
 
         <!-- Comparador de Importancia de Elementos Comparados -->
         <ContentPresenter Grid.Row="1"  
@@ -51,12 +52,30 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                                Orientation="Horizontal" HorizontalAlignment="Center">
 
-                    <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="15"
+                        <Button Margin="5,10" Padding="5"
                             VerticalAlignment="Center" 
                             HorizontalAlignment="Center"
                             Content="Ver Consistencia" Command="{Binding ComprobarConsistencia}"/>
 
+                        <Button Margin="5,10" Padding="5"
+                            VerticalAlignment="Center" 
+                            HorizontalAlignment="Center"
+                            Content="Otra Sugerencia" Command="{Binding SiguienteSugerencia}">
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding HaySugerencias}" Value="False">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </StackPanel>
+                    
                     <!-- Headers elementos de las columnas -->
                     <ItemsControl 
                       Grid.Column="1" 
@@ -104,7 +123,7 @@
                     <ItemsControl Grid.Column="0"
                       Grid.Row="1" 
                       HorizontalContentAlignment="Left" 
-                      HorizontalAlignment="Stretch"
+                      HorizontalAlignment="Center"
                       VerticalContentAlignment="Center"
                       VerticalAlignment="Stretch"
                       ItemsSource="{Binding ElementosAComparar}">

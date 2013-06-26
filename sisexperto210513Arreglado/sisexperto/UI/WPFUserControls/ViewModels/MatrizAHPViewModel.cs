@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using GeneticResearcher.Command;
+using sisexperto.Entidades.AHP;
 using sisexperto.Fachadas;
 using System.Windows;
+using sisexperto.UI.Clases;
 
 namespace sisexperto.UI.WPFUserControls.ViewModels
 {
@@ -15,6 +17,9 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         #region Atributos
 
         private ValoracionAHPViewModel _valoracionAHPViewModel;
+        private SugerenciaViewModel _sugerenciaMostrada;
+        private List<SugerenciaViewModel> _sugerencias;
+        private bool _haySugerencias;
 
         #endregion
 
@@ -28,7 +33,6 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 (elementos.Select(x => new ElementoACompararViewModel(x)).ToList());
             ImportanciaDeElementos = new OrdenImportanciaAHPViewModel(elementos);
             
-
             Matriz = new MatrizViewModel(valoracionAHP, new double[elementos.Count,elementos.Count], elementos)
                          {
                              Matriz = matriz
@@ -37,6 +41,7 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             Consistente = consistente;
 
             ComprobarConsistencia = new RelayCommand(ComprobarConsistenciaDeMatrizSeleccionada);
+            SiguienteSugerencia = new RelayCommand(MostrarOtraSugerencia);
         }
 
         #endregion
@@ -63,6 +68,15 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
             }
         }
 
+        public bool HaySugerencias
+        {
+            get { return _haySugerencias; }
+            private set
+            {
+                _haySugerencias = value;
+                OnPropertyChanged("HaySugerencias");
+            }
+        }
 
         #endregion
 
@@ -73,7 +87,13 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
         //{
         //    celda.Seleccionada = false;
         //    OnPropertyChanged("CeldaSeleccionada");
-        //}
+        //} 
+
+        public RelayCommand SiguienteSugerencia { get; set; }
+        private void MostrarOtraSugerencia()
+        {
+            MostrarSugerencia();
+        }
 
         public RelayCommand ComprobarConsistencia { get; set; }
         private void ComprobarConsistenciaDeMatrizSeleccionada()
@@ -85,13 +105,77 @@ namespace sisexperto.UI.WPFUserControls.ViewModels
                 OnPropertyChanged("Consistente");
                 OnPropertyChanged("Completa");
                 if (Consistente)
+                {
+                    HaySugerencias = false;
+                    if (_sugerenciaMostrada != null)
+                    {
+                        Matriz.Filas.ElementAt(_sugerenciaMostrada.Fila).Celdas.ElementAt(_sugerenciaMostrada.Columna).
+                            MuestraSugerencia = false;
+                        if (_sugerencias.Count > 0)
+                            _sugerencias.RemoveAt(0);
+                    }
                     MessageBox.Show("Matriz consistente.");
+                }
                 else
                 {
-                    //EjecutarSugerencias(matriz);
+                    MessageBox.Show("La matriz no está consistente.\n" +
+                                    "Modifique los valores de las celdas y vuelva a evaluar la consistencia.\n" +
+                                    "En rojo se encuentran valores sugeridos para ellas. " +
+                                    "Con \"Siguiente Sugerencia\" puede cambiar la sugerencia actual.");
+                    GenerarSugerencias(Matriz.Matriz);
+                    HaySugerencias = true;
+                    MostrarSugerencia();
                 }
             }
             else MessageBox.Show("La matriz debe estar completa para evaluar su consistencia.");
+        }
+
+        #endregion
+
+        #region Metodos
+
+        private void GenerarSugerencias(double [,] matriz)
+        {
+            var listaSugerencias = new List<SugerenciaViewModel>();
+
+            var sugerencias = FachadaCalculos.Instance.BuscarSugerencias(matriz);
+            for (int i = 0; i < sugerencias.Count(); i += 3)
+            {
+                var fila = (int)(sugerencias.ElementAt(i).ElementAt(0));
+                var columna = (int)(sugerencias.ElementAt(i).ElementAt(1));
+                var valor = sugerencias.ElementAt(i).ElementAt(2);
+
+                listaSugerencias.Add(new SugerenciaViewModel
+                {
+                    Fila = fila,
+                    Columna = columna,
+                    Valor = valor
+                });
+            }
+            _sugerencias = listaSugerencias;
+        }
+
+        private void MostrarSugerencia()
+        {
+            if (_sugerenciaMostrada != null)
+            {
+                Matriz.Filas.ElementAt(_sugerenciaMostrada.Fila).Celdas.ElementAt(_sugerenciaMostrada.Columna).
+                    MuestraSugerencia = false;
+                if(_sugerencias.Count > 0)
+                    _sugerencias.RemoveAt(0);
+            }
+            if(_sugerencias.Count > 0)
+            {
+                _sugerenciaMostrada = _sugerencias.First();
+                var celda = Matriz.Filas.ElementAt(_sugerenciaMostrada.Fila).Celdas.ElementAt(_sugerenciaMostrada.Columna);
+                celda.MuestraSugerencia = true;
+                celda.ValorSugerido = _sugerenciaMostrada.Valor;
+            }
+            else
+            {
+                MessageBox.Show("No hay más sugerencias.");
+                HaySugerencias = false;
+            }
         }
 
         #endregion

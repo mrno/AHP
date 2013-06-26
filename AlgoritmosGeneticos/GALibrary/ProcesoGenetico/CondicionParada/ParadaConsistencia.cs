@@ -23,6 +23,5 @@ namespace GALibrary.ProcesoGenetico.CondicionParada
         {
             return poblacion.Individuos.Any(x => x.Inconsistencia <= _inconsistencia);
         }
-
     }
 }

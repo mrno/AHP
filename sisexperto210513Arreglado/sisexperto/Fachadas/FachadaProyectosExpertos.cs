@@ -473,20 +473,20 @@ namespace sisExperto
             _context.SaveChanges();
         }
 
-        internal void GuardarValoracion(ValoracionAHP valoracionAHP, int fila, int columna, double valor)
+        public void GuardarValoracion(ValoracionAHP valoracionAHP, int fila, int columna, double valor)
         {
             valoracionAHP.CriterioMatriz.FilasCriterio.ElementAt(fila).CeldasCriterios.ElementAt(columna).Valor = valor;
             _context.SaveChanges();
         }
 
-        internal void GuardarValoracion(ValoracionAHP valoracionAHP, int? matriz, int fila, int columna, double valor)
+        public void GuardarValoracion(ValoracionAHP valoracionAHP, int? matriz, int fila, int columna, double valor)
         {
             valoracionAHP.AlternativasMatrices.ElementAt((int)matriz)
                 .FilasAlternativa.ElementAt(fila).CeldasAlternativas.ElementAt(columna).ValorAHP = valor;
             _context.SaveChanges();
         }
 
-        internal void GuardarConsistencia(ValoracionAHP valoracionAHP, int? matriz, bool consistencia)
+        public void GuardarConsistencia(ValoracionAHP valoracionAHP, int? matriz, bool consistencia)
         {
             if(matriz == null)
             {
@@ -496,6 +496,14 @@ namespace sisExperto
             {
                 valoracionAHP.AlternativasMatrices.ElementAt((int)matriz).Consistencia = consistencia;
             }
+            _context.SaveChanges();
+        }
+
+        public void GuardarValoracionIL(ValoracionIL valoracionIL, int alternativa, int criterio, int valor)
+        {
+            valoracionIL.AlternativasIL.ElementAt(alternativa).ValorCriterios.ElementAt(criterio).ValorILNumerico =
+                valor;
+            _context.SaveChanges();
         }
     }
 }

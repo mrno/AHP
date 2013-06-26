@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
              xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
-             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom" mc:Ignorable="d" 
+             xmlns:local="clr-namespace:sisexperto.UI.WPFUserControls.Custom"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:ValorarAlternativaILViewModel}">
             <views:ValorarAlternativaILView/>
         </DataTemplate>
+        <local:NombreAlternativaILConverter x:Key="nombreAlternativaIL"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,7 +22,8 @@
 
         <GroupBox Grid.Column="0" 
                   Header="Alternativas">
-            <DataGrid CanUserReorderColumns="False" 
+            <DataGrid Name="GridAlternativas"
+                      CanUserReorderColumns="False" 
                       CanUserResizeColumns="False" 
                       CanUserResizeRows="False" 
                       CanUserSortColumns="True"
@@ -29,13 +32,19 @@
                       SelectionUnit="FullRow"
                       SelectionMode="Single"
                       HorizontalAlignment="Stretch" BorderThickness="0"
-                      SelectedValue="{Binding AlternativaSeleccionada, 
-                                             Mode=TwoWay}"
                       ItemsSource="{Binding AlternativasIL}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Nombre de Alternativa" Binding="{Binding Nombre}"
                                         IsReadOnly="True"/>
                 </DataGrid.Columns>
+                
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding MostrarAlternativa}" 
+                                               CommandParameter="{Binding ElementName=GridAlternativas, 
+                                                                          Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
             </DataGrid>
         </GroupBox>
 
@@ -53,19 +62,14 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    
-                    <TextBlock Grid.Column="0" Text="Valorando alternativa: "/>
-                    <TextBlock Grid.Column="1" Text="{Binding AlternativaSeleccionada.Nombre, Mode=OneWay}"/>
-                </Grid>
+                <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
+                           HorizontalAlignment="Center" Margin="5" FontWeight="Bold" FontSize="16"
+                           Text="{Binding AlternativaSeleccionada.Nombre, 
+                                          Converter={StaticResource ResourceKey=nombreAlternativaIL}, Mode=OneWay}"/>
                 
                 <TextBlock Grid.Column="0" 
                            Grid.Row="1"
-                           Text="Etiquetas ↓ | Criterios →" 
+                           Text="Etiquetas:" 
                            VerticalAlignment="Center"/>
                 
                 <ItemsControl ItemsSource="{Binding Etiquetas}" 
