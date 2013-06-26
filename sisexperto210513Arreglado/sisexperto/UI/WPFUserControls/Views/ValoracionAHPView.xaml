@@ -5,8 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:sisexperto.UI.WPFUserControls.Views"
              xmlns:ViewModels="clr-namespace:sisexperto.UI.WPFUserControls.ViewModels"
-             
-             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type ViewModels:MatrizAHPViewModel}">
@@ -75,7 +74,7 @@
                                             Width="Auto" IsReadOnly="True"/>
                 </DataGrid.Columns>
                 
-                <!--<i:Interaction.Triggers>
+                <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <i:InvokeCommandAction Command="{Binding MostrarMatrizComando}" 
                                                CommandParameter="{Binding ElementName=GridAlternativas, 
@@ -86,7 +85,7 @@
                                                CommandParameter="{Binding ElementName=GridAlternativas, 
                                                                           Path=SelectedItem}" />
                     </i:EventTrigger>
-                </i:Interaction.Triggers>-->
+                </i:Interaction.Triggers>
                 
             </DataGrid>
         </GroupBox>
