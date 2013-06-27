@@ -42,12 +42,26 @@ namespace sisexperto.UI.WPFUserControls
 
         private void comboBoxProyectos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_proyectoSeleccionado.Tipo == "AHP" || _proyectoSeleccionado.Tipo == "Ambos")
+                ActualizarMatricesAlternativasEnTodosLosProyectos();
+
             _proyectoSeleccionado = (Proyecto)comboBoxProyectos.SelectedItem;
             _expertoEnProyecto = _fachada.SolicitarExpertoProyectoActual(_proyectoSeleccionado, _experto);
             
             (elementHost1.Child as ValoracionControl).CargarValoraciones(_proyectoSeleccionado,
                                                                          _expertoEnProyecto.ValoracionAHP,
                                                                          _expertoEnProyecto.ValoracionIL);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            ActualizarMatricesAlternativasEnTodosLosProyectos();
+            base.OnFormClosing(e);
+        }
+
+        private void ActualizarMatricesAlternativasEnTodosLosProyectos()
+        {
+            _fachada.ActualizarAlternativasProyectosClonesAhp(_expertoEnProyecto);
         }
     }
 }
