@@ -1,4 +1,6 @@
-﻿namespace sisexperto.UI.WPFUserControls
+﻿using System.Windows.Forms;
+
+namespace sisexperto.UI.WPFUserControls
 {
     partial class ValorarProyectos
     {
@@ -38,6 +40,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
+            this.WindowState = FormWindowState.Maximized;
             // 
             // splitContainer1
             // 
