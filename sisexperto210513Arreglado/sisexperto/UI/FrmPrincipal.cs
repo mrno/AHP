@@ -27,6 +27,7 @@ namespace sisExperto
             InitializeComponent();
             HabilitarPanelTrabajo(false);
             buttonProyectoEdicion.Enabled = false;
+            buttonValorarProyectos.Enabled = false;
 
             LevantarLibreriaMathLab();
         }
@@ -332,23 +333,35 @@ namespace sisExperto
                 //}
                 //else buttonProyectoEdicion.Enabled = false;
 
-                //verifico si el experto esta asignado y permito la valacion
+                //verifico si el experto esta asignado y permito la valoracion
                 var expertoAsignado = (from e in _proyectoSeleccionado.ExpertosAsignados ?? new List<ExpertoEnProyecto>()
                                        where e.Experto.ExpertoId == _experto.ExpertoId
                                        select e).Count() >= 1;
                 if (expertoAsignado)
                 {
                     //acá tiene que ir "listo" posteriormente
-                    if (_proyectoSeleccionado.Estado == "Listo") 
+                    if (_proyectoSeleccionado.Estado == "Listo")
+                    {
                         buttonProyectoEdicion.Enabled = true;
-                    else buttonProyectoEdicion.Enabled = false;
+                        buttonValorarProyectos.Enabled = true;
+                    }
+                    else
+                    {
+                        buttonProyectoEdicion.Enabled = false;
+                        buttonValorarProyectos.Enabled = false;
+                    }
                 }
-                else buttonProyectoEdicion.Enabled = false;
+                else
+                {
+                    buttonProyectoEdicion.Enabled = false;
+                    buttonValorarProyectos.Enabled = false;
+                }
             }
             else
             {
                 //buttonProyectoEdicion.Enabled = false;
                 buttonProyectoEdicion.Enabled = false;
+                buttonValorarProyectos.Enabled = false;
             }
         }
         #endregion

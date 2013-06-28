@@ -39,6 +39,7 @@
                                                                     ValidatesOnDataErrors=True}" 
                                                      ToolTip="{Binding ElementName=Text, Path=(Validation.Errors).CurrentItem}"
                                                      BorderThickness="1"
+                                                     Background="GhostWhite"
                                                      MinWidth="30" 
                                                      MinHeight="30" 
                                                      VerticalAlignment="Center" 
@@ -55,11 +56,8 @@
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding Editable}" Value="False">
                                                     <Setter Property="IsEnabled" Value="False"/>
-                                                    <Setter Property="Background" Value="Gray"/>
-                                                    <Setter Property="Foreground" Value="White"/>
-                                                </DataTrigger>
-                                                <DataTrigger Binding="{Binding Editable}" Value="True">
-                                                    <Setter Property="Background" Value="GhostWhite"/>
+                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                    <Setter Property="Foreground" Value="Black"/>
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding ElementName=Text, Path=IsFocused}" Value="True">
                                                     <Setter Property="BorderThickness" Value="2"/>

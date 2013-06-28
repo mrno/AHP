@@ -125,7 +125,7 @@ namespace sisExperto
             try
             {
                 return (from expEnProyecto in e.ProyectosAsignados
-                        where expEnProyecto.Proyecto.Estado == "Listo"
+                        where expEnProyecto.Proyecto != null && expEnProyecto.Proyecto.Estado == "Listo"
                         select expEnProyecto.Proyecto);
             }
             catch (Exception)
@@ -137,7 +137,7 @@ namespace sisExperto
         public ExpertoEnProyecto SolicitarExpertoProyectoActual(Proyecto _proyecto, Experto _experto)
         {
             return (from expEnProyecto in _experto.ProyectosAsignados
-                    where expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
+                    where expEnProyecto.Proyecto != null && expEnProyecto.Proyecto.ProyectoId == _proyecto.ProyectoId
                     select expEnProyecto).FirstOrDefault();
         }
 
