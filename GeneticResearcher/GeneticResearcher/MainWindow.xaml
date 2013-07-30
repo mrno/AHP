@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Views="clr-namespace:GeneticResearcher.Views"
         xmlns:ViewModels="clr-namespace:GeneticResearcher.ViewModels"
-        mc:Ignorable="d" x:Class="GeneticResearcher.MainWindow"
-        Title="Genetic Researcher" MinHeight="450" MinWidth="600"
+        xmlns:Resources="clr-namespace:GeneticResearcher.Resources" mc:Ignorable="d" 
+        x:Class="GeneticResearcher.MainWindow"
+        Title="{x:Static Resources:Strings.ApplicationMainWindow_Title}" MinHeight="450" MinWidth="600"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
 

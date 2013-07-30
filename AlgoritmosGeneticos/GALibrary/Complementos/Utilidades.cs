@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ConsistenciaCR;
 using GALibrary.Persistencia;
@@ -8,9 +9,11 @@ namespace GALibrary.Complementos
 {
     public static class Utilidades
     {
+        //public static readonly MathLabProxy MathLabProxy = new MathLabProxy();
+
         public static readonly Random Random = new Random();
 
-        public static readonly double[] EscalaSaaty = new double[]
+        public static readonly List<double> EscalaSaaty = new List<double>()
                                                           {
                                                               1.0/9, 1.0/8, 1.0/7, 1.0/6, 
                                                               1.0/5, 1.0/4, 1.0/3, 1.0/2, 
@@ -174,9 +177,7 @@ namespace GALibrary.Complementos
 
         public static double CalcularConsistencia(double[,] matriz)
         {
-            //Llamadas++;
-            //return .5;
-
+            //return Random.NextDouble();
             MWNumericArray matlabNumericArray = matriz;
             var c = new calcConsistenciaCR();
             var mwNumericArray = c.calcConsistCR(matlabNumericArray) as MWNumericArray;
@@ -186,28 +187,40 @@ namespace GALibrary.Complementos
                 return (cr > 0) ? cr : 0;
             }
             return Double.MaxValue;
+            //return MathLabProxy.ObtenerCR(matriz);
         }
 
-        public static double[] CombinarEstructuraConIndividuo(double[] estructura, double[] individuo)
+        public static double[] CalcularRanking(double[,] matriz)
         {
-            if(!estructura.Any(x => x.Equals(CeldaMatriz.Incompleto)))
+            var vectCalc = new VectCalc.VectCalc();
+            var calculo = (MWNumericArray) vectCalc.vectCalc((MWNumericArray)matriz);
+            var ranking = (double[,]) calculo.ToArray(MWArrayComponent.Real);
+            var salida = new double[ranking.GetLength(0)];
+            for (int i = 0; i < ranking.GetLength(0); i++)
             {
-                return individuo;
+                salida[i] = ranking[i, 0];
             }
-
-            var longitudBase = estructura.Length;
-            var resultado = estructura.Clone() as double[];
-            var posicion = 0;
-            for (int i = 0; i < longitudBase; i++)
-            {
-                if (estructura[i].Equals(CeldaMatriz.Incompleto))
-                {
-                    resultado[i] = individuo[posicion];
-                    posicion++;
-                }
-            }
-            return resultado;
+            return salida;
         }
+
+        //public static double[] CombinarEstructuraConIndividuo(double[] estructura, double[] individuo)
+        //{
+        //    if(!estructura.Any(x => x.Equals(CeldaMatriz.Incompleto)))
+        //    {
+        //        return individuo;
+        //    }
+
+        //    var longitudBase = estructura.Length;
+        //    var resultado = estructura.Clone() as double[];
+        //    for (int i = 0; i < longitudBase; i++)
+        //    {
+        //        if (estructura[i].Equals(CeldaMatriz.Incompleto))
+        //        {
+        //            resultado[i] = individuo[i];
+        //        }
+        //    }
+        //    return resultado;
+        //}
 
         public static string ConcatenarCadenasConFlechas(string[] cadenas)
         {
@@ -218,5 +231,121 @@ namespace GALibrary.Complementos
             }
             return resultado.Remove(0, resultado.Length - 4);
         }
+
+        //public static double? CalcularErrorMagnitud(double[] vectorOriginal, double[] vectorModificado)
+        //{
+        //    var cantidadElementos = vectorOriginal.Count();
+        //    var error = 0.0;
+
+        //    for (int i = 0; i < cantidadElementos; i++)
+        //    {
+        //        if (vectorOriginal.ElementAt(i) != CeldaMatriz.Incompleto)
+        //        {
+        //            var distancia = DistanciaSaaty(vectorOriginal.ElementAt(i), vectorModificado.ElementAt(i));
+        //            if (distancia != 0)
+        //                error++;
+        //        }
+        //    }
+
+        //    return error / vectorOriginal.Count(x => !x.Equals(CeldaMatriz.Incompleto));
+        //}
+
+        //public static double? CalcularErrorMagnitud(double[] vectorOriginal, double[] vectorModificado)
+        //{
+        //    var cantidadElementos = vectorOriginal.Count();
+        //    var error = 0.0;
+
+        //    for (int i = 0; i < cantidadElementos; i++)
+        //    {
+        //        if (vectorOriginal.ElementAt(i) != CeldaMatriz.Incompleto)
+        //            error = error + (double)DistanciaSaaty(vectorOriginal.ElementAt(i), vectorModificado.ElementAt(i)) / 16;
+        //    }
+
+        //    return error / vectorOriginal.Count(x => !x.Equals(CeldaMatriz.Incompleto));
+        //}
+
+        //public static double? CalcularErrorMagnitud(double[] vectorOriginal, double[] vectorModificado)
+        //{
+        //    var cantidadElementos = vectorOriginal.Count();
+        //    var error = 0.0;
+
+        //    for (int i = 0; i < cantidadElementos; i++)
+        //    {
+        //        if (vectorOriginal.ElementAt(i) != CeldaMatriz.Incompleto)
+        //        {
+        //            var errorNuevo =
+        //                (double) DistanciaSaaty(vectorOriginal.ElementAt(i), vectorModificado.ElementAt(i))/16;
+        //            if (error < errorNuevo)
+        //            {
+        //                error = errorNuevo;
+        //            }
+        //        }
+        //    }
+
+        //    return error;
+        //}
+
+        //public static double? CalcularErrorMagnitud(double[] vectorOriginal, double[] vectorModificado)
+        //{
+        //    var cantidadElementos = vectorOriginal.Count();
+        //    var promedio = 0.0;
+
+        //    for (int i = 0; i < cantidadElementos; i++)
+        //    {
+        //        if (vectorOriginal.ElementAt(i) != CeldaMatriz.Incompleto)
+        //        {
+        //            promedio = promedio +
+        //                (double)DistanciaSaaty(vectorOriginal.ElementAt(i), vectorModificado.ElementAt(i)) / 16;
+        //        }
+        //    }
+        //    promedio /= vectorOriginal.Count(x => !x.Equals(CeldaMatriz.Incompleto));
+
+        //    var error = 0.0;
+        //    var cantidad = 0;
+        //    for (int i = 0; i < cantidadElementos; i++)
+        //    {
+        //        if (vectorOriginal.ElementAt(i) != CeldaMatriz.Incompleto)
+        //        {
+        //            var errorNuevo =
+        //                (double)DistanciaSaaty(vectorOriginal.ElementAt(i), vectorModificado.ElementAt(i)) / 16;
+        //            if (errorNuevo >= promedio)
+        //            {
+        //                error += errorNuevo;
+        //                cantidad++;
+        //            }
+        //        }
+        //    }
+
+        //    return error/cantidad;
+        //}
+
+        public static double? CalcularErrorMagnitud(double[] vectorOriginal, double[] vectorModificado)
+        {
+            var cantidadElementos = vectorOriginal.Count();
+            var error = 0.0;
+            for (int i = 0; i < cantidadElementos; i++)
+            {
+                if (!vectorOriginal.ElementAt(i).Equals(CeldaMatriz.Incompleto))
+                {
+                    var errorNuevo =
+                        (double)DistanciaSaaty(vectorOriginal.ElementAt(i), vectorModificado.ElementAt(i));
+                    if (!errorNuevo.Equals(0))
+                    {
+                        error += errorNuevo;
+                    }
+                }
+            }
+
+            return error;
+        }
+
+        public static int DistanciaSaaty(double elemento1, double elemento2)
+        {
+            var pos1 = EscalaSaaty.ToList().IndexOf(elemento1);
+            var pos2 = EscalaSaaty.ToList().IndexOf(elemento2);
+            return Math.Abs(pos1 - pos2);
+        }
+
+        
     }
 }

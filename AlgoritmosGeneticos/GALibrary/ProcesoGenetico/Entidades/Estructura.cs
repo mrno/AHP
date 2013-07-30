@@ -38,11 +38,11 @@ namespace GALibrary.ProcesoGenetico.Entidades
             {
                 if(_cantidadCaracteristicas == 0)
                 {
-                    _cantidadCaracteristicas = Faltantes.Length;
-                    if(_cantidadCaracteristicas == 0)
-                    {
+                    //_cantidadCaracteristicas = Faltantes.Length;
+                    //if(_cantidadCaracteristicas == 0)
+                    //{
                         _cantidadCaracteristicas = Vector.Length;
-                    }
+                    //}
                 }
                 return _cantidadCaracteristicas;
             }

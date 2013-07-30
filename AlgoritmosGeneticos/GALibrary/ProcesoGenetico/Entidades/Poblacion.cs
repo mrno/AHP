@@ -15,6 +15,8 @@ namespace GALibrary.ProcesoGenetico.Entidades
         public List<Individuo> Individuos { get; set; }
         private IConvergenciaPoblacion _convergenciaPoblacion;
 
+        public int MaximaGeneracion { get; set; }
+
         public double Convergencia
         {
             get { return _convergenciaPoblacion.CalcularConvergencia(this); }
@@ -63,20 +65,21 @@ namespace GALibrary.ProcesoGenetico.Entidades
             _convergenciaPoblacion = factoryConvergencia.CreateInstance(tipoConvergencia);
         }
 
-        public Poblacion(int generacion, string tipoConvergencia)
+        public Poblacion(int generacion, int maximaGeneracion, string tipoConvergencia)
             : this(tipoConvergencia)
         {
             Generacion = generacion;
+            MaximaGeneracion = maximaGeneracion;
             Individuos = new List<Individuo>();
         }
 
-        public Poblacion(int generacion, List<Individuo> individuos, string tipoConvergencia)
-            : this(generacion, tipoConvergencia)
+        public Poblacion(int generacion, int maximaGeneracion, List<Individuo> individuos, string tipoConvergencia)
+            : this(generacion, maximaGeneracion, tipoConvergencia)
         {
             Individuos = individuos;
         }
 
-        public static Poblacion GenerarPoblacionInicial(int cantidadIndividuos, Estructura estructuraBase, string funcionAptitud, string tipoConvergencia)
+        public static Poblacion GenerarPoblacionInicial(int cantidadIndividuos, int maximaGeneracion, Estructura estructuraBase, string funcionAptitud, string tipoConvergencia)
         {
             var cantidadCaracteristicasIndividuo = estructuraBase.CantidadCaracteristicas;
             
@@ -89,7 +92,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
                 funcion.EstructuraBase = estructuraBase;
                 individuos.Add(Individuo.GenerarIndividuoAleatorio(cantidadCaracteristicasIndividuo, funcion));
             }
-            return new Poblacion(0, individuos, tipoConvergencia);
+            return new Poblacion(0, maximaGeneracion, individuos, tipoConvergencia);
         }
         
         #endregion
@@ -102,8 +105,10 @@ namespace GALibrary.ProcesoGenetico.Entidades
                        {
                            Generacion = Generacion,
                            Individuos = individuos,
+                           MaximaGeneracion = MaximaGeneracion,
                            _convergenciaPoblacion = _convergenciaPoblacion
                        };
         }
+
     }
 }

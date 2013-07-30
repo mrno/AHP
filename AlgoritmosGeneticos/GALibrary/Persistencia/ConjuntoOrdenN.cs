@@ -81,5 +81,24 @@ namespace GALibrary.Persistencia
 
             return conjuntos;
         }
+        
+        public static List<ConjuntoMatriz> GenerarConjuntosAlLimiteDeLaInconsistencia(int cantidad, int dimension)
+        {
+            var conjuntos = new List<ConjuntoMatriz>();
+            var conjuntoConsistente = new ConjuntoMatriz(NivelInconsistencia.Consistente);
+            conjuntos.Add(conjuntoConsistente);
+
+            while (conjuntoConsistente.Matrices.Count < cantidad)
+            {
+                var objetoMatriz = new ObjetoMatriz(dimension);
+                if (objetoMatriz.NivelDeInconsistencia == NivelInconsistencia.Consistente
+                    && objetoMatriz.Inconsistencia > 0.085)
+                {
+                    conjuntoConsistente.Matrices.Add(objetoMatriz);
+                }
+            }
+
+            return conjuntos;
+        }
     }
 }
