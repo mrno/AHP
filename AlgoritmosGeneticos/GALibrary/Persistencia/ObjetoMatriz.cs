@@ -17,12 +17,18 @@ namespace GALibrary.Persistencia
         public virtual bool Completa { get; set; }
         public virtual double? Completitud { get; set; }
         public virtual int Dimension { get; set; }
-        
+        public virtual double? Error { get; set; }
+        public virtual double? ErrorRelativo { get; set; }
         public virtual ObjetoMatriz MatrizCompleta { get; set; }
         public virtual ICollection<ObjetoMatriz> MatricesIncompletas { get; set; }
 
         public virtual ICollection<ResultadoExperimento> Experimentos { get; set; }
-        
+
+        public double[] CalcularRanking()
+        {
+            return Utilidades.CalcularRanking(Matriz);
+        }
+
         #endregion
 
         public ObjetoMatriz()
@@ -80,51 +86,66 @@ namespace GALibrary.Persistencia
         
         public double[,] Matriz
         {
-            get
-            {
-                var matriz = new double[Dimension, Dimension];
-                
-                for (int fila = 0; fila < Dimension; fila++)
-                {
-                    matriz[fila, fila] = 1;
-                    for (int columna = fila + 1; columna < Dimension; columna++)
-                    {
-                        matriz[fila, columna] = Filas.ElementAt(fila).Celdas.ElementAt(columna - fila - 1).Valor;
-                        matriz[columna, fila] = 1.0 / (Filas.ElementAt(fila).Celdas.ElementAt(columna - fila - 1).Valor);
-                    }
-                }
+            get { return Utilidades.ConvertirVectorEnMatriz(Vector); }
+            set { Vector = Utilidades.ConvertirMatrizEnVector(value); }
 
-                return matriz;
-            }
-            set
-            {
-                if (Filas == null)
-                {
-                    Filas = new List<FilaMatriz>();
+            //get
+            //{
+            //    var matriz = new double[Dimension, Dimension];
 
-                    for (int fila = 0; fila < Dimension - 1; fila++)
-                    {
-                        var celdas = new List<CeldaMatriz>();
+            //    Filas = Filas.OrderBy(x => x.Id).ToList();
+            //    foreach (var fila in Filas)
+            //    {
+            //        fila.Celdas = fila.Celdas.OrderBy(x => x.Id).ToList();
+            //    }
 
-                        for (int columna = fila + 1; columna < Dimension; columna++)
-                        {
-                            celdas.Add(new CeldaMatriz {Valor = value[fila, columna]});
-                        }
+            //    for (int fila = 0; fila < Dimension; fila++)
+            //    {
+            //        matriz[fila, fila] = 1;
+            //        for (int columna = fila + 1; columna < Dimension; columna++)
+            //        {
+            //            matriz[fila, columna] = Filas.OrderBy(x => x.Id).ElementAt(fila).Celdas.ElementAt(columna - fila - 1).Valor;
+            //            matriz[columna, fila] = 1.0 / (Filas.ElementAt(fila).Celdas.ElementAt(columna - fila - 1).Valor);
+            //        }
+            //    }
 
-                        Filas.Add(new FilaMatriz {Celdas = celdas});
-                    }
-                }
-                else
-                {
-                    for (int fila = 0; fila < Dimension - 1; fila++)
-                    {
-                        for (int columna = fila + 1; columna < Dimension; columna++)
-                        {
-                            Filas.ElementAt(fila).Celdas.ElementAt(columna - fila - 1).Valor = value[fila, columna];
-                        }
-                    }
-                }
-            }
+            //    return matriz;
+            //}
+            //set
+            //{
+            //    if (Filas == null)
+            //    {
+            //        Filas = new List<FilaMatriz>();
+
+            //        for (int fila = 0; fila < Dimension - 1; fila++)
+            //        {
+            //            var celdas = new List<CeldaMatriz>();
+
+            //            for (int columna = fila + 1; columna < Dimension; columna++)
+            //            {
+            //                celdas.Add(new CeldaMatriz {Valor = value[fila, columna]});
+            //            }
+
+            //            Filas.Add(new FilaMatriz {Celdas = celdas});
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Filas = Filas.OrderBy(x => x.Id).ToList();
+            //        foreach (var fila in Filas)
+            //        {
+            //            fila.Celdas = fila.Celdas.OrderBy(x => x.Id).ToList();
+            //        }
+
+            //        for (int fila = 0; fila < Dimension - 1; fila++)
+            //        {
+            //            for (int columna = fila + 1; columna < Dimension; columna++)
+            //            {
+            //                Filas.ElementAt(fila).Celdas.ElementAt(columna - fila - 1).Valor = value[fila, columna];
+            //            }
+            //        }
+            //    }
+            //}
         }
         
         public double[] Vector
@@ -133,31 +154,42 @@ namespace GALibrary.Persistencia
             {
                 var vector = new double[Utilidades.CalcularLongitudVector(Dimension)];
                 var posicion = 0;
+                Filas = Filas.OrderBy(x => x.Id).ToList();
                 foreach (var fila in Filas)
                 {
+                    fila.Celdas = fila.Celdas.OrderBy(x => x.Id).ToList();
                     foreach (var celda in fila.Celdas)
                     {
                         vector[posicion] = celda.Valor;
                         posicion++;
                     }
                 }
-
-                return Utilidades.ConvertirMatrizEnVector(Matriz);
+                return vector;
+                //return Utilidades.ConvertirMatrizEnVector(Matriz);
             }
 
             set
             {
-                if(Filas == null)
+                //Matriz = Utilidades.ConvertirVectorEnMatriz(value);
+                if (Filas == null)
                 {
                     Filas = new List<FilaMatriz>();
                     for (int fila = 0; fila < Dimension - 1; fila++)
                     {
-                        var nuevaFila = new FilaMatriz {Celdas = new List<CeldaMatriz>()};
-                        for (int columna = fila + 1 ; columna < Dimension; columna++)
+                        var nuevaFila = new FilaMatriz { Celdas = new List<CeldaMatriz>() };
+                        for (int columna = fila + 1; columna < Dimension; columna++)
                         {
                             nuevaFila.Celdas.Add(new CeldaMatriz());
                         }
                         Filas.Add(nuevaFila);
+                    }
+                }
+                else
+                {
+                    Filas = Filas.OrderBy(x => x.Id).ToList();
+                    foreach (var fila in Filas)
+                    {
+                        fila.Celdas = fila.Celdas.OrderBy(x => x.Id).ToList();
                     }
                 }
 

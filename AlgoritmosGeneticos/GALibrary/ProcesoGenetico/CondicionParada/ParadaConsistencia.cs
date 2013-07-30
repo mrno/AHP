@@ -14,14 +14,14 @@ namespace GALibrary.ProcesoGenetico.CondicionParada
     {
         private double _inconsistencia;
 
-        public ParadaConsistencia(string convergencia)
+        public ParadaConsistencia(string consistencia)
         {
-            _inconsistencia = double.Parse(convergencia, CultureInfo.InvariantCulture);
+            _inconsistencia = double.Parse(consistencia);
         }
 
         public bool Parar(Poblacion poblacion)
         {
-            return poblacion.Individuos.Any(x => x.Inconsistencia <= _inconsistencia);
+            return poblacion.MejorIndividuo.Inconsistencia <= _inconsistencia;
         }
     }
 }

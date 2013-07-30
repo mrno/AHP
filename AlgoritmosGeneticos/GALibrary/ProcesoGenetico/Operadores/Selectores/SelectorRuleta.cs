@@ -37,7 +37,8 @@ namespace GALibrary.ProcesoGenetico.Operadores.Selectores
 
             foreach (var individuo in poblacion.Individuos)
             {
-                var ranurasAsignadas = Math.Round(individuo.Aptitud/aptitudMinima);
+                var ranurasAsignadas = Math.Round(individuo.Aptitud / aptitudMinima);
+                ranurasAsignadas = (ranurasAsignadas < 1000) ? ranurasAsignadas : 1000;
                 if(ranurasAsignadas != 1)
                 {
                     var asd = 0;

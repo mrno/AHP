@@ -26,27 +26,25 @@ namespace GALibrary.ProcesoGenetico
 
         public ResultadoExperimento Evolucionar()
         {
-            //Utilidades.Llamadas = 0;
+            var cantidadIteraciones = int.Parse(_sesionExperimentacion.CondicionParada.Split('&')
+                                                    .First(x => x.Contains("Iteraciones")).Split(':')[1]);
             var poblacion = Poblacion.GenerarPoblacionInicial
                 (_sesionExperimentacion.Individuos,
+                 cantidadIteraciones,
                  _estructuraBase,
                  _sesionExperimentacion.FuncionAptitud,
                  _sesionExperimentacion.ConvergenciaPoblacion);
-            //var asd = Utilidades.Llamadas;
+
             _modeloEvolutivo = (new ModeloEvolutivoFactory()).CreateInstance(_sesionExperimentacion.ModeloEvolutivo);
             _modeloEvolutivo.ConfigurarModelo(_sesionExperimentacion);
             _modeloEvolutivo.RegistrarInicioExperimento(poblacion);
-            //Utilidades.CalcularConsistencia(new double[3, 3]);
             while (!_modeloEvolutivo.Parada)
             {
-                //asd = Utilidades.Llamadas;
                 poblacion = _modeloEvolutivo.ObtenerSiguienteGeneracion(poblacion);
             }
 
             _modeloEvolutivo.RegistrarFinExperimento();
-
-            //_sesionExperimentacion.Experimentos.Add(_modeloEvolutivo.ExperimentoResultado);
-
+            
             return _modeloEvolutivo.ExperimentoResultado;
         }
     }

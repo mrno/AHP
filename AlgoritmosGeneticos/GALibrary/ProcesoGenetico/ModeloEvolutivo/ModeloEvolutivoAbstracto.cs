@@ -74,7 +74,8 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
                                                  Matriz = matriz,
                                                  Completa = true,
                                                  Completitud = 1,
-                                                 Inconsistencia = UltimaPoblacion.MejorIndividuo.Inconsistencia
+                                                 Inconsistencia = UltimaPoblacion.MejorIndividuo.Inconsistencia,
+                                                 Error = UltimaPoblacion.MejorIndividuo.Error
                                              };
            
             Experimento.IteracionesRealizadas = UltimaPoblacion.Generacion;

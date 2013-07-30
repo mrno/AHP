@@ -1,5 +1,7 @@
-﻿using System;
+﻿using GALibrary.Complementos;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,26 @@ namespace GALibrary.Persistencia
 
         public virtual ObjetoMatriz MatrizOriginal { get; set; }
         public virtual ObjetoMatriz MatrizMejorada { get; set; }
+
+        [NotMapped]
+        public int DistanciaMatrices
+        {
+            get
+            {
+                var distancia = 0;
+                var vectorOriginal = MatrizOriginal.Vector;
+                var vectorObtenido = MatrizMejorada.Vector;
+                for (int i = 0; i < vectorOriginal.Count(); i++)
+                {
+                    if (!vectorOriginal.ElementAt(i).Equals(CeldaMatriz.Incompleto))
+                    {
+                        distancia += Utilidades.DistanciaSaaty(vectorOriginal.ElementAt(i), vectorObtenido.ElementAt(i));
+                    }
+
+                }
+                return distancia;
+            }
+        }
 
         public virtual DateTime Inicio { get; set; }
         public virtual DateTime Fin { get; set; }
