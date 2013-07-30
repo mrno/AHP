@@ -35,18 +35,30 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonProyectoEdicion = new System.Windows.Forms.Button();
             this.dataGridProyectos = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.objetivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filtroProyecto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonPublicar = new System.Windows.Forms.Button();
             this.groupBoxDetalleProyecto = new System.Windows.Forms.GroupBox();
             this.dataGridExpertosAsignados = new System.Windows.Forms.DataGridView();
+            this.apellidoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.creadorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.expertoEnProyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridCriterios = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.criterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridAlternativas = new System.Windows.Forms.DataGridView();
+            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.alternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelEstadoProyecto = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -74,29 +86,18 @@
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoNombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.creadorDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.expertoEnProyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nombreDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.criterioBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nombreDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.alternativaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.objetivoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.proyectoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ponderadoAHPConPonderadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxProyectos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
             this.groupBoxDetalleProyecto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosAsignados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // proyectosToolStripMenuItem
@@ -173,12 +174,30 @@
             this.dataGridProyectos.Size = new System.Drawing.Size(469, 523);
             this.dataGridProyectos.TabIndex = 2;
             // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Tipo
             // 
             this.Tipo.DataPropertyName = "Tipo";
             this.Tipo.HeaderText = "Tipo";
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
+            // 
+            // objetivoDataGridViewTextBoxColumn
+            // 
+            this.objetivoDataGridViewTextBoxColumn.DataPropertyName = "Objetivo";
+            this.objetivoDataGridViewTextBoxColumn.HeaderText = "Objetivo";
+            this.objetivoDataGridViewTextBoxColumn.Name = "objetivoDataGridViewTextBoxColumn";
+            this.objetivoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // proyectoBindingSource
+            // 
+            this.proyectoBindingSource.DataSource = typeof(sisExperto.Entidades.Proyecto);
             // 
             // filtroProyecto
             // 
@@ -254,6 +273,14 @@
             this.dataGridExpertosAsignados.Size = new System.Drawing.Size(466, 200);
             this.dataGridExpertosAsignados.TabIndex = 7;
             // 
+            // apellidoNombreDataGridViewTextBoxColumn
+            // 
+            this.apellidoNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoNombre";
+            this.apellidoNombreDataGridViewTextBoxColumn.FillWeight = 65F;
+            this.apellidoNombreDataGridViewTextBoxColumn.HeaderText = "Apellido y Nombre";
+            this.apellidoNombreDataGridViewTextBoxColumn.Name = "apellidoNombreDataGridViewTextBoxColumn";
+            this.apellidoNombreDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // Activo
             // 
             this.Activo.DataPropertyName = "Activo";
@@ -261,6 +288,18 @@
             this.Activo.HeaderText = "Activo";
             this.Activo.Name = "Activo";
             this.Activo.ReadOnly = true;
+            // 
+            // creadorDataGridViewCheckBoxColumn
+            // 
+            this.creadorDataGridViewCheckBoxColumn.DataPropertyName = "Creador";
+            this.creadorDataGridViewCheckBoxColumn.FillWeight = 20F;
+            this.creadorDataGridViewCheckBoxColumn.HeaderText = "Creador";
+            this.creadorDataGridViewCheckBoxColumn.Name = "creadorDataGridViewCheckBoxColumn";
+            this.creadorDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // expertoEnProyectoBindingSource
+            // 
+            this.expertoEnProyectoBindingSource.DataSource = typeof(sisExperto.Entidades.ExpertoEnProyecto);
             // 
             // label6
             // 
@@ -310,6 +349,24 @@
             this.dataGridCriterios.Size = new System.Drawing.Size(230, 320);
             this.dataGridCriterios.TabIndex = 4;
             // 
+            // nombreDataGridViewTextBoxColumn2
+            // 
+            this.nombreDataGridViewTextBoxColumn2.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn2.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn2.Name = "nombreDataGridViewTextBoxColumn2";
+            this.nombreDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn1
+            // 
+            this.descripcionDataGridViewTextBoxColumn1.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn1.Name = "descripcionDataGridViewTextBoxColumn1";
+            this.descripcionDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // criterioBindingSource
+            // 
+            this.criterioBindingSource.DataSource = typeof(sisExperto.Entidades.Criterio);
+            // 
             // dataGridAlternativas
             // 
             this.dataGridAlternativas.AllowUserToAddRows = false;
@@ -330,6 +387,24 @@
             this.dataGridAlternativas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridAlternativas.Size = new System.Drawing.Size(230, 320);
             this.dataGridAlternativas.TabIndex = 2;
+            // 
+            // nombreDataGridViewTextBoxColumn1
+            // 
+            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
+            this.nombreDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // descripcionDataGridViewTextBoxColumn
+            // 
+            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
+            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
+            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // alternativaBindingSource
+            // 
+            this.alternativaBindingSource.DataSource = typeof(sisExperto.Entidades.Alternativa);
             // 
             // labelEstadoProyecto
             // 
@@ -447,7 +522,7 @@
             this.ahp_mediaGeométricaToolStripMenuItem,
             this.ahp_individualToolStripMenuItem});
             this.aHPToolStripMenuItem.Name = "aHPToolStripMenuItem";
-            this.aHPToolStripMenuItem.Size = new System.Drawing.Size(98, 22);
+            this.aHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aHPToolStripMenuItem.Text = "AHP";
             // 
             // ahp_ponderadoToolStripMenuItem
@@ -476,30 +551,31 @@
             this.iLToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.il_ponderadoToolStripMenuItem1,
             this.il_mediaGeométricaToolStripMenuItem1,
-            this.il_ponderadoAHPToolStripMenuItem});
+            this.il_ponderadoAHPToolStripMenuItem,
+            this.ponderadoAHPConPonderadoToolStripMenuItem});
             this.iLToolStripMenuItem1.Name = "iLToolStripMenuItem1";
-            this.iLToolStripMenuItem1.Size = new System.Drawing.Size(98, 22);
+            this.iLToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.iLToolStripMenuItem1.Text = "IL";
             // 
             // il_ponderadoToolStripMenuItem1
             // 
             this.il_ponderadoToolStripMenuItem1.Name = "il_ponderadoToolStripMenuItem1";
-            this.il_ponderadoToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.il_ponderadoToolStripMenuItem1.Text = "Ponderado";
+            this.il_ponderadoToolStripMenuItem1.Size = new System.Drawing.Size(288, 22);
+            this.il_ponderadoToolStripMenuItem1.Text = "Media Aritmética con Ponderado";
             this.il_ponderadoToolStripMenuItem1.Click += new System.EventHandler(this.il_ponderadoToolStripMenuItem1_Click);
             // 
             // il_mediaGeométricaToolStripMenuItem1
             // 
             this.il_mediaGeométricaToolStripMenuItem1.Name = "il_mediaGeométricaToolStripMenuItem1";
-            this.il_mediaGeométricaToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.il_mediaGeométricaToolStripMenuItem1.Text = "Media geométrica";
+            this.il_mediaGeométricaToolStripMenuItem1.Size = new System.Drawing.Size(288, 22);
+            this.il_mediaGeométricaToolStripMenuItem1.Text = "Media Aritmética con Media Geométrica";
             this.il_mediaGeométricaToolStripMenuItem1.Click += new System.EventHandler(this.il_mediaGeométricaToolStripMenuItem1_Click);
             // 
             // il_ponderadoAHPToolStripMenuItem
             // 
             this.il_ponderadoAHPToolStripMenuItem.Name = "il_ponderadoAHPToolStripMenuItem";
-            this.il_ponderadoAHPToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.il_ponderadoAHPToolStripMenuItem.Text = "Ponderado AHP";
+            this.il_ponderadoAHPToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.il_ponderadoAHPToolStripMenuItem.Text = "Ponderado AHP Media Geométrica";
             this.il_ponderadoAHPToolStripMenuItem.Click += new System.EventHandler(this.il_ponderadoAHPToolStripMenuItem_Click);
             // 
             // expertosToolStripMenuItem
@@ -553,79 +629,12 @@
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.Width = 463;
             // 
-            // apellidoNombreDataGridViewTextBoxColumn
+            // ponderadoAHPConPonderadoToolStripMenuItem
             // 
-            this.apellidoNombreDataGridViewTextBoxColumn.DataPropertyName = "ApellidoNombre";
-            this.apellidoNombreDataGridViewTextBoxColumn.FillWeight = 65F;
-            this.apellidoNombreDataGridViewTextBoxColumn.HeaderText = "Apellido y Nombre";
-            this.apellidoNombreDataGridViewTextBoxColumn.Name = "apellidoNombreDataGridViewTextBoxColumn";
-            this.apellidoNombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // creadorDataGridViewCheckBoxColumn
-            // 
-            this.creadorDataGridViewCheckBoxColumn.DataPropertyName = "Creador";
-            this.creadorDataGridViewCheckBoxColumn.FillWeight = 20F;
-            this.creadorDataGridViewCheckBoxColumn.HeaderText = "Creador";
-            this.creadorDataGridViewCheckBoxColumn.Name = "creadorDataGridViewCheckBoxColumn";
-            this.creadorDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // expertoEnProyectoBindingSource
-            // 
-            this.expertoEnProyectoBindingSource.DataSource = typeof(sisExperto.Entidades.ExpertoEnProyecto);
-            // 
-            // nombreDataGridViewTextBoxColumn2
-            // 
-            this.nombreDataGridViewTextBoxColumn2.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn2.Name = "nombreDataGridViewTextBoxColumn2";
-            this.nombreDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // descripcionDataGridViewTextBoxColumn1
-            // 
-            this.descripcionDataGridViewTextBoxColumn1.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn1.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn1.Name = "descripcionDataGridViewTextBoxColumn1";
-            this.descripcionDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // criterioBindingSource
-            // 
-            this.criterioBindingSource.DataSource = typeof(sisExperto.Entidades.Criterio);
-            // 
-            // nombreDataGridViewTextBoxColumn1
-            // 
-            this.nombreDataGridViewTextBoxColumn1.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn1.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn1.Name = "nombreDataGridViewTextBoxColumn1";
-            this.nombreDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
-            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // alternativaBindingSource
-            // 
-            this.alternativaBindingSource.DataSource = typeof(sisExperto.Entidades.Alternativa);
-            // 
-            // nombreDataGridViewTextBoxColumn
-            // 
-            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
-            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
-            this.nombreDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // objetivoDataGridViewTextBoxColumn
-            // 
-            this.objetivoDataGridViewTextBoxColumn.DataPropertyName = "Objetivo";
-            this.objetivoDataGridViewTextBoxColumn.HeaderText = "Objetivo";
-            this.objetivoDataGridViewTextBoxColumn.Name = "objetivoDataGridViewTextBoxColumn";
-            this.objetivoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // proyectoBindingSource
-            // 
-            this.proyectoBindingSource.DataSource = typeof(sisExperto.Entidades.Proyecto);
+            this.ponderadoAHPConPonderadoToolStripMenuItem.Name = "ponderadoAHPConPonderadoToolStripMenuItem";
+            this.ponderadoAHPConPonderadoToolStripMenuItem.Size = new System.Drawing.Size(288, 22);
+            this.ponderadoAHPConPonderadoToolStripMenuItem.Text = "Ponderado AHP con Ponderado";
+            this.ponderadoAHPConPonderadoToolStripMenuItem.Click += new System.EventHandler(this.ponderadoAHPConPonderadoToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -647,17 +656,17 @@
             this.groupBoxProyectos.ResumeLayout(false);
             this.groupBoxProyectos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProyectos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.groupBoxDetalleProyecto.ResumeLayout(false);
             this.groupBoxDetalleProyecto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridExpertosAsignados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridCriterios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAlternativas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.expertoEnProyectoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.criterioBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.alternativaBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.proyectoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -722,6 +731,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn creadorDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Button buttonValorarProyectos;
         private System.Windows.Forms.ToolStripMenuItem il_ponderadoAHPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ponderadoAHPConPonderadoToolStripMenuItem;
 
 
 

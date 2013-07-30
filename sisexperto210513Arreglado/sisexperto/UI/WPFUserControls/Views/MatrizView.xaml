@@ -29,7 +29,6 @@
                                               VerticalContentAlignment="Center"
                                               VerticalAlignment="Stretch"
                                               ItemsSource="{Binding Celdas}">
-
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid Margin="5">

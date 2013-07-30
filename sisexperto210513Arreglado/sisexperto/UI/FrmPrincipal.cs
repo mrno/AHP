@@ -565,6 +565,16 @@ namespace sisExperto
             else MessageBox.Show("No seleccionó ningún proyecto.");
         }
 
+        private void ponderadoAHPConPonderadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_proyectoSeleccionado != null)
+            {
+                var ventanaILNoPonderado = new MostrarRankingAgregado(_proyectoSeleccionado, _fachadaEjecucionProyectos, 2, 2, 1);
+                ventanaILNoPonderado.Show();
+            }
+            else MessageBox.Show("No seleccionó ningún proyecto.");
+        }
+
         private void crearToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (_proyectoSeleccionado != null)
@@ -614,6 +624,8 @@ namespace sisExperto
             var frmValorarProectos = new sisexperto.UI.WPFUserControls.ValorarProyectos(_experto, _proyectoSeleccionado, _fachadaProyectosExpertos);
             frmValorarProectos.ShowDialog();
         }
+
+      
 
         
 
