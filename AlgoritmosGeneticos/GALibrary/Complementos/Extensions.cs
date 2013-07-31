@@ -116,7 +116,7 @@ namespace GALibrary.Complementos
         public static int[] DistanciasMaximas(int dimension)
         {
             var distancias = new int[dimension];
-            for (int i = 0; i < (double)dimension/2; i++)
+            for (int i = 0; i < (double)(dimension-1)/2; i++)
             {
                 distancias[i] = dimension - (2*i) - 1;
                 distancias[dimension - i - 1] = dimension - (2*i) - 1;

@@ -16,22 +16,37 @@ namespace AlgoritmoGenetico
     {
         static void Main(string[] args)
         {
-            //Utilidades.CalcularConsistencia(new double[3, 3]);
-
-            //using (var context = new GAContext())
-            //{
-            //    var conjuntos = context.ConjuntosOrdenN.Include("ConjuntosMatrices.Matrices.MatricesIncompletas").ToList();
-            //}
-
             //const int cantidadSubConjuntosDe100Matrices = 5;
 
             //GenerarMatricesLimiteConsistencia(cantidadSubConjuntosDe100Matrices);
             //GenerarMatrices(cantidadSubConjuntosDe100Matrices);
             //CompletarMatrices();
-            //CalcularError();
+            CorregirErrores();
+            CalcularError();
             //VerConjuntos();
             //ProbarUna(100);
-            EvolucionarConsistentes(200);
+            //EvolucionarConsistentes(200);
+        }
+
+        private static void CorregirErrores()
+        {
+            for (int i = 0; i < 9000; i+=1000)
+            {
+                using (var context = new GAContext())
+                {
+                    var experimentos = context.Sesiones.Include("Experimentos.MatrizMejorada")
+                    .First(x => x.Id == 1004).Experimentos.OrderByDescending(x => x.Id).Skip(i).Take(1000).ToList();
+
+
+                    foreach (var experimento in experimentos)
+                    {
+                        experimento.Error = (double)experimento.MatrizMejorada.Error;
+                        experimento.ErrorRelativo = (double)experimento.MatrizMejorada.ErrorRelativo;
+                    }
+                    context.SaveChanges();
+                }
+                GC.Collect();
+            }
         }
         
         private static void GenerarMatrices(int cantidadSubConjuntosDe100)
@@ -108,21 +123,26 @@ namespace AlgoritmoGenetico
 
         private static void CalcularError()
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 6; i++)
             {
                 using (var context = new GAContext())
                 {
-                    
-                    var experimentos = context.Sesiones.Include("Experimentos.MatrizMejorada.Filas.Celdas")
-                    .Include("Experimentos.MatrizOriginal.Filas.Celdas")
-                    .First(x => x.Id == 1002).Experimentos.OrderBy(x => x.Id).Skip(0).Take(1500).ToList();
+                    var experimentos = context.Sesiones.Include("Experimentos.MatrizMejorada")
+                    .First(x => x.Id == 1004).Experimentos.OrderByDescending(x => x.Id).Skip(i*1500).Take(1500).ToList();
 
-                    var modificacionesAceptables = experimentos
-                        .Select(x => Utilidades.CalcularErrorMagnitud(x.MatrizOriginal.Vector, x.MatrizMejorada.Vector));
-                    var media = (double)modificacionesAceptables.Average();
-                    var varianza = (from c in modificacionesAceptables
-                                    select Math.Pow((double) c - media, 2)).Sum()/1500;
-                    
+                    var maximoError = experimentos.Max(x => x.Error);
+                    var minimoError = experimentos.Min(x => x.Error);
+                    var mediaError = experimentos.Average(x => x.Error);
+                    var varianzaError = (from c in experimentos
+                                        select Math.Pow(c.Error - mediaError, 2)).Sum()/1500;
+
+                    var maximoErrorR = experimentos.Max(x => x.ErrorRelativo);
+                    var minimoErrorR = experimentos.Min(x => x.ErrorRelativo);
+                    var mediaErrorR = experimentos.Average(x => x.ErrorRelativo);
+                    var varianzaErrorR = (from c in experimentos
+                                          select Math.Pow(c.ErrorRelativo - mediaErrorR, 2)).Sum() / 1500;
+
+                    var cantidadConErrorRelativoMayorA25 = experimentos.Count(x => x.ErrorRelativo > .25);
                 } 
             }
         }

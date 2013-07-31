@@ -14,7 +14,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
         public double[] Estructura { get; set; }
         private double? _aptitud;
         private double? _inconsistencia;
-        private double? _error;
+        private double? _cambios;
         public int GeneracionNacimiento { get; set; }
 
         private IFuncionAptitud _funcionAptitud;
@@ -34,7 +34,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
         public void ActualizarInconsistenciaAptitud()
         {
             _inconsistencia = Utilidades.CalcularConsistencia(Matriz);
-            _error = Utilidades.CalcularErrorMagnitud(_funcionAptitud.EstructuraBase.Vector, Estructura);
+            _cambios = Utilidades.CalcularMagnitudCambios(_funcionAptitud.EstructuraBase.Vector, Estructura);
             _aptitud = _funcionAptitud.Aptitud(this);
         }
 
@@ -58,22 +58,22 @@ namespace GALibrary.ProcesoGenetico.Entidades
             }
         }
 
-        public double ErrorRelativo
+        public double CambiosRelativos
         {
             get
             {
-                return Error/
+                return Cambios/
                        (16 * Estructura.Length);
             }
         }
 
-        public double Error
+        public double Cambios
         {
             get
             {
-                if (_error == null)
-                    _error = Utilidades.CalcularErrorMagnitud(_funcionAptitud.EstructuraBase.Vector, Estructura);
-                return (double) _error;
+                if (_cambios == null)
+                    _cambios = Utilidades.CalcularMagnitudCambios(_funcionAptitud.EstructuraBase.Vector, Estructura);
+                return (double) _cambios;
             }
         }
 
@@ -86,7 +86,7 @@ namespace GALibrary.ProcesoGenetico.Entidades
                            _funcionAptitud = _funcionAptitud,
                            _inconsistencia = _inconsistencia,
                            _aptitud = _aptitud,
-                           _error = _error
+                           _cambios = _cambios
                        };
         }
         

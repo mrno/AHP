@@ -69,15 +69,17 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
             Experimento.Fin = DateTime.Now;
 
             var matriz = UltimaPoblacion.MejorIndividuo.Matriz;
+
             Experimento.MatrizMejorada = new ObjetoMatriz(matriz.GetLength(0), false, false, 0)
                                              {
                                                  Matriz = matriz,
                                                  Completa = true,
                                                  Completitud = 1,
                                                  Inconsistencia = UltimaPoblacion.MejorIndividuo.Inconsistencia,
-                                                 Error = UltimaPoblacion.MejorIndividuo.Error
+                                                 Error = UltimaPoblacion.MejorIndividuo.Cambios
                                              };
-           
+
+            Experimento.Cambios = UltimaPoblacion.MejorIndividuo.Cambios;
             Experimento.IteracionesRealizadas = UltimaPoblacion.Generacion;
             Experimento.IteracionNacimientoMejor = UltimaPoblacion.MejorIndividuo.GeneracionNacimiento;
         }

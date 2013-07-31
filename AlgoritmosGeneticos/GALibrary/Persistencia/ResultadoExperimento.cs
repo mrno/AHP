@@ -16,26 +16,10 @@ namespace GALibrary.Persistencia
         public virtual ObjetoMatriz MatrizOriginal { get; set; }
         public virtual ObjetoMatriz MatrizMejorada { get; set; }
 
-        [NotMapped]
-        public int DistanciaMatrices
-        {
-            get
-            {
-                var distancia = 0;
-                var vectorOriginal = MatrizOriginal.Vector;
-                var vectorObtenido = MatrizMejorada.Vector;
-                for (int i = 0; i < vectorOriginal.Count(); i++)
-                {
-                    if (!vectorOriginal.ElementAt(i).Equals(CeldaMatriz.Incompleto))
-                    {
-                        distancia += Utilidades.DistanciaSaaty(vectorOriginal.ElementAt(i), vectorObtenido.ElementAt(i));
-                    }
-
-                }
-                return distancia;
-            }
-        }
-
+        public virtual double Error { get; set; }
+        public virtual double ErrorRelativo { get; set; }
+        public virtual double Cambios { get; set; }
+        
         public virtual DateTime Inicio { get; set; }
         public virtual DateTime Fin { get; set; }
 
