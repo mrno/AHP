@@ -21,7 +21,7 @@ namespace AlgoritmoGenetico
             //GenerarMatricesLimiteConsistencia(cantidadSubConjuntosDe100Matrices);
             //GenerarMatrices(cantidadSubConjuntosDe100Matrices);
             //CompletarMatrices();
-            CorregirErrores();
+            //CorregirErrores();
             CalcularError();
             //VerConjuntos();
             //ProbarUna(100);
@@ -142,7 +142,7 @@ namespace AlgoritmoGenetico
                     var varianzaErrorR = (from c in experimentos
                                           select Math.Pow(c.ErrorRelativo - mediaErrorR, 2)).Sum() / 1500;
 
-                    var cantidadConErrorRelativoMayorA25 = experimentos.Count(x => x.ErrorRelativo > .25);
+                    var cantidadConErrorRelativoMayorA25 = experimentos.Count(x => x.ErrorRelativo <= 0.1);
                 } 
             }
         }
@@ -251,8 +251,7 @@ namespace AlgoritmoGenetico
 
                 var experimento = evolucion.Evolucionar();
                 experimento.MatrizOriginal = matriz;
-                var distancia = experimento.DistanciaMatrices;
-
+                
                 var r1 = matriz.MatrizCompleta.CalcularRanking();
                 var r2 = experimento.MatrizMejorada.CalcularRanking();
 

@@ -2,17 +2,10 @@
 using GALibrary.ProcesoGenetico.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GALibrary.ProcesoGenetico.Operadores;
 using GALibrary.ProcesoGenetico.Operadores.Abstracto;
-using GALibrary.ProcesoGenetico.Operadores.Cruzadores;
-using GALibrary.ProcesoGenetico.Operadores.Selectores;
 using GALibrary.ProcesoGenetico.Operadores.Mutadores.Probabilidad;
 using GALibrary.ProcesoGenetico.CondicionParada;
 using GALibrary.Persistencia;
-using GALibrary.Complementos;
 
 namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 {
@@ -60,19 +53,25 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
             Experimento = new ResultadoExperimento
                               {
                                   Inicio = DateTime.Now,
-                                  Fin = DateTime.Now
+                                  Fin = DateTime.Now,
+                                  AptitudInicialMejorIndividuo = poblacionInicial.MejorIndividuo.Aptitud,
+                                  AptitudPromedioInicialPoblacion = poblacionInicial.AptitudMedia,
+                                  SesionExperimentacion = SesionExperimentacion
                               };
         }
 
         public void RegistrarFinExperimento()
         {
             Experimento.Fin = DateTime.Now;
+            Experimento.Duracion = Experimento.Fin.Subtract(Experimento.Inicio);
 
-            var matriz = UltimaPoblacion.MejorIndividuo.Matriz;
+            Experimento.AptitudFinalMejorIndividuo = UltimaPoblacion.MejorIndividuo.Aptitud;
+            Experimento.AptitudPromedioFinalPoblacion = UltimaPoblacion.AptitudMedia;
 
-            Experimento.MatrizMejorada = new ObjetoMatriz(matriz.GetLength(0), false, false, 0)
+            Experimento.MatrizMejorada = new ObjetoMatriz(UltimaPoblacion.MejorIndividuo.Matriz.GetLength(0),
+                                                          false, false, 0)
                                              {
-                                                 Matriz = matriz,
+                                                 Matriz = UltimaPoblacion.MejorIndividuo.Matriz,
                                                  Completa = true,
                                                  Completitud = 1,
                                                  Inconsistencia = UltimaPoblacion.MejorIndividuo.Inconsistencia,

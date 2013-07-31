@@ -11,6 +11,7 @@ namespace GALibrary.Persistencia
     public class ResultadoExperimento
     {
         public virtual int Id { get; set; }
+
         public virtual SesionExperimentacion SesionExperimentacion { get; set; }
 
         public virtual ObjetoMatriz MatrizOriginal { get; set; }
@@ -19,12 +20,31 @@ namespace GALibrary.Persistencia
         public virtual double Error { get; set; }
         public virtual double ErrorRelativo { get; set; }
         public virtual double Cambios { get; set; }
-        
+
+        public virtual double AptitudPromedioInicialPoblacion { get; set; }
+        public virtual double AptitudPromedioFinalPoblacion { get; set; }
+
+        public virtual double AptitudInicialMejorIndividuo { get; set; }
+        public virtual double AptitudFinalMejorIndividuo { get; set; }
+
+        public virtual bool CoincidePrimerElementoRanking { get; set; }
+
         public virtual DateTime Inicio { get; set; }
         public virtual DateTime Fin { get; set; }
+        public virtual TimeSpan Duracion { get; set; }
 
         public virtual int IteracionesRealizadas { get; set; }
         public virtual int IteracionNacimientoMejor { get; set; }
+    }
+
+    public class ExperimentoAG
+    {
+
+    }
+
+    public class ExperimentoRN
+    {
+
     }
 
     public class SesionExperimentacion
@@ -50,5 +70,15 @@ namespace GALibrary.Persistencia
         public virtual string CondicionParada { get; set; }
         public virtual string ConvergenciaPoblacion { get; set; }
         public virtual string FuncionAptitud { get; set; }
+    }
+
+    public class SesionExperimentacionAG
+    {
+
+    }
+
+    public class SesionExperimentacionRN
+    {
+        
     }
 }
