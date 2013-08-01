@@ -16,10 +16,10 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
         IOperador Mutador { get; set; }
         Poblacion ObtenerSiguienteGeneracion(Poblacion poblacion);
         bool Parada { get; }
-        ResultadoExperimento ExperimentoResultado { get; }
+        Correccion Correccion { get;}
 
-        void ConfigurarModelo(SesionExperimentacion sesionExperimentacion);
-        void RegistrarInicioExperimento(Poblacion poblacionInicial);
+        void ConfigurarModelo(ParametrosEjecucionAG sesionExperimentacion);
+        void RegistrarInicioExperimento(Poblacion poblacionInicial, ObjetoMatriz matrizOriginal);
         void RegistrarFinExperimento();
     }
 }

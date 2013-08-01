@@ -12,32 +12,33 @@ namespace GALibrary.ProcesoGenetico
 {
     public class Evolucion
     {
-        private IModeloEvolutivo _modeloEvolutivo;
+        private readonly IModeloEvolutivo _modeloEvolutivo;
+        private readonly ObjetoMatriz _matrizOriginal;
+        private readonly Estructura _estructuraBase;
+        private readonly ParametrosEjecucionAG _parametrosEjecucionAG;
 
-        private Estructura _estructuraBase;
-
-        private SesionExperimentacion _sesionExperimentacion;
-
-        public Evolucion(ObjetoMatriz matrizIncompleta, SesionExperimentacion sesionExperimentacion)
+        public Evolucion(ObjetoMatriz matrizOriginal, ParametrosEjecucionAG parametrosEjecucion)
         {
-            _estructuraBase = new Estructura(matrizIncompleta);
-            _sesionExperimentacion = sesionExperimentacion;
+            _matrizOriginal = matrizOriginal;
+            _estructuraBase = new Estructura(matrizOriginal);
+            _parametrosEjecucionAG = parametrosEjecucion;
+            _modeloEvolutivo = (new ModeloEvolutivoFactory()).CreateInstance(_parametrosEjecucionAG.ModeloEvolutivo);
         }
 
-        public ResultadoExperimento Evolucionar()
+        public Correccion Evolucionar()
         {
-            var cantidadIteraciones = int.Parse(_sesionExperimentacion.CondicionParada.Split('&')
+            var cantidadIteraciones = int.Parse(_parametrosEjecucionAG.CondicionParada.Split('&')
                                                     .First(x => x.Contains("Iteraciones")).Split(':')[1]);
+
             var poblacion = Poblacion.GenerarPoblacionInicial
-                (_sesionExperimentacion.Individuos,
+                (_parametrosEjecucionAG.CantidadIndividuos,
                  cantidadIteraciones,
                  _estructuraBase,
-                 _sesionExperimentacion.FuncionAptitud,
-                 _sesionExperimentacion.ConvergenciaPoblacion);
+                 _parametrosEjecucionAG.FuncionAptitud,
+                 _parametrosEjecucionAG.ConvergenciaPoblacion);
 
-            _modeloEvolutivo = (new ModeloEvolutivoFactory()).CreateInstance(_sesionExperimentacion.ModeloEvolutivo);
-            _modeloEvolutivo.ConfigurarModelo(_sesionExperimentacion);
-            _modeloEvolutivo.RegistrarInicioExperimento(poblacion);
+            _modeloEvolutivo.ConfigurarModelo(_parametrosEjecucionAG);
+            _modeloEvolutivo.RegistrarInicioExperimento(poblacion, _matrizOriginal);
             while (!_modeloEvolutivo.Parada)
             {
                 poblacion = _modeloEvolutivo.ObtenerSiguienteGeneracion(poblacion);
@@ -45,7 +46,7 @@ namespace GALibrary.ProcesoGenetico
 
             _modeloEvolutivo.RegistrarFinExperimento();
             
-            return _modeloEvolutivo.ExperimentoResultado;
+            return _modeloEvolutivo.Correccion;
         }
     }
 }

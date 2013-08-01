@@ -22,7 +22,7 @@ namespace GALibrary.Persistencia
         public virtual ObjetoMatriz MatrizCompleta { get; set; }
         public virtual ICollection<ObjetoMatriz> MatricesIncompletas { get; set; }
 
-        public virtual ICollection<ResultadoExperimento> Experimentos { get; set; }
+        public virtual ICollection<Correccion> Correcciones { get; set; }
 
         public double[] CalcularRanking()
         {

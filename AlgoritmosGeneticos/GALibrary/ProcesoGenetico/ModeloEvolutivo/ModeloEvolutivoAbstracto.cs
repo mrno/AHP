@@ -13,29 +13,29 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
     {
         protected Poblacion UltimaPoblacion;
         protected ParadaCompuesta CondicionParada { get; set; }
-        protected SesionExperimentacion SesionExperimentacion { get; set; }
+        protected ParametrosEjecucionAG SesionExperimentacion { get; set; }
 
         public IOperador Selector { get; set; }
         public IOperador Cruzador { get; set; }
         public IOperador Mutador { get; set; }
 
-        public void ConfigurarModelo(SesionExperimentacion sesion)
+        public void ConfigurarModelo(ParametrosEjecucionAG parametros)
         {
-            SesionExperimentacion = sesion;
+            SesionExperimentacion = parametros;
 
-            CrearOperador(x => Selector, sesion.Seleccion.Split('>'));
-            CrearOperador(x => Cruzador, sesion.Cruza.Split('>'));
-            CrearOperador(x => Mutador, sesion.Mutacion.Split('>'));
+            CrearOperador(x => Selector, parametros.OperadoresSeleccion.Split('>'));
+            CrearOperador(x => Cruzador, parametros.OperadoresCruza.Split('>'));
+            CrearOperador(x => Mutador, parametros.OperadoresMutacion.Split('>'));
 
             ProbabilidadMutacion =
-                (new ProbabilidadMutacionFactory().CreateInstance(sesion.ProbabilidadMutacion));
-            ProbabilidadMutacion.AsignarPorcentajes(sesion.PorcentajeMinimoMutacion, sesion.PorcentajeMaximoMutacion,
-                                                    sesion.CrecimientoPorcentajeMutacion);
+                (new ProbabilidadMutacionFactory().CreateInstance(parametros.ProbabilidadMutacion));
+            ProbabilidadMutacion.AsignarPorcentajes(parametros.PorcentajeMinimoMutacion, parametros.PorcentajeMaximoMutacion,
+                                                    parametros.CrecimientoPorcentajeMutacion);
 
             CondicionParada = new ParadaCompuesta();
             var factoryParada = new CondicionParadaFactory();
 
-            var condiciones = sesion.CondicionParada.Split('&');
+            var condiciones = parametros.CondicionParada.Split('&');
             foreach (var c in condiciones)
             {
                 var condicion = c.Split(':');
@@ -45,30 +45,35 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
 
         protected IProbabilidadMutacion ProbabilidadMutacion { get; set; }
 
-        protected ResultadoExperimento Experimento;
+        public Correccion Correccion { get; private set; }
 
-        public void RegistrarInicioExperimento(Poblacion poblacionInicial)
+        public void RegistrarInicioExperimento(Poblacion poblacionInicial, ObjetoMatriz matrizOriginal)
         {
             UltimaPoblacion = poblacionInicial;
-            Experimento = new ResultadoExperimento
-                              {
-                                  Inicio = DateTime.Now,
-                                  Fin = DateTime.Now,
-                                  AptitudInicialMejorIndividuo = poblacionInicial.MejorIndividuo.Aptitud,
-                                  AptitudPromedioInicialPoblacion = poblacionInicial.AptitudMedia,
-                                  SesionExperimentacion = SesionExperimentacion
-                              };
+            Correccion = new CorreccionAG
+                             {
+                                 MatrizOriginal = matrizOriginal,
+                                 ValoresSalidaEjecucion = new ValoresSalidaEjecucionAG()
+                                                              {
+                                                                  Inicio = DateTime.Now,
+                                                                  Fin = DateTime.Now,
+                                                                  AptitudInicialMejorIndividuo =
+                                                                      poblacionInicial.MejorIndividuo.Aptitud,
+                                                                  AptitudPromedioInicialPoblacion =
+                                                                      poblacionInicial.AptitudMedia
+                                                              }
+                             };
         }
 
         public void RegistrarFinExperimento()
         {
-            Experimento.Fin = DateTime.Now;
-            Experimento.Duracion = Experimento.Fin.Subtract(Experimento.Inicio);
+            var valoresSalida = Correccion.ValoresSalidaEjecucion as ValoresSalidaEjecucionAG;
+            Correccion.ValoresSalidaEjecucion.Fin = DateTime.Now;
 
-            Experimento.AptitudFinalMejorIndividuo = UltimaPoblacion.MejorIndividuo.Aptitud;
-            Experimento.AptitudPromedioFinalPoblacion = UltimaPoblacion.AptitudMedia;
+            valoresSalida.AptitudFinalMejorIndividuo = UltimaPoblacion.MejorIndividuo.Aptitud;
+            valoresSalida.AptitudPromedioFinalPoblacion = UltimaPoblacion.AptitudMedia;
 
-            Experimento.MatrizMejorada = new ObjetoMatriz(UltimaPoblacion.MejorIndividuo.Matriz.GetLength(0),
+            Correccion.MatrizCorregida = new ObjetoMatriz(UltimaPoblacion.MejorIndividuo.Matriz.GetLength(0),
                                                           false, false, 0)
                                              {
                                                  Matriz = UltimaPoblacion.MejorIndividuo.Matriz,
@@ -78,9 +83,9 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
                                                  Error = UltimaPoblacion.MejorIndividuo.Cambios
                                              };
 
-            Experimento.Cambios = UltimaPoblacion.MejorIndividuo.Cambios;
-            Experimento.IteracionesRealizadas = UltimaPoblacion.Generacion;
-            Experimento.IteracionNacimientoMejor = UltimaPoblacion.MejorIndividuo.GeneracionNacimiento;
+            valoresSalida.Cambios = UltimaPoblacion.MejorIndividuo.Cambios;
+            valoresSalida.IteracionesRealizadas = UltimaPoblacion.Generacion;
+            valoresSalida.IteracionNacimientoMejor = UltimaPoblacion.MejorIndividuo.GeneracionNacimiento;
         }
 
         /// <summary>
@@ -116,11 +121,6 @@ namespace GALibrary.ProcesoGenetico.ModeloEvolutivo
         public bool Parada
         {
             get { return CondicionParada != null && CondicionParada.Parar(UltimaPoblacion); }
-        }
-
-        public ResultadoExperimento ExperimentoResultado
-        { 
-            get { return Experimento; }
         }
     }
 }
