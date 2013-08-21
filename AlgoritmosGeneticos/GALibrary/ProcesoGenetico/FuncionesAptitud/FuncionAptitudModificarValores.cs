@@ -16,7 +16,7 @@ namespace GALibrary.ProcesoGenetico.FuncionesAptitud
         public double Aptitud(Individuo individuo)
         {
             var errorCR = 10.0 / (Math.Exp(10 * (individuo.Inconsistencia - 0.15))+1);
-            var errorModificacion = 1.0/(1 + Math.Pow(individuo.Error, 3));
+            var errorModificacion = 1.0/(1 + Math.Pow(individuo.Cambios, 3));
             return errorCR * errorModificacion;
         }
 

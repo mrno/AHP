@@ -16,22 +16,37 @@ namespace AlgoritmoGenetico
     {
         static void Main(string[] args)
         {
-            //Utilidades.CalcularConsistencia(new double[3, 3]);
-
-            //using (var context = new GAContext())
-            //{
-            //    var conjuntos = context.ConjuntosOrdenN.Include("ConjuntosMatrices.Matrices.MatricesIncompletas").ToList();
-            //}
-
             //const int cantidadSubConjuntosDe100Matrices = 5;
 
             //GenerarMatricesLimiteConsistencia(cantidadSubConjuntosDe100Matrices);
             //GenerarMatrices(cantidadSubConjuntosDe100Matrices);
             //CompletarMatrices();
+            //CorregirErrores();
             //CalcularError();
             //VerConjuntos();
             //ProbarUna(100);
-            EvolucionarConsistentes(200);
+            //EvolucionarConsistentes(200);
+        }
+        /*
+        private static void CorregirErrores()
+        {
+            for (int i = 0; i < 9000; i+=1000)
+            {
+                using (var context = new DataContext())
+                {
+                    var experimentos = context.Sesiones.Include("Experimentos.MatrizMejorada")
+                    .First(x => x.Id == 1004).Experimentos.OrderByDescending(x => x.Id).Skip(i).Take(1000).ToList();
+
+
+                    foreach (var experimento in experimentos)
+                    {
+                        experimento.Error = (double)experimento.MatrizMejorada.Error;
+                        experimento.ErrorRelativo = (double)experimento.MatrizMejorada.ErrorRelativo;
+                    }
+                    context.SaveChanges();
+                }
+                GC.Collect();
+            }
         }
         
         private static void GenerarMatrices(int cantidadSubConjuntosDe100)
@@ -39,7 +54,7 @@ namespace AlgoritmoGenetico
             for (int dimension = 4; dimension < 10; dimension++) 
             {
                 var nuevoConjuntoId = 0;
-                using (var context = new GAContext())
+                using (var context = new DataContext())
                 {
                     var conjunto = new ConjuntoOrdenN(dimension);
                     context.ConjuntosOrdenN.Add(conjunto);
@@ -55,7 +70,7 @@ namespace AlgoritmoGenetico
 
                     foreach (var conjuntoMatriz in conjuntos)
                     {
-                        using (var context = new GAContext())
+                        using (var context = new DataContext())
                         {
                             var conjuntoN = context.ConjuntosOrdenN.First(x => x.Id == nuevoConjuntoId);
 
@@ -75,7 +90,7 @@ namespace AlgoritmoGenetico
             for (int dimension = 4; dimension < 10; dimension++)
             {
                 var nuevoConjuntoId = 0;
-                using (var context = new GAContext())
+                using (var context = new DataContext())
                 {
                     var conjunto = new ConjuntoOrdenN(dimension);
                     context.ConjuntosOrdenN.Add(conjunto);
@@ -91,7 +106,7 @@ namespace AlgoritmoGenetico
 
                     foreach (var conjuntoMatriz in conjuntos)
                     {
-                        using (var context = new GAContext())
+                        using (var context = new DataContext())
                         {
                             var conjuntoN = context.ConjuntosOrdenN.First(x => x.Id == nuevoConjuntoId);
 
@@ -108,21 +123,26 @@ namespace AlgoritmoGenetico
 
         private static void CalcularError()
         {
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 6; i++)
             {
-                using (var context = new GAContext())
+                using (var context = new DataContext())
                 {
-                    
-                    var experimentos = context.Sesiones.Include("Experimentos.MatrizMejorada.Filas.Celdas")
-                    .Include("Experimentos.MatrizOriginal.Filas.Celdas")
-                    .First(x => x.Id == 1002).Experimentos.OrderBy(x => x.Id).Skip(0).Take(1500).ToList();
+                    var experimentos = context.Sesiones.Include("Experimentos.MatrizMejorada")
+                    .First(x => x.Id == 1004).Experimentos.OrderByDescending(x => x.Id).Skip(i*1500).Take(1500).ToList();
 
-                    var modificacionesAceptables = experimentos
-                        .Select(x => Utilidades.CalcularErrorMagnitud(x.MatrizOriginal.Vector, x.MatrizMejorada.Vector));
-                    var media = (double)modificacionesAceptables.Average();
-                    var varianza = (from c in modificacionesAceptables
-                                    select Math.Pow((double) c - media, 2)).Sum()/1500;
-                    
+                    var maximoError = experimentos.Max(x => x.Error);
+                    var minimoError = experimentos.Min(x => x.Error);
+                    var mediaError = experimentos.Average(x => x.Error);
+                    var varianzaError = (from c in experimentos
+                                        select Math.Pow(c.Error - mediaError, 2)).Sum()/1500;
+
+                    var maximoErrorR = experimentos.Max(x => x.ErrorRelativo);
+                    var minimoErrorR = experimentos.Min(x => x.ErrorRelativo);
+                    var mediaErrorR = experimentos.Average(x => x.ErrorRelativo);
+                    var varianzaErrorR = (from c in experimentos
+                                          select Math.Pow(c.ErrorRelativo - mediaErrorR, 2)).Sum() / 1500;
+
+                    var cantidadConErrorRelativoMayorA25 = experimentos.Count(x => x.ErrorRelativo <= 0.1);
                 } 
             }
         }
@@ -149,7 +169,7 @@ namespace AlgoritmoGenetico
             //        context.SaveChanges();
             //    }
             //}
-            var context = new GAContext();
+            var context = new DataContext();
             var matrices = context.Matrices.Include("Filas.Celdas").Where(x => x.Completitud == null).ToList();
             foreach (var matrix in matrices)
             {
@@ -161,7 +181,7 @@ namespace AlgoritmoGenetico
         private static void VerConjuntos()
         {
             var iDs = new List<int>();
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 var conjuntosN = context.ConjuntosOrdenN.Include("ConjuntosMatrices").ToList();
                 foreach(var conjuntoN in conjuntosN)
@@ -175,7 +195,7 @@ namespace AlgoritmoGenetico
             iDs.Reverse();
             foreach (var iD in iDs)
             {
-                using (var context = new GAContext())
+                using (var context = new DataContext())
                 {
                     var matrices = context.ConjuntoMatrices.Include("Matrices.Filas.Celdas")
                         .Include("Matrices.MatricesIncompletas.Filas.Celdas")
@@ -189,7 +209,7 @@ namespace AlgoritmoGenetico
 
         private static void ProbarUna(int individuos)
         {
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 var matriz = context.Matrices
                     .Include("MatricesIncompletas.Filas.Celdas")
@@ -231,8 +251,7 @@ namespace AlgoritmoGenetico
 
                 var experimento = evolucion.Evolucionar();
                 experimento.MatrizOriginal = matriz;
-                var distancia = experimento.DistanciaMatrices;
-
+                
                 var r1 = matriz.MatrizCompleta.CalcularRanking();
                 var r2 = experimento.MatrizMejorada.CalcularRanking();
 
@@ -248,7 +267,7 @@ namespace AlgoritmoGenetico
             int cantidad;
             int sesionId;
 
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 cantidad = context.Matrices.Include("MatrizCompleta").Count(x => x.MatrizCompleta != null);
 
@@ -285,7 +304,7 @@ namespace AlgoritmoGenetico
             {
                 Utilidades.CalcularConsistencia(new double[3, 3]);
 
-                using (var context = new GAContext())
+                using (var context = new DataContext())
                 {
                     var conjuntoIncompletas = context.Matrices
                         //.Include("MatrizCompleta.Filas.Celdas")
@@ -312,11 +331,11 @@ namespace AlgoritmoGenetico
                         var experimento =
                             evolucion.Evolucionar();
 
-                        if (matriz.Experimentos == null)
-                            matriz.Experimentos =
+                        if (matriz.Correcciones == null)
+                            matriz.Correcciones =
                                 new List<ResultadoExperimento>();
 
-                        matriz.Experimentos.Add(experimento);
+                        matriz.Correcciones.Add(experimento);
                         experimento.MatrizOriginal = matriz;
 
                         //sesionExperimento.Experimentos.Add(experimento);
@@ -333,7 +352,7 @@ namespace AlgoritmoGenetico
         {
             int sesionId;
 
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 var sesion = new SesionExperimentacion
                 {
@@ -366,7 +385,7 @@ namespace AlgoritmoGenetico
             //for (int i = 0; i < cantidad / 10; i++)
             for (int i = 121; i < 250; i++)
             {
-                using (var context = new GAContext())
+                using (var context = new DataContext())
                 {
                     var matricesOriginales = context.ConjuntoMatrices
                         .Include("Matrices.Filas.Celdas")
@@ -397,11 +416,11 @@ namespace AlgoritmoGenetico
                             var experimento =
                                 evolucion.Evolucionar();
 
-                            if (matricesIncompleta.Experimentos == null)
-                                matricesIncompleta.Experimentos =
+                            if (matricesIncompleta.Correcciones == null)
+                                matricesIncompleta.Correcciones =
                                     new List<ResultadoExperimento>();
                             
-                            matricesIncompleta.Experimentos.Add(experimento);
+                            matricesIncompleta.Correcciones.Add(experimento);
                             experimento.MatrizOriginal = matricesIncompleta;
 
                             experimento.MatrizMejorada.Error = experimento.MatrizMejorada.CalcularRanking().CalcularErrorRankings(matriz.CalcularRanking());
@@ -418,6 +437,6 @@ namespace AlgoritmoGenetico
                 }
                 GC.Collect();
             }
-        }
+        }*/
     }
 }

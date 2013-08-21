@@ -36,7 +36,7 @@ namespace GALibrary
 
         public static IEnumerable<int> ObtenerDimensiones()
         {
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 return (from c in context.ConjuntosOrdenN
                         select c.Dimension).Distinct().ToList();
@@ -45,7 +45,7 @@ namespace GALibrary
 
         public static IEnumerable<NivelInconsistencia> ObtenerNivelesInconsistencia()
         {
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 return (from c in context.ConjuntoMatrices
                         select c.NivelInconsistencia).Distinct().ToList();
@@ -54,7 +54,7 @@ namespace GALibrary
 
         public static IEnumerable<ConjuntoMatriz> ObtenerTodosLosConjuntosYSubconjuntos()
         {
-            using (var context = new GAContext())
+            using (var context = new DataContext())
             {
                 return (from c in context.ConjuntoMatrices.Include("ConjuntoOrdenN")
                        select c).ToList();

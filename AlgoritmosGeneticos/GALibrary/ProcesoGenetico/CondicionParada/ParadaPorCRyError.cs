@@ -48,7 +48,7 @@ namespace GALibrary.ProcesoGenetico.CondicionParada
         {
             if (poblacion.MejorIndividuo.Inconsistencia > 0.1) return false;
 
-            var errorRelativo = poblacion.MejorIndividuo.ErrorRelativo;
+            var errorRelativo = poblacion.MejorIndividuo.CambiosRelativos;
             var errorAceptableEnIteracion = _maximoErrorTolerable / (poblacion.MaximaGeneracion - poblacion.Generacion + 1);
 
             if (errorRelativo > errorAceptableEnIteracion)

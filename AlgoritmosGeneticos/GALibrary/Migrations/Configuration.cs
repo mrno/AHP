@@ -7,14 +7,14 @@ namespace GALibrary.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<GAContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DataContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(GAContext context)
+        protected override void Seed(DataContext context)
         {
             //var conj = new ConjuntoMatriz(100, 5);
             //context.ConjuntoMatrices.Add(conj);
