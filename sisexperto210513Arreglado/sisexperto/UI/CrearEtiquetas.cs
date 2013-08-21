@@ -142,8 +142,8 @@ namespace sisExperto.UI
         {
             foreach (Etiqueta etiqueta in _etiquetas)
             {
-                etiqueta.PuntoA = (double) etiqueta.Indice/_etiquetas.Count;
-                etiqueta.PuntoB = 1;
+                etiqueta.PuntoA = 0;
+                etiqueta.PuntoB = (double)etiqueta.Indice / (_etiquetas.Count - 1);
                 etiqueta.PuntoC = 0;
             }
         }

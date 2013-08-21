@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64a405b96c3d422cb8eebf41129f61b6" Name="Diagram1">
+        <EntityTypeShape EntityType="GISIA2013Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.AlternativaCeldas" Width="1.5" PointX="18" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.AlternativaFilas" Width="1.5" PointX="15.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.AlternativaILs" Width="1.5" PointX="12.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.AlternativaMatrizs" Width="1.5" PointX="10.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.Alternativas" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.ConjuntoEtiquetas" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.CriterioCeldas" Width="1.5" PointX="15" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.CriterioFilas" Width="1.5" PointX="12.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.CriterioMatrizs" Width="1.5" PointX="10.5" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.Criterios" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.Etiquetas" Width="1.5" PointX="7.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.Expertos" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.ExpertosEnProyecto" Width="1.5" PointX="8.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.Proyectos" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.ValoracionAHPs" Width="1.5" PointX="12.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.ValoracionILs" Width="1.5" PointX="10.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GISIA2013Model.ValorCriterios" Width="1.5" PointX="15" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_CriterioFilas_dbo_Criterios_CriterioId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_Proyectos_dbo_Expertos_CreadorId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

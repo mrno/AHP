@@ -190,24 +190,7 @@ namespace sisExperto
             resultadoViewModelBindingSource.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
             //dataGridResultados.DataSource = listaResultado.OrderByDescending(x => x.Porcentaje).ToList();
         }
-        
-        //private void buttonMostrar_Click(object sender, EventArgs e)
-        //{
-        //    var exp = (Experto)dataGridExpertos.CurrentRow.DataBoundItem;
-        //    var expEnProyecto = _fachadaExpertos.SolicitarExpertoProyectoActual(_proyecto, exp);
-        //    MostrarRankingPersonal ventanaRankingPersonal;
-        //    if (_modelo==0)//AHP
-        //       {
-        //            ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 1);
-        //       }
-        //       else
-        //       {
-        //            ventanaRankingPersonal = new MostrarRankingPersonal(_proyecto, _fachada, expEnProyecto, 2);       
-        //       }
-            
-        //    ventanaRankingPersonal.Show();
-        //}
-
+                
         public double[,] CalcularRankingPersonal(Proyecto _proyecto, FachadaEjecucionProyecto _fachada, ExpertoEnProyecto _expertoEnProyecto, int _tipo)
         {
             //_tipo=1 -> AHP

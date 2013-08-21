@@ -1,0 +1,1515 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GISIA2013Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="GISIA2013ModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="GISIA2013Model.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AlternativaCeldas" EntityType="GISIA2013Model.Store.AlternativaCeldas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AlternativaFilas" EntityType="GISIA2013Model.Store.AlternativaFilas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AlternativaILs" EntityType="GISIA2013Model.Store.AlternativaILs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AlternativaMatrizs" EntityType="GISIA2013Model.Store.AlternativaMatrizs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Alternativas" EntityType="GISIA2013Model.Store.Alternativas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ConjuntoEtiquetas" EntityType="GISIA2013Model.Store.ConjuntoEtiquetas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CriterioCeldas" EntityType="GISIA2013Model.Store.CriterioCeldas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CriterioFilas" EntityType="GISIA2013Model.Store.CriterioFilas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CriterioMatrizs" EntityType="GISIA2013Model.Store.CriterioMatrizs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Criterios" EntityType="GISIA2013Model.Store.Criterios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Etiquetas" EntityType="GISIA2013Model.Store.Etiquetas" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Expertos" EntityType="GISIA2013Model.Store.Expertos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ExpertosEnProyecto" EntityType="GISIA2013Model.Store.ExpertosEnProyecto" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Proyectos" EntityType="GISIA2013Model.Store.Proyectos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ValoracionAHPs" EntityType="GISIA2013Model.Store.ValoracionAHPs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ValoracionILs" EntityType="GISIA2013Model.Store.ValoracionILs" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ValorCriterios" EntityType="GISIA2013Model.Store.ValorCriterios" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId" Association="GISIA2013Model.Store.FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId">
+            <End Role="AlternativaFilas" EntitySet="AlternativaFilas" />
+            <End Role="AlternativaCeldas" EntitySet="AlternativaCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId" Association="GISIA2013Model.Store.FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId">
+            <End Role="Alternativas" EntitySet="Alternativas" />
+            <End Role="AlternativaCeldas" EntitySet="AlternativaCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId" Association="GISIA2013Model.Store.FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId">
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+            <End Role="AlternativaFilas" EntitySet="AlternativaFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId" Association="GISIA2013Model.Store.FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId">
+            <End Role="Alternativas" EntitySet="Alternativas" />
+            <End Role="AlternativaFilas" EntitySet="AlternativaFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id" Association="GISIA2013Model.Store.FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id">
+            <End Role="ValoracionILs" EntitySet="ValoracionILs" />
+            <End Role="AlternativaILs" EntitySet="AlternativaILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId" Association="GISIA2013Model.Store.FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId">
+            <End Role="Criterios" EntitySet="Criterios" />
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" Association="GISIA2013Model.Store.FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id" Association="GISIA2013Model.Store.FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id">
+            <End Role="ValoracionAHPs" EntitySet="ValoracionAHPs" />
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId" Association="GISIA2013Model.Store.FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Alternativas" EntitySet="Alternativas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId" Association="GISIA2013Model.Store.FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ConjuntoEtiquetas" EntitySet="ConjuntoEtiquetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId" Association="GISIA2013Model.Store.FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId">
+            <End Role="CriterioFilas" EntitySet="CriterioFilas" />
+            <End Role="CriterioCeldas" EntitySet="CriterioCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId" Association="GISIA2013Model.Store.FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId">
+            <End Role="Criterios" EntitySet="Criterios" />
+            <End Role="CriterioCeldas" EntitySet="CriterioCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" Association="GISIA2013Model.Store.FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+            <End Role="CriterioMatrizs" EntitySet="CriterioMatrizs" />
+            <End Role="CriterioFilas" EntitySet="CriterioFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioFilas_dbo_Criterios_CriterioId" Association="GISIA2013Model.Store.FK_dbo_CriterioFilas_dbo_Criterios_CriterioId">
+            <End Role="Criterios" EntitySet="Criterios" />
+            <End Role="CriterioFilas" EntitySet="CriterioFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" Association="GISIA2013Model.Store.FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="CriterioMatrizs" EntitySet="CriterioMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId" Association="GISIA2013Model.Store.FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Criterios" EntitySet="Criterios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" Association="GISIA2013Model.Store.FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+            <End Role="ConjuntoEtiquetas" EntitySet="ConjuntoEtiquetas" />
+            <End Role="Etiquetas" EntitySet="Etiquetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId" Association="GISIA2013Model.Store.FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId">
+            <End Role="Expertos" EntitySet="Expertos" />
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId" Association="GISIA2013Model.Store.FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Proyectos_dbo_Expertos_CreadorId" Association="GISIA2013Model.Store.FK_dbo_Proyectos_dbo_Expertos_CreadorId">
+            <End Role="Expertos" EntitySet="Expertos" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" Association="GISIA2013Model.Store.FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+            <End Role="CriterioMatrizs" EntitySet="CriterioMatrizs" />
+            <End Role="ValoracionAHPs" EntitySet="ValoracionAHPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id" Association="GISIA2013Model.Store.FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="ValoracionAHPs" EntitySet="ValoracionAHPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" Association="GISIA2013Model.Store.FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+            <End Role="ConjuntoEtiquetas" EntitySet="ConjuntoEtiquetas" />
+            <End Role="ValoracionILs" EntitySet="ValoracionILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id" Association="GISIA2013Model.Store.FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="ValoracionILs" EntitySet="ValoracionILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId" Association="GISIA2013Model.Store.FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId">
+            <End Role="AlternativaILs" EntitySet="AlternativaILs" />
+            <End Role="ValorCriterios" EntitySet="ValorCriterios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" Nullable="false" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="AlternativaCeldas">
+          <Key>
+            <PropertyRef Name="AlternativaCeldaId" />
+          </Key>
+          <Property Name="AlternativaCeldaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="Columna" Type="int" Nullable="false" />
+          <Property Name="ValorAHP" Type="float" Nullable="false" />
+          <Property Name="ValorILNumerico" Type="int" Nullable="false" />
+          <Property Name="ValorILLinguistico" Type="nvarchar(max)" />
+          <Property Name="AlternativaId" Type="int" Nullable="false" />
+          <Property Name="AlternativaFila_AlternativaFilaId" Type="int" />
+        </EntityType>
+        <EntityType Name="AlternativaFilas">
+          <Key>
+            <PropertyRef Name="AlternativaFilaId" />
+          </Key>
+          <Property Name="AlternativaFilaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AlternativaId" Type="int" Nullable="false" />
+          <Property Name="AlternativaMatriz_AlternativaMatrizId" Type="int" />
+        </EntityType>
+        <EntityType Name="AlternativaILs">
+          <Key>
+            <PropertyRef Name="AlternativaILId" />
+          </Key>
+          <Property Name="AlternativaILId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Valorada" Type="bit" Nullable="false" />
+          <Property Name="ValoracionIL_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlternativaMatrizs">
+          <Key>
+            <PropertyRef Name="AlternativaMatrizId" />
+          </Key>
+          <Property Name="AlternativaMatrizId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Consistencia" Type="bit" Nullable="false" />
+          <Property Name="CriterioId" Type="int" Nullable="false" />
+          <Property Name="ExpertoEnProyecto_ExpertoEnProyectoId" Type="int" />
+          <Property Name="ValoracionAHP_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Alternativas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Proyecto_ProyectoId" Type="int" />
+        </EntityType>
+        <EntityType Name="ConjuntoEtiquetas">
+          <Key>
+            <PropertyRef Name="ConjuntoEtiquetasId" />
+          </Key>
+          <Property Name="ConjuntoEtiquetasId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="Token" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="int" Nullable="false" />
+          <Property Name="ProyectoId" Type="int" />
+        </EntityType>
+        <EntityType Name="CriterioCeldas">
+          <Key>
+            <PropertyRef Name="CriterioCeldaId" />
+          </Key>
+          <Property Name="CriterioCeldaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fila" Type="int" Nullable="false" />
+          <Property Name="Columna" Type="int" Nullable="false" />
+          <Property Name="Valor" Type="float" Nullable="false" />
+          <Property Name="CriterioId" Type="int" Nullable="false" />
+          <Property Name="CriterioFila_CriterioFilaId" Type="int" />
+        </EntityType>
+        <EntityType Name="CriterioFilas">
+          <Key>
+            <PropertyRef Name="CriterioFilaId" />
+          </Key>
+          <Property Name="CriterioFilaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CriterioId" Type="int" Nullable="false" />
+          <Property Name="CriterioMatriz_CriterioMatrizId" Type="int" />
+        </EntityType>
+        <EntityType Name="CriterioMatrizs">
+          <Key>
+            <PropertyRef Name="CriterioMatrizId" />
+          </Key>
+          <Property Name="CriterioMatrizId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Consistencia" Type="bit" Nullable="false" />
+          <Property Name="ExpertoEnProyecto_ExpertoEnProyectoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Criterios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Proyecto_ProyectoId" Type="int" />
+        </EntityType>
+        <EntityType Name="Etiquetas">
+          <Key>
+            <PropertyRef Name="EtiquetaId" />
+          </Key>
+          <Property Name="EtiquetaId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Indice" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="PuntoA" Type="float" Nullable="false" />
+          <Property Name="PuntoB" Type="float" Nullable="false" />
+          <Property Name="PuntoC" Type="float" Nullable="false" />
+          <Property Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" Type="int" />
+        </EntityType>
+        <EntityType Name="Expertos">
+          <Key>
+            <PropertyRef Name="ExpertoId" />
+          </Key>
+          <Property Name="ExpertoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Apellido" Type="nvarchar(max)" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Usuario" Type="nvarchar(max)" />
+          <Property Name="Clave" Type="nvarchar(max)" />
+          <Property Name="Administrador" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExpertosEnProyecto">
+          <Key>
+            <PropertyRef Name="ExpertoEnProyectoId" />
+          </Key>
+          <Property Name="ExpertoEnProyectoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="Ponderacion" Type="float" Nullable="false" />
+          <Property Name="Peso" Type="int" Nullable="false" />
+          <Property Name="Proyecto_ProyectoId" Type="int" />
+          <Property Name="Experto_ExpertoId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="ProyectoId" />
+          </Key>
+          <Property Name="ProyectoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Objetivo" Type="nvarchar(max)" />
+          <Property Name="Estado" Type="nvarchar(max)" />
+          <Property Name="Tipo" Type="nvarchar(max)" />
+          <Property Name="ProyectoClonadoId" Type="int" />
+          <Property Name="CreadorId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ValoracionAHPs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CriterioMatriz_CriterioMatrizId" Type="int" />
+        </EntityType>
+        <EntityType Name="ValoracionILs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" Type="int" />
+        </EntityType>
+        <EntityType Name="ValorCriterios">
+          <Key>
+            <PropertyRef Name="ValorCriterioId" />
+          </Key>
+          <Property Name="ValorCriterioId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar(max)" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="ValorILNumerico" Type="float" Nullable="false" />
+          <Property Name="ValorILLinguistico" Type="nvarchar(max)" />
+          <Property Name="AlternativaIL_AlternativaILId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId">
+          <End Role="AlternativaFilas" Type="GISIA2013Model.Store.AlternativaFilas" Multiplicity="0..1" />
+          <End Role="AlternativaCeldas" Type="GISIA2013Model.Store.AlternativaCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlternativaFilas">
+              <PropertyRef Name="AlternativaFilaId" />
+            </Principal>
+            <Dependent Role="AlternativaCeldas">
+              <PropertyRef Name="AlternativaFila_AlternativaFilaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId">
+          <End Role="Alternativas" Type="GISIA2013Model.Store.Alternativas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaCeldas" Type="GISIA2013Model.Store.AlternativaCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alternativas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaCeldas">
+              <PropertyRef Name="AlternativaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId">
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.Store.AlternativaMatrizs" Multiplicity="0..1" />
+          <End Role="AlternativaFilas" Type="GISIA2013Model.Store.AlternativaFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlternativaMatrizs">
+              <PropertyRef Name="AlternativaMatrizId" />
+            </Principal>
+            <Dependent Role="AlternativaFilas">
+              <PropertyRef Name="AlternativaMatriz_AlternativaMatrizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId">
+          <End Role="Alternativas" Type="GISIA2013Model.Store.Alternativas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaFilas" Type="GISIA2013Model.Store.AlternativaFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alternativas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaFilas">
+              <PropertyRef Name="AlternativaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id">
+          <End Role="ValoracionILs" Type="GISIA2013Model.Store.ValoracionILs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaILs" Type="GISIA2013Model.Store.AlternativaILs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValoracionILs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaILs">
+              <PropertyRef Name="ValoracionIL_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId">
+          <End Role="Criterios" Type="GISIA2013Model.Store.Criterios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.Store.AlternativaMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Criterios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaMatrizs">
+              <PropertyRef Name="CriterioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.Store.ExpertosEnProyecto" Multiplicity="0..1" />
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.Store.AlternativaMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="AlternativaMatrizs">
+              <PropertyRef Name="ExpertoEnProyecto_ExpertoEnProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id">
+          <End Role="ValoracionAHPs" Type="GISIA2013Model.Store.ValoracionAHPs" Multiplicity="0..1" />
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.Store.AlternativaMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValoracionAHPs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaMatrizs">
+              <PropertyRef Name="ValoracionAHP_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Store.Proyectos" Multiplicity="0..1" />
+          <End Role="Alternativas" Type="GISIA2013Model.Store.Alternativas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="Alternativas">
+              <PropertyRef Name="Proyecto_ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Store.Proyectos" Multiplicity="0..1" />
+          <End Role="ConjuntoEtiquetas" Type="GISIA2013Model.Store.ConjuntoEtiquetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="ConjuntoEtiquetas">
+              <PropertyRef Name="ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId">
+          <End Role="CriterioFilas" Type="GISIA2013Model.Store.CriterioFilas" Multiplicity="0..1" />
+          <End Role="CriterioCeldas" Type="GISIA2013Model.Store.CriterioCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CriterioFilas">
+              <PropertyRef Name="CriterioFilaId" />
+            </Principal>
+            <Dependent Role="CriterioCeldas">
+              <PropertyRef Name="CriterioFila_CriterioFilaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId">
+          <End Role="Criterios" Type="GISIA2013Model.Store.Criterios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CriterioCeldas" Type="GISIA2013Model.Store.CriterioCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Criterios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CriterioCeldas">
+              <PropertyRef Name="CriterioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+          <End Role="CriterioMatrizs" Type="GISIA2013Model.Store.CriterioMatrizs" Multiplicity="0..1" />
+          <End Role="CriterioFilas" Type="GISIA2013Model.Store.CriterioFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CriterioMatrizs">
+              <PropertyRef Name="CriterioMatrizId" />
+            </Principal>
+            <Dependent Role="CriterioFilas">
+              <PropertyRef Name="CriterioMatriz_CriterioMatrizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioFilas_dbo_Criterios_CriterioId">
+          <End Role="Criterios" Type="GISIA2013Model.Store.Criterios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CriterioFilas" Type="GISIA2013Model.Store.CriterioFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Criterios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CriterioFilas">
+              <PropertyRef Name="CriterioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.Store.ExpertosEnProyecto" Multiplicity="0..1" />
+          <End Role="CriterioMatrizs" Type="GISIA2013Model.Store.CriterioMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="CriterioMatrizs">
+              <PropertyRef Name="ExpertoEnProyecto_ExpertoEnProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Store.Proyectos" Multiplicity="0..1" />
+          <End Role="Criterios" Type="GISIA2013Model.Store.Criterios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="Criterios">
+              <PropertyRef Name="Proyecto_ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+          <End Role="ConjuntoEtiquetas" Type="GISIA2013Model.Store.ConjuntoEtiquetas" Multiplicity="0..1" />
+          <End Role="Etiquetas" Type="GISIA2013Model.Store.Etiquetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConjuntoEtiquetas">
+              <PropertyRef Name="ConjuntoEtiquetasId" />
+            </Principal>
+            <Dependent Role="Etiquetas">
+              <PropertyRef Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId">
+          <End Role="Expertos" Type="GISIA2013Model.Store.Expertos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.Store.ExpertosEnProyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertos">
+              <PropertyRef Name="ExpertoId" />
+            </Principal>
+            <Dependent Role="ExpertosEnProyecto">
+              <PropertyRef Name="Experto_ExpertoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Store.Proyectos" Multiplicity="0..1" />
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.Store.ExpertosEnProyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="ExpertosEnProyecto">
+              <PropertyRef Name="Proyecto_ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Proyectos_dbo_Expertos_CreadorId">
+          <End Role="Expertos" Type="GISIA2013Model.Store.Expertos" Multiplicity="1" />
+          <End Role="Proyectos" Type="GISIA2013Model.Store.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertos">
+              <PropertyRef Name="ExpertoId" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="CreadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+          <End Role="CriterioMatrizs" Type="GISIA2013Model.Store.CriterioMatrizs" Multiplicity="0..1" />
+          <End Role="ValoracionAHPs" Type="GISIA2013Model.Store.ValoracionAHPs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CriterioMatrizs">
+              <PropertyRef Name="CriterioMatrizId" />
+            </Principal>
+            <Dependent Role="ValoracionAHPs">
+              <PropertyRef Name="CriterioMatriz_CriterioMatrizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.Store.ExpertosEnProyecto" Multiplicity="1" />
+          <End Role="ValoracionAHPs" Type="GISIA2013Model.Store.ValoracionAHPs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="ValoracionAHPs">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+          <End Role="ConjuntoEtiquetas" Type="GISIA2013Model.Store.ConjuntoEtiquetas" Multiplicity="0..1" />
+          <End Role="ValoracionILs" Type="GISIA2013Model.Store.ValoracionILs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConjuntoEtiquetas">
+              <PropertyRef Name="ConjuntoEtiquetasId" />
+            </Principal>
+            <Dependent Role="ValoracionILs">
+              <PropertyRef Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.Store.ExpertosEnProyecto" Multiplicity="1" />
+          <End Role="ValoracionILs" Type="GISIA2013Model.Store.ValoracionILs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="ValoracionILs">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId">
+          <End Role="AlternativaILs" Type="GISIA2013Model.Store.AlternativaILs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ValorCriterios" Type="GISIA2013Model.Store.ValorCriterios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlternativaILs">
+              <PropertyRef Name="AlternativaILId" />
+            </Principal>
+            <Dependent Role="ValorCriterios">
+              <PropertyRef Name="AlternativaIL_AlternativaILId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GISIA2013Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GISIA2013Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="GISIA2013Model.C__MigrationHistory" />
+          <EntitySet Name="AlternativaCeldas" EntityType="GISIA2013Model.AlternativaCeldas" />
+          <EntitySet Name="AlternativaFilas" EntityType="GISIA2013Model.AlternativaFilas" />
+          <EntitySet Name="AlternativaILs" EntityType="GISIA2013Model.AlternativaILs" />
+          <EntitySet Name="AlternativaMatrizs" EntityType="GISIA2013Model.AlternativaMatrizs" />
+          <EntitySet Name="Alternativas" EntityType="GISIA2013Model.Alternativas" />
+          <EntitySet Name="ConjuntoEtiquetas" EntityType="GISIA2013Model.ConjuntoEtiquetas" />
+          <EntitySet Name="CriterioCeldas" EntityType="GISIA2013Model.CriterioCeldas" />
+          <EntitySet Name="CriterioFilas" EntityType="GISIA2013Model.CriterioFilas" />
+          <EntitySet Name="CriterioMatrizs" EntityType="GISIA2013Model.CriterioMatrizs" />
+          <EntitySet Name="Criterios" EntityType="GISIA2013Model.Criterios" />
+          <EntitySet Name="Etiquetas" EntityType="GISIA2013Model.Etiquetas" />
+          <EntitySet Name="Expertos" EntityType="GISIA2013Model.Expertos" />
+          <EntitySet Name="ExpertosEnProyecto" EntityType="GISIA2013Model.ExpertosEnProyecto" />
+          <EntitySet Name="Proyectos" EntityType="GISIA2013Model.Proyectos" />
+          <EntitySet Name="ValoracionAHPs" EntityType="GISIA2013Model.ValoracionAHPs" />
+          <EntitySet Name="ValoracionILs" EntityType="GISIA2013Model.ValoracionILs" />
+          <EntitySet Name="ValorCriterios" EntityType="GISIA2013Model.ValorCriterios" />
+          <AssociationSet Name="FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId" Association="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId">
+            <End Role="AlternativaFilas" EntitySet="AlternativaFilas" />
+            <End Role="AlternativaCeldas" EntitySet="AlternativaCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId" Association="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId">
+            <End Role="Alternativas" EntitySet="Alternativas" />
+            <End Role="AlternativaCeldas" EntitySet="AlternativaCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId" Association="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId">
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+            <End Role="AlternativaFilas" EntitySet="AlternativaFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId" Association="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId">
+            <End Role="Alternativas" EntitySet="Alternativas" />
+            <End Role="AlternativaFilas" EntitySet="AlternativaFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id" Association="GISIA2013Model.FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id">
+            <End Role="ValoracionILs" EntitySet="ValoracionILs" />
+            <End Role="AlternativaILs" EntitySet="AlternativaILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId" Association="GISIA2013Model.FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId">
+            <End Role="AlternativaILs" EntitySet="AlternativaILs" />
+            <End Role="ValorCriterios" EntitySet="ValorCriterios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId" Association="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId">
+            <End Role="Criterios" EntitySet="Criterios" />
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" Association="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id" Association="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id">
+            <End Role="ValoracionAHPs" EntitySet="ValoracionAHPs" />
+            <End Role="AlternativaMatrizs" EntitySet="AlternativaMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId" Association="GISIA2013Model.FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Alternativas" EntitySet="Alternativas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId" Association="GISIA2013Model.FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ConjuntoEtiquetas" EntitySet="ConjuntoEtiquetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" Association="GISIA2013Model.FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+            <End Role="ConjuntoEtiquetas" EntitySet="ConjuntoEtiquetas" />
+            <End Role="Etiquetas" EntitySet="Etiquetas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" Association="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+            <End Role="ConjuntoEtiquetas" EntitySet="ConjuntoEtiquetas" />
+            <End Role="ValoracionILs" EntitySet="ValoracionILs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId" Association="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId">
+            <End Role="CriterioFilas" EntitySet="CriterioFilas" />
+            <End Role="CriterioCeldas" EntitySet="CriterioCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId" Association="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId">
+            <End Role="Criterios" EntitySet="Criterios" />
+            <End Role="CriterioCeldas" EntitySet="CriterioCeldas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" Association="GISIA2013Model.FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+            <End Role="CriterioMatrizs" EntitySet="CriterioMatrizs" />
+            <End Role="CriterioFilas" EntitySet="CriterioFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioFilas_dbo_Criterios_CriterioId" Association="GISIA2013Model.FK_dbo_CriterioFilas_dbo_Criterios_CriterioId">
+            <End Role="Criterios" EntitySet="Criterios" />
+            <End Role="CriterioFilas" EntitySet="CriterioFilas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" Association="GISIA2013Model.FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="CriterioMatrizs" EntitySet="CriterioMatrizs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" Association="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+            <End Role="CriterioMatrizs" EntitySet="CriterioMatrizs" />
+            <End Role="ValoracionAHPs" EntitySet="ValoracionAHPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId" Association="GISIA2013Model.FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="Criterios" EntitySet="Criterios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId" Association="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId">
+            <End Role="Expertos" EntitySet="Expertos" />
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Proyectos_dbo_Expertos_CreadorId" Association="GISIA2013Model.FK_dbo_Proyectos_dbo_Expertos_CreadorId">
+            <End Role="Expertos" EntitySet="Expertos" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId" Association="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId">
+            <End Role="Proyectos" EntitySet="Proyectos" />
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id" Association="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="ValoracionAHPs" EntitySet="ValoracionAHPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id" Association="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id">
+            <End Role="ExpertosEnProyecto" EntitySet="ExpertosEnProyecto" />
+            <End Role="ValoracionILs" EntitySet="ValoracionILs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AlternativaCeldas">
+          <Key>
+            <PropertyRef Name="AlternativaCeldaId" />
+          </Key>
+          <Property Name="AlternativaCeldaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="Columna" Type="Int32" Nullable="false" />
+          <Property Name="ValorAHP" Type="Double" Nullable="false" />
+          <Property Name="ValorILNumerico" Type="Int32" Nullable="false" />
+          <Property Name="ValorILLinguistico" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AlternativaId" Type="Int32" Nullable="false" />
+          <Property Name="AlternativaFila_AlternativaFilaId" Type="Int32" />
+          <NavigationProperty Name="AlternativaFilas" Relationship="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId" FromRole="AlternativaCeldas" ToRole="AlternativaFilas" />
+          <NavigationProperty Name="Alternativas" Relationship="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId" FromRole="AlternativaCeldas" ToRole="Alternativas" />
+        </EntityType>
+        <EntityType Name="AlternativaFilas">
+          <Key>
+            <PropertyRef Name="AlternativaFilaId" />
+          </Key>
+          <Property Name="AlternativaFilaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AlternativaId" Type="Int32" Nullable="false" />
+          <Property Name="AlternativaMatriz_AlternativaMatrizId" Type="Int32" />
+          <NavigationProperty Name="AlternativaCeldas" Relationship="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId" FromRole="AlternativaFilas" ToRole="AlternativaCeldas" />
+          <NavigationProperty Name="AlternativaMatrizs" Relationship="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId" FromRole="AlternativaFilas" ToRole="AlternativaMatrizs" />
+          <NavigationProperty Name="Alternativas" Relationship="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId" FromRole="AlternativaFilas" ToRole="Alternativas" />
+        </EntityType>
+        <EntityType Name="AlternativaILs">
+          <Key>
+            <PropertyRef Name="AlternativaILId" />
+          </Key>
+          <Property Name="AlternativaILId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Valorada" Type="Boolean" Nullable="false" />
+          <Property Name="ValoracionIL_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ValoracionILs" Relationship="GISIA2013Model.FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id" FromRole="AlternativaILs" ToRole="ValoracionILs" />
+          <NavigationProperty Name="ValorCriterios" Relationship="GISIA2013Model.FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId" FromRole="AlternativaILs" ToRole="ValorCriterios" />
+        </EntityType>
+        <EntityType Name="AlternativaMatrizs">
+          <Key>
+            <PropertyRef Name="AlternativaMatrizId" />
+          </Key>
+          <Property Name="AlternativaMatrizId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Consistencia" Type="Boolean" Nullable="false" />
+          <Property Name="CriterioId" Type="Int32" Nullable="false" />
+          <Property Name="ExpertoEnProyecto_ExpertoEnProyectoId" Type="Int32" />
+          <Property Name="ValoracionAHP_Id" Type="Int32" />
+          <NavigationProperty Name="AlternativaFilas" Relationship="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId" FromRole="AlternativaMatrizs" ToRole="AlternativaFilas" />
+          <NavigationProperty Name="Criterios" Relationship="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId" FromRole="AlternativaMatrizs" ToRole="Criterios" />
+          <NavigationProperty Name="ExpertosEnProyecto" Relationship="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" FromRole="AlternativaMatrizs" ToRole="ExpertosEnProyecto" />
+          <NavigationProperty Name="ValoracionAHPs" Relationship="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id" FromRole="AlternativaMatrizs" ToRole="ValoracionAHPs" />
+        </EntityType>
+        <EntityType Name="Alternativas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Proyecto_ProyectoId" Type="Int32" />
+          <NavigationProperty Name="AlternativaCeldas" Relationship="GISIA2013Model.FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId" FromRole="Alternativas" ToRole="AlternativaCeldas" />
+          <NavigationProperty Name="AlternativaFilas" Relationship="GISIA2013Model.FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId" FromRole="Alternativas" ToRole="AlternativaFilas" />
+          <NavigationProperty Name="Proyectos" Relationship="GISIA2013Model.FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId" FromRole="Alternativas" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="ConjuntoEtiquetas">
+          <Key>
+            <PropertyRef Name="ConjuntoEtiquetasId" />
+          </Key>
+          <Property Name="ConjuntoEtiquetasId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="Token" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="ProyectoId" Type="Int32" />
+          <NavigationProperty Name="Proyectos" Relationship="GISIA2013Model.FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId" FromRole="ConjuntoEtiquetas" ToRole="Proyectos" />
+          <NavigationProperty Name="Etiquetas" Relationship="GISIA2013Model.FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" FromRole="ConjuntoEtiquetas" ToRole="Etiquetas" />
+          <NavigationProperty Name="ValoracionILs" Relationship="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" FromRole="ConjuntoEtiquetas" ToRole="ValoracionILs" />
+        </EntityType>
+        <EntityType Name="CriterioCeldas">
+          <Key>
+            <PropertyRef Name="CriterioCeldaId" />
+          </Key>
+          <Property Name="CriterioCeldaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Fila" Type="Int32" Nullable="false" />
+          <Property Name="Columna" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="Double" Nullable="false" />
+          <Property Name="CriterioId" Type="Int32" Nullable="false" />
+          <Property Name="CriterioFila_CriterioFilaId" Type="Int32" />
+          <NavigationProperty Name="CriterioFilas" Relationship="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId" FromRole="CriterioCeldas" ToRole="CriterioFilas" />
+          <NavigationProperty Name="Criterios" Relationship="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId" FromRole="CriterioCeldas" ToRole="Criterios" />
+        </EntityType>
+        <EntityType Name="CriterioFilas">
+          <Key>
+            <PropertyRef Name="CriterioFilaId" />
+          </Key>
+          <Property Name="CriterioFilaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="CriterioId" Type="Int32" Nullable="false" />
+          <Property Name="CriterioMatriz_CriterioMatrizId" Type="Int32" />
+          <NavigationProperty Name="CriterioCeldas" Relationship="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId" FromRole="CriterioFilas" ToRole="CriterioCeldas" />
+          <NavigationProperty Name="CriterioMatrizs" Relationship="GISIA2013Model.FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" FromRole="CriterioFilas" ToRole="CriterioMatrizs" />
+          <NavigationProperty Name="Criterios" Relationship="GISIA2013Model.FK_dbo_CriterioFilas_dbo_Criterios_CriterioId" FromRole="CriterioFilas" ToRole="Criterios" />
+        </EntityType>
+        <EntityType Name="CriterioMatrizs">
+          <Key>
+            <PropertyRef Name="CriterioMatrizId" />
+          </Key>
+          <Property Name="CriterioMatrizId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Consistencia" Type="Boolean" Nullable="false" />
+          <Property Name="ExpertoEnProyecto_ExpertoEnProyectoId" Type="Int32" />
+          <NavigationProperty Name="CriterioFilas" Relationship="GISIA2013Model.FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" FromRole="CriterioMatrizs" ToRole="CriterioFilas" />
+          <NavigationProperty Name="ExpertosEnProyecto" Relationship="GISIA2013Model.FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" FromRole="CriterioMatrizs" ToRole="ExpertosEnProyecto" />
+          <NavigationProperty Name="ValoracionAHPs" Relationship="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" FromRole="CriterioMatrizs" ToRole="ValoracionAHPs" />
+        </EntityType>
+        <EntityType Name="Criterios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Proyecto_ProyectoId" Type="Int32" />
+          <NavigationProperty Name="AlternativaMatrizs" Relationship="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId" FromRole="Criterios" ToRole="AlternativaMatrizs" />
+          <NavigationProperty Name="CriterioCeldas" Relationship="GISIA2013Model.FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId" FromRole="Criterios" ToRole="CriterioCeldas" />
+          <NavigationProperty Name="CriterioFilas" Relationship="GISIA2013Model.FK_dbo_CriterioFilas_dbo_Criterios_CriterioId" FromRole="Criterios" ToRole="CriterioFilas" />
+          <NavigationProperty Name="Proyectos" Relationship="GISIA2013Model.FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId" FromRole="Criterios" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="Etiquetas">
+          <Key>
+            <PropertyRef Name="EtiquetaId" />
+          </Key>
+          <Property Name="EtiquetaId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Indice" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PuntoA" Type="Double" Nullable="false" />
+          <Property Name="PuntoB" Type="Double" Nullable="false" />
+          <Property Name="PuntoC" Type="Double" Nullable="false" />
+          <Property Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" Type="Int32" />
+          <NavigationProperty Name="ConjuntoEtiquetas" Relationship="GISIA2013Model.FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" FromRole="Etiquetas" ToRole="ConjuntoEtiquetas" />
+        </EntityType>
+        <EntityType Name="Expertos">
+          <Key>
+            <PropertyRef Name="ExpertoId" />
+          </Key>
+          <Property Name="ExpertoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Apellido" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Usuario" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Clave" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Administrador" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ExpertosEnProyecto" Relationship="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId" FromRole="Expertos" ToRole="ExpertosEnProyecto" />
+          <NavigationProperty Name="Proyectos" Relationship="GISIA2013Model.FK_dbo_Proyectos_dbo_Expertos_CreadorId" FromRole="Expertos" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="ExpertosEnProyecto">
+          <Key>
+            <PropertyRef Name="ExpertoEnProyectoId" />
+          </Key>
+          <Property Name="ExpertoEnProyectoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <Property Name="Ponderacion" Type="Double" Nullable="false" />
+          <Property Name="Peso" Type="Int32" Nullable="false" />
+          <Property Name="Proyecto_ProyectoId" Type="Int32" />
+          <Property Name="Experto_ExpertoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AlternativaMatrizs" Relationship="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" FromRole="ExpertosEnProyecto" ToRole="AlternativaMatrizs" />
+          <NavigationProperty Name="CriterioMatrizs" Relationship="GISIA2013Model.FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId" FromRole="ExpertosEnProyecto" ToRole="CriterioMatrizs" />
+          <NavigationProperty Name="Expertos" Relationship="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId" FromRole="ExpertosEnProyecto" ToRole="Expertos" />
+          <NavigationProperty Name="Proyectos" Relationship="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId" FromRole="ExpertosEnProyecto" ToRole="Proyectos" />
+          <NavigationProperty Name="ValoracionAHPs" Relationship="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id" FromRole="ExpertosEnProyecto" ToRole="ValoracionAHPs" />
+          <NavigationProperty Name="ValoracionILs" Relationship="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id" FromRole="ExpertosEnProyecto" ToRole="ValoracionILs" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="ProyectoId" />
+          </Key>
+          <Property Name="ProyectoId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Objetivo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Estado" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Tipo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ProyectoClonadoId" Type="Int32" />
+          <Property Name="CreadorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Alternativas" Relationship="GISIA2013Model.FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId" FromRole="Proyectos" ToRole="Alternativas" />
+          <NavigationProperty Name="ConjuntoEtiquetas" Relationship="GISIA2013Model.FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId" FromRole="Proyectos" ToRole="ConjuntoEtiquetas" />
+          <NavigationProperty Name="Criterios" Relationship="GISIA2013Model.FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId" FromRole="Proyectos" ToRole="Criterios" />
+          <NavigationProperty Name="Expertos" Relationship="GISIA2013Model.FK_dbo_Proyectos_dbo_Expertos_CreadorId" FromRole="Proyectos" ToRole="Expertos" />
+          <NavigationProperty Name="ExpertosEnProyecto" Relationship="GISIA2013Model.FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId" FromRole="Proyectos" ToRole="ExpertosEnProyecto" />
+        </EntityType>
+        <EntityType Name="ValoracionAHPs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CriterioMatriz_CriterioMatrizId" Type="Int32" />
+          <NavigationProperty Name="AlternativaMatrizs" Relationship="GISIA2013Model.FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id" FromRole="ValoracionAHPs" ToRole="AlternativaMatrizs" />
+          <NavigationProperty Name="CriterioMatrizs" Relationship="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId" FromRole="ValoracionAHPs" ToRole="CriterioMatrizs" />
+          <NavigationProperty Name="ExpertosEnProyecto" Relationship="GISIA2013Model.FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id" FromRole="ValoracionAHPs" ToRole="ExpertosEnProyecto" />
+        </EntityType>
+        <EntityType Name="ValoracionILs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" Type="Int32" />
+          <NavigationProperty Name="AlternativaILs" Relationship="GISIA2013Model.FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id" FromRole="ValoracionILs" ToRole="AlternativaILs" />
+          <NavigationProperty Name="ConjuntoEtiquetas" Relationship="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId" FromRole="ValoracionILs" ToRole="ConjuntoEtiquetas" />
+          <NavigationProperty Name="ExpertosEnProyecto" Relationship="GISIA2013Model.FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id" FromRole="ValoracionILs" ToRole="ExpertosEnProyecto" />
+        </EntityType>
+        <EntityType Name="ValorCriterios">
+          <Key>
+            <PropertyRef Name="ValorCriterioId" />
+          </Key>
+          <Property Name="ValorCriterioId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ValorILNumerico" Type="Double" Nullable="false" />
+          <Property Name="ValorILLinguistico" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="AlternativaIL_AlternativaILId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AlternativaILs" Relationship="GISIA2013Model.FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId" FromRole="ValorCriterios" ToRole="AlternativaILs" />
+        </EntityType>
+        <Association Name="FK_dbo_AlternativaCeldas_dbo_AlternativaFilas_AlternativaFila_AlternativaFilaId">
+          <End Role="AlternativaFilas" Type="GISIA2013Model.AlternativaFilas" Multiplicity="0..1" />
+          <End Role="AlternativaCeldas" Type="GISIA2013Model.AlternativaCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlternativaFilas">
+              <PropertyRef Name="AlternativaFilaId" />
+            </Principal>
+            <Dependent Role="AlternativaCeldas">
+              <PropertyRef Name="AlternativaFila_AlternativaFilaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaCeldas_dbo_Alternativas_AlternativaId">
+          <End Role="Alternativas" Type="GISIA2013Model.Alternativas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaCeldas" Type="GISIA2013Model.AlternativaCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alternativas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaCeldas">
+              <PropertyRef Name="AlternativaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaFilas_dbo_AlternativaMatrizs_AlternativaMatriz_AlternativaMatrizId">
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.AlternativaMatrizs" Multiplicity="0..1" />
+          <End Role="AlternativaFilas" Type="GISIA2013Model.AlternativaFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlternativaMatrizs">
+              <PropertyRef Name="AlternativaMatrizId" />
+            </Principal>
+            <Dependent Role="AlternativaFilas">
+              <PropertyRef Name="AlternativaMatriz_AlternativaMatrizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaFilas_dbo_Alternativas_AlternativaId">
+          <End Role="Alternativas" Type="GISIA2013Model.Alternativas" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaFilas" Type="GISIA2013Model.AlternativaFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Alternativas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaFilas">
+              <PropertyRef Name="AlternativaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaILs_dbo_ValoracionILs_ValoracionIL_Id">
+          <End Role="ValoracionILs" Type="GISIA2013Model.ValoracionILs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaILs" Type="GISIA2013Model.AlternativaILs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValoracionILs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaILs">
+              <PropertyRef Name="ValoracionIL_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValorCriterios_dbo_AlternativaILs_AlternativaIL_AlternativaILId">
+          <End Role="AlternativaILs" Type="GISIA2013Model.AlternativaILs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ValorCriterios" Type="GISIA2013Model.ValorCriterios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlternativaILs">
+              <PropertyRef Name="AlternativaILId" />
+            </Principal>
+            <Dependent Role="ValorCriterios">
+              <PropertyRef Name="AlternativaIL_AlternativaILId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaMatrizs_dbo_Criterios_CriterioId">
+          <End Role="Criterios" Type="GISIA2013Model.Criterios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.AlternativaMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Criterios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaMatrizs">
+              <PropertyRef Name="CriterioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.ExpertosEnProyecto" Multiplicity="0..1" />
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.AlternativaMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="AlternativaMatrizs">
+              <PropertyRef Name="ExpertoEnProyecto_ExpertoEnProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AlternativaMatrizs_dbo_ValoracionAHPs_ValoracionAHP_Id">
+          <End Role="ValoracionAHPs" Type="GISIA2013Model.ValoracionAHPs" Multiplicity="0..1" />
+          <End Role="AlternativaMatrizs" Type="GISIA2013Model.AlternativaMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValoracionAHPs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AlternativaMatrizs">
+              <PropertyRef Name="ValoracionAHP_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Alternativas_dbo_Proyectos_Proyecto_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Proyectos" Multiplicity="0..1" />
+          <End Role="Alternativas" Type="GISIA2013Model.Alternativas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="Alternativas">
+              <PropertyRef Name="Proyecto_ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ConjuntoEtiquetas_dbo_Proyectos_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Proyectos" Multiplicity="0..1" />
+          <End Role="ConjuntoEtiquetas" Type="GISIA2013Model.ConjuntoEtiquetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="ConjuntoEtiquetas">
+              <PropertyRef Name="ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Etiquetas_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+          <End Role="ConjuntoEtiquetas" Type="GISIA2013Model.ConjuntoEtiquetas" Multiplicity="0..1" />
+          <End Role="Etiquetas" Type="GISIA2013Model.Etiquetas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConjuntoEtiquetas">
+              <PropertyRef Name="ConjuntoEtiquetasId" />
+            </Principal>
+            <Dependent Role="Etiquetas">
+              <PropertyRef Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionILs_dbo_ConjuntoEtiquetas_ConjuntoEtiquetas_ConjuntoEtiquetasId">
+          <End Role="ConjuntoEtiquetas" Type="GISIA2013Model.ConjuntoEtiquetas" Multiplicity="0..1" />
+          <End Role="ValoracionILs" Type="GISIA2013Model.ValoracionILs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConjuntoEtiquetas">
+              <PropertyRef Name="ConjuntoEtiquetasId" />
+            </Principal>
+            <Dependent Role="ValoracionILs">
+              <PropertyRef Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioCeldas_dbo_CriterioFilas_CriterioFila_CriterioFilaId">
+          <End Role="CriterioFilas" Type="GISIA2013Model.CriterioFilas" Multiplicity="0..1" />
+          <End Role="CriterioCeldas" Type="GISIA2013Model.CriterioCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CriterioFilas">
+              <PropertyRef Name="CriterioFilaId" />
+            </Principal>
+            <Dependent Role="CriterioCeldas">
+              <PropertyRef Name="CriterioFila_CriterioFilaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioCeldas_dbo_Criterios_CriterioId">
+          <End Role="Criterios" Type="GISIA2013Model.Criterios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CriterioCeldas" Type="GISIA2013Model.CriterioCeldas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Criterios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CriterioCeldas">
+              <PropertyRef Name="CriterioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioFilas_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+          <End Role="CriterioMatrizs" Type="GISIA2013Model.CriterioMatrizs" Multiplicity="0..1" />
+          <End Role="CriterioFilas" Type="GISIA2013Model.CriterioFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CriterioMatrizs">
+              <PropertyRef Name="CriterioMatrizId" />
+            </Principal>
+            <Dependent Role="CriterioFilas">
+              <PropertyRef Name="CriterioMatriz_CriterioMatrizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioFilas_dbo_Criterios_CriterioId">
+          <End Role="Criterios" Type="GISIA2013Model.Criterios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CriterioFilas" Type="GISIA2013Model.CriterioFilas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Criterios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CriterioFilas">
+              <PropertyRef Name="CriterioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CriterioMatrizs_dbo_ExpertosEnProyecto_ExpertoEnProyecto_ExpertoEnProyectoId">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.ExpertosEnProyecto" Multiplicity="0..1" />
+          <End Role="CriterioMatrizs" Type="GISIA2013Model.CriterioMatrizs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="CriterioMatrizs">
+              <PropertyRef Name="ExpertoEnProyecto_ExpertoEnProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionAHPs_dbo_CriterioMatrizs_CriterioMatriz_CriterioMatrizId">
+          <End Role="CriterioMatrizs" Type="GISIA2013Model.CriterioMatrizs" Multiplicity="0..1" />
+          <End Role="ValoracionAHPs" Type="GISIA2013Model.ValoracionAHPs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CriterioMatrizs">
+              <PropertyRef Name="CriterioMatrizId" />
+            </Principal>
+            <Dependent Role="ValoracionAHPs">
+              <PropertyRef Name="CriterioMatriz_CriterioMatrizId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Criterios_dbo_Proyectos_Proyecto_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Proyectos" Multiplicity="0..1" />
+          <End Role="Criterios" Type="GISIA2013Model.Criterios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="Criterios">
+              <PropertyRef Name="Proyecto_ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ExpertosEnProyecto_dbo_Expertos_Experto_ExpertoId">
+          <End Role="Expertos" Type="GISIA2013Model.Expertos" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.ExpertosEnProyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertos">
+              <PropertyRef Name="ExpertoId" />
+            </Principal>
+            <Dependent Role="ExpertosEnProyecto">
+              <PropertyRef Name="Experto_ExpertoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Proyectos_dbo_Expertos_CreadorId">
+          <End Role="Expertos" Type="GISIA2013Model.Expertos" Multiplicity="1" />
+          <End Role="Proyectos" Type="GISIA2013Model.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertos">
+              <PropertyRef Name="ExpertoId" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="CreadorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ExpertosEnProyecto_dbo_Proyectos_Proyecto_ProyectoId">
+          <End Role="Proyectos" Type="GISIA2013Model.Proyectos" Multiplicity="0..1" />
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.ExpertosEnProyecto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proyectos">
+              <PropertyRef Name="ProyectoId" />
+            </Principal>
+            <Dependent Role="ExpertosEnProyecto">
+              <PropertyRef Name="Proyecto_ProyectoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionAHPs_dbo_ExpertosEnProyecto_Id">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.ExpertosEnProyecto" Multiplicity="1" />
+          <End Role="ValoracionAHPs" Type="GISIA2013Model.ValoracionAHPs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="ValoracionAHPs">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ValoracionILs_dbo_ExpertosEnProyecto_Id">
+          <End Role="ExpertosEnProyecto" Type="GISIA2013Model.ExpertosEnProyecto" Multiplicity="1" />
+          <End Role="ValoracionILs" Type="GISIA2013Model.ValoracionILs" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ExpertosEnProyecto">
+              <PropertyRef Name="ExpertoEnProyectoId" />
+            </Principal>
+            <Dependent Role="ValoracionILs">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GISIA2013ModelStoreContainer" CdmEntityContainer="GISIA2013Entities">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="GISIA2013Model.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlternativaCeldas">
+            <EntityTypeMapping TypeName="GISIA2013Model.AlternativaCeldas">
+              <MappingFragment StoreEntitySet="AlternativaCeldas">
+                <ScalarProperty Name="AlternativaCeldaId" ColumnName="AlternativaCeldaId" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="Columna" ColumnName="Columna" />
+                <ScalarProperty Name="ValorAHP" ColumnName="ValorAHP" />
+                <ScalarProperty Name="ValorILNumerico" ColumnName="ValorILNumerico" />
+                <ScalarProperty Name="ValorILLinguistico" ColumnName="ValorILLinguistico" />
+                <ScalarProperty Name="AlternativaId" ColumnName="AlternativaId" />
+                <ScalarProperty Name="AlternativaFila_AlternativaFilaId" ColumnName="AlternativaFila_AlternativaFilaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlternativaFilas">
+            <EntityTypeMapping TypeName="GISIA2013Model.AlternativaFilas">
+              <MappingFragment StoreEntitySet="AlternativaFilas">
+                <ScalarProperty Name="AlternativaFilaId" ColumnName="AlternativaFilaId" />
+                <ScalarProperty Name="AlternativaId" ColumnName="AlternativaId" />
+                <ScalarProperty Name="AlternativaMatriz_AlternativaMatrizId" ColumnName="AlternativaMatriz_AlternativaMatrizId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlternativaILs">
+            <EntityTypeMapping TypeName="GISIA2013Model.AlternativaILs">
+              <MappingFragment StoreEntitySet="AlternativaILs">
+                <ScalarProperty Name="AlternativaILId" ColumnName="AlternativaILId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Valorada" ColumnName="Valorada" />
+                <ScalarProperty Name="ValoracionIL_Id" ColumnName="ValoracionIL_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlternativaMatrizs">
+            <EntityTypeMapping TypeName="GISIA2013Model.AlternativaMatrizs">
+              <MappingFragment StoreEntitySet="AlternativaMatrizs">
+                <ScalarProperty Name="AlternativaMatrizId" ColumnName="AlternativaMatrizId" />
+                <ScalarProperty Name="Consistencia" ColumnName="Consistencia" />
+                <ScalarProperty Name="CriterioId" ColumnName="CriterioId" />
+                <ScalarProperty Name="ExpertoEnProyecto_ExpertoEnProyectoId" ColumnName="ExpertoEnProyecto_ExpertoEnProyectoId" />
+                <ScalarProperty Name="ValoracionAHP_Id" ColumnName="ValoracionAHP_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alternativas">
+            <EntityTypeMapping TypeName="GISIA2013Model.Alternativas">
+              <MappingFragment StoreEntitySet="Alternativas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Proyecto_ProyectoId" ColumnName="Proyecto_ProyectoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConjuntoEtiquetas">
+            <EntityTypeMapping TypeName="GISIA2013Model.ConjuntoEtiquetas">
+              <MappingFragment StoreEntitySet="ConjuntoEtiquetas">
+                <ScalarProperty Name="ConjuntoEtiquetasId" ColumnName="ConjuntoEtiquetasId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CriterioCeldas">
+            <EntityTypeMapping TypeName="GISIA2013Model.CriterioCeldas">
+              <MappingFragment StoreEntitySet="CriterioCeldas">
+                <ScalarProperty Name="CriterioCeldaId" ColumnName="CriterioCeldaId" />
+                <ScalarProperty Name="Fila" ColumnName="Fila" />
+                <ScalarProperty Name="Columna" ColumnName="Columna" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="CriterioId" ColumnName="CriterioId" />
+                <ScalarProperty Name="CriterioFila_CriterioFilaId" ColumnName="CriterioFila_CriterioFilaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CriterioFilas">
+            <EntityTypeMapping TypeName="GISIA2013Model.CriterioFilas">
+              <MappingFragment StoreEntitySet="CriterioFilas">
+                <ScalarProperty Name="CriterioFilaId" ColumnName="CriterioFilaId" />
+                <ScalarProperty Name="CriterioId" ColumnName="CriterioId" />
+                <ScalarProperty Name="CriterioMatriz_CriterioMatrizId" ColumnName="CriterioMatriz_CriterioMatrizId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CriterioMatrizs">
+            <EntityTypeMapping TypeName="GISIA2013Model.CriterioMatrizs">
+              <MappingFragment StoreEntitySet="CriterioMatrizs">
+                <ScalarProperty Name="CriterioMatrizId" ColumnName="CriterioMatrizId" />
+                <ScalarProperty Name="Consistencia" ColumnName="Consistencia" />
+                <ScalarProperty Name="ExpertoEnProyecto_ExpertoEnProyectoId" ColumnName="ExpertoEnProyecto_ExpertoEnProyectoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Criterios">
+            <EntityTypeMapping TypeName="GISIA2013Model.Criterios">
+              <MappingFragment StoreEntitySet="Criterios">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Proyecto_ProyectoId" ColumnName="Proyecto_ProyectoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Etiquetas">
+            <EntityTypeMapping TypeName="GISIA2013Model.Etiquetas">
+              <MappingFragment StoreEntitySet="Etiquetas">
+                <ScalarProperty Name="EtiquetaId" ColumnName="EtiquetaId" />
+                <ScalarProperty Name="Indice" ColumnName="Indice" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PuntoA" ColumnName="PuntoA" />
+                <ScalarProperty Name="PuntoB" ColumnName="PuntoB" />
+                <ScalarProperty Name="PuntoC" ColumnName="PuntoC" />
+                <ScalarProperty Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" ColumnName="ConjuntoEtiquetas_ConjuntoEtiquetasId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expertos">
+            <EntityTypeMapping TypeName="GISIA2013Model.Expertos">
+              <MappingFragment StoreEntitySet="Expertos">
+                <ScalarProperty Name="ExpertoId" ColumnName="ExpertoId" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Administrador" ColumnName="Administrador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpertosEnProyecto">
+            <EntityTypeMapping TypeName="GISIA2013Model.ExpertosEnProyecto">
+              <MappingFragment StoreEntitySet="ExpertosEnProyecto">
+                <ScalarProperty Name="ExpertoEnProyectoId" ColumnName="ExpertoEnProyectoId" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Ponderacion" ColumnName="Ponderacion" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Proyecto_ProyectoId" ColumnName="Proyecto_ProyectoId" />
+                <ScalarProperty Name="Experto_ExpertoId" ColumnName="Experto_ExpertoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyectos">
+            <EntityTypeMapping TypeName="GISIA2013Model.Proyectos">
+              <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="ProyectoId" ColumnName="ProyectoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Objetivo" ColumnName="Objetivo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="ProyectoClonadoId" ColumnName="ProyectoClonadoId" />
+                <ScalarProperty Name="CreadorId" ColumnName="CreadorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValoracionAHPs">
+            <EntityTypeMapping TypeName="GISIA2013Model.ValoracionAHPs">
+              <MappingFragment StoreEntitySet="ValoracionAHPs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CriterioMatriz_CriterioMatrizId" ColumnName="CriterioMatriz_CriterioMatrizId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValoracionILs">
+            <EntityTypeMapping TypeName="GISIA2013Model.ValoracionILs">
+              <MappingFragment StoreEntitySet="ValoracionILs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConjuntoEtiquetas_ConjuntoEtiquetasId" ColumnName="ConjuntoEtiquetas_ConjuntoEtiquetasId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValorCriterios">
+            <EntityTypeMapping TypeName="GISIA2013Model.ValorCriterios">
+              <MappingFragment StoreEntitySet="ValorCriterios">
+                <ScalarProperty Name="ValorCriterioId" ColumnName="ValorCriterioId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ValorILNumerico" ColumnName="ValorILNumerico" />
+                <ScalarProperty Name="ValorILLinguistico" ColumnName="ValorILLinguistico" />
+                <ScalarProperty Name="AlternativaIL_AlternativaILId" ColumnName="AlternativaIL_AlternativaILId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
