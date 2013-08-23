@@ -23,6 +23,7 @@ namespace OWAOP
         Proyectos proyecto;
         double alpha;
         List<List<ValorViewModel>> matriz;
+        List<List<ValorViewModel>> matrizIntermedia;
         List<ExpertosEnProyecto> expertos;
 
         public MostrarClusters(Proyectos unProyecto, double unAlpha)
@@ -40,36 +41,66 @@ namespace OWAOP
             {
                 double virtu = 12; // ver como lo saco
                 double real = exp.ValoracionILs.ConjuntoEtiquetas.Cantidad - 1;
+                int posm = 0;
 
                 foreach (var alt in exp.ValoracionILs.AlternativaILs)
                 {
-                    //for (int i = 0; i < exp.ValoracionILs.AlternativaILs.Count; i++)
-                    //{
-                    //    int b = 0;
+                   
                     int pos = 0;
                     List<ValorViewModel> lista = new List<ValorViewModel>();
 
                         foreach (var cri in alt.ValorCriterios)
                         {
                             
-                            //if (i != b)
-                            //{
+                            
                             ValorViewModel celda = new ValorViewModel();
                             celda.valor = ((cri.ValorILNumerico * virtu) / real) / virtu;
                             celda.posicion = pos;
+                            celda.posicionMatriz = posm;
                             pos++;
                             lista.Add(celda);
-                            //}
+                            
                         }
-                    //}
 
                         matriz.Add(lista);
                 }
-
-                
             }
 
-            int a = matriz.Count;
+            matrizIntermedia = new List<List<ValorViewModel>>();
+
+            foreach (var exp in expertos)
+            {
+                List<ValorViewModel> lista = new List<ValorViewModel>();
+                int columna = 0;
+
+                foreach (var alt in exp.ValoracionILs.AlternativaILs)
+                {
+                    foreach (var item in alt.ValorCriterios)
+                    {
+                        foreach (var celda in matriz)
+                        {
+                            ValorViewModel elemento = new ValorViewModel();
+                            celda.valor = 
+                            celda.posicion = 
+                            celda.posicionMatriz = 
+                            pos++;
+                            lista.Add(elemento);
+                        }
+                    }
+                }
+
+                matrizIntermedia.Add(lista);
+            }
+
+            //for (int i = 0; i < exp.ValoracionILs.AlternativaILs.Count; i++)
+            //{
+            //    int b = 0;
+            //if (i != b)
+            //{
+            //}
+            //}
+
+            //int a = matriz.Count;
         }
 
         private int FuncionSoporte(double val1, double val2)

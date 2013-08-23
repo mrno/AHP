@@ -9,6 +9,7 @@ namespace OWAOP
     class ValorViewModel
     {
         public double valor;
+        public int posicionMatriz;
         public int posicion;
 
     }
