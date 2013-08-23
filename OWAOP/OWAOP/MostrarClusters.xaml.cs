@@ -36,17 +36,18 @@ namespace OWAOP
             expertos = proyecto.ExpertosEnProyecto.ToList<ExpertosEnProyecto>();
 
             lblProyecto.Content = unProyecto.Nombre.ToString();
+            int pos = 0;
 
             foreach (var exp in expertos)
             {
                 double virtu = 12; // ver como lo saco
                 double real = exp.ValoracionILs.ConjuntoEtiquetas.Cantidad - 1;
+                
                 int posm = 0;
-
                 foreach (var alt in exp.ValoracionILs.AlternativaILs)
                 {
                    
-                    int pos = 0;
+                    
                     List<ValorViewModel> lista = new List<ValorViewModel>();
 
                         foreach (var cri in alt.ValorCriterios)
@@ -55,8 +56,8 @@ namespace OWAOP
                             
                             ValorViewModel celda = new ValorViewModel();
                             celda.valor = ((cri.ValorILNumerico * virtu) / real) / virtu;
-                            celda.posicion = pos;
-                            celda.posicionMatriz = posm;
+                            celda.posicionFila = pos;
+                            celda.posicionColumna = posm;
                             pos++;
                             lista.Add(celda);
                             
@@ -75,16 +76,23 @@ namespace OWAOP
 
                 foreach (var alt in exp.ValoracionILs.AlternativaILs)
                 {
-                    foreach (var item in alt.ValorCriterios)
+                    foreach (var cri in alt.ValorCriterios)
                     {
-                        foreach (var celda in matriz)
+                        foreach (var item in matriz)
                         {
-                            ValorViewModel elemento = new ValorViewModel();
-                            celda.valor = 
-                            celda.posicion = 
-                            celda.posicionMatriz = 
-                            pos++;
-                            lista.Add(elemento);
+                            foreach (var celda in item)
+	                            {
+                                    if (columna == celda.posicionColumna)
+                                    {
+                                        ValorViewModel elemento = new ValorViewModel();
+                                        elemento.valor =
+                                        elemento.posicion =
+                                        elemento.posicionMatriz =
+
+                                        lista.Add(elemento);
+                                    }
+	                            }
+                            
                         }
                     }
                 }
