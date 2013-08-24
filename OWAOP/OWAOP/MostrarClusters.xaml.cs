@@ -24,7 +24,10 @@ namespace OWAOP
         double alpha;
         List<List<ValorViewModel>> matriz;
         List<List<ValorViewModel>> matrizIntermedia;
+        List<List<ValorViewModel>> matrizFinal;
         List<ExpertosEnProyecto> expertos;
+        int matrizFilas;
+        int matrizColumnas;
 
         public MostrarClusters(Proyectos unProyecto, double unAlpha)
         {
@@ -34,82 +37,98 @@ namespace OWAOP
             alpha = unAlpha;
             matriz = new List<List<ValorViewModel>>();
             expertos = proyecto.ExpertosEnProyecto.ToList<ExpertosEnProyecto>();
+            matrizFilas = expertos.Count;
+            matrizColumnas = expertos.First<ExpertosEnProyecto>().ValoracionILs.AlternativaILs.First<AlternativaILs>().ValorCriterios.Count * expertos.First<ExpertosEnProyecto>().ValoracionILs.AlternativaILs.Count;
 
             lblProyecto.Content = unProyecto.Nombre.ToString();
-            int pos = 0;
+            int columna = 0;
+            int fila = 0;
 
             foreach (var exp in expertos)
             {
                 double virtu = 12; // ver como lo saco
                 double real = exp.ValoracionILs.ConjuntoEtiquetas.Cantidad - 1;
+                columna = 0;
                 
-                int posm = 0;
                 foreach (var alt in exp.ValoracionILs.AlternativaILs)
                 {
-                   
-                    
                     List<ValorViewModel> lista = new List<ValorViewModel>();
 
                         foreach (var cri in alt.ValorCriterios)
                         {
-                            
-                            
                             ValorViewModel celda = new ValorViewModel();
                             celda.valor = ((cri.ValorILNumerico * virtu) / real) / virtu;
-                            celda.posicionFila = pos;
-                            celda.posicionColumna = posm;
-                            pos++;
+                            celda.posicionFila = fila;
+                            celda.posicionColumna = columna;
+                            columna++;
                             lista.Add(celda);
-                            
                         }
-
                         matriz.Add(lista);
                 }
+                fila++;
             }
 
             matrizIntermedia = new List<List<ValorViewModel>>();
 
-            foreach (var exp in expertos)
-            {
-                List<ValorViewModel> lista = new List<ValorViewModel>();
-                int columna = 0;
-
-                foreach (var alt in exp.ValoracionILs.AlternativaILs)
+                foreach (var item1 in matriz)
                 {
-                    foreach (var cri in alt.ValorCriterios)
+                    List<ValorViewModel> lista2 = new List<ValorViewModel>();
+                    foreach (var celda1 in item1)
                     {
+                        var acumulador = 0;
                         foreach (var item in matriz)
                         {
                             foreach (var celda in item)
-	                            {
-                                    if (columna == celda.posicionColumna)
-                                    {
-                                        ValorViewModel elemento = new ValorViewModel();
-                                        elemento.valor =
-                                        elemento.posicion =
-                                        elemento.posicionMatriz =
-
-                                        lista.Add(elemento);
-                                    }
-	                            }
-                            
+                            {
+                                if (celda1.posicionColumna == celda.posicionColumna && celda1.posicionFila != celda.posicionFila)
+                                {
+                                    acumulador += FuncionSoporte(celda1.valor, celda.valor);
+                                }
+                            }
                         }
+                        
+                        ValorViewModel elemento = new ValorViewModel();
+                        elemento.valorCluster = acumulador;
+                        elemento.valor = celda1.valor;
+                        elemento.posicionColumna = celda1.posicionColumna;
+                        elemento.posicionFila = celda1.posicionFila;
+                        lista2.Add(elemento);
                     }
+                                    
+                    matrizIntermedia.Add(lista2);
                 }
 
-                matrizIntermedia.Add(lista);
-            }
+                int a = matrizIntermedia.Count;
 
-            //for (int i = 0; i < exp.ValoracionILs.AlternativaILs.Count; i++)
-            //{
-            //    int b = 0;
-            //if (i != b)
-            //{
-            //}
-            //}
+                matrizFinal = new List<List<ValorViewModel>>();
 
-            //int a = matriz.Count;
+                for (int i = 0; i < matrizColumnas; i++)
+                {
+                    List<ValorViewModel> lista = new List<ValorViewModel>();
+
+                    foreach (var item in matrizIntermedia)
+                    {
+                        foreach (var celda in item)
+                        {
+                            if (celda.posicionColumna == i)
+                            {
+                                lista.Add(celda);
+                            }
+                        }
+                    }
+
+                    matrizFinal.Add(lista);
+                }
+
+                int b = matrizFinal.Count;
+
+                foreach (var item in matrizFinal)
+                {
+                    item.OrderBy(algo => algo.valorCluster);
+                }
         }
+
+        
 
         private int FuncionSoporte(double val1, double val2)
         {
@@ -118,8 +137,5 @@ namespace OWAOP
             else
                 return 0;
         }
-
-        
-
     }
 }
