@@ -122,10 +122,17 @@ namespace OWAOP
 
                 int b = matrizFinal.Count;
 
+                //foreach (var item in matrizFinal)
+                //{
+                //    item.OrderBy(algo => algo.valorCluster);
+                //}
+
                 foreach (var item in matrizFinal)
                 {
-                    item.OrderBy(algo => algo.valorCluster);
+                    var subset = from celda in item orderby celda.valorCluster, celda.valor select celda;
                 }
+
+
         }
 
         
