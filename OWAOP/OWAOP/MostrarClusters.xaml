@@ -8,7 +8,10 @@
 	Title="MostrarClusters">
 
     <Grid>
-        <Label Width="125"
-        Height="25" x:Name="lblProyecto"></Label>
+        <DataGrid x:Name="gridResultados" HorizontalAlignment="Left" Margin="54,27,0,0" VerticalAlignment="Top" Width="201" Height="237"/>
+            
+        
+
+
     </Grid>
 </Page>

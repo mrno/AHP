@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace OWAOP
     {
         Proyectos proyecto;
         double alpha;
+        double[] vector;
         List<List<ValorViewModel>> matriz;
         List<List<ValorViewModel>> matrizIntermedia;
         List<List<ValorViewModel>> matrizFinal;
@@ -29,24 +31,24 @@ namespace OWAOP
         int matrizFilas;
         int matrizColumnas;
 
-        public MostrarClusters(Proyectos unProyecto, double unAlpha)
+        public MostrarClusters(Proyectos unProyecto, double unAlpha, double[] unVector)
         {
             InitializeComponent();
 
             proyecto = unProyecto;
             alpha = unAlpha;
+            vector = unVector;
             matriz = new List<List<ValorViewModel>>();
             expertos = proyecto.ExpertosEnProyecto.ToList<ExpertosEnProyecto>();
             matrizFilas = expertos.Count;
             matrizColumnas = expertos.First<ExpertosEnProyecto>().ValoracionILs.AlternativaILs.First<AlternativaILs>().ValorCriterios.Count * expertos.First<ExpertosEnProyecto>().ValoracionILs.AlternativaILs.Count;
-
-            lblProyecto.Content = unProyecto.Nombre.ToString();
+            
             int columna = 0;
             int fila = 0;
 
             foreach (var exp in expertos)
             {
-                double virtu = 12; // ver como lo saco
+                int virtu = ObtenerCardinalidadCEN();
                 double real = exp.ValoracionILs.ConjuntoEtiquetas.Cantidad - 1;
                 columna = 0;
                 
@@ -122,20 +124,40 @@ namespace OWAOP
 
                 int b = matrizFinal.Count;
 
-                //foreach (var item in matrizFinal)
-                //{
-                //    item.OrderBy(algo => algo.valorCluster);
-                //}
+                List<List<ValorViewModel>> matrizFinalOrdenada = new List<List<ValorViewModel>>();
 
                 foreach (var item in matrizFinal)
                 {
                     var subset = from celda in item orderby celda.valorCluster, celda.valor select celda;
+                    matrizFinalOrdenada.Add(subset.ToList<ValorViewModel>());
                 }
 
+                double sum;
+                List<double> listaSum = new List<double>();
 
+                foreach (var item in matrizFinalOrdenada)
+                {
+                    sum = 0;   
+                    for (int i = 0; i < vector.Length; i++)
+                    {
+                        item.ElementAt<ValorViewModel>(i).valorFinal = item.ElementAt<ValorViewModel>(i).valor * vector[i];
+                        sum += item.ElementAt<ValorViewModel>(i).valorFinal;
+                    }
+
+                    listaSum.Add(sum);
+                }
+
+                gridResultados.ItemsSource = null;
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Valor");
+                foreach (var item in listaSum)
+                {
+                    
+                    dt.Rows.Add(item);
+                }
+
+                gridResultados.ItemsSource = dt.DefaultView;
         }
-
-        
 
         private int FuncionSoporte(double val1, double val2)
         {
@@ -143,6 +165,49 @@ namespace OWAOP
                 return 1;
             else
                 return 0;
+        }
+
+        //Esto del Mcm lo saqué de la clase "Utils.cs" luego, sólo referenciar. También ObtenerEstructurado().
+
+        public int Mcm(params int[] numeros)
+        {
+            int maximo = 1;
+            int tmp = 0;
+            foreach (int b in numeros)
+            {
+                numeros[tmp] = Math.Abs(b);
+                maximo = maximo * numeros[tmp];
+                tmp++;
+            }
+            int resultado = 1;
+            for (int i = 2; i <= maximo; i++)
+            {
+                bool a = true;
+                foreach (int b in numeros)
+                {
+                    if (i % b != 0)
+                    {
+                        a = false;
+                    }
+                }
+                if (a)
+                {
+                    resultado = i;
+                    break;
+                }
+            }
+            return resultado;
+        }
+
+        public int ObtenerCardinalidadCEN()
+        {
+            List<int> lista = new List<int>();
+
+            foreach (var exp in expertos)
+            {
+                lista.Add(exp.ValoracionILs.ConjuntoEtiquetas.Cantidad - 1);
+            }
+            return Mcm(lista.ToArray());
         }
     }
 }

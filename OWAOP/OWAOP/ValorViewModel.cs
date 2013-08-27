@@ -9,6 +9,7 @@ namespace OWAOP
     class ValorViewModel
     {
         public double valor;
+        public double valorFinal;
         public int valorCluster;
         public int posicionColumna;
         public int posicionFila;
