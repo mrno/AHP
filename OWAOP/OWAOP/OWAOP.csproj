@@ -125,6 +125,7 @@
     <Compile Include="ValorCriterios.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ValorVectorViewModel.cs" />
     <Compile Include="ValorViewModel.cs" />
     <Page Include="IniciarParametros.xaml">
       <SubType>Designer</SubType>

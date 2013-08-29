@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,9 @@ namespace OWAOP
     public partial class IniciarParametros : Page
     {
         GISIA2013Entities context;
+        ObservableCollection<ValorVectorViewModel> lista;
+        double[] vector;
+
         public IniciarParametros()
         {
             InitializeComponent();
@@ -29,14 +33,9 @@ namespace OWAOP
 
         private void btnSiguiente_Click(object sender, RoutedEventArgs e)
         {
-            double [] vector = {
-                            Convert.ToDouble(txt1.Text), 
-                            Convert.ToDouble(txt2.Text),
-                            Convert.ToDouble(txt3.Text),
-                            Convert.ToDouble(txt4.Text),
-                            Convert.ToDouble(txt5.Text),
-                            Convert.ToDouble(txt6.Text)
-                        };
+            vector = new double[lista.Count];
+            vector = lista.Select(x => x.valor).ToArray();
+            
             MostrarClusters mostrarClusters = new MostrarClusters((Proyectos)cmbProyecto.SelectedItem,Convert.ToDouble(txtAlpha.Text), vector);
             this.NavigationService.Navigate(mostrarClusters);
         }
@@ -51,21 +50,10 @@ namespace OWAOP
         private void desplegarTextBox(object sender, SelectionChangedEventArgs e)
         {
             Proyectos miProyecto = (Proyectos)cmbProyecto.SelectedItem;
-            List<double> lista = new List<double>(miProyecto.ExpertosEnProyecto.Select(x => 0.0));
-
-            //foreach (var item in miProyecto.ExpertosEnProyecto)
-            //{
-            //    lista.Add(0);
-            //}
-
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Valor");
-            foreach (var item in lista)
-            {
-                dt.Rows.Add(item);
-            }
-            gridVector.ItemsSource = dt.DefaultView;
+            lista = new ObservableCollection<ValorVectorViewModel>(miProyecto.ExpertosEnProyecto.Select(x => new ValorVectorViewModel()));
+            
+            
+            gridVector.ItemsSource = lista;
         }
 
         
