@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,7 @@ namespace OWAOP
         List<ExpertosEnProyecto> expertos;
         int matrizFilas;
         int matrizColumnas;
+        int conteo;
 
         public MostrarClusters(Proyectos unProyecto, double unAlpha, double[] unVector)
         {
@@ -129,8 +131,11 @@ namespace OWAOP
                 foreach (var item in matrizFinal)
                 {
                     var subset = from celda in item orderby celda.valorCluster, celda.valor select celda;
+                    conteo=subset.Count<ValorViewModel>();
                     matrizFinalOrdenada.Add(subset.ToList<ValorViewModel>());
                 }
+
+                
 
                 double sum;
                 List<double> listaSum = new List<double>();
@@ -155,6 +160,39 @@ namespace OWAOP
                     
                     dt.Rows.Add(item);
                 }
+
+
+                gridDetalles.ItemsSource = null;
+                DataTable dtR = new DataTable();
+
+                for (int i = 0; i < conteo; i++)
+                {
+                    dtR.Columns.Add("Posición" + i.ToString());
+                }
+            
+                foreach (var item in matrizFinalOrdenada)
+                {
+                    int[] miVector = new int[item.Count];
+
+                    for (int i = 0; i < miVector.Length; i++)
+                    {
+                        miVector[i] = item.ElementAt<ValorViewModel>(i).valorCluster;
+                    }
+                    
+                }
+                
+
+                //ObservableCollection<ValorViewModel> listaDetalles = new ObservableCollection<ValorViewModel>();
+                //foreach (var item in matrizFinalOrdenada)
+                //{
+                //    listaDetalles.Add(item);
+                //}
+
+
+
+
+
+                gridDetalles.ItemsSource = dtR.DefaultView;
 
                 gridResultados.ItemsSource = dt.DefaultView;
         }
