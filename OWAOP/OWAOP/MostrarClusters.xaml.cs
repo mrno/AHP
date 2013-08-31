@@ -169,30 +169,19 @@ namespace OWAOP
                 {
                     dtR.Columns.Add("Posición" + i.ToString());
                 }
-            
+                ObservableCollection<ObservableCollection<int>> obs = new ObservableCollection<ObservableCollection<int>>();
                 foreach (var item in matrizFinalOrdenada)
                 {
                     int[] miVector = new int[item.Count];
+                    ObservableCollection<int> listaObservable = new ObservableCollection<int>();
 
-                    for (int i = 0; i < miVector.Length; i++)
+                    for (int i = 0; i < item.Count; i++)
                     {
                         miVector[i] = item.ElementAt<ValorViewModel>(i).valorCluster;
                     }
-                    
                 }
-                
 
-                //ObservableCollection<ValorViewModel> listaDetalles = new ObservableCollection<ValorViewModel>();
-                //foreach (var item in matrizFinalOrdenada)
-                //{
-                //    listaDetalles.Add(item);
-                //}
-
-
-
-
-
-                gridDetalles.ItemsSource = dtR.DefaultView;
+                gridDetalles.ItemsSource = obs;
 
                 gridResultados.ItemsSource = dt.DefaultView;
         }
