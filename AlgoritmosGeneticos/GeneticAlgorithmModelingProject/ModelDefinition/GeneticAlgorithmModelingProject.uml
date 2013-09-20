@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel"
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm9="http://schemas.microsoft.com/dsltools/UseCaseModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm13="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner"
   dslVersion="1.0.0.0"
   Id="9c5d8e28-3807-46a8-a2b0-bb35a9e3a3b6"
   name="GeneticAlgorithmModelingProject" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -75,7 +75,7 @@ Parámetro de Completitud</body>
             isAbstract="false">
             <useCaseMoniker
               Id="9e5eabfd-67c7-4e73-8fbf-551d04b28bcd"
-              LastKnownName="CU01: Optimizar Matriz por Porcentaje Completo"
+              LastKnownName="CU001: Optimizar Matriz por Porcentaje Completo"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -114,7 +114,7 @@ Parámetro de Completitud</body>
             isAbstract="false">
             <useCaseMoniker
               Id="e4575776-b9bb-44c0-a299-b148a431a95f"
-              LastKnownName="CU02: Optimizar Matriz por Demanda de Usuario"
+              LastKnownName="CU002: Optimizar Matriz por Demanda de Usuario"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -150,7 +150,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="9e5eabfd-67c7-4e73-8fbf-551d04b28bcd"
-        name="CU01: Optimizar Matriz por Porcentaje Completo"
+        name="CU001: Optimizar Matriz por Porcentaje Completo"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -158,7 +158,14 @@ Parámetro de Completitud</body>
             Id="16ee6d11-cb0a-40f1-94f7-a3d28d4f7593">
             <useCaseMoniker
               Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
-              LastKnownName="CU03: Optimizar Matriz"
+              LastKnownName="CU003: Optimizar Matriz"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+          <include
+            Id="df6c0da0-04cc-4c8e-a1f7-355bae70780b">
+            <useCaseMoniker
+              Id="f3179430-f0fb-417f-9f15-72dd6783f368"
+              LastKnownName="CU012: Buscar Configuración Ejecución Actual AG"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
           </include>
         </additions>
@@ -173,7 +180,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="e4575776-b9bb-44c0-a299-b148a431a95f"
-        name="CU02: Optimizar Matriz por Demanda de Usuario"
+        name="CU002: Optimizar Matriz por Demanda de Usuario"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -181,7 +188,14 @@ Parámetro de Completitud</body>
             Id="4a1f622d-86c6-46f3-abf1-b80ed3419b48">
             <useCaseMoniker
               Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
-              LastKnownName="CU03: Optimizar Matriz"
+              LastKnownName="CU003: Optimizar Matriz"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+          <include
+            Id="329a2b9d-0e51-44b5-8aaa-3d0692b2d0c7">
+            <useCaseMoniker
+              Id="f3179430-f0fb-417f-9f15-72dd6783f368"
+              LastKnownName="CU012: Buscar Configuración Ejecución Actual AG"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
           </include>
         </additions>
@@ -204,7 +218,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
-        name="CU03: Optimizar Matriz"
+        name="CU003: Optimizar Matriz"
         isAbstract="false"
         isLeaf="false">
         <subjects>
@@ -239,7 +253,7 @@ Parámetro de Completitud</body>
             isAbstract="false">
             <useCaseMoniker
               Id="7f2c005d-67b4-48fc-97a6-b66507aa6869"
-              LastKnownName="CU04: Crear Conjunto de Prueba"
+              LastKnownName="CU004: Crear Conjunto de Prueba"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -278,7 +292,7 @@ Parámetro de Completitud</body>
             isAbstract="false">
             <useCaseMoniker
               Id="11c20b94-b48e-4c3a-95d2-68dec65e9d37"
-              LastKnownName="CU05: Ejecutar una Prueba"
+              LastKnownName="CU005: Ejecutar una Prueba"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -317,7 +331,7 @@ Parámetro de Completitud</body>
             isAbstract="false">
             <useCaseMoniker
               Id="9b25c0f4-1855-4373-b883-ebc3fbe22c30"
-              LastKnownName="CU06: Configurar Parámetros del Módulo AG"
+              LastKnownName="CU006: Configurar Parámetros del Módulo AG"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -353,14 +367,21 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="0ea48ede-c01a-4d74-980f-a3d94cf427f8"
-        name="UseCase1"
+        name="CU010: Buscar Conjuntos de Matrices"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="7f2c005d-67b4-48fc-97a6-b66507aa6869"
-        name="CU04: Crear Conjunto de Prueba"
+        name="CU004: Crear Conjunto de Prueba"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -368,7 +389,7 @@ Parámetro de Completitud</body>
             Id="24002996-9980-4751-ac01-6c5e46db28ba">
             <useCaseMoniker
               Id="9ab23577-b34e-4035-8bf6-7b921b67d6d6"
-              LastKnownName="CU07: Crear un Conjunto de Matrices"
+              LastKnownName="CU007: Crear un Conjunto de Matrices"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
           </include>
         </additions>
@@ -383,7 +404,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="11c20b94-b48e-4c3a-95d2-68dec65e9d37"
-        name="CU05: Ejecutar una Prueba"
+        name="CU005: Ejecutar una Prueba"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -391,7 +412,21 @@ Parámetro de Completitud</body>
             Id="520a912a-5dec-44b8-b4ad-335b10bd23e3">
             <useCaseMoniker
               Id="6f8e9258-e576-4fcc-a15f-388ab732c766"
-              LastKnownName="CU08: Optimizar Conjunto de Matrices"
+              LastKnownName="CU008: Optimizar Conjunto de Matrices"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+          <include
+            Id="9d45b919-d103-472b-8a8d-8eab256f2646">
+            <useCaseMoniker
+              Id="0ea48ede-c01a-4d74-980f-a3d94cf427f8"
+              LastKnownName="CU010: Buscar Conjuntos de Matrices"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+          <include
+            Id="8fbc5e8f-37be-4440-a9a3-d6ae6d2ba8cf">
+            <useCaseMoniker
+              Id="50599922-8aea-49e7-baff-b949e1e4ba0a"
+              LastKnownName="CU011: Buscar Elementos Proceso AG Programados"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
           </include>
         </additions>
@@ -406,7 +441,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="9b25c0f4-1855-4373-b883-ebc3fbe22c30"
-        name="CU06: Configurar Parámetros del Módulo AG"
+        name="CU006: Configurar Parámetros del Módulo AG"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -414,7 +449,21 @@ Parámetro de Completitud</body>
             Id="9aa97c84-ef32-4a42-bbd9-1ca5ca01f3ef">
             <useCaseMoniker
               Id="79199f68-1512-4708-a3b5-d11d3ba7c0a5"
-              LastKnownName="CU09: Guardar Configuración para Ejecución de AG"
+              LastKnownName="CU009: Guardar Configuración para Ejecución de AG"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+          <include
+            Id="9a13cc54-865b-4ec4-b7d8-537df6ebef64">
+            <useCaseMoniker
+              Id="50599922-8aea-49e7-baff-b949e1e4ba0a"
+              LastKnownName="CU011: Buscar Elementos Proceso AG Programados"
+              LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+          </include>
+          <include
+            Id="4d6d98e2-09df-4ffb-8444-75777460d616">
+            <useCaseMoniker
+              Id="f3179430-f0fb-417f-9f15-72dd6783f368"
+              LastKnownName="CU012: Buscar Configuración Ejecución Actual AG"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
           </include>
         </additions>
@@ -429,14 +478,21 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="50599922-8aea-49e7-baff-b949e1e4ba0a"
-        name="UseCase2"
+        name="CU011: Buscar Elementos Proceso AG Programados"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <useCase
         Id="6f8e9258-e576-4fcc-a15f-388ab732c766"
-        name="CU08: Optimizar Conjunto de Matrices"
+        name="CU008: Optimizar Conjunto de Matrices"
         isAbstract="false"
         isLeaf="false">
         <additions>
@@ -444,7 +500,7 @@ Parámetro de Completitud</body>
             Id="204f50d8-3b18-40cf-a0a5-0e0e2b0a60e3">
             <useCaseMoniker
               Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e"
-              LastKnownName="CU03: Optimizar Matriz"
+              LastKnownName="CU003: Optimizar Matriz"
               LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
           </include>
         </additions>
@@ -459,7 +515,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="9ab23577-b34e-4035-8bf6-7b921b67d6d6"
-        name="CU07: Crear un Conjunto de Matrices"
+        name="CU007: Crear un Conjunto de Matrices"
         isAbstract="false"
         isLeaf="false">
         <subjects>
@@ -473,7 +529,7 @@ Parámetro de Completitud</body>
     <packageHasNamedElement>
       <useCase
         Id="79199f68-1512-4708-a3b5-d11d3ba7c0a5"
-        name="CU09: Guardar Configuración para Ejecución de AG"
+        name="CU009: Guardar Configuración para Ejecución de AG"
         isAbstract="false"
         isLeaf="false">
         <subjects>
@@ -673,6 +729,20 @@ Parámetro de Completitud</body>
             isLeaf="false" />
         </nodes>
       </activity>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="f3179430-f0fb-417f-9f15-72dd6783f368"
+        name="CU012: Buscar Configuración Ejecución Actual AG"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="f0d4b962-23cb-428f-881b-5d6add3192ab"
+            LastKnownName="Módulo AG"
+            LastKnownLocation="GeneticAlgorithmModelingProject.uml" />
+        </subjects>
+      </useCase>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

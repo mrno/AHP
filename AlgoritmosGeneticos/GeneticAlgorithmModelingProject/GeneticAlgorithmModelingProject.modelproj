@@ -37,7 +37,10 @@
     <Folder Include="3 - Diseño\Realizaciones de Casos de Uso\Diagramas de Clase\" />
     <Folder Include="3 - Diseño\Realizaciones de Casos de Uso\Diagramas de Interacción\" />
     <Folder Include="ModelDefinition\" />
-    <Content Include="1 - Requisitos\Funcionales\Actores.docx">
+    <Content Include="1 - Requisitos\Escenario del Sistema.docx">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="1 - Requisitos\Especificación de Requisitos de SW.docx">
       <SubType>Content</SubType>
     </Content>
     <Content Include="1 - Requisitos\Funcionales\Descripciones\DescripcionCU001.docx">
@@ -74,9 +77,6 @@
       <SubType>Content</SubType>
       <DependentUpon>1 - Requisitos\Funcionales\Diagramas de Actividad\UMLActivityDiagramCU001.activitydiagram</DependentUpon>
     </Content>
-    <Content Include="1 - Requisitos\Funcionales\Documento de Requisitos de Funcionales.docx">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="1 - Requisitos\Funcionales\UMLModeloDeCasosDeUso.usecasediagram">
       <SubType>Content</SubType>
       <CustomToolNamespace>
@@ -86,11 +86,134 @@
       <SubType>Content</SubType>
       <DependentUpon>1 - Requisitos\Funcionales\UMLModeloDeCasosDeUso.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="1 - Requisitos\Glosario.docx">
+    <Content Include="1 - Requisitos\Glosario de Términos.docx">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="1 - Requisitos\No Funcionales\Documento de Requisitos Adicionales.docx">
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU001.classdiagram">
       <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU001.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU001.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU002.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU002.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU002.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU003.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU003.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU003.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU004.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU004.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU004.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU005.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU005.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU005.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU006.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU006.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU006.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU007.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU007.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU007.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU008.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU008.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU008.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU009.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU009.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Clase\DiagramaClasesCU009.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU001.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU001.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU001.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU002.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU002.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU002.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU003.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU003.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU003.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU004.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU004.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU004.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU005.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU005.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU005.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU006.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU006.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU006.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU007.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU007.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU007.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU008.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU008.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU008.sequencediagram</DependentUpon>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU009.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU009.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>2 - Análisis\Realizaciones de Casos de Uso\Diagramas de Interacción\DiagramaSecuenciaCU009.sequencediagram</DependentUpon>
     </Content>
     <Content Include="ModelDefinition\GeneticAlgorithmModelingProject.uml">
       <SubType>Content</SubType>
@@ -98,7 +221,7 @@
     <Folder Include="1 - Requisitos" />
     <Folder Include="2 - Análisis" />
     <Folder Include="3 - Diseño" />
-    <Folder Include="4 - Implemtación" />
+    <Folder Include="4 - Implementación" />
     <Folder Include="5 - Prueba" />
   </ItemGroup>
 </Project>

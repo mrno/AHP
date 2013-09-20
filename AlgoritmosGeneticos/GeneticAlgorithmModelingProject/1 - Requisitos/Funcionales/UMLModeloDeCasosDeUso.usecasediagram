@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="9678cab4-e1fc-47f3-9325-9b99a75e8627" name="Modelo de Casos de Uso" linkedPackageId="9d838db1-e692-4f89-b28a-19389ab7ed83" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ComponentDesigner" xmlns:dm12="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm13="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="9678cab4-e1fc-47f3-9325-9b99a75e8627" name="Modelo de Casos de Uso" linkedPackageId="9d838db1-e692-4f89-b28a-19389ab7ed83" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
   <ownedCommentsInternal>
     <comment Id="6c71db74-6a91-4248-9303-62f5f2ccad80">
       <elementDefinition Id="bc37f07b-39e7-4eca-a5d4-9bced35b6b1e" />
@@ -27,7 +27,7 @@
         <elementDefinition Id="f56b756e-c4d9-4ade-9619-f9eb8adfcbf5" />
         <targetEnds>
           <association Id="901cd0c3-29a3-4684-bd74-6db9a86a1827" isDerived="false" sourceEndRoleName="SisExperto" targetEndRoleName="UseCase1" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="deccb975-22d0-4db0-9fc6-ed2e14ce94cf" LastKnownName="CU01: Optimizar Matriz por Porcentaje Completo" />
+            <useCaseMoniker Id="deccb975-22d0-4db0-9fc6-ed2e14ce94cf" LastKnownName="CU001: Optimizar Matriz por Porcentaje Completo" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="5c31029b-0c59-4d6c-b910-1c73dff5a594" name="SisExperto" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -43,7 +43,7 @@
             <elementDefinition Id="eaee2df9-eaac-471f-b4e6-356d4adad8f2" />
           </association>
           <association Id="778cf20d-427b-4981-9e32-fbd293ae5d0f" isDerived="false" sourceEndRoleName="SisExperto" targetEndRoleName="CU02: Optimizar Matriz por Demanda de Usuario" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="e834901b-2dbd-455c-8642-ac90f6e66aec" LastKnownName="CU02: Optimizar Matriz por Demanda de Usuario" />
+            <useCaseMoniker Id="e834901b-2dbd-455c-8642-ac90f6e66aec" LastKnownName="CU002: Optimizar Matriz por Demanda de Usuario" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="d0b9c321-46df-4586-a799-d60cb391ac5b" name="SisExperto" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -62,12 +62,16 @@
       </actor>
     </useCaseModelRootHasTypes>
     <packageHasNamedElement>
-      <useCase Id="deccb975-22d0-4db0-9fc6-ed2e14ce94cf" name="CU01: Optimizar Matriz por Porcentaje Completo" isAbstract="false" isLeaf="false">
+      <useCase Id="deccb975-22d0-4db0-9fc6-ed2e14ce94cf" name="CU001: Optimizar Matriz por Porcentaje Completo" isAbstract="false" isLeaf="false">
         <elementDefinition Id="9e5eabfd-67c7-4e73-8fbf-551d04b28bcd" />
         <additions>
           <include Id="6cab775b-2ab3-4abd-b1fd-26b316b8175c">
-            <useCaseMoniker Id="439f0493-3aee-4d00-91c5-06f45b2e601b" LastKnownName="CU03: Optimizar Matriz" />
+            <useCaseMoniker Id="439f0493-3aee-4d00-91c5-06f45b2e601b" LastKnownName="CU003: Optimizar Matriz" />
             <elementDefinition Id="16ee6d11-cb0a-40f1-94f7-a3d28d4f7593" />
+          </include>
+          <include Id="62a8d2e5-51b3-49b7-ac4b-76a6b55f4850">
+            <useCaseMoniker Id="ff8ecefa-8b3e-488d-9b92-1cc4d1bb7cf5" LastKnownName="CU012: Buscar Configuración Ejecución Actual AG" />
+            <elementDefinition Id="df6c0da0-04cc-4c8e-a1f7-355bae70780b" />
           </include>
         </additions>
         <subjects>
@@ -76,12 +80,16 @@
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <useCase Id="e834901b-2dbd-455c-8642-ac90f6e66aec" name="CU02: Optimizar Matriz por Demanda de Usuario" isAbstract="false" isLeaf="false">
+      <useCase Id="e834901b-2dbd-455c-8642-ac90f6e66aec" name="CU002: Optimizar Matriz por Demanda de Usuario" isAbstract="false" isLeaf="false">
         <elementDefinition Id="e4575776-b9bb-44c0-a299-b148a431a95f" />
         <additions>
           <include Id="bb92125e-3d31-438d-913d-f723356b5f37">
-            <useCaseMoniker Id="439f0493-3aee-4d00-91c5-06f45b2e601b" LastKnownName="CU03: Optimizar Matriz" />
+            <useCaseMoniker Id="439f0493-3aee-4d00-91c5-06f45b2e601b" LastKnownName="CU003: Optimizar Matriz" />
             <elementDefinition Id="4a1f622d-86c6-46f3-abf1-b80ed3419b48" />
+          </include>
+          <include Id="9b6c8830-d28f-46f8-8f02-011dbcfac5fe">
+            <useCaseMoniker Id="ff8ecefa-8b3e-488d-9b92-1cc4d1bb7cf5" LastKnownName="CU012: Buscar Configuración Ejecución Actual AG" />
+            <elementDefinition Id="329a2b9d-0e51-44b5-8aaa-3d0692b2d0c7" />
           </include>
         </additions>
         <subjects>
@@ -95,7 +103,7 @@
       </subsystem>
     </useCaseModelRootHasTypes>
     <packageHasNamedElement>
-      <useCase Id="439f0493-3aee-4d00-91c5-06f45b2e601b" name="CU03: Optimizar Matriz" isAbstract="false" isLeaf="false">
+      <useCase Id="439f0493-3aee-4d00-91c5-06f45b2e601b" name="CU003: Optimizar Matriz" isAbstract="false" isLeaf="false">
         <elementDefinition Id="aad410fd-5b1b-464f-a577-15b4ce5cd05e" />
         <subjects>
           <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
@@ -112,7 +120,7 @@
         <elementDefinition Id="95452a6c-0679-4924-8ccb-aaf01f83c3f3" />
         <targetEnds>
           <association Id="3a404b3f-8ff9-4457-b5f1-e07f76eafe28" isDerived="false" sourceEndRoleName="Investigador" targetEndRoleName="CU04: Crear Conjunto de Prueba" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="58a742e6-4ef2-4794-9b88-71ebff71174e" LastKnownName="CU04: Crear Conjunto de Prueba" />
+            <useCaseMoniker Id="58a742e6-4ef2-4794-9b88-71ebff71174e" LastKnownName="CU004: Crear Conjunto de Prueba" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="99e515d4-24c7-4692-a259-7331cb021350" name="Investigador" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -128,7 +136,7 @@
             <elementDefinition Id="ae7f6b7f-113c-4dd3-a05f-dcf57e7b712d" />
           </association>
           <association Id="b73cd051-507b-4f4a-b737-de792cfd70ce" isDerived="false" sourceEndRoleName="Investigador" targetEndRoleName="CU04: Ejecutar una Prueba" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="25e36f53-4fd7-4a64-a0d1-979e109853c4" LastKnownName="CU05: Ejecutar una Prueba" />
+            <useCaseMoniker Id="25e36f53-4fd7-4a64-a0d1-979e109853c4" LastKnownName="CU005: Ejecutar una Prueba" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="7aa6dccd-f6ec-40a0-aeee-2de59ff3a966" name="Investigador" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -144,7 +152,7 @@
             <elementDefinition Id="4ac514c4-1b6b-483e-ac63-67b590511a1b" />
           </association>
           <association Id="d85847aa-dc3d-48ca-801f-981b1712dd72" isDerived="false" sourceEndRoleName="Investigador" targetEndRoleName="CU05: Configurar Parámetros del Módulo AG" isLeaf="false" isAbstract="false">
-            <useCaseMoniker Id="3edfad03-af38-4c89-bafe-2b30bae38cb7" LastKnownName="CU06: Configurar Parámetros del Módulo AG" />
+            <useCaseMoniker Id="3edfad03-af38-4c89-bafe-2b30bae38cb7" LastKnownName="CU006: Configurar Parámetros del Módulo AG" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd Id="e2131726-6bd2-4888-a9f6-8ff4f7bb4cfd" name="Investigador" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -163,11 +171,11 @@
       </actor>
     </useCaseModelRootHasTypes>
     <packageHasNamedElement>
-      <useCase Id="58a742e6-4ef2-4794-9b88-71ebff71174e" name="CU04: Crear Conjunto de Prueba" isAbstract="false" isLeaf="false">
+      <useCase Id="58a742e6-4ef2-4794-9b88-71ebff71174e" name="CU004: Crear Conjunto de Prueba" isAbstract="false" isLeaf="false">
         <elementDefinition Id="7f2c005d-67b4-48fc-97a6-b66507aa6869" />
         <additions>
           <include Id="9f58a44d-71a4-4888-9801-afcc9502319e">
-            <useCaseMoniker Id="1275d437-1647-4675-b612-060874fb315a" LastKnownName="CU07: Crear un Conjunto de Matrices" />
+            <useCaseMoniker Id="1275d437-1647-4675-b612-060874fb315a" LastKnownName="CU007: Crear un Conjunto de Matrices" />
             <elementDefinition Id="24002996-9980-4751-ac01-6c5e46db28ba" />
           </include>
         </additions>
@@ -177,12 +185,20 @@
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <useCase Id="25e36f53-4fd7-4a64-a0d1-979e109853c4" name="CU05: Ejecutar una Prueba" isAbstract="false" isLeaf="false">
+      <useCase Id="25e36f53-4fd7-4a64-a0d1-979e109853c4" name="CU005: Ejecutar una Prueba" isAbstract="false" isLeaf="false">
         <elementDefinition Id="11c20b94-b48e-4c3a-95d2-68dec65e9d37" />
         <additions>
           <include Id="e26ab8ee-c4b5-41eb-a6a3-77b11a501752">
-            <useCaseMoniker Id="40cfdb7c-cca5-4cc0-b258-682347086d62" LastKnownName="CU08: Optimizar Conjunto de Matrices" />
+            <useCaseMoniker Id="40cfdb7c-cca5-4cc0-b258-682347086d62" LastKnownName="CU008: Optimizar Conjunto de Matrices" />
             <elementDefinition Id="520a912a-5dec-44b8-b4ad-335b10bd23e3" />
+          </include>
+          <include Id="8bca89cf-b5c6-4374-ad0f-51784304aa85">
+            <useCaseMoniker Id="97a839a8-1bec-41ef-9fa1-146b444ded0a" LastKnownName="CU010: Buscar Conjuntos de Matrices" />
+            <elementDefinition Id="9d45b919-d103-472b-8a8d-8eab256f2646" />
+          </include>
+          <include Id="d119dbe6-3805-4507-ad19-ebe789aef1a2">
+            <useCaseMoniker Id="526b1d92-dd92-4755-af2a-949c4fe9a067" LastKnownName="CU011: Buscar Elementos Proceso AG Programados" />
+            <elementDefinition Id="8fbc5e8f-37be-4440-a9a3-d6ae6d2ba8cf" />
           </include>
         </additions>
         <subjects>
@@ -191,12 +207,20 @@
       </useCase>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <useCase Id="3edfad03-af38-4c89-bafe-2b30bae38cb7" name="CU06: Configurar Parámetros del Módulo AG" isAbstract="false" isLeaf="false">
+      <useCase Id="3edfad03-af38-4c89-bafe-2b30bae38cb7" name="CU006: Configurar Parámetros del Módulo AG" isAbstract="false" isLeaf="false">
         <elementDefinition Id="9b25c0f4-1855-4373-b883-ebc3fbe22c30" />
         <additions>
           <include Id="b468db6c-e650-43e0-9bd1-8994175b0b84">
-            <useCaseMoniker Id="245f8966-0743-44f3-81ad-d2bcbbe9a074" LastKnownName="CU09: Guardar Configuración para Ejecución de AG" />
+            <useCaseMoniker Id="245f8966-0743-44f3-81ad-d2bcbbe9a074" LastKnownName="CU009: Guardar Configuración para Ejecución de AG" />
             <elementDefinition Id="9aa97c84-ef32-4a42-bbd9-1ca5ca01f3ef" />
+          </include>
+          <include Id="f86b118d-0bbe-4e6d-b2e5-0ff8ba71742e">
+            <useCaseMoniker Id="526b1d92-dd92-4755-af2a-949c4fe9a067" LastKnownName="CU011: Buscar Elementos Proceso AG Programados" />
+            <elementDefinition Id="9a13cc54-865b-4ec4-b7d8-537df6ebef64" />
+          </include>
+          <include Id="dddac75f-be59-42cb-b5cb-0007e88b9008">
+            <useCaseMoniker Id="413ab7f1-87e9-4894-9cb4-af643a3a8125" LastKnownName="CU012: Buscar Configuración Ejecución Actual AG" />
+            <elementDefinition Id="4d6d98e2-09df-4ffb-8444-75777460d616" />
           </include>
         </additions>
         <subjects>
@@ -205,11 +229,11 @@
       </useCase>
     </packageHasNamedElement>
     <useCaseModelRootHasTypes>
-      <useCase Id="40cfdb7c-cca5-4cc0-b258-682347086d62" name="CU08: Optimizar Conjunto de Matrices" isAbstract="false" isLeaf="false">
+      <useCase Id="40cfdb7c-cca5-4cc0-b258-682347086d62" name="CU008: Optimizar Conjunto de Matrices" isAbstract="false" isLeaf="false">
         <elementDefinition Id="6f8e9258-e576-4fcc-a15f-388ab732c766" />
         <additions>
           <include Id="5c6f6ac3-d9fb-475e-a273-ff5580ba44b9">
-            <useCaseMoniker Id="439f0493-3aee-4d00-91c5-06f45b2e601b" LastKnownName="CU03: Optimizar Matriz" />
+            <useCaseMoniker Id="439f0493-3aee-4d00-91c5-06f45b2e601b" LastKnownName="CU003: Optimizar Matriz" />
             <elementDefinition Id="204f50d8-3b18-40cf-a0a5-0e0e2b0a60e3" />
           </include>
         </additions>
@@ -219,7 +243,7 @@
       </useCase>
     </useCaseModelRootHasTypes>
     <packageHasNamedElement>
-      <useCase Id="1275d437-1647-4675-b612-060874fb315a" name="CU07: Crear un Conjunto de Matrices" isAbstract="false" isLeaf="false">
+      <useCase Id="1275d437-1647-4675-b612-060874fb315a" name="CU007: Crear un Conjunto de Matrices" isAbstract="false" isLeaf="false">
         <elementDefinition Id="9ab23577-b34e-4035-8bf6-7b921b67d6d6" />
         <subjects>
           <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
@@ -227,13 +251,45 @@
       </useCase>
     </packageHasNamedElement>
     <useCaseModelRootHasTypes>
-      <useCase Id="245f8966-0743-44f3-81ad-d2bcbbe9a074" name="CU09: Guardar Configuración para Ejecución de AG" isAbstract="false" isLeaf="false">
+      <useCase Id="245f8966-0743-44f3-81ad-d2bcbbe9a074" name="CU009: Guardar Configuración para Ejecución de AG" isAbstract="false" isLeaf="false">
         <elementDefinition Id="79199f68-1512-4708-a3b5-d11d3ba7c0a5" />
         <subjects>
           <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
         </subjects>
       </useCase>
     </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="97a839a8-1bec-41ef-9fa1-146b444ded0a" name="CU010: Buscar Conjuntos de Matrices" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="0ea48ede-c01a-4d74-980f-a3d94cf427f8" />
+        <subjects>
+          <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="526b1d92-dd92-4755-af2a-949c4fe9a067" name="CU011: Buscar Elementos Proceso AG Programados" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="50599922-8aea-49e7-baff-b949e1e4ba0a" />
+        <subjects>
+          <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="413ab7f1-87e9-4894-9cb4-af643a3a8125" name="CU012: Buscar Configuración Ejecución Actual AG" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f3179430-f0fb-417f-9f15-72dd6783f368" />
+        <subjects>
+          <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="ff8ecefa-8b3e-488d-9b92-1cc4d1bb7cf5" name="CU012: Buscar Configuración Ejecución Actual AG" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="f3179430-f0fb-417f-9f15-72dd6783f368" />
+        <subjects>
+          <subsystemMoniker Id="69609533-0a08-47cd-a0a3-b792c98a5a38" LastKnownName="Módulo AG" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
   </packagedElements>
   <package Id="9d838db1-e692-4f89-b28a-19389ab7ed83" name="GeneticAlgorithmModelingProject">
     <elementDefinition Id="9c5d8e28-3807-46a8-a2b0-bb35a9e3a3b6" />
